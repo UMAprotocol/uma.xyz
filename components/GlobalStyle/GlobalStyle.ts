@@ -1,3 +1,34 @@
+import {
+  black,
+  blackOpacity25,
+  blackOpacity50,
+  blackOpacity60,
+  blackOpacity75,
+  green,
+  grey100,
+  grey50,
+  grey500,
+  loadingSkeletonOpacity10,
+  loadingSkeletonOpacity100,
+  red100,
+  red500,
+  red500Opacity5,
+  red600,
+  white,
+  whiteOpacity10,
+} from "constants/colors";
+import {
+  headerLg,
+  headerMd,
+  headerSm,
+  headerXl,
+  headerXs,
+  textFine,
+  textLg,
+  textMd,
+  textSm,
+  textXs,
+} from "constants/fonts";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -160,4 +191,40 @@ a:not([class]) {
 :where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"])[disabled] {
   cursor: not-allowed;
 }
+
+/* Global style definitions */
+
+  /*  All CSS custom properties that are intended to be global must be defined here */
+
+  html {
+    /* Colors */
+    --white: ${white};
+    --white-opacity-10: ${whiteOpacity10};
+    --black: ${black};
+    --black-opacity-25: ${blackOpacity25};
+    --black-opacity-50: ${blackOpacity50};
+    --black-opacity-60: ${blackOpacity60};
+    --black-opacity-75: ${blackOpacity75};
+    --red-100: ${red100};
+    --red-500: ${red500};
+    --red-500-opacity-5: ${red500Opacity5};
+    --red-600: ${red600};
+    --green: ${green};
+    --grey-50: ${grey50};
+    --grey-100: ${grey100};
+    --grey-500: ${grey500};
+    --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
+    --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
+    /* Fonts */
+    --header-xl: ${headerXl};
+    --header-lg: ${headerLg};
+    --header-md: ${headerMd};
+    --header-sm: ${headerSm};
+    --header-xs: ${headerXs};
+    --text-lg: ${textLg};
+    --text-md: ${textMd};
+    --text-sm: ${textSm};
+    --text-xs: ${textXs};
+    --text-fine: ${textFine};
+  }
 `;
