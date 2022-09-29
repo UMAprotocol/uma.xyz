@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools/build/lib/devtools";
 import { GlobalStyle } from "components";
 import type { AppProps } from "next/app";
+import "styles/fonts.css";
 
 const queryClient = new QueryClient();
 
