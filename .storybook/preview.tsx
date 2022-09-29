@@ -1,8 +1,8 @@
 import { addDecorator } from "@storybook/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { GlobalStyle } from "components";
 import React from "react";
 import "styles/fonts.css";
-import { GlobalStyle } from "components";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
