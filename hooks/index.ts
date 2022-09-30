@@ -1,1 +1,2 @@
-export { useMounted } from "./useMounted";
+export { useMounted } from "./helpers/useMounted";
+export { useExample } from "./queries/useExample";
