@@ -1,6 +1,6 @@
 import { addDecorator } from "@storybook/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { GlobalStyle } from "components";
+import { GlobalStyle } from "../components";
 import React from "react";
 import "styles/fonts.css";
 
