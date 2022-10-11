@@ -1,6 +1,5 @@
 {
-  "bracketSpacing": true,
-  "explicitTypes": "preserve",
   "printWidth": 120,
+  "bracketSpacing": true,
   "tabWidth": 2
 }
