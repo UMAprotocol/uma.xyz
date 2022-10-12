@@ -38,7 +38,7 @@ const links = [
 ];
 
 const Wrapper = styled.div`
-  background: #272528;
+  background: var(--black);
   width: 100%;
   display: flex;
   flex-direction: row;
