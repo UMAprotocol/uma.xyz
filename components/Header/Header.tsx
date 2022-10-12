@@ -75,7 +75,7 @@ const LaunchButton = styled.button`
   height: 40px;
   gap: 2px;
   width: 118px;
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 8px;
   font: var(--text-md);
   transition: opacity, background-color 0.2s ease-in-out;
