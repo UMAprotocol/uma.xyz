@@ -4,7 +4,9 @@ import Logo from "public/assets/uma-logo.svg";
 const Header = () => {
   return (
     <Wrapper>
-      <Logo />
+      <a href="/">
+        <Logo />
+      </a>
       <Links>
         {/* TODO: Get links */}
         {links.map(({ label, href }, i) => (
