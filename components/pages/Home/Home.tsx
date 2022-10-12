@@ -13,5 +13,5 @@ export function Home() {
 }
 
 const Wrapper = styled.div`
-  background: #272528;
+  background: var(--black);
 `;
