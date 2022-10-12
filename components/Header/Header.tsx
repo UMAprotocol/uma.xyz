@@ -6,6 +6,7 @@ const Header = () => {
     <Wrapper>
       <Logo />
       <Links>
+        {/* TODO: Get links */}
         <Link href="#">How it works</Link>
         <Link href="#">For voters</Link>
         <Link href="#">For builders</Link>
