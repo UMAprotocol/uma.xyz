@@ -140,15 +140,15 @@ const FooterLinks = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 50%;
-  gap: 22px;
+  width: 52%;
+  gap: 32px;
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   flex-direction: column;
   gap: 22px;
-  flex-basis: 25%;
+  flex-basis: 32%;
 `;
 
 const SocialLinkWrapper = styled.div`
@@ -166,7 +166,7 @@ const SocialLink = styled.a`
 const BottomRow = styled(Row)`
   margin-top: 110px;
   justify-content: space-between;
-  column-gap: 176px;
+  column-gap: 100px;
 `;
 
 const Links = styled.div`
@@ -175,7 +175,7 @@ const Links = styled.div`
   flex-wrap: wrap;
   row-gap: 16px;
   max-height: 136px;
-  flex-basis: 35%;
+  flex-basis: 50%;
 `;
 
 const Link = styled.a`
