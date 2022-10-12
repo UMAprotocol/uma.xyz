@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
-import { Button } from "components";
+
 const Header = () => {
   return (
     <Wrapper>
@@ -44,20 +44,18 @@ const Link = styled.a`
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  color: #b0afb3;
+  color: var(--grey-900);
   text-decoration: none;
+  font: var(--text-md);
 `;
 
 const LaunchButton = styled.button`
-  color: #272528;
+  color: var(--black);
   padding: 8px 16px 12px;
   height: 40px;
   gap: 2px;
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
   width: 118px;
   background-color: #fff;
   border-radius: 8px;
+  font: var(--text-md);
 `;
