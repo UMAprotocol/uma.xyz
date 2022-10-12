@@ -7,9 +7,11 @@ const Header = () => {
       <Logo />
       <Links>
         {/* TODO: Get links */}
-        <Link href="#">How it works</Link>
-        <Link href="#">For voters</Link>
-        <Link href="#">For builders</Link>
+        {links.map(({ label, href }, i) => (
+          <Link key={i} href={href}>
+            {label}
+          </Link>
+        ))}
         <LaunchButton onClick={() => null}>Launch app</LaunchButton>
       </Links>
     </Wrapper>
@@ -17,6 +19,21 @@ const Header = () => {
 };
 
 export default Header;
+
+const links = [
+  {
+    label: "How it works",
+    href: "#",
+  },
+  {
+    label: "For voters",
+    href: "#",
+  },
+  {
+    label: "For builders",
+    href: "#",
+  },
+];
 
 const Wrapper = styled.div`
   background: #272528;
