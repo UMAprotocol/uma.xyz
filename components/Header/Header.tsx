@@ -43,6 +43,10 @@ const Link = styled.a`
   color: var(--grey-900);
   text-decoration: none;
   font: var(--text-md);
+  transition: opacity, background-color 0.2s ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const LaunchButton = styled.button`
@@ -54,4 +58,8 @@ const LaunchButton = styled.button`
   background-color: #fff;
   border-radius: 8px;
   font: var(--text-md);
+  transition: opacity, background-color 0.2s ease-in-out;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
