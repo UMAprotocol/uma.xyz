@@ -40,10 +40,6 @@ const Links = styled.div`
 `;
 
 const Link = styled.a`
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
   color: var(--grey-900);
   text-decoration: none;
   font: var(--text-md);
