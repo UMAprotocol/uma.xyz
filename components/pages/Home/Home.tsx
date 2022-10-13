@@ -1,4 +1,4 @@
-import { Layout, Header, Footer } from "components";
+import { Layout, Header, VoteParticipation, Footer } from "components";
 import styled from "styled-components";
 
 export function Home() {
@@ -6,6 +6,7 @@ export function Home() {
     <Layout>
       <Wrapper>
         <Header />
+        <VoteParticipation />
         <Footer />
       </Wrapper>
     </Layout>

@@ -4,3 +4,4 @@ export { Layout } from "./Layout/Layout";
 export { Home } from "./pages/Home/Home";
 export { default as Header } from "./Header";
 export { default as Footer } from "./Footer";
+export { default as VoteParticipation } from "./VoteParticipation";

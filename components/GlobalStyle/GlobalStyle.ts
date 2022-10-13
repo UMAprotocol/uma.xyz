@@ -5,8 +5,9 @@ import {
   blackOpacity60,
   blackOpacity75,
   green,
-  grey100,
   grey50,
+  grey100,
+  grey150,
   grey500,
   grey900,
   grey950,
@@ -17,6 +18,7 @@ import {
   red500Opacity5,
   red600,
   white,
+  white50,
   whiteOpacity10,
 } from "constants/colors";
 import {
@@ -26,6 +28,8 @@ import {
   headerXl,
   headerXs,
   textFine,
+  textXXl,
+  textXl,
   textLg,
   textMd16,
   textMd18,
@@ -33,6 +37,7 @@ import {
   textSm,
   textXs,
 } from "constants/fonts";
+import { maxSectionWidth } from "constants/breakpoints";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -204,6 +209,7 @@ a:not([class]) {
     /* Colors */
     --white: ${white};
     --white-opacity-10: ${whiteOpacity10};
+    --white-50: ${white50};
     --black: ${black};
     --black-opacity-25: ${blackOpacity25};
     --black-opacity-50: ${blackOpacity50};
@@ -216,6 +222,7 @@ a:not([class]) {
     --green: ${green};
     --grey-50: ${grey50};
     --grey-100: ${grey100};
+    --grey-150: ${grey150};
     --grey-500: ${grey500};
     --grey-900: ${grey900};
     --grey-950: ${grey950};
@@ -227,6 +234,8 @@ a:not([class]) {
     --header-md: ${headerMd};
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
+    --text-xxl: ${textXXl};
+    --text-xl: ${textXl};
     --text-lg: ${textLg};
     --text-md-16: ${textMd16};
     --text-md-18: ${textMd18};
@@ -234,5 +243,6 @@ a:not([class]) {
     --text-sm: ${textSm};
     --text-xs: ${textXs};
     --text-fine: ${textFine};
+    --max-section-width: ${maxSectionWidth};
   }
 `;

@@ -134,7 +134,7 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   background-position: left top;
   width: 100%;
-  max-width: 1144px;
+  max-width: var(--max-section-width);
   margin: 96px auto 0;
 `;
 

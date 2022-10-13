@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  max-width: 1144px;
+  max-width: var(--max-section-width);
   padding-top: 16px;
   margin: 0 auto;
 `;
