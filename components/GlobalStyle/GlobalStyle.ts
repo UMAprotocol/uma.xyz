@@ -28,6 +28,7 @@ import {
   headerXl,
   headerXs,
   textFine,
+  textXXXl,
   textXXl,
   textXl,
   textLg,
@@ -234,6 +235,7 @@ a:not([class]) {
     --header-md: ${headerMd};
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
+    --text-xxxl: ${textXXXl};
     --text-xxl: ${textXXl};
     --text-xl: ${textXl};
     --text-lg: ${textLg};
