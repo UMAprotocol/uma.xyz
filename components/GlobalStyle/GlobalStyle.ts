@@ -27,8 +27,9 @@ import {
   headerXs,
   textFine,
   textLg,
-  textMd,
+  textMd16,
   textMd18,
+  textMd20,
   textSm,
   textXs,
 } from "constants/fonts";
@@ -227,8 +228,9 @@ a:not([class]) {
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
     --text-lg: ${textLg};
-    --text-md: ${textMd};
-    --text-md18: ${textMd18};
+    --text-md-16: ${textMd16};
+    --text-md-18: ${textMd18};
+    --text-md-20: ${textMd20};
     --text-sm: ${textSm};
     --text-xs: ${textXs};
     --text-fine: ${textFine};

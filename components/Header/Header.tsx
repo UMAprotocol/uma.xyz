@@ -62,7 +62,7 @@ const Links = styled.div`
 const Link = styled.a`
   color: var(--grey-900);
   text-decoration: none;
-  font: var(--text-md18);
+  font: var(--text-md-18);
   transition: opacity, background-color 0.2s ease-in-out;
   &:hover {
     opacity: 0.8;
@@ -77,7 +77,7 @@ const LaunchButton = styled.button`
   width: 118px;
   background-color: var(--white);
   border-radius: 8px;
-  font: var(--text-md18);
+  font: var(--text-md-18);
   transition: opacity, background-color 0.2s ease-in-out;
   &:hover {
     opacity: 0.8;

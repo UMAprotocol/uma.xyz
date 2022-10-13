@@ -12,8 +12,9 @@ export const headerSm = `${semiBold} 18px/25px ${family}`;
 export const headerXs = `${bold} 16px/22px ${family}`;
 
 export const textLg = `${regular} 32px/44px ${family}`;
+export const textMd20 = `${regular} 20px/28px ${family}`;
 export const textMd18 = `${regular} 18px/22px ${family}`;
-export const textMd = `${regular} 16px/22px ${family}`;
+export const textMd16 = `${regular} 16px/22px ${family}`;
 
 export const textSm = `${regular} 14px/19px ${family}`;
 export const textXs = `${regular} 12px/17px ${family}`;

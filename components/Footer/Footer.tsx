@@ -191,7 +191,7 @@ const Links = styled.div`
 
 const Link = styled.a`
   color: var(--grey-950);
-  font: var(--text-md);
+  font: var(--text-md-16);
   text-decoration: none;
 `;
 
@@ -202,11 +202,7 @@ const FormWrapper = styled.div`
 `;
 
 const FormTitle = styled.h3`
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 135%;
+  font: var(--text-md-20);
   color: var(--white);
   max-width: 338px;
   margin-bottom: 32px;
@@ -223,19 +219,14 @@ const Form = styled.div`
 
 const Input = styled.input`
   width: 350px;
-
   height: 48px;
   background: rgba(255, 255, 255, 0.05);
   color: var(--white);
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 135%;
   padding: 8px 16px;
   border-radius: 8px;
   outline: none;
   cursor: initial;
+  font: var(--text-md-18);
 `;
 
 const Button = styled.button`
@@ -249,15 +240,11 @@ const Button = styled.button`
   width: 103px;
   height: 48px;
 
-  background: #ff4a4a;
+  background: var(--red-500);
   border-radius: 8px;
   color: var(--black);
 
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 135%;
+  font: var(--text-md-18);
 `;
 
 const LinksFlex = styled.div`
@@ -276,7 +263,7 @@ const AddressWrapper = styled.div`
   justify-content: space-between;
   opacity: 0.2;
   > div {
-    font: var(--text-md);
+    font: var(--text-md-16);
     color: var(--white);
   }
 `;
