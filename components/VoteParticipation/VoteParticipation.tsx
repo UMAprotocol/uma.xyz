@@ -1,5 +1,7 @@
 import styled from "styled-components";
-
+import StakeBlock from "public/assets/stake-block.svg";
+import VoteBlock from "public/assets/vote-block.svg";
+import EarnBlock from "public/assets/earn-block.svg";
 const VoteParticipation = () => {
   return (
     <Section>
@@ -9,9 +11,33 @@ const VoteParticipation = () => {
         </Title>
         <Header>Stake, vote &amp; earn up to 30% APY</Header>
         <ImageBlockRow>
-          <ImageBlock></ImageBlock>
-          <ImageBlock></ImageBlock>
-          <ImageBlock></ImageBlock>
+          <ImageBlockWrapper>
+            <ImageBlockWhite>
+              <StakeBlock />
+              <ImageTitleRed>Stake</ImageTitleRed>
+              <ImageText>
+                As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
+              </ImageText>
+            </ImageBlockWhite>
+          </ImageBlockWrapper>
+          <ImageBlockWrapper>
+            <ImageBlock>
+              <VoteBlock />
+              <ImageTitle>Vote</ImageTitle>
+              <ImageText>
+                As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
+              </ImageText>
+            </ImageBlock>
+          </ImageBlockWrapper>
+          <ImageBlockWrapper>
+            <ImageBlock>
+              <EarnBlock />
+              <ImageTitle>Earn</ImageTitle>
+              <ImageText>
+                As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
+              </ImageText>
+            </ImageBlock>
+          </ImageBlockWrapper>
         </ImageBlockRow>
       </Wrapper>
     </Section>
@@ -49,20 +75,47 @@ const Header = styled.div`
 const ImageBlockRow = styled.div`
   margin-top: 96px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 48px;
 `;
 
-const ImageBlock = styled.div`
-  padding: 40px;
+const ImageBlockWrapper = styled.div`
+  flex-basis: 33%;
   background: var(--white-50);
   border: 1px solid transparent;
-  &:first-of-type {
-    background-color: var(--white);
-    border: 1px solid var(--grey-150);
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const ImageBlock = styled.div`
+  padding: 40px;
+`;
+
+const ImageBlockWhite = styled(ImageBlock)`
+  background-color: var(--white);
+  border: 1px solid var(--grey-150);
+`;
+
+const ImageTitle = styled.div`
+  color: var(--black);
+  font-family: "Halyard Display";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 115%;
+`;
+
+const ImageTitleRed = styled(ImageTitle)`
+  color: var(--red-500);
+`;
+
+const ImageText = styled.div`
+  font: var(--text-md-20);
+  color: var(--black);
 `;
 
 export default VoteParticipation;
