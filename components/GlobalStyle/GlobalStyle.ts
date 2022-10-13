@@ -8,6 +8,8 @@ import {
   grey100,
   grey50,
   grey500,
+  grey900,
+  grey950,
   loadingSkeletonOpacity10,
   loadingSkeletonOpacity100,
   red100,
@@ -25,7 +27,9 @@ import {
   headerXs,
   textFine,
   textLg,
-  textMd,
+  textMd16,
+  textMd18,
+  textMd20,
   textSm,
   textXs,
 } from "constants/fonts";
@@ -213,6 +217,8 @@ a:not([class]) {
     --grey-50: ${grey50};
     --grey-100: ${grey100};
     --grey-500: ${grey500};
+    --grey-900: ${grey900};
+    --grey-950: ${grey950};
     --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
     --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
     /* Fonts */
@@ -222,7 +228,9 @@ a:not([class]) {
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
     --text-lg: ${textLg};
-    --text-md: ${textMd};
+    --text-md-16: ${textMd16};
+    --text-md-18: ${textMd18};
+    --text-md-20: ${textMd20};
     --text-sm: ${textSm};
     --text-xs: ${textXs};
     --text-fine: ${textFine};
