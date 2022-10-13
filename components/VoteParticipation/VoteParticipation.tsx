@@ -2,6 +2,7 @@ import styled from "styled-components";
 import StakeBlock from "public/assets/stake-block.svg";
 import VoteBlock from "public/assets/vote-block.svg";
 import EarnBlock from "public/assets/earn-block.svg";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
 const VoteParticipation = () => {
   return (
     <Section>
@@ -39,6 +40,16 @@ const VoteParticipation = () => {
             </ImageBlock>
           </ImageBlockWrapper>
         </ImageBlockRow>
+        <VoterAppLinkRow>
+          <VoterAppLinkBlock>
+            Link to voter app
+            <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
+              <div>
+                <UpRightArrow />
+              </div>
+            </VoterAppLink>
+          </VoterAppLinkBlock>
+        </VoterAppLinkRow>
       </Wrapper>
     </Section>
   );
@@ -79,6 +90,9 @@ const ImageBlockRow = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 48px;
+  svg {
+    fill: white;
+  }
 `;
 
 const ImageBlockWrapper = styled.div`
@@ -116,6 +130,34 @@ const ImageTitleRed = styled(ImageTitle)`
 const ImageText = styled.div`
   font: var(--text-md-20);
   color: var(--black);
+`;
+
+const VoterAppLinkRow = styled.div`
+  margin-top: 102px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const VoterAppLinkBlock = styled.div`
+  color: var(--red-500);
+  font: var(--text-md-20);
+`;
+
+const VoterAppLink = styled.a`
+  display: inline-block;
+  margin-left: 12px;
+  font: var(--text-md-20);
+  > div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid #ff4a4a;
+    border-radius: 8px;
+  }
 `;
 
 export default VoteParticipation;
