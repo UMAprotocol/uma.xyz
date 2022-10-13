@@ -47,6 +47,13 @@ const Footer = () => {
           </Form>
         </FormWrapper>
       </BottomRow>
+      <CopyrightRow>
+        <AddressWrapper>
+          <div>© 2022 Risk Labs</div>
+          <div>3891 Ranchview Dr. Richardson, California 62639</div>
+        </AddressWrapper>
+        <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+      </CopyrightRow>
     </Wrapper>
   );
 };
@@ -122,6 +129,10 @@ const rightLinks = [
 
 const Wrapper = styled.div`
   background: var(--black);
+  background-image: url("assets/footer-lines.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
   width: 100%;
   max-width: 1144px;
   margin: 96px auto 0;
@@ -223,6 +234,8 @@ const Input = styled.input`
   line-height: 135%;
   padding: 8px 16px;
   border-radius: 8px;
+  outline: none;
+  cursor: initial;
 `;
 
 const Button = styled.button`
@@ -251,4 +264,26 @@ const LinksFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-basis: 75%;
+`;
+
+const CopyrightRow = styled(Row)`
+  margin-top: 365px;
+`;
+
+const AddressWrapper = styled.div`
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  opacity: 0.2;
+  > div {
+    font: var(--text-md);
+    color: var(--white);
+  }
+`;
+
+const PrivacyPolicy = styled.div`
+  font: var(--text-md);
+  color: var(--white);
+  color: var(--white);
+  opacity: 0.5;
 `;
