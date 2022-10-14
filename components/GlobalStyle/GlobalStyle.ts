@@ -10,6 +10,7 @@ import {
   grey150,
   grey500,
   grey900,
+  grey910,
   grey950,
   loadingSkeletonOpacity10,
   loadingSkeletonOpacity100,
@@ -226,6 +227,7 @@ a:not([class]) {
     --grey-150: ${grey150};
     --grey-500: ${grey500};
     --grey-900: ${grey900};
+    --grey-910: ${grey910};
     --grey-950: ${grey950};
     --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
     --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
