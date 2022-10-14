@@ -24,10 +24,11 @@ const Section = styled.section`
   background: var(--white);
 `;
 const Wrapper = styled.div`
+  padding: 128px 0 117px;
   background: inherit;
   width: 100%;
   max-width: 1144px;
-  margin: 128px auto 117px;
+  margin: 0 auto;
 `;
 
 const ProjectsRow = styled.div`
