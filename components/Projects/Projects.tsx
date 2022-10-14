@@ -1,5 +1,6 @@
 import styled from "styled-components";
-
+import AcrossLogo from "public/assets/across-logo.svg";
+import ShellLogo from "public/assets/shell-logo.svg";
 const Projects = () => {
   return (
     <Section>
@@ -7,10 +8,17 @@ const Projects = () => {
         <ProjectsRow>
           <ProjectsColumn>
             <BigProjects>
-              <BigProject></BigProject>
+              <BigProject>
+                <AcrossLogo />
+                <BigProjectText>Across.to</BigProjectText>
+              </BigProject>
+              <BigProject>
+                <ShellLogo />
+                <BigProjectText>HeckifIknow.org</BigProjectText>
+              </BigProject>
             </BigProjects>
           </ProjectsColumn>
-          <ProjectsText></ProjectsText>
+          <ProjectsBlurb></ProjectsBlurb>
         </ProjectsRow>
       </Wrapper>
     </Section>
@@ -48,6 +56,29 @@ const BigProject = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-basis: 50%;
+  padding: 80px;
+  isolation: isolate;
+  border: 1px solid #e7e7e7;
+  order: 1;
+  flex-grow: 1;
+  width: 280px;
+  height: 280px;
+  &:hover {
+    background-color: var(--red-500);
+    h3 {
+      display: block;
+    }
+  }
 `;
-const ProjectsText = styled.div``;
+const BigProjectText = styled.h3`
+  display: none;
+  font-family: "Halyard Display";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-top: 24px;
+`;
+const ProjectsBlurb = styled.div``;
