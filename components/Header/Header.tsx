@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  padding-top: 16px;
+  padding-top: 68px;
   margin: 0 auto;
 `;
 
