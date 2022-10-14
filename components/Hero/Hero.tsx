@@ -5,11 +5,12 @@ const Hero = () => {
   return (
     <Section>
       <Wrapper>
+        <Title>A decentralized</Title>
         <Title>
-          A decentralized <br /> truth{" "}
+          truth
           <span>
             <OOLogo />
-          </span>{" "}
+          </span>
           machine
         </Title>
         <Subheader>
@@ -45,8 +46,13 @@ const Wrapper = styled.div`
 const Title = styled.div`
   font: var(--text-xxxl);
   color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
   span {
-    display: inline-flex;
+    margin: 20px 12px 0;
+    display: flex;
     align-items: center;
   }
 `;
