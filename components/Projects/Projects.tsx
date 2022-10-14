@@ -2,6 +2,9 @@ import styled from "styled-components";
 import AcrossLogo from "public/assets/across-logo.svg";
 import ShellLogo from "public/assets/shell-logo.svg";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
+import PolymarketLogo from "public/assets/polymarket-logo.svg";
+import SushiSwapLogo from "public/assets/sushi-swap-logo.svg";
+import ShapeshiftLogo from "public/assets/shapeshift-logo.svg";
 const Projects = () => {
   return (
     <Section>
@@ -24,6 +27,52 @@ const Projects = () => {
                 <BigProjectText>HeckifIknow.org</BigProjectText>
               </BigProject>
             </BigProjects>
+            <SmallProjects>
+              <SmallProject>
+                <SmallLinkButton href="https://polymarket.com" target="_blank" rel="noreferrer">
+                  <UpRightArrowRed />
+                </SmallLinkButton>
+                <PolymarketLogo />
+                <SmallProjectText>Polymarket</SmallProjectText>
+              </SmallProject>
+              <SmallProject>
+                <SmallLinkButton href="https://www.sushi.com/swap" target="_blank" rel="noreferrer">
+                  <UpRightArrowRed />
+                </SmallLinkButton>
+                <SushiSwapLogo />
+                <SmallProjectText>Sushi Swap</SmallProjectText>
+              </SmallProject>
+              <SmallProject>
+                <SmallLinkButton href="https://shapeshift.com" target="_blank" rel="noreferrer">
+                  <UpRightArrowRed />
+                </SmallLinkButton>
+                <ShapeshiftLogo />
+                <SmallProjectText>Shapeshift</SmallProjectText>
+              </SmallProject>
+            </SmallProjects>
+            <SmallProjects>
+              <SmallProject>
+                <SmallLinkButton href="https://polymarket.com" target="_blank" rel="noreferrer">
+                  <UpRightArrowRed />
+                </SmallLinkButton>
+                <PolymarketLogo />
+                <SmallProjectText>Polymarket</SmallProjectText>
+              </SmallProject>
+              <SmallProject>
+                <SmallLinkButton href="https://www.sushi.com/swap" target="_blank" rel="noreferrer">
+                  <UpRightArrowRed />
+                </SmallLinkButton>
+                <SushiSwapLogo />
+                <SmallProjectText>Sushi Swap</SmallProjectText>
+              </SmallProject>
+              <SmallProject>
+                <SmallLinkButton href="https://shapeshift.com" target="_blank" rel="noreferrer">
+                  <UpRightArrowRed />
+                </SmallLinkButton>
+                <ShapeshiftLogo />
+                <SmallProjectText>Shapeshift</SmallProjectText>
+              </SmallProject>
+            </SmallProjects>
           </ProjectsColumn>
           <ProjectsBlurb></ProjectsBlurb>
         </ProjectsRow>
@@ -115,4 +164,43 @@ const LinkButton = styled.a`
     justify-content: center;
     align-items: center;
   }
+`;
+
+const SmallProjects = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+const SmallProject = styled(BigProject)`
+  padding: 40px;
+  width: 186px;
+  height: 186px;
+  &:hover {
+    background-color: var(--red-500);
+    h3,
+    a {
+      display: flex;
+    }
+    svg {
+      fill: var(--red-500);
+    }
+  }
+  svg {
+    fill: var(--white);
+  }
+`;
+
+const SmallProjectText = styled(BigProjectText)`
+  display: block;
+  font-size: 14px;
+`;
+
+const SmallLinkButton = styled(LinkButton)`
+  top: 12px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
 `;
