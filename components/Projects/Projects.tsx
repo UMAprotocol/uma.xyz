@@ -74,7 +74,13 @@ const Projects = () => {
               </SmallProject>
             </SmallProjects>
           </ProjectsColumn>
-          <ProjectsBlurb></ProjectsBlurb>
+          <ProjectsBlurb>
+            <ProjectsBlurbHeader>Real projects built with our products</ProjectsBlurbHeader>
+            <ProjectsBlurbSubheader>
+              Being in the cross-chain bridging space, for us it’s important to lorem ipsum of centralized authorities
+              and (potentially) biased third-parties.
+            </ProjectsBlurbSubheader>
+          </ProjectsBlurb>
         </ProjectsRow>
       </Wrapper>
     </Section>
@@ -99,6 +105,7 @@ const ProjectsRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 24px;
 `;
 
 const ProjectsColumn = styled.div``;
@@ -139,8 +146,6 @@ const BigProjectText = styled.h3`
   text-transform: uppercase;
   margin-top: 24px;
 `;
-const ProjectsBlurb = styled.div``;
-
 const LinkButton = styled.a`
   display: none;
   position: absolute;
@@ -203,4 +208,34 @@ const SmallLinkButton = styled(LinkButton)`
   right: 16px;
   width: 32px;
   height: 32px;
+`;
+
+const ProjectsBlurb = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ProjectsBlurbHeader = styled.h2`
+  font-family: "Halyard Display";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 115%;
+  letter-spacing: -0.01em;
+
+  color: var(--black);
+  max-width: 366px;
+`;
+
+const ProjectsBlurbSubheader = styled.h3`
+  margin-top: 24px;
+  font-family: "Halyard Display";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+
+  color: var(--black);
+  max-width: 366px;
 `;
