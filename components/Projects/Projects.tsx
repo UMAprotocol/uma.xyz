@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import AcrossLogo from "public/assets/across-logo.svg";
 import OutcomeLogo from "public/assets/outcome-logo.svg";
-import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
+import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
 import PolymarketLogo from "public/assets/polymarket-logo.svg";
 import SushiSwapLogo from "public/assets/sushi-swap-logo.svg";
 import ShapeshiftLogo from "public/assets/shapeshift-logo.svg";
@@ -15,17 +15,21 @@ const Projects = () => {
             <BigProjects>
               <BigProject>
                 <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
+                  <UpRightArrowWhite />
                 </LinkButton>
-                <AcrossLogo />
+                <div>
+                  <AcrossLogo />
+                </div>
                 <BigProjectText>Across.to</BigProjectText>
               </BigProject>
               <BigProject>
-                <LinkButton href="https://www.google.ca" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
+                <LinkButton href="https://outcome.finance" target="_blank" rel="noreferrer">
+                  <UpRightArrowWhite />
                 </LinkButton>
-                <OutcomeLogo />
-                <BigProjectText>HeckifIknow.org</BigProjectText>
+                <div>
+                  <OutcomeLogo />
+                </div>
+                <BigProjectText>Outcome.finance</BigProjectText>
               </BigProject>
             </BigProjects>
             <SmallProjects>
@@ -33,9 +37,11 @@ const Projects = () => {
                 return (
                   <SmallProject key={index}>
                     <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                      <UpRightArrowRed />
+                      <UpRightArrowWhite />
                     </SmallLinkButton>
-                    <Logo />
+                    <div>
+                      <Logo />
+                    </div>
                     <SmallProjectText>{name}</SmallProjectText>
                   </SmallProject>
                 );
@@ -98,7 +104,7 @@ const Wrapper = styled.div`
   padding: 128px 0 117px;
   background: inherit;
   width: 100%;
-  max-width: 1144px;
+  max-width: var(--max-section-width);
   margin: 0 auto;
 `;
 
@@ -131,10 +137,16 @@ const BigProject = styled.div`
   width: 280px;
   height: 280px;
   &:hover {
-    background-color: var(--red-500);
+    border: 1px solid var(--red-500);
+    color: var(--red-500);
     h3,
     a {
       display: flex;
+    }
+    > div {
+      path {
+        fill: var(--red-500);
+      }
     }
   }
 `;
@@ -160,9 +172,9 @@ const LinkButton = styled.a`
   align-items: center;
   align-content: center;
   background: var(--black);
-  border: 1px solid var(--black);
+  border: 1px solid var(--red-500);
   border-radius: 8px;
-  background: var(--black);
+  background: var(--red-500);
   padding: 8px;
   gap: 8px;
 
@@ -182,18 +194,51 @@ const SmallProjects = styled.div`
   flex-wrap: wrap;
 `;
 
-const SmallProject = styled(BigProject)`
+const SmallProject = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  isolation: isolate;
+  border: 1px solid #e7e7e7;
+  order: 1;
+  flex-grow: 1;
   padding: 40px;
   width: 186px;
   height: 186px;
+  // Properly styling current logos, might be deletable later.
+  &:nth-of-type(3n + 1) {
+    &:hover {
+      > div path {
+        stroke: var(--red-500);
+      }
+    }
+  }
+
+  &:nth-of-type(3n + 2) {
+    &:hover {
+      path:not(:nth-of-type(5)) {
+        fill: var(--red-500);
+      }
+    }
+  }
+  &:nth-of-type(3n + 3) {
+    &:hover {
+      path {
+        fill: var(--red-500);
+      }
+    }
+  }
+
   &:hover {
-    background-color: var(--red-500);
+    color: var(--red-500);
+
     h3,
     a {
       display: flex;
     }
     svg {
-      fill: var(--red-500);
+      fill: var(--white);
     }
   }
   svg {
@@ -241,3 +286,5 @@ const ProjectsBlurbSubheader = styled.h3`
   color: var(--black);
   max-width: 366px;
 `;
+
+const StyledAcrossLogo = styled(AcrossLogo)``;
