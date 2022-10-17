@@ -7,13 +7,11 @@ import Discord from "public/assets/discord.svg";
 const Footer = () => {
   const { value, setValue } = useFooter();
   return (
-    <Wrapper>
-      <Row>
-        <Logo />
-      </Row>
-      <BottomRow>
-        <FooterLinks>
-          <SocialLinks>
+    <Section>
+      <Wrapper>
+        <BottomRow>
+          <FooterLinks>
+            {/* <SocialLinks>
             {socialLinks.map(({ href, Icon }, i) => (
               <SocialLinkWrapper key={i}>
                 <SocialLink href={href} rel="noreferrer" target="_blank">
@@ -21,40 +19,42 @@ const Footer = () => {
                 </SocialLink>
               </SocialLinkWrapper>
             ))}
-          </SocialLinks>
-          <LinksFlex>
-            <Links>
-              {middleLinks.map(({ label, href }, i) => (
-                <Link key={i} href={href} target="_blank" rel="noreferrer">
-                  {label}
-                </Link>
-              ))}
-            </Links>
-            <Links>
-              {rightLinks.map(({ label, href }, i) => (
-                <Link key={i} href={href} target="_blank" rel="noreferrer">
-                  {label}
-                </Link>
-              ))}
-            </Links>
-          </LinksFlex>
-        </FooterLinks>
-        <FormWrapper>
-          <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
-          <Form>
-            <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
-            <Button onClick={() => null}>Sign up</Button>
-          </Form>
-        </FormWrapper>
-      </BottomRow>
-      <CopyrightRow>
-        <AddressWrapper>
-          <div>© 2022 Risk Labs</div>
-          <div>3891 Ranchview Dr. Richardson, California 62639</div>
-        </AddressWrapper>
-        <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
-      </CopyrightRow>
-    </Wrapper>
+          </SocialLinks> */}
+            <StyledLogo />
+            <LinksFlex>
+              <Links>
+                {middleLinks.map(({ label, href }, i) => (
+                  <Link key={i} href={href} target="_blank" rel="noreferrer">
+                    {label}
+                  </Link>
+                ))}
+              </Links>
+              <Links>
+                {rightLinks.map(({ label, href }, i) => (
+                  <Link key={i} href={href} target="_blank" rel="noreferrer">
+                    {label}
+                  </Link>
+                ))}
+              </Links>
+            </LinksFlex>
+          </FooterLinks>
+          <FormWrapper>
+            <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
+            <Form>
+              <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
+              <Button onClick={() => null}>Sign up</Button>
+            </Form>
+          </FormWrapper>
+        </BottomRow>
+        <CopyrightRow>
+          <AddressWrapper>
+            <div>© 2022 Risk Labs</div>
+            <div>3891 Ranchview Dr. Richardson, California 62639</div>
+          </AddressWrapper>
+          <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+        </CopyrightRow>
+      </Wrapper>
+    </Section>
   );
 };
 
@@ -127,12 +127,15 @@ const rightLinks = [
   },
 ];
 
-const Wrapper = styled.div`
-  background: var(--black);
-  background-image: url("assets/footer-lines.png");
-  background-size: auto 100%;
+const Section = styled.div`
+  width: 100%;
+  background: var(--white-50);
+  background-image: url("assets/footer-lines-grey.png");
+  background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: left top;
+`;
+const Wrapper = styled.div`
   width: 100%;
   max-width: var(--max-section-width);
   margin: 96px auto 0;
@@ -273,4 +276,10 @@ const PrivacyPolicy = styled.div`
   color: var(--white);
   color: var(--white);
   opacity: 0.5;
+`;
+
+const StyledLogo = styled(Logo)`
+  path {
+    fill: var(--red-500);
+  }
 `;
