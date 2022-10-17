@@ -5,12 +5,15 @@ const bold = 700;
 
 const family = "Halyard Display";
 
+export const headerXXl = `${regular} 96px/110px ${family}`;
 export const headerXl = `${bold} 80px/110px ${family}`;
 export const headerLg = `${bold} 40px/55px ${family}`;
 export const headerMd = `${bold} 20px/28px ${family}`;
 export const headerSm = `${semiBold} 18px/25px ${family}`;
 export const headerXs = `${bold} 16px/22px ${family}`;
 
+export const textXXl = `${regular} 90px/105px ${family}`;
+export const textXl = `${regular} 40px/55px ${family}`;
 export const textLg = `${regular} 32px/44px ${family}`;
 export const textMd20 = `${regular} 20px/28px ${family}`;
 export const textMd18 = `${regular} 18px/22px ${family}`;
