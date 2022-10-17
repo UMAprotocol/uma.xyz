@@ -199,7 +199,6 @@ const SmallProject = styled(BigProject)`
 `;
 
 const SmallProjectText = styled(BigProjectText)`
-  display: block;
   font-size: 14px;
 `;
 
