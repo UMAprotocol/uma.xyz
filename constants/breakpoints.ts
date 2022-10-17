@@ -1,1 +1,1 @@
-export const maxSectionWidth = "1144px";
+export const maxSectionWidth = "1140px";
