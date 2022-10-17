@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font: var(--text-xxxl);
+  font: var(--header-xxl);
   color: var(--white);
   display: flex;
   justify-content: center;

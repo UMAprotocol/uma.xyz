@@ -29,7 +29,7 @@ import {
   headerXl,
   headerXs,
   textFine,
-  textXXXl,
+  headerXXl,
   textXXl,
   textXl,
   textLg,
@@ -232,12 +232,12 @@ a:not([class]) {
     --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
     --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
     /* Fonts */
+    --header-xxl: ${headerXXl};
     --header-xl: ${headerXl};
     --header-lg: ${headerLg};
     --header-md: ${headerMd};
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
-    --text-xxxl: ${textXXXl};
     --text-xxl: ${textXXl};
     --text-xl: ${textXl};
     --text-lg: ${textLg};
