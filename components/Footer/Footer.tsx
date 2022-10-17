@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import Twitter from "public/assets/twitter.svg";
 import Discord from "public/assets/discord.svg";
-
+import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 const Footer = () => {
   const { value, setValue } = useFooter();
   return (
@@ -20,7 +20,9 @@ const Footer = () => {
               </SocialLinkWrapper>
             ))}
           </SocialLinks> */}
-            <StyledLogo />
+            <LogoWrapper>
+              <StyledLogo />
+            </LogoWrapper>
             <LinksFlex>
               <Links>
                 {middleLinks.map(({ label, href }, i) => (
@@ -30,9 +32,9 @@ const Footer = () => {
                 ))}
               </Links>
               <Links>
-                {rightLinks.map(({ label, href }, i) => (
+                {rightLinks.map(({ label, href, Logo }, i) => (
                   <Link key={i} href={href} target="_blank" rel="noreferrer">
-                    {label}
+                    {label} {Logo && <Logo style={{ display: "inline-flex", marginLeft: "4px" }} />}
                   </Link>
                 ))}
               </Links>
@@ -94,36 +96,33 @@ const socialLinks = [
 
 const middleLinks = [
   {
-    label: "Oracle",
-    href: "https://optimistic-oracle-dapp.vercel.app/",
+    label: "How it works",
+    href: "#",
   },
   {
-    label: "Projects",
-    href: "https://umaproject.org/projects",
-  },
-
-  {
-    label: "Docs",
-    href: "https://docs.umaproject.org/",
+    label: "For Voters",
+    href: "https://medium.com/uma-project",
   },
   {
-    label: "Media kit",
+    label: "For Builders",
     href: "https://medium.com/uma-project",
   },
 ];
 
 const rightLinks = [
   {
-    label: "Risk Labs",
-    href: "#",
+    label: "Oracle",
+    href: "https://optimistic-oracle-dapp.vercel.app/",
   },
   {
-    label: "Across",
-    href: "https://across.to/",
+    label: "Docs",
+    href: "https://docs.umaproject.org/",
+    Logo: UpRightArrowBlack,
   },
   {
-    label: "Outcome Finance",
-    href: "https://outcome.finance/",
+    label: "Projects",
+    href: "https://umaproject.org/projects",
+    Logo: UpRightArrowBlack,
   },
 ];
 
@@ -138,7 +137,8 @@ const Section = styled.div`
 const Wrapper = styled.div`
   width: 100%;
   max-width: var(--max-section-width);
-  margin: 96px auto 0;
+  margin: 0 auto;
+  padding-top: 96px;
 `;
 
 const Row = styled.div`
@@ -155,7 +155,11 @@ const FooterLinks = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   width: 52%;
-  gap: 32px;
+  gap: 100px;
+`;
+
+const LogoWrapper = styled.div`
+  width: 85px;
 `;
 
 const SocialLinks = styled.div`
@@ -178,7 +182,6 @@ const SocialLink = styled.a`
 `;
 
 const BottomRow = styled(Row)`
-  margin-top: 110px;
   justify-content: space-between;
   column-gap: 100px;
 `;
@@ -189,11 +192,11 @@ const Links = styled.div`
   flex-wrap: wrap;
   row-gap: 16px;
   max-height: 136px;
-  flex-basis: 50%;
+  flex-basis: 45%;
 `;
 
 const Link = styled.a`
-  color: var(--grey-950);
+  color: var(--black);
   font: var(--text-md-16);
   text-decoration: none;
 `;
@@ -206,7 +209,7 @@ const FormWrapper = styled.div`
 
 const FormTitle = styled.h3`
   font: var(--text-md-20);
-  color: var(--white);
+  color: #322f33;
   max-width: 338px;
   margin-bottom: 32px;
 `;
