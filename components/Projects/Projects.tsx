@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import AcrossLogo from "public/assets/across-logo.svg";
-import ShellLogo from "public/assets/shell-logo.svg";
+import OutcomeLogo from "public/assets/outcome-logo.svg";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import PolymarketLogo from "public/assets/polymarket-logo.svg";
 import SushiSwapLogo from "public/assets/sushi-swap-logo.svg";
 import ShapeshiftLogo from "public/assets/shapeshift-logo.svg";
+
 const Projects = () => {
   return (
     <Section>
@@ -23,55 +24,22 @@ const Projects = () => {
                 <LinkButton href="https://www.google.ca" target="_blank" rel="noreferrer">
                   <UpRightArrowRed />
                 </LinkButton>
-                <ShellLogo />
+                <OutcomeLogo />
                 <BigProjectText>HeckifIknow.org</BigProjectText>
               </BigProject>
             </BigProjects>
             <SmallProjects>
-              <SmallProject>
-                <SmallLinkButton href="https://polymarket.com" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
-                </SmallLinkButton>
-                <PolymarketLogo />
-                <SmallProjectText>Polymarket</SmallProjectText>
-              </SmallProject>
-              <SmallProject>
-                <SmallLinkButton href="https://www.sushi.com/swap" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
-                </SmallLinkButton>
-                <SushiSwapLogo />
-                <SmallProjectText>Sushi Swap</SmallProjectText>
-              </SmallProject>
-              <SmallProject>
-                <SmallLinkButton href="https://shapeshift.com" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
-                </SmallLinkButton>
-                <ShapeshiftLogo />
-                <SmallProjectText>Shapeshift</SmallProjectText>
-              </SmallProject>
-            </SmallProjects>
-            <SmallProjects>
-              <SmallProject>
-                <SmallLinkButton href="https://polymarket.com" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
-                </SmallLinkButton>
-                <PolymarketLogo />
-                <SmallProjectText>Polymarket</SmallProjectText>
-              </SmallProject>
-              <SmallProject>
-                <SmallLinkButton href="https://www.sushi.com/swap" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
-                </SmallLinkButton>
-                <SushiSwapLogo />
-                <SmallProjectText>Sushi Swap</SmallProjectText>
-              </SmallProject>
-              <SmallProject>
-                <SmallLinkButton href="https://shapeshift.com" target="_blank" rel="noreferrer">
-                  <UpRightArrowRed />
-                </SmallLinkButton>
-                <ShapeshiftLogo />
-                <SmallProjectText>Shapeshift</SmallProjectText>
-              </SmallProject>
+              {smallProjects.map(({ name, link, Logo }, index) => {
+                return (
+                  <SmallProject key={index}>
+                    <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                      <UpRightArrowRed />
+                    </SmallLinkButton>
+                    <Logo />
+                    <SmallProjectText>{name}</SmallProjectText>
+                  </SmallProject>
+                );
+              })}
             </SmallProjects>
           </ProjectsColumn>
           <ProjectsBlurb>
@@ -86,6 +54,39 @@ const Projects = () => {
     </Section>
   );
 };
+
+const smallProjects = [
+  {
+    name: "Polymarket",
+    Logo: PolymarketLogo,
+    link: "https://polymarket.com",
+  },
+  {
+    name: "Sushi Swap",
+    Logo: SushiSwapLogo,
+    link: "https://www.sushi.com/swap",
+  },
+  {
+    name: "Shapeshift",
+    Logo: ShapeshiftLogo,
+    link: "https://shapeshift.com",
+  },
+  {
+    name: "Polymarket",
+    Logo: PolymarketLogo,
+    link: "https://polymarket.com",
+  },
+  {
+    name: "Sushi Swap",
+    Logo: SushiSwapLogo,
+    link: "https://www.sushi.com/swap",
+  },
+  {
+    name: "Shapeshift",
+    Logo: ShapeshiftLogo,
+    link: "https://shapeshift.com",
+  },
+];
 
 export default Projects;
 
@@ -108,7 +109,9 @@ const ProjectsRow = styled.div`
   gap: 24px;
 `;
 
-const ProjectsColumn = styled.div``;
+const ProjectsColumn = styled.div`
+  max-width: 560px;
+`;
 const BigProjects = styled.div`
   display: flex;
   flex-direction: row;
