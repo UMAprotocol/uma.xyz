@@ -145,7 +145,7 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: initial;
   padding: 8px 0;
   gap: 16px;
 `;
@@ -226,8 +226,8 @@ const Form = styled.div`
 const Input = styled.input`
   width: 350px;
   height: 48px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
+  background: var(--white);
+  color: var(--black);
   padding: 8px 16px;
   border-radius: 8px;
   outline: none;
