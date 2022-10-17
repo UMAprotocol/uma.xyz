@@ -3,6 +3,9 @@ import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import Twitter from "public/assets/twitter.svg";
 import Discord from "public/assets/discord.svg";
+import Github from "public/assets/github.svg";
+import Discourse from "public/assets/discourse.svg";
+import BlackCircle from "public/assets/black-circle.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 const Footer = () => {
   const { value, setValue } = useFooter();
@@ -11,15 +14,6 @@ const Footer = () => {
       <Wrapper>
         <BottomRow>
           <FooterLinks>
-            {/* <SocialLinks>
-            {socialLinks.map(({ href, Icon }, i) => (
-              <SocialLinkWrapper key={i}>
-                <SocialLink href={href} rel="noreferrer" target="_blank">
-                  <Icon />
-                </SocialLink>
-              </SocialLinkWrapper>
-            ))}
-          </SocialLinks> */}
             <LogoWrapper>
               <StyledLogo />
             </LogoWrapper>
@@ -51,9 +45,14 @@ const Footer = () => {
         <CopyrightRow>
           <AddressWrapper>
             <div>© 2022 Risk Labs</div>
-            <div>3891 Ranchview Dr. Richardson, California 62639</div>
           </AddressWrapper>
-          <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+          <SocialLinks>
+            {socialLinks.map(({ href, Icon }, i) => (
+              <SocialLink key={i} href={href} rel="noreferrer" target="_blank">
+                <Icon />
+              </SocialLink>
+            ))}
+          </SocialLinks>
         </CopyrightRow>
       </Wrapper>
     </Section>
@@ -69,28 +68,24 @@ function useFooter() {
 
 const socialLinks = [
   {
-    href: "https://twitter.com/UMAprotocol",
-    Icon: Twitter,
-  },
-  {
     href: "http://discord.umaproject.org",
     Icon: Discord,
   },
   {
     href: "https://twitter.com/UMAprotocol",
-    Icon: Twitter,
-  },
-  {
-    href: "http://discord.umaproject.org",
-    Icon: Discord,
+    Icon: BlackCircle,
   },
   {
     href: "https://twitter.com/UMAprotocol",
     Icon: Twitter,
   },
   {
-    href: "http://discord.umaproject.org",
-    Icon: Discord,
+    href: "https://discourse.umaproject.org/",
+    Icon: Discourse,
+  },
+  {
+    href: "https://github.com/UMAprotocol",
+    Icon: Github,
   },
 ];
 
@@ -138,7 +133,7 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: var(--max-section-width);
   margin: 0 auto;
-  padding-top: 96px;
+  padding: 96px 0 66px;
 `;
 
 const Row = styled.div`
@@ -160,25 +155,6 @@ const FooterLinks = styled.div`
 
 const LogoWrapper = styled.div`
   width: 85px;
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  flex-basis: 32%;
-`;
-
-const SocialLinkWrapper = styled.div`
-  width: 22px;
-`;
-const SocialLink = styled.a`
-  width: 22px;
-  &:hover {
-    path {
-      fill: var(--white);
-    }
-  }
 `;
 
 const BottomRow = styled(Row)`
@@ -261,28 +237,38 @@ const LinksFlex = styled.div`
 
 const CopyrightRow = styled(Row)`
   margin-top: 365px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const AddressWrapper = styled.div`
   display: flex;
-  width: 50%;
-  justify-content: space-between;
-  opacity: 0.2;
   > div {
     font: var(--text-md-16);
-    color: var(--white);
+    color: var(--grey-910);
   }
-`;
-
-const PrivacyPolicy = styled.div`
-  font: var(--text-md);
-  color: var(--white);
-  color: var(--white);
-  opacity: 0.5;
 `;
 
 const StyledLogo = styled(Logo)`
   path {
     fill: var(--red-500);
+  }
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  flex-basis: 32%;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const SocialLink = styled.a`
+  path {
+    fill: var(--black);
+  }
+  &:hover {
+    opacity: 0.8;
   }
 `;
