@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
 import OOLogo from "public/assets/oo-logo.svg";
 import { Tabs } from "components";
+import BuilderTabContent from "./BuilderTabContent";
 import WandIcon from "public/assets/wand.svg";
 import TubeIcon from "public/assets/tube.svg";
 import MedalIcon from "public/assets/medal.svg";
@@ -27,11 +28,23 @@ const Builder = () => {
           tabs={[
             {
               title: "Prediction markets",
-              content: <div>Prediction markets</div>,
+              content: (
+                <BuilderTabContent
+                  title="Prediction markets"
+                  body={
+                    <>
+                      Prediction markets are based on the same lorem ipsum text that has been used for years in the web
+                      design industry. <br /> <br />
+                      The text should probably take up this amount of space, i.e. not be too long or too short and map
+                      well to the code.
+                    </>
+                  }
+                />
+              ),
               Icon: WandIcon,
             },
             {
-              title: "Insurance",
+              title: "Ins",
               content: <div>Launch</div>,
               Icon: TubeIcon,
             },

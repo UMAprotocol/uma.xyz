@@ -71,7 +71,7 @@ const Tab = styled(ReachTab)`
   align-items: center;
   margin-bottom: 22px;
   gap: 12px;
-  border-bottom: 2px solid #e9e9e9;
+  border-bottom: 2px solid var(--grey-150);
   font: var(--body-md);
   color: #b0afb3;
   flex: 1;
