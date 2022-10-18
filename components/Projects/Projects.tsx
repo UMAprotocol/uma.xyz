@@ -5,6 +5,7 @@ import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
 import PolymarketLogo from "public/assets/polymarket-logo.svg";
 import SushiSwapLogo from "public/assets/sushi-swap-logo.svg";
 import ShapeshiftLogo from "public/assets/shapeshift-logo.svg";
+import { Wrapper as DefaultWrapper } from "components/Widgets";
 
 const Projects = () => {
   return (
@@ -100,12 +101,9 @@ const Section = styled.section`
   width: 100%;
   background: var(--white);
 `;
-const Wrapper = styled.div`
+
+const Wrapper = styled(DefaultWrapper)`
   padding: 128px 0 117px;
-  background: inherit;
-  width: 100%;
-  max-width: var(--max-section-width);
-  margin: 0 auto;
 `;
 
 const ProjectsRow = styled.div`

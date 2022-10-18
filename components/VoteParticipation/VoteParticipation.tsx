@@ -3,6 +3,8 @@ import StakeBlock from "public/assets/stake-block.svg";
 import VoteBlock from "public/assets/vote-block.svg";
 import EarnBlock from "public/assets/earn-block.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import { Title } from "components/Widgets";
+
 const VoteParticipation = () => {
   return (
     <Section>
@@ -72,14 +74,6 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 85px;
   padding-bottom: 130px;
-`;
-
-const Title = styled.div`
-  font: var(--header-sm);
-  color: var(--black);
-  > span {
-    color: var(--red-500);
-  }
 `;
 
 const Header = styled.div`

@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { Title, Wrapper as DefaultWrapper } from "components/Widgets";
 
 const Builder = () => {
   return (
     <Section>
-      <Wrapper></Wrapper>
+      <Wrapper>
+        <Title>
+          Participate as a <span>Builder</span>
+        </Title>
+      </Wrapper>
     </Section>
   );
 };
@@ -14,10 +19,7 @@ const Section = styled.section`
   width: 100%;
   background: var(--white);
 `;
-const Wrapper = styled.div`
-  padding: 128px 0 117px;
-  background: inherit;
-  width: 100%;
-  max-width: var(--max-section-width);
-  margin: 0 auto;
+
+const Wrapper = styled(DefaultWrapper)`
+  padding: 100px 0 113px;
 `;
