@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
 import OOLogo from "public/assets/oo-logo.svg";
 import { Tabs } from "components";
-
+import WandIcon from "public/assets/wand.svg";
+import TubeIcon from "public/assets/tube.svg";
+console.log("wandIcon", WandIcon);
 const Builder = () => {
   return (
     <Section>
@@ -21,12 +23,14 @@ const Builder = () => {
         <Tabs
           tabs={[
             {
-              title: "Build",
-              content: <div>Build</div>,
+              title: "Prediction markets",
+              content: <div>Prediction markets</div>,
+              Icon: WandIcon,
             },
             {
               title: "Launch",
               content: <div>Launch</div>,
+              Icon: TubeIcon,
             },
           ]}
         ></Tabs>
@@ -60,6 +64,7 @@ const TopHeader = styled(Header)`
 
 const BottomHeader = styled(Header)`
   margin-top: 24px;
+  margin-bottom: 216px;
   span {
     margin: 20px 12px 0;
     display: flex;

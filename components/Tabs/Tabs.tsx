@@ -11,6 +11,7 @@ import styled from "styled-components";
 type Tab = {
   title: string;
   content: ReactNode;
+  Icon: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
 interface Props {
@@ -21,9 +22,14 @@ const Tabs = ({ tabs }: Props) => {
   return (
     <TabsWrapper>
       <TabList>
-        {tabs.map(({ title }) => (
-          <Tab key={title}>{title}</Tab>
-        ))}
+        {tabs.map(({ title, Icon }) => {
+          return (
+            <Tab key={title}>
+              <Icon />
+              <div>{title}</div>
+            </Tab>
+          );
+        })}
       </TabList>
       <TabPanels>
         {tabs.map(({ content, title }) => (
@@ -37,28 +43,40 @@ const TabsWrapper = styled(ReachTabs)``;
 
 const TabList = styled(ReachTabList)`
   width: 100%;
-  height: 45px;
+  height: 68px;
   display: flex;
   align-items: center;
-  gap: 50px;
-  /* padding-left: 30px; */
   background: inherit;
+  path {
+    fill: hsla(255, 3%, 69%, 1);
+  }
   [data-selected] {
     border-bottom: 3px solid var(--red-500);
+    color: var(--red-500);
+    path {
+      fill: var(--red-500);
+    }
   }
 `;
 
 const Tab = styled(ReachTab)`
-  height: 100%;
   background: transparent;
   color: var(--black);
   font: var(--text-md);
   padding-inline: 3px;
-  border-bottom: 3px solid transparent;
   min-width: 200px;
+  padding-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+  gap: 12px;
+  border-bottom: 2px solid #e9e9e9;
 `;
 
-const TabPanels = styled(ReachTabPanels)``;
+const TabPanels = styled(ReachTabPanels)`
+  margin-top: 60px;
+`;
 
 const TabPanel = styled(ReachTabPanel)``;
 
