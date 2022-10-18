@@ -31,6 +31,7 @@ import {
   textFine,
   headerXXl,
   textXXl,
+  textXl64,
   textXl,
   textLg,
   textMd16,
@@ -239,6 +240,7 @@ a:not([class]) {
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
     --text-xxl: ${textXXl};
+    --text-xl-64: ${textXl64};
     --text-xl: ${textXl};
     --text-lg: ${textLg};
     --text-md-16: ${textMd16};

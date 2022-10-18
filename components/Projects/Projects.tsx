@@ -131,7 +131,7 @@ const BigProject = styled.div`
   align-items: center;
   padding: 80px;
   isolation: isolate;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--grey-150);
   order: 1;
   flex-grow: 1;
   width: 280px;
@@ -152,11 +152,7 @@ const BigProject = styled.div`
 `;
 const BigProjectText = styled.h3`
   display: none;
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 120%;
+  font: var(--text-md-16);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-top: 24px;
@@ -200,7 +196,7 @@ const SmallProject = styled.div`
   flex-direction: column;
   align-items: center;
   isolation: isolate;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--grey-150);
   order: 1;
   flex-grow: 1;
   padding: 40px;
@@ -264,11 +260,7 @@ const ProjectsBlurb = styled.div`
 `;
 
 const ProjectsBlurbHeader = styled.h2`
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 115%;
+  font: var(--text-xl-64);
   letter-spacing: -0.01em;
 
   color: var(--black);
@@ -277,14 +269,9 @@ const ProjectsBlurbHeader = styled.h2`
 
 const ProjectsBlurbSubheader = styled.h3`
   margin-top: 24px;
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
+  font: var(--text-md-20);
   line-height: 140%;
 
   color: var(--black);
   max-width: 366px;
 `;
-
-const StyledAcrossLogo = styled(AcrossLogo)``;
