@@ -3,7 +3,7 @@ import StakeBlock from "public/assets/stake-block.svg";
 import VoteBlock from "public/assets/vote-block.svg";
 import EarnBlock from "public/assets/earn-block.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { Title } from "components/Widgets";
+import { Title, Header as BaseHeader } from "components/Widgets";
 
 const VoteParticipation = () => {
   return (
@@ -76,16 +76,9 @@ const Wrapper = styled.div`
   padding-bottom: 130px;
 `;
 
-const Header = styled.div`
+const Header = styled(BaseHeader)`
   margin-top: 65px;
-  font: var(--header-lg);
   width: 921px;
-  letter-spacing: -0.01em;
-  position: relative;
-  background: -webkit-radial-gradient(center, 50% 50%, red, black);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* background: radial-gradient(circle at 50% 100%, #e66465 50%, black 50%); */
 `;
 
 // WIP for filter effect. Not working yet.

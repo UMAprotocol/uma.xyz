@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Title, Wrapper as DefaultWrapper } from "components/Widgets";
+import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
+import OOLogo from "public/assets/oo-logo.svg";
 
 const Builder = () => {
   return (
@@ -8,6 +9,14 @@ const Builder = () => {
         <Title>
           Participate as a <span>Builder</span>
         </Title>
+        <TopHeader>Launch products with</TopHeader>
+        <BottomHeader>
+          the{" "}
+          <span>
+            <OOLogo />
+          </span>
+          as your backbone
+        </BottomHeader>
       </Wrapper>
     </Section>
   );
@@ -22,4 +31,25 @@ const Section = styled.section`
 
 const Wrapper = styled(DefaultWrapper)`
   padding: 100px 0 113px;
+`;
+
+const Header = styled(BaseHeader)`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-self: center;
+`;
+
+const TopHeader = styled(Header)`
+  margin-top: 65px;
+`;
+
+const BottomHeader = styled(Header)`
+  margin-top: 24px;
+  span {
+    margin: 20px 12px 0;
+    display: flex;
+    align-items: center;
+  }
 `;
