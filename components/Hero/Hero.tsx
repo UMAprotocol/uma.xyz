@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font: var(--header-xxl);
+  font: var(--header-lg);
   color: var(--white);
   display: flex;
   justify-content: center;
@@ -59,7 +59,7 @@ const Title = styled.div`
 
 const Subheader = styled.div`
   margin-top: 32px;
-  font: var(--text-md-20);
+  font: var(--body-lg);
   color: var(--grey-910);
   text-align: center;
 `;

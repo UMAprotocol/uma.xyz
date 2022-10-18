@@ -152,7 +152,7 @@ const BigProject = styled.div`
 `;
 const BigProjectText = styled.h3`
   display: none;
-  font: var(--text-md-16);
+  font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-top: 24px;
@@ -260,7 +260,7 @@ const ProjectsBlurb = styled.div`
 `;
 
 const ProjectsBlurbHeader = styled.h2`
-  font: var(--text-xl-64);
+  font: var(--header-md);
   letter-spacing: -0.01em;
 
   color: var(--black);
@@ -269,7 +269,7 @@ const ProjectsBlurbHeader = styled.h2`
 
 const ProjectsBlurbSubheader = styled.h3`
   margin-top: 24px;
-  font: var(--text-md-20);
+  font: var(--body-lg);
   line-height: 140%;
 
   color: var(--black);

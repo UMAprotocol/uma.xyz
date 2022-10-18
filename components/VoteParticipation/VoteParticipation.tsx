@@ -75,7 +75,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font: var(--text-xl);
+  font: var(--header-sm);
   color: var(--black);
   > span {
     color: var(--red-500);
@@ -84,7 +84,7 @@ const Title = styled.div`
 
 const Header = styled.div`
   margin-top: 65px;
-  font: var(--text-xxl);
+  font: var(--header-lg);
   width: 921px;
   letter-spacing: -0.01em;
   position: relative;
@@ -156,7 +156,7 @@ const ImageTitleRed = styled(ImageTitle)`
 `;
 
 const ImageText = styled.div`
-  font: var(--text-md-20);
+  font: var(--body-lg);
   color: var(--black);
 `;
 
@@ -169,14 +169,14 @@ const VoterAppLinkRow = styled.div`
 
 const VoterAppLinkBlock = styled.div`
   color: var(--red-500);
-  font: var(--text-md-20);
+  font: var(--body-lg);
   margin-left: 40px;
 `;
 
 const VoterAppLink = styled.a`
   display: inline-block;
   margin-left: 12px;
-  font: var(--text-md-20);
+  font: var(--body-lg);
   > div {
     display: inline-flex;
     align-items: center;

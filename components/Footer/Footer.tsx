@@ -184,8 +184,8 @@ const FormWrapper = styled.div`
 `;
 
 const FormTitle = styled.h3`
-  font: var(--text-md-20);
-  color: #322f33;
+  font: var(--body-lg);
+  color: var(--black-100);
   max-width: 338px;
   margin-bottom: 32px;
 `;
@@ -208,7 +208,7 @@ const Input = styled.input`
   border-radius: 8px;
   outline: none;
   cursor: initial;
-  font: var(--text-md-18);
+  font: var(--body-md);
 `;
 
 const Button = styled.button`
@@ -218,15 +218,12 @@ const Button = styled.button`
   align-items: center;
   padding: 8px 24px 12px;
   gap: 2px;
-
   width: 103px;
   height: 48px;
-
   background: var(--red-500);
   border-radius: 8px;
   color: var(--black);
-
-  font: var(--text-md-18);
+  font: var(--body-md);
 `;
 
 const LinksFlex = styled.div`
@@ -244,7 +241,7 @@ const CopyrightRow = styled(Row)`
 const AddressWrapper = styled.div`
   display: flex;
   > div {
-    font: var(--text-md-16);
+    font: var(--body-sm);
     color: var(--grey-910);
   }
 `;
