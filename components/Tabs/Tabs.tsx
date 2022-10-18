@@ -41,8 +41,8 @@ const TabList = styled(ReachTabList)`
   display: flex;
   align-items: center;
   gap: 50px;
-  padding-left: 30px;
-  background: var(--grey-50);
+  /* padding-left: 30px; */
+  background: inherit;
   [data-selected] {
     border-bottom: 3px solid var(--red-500);
   }
@@ -55,6 +55,7 @@ const Tab = styled(ReachTab)`
   font: var(--text-md);
   padding-inline: 3px;
   border-bottom: 3px solid transparent;
+  min-width: 200px;
 `;
 
 const TabPanels = styled(ReachTabPanels)``;
