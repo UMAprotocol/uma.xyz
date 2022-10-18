@@ -10,7 +10,13 @@ const VoteParticipation = () => {
         <Title>
           Participate as <span>Voter</span>
         </Title>
-        <Header>Stake, vote &amp; earn up to 30% APY</Header>
+        <HeaderWrapper>
+          {/* <RedCircleFilter /> */}
+          <Header>
+            Stake, vote &amp; earn <br /> up to 30% APY
+          </Header>
+        </HeaderWrapper>
+
         <ImageBlockRow>
           <ImageBlockWrapper>
             <ImageBlockWhite>
@@ -81,6 +87,28 @@ const Header = styled.div`
   font: var(--text-xxl);
   width: 921px;
   letter-spacing: -0.01em;
+  position: relative;
+  background: -webkit-radial-gradient(center, 50% 50%, red, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* background: radial-gradient(circle at 50% 100%, #e66465 50%, black 50%); */
+`;
+
+// WIP for filter effect. Not working yet.
+// const RedCircleFilter = styled.div`
+//   position: absolute;
+//   width: 249px;
+//   height: 249px;
+//   left: 168px;
+//   top: 50px;
+//   border-radius: 50%;
+//   border: 1px solid var(--red-500);
+//   background: -webkit-radial-gradient(center, 50% 50%, red, yellow);
+//   background-clip: text;
+// `;
+
+const HeaderWrapper = styled.div`
+  position: relative;
 `;
 
 const ImageBlockRow = styled.div`
@@ -91,7 +119,7 @@ const ImageBlockRow = styled.div`
   align-items: flex-start;
   gap: 48px;
   svg {
-    fill: white;
+    fill: var(--white);
   }
 `;
 
@@ -136,12 +164,13 @@ const VoterAppLinkRow = styled.div`
   margin-top: 102px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const VoterAppLinkBlock = styled.div`
   color: var(--red-500);
   font: var(--text-md-20);
+  margin-left: 40px;
 `;
 
 const VoterAppLink = styled.a`
@@ -155,7 +184,7 @@ const VoterAppLink = styled.a`
     width: 28px;
     height: 28px;
 
-    border: 1px solid #ff4a4a;
+    border: 1px solid var(--red-500);
     border-radius: 8px;
   }
 `;
