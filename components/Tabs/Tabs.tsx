@@ -72,6 +72,9 @@ const Tab = styled(ReachTab)`
   margin-bottom: 22px;
   gap: 12px;
   border-bottom: 2px solid #e9e9e9;
+  font: var(--body-md);
+  color: #b0afb3;
+  flex: 1;
 `;
 
 const TabPanels = styled(ReachTabPanels)`

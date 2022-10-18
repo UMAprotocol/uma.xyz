@@ -4,7 +4,10 @@ import OOLogo from "public/assets/oo-logo.svg";
 import { Tabs } from "components";
 import WandIcon from "public/assets/wand.svg";
 import TubeIcon from "public/assets/tube.svg";
-console.log("wandIcon", WandIcon);
+import MedalIcon from "public/assets/medal.svg";
+import CreditCardsIcon from "public/assets/credit-cards.svg";
+import GlobeIcon from "public/assets/globe.svg";
+
 const Builder = () => {
   return (
     <Section>
@@ -28,9 +31,24 @@ const Builder = () => {
               Icon: WandIcon,
             },
             {
-              title: "Launch",
+              title: "Insurance",
               content: <div>Launch</div>,
               Icon: TubeIcon,
+            },
+            {
+              title: "Cross-Chain Communication",
+              content: <div>Cross-Chain Communication</div>,
+              Icon: MedalIcon,
+            },
+            {
+              title: "Off-chain Governance",
+              content: <div>Off-chain Governance</div>,
+              Icon: CreditCardsIcon,
+            },
+            {
+              title: "Long-tail data",
+              content: <div>Long-tail data</div>,
+              Icon: GlobeIcon,
             },
           ]}
         ></Tabs>
