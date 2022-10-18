@@ -12,6 +12,7 @@
     "chromatic": "chromatic --project-token=ebd597792be4"
   },
   "dependencies": {
+    "@reach/tabs": "^0.18.0",
     "@tanstack/react-query": "^4.7.2",
     "@tanstack/react-query-devtools": "^4.7.2",
     "next": "12.3.1",

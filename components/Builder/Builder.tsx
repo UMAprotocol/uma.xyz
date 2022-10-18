@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
 import OOLogo from "public/assets/oo-logo.svg";
+import { Tabs } from "components";
 
 const Builder = () => {
   return (
@@ -17,6 +18,18 @@ const Builder = () => {
           </span>
           as your backbone
         </BottomHeader>
+        <Tabs
+          tabs={[
+            {
+              title: "Build",
+              content: <div>Build</div>,
+            },
+            {
+              title: "Launch",
+              content: <div>Launch</div>,
+            },
+          ]}
+        ></Tabs>
       </Wrapper>
     </Section>
   );
