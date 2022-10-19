@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactNode } from "react";
 import { SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackCodeViewer } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
-
+import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 interface Props {
   title: string;
   body: ReactNode;
@@ -37,6 +37,12 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
             <SandpackCodeViewer code={code} showLineNumbers showTabs />
           </SandpackLayout>
         </SandpackProvider>
+        <RemixWrapper>
+          <span>Remix code in Sandbox</span>
+          <RemixLink href="https://remix-project.org/" target="_blank" rel="noreferrer">
+            <UpRightArrowRed />
+          </RemixLink>
+        </RemixWrapper>
       </CodeColumn>
     </Wrapper>
   );
@@ -79,5 +85,26 @@ const CodeColumn = styled.div`
   display: flex;
   max-width: 50%;
   margin-left: auto;
+  flex-direction: column;
+`;
+
+const RemixWrapper = styled.div`
+  margin-top: 26px;
+  display: flex;
+  font: var(--body-lg);
+  color: var(--red-500);
+  justify-content: center;
+  gap: 20px;
+  cursor: default;
+`;
+const RemixLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  border: 1px solid var(--red-500);
+  border-radius: 8px;
 `;
 export default BuilderTabContent;
