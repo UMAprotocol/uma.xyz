@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^1.15.1",
+    "@codesandbox/sandpack-themes": "^1.15.1",
     "@reach/tabs": "^0.18.0",
     "@tanstack/react-query": "^4.7.2",
     "@tanstack/react-query-devtools": "^4.7.2",

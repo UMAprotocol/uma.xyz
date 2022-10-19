@@ -1,11 +1,27 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
+import { SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackCodeViewer } from "@codesandbox/sandpack-react";
+import { githubLight } from "@codesandbox/sandpack-themes";
 
 interface Props {
   title: string;
   body: ReactNode;
 }
 
+const code = `pragma solidity ^0.8.14;
+
+contract OO_GettingStarted {
+  bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
+  bytes ancillaryData =
+
+    bytes("Q: Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c? A:1 for yes. 0 for no.");
+
+  uint256 requestTime = 0;
+  function requestPrice() public {
+    requestTime = block.timestamp;
+    IERC20 bondCurrency = IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
+    uint256 reward = 0;
+`;
 const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
   return (
     <Wrapper>
@@ -15,6 +31,18 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
         <GreyBlurb>Real contract used by Polymarket:</GreyBlurb>
         <RedBlurb>“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”</RedBlurb>
       </TextColumn>
+      <CodeColumn>
+        <SandpackProvider
+          theme={githubLight}
+          files={{
+            "/App.js": code,
+          }}
+        >
+          <SandpackLayout>
+            <SandpackCodeViewer code={code} showLineNumbers />
+          </SandpackLayout>
+        </SandpackProvider>
+      </CodeColumn>
     </Wrapper>
   );
 };
@@ -22,6 +50,8 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  gap: 100px;
 `;
 
 const Title = styled.h2`
@@ -48,5 +78,11 @@ const GreyBlurb = styled.div`
 const RedBlurb = styled(GreyBlurb)`
   margin-top: 8px;
   color: var(--red-500);
+`;
+
+const CodeColumn = styled.div`
+  display: flex;
+  max-width: 50%;
+  margin-left: auto;
 `;
 export default BuilderTabContent;
