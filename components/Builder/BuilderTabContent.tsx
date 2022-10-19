@@ -32,14 +32,19 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
         <RedBlurb>“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”</RedBlurb>
       </TextColumn>
       <CodeColumn>
-        <SandpackProvider
-          theme={githubLight}
-          files={{
-            "/App.js": code,
-          }}
-        >
+        <SandpackProvider theme={githubLight}>
           <SandpackLayout>
-            <SandpackCodeViewer code={code} showLineNumbers />
+            <SandpackCodeViewer
+              decorators={[
+                {
+                  line: 1,
+                  className: "line-1",
+                },
+              ]}
+              code={code}
+              showLineNumbers
+              showTabs
+            />
           </SandpackLayout>
         </SandpackProvider>
       </CodeColumn>
