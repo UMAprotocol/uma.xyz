@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
+// WIP for red effect
 export const Header = styled.div`
   font: var(--header-lg);
   letter-spacing: -0.01em;
