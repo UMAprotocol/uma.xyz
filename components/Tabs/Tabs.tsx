@@ -48,7 +48,7 @@ const TabList = styled(ReachTabList)`
   align-items: center;
   background: inherit;
   path {
-    fill: hsla(255, 3%, 69%, 1);
+    fill: var(--grey-900);
   }
   [data-selected] {
     border-bottom: 3px solid var(--red-500);
@@ -73,7 +73,7 @@ const Tab = styled(ReachTab)`
   gap: 12px;
   border-bottom: 2px solid var(--grey-150);
   font: var(--body-md);
-  color: #b0afb3;
+  color: var(--grey-910);
   flex: 1;
 `;
 
