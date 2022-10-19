@@ -1,15 +1,13 @@
-.ͼ1i {
- .cm-lineNumbers { 
-    .cm-gutterElement {
-      height: 22px;
-      width: 48px;
-      text-align: right;
-      font: var(--body-sm);
-      color: var(--grey-910);
-      margin-bottom: 2px;
-    }
-  }
+
+.cm-gutter.cm-lineNumbers {
+  height: 22px;
+  width: 48px;
+  text-align: right;
+  font: var(--body-sm) !important;
+  color: var(--grey-910);
+  margin-bottom: 2px;
 }
+
 
 .cm-content.cm-readonly {
   .cm-line {
