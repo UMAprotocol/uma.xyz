@@ -61,15 +61,11 @@ const TabList = styled(ReachTabList)`
 
 const Tab = styled(ReachTab)`
   background: transparent;
-  color: var(--black);
-  font: var(--text-md);
   padding-inline: 3px;
-  min-width: 200px;
   padding-bottom: 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 22px;
   gap: 12px;
   border-bottom: 2px solid var(--grey-150);
   font: var(--body-md);
