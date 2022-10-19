@@ -19,4 +19,25 @@
   }
 }
 
- 
+.sp-tab-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: relative;
+  &:after {
+    position: absolute;
+    visibility: visible;
+    content: url("../public/assets/dots.png");
+    width: 30px;
+    font: var(--body-sm);
+    color: #B0AFB3;
+  }
+}
+
+.sp-layout {
+  &:after {
+    border-radius: 8px;
+    content: url("../public/assets/lines-editor.svg");
+    width: 100%;
+    height: 20px;
+  }
+}

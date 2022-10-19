@@ -44,23 +44,71 @@ const Builder = () => {
               Icon: WandIcon,
             },
             {
-              title: "Ins",
-              content: <div>Launch</div>,
+              title: "Insurance",
+              content: (
+                <BuilderTabContent
+                  title="Insurance"
+                  body={
+                    <>
+                      Insurance is based on the same lorem ipsum text that has been used for years in the web design
+                      industry. <br /> <br />
+                      The text should probably take up this amount of space, i.e. not be too long or too short and map
+                      well to the code.
+                    </>
+                  }
+                />
+              ),
               Icon: TubeIcon,
             },
             {
               title: "Cross-Chain Communication",
-              content: <div>Cross-Chain Communication</div>,
+              content: (
+                <BuilderTabContent
+                  title="Cross-Chain Communication"
+                  body={
+                    <>
+                      Cross-Chain Communication are based on the same lorem ipsum text that has been used for years in
+                      the web design industry. <br /> <br />
+                      The text should probably take up this amount of space, i.e. not be too long or too short and map
+                      well to the code.
+                    </>
+                  }
+                />
+              ),
               Icon: MedalIcon,
             },
             {
               title: "Off-chain Governance",
-              content: <div>Off-chain Governance</div>,
+              content: (
+                <BuilderTabContent
+                  title="Off-chain Governance"
+                  body={
+                    <>
+                      Off-chain Governance is based on the same lorem ipsum text that has been used for years in the web
+                      design industry. <br /> <br />
+                      The text should probably take up this amount of space, i.e. not be too long or too short and map
+                      well to the code.
+                    </>
+                  }
+                />
+              ),
               Icon: CreditCardsIcon,
             },
             {
               title: "Long-tail data",
-              content: <div>Long-tail data</div>,
+              content: (
+                <BuilderTabContent
+                  title="Long-tail data"
+                  body={
+                    <>
+                      Long-tail data are based on the same lorem ipsum text that has been used for years in the web
+                      design industry. <br /> <br />
+                      The text should probably take up this amount of space, i.e. not be too long or too short and map
+                      well to the code.
+                    </>
+                  }
+                />
+              ),
               Icon: GlobeIcon,
             },
           ]}

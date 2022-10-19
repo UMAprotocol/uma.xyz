@@ -34,17 +34,7 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
       <CodeColumn>
         <SandpackProvider theme={githubLight}>
           <SandpackLayout>
-            <SandpackCodeViewer
-              decorators={[
-                {
-                  line: 1,
-                  className: "line-1",
-                },
-              ]}
-              code={code}
-              showLineNumbers
-              showTabs
-            />
+            <SandpackCodeViewer code={code} showLineNumbers showTabs />
           </SandpackLayout>
         </SandpackProvider>
       </CodeColumn>
