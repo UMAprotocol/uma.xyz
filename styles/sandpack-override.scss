@@ -1,0 +1,22 @@
+.ͼ1i {
+ .cm-lineNumbers { 
+    .cm-gutterElement {
+      height: 22px;
+      width: 48px;
+      text-align: right;
+      font: var(--body-sm);
+      color: #B0AFB3;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.cm-content.cm-readonly {
+  .cm-line {
+    span {
+      font: var(--body-sm);
+    }
+  }
+}
+
+ 
