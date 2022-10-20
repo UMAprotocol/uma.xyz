@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
+import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 
 const SupportSection = () => {
   return (
@@ -12,6 +13,20 @@ const SupportSection = () => {
             blandit quisque. Amet eu enim orci gravida semper est.
           </Subtitle>
         </TextColumn>
+        <ButtonColumn>
+          <ButtonGroup>
+            <ButtonLink href="https://jobs.lever.co/umaproject" target="_blank" rel="noreferrer">
+              <UpRightArrowLg />
+            </ButtonLink>
+            <ButtonText>Careers</ButtonText>
+          </ButtonGroup>
+          <ButtonGroup>
+            <ButtonLink href="https://docs.umaproject.org/" target="_blank" rel="noreferrer">
+              <UpRightArrowLg />
+            </ButtonLink>
+            <ButtonText>About</ButtonText>
+          </ButtonGroup>
+        </ButtonColumn>
       </Wrapper>
     </Section>
   );
@@ -46,4 +61,39 @@ const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+`;
+
+const ButtonColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 74px;
+  gap: 16px;
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+`;
+
+const ButtonLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--black);
+  border-radius: 10px;
+  path {
+    stroke: var(--black);
+  }
+`;
+
+const ButtonText = styled.span`
+  font: var(--header-sm);
+  color: var(--black);
+  line-height: 115%;
 `;
