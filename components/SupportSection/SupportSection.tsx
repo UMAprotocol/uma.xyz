@@ -50,6 +50,7 @@ const Wrapper = styled(BaseWrapper)`
 
 const Title = styled(BaseTitle)`
   max-width: 562px;
+  font: var(--header-md);
 `;
 
 const Subtitle = styled.h3`
