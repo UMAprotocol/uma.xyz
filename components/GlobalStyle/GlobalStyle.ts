@@ -1,5 +1,6 @@
 import {
   black,
+  black100,
   blackOpacity25,
   blackOpacity50,
   blackOpacity60,
@@ -22,24 +23,7 @@ import {
   white50,
   whiteOpacity10,
 } from "constants/colors";
-import {
-  headerLg,
-  headerMd,
-  headerSm,
-  headerXl,
-  headerXs,
-  textFine,
-  headerXXl,
-  textXXl,
-  textXl64,
-  textXl,
-  textLg,
-  textMd16,
-  textMd18,
-  textMd20,
-  textSm,
-  textXs,
-} from "constants/fonts";
+import { headerLg, headerMd, headerSm, subHeader, bodyLg, bodyMd, bodySm, bodyXs } from "constants/fonts";
 import { maxSectionWidth } from "constants/breakpoints";
 import { createGlobalStyle } from "styled-components";
 
@@ -214,6 +198,7 @@ a:not([class]) {
     --white-opacity-10: ${whiteOpacity10};
     --white-50: ${white50};
     --black: ${black};
+    --black-100: ${black100};
     --black-opacity-25: ${blackOpacity25};
     --black-opacity-50: ${blackOpacity50};
     --black-opacity-60: ${blackOpacity60};
@@ -233,22 +218,13 @@ a:not([class]) {
     --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
     --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
     /* Fonts */
-    --header-xxl: ${headerXXl};
-    --header-xl: ${headerXl};
     --header-lg: ${headerLg};
     --header-md: ${headerMd};
     --header-sm: ${headerSm};
-    --header-xs: ${headerXs};
-    --text-xxl: ${textXXl};
-    --text-xl-64: ${textXl64};
-    --text-xl: ${textXl};
-    --text-lg: ${textLg};
-    --text-md-16: ${textMd16};
-    --text-md-18: ${textMd18};
-    --text-md-20: ${textMd20};
-    --text-sm: ${textSm};
-    --text-xs: ${textXs};
-    --text-fine: ${textFine};
+    --sub-header: ${subHeader};
+    --body-lg: ${bodyLg};
+    --body-md: ${bodyMd};
+    --body-sm: ${bodySm};
     --max-section-width: ${maxSectionWidth};
   }
 `;

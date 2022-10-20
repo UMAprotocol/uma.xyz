@@ -3,6 +3,8 @@ import StakeBlock from "public/assets/stake-block.svg";
 import VoteBlock from "public/assets/vote-block.svg";
 import EarnBlock from "public/assets/earn-block.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import { Title, Header as BaseHeader } from "components/Widgets";
+
 const VoteParticipation = () => {
   return (
     <Section>
@@ -74,24 +76,9 @@ const Wrapper = styled.div`
   padding-bottom: 130px;
 `;
 
-const Title = styled.div`
-  font: var(--text-xl);
-  color: var(--black);
-  > span {
-    color: var(--red-500);
-  }
-`;
-
-const Header = styled.div`
+const Header = styled(BaseHeader)`
   margin-top: 65px;
-  font: var(--text-xxl);
   width: 921px;
-  letter-spacing: -0.01em;
-  position: relative;
-  background: -webkit-radial-gradient(center, 50% 50%, red, black);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* background: radial-gradient(circle at 50% 100%, #e66465 50%, black 50%); */
 `;
 
 // WIP for filter effect. Not working yet.
@@ -156,7 +143,7 @@ const ImageTitleRed = styled(ImageTitle)`
 `;
 
 const ImageText = styled.div`
-  font: var(--text-md-20);
+  font: var(--body-lg);
   color: var(--black);
 `;
 
@@ -169,14 +156,14 @@ const VoterAppLinkRow = styled.div`
 
 const VoterAppLinkBlock = styled.div`
   color: var(--red-500);
-  font: var(--text-md-20);
+  font: var(--body-lg);
   margin-left: 40px;
 `;
 
 const VoterAppLink = styled.a`
   display: inline-block;
   margin-left: 12px;
-  font: var(--text-md-20);
+  font: var(--body-lg);
   > div {
     display: inline-flex;
     align-items: center;
