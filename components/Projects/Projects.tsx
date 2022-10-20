@@ -5,7 +5,7 @@ import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
 import PolymarketLogo from "public/assets/polymarket-logo.svg";
 import SushiSwapLogo from "public/assets/sushi-swap-logo.svg";
 import ShapeshiftLogo from "public/assets/shapeshift-logo.svg";
-import { Wrapper as DefaultWrapper } from "components/Widgets";
+import { Wrapper as BaseWrapper } from "components/Widgets";
 
 const Projects = () => {
   return (
@@ -102,7 +102,7 @@ const Section = styled.section`
   background: var(--white);
 `;
 
-const Wrapper = styled(DefaultWrapper)`
+const Wrapper = styled(BaseWrapper)`
   padding: 128px 0 117px;
 `;
 

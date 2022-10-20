@@ -9,3 +9,4 @@ export { default as Hero } from "./Hero";
 export { default as Projects } from "./Projects";
 export { default as Builder } from "./Builder";
 export { default as Tabs } from "./Tabs";
+export { default as SupportSection } from "./SupportSection";
