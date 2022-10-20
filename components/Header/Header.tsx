@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
-import VoteTicker from "components/VoteTicker";
+import { VoteTicker } from "components";
 const Header = () => {
   return (
     <>

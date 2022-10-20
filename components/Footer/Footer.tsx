@@ -7,55 +7,60 @@ import Github from "public/assets/github.svg";
 import Discourse from "public/assets/discourse.svg";
 import BlackCircle from "public/assets/black-circle.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
+import { VoteTicker } from "components";
 const Footer = () => {
   const { value, setValue } = useFooter();
   return (
-    <Section>
-      <Wrapper>
-        <BottomRow>
-          <FooterLinks>
-            <LogoWrapper>
-              <StyledLogo />
-            </LogoWrapper>
-            <LinksFlex>
-              <Links>
-                {middleLinks.map(({ label, href }, i) => (
-                  <Link key={i} href={href} target="_blank" rel="noreferrer">
-                    {label}
-                  </Link>
-                ))}
-              </Links>
-              <Links>
-                {rightLinks.map(({ label, href, Logo }, i) => (
-                  <Link key={i} href={href} target="_blank" rel="noreferrer">
-                    {label} {Logo && <Logo style={{ display: "inline-flex", marginLeft: "4px" }} />}
-                  </Link>
-                ))}
-              </Links>
-            </LinksFlex>
-          </FooterLinks>
-          <FormWrapper>
-            <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
-            <Form>
-              <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
-              <Button onClick={() => null}>Sign up</Button>
-            </Form>
-          </FormWrapper>
-        </BottomRow>
-        <CopyrightRow>
-          <AddressWrapper>
-            <div>© 2022 Risk Labs</div>
-          </AddressWrapper>
-          <SocialLinks>
-            {socialLinks.map(({ href, Icon }, i) => (
-              <SocialLink key={i} href={href} rel="noreferrer" target="_blank">
-                <Icon />
-              </SocialLink>
-            ))}
-          </SocialLinks>
-        </CopyrightRow>
-      </Wrapper>
-    </Section>
+    <>
+      <VoteTicker />
+
+      <Section>
+        <Wrapper>
+          <BottomRow>
+            <FooterLinks>
+              <LogoWrapper>
+                <StyledLogo />
+              </LogoWrapper>
+              <LinksFlex>
+                <Links>
+                  {middleLinks.map(({ label, href }, i) => (
+                    <Link key={i} href={href} target="_blank" rel="noreferrer">
+                      {label}
+                    </Link>
+                  ))}
+                </Links>
+                <Links>
+                  {rightLinks.map(({ label, href, Logo }, i) => (
+                    <Link key={i} href={href} target="_blank" rel="noreferrer">
+                      {label} {Logo && <Logo style={{ display: "inline-flex", marginLeft: "4px" }} />}
+                    </Link>
+                  ))}
+                </Links>
+              </LinksFlex>
+            </FooterLinks>
+            <FormWrapper>
+              <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
+              <Form>
+                <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
+                <Button onClick={() => null}>Sign up</Button>
+              </Form>
+            </FormWrapper>
+          </BottomRow>
+          <CopyrightRow>
+            <AddressWrapper>
+              <div>© 2022 Risk Labs</div>
+            </AddressWrapper>
+            <SocialLinks>
+              {socialLinks.map(({ href, Icon }, i) => (
+                <SocialLink key={i} href={href} rel="noreferrer" target="_blank">
+                  <Icon />
+                </SocialLink>
+              ))}
+            </SocialLinks>
+          </CopyrightRow>
+        </Wrapper>
+      </Section>
+    </>
   );
 };
 
@@ -173,7 +178,7 @@ const Links = styled.div`
 
 const Link = styled.a`
   color: var(--black);
-  font: var(--text-md-16);
+  font: var(--body-sm);
   text-decoration: none;
 `;
 
