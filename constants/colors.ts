@@ -7,6 +7,7 @@ export const white = "hsla(0, 0%, 100%, 1)";
 export const white50 = "hsla(0, 0%, 98%, 1)";
 export const whiteOpacity10 = "hsla(0, 0%, 100%, 0.1)";
 export const black = "hsla(280, 4%, 15%, 1)";
+// #322f33
 export const black100 = "	hsla(285, 4%, 19%, 1)";
 export const blackOpacity25 = "hsla(280, 4%, 15%, 0.25)";
 export const blackOpacity50 = "hsla(280, 4%, 15%, 0.5)";

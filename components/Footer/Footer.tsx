@@ -12,7 +12,7 @@ const Footer = () => {
   const { value, setValue } = useFooter();
   return (
     <>
-      <VoteTicker />
+      <VoteTicker theme="light" />
 
       <Section>
         <Wrapper>
@@ -128,7 +128,7 @@ const rightLinks = [
 
 const Section = styled.div`
   width: 100%;
-  background: var(--white-50);
+  background: var(--grey-100);
   background-image: url("assets/footer-lines-grey.png");
   background-size: 100% auto;
   background-repeat: no-repeat;

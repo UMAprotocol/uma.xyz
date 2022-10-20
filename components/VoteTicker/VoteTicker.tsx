@@ -4,11 +4,13 @@ import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import calculateTimeRemaining from "./calculateTimeRemaining";
 
+type theme = "light" | "dark";
+
 interface Props {
-  theme: "light" | "dark";
+  theme: theme;
 }
 
-const VoteTicker = ({ theme = "dark" }) => {
+const VoteTicker: React.FC<Props> = ({ theme = "dark" }) => {
   const { timeRemaining } = useVoteTicker();
   return (
     <Section>
@@ -53,13 +55,13 @@ function useVoteTicker() {
 }
 
 interface IStyledProps {
-  theme: "light" | "dark";
+  theme: theme;
 }
 
 const Section = styled.div<IStyledProps>`
   width: 100%;
-  background: inherit;
-  padding-top: 16px;
+  background: ${({ theme }) => (theme === "dark" ? "inherit" : "var(--grey-100)")};
+  padding-top: ${({ theme }) => (theme === "dark" ? "16px" : "48px")}; ;
 `;
 const Wrapper = styled.div<IStyledProps>`
   display: flex;
@@ -72,7 +74,7 @@ const Wrapper = styled.div<IStyledProps>`
   max-width: var(--max-section-width);
   margin: 0 auto;
   height: 48px;
-  background: #322f33;
+  background: ${({ theme }) => (theme === "dark" ? "var(--black-100)" : "var(--white-50)")};
   border-radius: 8px;
 `;
 
