@@ -1,22 +1,25 @@
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
-
+import VoteTicker from "components/VoteTicker";
 const Header = () => {
   return (
-    <Wrapper>
-      <a href="/">
-        <Logo />
-      </a>
-      <Links>
-        {/* TODO: Get links */}
-        {links.map(({ label, href }, i) => (
-          <Link key={i} href={href}>
-            {label}
-          </Link>
-        ))}
-        <LaunchButton onClick={() => null}>Launch app</LaunchButton>
-      </Links>
-    </Wrapper>
+    <>
+      <VoteTicker />
+      <Wrapper>
+        <a href="/">
+          <Logo />
+        </a>
+        <Links>
+          {/* TODO: Get links */}
+          {links.map(({ label, href }, i) => (
+            <Link key={i} href={href}>
+              {label}
+            </Link>
+          ))}
+          <LaunchButton onClick={() => null}>Launch app</LaunchButton>
+        </Links>
+      </Wrapper>
+    </>
   );
 };
 
@@ -46,7 +49,7 @@ const Wrapper = styled.div`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  padding-top: 68px;
+  padding-top: 100px;
   margin: 0 auto;
 `;
 
