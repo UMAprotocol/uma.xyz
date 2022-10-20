@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import calculateTimeRemaining from "./calculateTimeRemaining";
 const VoteTicker = () => {
+  const { timeRemaining } = useVoteTicker();
   return (
     <Section>
       <Wrapper>
@@ -11,7 +14,7 @@ const VoteTicker = () => {
           </ClockBG>
           <VoteText>
             Time to commit vote:
-            <span>7h 32m 21s</span>
+            <span>{timeRemaining}</span>
           </VoteText>
         </VoteBlock>
         <MoreDetailsBlock>
@@ -26,6 +29,23 @@ const VoteTicker = () => {
 };
 
 export default VoteTicker;
+
+function useVoteTicker() {
+  const [timeRemaining, setTimeRemaining] = useState("00:00");
+  // Set time remaining depending if it's the Commit or Reveal
+  // Note: the requests are all slightly differently in there final vote time. I'll use the last
+  // Vote added.
+  useEffect(() => {
+    setTimeRemaining(calculateTimeRemaining());
+
+    const timer = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+  return { timeRemaining };
+}
 const Section = styled.div`
   width: 100%;
   background: inherit;
