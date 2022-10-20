@@ -1,6 +1,8 @@
 import {
   black,
   black100,
+  black150,
+  black150Opacity20,
   blackOpacity25,
   blackOpacity50,
   blackOpacity60,
@@ -13,11 +15,13 @@ import {
   grey900,
   grey910,
   grey950,
+  greyOpacity20,
   loadingSkeletonOpacity10,
   loadingSkeletonOpacity100,
-  red100,
   red500,
   red500Opacity5,
+  red510Opacity15,
+  red550,
   red600,
   white,
   white50,
@@ -199,13 +203,16 @@ a:not([class]) {
     --white-50: ${white50};
     --black: ${black};
     --black-100: ${black100};
+    --black-150: ${black150};
+    --black-150-opacity-20: ${black150Opacity20};
     --black-opacity-25: ${blackOpacity25};
     --black-opacity-50: ${blackOpacity50};
     --black-opacity-60: ${blackOpacity60};
     --black-opacity-75: ${blackOpacity75};
-    --red-100: ${red100};
     --red-500: ${red500};
     --red-500-opacity-5: ${red500Opacity5};
+    --red-510-opacity-15: ${red510Opacity15};
+    --red-550: ${red550};
     --red-600: ${red600};
     --green: ${green};
     --grey-50: ${grey50};
@@ -215,6 +222,7 @@ a:not([class]) {
     --grey-900: ${grey900};
     --grey-910: ${grey910};
     --grey-950: ${grey950};
+    --grey-opacity-20: ${greyOpacity20};
     --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
     --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
     /* Fonts */

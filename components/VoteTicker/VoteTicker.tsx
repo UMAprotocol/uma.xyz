@@ -10,21 +10,21 @@ interface Props {
   theme: theme;
 }
 
-const VoteTicker: React.FC<Props> = ({ theme = "dark" }) => {
+const VoteTicker: React.FC<Props> = ({ theme }) => {
   const { timeRemaining } = useVoteTicker();
   return (
-    <Section>
-      <Wrapper>
-        <VoteBlock>
-          <ClockBG>
+    <Section theme={theme}>
+      <Wrapper theme={theme}>
+        <VoteBlock theme={theme}>
+          <ClockBG theme={theme}>
             <Clock />
           </ClockBG>
-          <VoteText>
+          <VoteText theme={theme}>
             Time to commit vote:
             <span>{timeRemaining}</span>
           </VoteText>
         </VoteBlock>
-        <MoreDetailsBlock>
+        <MoreDetailsBlock theme={theme}>
           <span>More details</span>
           <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
             <UpRightArrow />
@@ -63,6 +63,7 @@ const Section = styled.div<IStyledProps>`
   background: ${({ theme }) => (theme === "dark" ? "inherit" : "var(--grey-100)")};
   padding-top: ${({ theme }) => (theme === "dark" ? "16px" : "48px")}; ;
 `;
+
 const Wrapper = styled.div<IStyledProps>`
   display: flex;
   flex-direction: row;
@@ -94,33 +95,36 @@ const ClockBG = styled.div<IStyledProps>`
   gap: 8px;
   width: 32px;
   height: 32px;
-  background: rgba(255, 74, 74, 0.15);
-  border-radius: 28px;
+  background: var(--red-510-opacity-15);
+  border-radius: ${({ theme }) => (theme === "dark" ? "16px" : "4px")};
   g {
-    fill: #503236;
+    fill: var(--red-550);
+    fill: ${({ theme }) => (theme === "dark" ? "var(--red-550)" : "var(--red-510-opacity-15)")};
   }
 `;
 
 const VoteText = styled.div<IStyledProps>`
   font: var(--body-sm);
-  color: #b0afb3;
+  color: ${({ theme }) => (theme === "dark" ? "var(--grey-910)" : "var(--black-150)")};
   span {
-    color: var(--white);
+    color: ${({ theme }) => (theme === "dark" ? "var(--white)" : "var(--red-550)")};
+    color: var(--red-500);
     margin-left: 4px;
   }
   padding-right: 16px;
-  border-right: 1px solid hsl(255, 2%, 64%, 0.2);
+  border-right: ${({ theme }) =>
+    theme === "dark" ? "1px solid var(--grey-opacity-20)" : "1px solid var(--black-150-opacity-20)"};
 `;
 
 const MoreDetailsBlock = styled.div<IStyledProps>`
   font: var(--body-sm);
-  color: #b0afb3;
+  color: ${({ theme }) => (theme === "dark" ? "var(--grey-910)" : "var(--black-150)")};
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px;
   gap: 4px;
   path {
-    stroke: #b0afb3;
+    stroke: ${({ theme }) => (theme === "dark" ? "var(--grey-910)" : "var(--black-150)")};
   }
 `;
