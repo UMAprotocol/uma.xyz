@@ -11,8 +11,6 @@ import {
   grey910,
   grey950,
   greyOpacity20,
-  loadingSkeletonOpacity10,
-  loadingSkeletonOpacity100,
   red,
   red510Opacity15,
   red550,
@@ -209,8 +207,6 @@ a:not([class]) {
     --grey-910: ${grey910};
     --grey-950: ${grey950};
     --grey-opacity-20: ${greyOpacity20};
-    --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
-    --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
     /* Fonts */
     --header-lg: ${headerLg};
     --header-md: ${headerMd};
