@@ -41,7 +41,7 @@ const links = [
 ];
 
 const Wrapper = styled.div`
-  background: var(--black);
+  background: var(--grey-200);
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -63,7 +63,7 @@ const Links = styled.div`
 `;
 
 const Link = styled.a`
-  color: var(--grey-900);
+  color: var(--grey-500);
   text-decoration: none;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
@@ -73,7 +73,7 @@ const Link = styled.a`
 `;
 
 const LaunchButton = styled.button`
-  color: var(--black);
+  color: var(--grey-200);
   padding: 8px 16px 12px;
   height: 40px;
   gap: 2px;

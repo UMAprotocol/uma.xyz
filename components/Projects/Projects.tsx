@@ -129,7 +129,7 @@ const BigProject = styled.div`
   align-items: center;
   padding: 80px;
   isolation: isolate;
-  border: 1px solid var(--grey-150);
+  border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
   width: 280px;
@@ -165,7 +165,7 @@ const LinkButton = styled.a`
   justify-content: center;
   align-items: center;
   align-content: center;
-  background: var(--black);
+  background: var(--grey-200);
   border: 1px solid var(--red);
   border-radius: 8px;
   background: var(--red);
@@ -194,7 +194,7 @@ const SmallProject = styled.div`
   flex-direction: column;
   align-items: center;
   isolation: isolate;
-  border: 1px solid var(--grey-150);
+  border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
   padding: 40px;
@@ -261,7 +261,7 @@ const ProjectsBlurbHeader = styled.h2`
   font: var(--header-md);
   letter-spacing: -0.01em;
 
-  color: var(--black);
+  color: var(--grey-200);
   max-width: 366px;
 `;
 
@@ -270,6 +270,6 @@ const ProjectsBlurbSubheader = styled.h3`
   font: var(--body-lg);
   line-height: 140%;
 
-  color: var(--black);
+  color: var(--grey-200);
   max-width: 366px;
 `;

@@ -28,7 +28,7 @@ const Hero = () => {
 export default Hero;
 
 const Section = styled.div`
-  background: var(--black);
+  background: var(--grey-200);
   width: 100%;
 `;
 const Wrapper = styled.div`
@@ -60,13 +60,13 @@ const Title = styled.div`
 const Subheader = styled.div`
   margin-top: 32px;
   font: var(--body-lg);
-  color: var(--grey-910);
+  color: var(--grey-500);
   text-align: center;
 `;
 
 const ArrowButton = styled.button`
   margin-top: 193px;
-  background-color: var(--black);
+  background-color: var(--grey-200);
   box-sizing: border-box;
   display: flex;
   flex-direction: row;

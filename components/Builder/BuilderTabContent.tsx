@@ -67,7 +67,7 @@ const TextColumn = styled.div`
 const Body = styled.div`
   font: var(--body-lg);
   padding-bottom: 48px;
-  border-bottom: 1px solid var(--grey-150);
+  border-bottom: 1px solid var(--grey-600);
 `;
 
 const GreyBlurb = styled.div`

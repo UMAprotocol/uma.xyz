@@ -67,9 +67,9 @@ const Tab = styled(ReachTab)`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  border-bottom: 2px solid var(--grey-150);
+  border-bottom: 2px solid var(--grey-600);
   font: var(--body-md);
-  color: var(--grey-910);
+  color: var(--grey-500);
   flex: 1;
 `;
 

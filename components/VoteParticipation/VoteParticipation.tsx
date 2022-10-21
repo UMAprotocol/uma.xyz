@@ -64,7 +64,7 @@ const VoteParticipation = () => {
 };
 
 const Section = styled.section`
-  background: var(--white-50);
+  background: var(--grey-800);
   width: 100%;
 `;
 const Wrapper = styled.div`
@@ -112,7 +112,7 @@ const ImageBlockRow = styled.div`
 
 const ImageBlockWrapper = styled.div`
   flex-basis: 33%;
-  background: var(--white-50);
+  background: var(--grey-800);
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
@@ -126,11 +126,11 @@ const ImageBlock = styled.div`
 
 const ImageBlockWhite = styled(ImageBlock)`
   background-color: var(--white);
-  border: 1px solid var(--grey-150);
+  border: 1px solid var(--grey-600);
 `;
 
 const ImageTitle = styled.div`
-  color: var(--black);
+  color: var(--grey-200);
   font-family: "Halyard Display";
   font-style: normal;
   font-weight: 400;
@@ -144,7 +144,7 @@ const ImageTitleRed = styled(ImageTitle)`
 
 const ImageText = styled.div`
   font: var(--body-lg);
-  color: var(--black);
+  color: var(--grey-200);
 `;
 
 const VoterAppLinkRow = styled.div`

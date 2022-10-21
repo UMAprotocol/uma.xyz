@@ -127,7 +127,7 @@ const rightLinks = [
 
 const Section = styled.div`
   width: 100%;
-  background: var(--grey-100);
+  background: var(--grey-700);
   background-image: url("assets/footer-lines-grey.png");
   background-size: 100% auto;
   background-repeat: no-repeat;
@@ -176,7 +176,7 @@ const Links = styled.div`
 `;
 
 const Link = styled.a`
-  color: var(--black);
+  color: var(--grey-200);
   font: var(--body-sm);
   text-decoration: none;
 `;
@@ -189,7 +189,7 @@ const FormWrapper = styled.div`
 
 const FormTitle = styled.h3`
   font: var(--body-lg);
-  color: var(--black-100);
+  color: var(--grey-300);
   max-width: 338px;
   margin-bottom: 32px;
 `;
@@ -207,7 +207,7 @@ const Input = styled.input`
   width: 350px;
   height: 48px;
   background: var(--white);
-  color: var(--black);
+  color: var(--grey-200);
   padding: 8px 16px;
   border-radius: 8px;
   outline: none;
@@ -226,7 +226,7 @@ const Button = styled.button`
   height: 48px;
   background: var(--red);
   border-radius: 8px;
-  color: var(--black);
+  color: var(--grey-200);
   font: var(--body-md);
 `;
 
@@ -246,7 +246,7 @@ const AddressWrapper = styled.div`
   display: flex;
   > div {
     font: var(--body-sm);
-    color: var(--grey-910);
+    color: var(--grey-500);
   }
 `;
 
@@ -267,7 +267,7 @@ const SocialLinks = styled.div`
 
 const SocialLink = styled.a`
   path {
-    fill: var(--black);
+    fill: var(--grey-200);
   }
   &:hover {
     opacity: 0.8;
