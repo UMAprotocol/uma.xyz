@@ -8,6 +8,7 @@ type TickerThemes = "light" | "dark";
 
 interface Props {
   theme: TickerThemes;
+  numVotes: number;
 }
 
 // styled theme
@@ -20,7 +21,7 @@ const st = {
   },
 };
 
-const VoteTicker: React.FC<Props> = ({ theme }) => {
+const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
   const { timeRemaining } = useVoteTicker();
   return (
     <ThemeProvider theme={st}>
@@ -34,6 +35,9 @@ const VoteTicker: React.FC<Props> = ({ theme }) => {
               Time to commit vote:
               <span>{timeRemaining}</span>
             </VoteText>
+            <NumVotes themeType={theme}>
+              <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
+            </NumVotes>
           </VoteBlock>
           <MoreDetailsBlock themeType={theme}>
             <span>More details</span>
@@ -121,6 +125,23 @@ const VoteText = styled.div<IStyledProps>`
   padding-right: 16px;
   border-right: ${({ themeType }) =>
     themeType === "dark" ? "1px solid var(--grey-opacity-20)" : "1px solid var(--black-150-opacity-20)"};
+`;
+
+const NumVotes = styled.div<IStyledProps>`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 8px 12px;
+  gap: 2px;
+  width: 63px;
+  height: 24px;
+  background: var(--grey-150);
+  border-radius: 12px;
+  > div {
+    font: var(--body-sm);
+    color: var(--black-150);
+  }
 `;
 
 const MoreDetailsBlock = styled.div<IStyledProps>`

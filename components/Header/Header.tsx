@@ -4,7 +4,7 @@ import { VoteTicker } from "components";
 const Header = () => {
   return (
     <>
-      <VoteTicker theme="dark" />
+      <VoteTicker theme="dark" numVotes={2} />
       <Wrapper>
         <a href="/">
           <Logo />
