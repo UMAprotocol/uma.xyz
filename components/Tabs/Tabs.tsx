@@ -51,10 +51,10 @@ const TabList = styled(ReachTabList)`
     fill: var(--grey-900);
   }
   [data-selected] {
-    border-bottom: 3px solid var(--red-500);
-    color: var(--red-500);
+    border-bottom: 3px solid var(--red);
+    color: var(--red);
     path {
-      fill: var(--red-500);
+      fill: var(--red);
     }
   }
 `;

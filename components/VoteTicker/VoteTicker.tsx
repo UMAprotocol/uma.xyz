@@ -28,7 +28,7 @@ const styledTheme = {
     },
     voteText: {
       color: "var(--black-150)",
-      spanColor: "var(--red-500)",
+      spanColor: "var(--red)",
       borderRight: "1px solid var(--black-150-opacity-20)",
     },
     numVotes: {

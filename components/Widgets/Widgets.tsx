@@ -4,7 +4,7 @@ export const Title = styled.div`
   font: var(--header-sm);
   color: var(--black);
   > span {
-    color: var(--red-500);
+    color: var(--red00);
   }
 `;
 export const Wrapper = styled.div`

@@ -89,7 +89,7 @@ const Header = styled(BaseHeader)`
 //   left: 168px;
 //   top: 50px;
 //   border-radius: 50%;
-//   border: 1px solid var(--red-500);
+//   border: 1px solid var(--red);
 //   background: -webkit-radial-gradient(center, 50% 50%, red, yellow);
 //   background-clip: text;
 // `;
@@ -139,7 +139,7 @@ const ImageTitle = styled.div`
 `;
 
 const ImageTitleRed = styled(ImageTitle)`
-  color: var(--red-500);
+  color: var(--red);
 `;
 
 const ImageText = styled.div`
@@ -155,7 +155,7 @@ const VoterAppLinkRow = styled.div`
 `;
 
 const VoterAppLinkBlock = styled.div`
-  color: var(--red-500);
+  color: var(--red);
   font: var(--body-lg);
   margin-left: 40px;
 `;
@@ -171,7 +171,7 @@ const VoterAppLink = styled.a`
     width: 28px;
     height: 28px;
 
-    border: 1px solid var(--red-500);
+    border: 1px solid var(--red);
     border-radius: 8px;
   }
 `;

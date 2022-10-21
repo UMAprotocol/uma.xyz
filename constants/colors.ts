@@ -1,8 +1,9 @@
+export const red = "hsla(0, 100%, 65%, 1)";
+export const redOpacity5 = "hsla(0, 100%, 65%, 0.05)";
 export const red500 = "hsla(0, 100%, 65%, 1)";
 export const red500Opacity5 = "hsla(0, 100%, 65%, 0.05)";
 export const red510Opacity15 = "rgba(255, 74, 74, 0.15)";
 export const red550 = "hsla(352, 23%, 25%, 1)";
-export const red600 = "hsla(360, 79%, 59%, 1)";
 export const green = "hsla(133, 68%, 39%, 1)";
 export const white = "hsla(0, 0%, 100%, 1)";
 export const white50 = "hsla(0, 0%, 98%, 1)";

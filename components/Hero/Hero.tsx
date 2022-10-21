@@ -75,7 +75,7 @@ const ArrowButton = styled.button`
   padding: 8px;
   gap: 8px;
   isolation: isolate;
-  border: 1px solid var(--red-500);
+  border: 1px solid var(--red);
   border-radius: 8px;
   width: 40px;
   height: 40px;

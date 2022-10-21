@@ -135,15 +135,15 @@ const BigProject = styled.div`
   width: 280px;
   height: 280px;
   &:hover {
-    border: 1px solid var(--red-500);
-    color: var(--red-500);
+    border: 1px solid var(--red);
+    color: var(--red);
     h3,
     a {
       display: flex;
     }
     > div {
       path {
-        fill: var(--red-500);
+        fill: var(--red);
       }
     }
   }
@@ -166,9 +166,9 @@ const LinkButton = styled.a`
   align-items: center;
   align-content: center;
   background: var(--black);
-  border: 1px solid var(--red-500);
+  border: 1px solid var(--red);
   border-radius: 8px;
-  background: var(--red-500);
+  background: var(--red);
   padding: 8px;
   gap: 8px;
 
@@ -204,7 +204,7 @@ const SmallProject = styled.div`
   &:nth-of-type(3n + 1) {
     &:hover {
       > div path {
-        stroke: var(--red-500);
+        stroke: var(--red);
       }
     }
   }
@@ -212,20 +212,20 @@ const SmallProject = styled.div`
   &:nth-of-type(3n + 2) {
     &:hover {
       path:not(:nth-of-type(5)) {
-        fill: var(--red-500);
+        fill: var(--red);
       }
     }
   }
   &:nth-of-type(3n + 3) {
     &:hover {
       path {
-        fill: var(--red-500);
+        fill: var(--red);
       }
     }
   }
 
   &:hover {
-    color: var(--red-500);
+    color: var(--red);
 
     h3,
     a {

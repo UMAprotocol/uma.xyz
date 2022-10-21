@@ -18,11 +18,9 @@ import {
   greyOpacity20,
   loadingSkeletonOpacity10,
   loadingSkeletonOpacity100,
-  red500,
-  red500Opacity5,
+  red,
   red510Opacity15,
   red550,
-  red600,
   white,
   white50,
   whiteOpacity10,
@@ -209,11 +207,9 @@ a:not([class]) {
     --black-opacity-50: ${blackOpacity50};
     --black-opacity-60: ${blackOpacity60};
     --black-opacity-75: ${blackOpacity75};
-    --red-500: ${red500};
-    --red-500-opacity-5: ${red500Opacity5};
+    --red: ${red};
     --red-510-opacity-15: ${red510Opacity15};
     --red-550: ${red550};
-    --red-600: ${red600};
     --green: ${green};
     --grey-50: ${grey50};
     --grey-100: ${grey100};

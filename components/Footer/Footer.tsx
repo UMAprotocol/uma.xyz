@@ -12,8 +12,7 @@ const Footer = () => {
   const { value, setValue } = useFooter();
   return (
     <>
-      <VoteTicker theme="light" numVotes={2} />
-
+      <VoteTicker theme="light" numVotes={2} phase="commit" />
       <Section>
         <Wrapper>
           <BottomRow>
@@ -225,7 +224,7 @@ const Button = styled.button`
   gap: 2px;
   width: 103px;
   height: 48px;
-  background: var(--red-500);
+  background: var(--red);
   border-radius: 8px;
   color: var(--black);
   font: var(--body-md);
@@ -253,7 +252,7 @@ const AddressWrapper = styled.div`
 
 const StyledLogo = styled(Logo)`
   path {
-    fill: var(--red-500);
+    fill: var(--red);
   }
 `;
 
