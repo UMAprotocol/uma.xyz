@@ -3,11 +3,6 @@ import {
   black100,
   black150,
   black150Opacity20,
-  blackOpacity25,
-  blackOpacity50,
-  blackOpacity60,
-  blackOpacity75,
-  green,
   grey50,
   grey100,
   grey150,
@@ -203,14 +198,9 @@ a:not([class]) {
     --black-100: ${black100};
     --black-150: ${black150};
     --black-150-opacity-20: ${black150Opacity20};
-    --black-opacity-25: ${blackOpacity25};
-    --black-opacity-50: ${blackOpacity50};
-    --black-opacity-60: ${blackOpacity60};
-    --black-opacity-75: ${blackOpacity75};
     --red: ${red};
     --red-510-opacity-15: ${red510Opacity15};
     --red-550: ${red550};
-    --green: ${green};
     --grey-50: ${grey50};
     --grey-100: ${grey100};
     --grey-150: ${grey150};

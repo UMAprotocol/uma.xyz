@@ -1,23 +1,21 @@
+// Reds
 export const red = "hsla(0, 100%, 65%, 1)";
 export const redOpacity5 = "hsla(0, 100%, 65%, 0.05)";
-export const red500 = "hsla(0, 100%, 65%, 1)";
-export const red500Opacity5 = "hsla(0, 100%, 65%, 0.05)";
 export const red510Opacity15 = "rgba(255, 74, 74, 0.15)";
 export const red550 = "hsla(352, 23%, 25%, 1)";
-export const green = "hsla(133, 68%, 39%, 1)";
+
+// Whites
 export const white = "hsla(0, 0%, 100%, 1)";
-export const white50 = "hsla(0, 0%, 98%, 1)";
 export const whiteOpacity10 = "hsla(0, 0%, 100%, 0.1)";
-export const black = "hsla(280, 4%, 15%, 1)";
-// #322f33
-export const black100 = "	hsla(285, 4%, 19%, 1)";
-// #413D42
+export const white50 = "hsla(0, 0%, 98%, 1)";
+
+// Blacks
+export const black = "hsla(280, 4%, 15%, 1)"; // #322f33
+export const black100 = "	hsla(285, 4%, 19%, 1)"; // #413D42
 export const black150 = "hsla(288, 4%, 25%, 1)";
 export const black150Opacity20 = "hsla(288, 4%, 25%, 0.2)";
-export const blackOpacity25 = "hsla(280, 4%, 15%, 0.25)";
-export const blackOpacity50 = "hsla(280, 4%, 15%, 0.5)";
-export const blackOpacity60 = "hsla(280, 4%, 15%, 0.6)";
-export const blackOpacity75 = "hsla(280, 4%, 15%, 0.75)";
+
+// Greys
 export const grey50 = "hsla(0, 0%, 96%, 1)";
 export const grey100 = "hsla(0, 0%, 94%, 1)";
 export const grey150 = "hsla(0, 0%, 92%, 1)";
