@@ -1,4 +1,4 @@
-import { Layout, Header, Hero, VoteParticipation, Projects, Builder, Footer } from "components";
+import { Layout, Header, Hero, VoteParticipation, Projects, Builder, SupportSection, Footer } from "components";
 import styled from "styled-components";
 
 export function Home() {
@@ -10,6 +10,7 @@ export function Home() {
         <VoteParticipation />
         <Builder />
         <Projects />
+        <SupportSection />
         <Footer />
       </Wrapper>
     </Layout>
