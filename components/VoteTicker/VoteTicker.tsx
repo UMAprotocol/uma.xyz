@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import calculateTimeRemaining from "./calculateTimeRemaining";
+import { formatDateTimeFromUTC } from "./utils";
 
 type theme = "light" | "dark";
 
@@ -43,10 +43,10 @@ function useVoteTicker() {
   // Note: the requests are all slightly differently in there final vote time. I'll use the last
   // Vote added.
   useEffect(() => {
-    setTimeRemaining(calculateTimeRemaining());
+    setTimeRemaining(formatDateTimeFromUTC());
 
     const timer = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining());
+      setTimeRemaining(formatDateTimeFromUTC());
     }, 1000);
 
     return () => clearInterval(timer);
