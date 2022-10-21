@@ -63,7 +63,6 @@ const styledTheme = {
     },
     moreDetails: {
       color: "var(--grey-910)",
-
       stroke: "var(--grey-910)",
     },
   },

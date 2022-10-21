@@ -49,7 +49,7 @@ const Wrapper = styled.div`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  padding-top: 100px;
+  padding-top: 24px;
   margin: 0 auto;
 `;
 
