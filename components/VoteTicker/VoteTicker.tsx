@@ -9,6 +9,7 @@ type TickerThemes = "light" | "dark";
 interface Props {
   theme: TickerThemes;
   numVotes: number;
+  phase: "commit" | "reveal";
 }
 
 // styled theme
@@ -68,7 +69,7 @@ const styledTheme = {
   },
 };
 
-const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
+const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
   const { timeRemaining } = useVoteTicker();
   return (
     <ThemeProvider theme={styledTheme[theme]}>
@@ -79,7 +80,7 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
               <Clock />
             </ClockBG>
             <VoteText>
-              Time to commit vote:
+              Time to {phase} vote:
               <span>{timeRemaining}</span>
             </VoteText>
             <NumVotes>
