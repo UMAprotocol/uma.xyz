@@ -25,6 +25,19 @@ const styledTheme = {
       br: "4px",
       fill: "var(--red-510-opacity-15)",
     },
+    voteText: {
+      color: "var(--black-150)",
+      spanColor: "var(--red-500)",
+      borderRight: "1px solid var(--black-150-opacity-20)",
+    },
+    numVotes: {
+      bg: "var(--grey-150)",
+      color: "var(--black-150)",
+    },
+    moreDetails: {
+      color: "var(--black-150)",
+      stroke: "var(--black-150)",
+    },
   },
   dark: {
     section: {
@@ -38,6 +51,20 @@ const styledTheme = {
       br: "16px",
       fill: "var(--red-550)",
     },
+    voteText: {
+      color: "var(--grey-910)",
+      spanColor: "var(--white)",
+      borderRight: "1px solid var(--grey-opacity-20)",
+    },
+    numVotes: {
+      color: "var(--grey-910)",
+      bg: "var(--black-150)",
+    },
+    moreDetails: {
+      color: "var(--grey-910)",
+
+      stroke: "var(--grey-910)",
+    },
   },
 };
 
@@ -48,18 +75,18 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
       <Section>
         <Wrapper>
           <VoteBlock>
-            <ClockBG themeType={theme}>
+            <ClockBG>
               <Clock />
             </ClockBG>
-            <VoteText themeType={theme}>
+            <VoteText>
               Time to commit vote:
               <span>{timeRemaining}</span>
             </VoteText>
-            <NumVotes themeType={theme}>
+            <NumVotes>
               <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
             </NumVotes>
           </VoteBlock>
-          <MoreDetailsBlock themeType={theme}>
+          <MoreDetailsBlock>
             <span>More details</span>
             <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
               <UpRightArrow />
@@ -83,10 +110,6 @@ function useVoteTicker() {
   }, 1000);
 
   return { timeRemaining };
-}
-
-interface IStyledProps {
-  themeType: TickerThemes;
 }
 
 const Section = styled.div`
@@ -133,20 +156,18 @@ const ClockBG = styled.div`
   }
 `;
 
-const VoteText = styled.div<IStyledProps>`
+const VoteText = styled.div`
   font: var(--body-sm);
-  color: ${({ themeType }) => (themeType === "dark" ? "var(--grey-910)" : "var(--black-150)")};
+  color: ${({ theme }) => theme.voteText.color};
   span {
-    color: ${({ themeType }) => (themeType === "dark" ? "var(--white)" : "var(--red-550)")};
-    color: var(--red-500);
+    color: ${({ theme }) => theme.voteText.spanColor};
     margin-left: 4px;
   }
   padding-right: 16px;
-  border-right: ${({ themeType }) =>
-    themeType === "dark" ? "1px solid var(--grey-opacity-20)" : "1px solid var(--black-150-opacity-20)"};
+  border-right: ${({ theme }) => theme.voteText.borderRight};
 `;
 
-const NumVotes = styled.div<IStyledProps>`
+const NumVotes = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -155,23 +176,23 @@ const NumVotes = styled.div<IStyledProps>`
   gap: 2px;
   width: 63px;
   height: 24px;
-  background: var(--grey-150);
+  background: ${({ theme }) => theme.numVotes.bg};
   border-radius: 12px;
   > div {
     font: var(--body-sm);
-    color: var(--black-150);
+    color: ${({ theme }) => theme.numVotes.color};
   }
 `;
 
-const MoreDetailsBlock = styled.div<IStyledProps>`
+const MoreDetailsBlock = styled.div`
   font: var(--body-sm);
-  color: ${({ themeType }) => (themeType === "dark" ? "var(--grey-910)" : "var(--black-150)")};
+  color: ${({ theme }) => theme.moreDetails.color};
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px;
   gap: 4px;
   path {
-    stroke: ${({ themeType }) => (themeType === "dark" ? "var(--grey-910)" : "var(--black-150)")};
+    stroke: ${({ theme }) => theme.moreDetails.stroke};
   }
 `;
