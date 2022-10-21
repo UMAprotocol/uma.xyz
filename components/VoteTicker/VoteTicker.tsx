@@ -12,23 +12,31 @@ interface Props {
 }
 
 // styled theme
-const st = {
+const styledTheme = {
   light: {
-    wrapper: {
-      bg: "var(--white-50)",
-    },
     section: {
       bg: "var(--grey-100)",
       pt: "48px",
     },
+    wrapper: {
+      bg: "var(--white-50)",
+    },
+    clock: {
+      br: "4px",
+      fill: "var(--red-510-opacity-15)",
+    },
   },
   dark: {
-    wrapper: {
-      bg: "var(--black)",
-    },
     section: {
       bg: "inherit",
       pt: "16px",
+    },
+    wrapper: {
+      bg: "var(--black-100)",
+    },
+    clock: {
+      br: "16px",
+      fill: "var(--red-550)",
     },
   },
 };
@@ -36,9 +44,9 @@ const st = {
 const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
   const { timeRemaining } = useVoteTicker();
   return (
-    <ThemeProvider theme={st}>
-      <Section themeType={theme}>
-        <Wrapper themeType={theme}>
+    <ThemeProvider theme={styledTheme[theme]}>
+      <Section>
+        <Wrapper>
           <VoteBlock>
             <ClockBG themeType={theme}>
               <Clock />
@@ -81,13 +89,13 @@ interface IStyledProps {
   themeType: TickerThemes;
 }
 
-const Section = styled.div<IStyledProps>`
+const Section = styled.div`
   width: 100%;
-  background: ${({ themeType, theme }) => (themeType === "dark" ? theme.dark.section.bg : theme.light.section.bg)};
-  padding-top: ${({ themeType, theme }) => (themeType === "dark" ? theme.dark.section.pt : theme.light.section.pt)}; ;
+  background: ${({ theme }) => theme.section.bg};
+  padding-top: ${({ theme }) => theme.section.pt}; ;
 `;
 
-const Wrapper = styled.div<IStyledProps>`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -98,7 +106,7 @@ const Wrapper = styled.div<IStyledProps>`
   max-width: var(--max-section-width);
   margin: 0 auto;
   height: 48px;
-  background: ${({ themeType }) => (themeType === "dark" ? "var(--black-100)" : "var(--white-50)")};
+  background: ${({ theme }) => theme.wrapper.bg};
   border-radius: 8px;
 `;
 
@@ -110,7 +118,7 @@ const VoteBlock = styled.div`
   gap: 16px;
 `;
 
-const ClockBG = styled.div<IStyledProps>`
+const ClockBG = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -119,10 +127,9 @@ const ClockBG = styled.div<IStyledProps>`
   width: 32px;
   height: 32px;
   background: var(--red-510-opacity-15);
-  border-radius: ${({ themeType }) => (themeType === "dark" ? "16px" : "4px")};
+  border-radius: ${({ theme }) => theme.clock.br};
   g {
-    fill: var(--red-550);
-    fill: ${({ themeType }) => (themeType === "dark" ? "var(--red-550)" : "var(--red-510-opacity-15)")};
+    fill: ${({ theme }) => theme.clock.fill};
   }
 `;
 
