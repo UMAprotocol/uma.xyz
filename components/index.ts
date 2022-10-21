@@ -10,3 +10,4 @@ export { default as Projects } from "./Projects";
 export { default as Builder } from "./Builder";
 export { default as Tabs } from "./Tabs";
 export { default as SupportSection } from "./SupportSection";
+export { default as VoteTicker } from "./VoteTicker";
