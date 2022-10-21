@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { formatDateTimeFromUTC } from "./utils";
-
+import useInterval from "hooks/helpers/useInterval";
 type theme = "light" | "dark";
 
 interface Props {
@@ -38,19 +38,14 @@ const VoteTicker: React.FC<Props> = ({ theme }) => {
 export default VoteTicker;
 
 function useVoteTicker() {
-  const [timeRemaining, setTimeRemaining] = useState("00:00");
+  const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   // Set time remaining depending if it's the Commit or Reveal
   // Note: the requests are all slightly differently in there final vote time. I'll use the last
   // Vote added.
-  useEffect(() => {
+  useInterval(() => {
     setTimeRemaining(formatDateTimeFromUTC());
+  }, 1000);
 
-    const timer = setInterval(() => {
-      setTimeRemaining(formatDateTimeFromUTC());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
   return { timeRemaining };
 }
 
