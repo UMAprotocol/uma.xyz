@@ -14,10 +14,22 @@ interface Props {
 // styled theme
 const st = {
   light: {
-    background: "var(--white-50)",
+    wrapper: {
+      bg: "var(--white-50)",
+    },
+    section: {
+      bg: "var(--grey-100)",
+      pt: "48px",
+    },
   },
   dark: {
-    wrapperBg: "var(--black)",
+    wrapper: {
+      bg: "var(--black)",
+    },
+    section: {
+      bg: "inherit",
+      pt: "16px",
+    },
   },
 };
 
@@ -71,8 +83,8 @@ interface IStyledProps {
 
 const Section = styled.div<IStyledProps>`
   width: 100%;
-  background: ${({ themeType }) => (themeType === "dark" ? "inherit" : "var(--grey-100)")};
-  padding-top: ${({ themeType }) => (themeType === "dark" ? "16px" : "48px")}; ;
+  background: ${({ themeType, theme }) => (themeType === "dark" ? theme.dark.section.bg : theme.light.section.bg)};
+  padding-top: ${({ themeType, theme }) => (themeType === "dark" ? theme.dark.section.pt : theme.light.section.pt)}; ;
 `;
 
 const Wrapper = styled.div<IStyledProps>`
