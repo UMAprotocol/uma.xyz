@@ -203,27 +203,9 @@ const SmallProject = styled.div`
   padding: 40px;
   width: 186px;
   height: 186px;
-  // Properly styling current logos, might be deletable later.
-  &:nth-of-type(3n + 1) {
-    &:hover {
-      > div path {
-        stroke: var(--red);
-      }
-    }
-  }
-
-  &:nth-of-type(3n + 2) {
-    &:hover {
-      path:not(:nth-of-type(5)) {
-        fill: var(--red);
-      }
-    }
-  }
-  &:nth-of-type(3n + 3) {
-    &:hover {
-      path {
-        fill: var(--red);
-      }
+  &:hover {
+    path {
+      fill: var(--red);
     }
   }
 
