@@ -5,28 +5,39 @@ import Illustration from "public/assets/illustration.svg";
 import { useIntersectionObserver, useScrollPosition } from "hooks";
 const HowItWorks = () => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const entry = useIntersectionObserver(ref, {});
-  const isVisible = !!entry?.isIntersecting;
+  const refTwo = useRef<HTMLDivElement | null>(null);
+  const entryOne = useIntersectionObserver(ref, {});
+  const entryTwo = useIntersectionObserver(ref, {});
+  const isOneVisible = !!entryOne?.isIntersecting;
 
+  const [entryScrollY, setEntryScrollY] = useState(0);
+  const [topRedHeight, setRedTopHeight] = useState(0);
+  if (entryOne) console.log(entryOne);
   // WIP on animation here.
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      if (isVisible) {
+      if (isOneVisible) {
+        if (entryScrollY === 0) {
+          setEntryScrollY(Math.abs(currPos.y));
+        }
+        console.log("currPos", Math.abs(currPos.y) - entryScrollY);
+      } else {
+        setEntryScrollY(0);
       }
     },
-    [entry]
+    [entryOne, entryScrollY]
   );
   return (
     <Section>
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
-        <IntersectionWrapper ref={ref}>
+        <IntersectionWrapper>
           <TrackWrapper>
-            <TrackItem>01</TrackItem>
+            <TrackItem ref={ref}>01</TrackItem>
             <RedSeperator height={50} />
             <Seperator height={50} />
-            <TrackItem>02</TrackItem>
+            <TrackItem ref={refTwo}>02</TrackItem>
             <RedSeperator height={0} />
             <Seperator height={100} />
           </TrackWrapper>
