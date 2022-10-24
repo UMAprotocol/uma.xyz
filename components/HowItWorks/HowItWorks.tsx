@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import Illustration from "public/assets/illustration.svg";
@@ -8,9 +8,14 @@ const HowItWorks = () => {
   const entry = useIntersectionObserver(ref, {});
   const isVisible = !!entry?.isIntersecting;
 
-  useScrollPosition(({ prevPos, currPos }) => {
-    console.log("currPoss", currPos);
-  }, []);
+  // WIP on animation here.
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      if (isVisible) {
+      }
+    },
+    [entry]
+  );
   return (
     <Section>
       <Wrapper>
@@ -19,11 +24,11 @@ const HowItWorks = () => {
         <IntersectionWrapper ref={ref}>
           <TrackWrapper>
             <TrackItem>01</TrackItem>
-            <RedSeperator />
-            <Seperator />
+            <RedSeperator height={50} />
+            <Seperator height={0} />
             <TrackItem>02</TrackItem>
-            <RedSeperator />
-            <Seperator />
+            <RedSeperator height={0} />
+            <Seperator height={0} />
           </TrackWrapper>
           <TopWrapper>
             <AnimationRow>
@@ -167,12 +172,16 @@ export const TrackItem = styled.div`
   font: var(--body-sm);
 `;
 
-export const Seperator = styled.div`
-  width: 2px;
+interface ISeperator {
+  height: number;
+}
+export const Seperator = styled.div<ISeperator>`
+  width: 1px;
   flex: 1 1 0;
   margin: 0 12px;
   background-color: var(--grey-500);
   height: 50%;
+  height: ${({ height }) => (height < 0 ? 0 : height >= 100 ? 100 : height)}%;
 `;
 
 export const RedSeperator = styled(Seperator)`
