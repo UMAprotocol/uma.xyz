@@ -1,30 +1,18 @@
 import {
-  black,
-  black100,
-  black150,
-  black150Opacity20,
-  blackOpacity25,
-  blackOpacity50,
-  blackOpacity60,
-  blackOpacity75,
-  green,
-  grey50,
   grey100,
-  grey150,
+  grey100Opacity20,
+  grey200,
+  grey300,
+  grey400,
+  grey400Opacity20,
   grey500,
-  grey900,
-  grey910,
-  grey950,
-  greyOpacity20,
-  loadingSkeletonOpacity10,
-  loadingSkeletonOpacity100,
-  red500,
-  red500Opacity5,
+  grey600,
+  grey700,
+  grey800,
+  red,
   red510Opacity15,
   red550,
-  red600,
   white,
-  white50,
   whiteOpacity10,
 } from "constants/colors";
 import { headerLg, headerMd, headerSm, subHeader, bodyLg, bodyMd, bodySm, bodyXs } from "constants/fonts";
@@ -200,31 +188,20 @@ a:not([class]) {
     /* Colors */
     --white: ${white};
     --white-opacity-10: ${whiteOpacity10};
-    --white-50: ${white50};
-    --black: ${black};
-    --black-100: ${black100};
-    --black-150: ${black150};
-    --black-150-opacity-20: ${black150Opacity20};
-    --black-opacity-25: ${blackOpacity25};
-    --black-opacity-50: ${blackOpacity50};
-    --black-opacity-60: ${blackOpacity60};
-    --black-opacity-75: ${blackOpacity75};
-    --red-500: ${red500};
-    --red-500-opacity-5: ${red500Opacity5};
+    --red: ${red};
     --red-510-opacity-15: ${red510Opacity15};
     --red-550: ${red550};
-    --red-600: ${red600};
-    --green: ${green};
-    --grey-50: ${grey50};
     --grey-100: ${grey100};
-    --grey-150: ${grey150};
+    --grey-100-opacity-20: ${grey100Opacity20};
+    --grey-200: ${grey200};
+    --grey-300: ${grey300};
+    --grey-400: ${grey400};
+    --grey-400-opacity-20: ${grey400Opacity20};
     --grey-500: ${grey500};
-    --grey-900: ${grey900};
-    --grey-910: ${grey910};
-    --grey-950: ${grey950};
-    --grey-opacity-20: ${greyOpacity20};
-    --loading-skeleton-opacity-100: ${loadingSkeletonOpacity100};
-    --loading-skeleton-opacity-10: ${loadingSkeletonOpacity10};
+    --grey-600: ${grey600};
+    --grey-700: ${grey700};
+    --grey-800: ${grey800};
+
     /* Fonts */
     --header-lg: ${headerLg};
     --header-md: ${headerMd};

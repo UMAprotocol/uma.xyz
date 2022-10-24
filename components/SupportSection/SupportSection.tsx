@@ -86,15 +86,15 @@ const ButtonLink = styled.a`
   gap: 12px;
   width: 40px;
   height: 40px;
-  border: 1.5px solid var(--black);
+  border: 1.5px solid var(--grey-200);
   border-radius: 10px;
   path {
-    stroke: var(--black);
+    stroke: var(--grey-200);
   }
 `;
 
 const ButtonText = styled.span`
   font: var(--header-sm);
-  color: var(--black);
+  color: var(--grey-200);
   line-height: 115%;
 `;

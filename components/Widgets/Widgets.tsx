@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Title = styled.div`
   font: var(--header-sm);
-  color: var(--black);
+  color: var(--grey-200);
   > span {
-    color: var(--red-500);
+    color: var(--red00);
   }
 `;
 export const Wrapper = styled.div`

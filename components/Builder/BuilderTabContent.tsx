@@ -67,7 +67,7 @@ const TextColumn = styled.div`
 const Body = styled.div`
   font: var(--body-lg);
   padding-bottom: 48px;
-  border-bottom: 1px solid var(--grey-150);
+  border-bottom: 1px solid var(--grey-600);
 `;
 
 const GreyBlurb = styled.div`
@@ -78,7 +78,7 @@ const GreyBlurb = styled.div`
 
 const RedBlurb = styled(GreyBlurb)`
   margin-top: 8px;
-  color: var(--red-500);
+  color: var(--red);
 `;
 
 const CodeColumn = styled.div`
@@ -92,7 +92,7 @@ const RemixWrapper = styled.div`
   margin-top: 26px;
   display: flex;
   font: var(--body-lg);
-  color: var(--red-500);
+  color: var(--red);
   justify-content: center;
   gap: 20px;
   cursor: default;
@@ -104,7 +104,7 @@ const RemixLink = styled.a`
   align-items: center;
   padding: 8px;
   gap: 8px;
-  border: 1px solid var(--red-500);
+  border: 1px solid var(--red);
   border-radius: 8px;
 `;
 export default BuilderTabContent;

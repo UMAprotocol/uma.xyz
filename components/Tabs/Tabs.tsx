@@ -51,10 +51,10 @@ const TabList = styled(ReachTabList)`
     fill: var(--grey-900);
   }
   [data-selected] {
-    border-bottom: 3px solid var(--red-500);
-    color: var(--red-500);
+    border-bottom: 3px solid var(--red);
+    color: var(--red);
     path {
-      fill: var(--red-500);
+      fill: var(--red);
     }
   }
 `;
@@ -67,9 +67,9 @@ const Tab = styled(ReachTab)`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  border-bottom: 2px solid var(--grey-150);
+  border-bottom: 2px solid var(--grey-600);
   font: var(--body-md);
-  color: var(--grey-910);
+  color: var(--grey-500);
   flex: 1;
 `;
 

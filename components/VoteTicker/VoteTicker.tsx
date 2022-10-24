@@ -9,34 +9,35 @@ type TickerThemes = "light" | "dark";
 interface Props {
   theme: TickerThemes;
   numVotes: number;
+  phase: "commit" | "reveal";
 }
 
 // styled theme
 const styledTheme = {
   light: {
     section: {
-      bg: "var(--grey-100)",
+      bg: "var(--grey-700)",
       pt: "48px",
     },
     wrapper: {
-      bg: "var(--white-50)",
+      bg: "var(--grey-800)",
     },
     clock: {
       br: "4px",
       fill: "var(--red-510-opacity-15)",
     },
     voteText: {
-      color: "var(--black-150)",
-      spanColor: "var(--red-500)",
-      borderRight: "1px solid var(--black-150-opacity-20)",
+      color: "var(--grey-100)",
+      spanColor: "var(--red)",
+      borderRight: "1px solid var(--grey-100-opacity-20)",
     },
     numVotes: {
-      bg: "var(--grey-150)",
-      color: "var(--black-150)",
+      bg: "var(--grey-600)",
+      color: "var(--grey-100)",
     },
     moreDetails: {
-      color: "var(--black-150)",
-      stroke: "var(--black-150)",
+      color: "var(--grey-100)",
+      stroke: "var(--grey-100)",
     },
   },
   dark: {
@@ -45,30 +46,29 @@ const styledTheme = {
       pt: "16px",
     },
     wrapper: {
-      bg: "var(--black-100)",
+      bg: "var(--grey-300)",
     },
     clock: {
       br: "16px",
       fill: "var(--red-550)",
     },
     voteText: {
-      color: "var(--grey-910)",
+      color: "var(--grey-500)",
       spanColor: "var(--white)",
-      borderRight: "1px solid var(--grey-opacity-20)",
+      borderRight: "1px solid var(--grey-400-opacity-20)",
     },
     numVotes: {
-      color: "var(--grey-910)",
-      bg: "var(--black-150)",
+      color: "var(--grey-500)",
+      bg: "var(--grey-100)",
     },
     moreDetails: {
-      color: "var(--grey-910)",
-
-      stroke: "var(--grey-910)",
+      color: "var(--grey-500)",
+      stroke: "var(--grey-500)",
     },
   },
 };
 
-const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
+const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
   const { timeRemaining } = useVoteTicker();
   return (
     <ThemeProvider theme={styledTheme[theme]}>
@@ -79,7 +79,7 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes }) => {
               <Clock />
             </ClockBG>
             <VoteText>
-              Time to commit vote:
+              Time to {phase} vote:
               <span>{timeRemaining}</span>
             </VoteText>
             <NumVotes>

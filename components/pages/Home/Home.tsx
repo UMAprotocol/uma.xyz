@@ -18,5 +18,5 @@ export function Home() {
 }
 
 const Wrapper = styled.div`
-  background: var(--black);
+  background: var(--grey-200);
 `;
