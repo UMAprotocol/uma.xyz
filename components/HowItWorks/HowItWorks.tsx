@@ -25,10 +25,10 @@ const HowItWorks = () => {
           <TrackWrapper>
             <TrackItem>01</TrackItem>
             <RedSeperator height={50} />
-            <Seperator height={0} />
+            <Seperator height={50} />
             <TrackItem>02</TrackItem>
             <RedSeperator height={0} />
-            <Seperator height={0} />
+            <Seperator height={100} />
           </TrackWrapper>
           <TopWrapper>
             <AnimationRow>
@@ -177,14 +177,11 @@ interface ISeperator {
 }
 export const Seperator = styled.div<ISeperator>`
   width: 1px;
-  flex: 1 1 0;
   margin: 0 12px;
   background-color: var(--grey-500);
-  height: 50%;
-  height: ${({ height }) => (height < 0 ? 0 : height >= 100 ? 100 : height)}%;
+  height: ${({ height }) => height}%;
 `;
 
 export const RedSeperator = styled(Seperator)`
   background-color: var(--red);
-  height: 50%;
 `;
