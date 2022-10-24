@@ -15,12 +15,18 @@ const HowItWorks = () => {
   if (entryOne) console.log(entryOne);
   // WIP on animation here.
   useScrollPosition(
-    ({ prevPos, currPos }) => {
-      if (isOneVisible) {
+    ({ currPos }) => {
+      if (isOneVisible && entryOne.rootBounds) {
         if (entryScrollY === 0) {
           setEntryScrollY(Math.abs(currPos.y));
+        } else {
+          const height = ref.current?.getBoundingClientRect().height;
+          if (height) {
+            const calc = ((height / 2 + Math.abs(currPos.y) - entryScrollY) / height) * 100;
+            console.log("calc", calc);
+            setRedTopHeight(calc > 100 ? 100 : calc);
+          }
         }
-        console.log("currPos", Math.abs(currPos.y) - entryScrollY);
       } else {
         setEntryScrollY(0);
       }
@@ -33,11 +39,11 @@ const HowItWorks = () => {
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
         <IntersectionWrapper>
-          <TrackWrapper>
-            <TrackItem ref={ref}>01</TrackItem>
-            <RedSeperator height={50} />
-            <Seperator height={50} />
-            <TrackItem ref={refTwo}>02</TrackItem>
+          <TrackWrapper ref={ref}>
+            <TrackItem>01</TrackItem>
+            <RedSeperator height={topRedHeight} />
+            <Seperator height={100 - topRedHeight} />
+            <TrackItem>02</TrackItem>
             <RedSeperator height={0} />
             <Seperator height={100} />
           </TrackWrapper>
