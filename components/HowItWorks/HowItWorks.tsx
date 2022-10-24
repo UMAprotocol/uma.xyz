@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
+import Illustration from "public/assets/illustration.svg";
 
 const HowItWorks = () => {
   return (
@@ -7,17 +8,35 @@ const HowItWorks = () => {
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
-        <AnimationWrapper>
-          <AnimationBlock>
-            <AnimationRow>
+        <TopWrapper>
+          <AnimationRow>
+            <AnimationTextBlock>
               <AnimationHeader>Statement</AnimationHeader>
               <AnimationBody>A statement is proposed to initiate the process</AnimationBody>
               <AnimationSubBody>
                 Someone proposes an answer to a request made by another party. This answer is then processed and sent to
                 the next step.
               </AnimationSubBody>
-            </AnimationRow>
-          </AnimationBlock>
+            </AnimationTextBlock>
+            <IllustrationColumn>
+              <Illustration />
+            </IllustrationColumn>
+          </AnimationRow>
+        </TopWrapper>
+        <AnimationWrapper>
+          <AnimationRow>
+            <AnimationTextBlock>
+              <AnimationHeader>Challenge period</AnimationHeader>
+              <AnimationBody>Challenge periods allow for disputes</AnimationBody>
+              <AnimationSubBody>
+                Someone proposes an answer to a request made by another party. This answer is then processed and sent to
+                the next step.
+              </AnimationSubBody>
+            </AnimationTextBlock>
+            <IllustrationColumn>
+              <Illustration />
+            </IllustrationColumn>
+          </AnimationRow>
         </AnimationWrapper>
       </Wrapper>
     </Section>
@@ -50,17 +69,23 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
+  margin-top: 31px;
+`;
+
+const TopWrapper = styled(AnimationWrapper)`
   margin-top: 231px;
 `;
 
 const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 100px;
 `;
 
-const AnimationBlock = styled.div`
+const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 50%;
 `;
 
 const AnimationHeader = styled.div`
@@ -70,11 +95,23 @@ const AnimationHeader = styled.div`
 `;
 
 const AnimationBody = styled.div`
+  margin-top: 24px;
   color: var(--grey-100);
   font: var(--header-md);
+  max-width: 465px;
 `;
 
 const AnimationSubBody = styled.div`
+  margin-top: 24px;
   color: var(--grey-100);
   font: var(--body-lg);
+  max-width: 367px;
+`;
+
+const IllustrationColumn = styled.div`
+  display: flex;
+  align-items: flex-end;
+  svg {
+    margin-top: 30px;
+  }
 `;
