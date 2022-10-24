@@ -23,7 +23,6 @@ const HowItWorks = () => {
           const height = ref.current?.getBoundingClientRect().height;
           if (height) {
             const calc = ((height / 2 + Math.abs(currPos.y) - entryScrollY) / height) * 100;
-            console.log("calc", calc);
             setRedTopHeight(calc > 100 ? 100 : calc);
           }
         }
