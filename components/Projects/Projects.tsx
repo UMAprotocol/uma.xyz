@@ -1,10 +1,13 @@
 import styled from "styled-components";
-import AcrossLogo from "public/assets/across-logo.svg";
-import OutcomeLogo from "public/assets/outcome-logo.svg";
 import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
-import PolymarketLogo from "public/assets/polymarket-logo.svg";
-import SushiSwapLogo from "public/assets/sushi-swap-logo.svg";
-import ShapeshiftLogo from "public/assets/shapeshift-logo.svg";
+import AcrossLogo from "public/assets/across.svg";
+import OutcomeLogo from "public/assets/outcome.svg";
+import PolymarketLogo from "public/assets/polymarket.svg";
+import BobaLogo from "public/assets/boba.svg";
+import ShapeshiftLogo from "public/assets/shapeshift.svg";
+import CozyLogo from "public/assets/cozy.svg";
+import JarvisLogo from "public/assets/jarvis.svg";
+import SherlockLogo from "public/assets/sherlock.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
 
 const Projects = () => {
@@ -69,9 +72,9 @@ const smallProjects = [
     link: "https://polymarket.com",
   },
   {
-    name: "Sushi Swap",
-    Logo: SushiSwapLogo,
-    link: "https://www.sushi.com/swap",
+    name: "Boba",
+    Logo: BobaLogo,
+    link: "https://boba.network",
   },
   {
     name: "Shapeshift",
@@ -79,19 +82,19 @@ const smallProjects = [
     link: "https://shapeshift.com",
   },
   {
-    name: "Polymarket",
-    Logo: PolymarketLogo,
-    link: "https://polymarket.com",
+    name: "Cozy",
+    Logo: CozyLogo,
+    link: "https://www.cozy.finance",
   },
   {
-    name: "Sushi Swap",
-    Logo: SushiSwapLogo,
-    link: "https://www.sushi.com/swap",
+    name: "Jarvis",
+    Logo: JarvisLogo,
+    link: "https://jarvis.network",
   },
   {
-    name: "Shapeshift",
-    Logo: ShapeshiftLogo,
-    link: "https://shapeshift.com",
+    name: "Sherlock",
+    Logo: SherlockLogo,
+    link: "https://www.sherlock.xyz",
   },
 ];
 
