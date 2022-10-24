@@ -14,6 +14,7 @@ import {
   red550,
   white,
   whiteOpacity10,
+  white200,
 } from "constants/colors";
 import { headerLg, headerMd, headerSm, subHeader, bodyLg, bodyMd, bodySm, bodyXs } from "constants/fonts";
 import { maxSectionWidth } from "constants/breakpoints";
@@ -188,6 +189,7 @@ a:not([class]) {
     /* Colors */
     --white: ${white};
     --white-opacity-10: ${whiteOpacity10};
+    --white-200: ${white200};
     --red: ${red};
     --red-510-opacity-15: ${red510Opacity15};
     --red-550: ${red550};

@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Title = styled.div`
   font: var(--header-sm);
   color: var(--grey-200);
+  border-bottom: 1px solid var(--grey-600);
+  padding-bottom: 16px;
   > span {
     color: var(--red00);
   }

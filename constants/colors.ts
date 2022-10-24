@@ -7,6 +7,7 @@ export const red550 = "hsla(352, 23%, 25%, 1)";
 // Whites
 export const white = "hsla(0, 0%, 100%, 1)"; // #FFFFFF
 export const whiteOpacity10 = "hsla(0, 0%, 100%, 0.1)";
+export const white200 = "	hsl(0, 0%, 98%, 1)"; // #FAFAFA
 
 // Greys
 export const grey100 = "hsla(288, 4%, 25%, 1)"; // #272528
