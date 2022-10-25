@@ -1,9 +1,10 @@
-import { useState, useEffect, MutableRefObject } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import { VoteTicker } from "components";
 import { useScrollPosition } from "hooks";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 
 interface Props {
   isIntersecting: boolean;
@@ -44,6 +45,11 @@ function useHeader() {
 
 export default Header;
 
+const ArrowWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+`;
+
 const links = [
   {
     label: "How it works",
@@ -55,6 +61,22 @@ const links = [
   },
   {
     label: "For builders",
+    href: "#",
+  },
+  {
+    label: (
+      <ArrowWrapper>
+        Docs <SmUpRightArrow style={{ marginLeft: "4px" }} />
+      </ArrowWrapper>
+    ),
+    href: "#",
+  },
+  {
+    label: (
+      <ArrowWrapper>
+        Projects <SmUpRightArrow style={{ marginLeft: "4px" }} />
+      </ArrowWrapper>
+    ),
     href: "#",
   },
 ];
