@@ -3,29 +3,27 @@ import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import { VoteTicker } from "components";
-import { useScrollPosition, useIntersectionObserver } from "hooks";
+import { useScrollPosition } from "hooks";
 
 interface Props {
-  headerRef: MutableRefObject<HTMLDivElement | null>;
-  entry: IntersectionObserverEntry | undefined;
+  isIntersecting: boolean;
 }
 
-const Header: React.FC<Props> = ({ headerRef, entry }) => {
-  const { scrollPosition } = useHeader(headerRef);
-  console.log("entry from props", entry);
+const Header: React.FC<Props> = ({ isIntersecting }) => {
+  const { scrollPosition } = useHeader();
   return (
     <>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Wrapper scrollPosition={scrollPosition} isIntersecting={!!entry?.isIntersecting}>
-        <a href="/">{!!entry?.isIntersecting ? <BlackLogo /> : <Logo />}</a>
+      <Wrapper scrollPosition={scrollPosition} isIntersecting={isIntersecting}>
+        <a href="/">{isIntersecting ? <BlackLogo /> : <Logo />}</a>
         <Links>
           {/* TODO: Get links */}
           {links.map(({ label, href }, i) => (
-            <Link isIntersecting={!!entry?.isIntersecting} key={i} href={href}>
+            <Link isIntersecting={isIntersecting} key={i} href={href}>
               {label}
             </Link>
           ))}
-          <LaunchButton isIntersecting={!!entry?.isIntersecting} onClick={() => null}>
+          <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
             Launch app
           </LaunchButton>
         </Links>
@@ -34,7 +32,7 @@ const Header: React.FC<Props> = ({ headerRef, entry }) => {
   );
 };
 
-function useHeader(headerRef: MutableRefObject<HTMLDivElement | null>) {
+function useHeader() {
   const [scrollPosition, setScrollPosition] = useState(0);
   // const entry = useIntersectionObserver(headerRef, {
   //   threshold: 0.5,

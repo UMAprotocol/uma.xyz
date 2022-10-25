@@ -18,16 +18,12 @@ export function Home() {
   const entry = useIntersectionObserver(headerRef, {
     threshold: 0.5,
   });
-  useEffect(() => {
-    console.log("hook firing?");
-  }, [entry]);
   const isIntersecting = !!entry?.isIntersecting;
-  console.log("isIntersecting", isIntersecting);
-  // console.log("entry", entry);
+
   return (
     <Layout>
       <Wrapper>
-        <Header headerRef={headerRef} entry={entry} />
+        <Header isIntersecting={isIntersecting} />
         <Hero />
         <div ref={headerRef}>
           <HowItWorks />
