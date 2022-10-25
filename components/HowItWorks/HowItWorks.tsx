@@ -12,7 +12,7 @@ const HowItWorks = () => {
 
   const [entryScrollY, setEntryScrollY] = useState(0);
   const [topRedHeight, setRedTopHeight] = useState(0);
-  if (entryOne) console.log(entryOne);
+  // if (entryOne) console.log(entryOne);
   // WIP on animation here.
   useScrollPosition(
     ({ currPos }) => {

@@ -1,42 +1,52 @@
-import { useState, MutableRefObject } from "react";
+import { useState, useEffect, MutableRefObject } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
+import BlackLogo from "public/assets/uma-black-logo.svg";
 import { VoteTicker } from "components";
 import { useScrollPosition, useIntersectionObserver } from "hooks";
 
 interface Props {
   headerRef: MutableRefObject<HTMLDivElement | null>;
+  entry: IntersectionObserverEntry | undefined;
 }
 
-const Header: React.FC<Props> = () => {
-  const { scrollPosition } = useHeader();
+const Header: React.FC<Props> = ({ headerRef, entry }) => {
+  const { scrollPosition } = useHeader(headerRef);
+  console.log("entry from props", entry);
   return (
     <>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Wrapper scrollPosition={scrollPosition}>
-        <a href="/">
-          <Logo />
-        </a>
+      <Wrapper scrollPosition={scrollPosition} isIntersecting={!!entry?.isIntersecting}>
+        <a href="/">{!!entry?.isIntersecting ? <BlackLogo /> : <Logo />}</a>
         <Links>
           {/* TODO: Get links */}
           {links.map(({ label, href }, i) => (
-            <Link key={i} href={href}>
+            <Link isIntersecting={!!entry?.isIntersecting} key={i} href={href}>
               {label}
             </Link>
           ))}
-          <LaunchButton onClick={() => null}>Launch app</LaunchButton>
+          <LaunchButton isIntersecting={!!entry?.isIntersecting} onClick={() => null}>
+            Launch app
+          </LaunchButton>
         </Links>
       </Wrapper>
     </>
   );
 };
 
-function useHeader() {
+function useHeader(headerRef: MutableRefObject<HTMLDivElement | null>) {
   const [scrollPosition, setScrollPosition] = useState(0);
+  // const entry = useIntersectionObserver(headerRef, {
+  //   threshold: 0.5,
+  // });
+  // console.log("entry", entry);
   useScrollPosition(({ currPos }) => {
     setScrollPosition(Math.abs(currPos.y));
   }, []);
-  return { scrollPosition };
+  return {
+    scrollPosition,
+    // isIntersecting: !!entry?.isIntersecting
+  };
 }
 
 export default Header;
@@ -88,11 +98,18 @@ const links = [
         }
 */
 
-interface IWrapper {
+interface IStyledProps {
+  isIntersecting: boolean;
+}
+
+interface IWrapper extends IStyledProps {
   scrollPosition: number;
 }
+
 const Wrapper = styled.div<IWrapper>`
-  background: var(--grey-200);
+  background: ${({ isIntersecting }) => {
+    return isIntersecting ? "var(--grey-900)" : "var(--grey-200)";
+  }};
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -104,6 +121,7 @@ const Wrapper = styled.div<IWrapper>`
   margin: 0 auto;
   position: ${({ scrollPosition }) => (scrollPosition > 24 ? "sticky" : "static")};
   top: 0;
+  z-index: 100;
 `;
 
 const Links = styled.div`
@@ -115,8 +133,11 @@ const Links = styled.div`
   gap: 32px;
 `;
 
-const Link = styled.a`
+const Link = styled.a<IStyledProps>`
   color: var(--grey-500);
+  color: ${({ isIntersecting }) => {
+    return isIntersecting ? "var(--red)" : "var(--grey-400)";
+  }};
   text-decoration: none;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
@@ -125,7 +146,7 @@ const Link = styled.a`
   }
 `;
 
-const LaunchButton = styled.button`
+const LaunchButton = styled.button<IStyledProps>`
   color: var(--grey-200);
   padding: 8px 16px 12px;
   height: 40px;
