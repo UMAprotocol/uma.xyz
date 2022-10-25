@@ -21,7 +21,6 @@
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-intersection-observer": "^9.4.0",
     "sass": "^1.55.0",
     "storybook-addon-next": "^1.6.9",
     "styled-components": "^5.3.6"

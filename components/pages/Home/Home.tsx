@@ -16,10 +16,10 @@ import { useIntersectionObserver } from "hooks";
 export function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(headerRef, {
-    threshold: 0.5,
+    threshold: 0.1328,
   });
   const isIntersecting = !!entry?.isIntersecting;
-
+  console.log("isIntersecting", isIntersecting);
   return (
     <Layout>
       <Wrapper>
@@ -31,8 +31,8 @@ export function Home() {
           <Builder />
           <Projects />
           <SupportSection />
+          <Footer />
         </div>
-        <Footer />
       </Wrapper>
     </Layout>
   );

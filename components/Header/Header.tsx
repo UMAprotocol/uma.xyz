@@ -34,16 +34,11 @@ const Header: React.FC<Props> = ({ isIntersecting }) => {
 
 function useHeader() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  // const entry = useIntersectionObserver(headerRef, {
-  //   threshold: 0.5,
-  // });
-  // console.log("entry", entry);
   useScrollPosition(({ currPos }) => {
     setScrollPosition(Math.abs(currPos.y));
   }, []);
   return {
     scrollPosition,
-    // isIntersecting: !!entry?.isIntersecting
   };
 }
 
@@ -63,38 +58,6 @@ const links = [
     href: "#",
   },
 ];
-
-/*
-    Note: This code segment utilizes the scroll position to create
-          a dynamic fade that increases to a maximum of 94% opacity
-          as the user scrolls down the page. 
-
-          The opacity function is set as O = MIN(0.94, 2*{pixels_from_top}/255)
-          background-color: ${({ transparentHeader, scrollPosition }) =>
-          transparentHeader
-            ? `#2d2e33${Math.min(240, Math.floor(2.5 * scrollPosition))
-                .toString(16)
-                .padStart(2, "0")}`
-            : "#2d2e33"};
-      
-        height: 72px;
-        padding: 0 24px;
-        display: flex;
-        align-items: center;
-        color: #c5d5e0;
-        position: sticky;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        border-bottom: ${({ scrollPosition }) => {
-          return scrollPosition > 0 ? "1px solid #4d4f56" : "1px solid transparent";
-        }};
-      
-        @media (max-width: 428px) {
-          height: 64px;
-          padding: 0 12px;
-        }
-*/
 
 interface IStyledProps {
   isIntersecting: boolean;
@@ -131,10 +94,13 @@ const Links = styled.div`
   gap: 32px;
 `;
 
-const Link = styled.a<IStyledProps>`
-  color: var(--grey-500);
-  color: ${({ isIntersecting }) => {
-    return isIntersecting ? "var(--red)" : "var(--grey-400)";
+interface ILinkProps extends IStyledProps {
+  active?: boolean;
+}
+
+const Link = styled.a<ILinkProps>`
+  color: ${({ active }) => {
+    return active ? "var(--red)" : "var(--grey-400)";
   }};
   text-decoration: none;
   font: var(--body-md);
@@ -145,15 +111,19 @@ const Link = styled.a<IStyledProps>`
 `;
 
 const LaunchButton = styled.button<IStyledProps>`
-  color: var(--grey-200);
   padding: 8px 16px 12px;
   height: 40px;
   gap: 2px;
   width: 118px;
-  background-color: var(--white);
   border-radius: 8px;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
+  color: ${({ isIntersecting }) => {
+    return isIntersecting ? "var(--white)" : "var(--grey-100)";
+  }};
+  background-color: ${({ isIntersecting }) => {
+    return isIntersecting ? "var(--grey-100)" : "var(--white)";
+  }};
   &:hover {
     opacity: 0.8;
   }
