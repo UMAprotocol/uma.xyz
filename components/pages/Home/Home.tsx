@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef } from "react";
 import {
   Layout,
   Header,
@@ -13,16 +13,20 @@ import {
 import styled from "styled-components";
 
 export function Home() {
+  // Ref for when the navbar should change to a different color.
+  const headerRef = useRef<HTMLDivElement | null>(null);
   return (
     <Layout>
       <Wrapper>
-        <Header />
+        <Header headerRef={headerRef} />
         <Hero />
-        <HowItWorks />
-        <VoteParticipation />
-        <Builder />
-        <Projects />
-        <SupportSection />
+        <div ref={headerRef}>
+          <HowItWorks />
+          <VoteParticipation />
+          <Builder />
+          <Projects />
+          <SupportSection />
+        </div>
         <Footer />
       </Wrapper>
     </Layout>

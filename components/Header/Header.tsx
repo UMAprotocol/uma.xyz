@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, MutableRefObject } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import { VoteTicker } from "components";
-import { useScrollPosition } from "hooks";
+import { useScrollPosition, useIntersectionObserver } from "hooks";
 
-const Header = () => {
+interface Props {
+  headerRef: MutableRefObject<HTMLDivElement | null>;
+}
+
+const Header: React.FC<Props> = () => {
   const { scrollPosition } = useHeader();
   return (
     <>
