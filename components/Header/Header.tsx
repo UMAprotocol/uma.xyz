@@ -8,9 +8,10 @@ import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 
 interface Props {
   isIntersecting: boolean;
+  activeLink: number;
 }
 
-const Header: React.FC<Props> = ({ isIntersecting }) => {
+const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
   const { scrollPosition } = useHeader();
   return (
     <>
@@ -20,14 +21,16 @@ const Header: React.FC<Props> = ({ isIntersecting }) => {
         <Links>
           {/* TODO: Get links */}
           {links.map(({ label, href }, i) => (
-            <Link isIntersecting={isIntersecting} key={i} href={href}>
-              {label}
+            <Link active={activeLink === i} isIntersecting={isIntersecting} key={i} href={href}>
+              <LinkWrapper>
+                {activeLink === i ? <RedDot /> : <Dot />} {label}
+              </LinkWrapper>
             </Link>
           ))}
-          <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
-            Launch app
-          </LaunchButton>
         </Links>
+        <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
+          Launch app
+        </LaunchButton>
       </Wrapper>
     </>
   );
@@ -45,7 +48,7 @@ function useHeader() {
 
 export default Header;
 
-const ArrowWrapper = styled.div`
+const LinkWrapper = styled.div`
   display: inline-flex;
   align-items: center;
 `;
@@ -65,17 +68,17 @@ const links = [
   },
   {
     label: (
-      <ArrowWrapper>
+      <>
         Docs <SmUpRightArrow style={{ marginLeft: "4px" }} />
-      </ArrowWrapper>
+      </>
     ),
     href: "#",
   },
   {
     label: (
-      <ArrowWrapper>
+      <>
         Projects <SmUpRightArrow style={{ marginLeft: "4px" }} />
-      </ArrowWrapper>
+      </>
     ),
     href: "#",
   },
@@ -90,9 +93,6 @@ interface IWrapper extends IStyledProps {
 }
 
 const Wrapper = styled.div<IWrapper>`
-  background: ${({ isIntersecting }) => {
-    return isIntersecting ? "var(--grey-900)" : "var(--grey-200)";
-  }};
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -105,6 +105,12 @@ const Wrapper = styled.div<IWrapper>`
   position: ${({ scrollPosition }) => (scrollPosition > 24 ? "sticky" : "static")};
   top: 0;
   z-index: 100;
+  backdrop-filter: ${({ isIntersecting }) => {
+    return isIntersecting ? "blur(6px)" : "none";
+  }};
+  background: ${({ isIntersecting }) => {
+    return isIntersecting ? "var(--grey-900)" : "var(--grey-200)";
+  }};
 `;
 
 const Links = styled.div`
@@ -149,4 +155,16 @@ const LaunchButton = styled.button<IStyledProps>`
   &:hover {
     opacity: 0.8;
   }
+`;
+
+const Dot = styled.div`
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 3px;
+  visibility: hidden;
+`;
+const RedDot = styled(Dot)`
+  background: var(--red);
+  visibility: visible;
 `;

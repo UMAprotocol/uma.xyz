@@ -15,18 +15,24 @@ import { useIntersectionObserver } from "hooks";
 
 export function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const entry = useIntersectionObserver(headerRef, {
+  const howItWorksRef = useRef<HTMLDivElement | null>(null);
+  const eHeader = useIntersectionObserver(headerRef, {
     threshold: 0.1328,
   });
-  const isIntersecting = !!entry?.isIntersecting;
-  console.log("isIntersecting", isIntersecting);
+  const isIntersectingLightArea = !!eHeader?.isIntersecting;
+  const eHotItWorks = useIntersectionObserver(howItWorksRef, {
+    threshold: 0.49,
+  });
+  const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
   return (
     <Layout>
       <Wrapper>
-        <Header isIntersecting={isIntersecting} />
+        <Header isIntersecting={isIntersectingLightArea} activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
         <Hero />
         <div ref={headerRef}>
-          <HowItWorks />
+          <div ref={howItWorksRef}>
+            <HowItWorks />
+          </div>
           <VoteParticipation />
           <Builder />
           <Projects />
