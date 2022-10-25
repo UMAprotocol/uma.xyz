@@ -7,6 +7,7 @@ export const red550 = "hsla(352, 23%, 25%, 1)";
 // Whites
 export const white = "hsla(0, 0%, 100%, 1)"; // #FFFFFF
 export const whiteOpacity10 = "hsla(0, 0%, 100%, 0.1)";
+export const white200 = "	hsl(0, 0%, 98%, 1)"; // #FAFAFA
 
 // Greys
 export const grey100 = "hsla(288, 4%, 25%, 1)"; // #272528
@@ -19,3 +20,10 @@ export const grey500 = "hsla(255, 3%, 69%, 1)"; // #B0AFB3
 export const grey600 = "hsla(0, 0%, 91%,1)"; // #E9E9E9
 export const grey700 = "hsla(0, 0%, 94%,1)"; // #F0F0F0
 export const grey800 = "hsla(0, 0%, 99%,1)"; // #FDFDFD
+
+// Helper function for adding opacity.
+export function addOpacityToHsl(hsl: string, opacity: number) {
+  const betweenParens = hsl.match(/\(([^)]+)\)/)?.[1];
+  const [h, s, l] = betweenParens?.split(",") ?? [];
+  return `hsla(${h}, ${s}, ${l}, ${opacity})`;
+}
