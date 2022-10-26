@@ -1,38 +1,34 @@
-import { useState, useEffect, createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode, MutableRefObject, createRef } from "react";
 
+// Once the app crosses below this certain element, assume it can go light mode so we only need to track 1 ref.
+type RefType = MutableRefObject<HTMLDivElement | null>;
 export interface HeaderContextState {
-  light: object;
-  dark: object;
-  updateTheme: (theme: Theme) => void;
+  lightRef: RefType;
+  updateRef: (ref: RefType) => void;
 }
-interface Theme {
-  light: {};
-  dark: {};
-}
+
 export const HeaderContext = createContext<HeaderContextState>({
-  light: {},
-  dark: {},
-  updateTheme: (theme: Theme) => null,
+  lightRef: createRef(),
+  updateRef: () => null,
 });
 
 const defaultState = {
-  light: {},
-  dark: {},
-  updateTheme: (theme: Theme) => null,
+  lightRef: createRef(),
+  updateRef: () => null,
 };
 
 export const HeaderProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState({ light: {}, dark: {} });
+  const [ref, setRef] = useState<RefType>(createRef());
 
-  function updateTheme(theme: Theme) {
-    setTheme(theme);
+  function updateRef(r: RefType) {
+    setRef(r);
   }
 
   return (
     <HeaderContext.Provider
       value={{
-        ...theme,
-        updateTheme,
+        lightRef: ref,
+        updateRef,
       }}
     >
       {children}
