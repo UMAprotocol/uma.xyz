@@ -5,7 +5,7 @@ import BlackLogo from "public/assets/uma-black-logo.svg";
 import { VoteTicker } from "components";
 import { useScrollPosition } from "hooks";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import Headroom from "react-headroom";
+import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
 
 interface Props {
@@ -13,25 +13,30 @@ interface Props {
   activeLink: number;
 }
 
+const headerAndTickerHeight = 152;
+
 const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
-  const { scrollPosition } = useHeader();
+  const { scrollPosition, lightRef } = useHeader();
+  const inDarkSection = !!(
+    lightRef.current && scrollPosition >= lightRef.current.getBoundingClientRect().height + headerAndTickerHeight
+  );
   return (
     <>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Headroom style={{ paddingTop: "24px" }}>
-        <Wrapper scrollPosition={scrollPosition} isIntersecting={isIntersecting}>
-          <a href="/">{isIntersecting ? <BlackLogo /> : <Logo />}</a>
+      <Headroom isIntersecting={inDarkSection} style={{ paddingTop: "24px" }}>
+        <Wrapper scrollPosition={scrollPosition} isIntersecting={inDarkSection}>
+          <a href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</a>
           <Links>
             {/* TODO: Get links */}
             {links.map(({ label, href }, i) => (
-              <Link active={activeLink === i} isIntersecting={isIntersecting} key={i} href={href}>
+              <Link active={activeLink === i} isIntersecting={inDarkSection} key={i} href={href}>
                 <LinkWrapper>
                   {activeLink === i ? <RedDot /> : <Dot />} {label}
                 </LinkWrapper>
               </Link>
             ))}
           </Links>
-          <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
+          <LaunchButton isIntersecting={inDarkSection} onClick={() => null}>
             Launch app
           </LaunchButton>
         </Wrapper>
@@ -171,4 +176,12 @@ const Dot = styled.div`
 const RedDot = styled(Dot)`
   background: var(--red);
   visibility: visible;
+`;
+
+const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
+  > div {
+    background: ${({ isIntersecting }) => {
+      return isIntersecting ? "var(--grey-900)" : "var(--grey-200)";
+    }};
+  }
 `;

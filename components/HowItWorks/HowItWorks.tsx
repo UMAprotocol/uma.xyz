@@ -1,9 +1,8 @@
-import { useRef, useState, useContext, useEffect } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import Illustration from "public/assets/illustration.svg";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
-import { HeaderContext } from "contexts";
 
 const HowItWorks = () => {
   const { sectionRef, isMounted } = useHowItWorks();
@@ -89,17 +88,9 @@ const HowItWorks = () => {
 export default HowItWorks;
 
 function useHowItWorks() {
-  const { lightRef, updateRef } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (isMounted()) {
-      updateRef(sectionRef);
-    }
-  }, [isMounted()]);
   return {
-    lightRef,
-    updateRef,
     sectionRef,
     isMounted: isMounted(),
   };

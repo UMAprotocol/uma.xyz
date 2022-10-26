@@ -12,11 +12,6 @@ export const HeaderContext = createContext<HeaderContextState>({
   updateRef: () => null,
 });
 
-const defaultState = {
-  lightRef: createRef(),
-  updateRef: () => null,
-};
-
 export const HeaderProvider = ({ children }: { children: ReactNode }) => {
   const [ref, setRef] = useState<RefType>(createRef());
 
