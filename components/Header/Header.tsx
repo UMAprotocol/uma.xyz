@@ -41,13 +41,14 @@ const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
 };
 
 function useHeader() {
-  const headerContext = useContext(HeaderContext);
+  const { lightRef } = useContext(HeaderContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   useScrollPosition(({ currPos }) => {
     setScrollPosition(Math.abs(currPos.y));
   }, []);
   return {
     scrollPosition,
+    lightRef,
   };
 }
 

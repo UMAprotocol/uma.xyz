@@ -1,9 +1,13 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import Illustration from "public/assets/illustration.svg";
-import { useIntersectionObserver, useScrollPosition } from "hooks";
+import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+import { HeaderContext } from "contexts";
+
 const HowItWorks = () => {
+  const { sectionRef, isMounted } = useHowItWorks();
+
   const ref = useRef<HTMLDivElement | null>(null);
   const refTwo = useRef<HTMLDivElement | null>(null);
   const entryOne = useIntersectionObserver(ref, {});
@@ -33,7 +37,7 @@ const HowItWorks = () => {
     [entryOne, entryScrollY]
   );
   return (
-    <Section>
+    <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
@@ -83,6 +87,23 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
+
+function useHowItWorks() {
+  const { lightRef, updateRef } = useContext(HeaderContext);
+  const isMounted = useIsMounted();
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (isMounted()) {
+      updateRef(sectionRef);
+    }
+  }, [isMounted()]);
+  return {
+    lightRef,
+    updateRef,
+    sectionRef,
+    isMounted: isMounted(),
+  };
+}
 
 const Section = styled.section`
   width: 100%;
