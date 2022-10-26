@@ -5,7 +5,7 @@ import BlackLogo from "public/assets/uma-black-logo.svg";
 import { VoteTicker } from "components";
 import { useScrollPosition } from "hooks";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-
+import Headroom from "react-headroom";
 interface Props {
   isIntersecting: boolean;
   activeLink: number;
@@ -16,22 +16,24 @@ const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
   return (
     <>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Wrapper scrollPosition={scrollPosition} isIntersecting={isIntersecting}>
-        <a href="/">{isIntersecting ? <BlackLogo /> : <Logo />}</a>
-        <Links>
-          {/* TODO: Get links */}
-          {links.map(({ label, href }, i) => (
-            <Link active={activeLink === i} isIntersecting={isIntersecting} key={i} href={href}>
-              <LinkWrapper>
-                {activeLink === i ? <RedDot /> : <Dot />} {label}
-              </LinkWrapper>
-            </Link>
-          ))}
-        </Links>
-        <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
-          Launch app
-        </LaunchButton>
-      </Wrapper>
+      <Headroom style={{ paddingTop: "24px" }}>
+        <Wrapper scrollPosition={scrollPosition} isIntersecting={isIntersecting}>
+          <a href="/">{isIntersecting ? <BlackLogo /> : <Logo />}</a>
+          <Links>
+            {/* TODO: Get links */}
+            {links.map(({ label, href }, i) => (
+              <Link active={activeLink === i} isIntersecting={isIntersecting} key={i} href={href}>
+                <LinkWrapper>
+                  {activeLink === i ? <RedDot /> : <Dot />} {label}
+                </LinkWrapper>
+              </Link>
+            ))}
+          </Links>
+          <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
+            Launch app
+          </LaunchButton>
+        </Wrapper>
+      </Headroom>
     </>
   );
 };
@@ -100,10 +102,7 @@ const Wrapper = styled.div<IWrapper>`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  padding-top: 24px;
   margin: 0 auto;
-  position: ${({ scrollPosition }) => (scrollPosition > 24 ? "sticky" : "static")};
-  top: 0;
   z-index: 100;
   backdrop-filter: ${({ isIntersecting }) => {
     return isIntersecting ? "blur(6px)" : "none";
