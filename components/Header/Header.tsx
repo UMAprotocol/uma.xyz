@@ -16,25 +16,27 @@ interface Props {
 const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
   const { scrollPosition } = useHeader();
   return (
-    <Headroom style={{ paddingTop: "24px" }}>
+    <>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Wrapper scrollPosition={scrollPosition} isIntersecting={isIntersecting}>
-        <a href="/">{isIntersecting ? <BlackLogo /> : <Logo />}</a>
-        <Links>
-          {/* TODO: Get links */}
-          {links.map(({ label, href }, i) => (
-            <Link active={activeLink === i} isIntersecting={isIntersecting} key={i} href={href}>
-              <LinkWrapper>
-                {activeLink === i ? <RedDot /> : <Dot />} {label}
-              </LinkWrapper>
-            </Link>
-          ))}
-        </Links>
-        <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
-          Launch app
-        </LaunchButton>
-      </Wrapper>
-    </Headroom>
+      <Headroom style={{ paddingTop: "24px" }}>
+        <Wrapper scrollPosition={scrollPosition} isIntersecting={isIntersecting}>
+          <a href="/">{isIntersecting ? <BlackLogo /> : <Logo />}</a>
+          <Links>
+            {/* TODO: Get links */}
+            {links.map(({ label, href }, i) => (
+              <Link active={activeLink === i} isIntersecting={isIntersecting} key={i} href={href}>
+                <LinkWrapper>
+                  {activeLink === i ? <RedDot /> : <Dot />} {label}
+                </LinkWrapper>
+              </Link>
+            ))}
+          </Links>
+          <LaunchButton isIntersecting={isIntersecting} onClick={() => null}>
+            Launch app
+          </LaunchButton>
+        </Wrapper>
+      </Headroom>
+    </>
   );
 };
 
