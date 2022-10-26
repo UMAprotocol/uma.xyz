@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
@@ -7,52 +7,58 @@ import { useScrollPosition } from "hooks";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
+import { useIsMounted } from "hooks";
 
 interface Props {
   activeLink: number;
 }
 
-const headerAndTickerHeight = 152;
-
 const Header: React.FC<Props> = ({ activeLink }) => {
-  const { scrollPosition, lightRef } = useHeader();
-  const inDarkSection = !!(
-    lightRef.current && scrollPosition >= lightRef.current.getBoundingClientRect().height + headerAndTickerHeight
-  );
+  const { scrollPosition, boundingHeight, isMounted, headerRef } = useHeader();
+  const inDarkSection = scrollPosition >= boundingHeight;
   return (
-    <>
+    <div ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Headroom isIntersecting={inDarkSection} style={{ paddingTop: "24px" }}>
-        <Wrapper scrollPosition={scrollPosition} isIntersecting={inDarkSection}>
+      <Headroom inDarkSection={inDarkSection} style={{ paddingTop: "24px" }}>
+        <Wrapper scrollPosition={scrollPosition} inDarkSection={inDarkSection}>
           <a href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</a>
           <Links>
             {/* TODO: Get links */}
             {links.map(({ label, href }, i) => (
-              <Link active={activeLink === i} isIntersecting={inDarkSection} key={i} href={href}>
+              <Link active={activeLink === i} inDarkSection={inDarkSection} key={i} href={href}>
                 <LinkWrapper>
                   {activeLink === i ? <RedDot /> : <Dot />} {label}
                 </LinkWrapper>
               </Link>
             ))}
           </Links>
-          <LaunchButton isIntersecting={inDarkSection} onClick={() => null}>
+          <LaunchButton inDarkSection={inDarkSection} onClick={() => null}>
             Launch app
           </LaunchButton>
         </Wrapper>
       </Headroom>
-    </>
+    </div>
   );
 };
 
 function useHeader() {
-  const { lightRef } = useContext(HeaderContext);
+  const { boundingHeight, updateRef } = useContext(HeaderContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   useScrollPosition(({ currPos }) => {
     setScrollPosition(Math.abs(currPos.y));
   }, []);
+  const isMounted = useIsMounted();
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (isMounted()) {
+      updateRef(headerRef, "header");
+    }
+  }, [isMounted()]);
   return {
     scrollPosition,
-    lightRef,
+    boundingHeight,
+    headerRef,
+    isMounted: isMounted(),
   };
 }
 
@@ -95,7 +101,7 @@ const links = [
 ];
 
 interface IStyledProps {
-  isIntersecting: boolean;
+  inDarkSection: boolean;
 }
 
 interface IWrapper extends IStyledProps {

@@ -33,16 +33,15 @@ const Hero = () => {
 export default Hero;
 
 function useHero() {
-  const { lightRef, updateRef } = useContext(HeaderContext);
+  const { updateRef } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (isMounted()) {
-      updateRef(sectionRef);
+      updateRef(sectionRef, "heroSection");
     }
   }, [isMounted()]);
   return {
-    lightRef,
     updateRef,
     sectionRef,
     isMounted: isMounted(),
