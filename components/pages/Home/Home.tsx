@@ -16,10 +16,6 @@ import { useIntersectionObserver } from "hooks";
 export function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const howItWorksRef = useRef<HTMLDivElement | null>(null);
-  const eHeader = useIntersectionObserver(headerRef, {
-    threshold: 0.1328,
-  });
-  const isIntersectingLightArea = !!eHeader?.isIntersecting;
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
     threshold: 0.49,
   });
@@ -27,7 +23,7 @@ export function Home() {
   return (
     <Layout>
       <Wrapper>
-        <Header isIntersecting={isIntersectingLightArea} activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
+        <Header activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
         <Hero />
         <div ref={headerRef}>
           <div ref={howItWorksRef}>

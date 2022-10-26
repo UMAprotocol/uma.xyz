@@ -9,13 +9,12 @@ import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
 
 interface Props {
-  isIntersecting: boolean;
   activeLink: number;
 }
 
 const headerAndTickerHeight = 152;
 
-const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
+const Header: React.FC<Props> = ({ activeLink }) => {
   const { scrollPosition, lightRef } = useHeader();
   const inDarkSection = !!(
     lightRef.current && scrollPosition >= lightRef.current.getBoundingClientRect().height + headerAndTickerHeight
