@@ -1,19 +1,41 @@
-import { createContext, ReactNode } from "react";
+import { useState, useEffect, createContext, ReactNode } from "react";
 
-interface HeaderContextState {
+export interface HeaderContextState {
   light: object;
   dark: object;
+  updateTheme: (theme: Theme) => void;
+}
+interface Theme {
+  light: {};
+  dark: {};
 }
 export const HeaderContext = createContext<HeaderContextState>({
   light: {},
   dark: {},
+  updateTheme: (theme: Theme) => null,
 });
 
 const defaultState = {
   light: {},
   dark: {},
+  updateTheme: (theme: Theme) => null,
 };
 
-export const UserProvider = ({ children }: { children: ReactNode }) => {
-  return <HeaderContext.Provider value={defaultState}>{children}</HeaderContext.Provider>;
+export const HeaderProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState({ light: {}, dark: {} });
+
+  function updateTheme(theme: Theme) {
+    setTheme(theme);
+  }
+
+  return (
+    <HeaderContext.Provider
+      value={{
+        ...theme,
+        updateTheme,
+      }}
+    >
+      {children}
+    </HeaderContext.Provider>
+  );
 };

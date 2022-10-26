@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
@@ -6,6 +6,7 @@ import { VoteTicker } from "components";
 import { useScrollPosition } from "hooks";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import Headroom from "react-headroom";
+import { HeaderContext } from "contexts";
 
 interface Props {
   isIntersecting: boolean;
@@ -38,6 +39,7 @@ const Header: React.FC<Props> = ({ isIntersecting, activeLink }) => {
 };
 
 function useHeader() {
+  const headerContext = useContext(HeaderContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   useScrollPosition(({ currPos }) => {
     setScrollPosition(Math.abs(currPos.y));
