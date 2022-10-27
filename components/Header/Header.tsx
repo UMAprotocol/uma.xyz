@@ -1,29 +1,74 @@
+import { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
+import BlackLogo from "public/assets/uma-black-logo.svg";
 import { VoteTicker } from "components";
-const Header = () => {
+import { useScrollPosition } from "hooks";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
+import UnstyledHeadroom from "react-headroom";
+import { HeaderContext } from "contexts";
+import { useIsMounted } from "hooks";
+import Link from "next/link";
+
+interface Props {
+  activeLink: number;
+}
+
+const Header: React.FC<Props> = ({ activeLink }) => {
+  const { scrollPosition, boundingHeight, isMounted, headerRef } = useHeader();
+  const inDarkSection = scrollPosition >= boundingHeight;
   return (
-    <>
+    <div ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Wrapper>
-        <a href="/">
-          <Logo />
-        </a>
-        <Links>
-          {/* TODO: Get links */}
-          {links.map(({ label, href }, i) => (
-            <Link key={i} href={href}>
-              {label}
-            </Link>
-          ))}
-          <LaunchButton onClick={() => null}>Launch app</LaunchButton>
-        </Links>
-      </Wrapper>
-    </>
+      <Headroom inDarkSection={inDarkSection} style={{ paddingTop: "24px" }}>
+        <Wrapper scrollPosition={scrollPosition} inDarkSection={inDarkSection}>
+          <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
+          <Links>
+            {/* TODO: Get links */}
+            {links.map(({ label, href }, i) => (
+              <StyledLink active={activeLink === i} inDarkSection={inDarkSection} key={i} href={href}>
+                <LinkWrapper>
+                  {activeLink === i ? <RedDot /> : <Dot />} {label}
+                </LinkWrapper>
+              </StyledLink>
+            ))}
+          </Links>
+          <LaunchButton inDarkSection={inDarkSection} onClick={() => null}>
+            Launch app
+          </LaunchButton>
+        </Wrapper>
+      </Headroom>
+    </div>
   );
 };
 
+function useHeader() {
+  const { boundingHeight, updateRef } = useContext(HeaderContext);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  useScrollPosition(({ currPos }) => {
+    setScrollPosition(Math.abs(currPos.y));
+  }, []);
+  const isMounted = useIsMounted();
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (isMounted()) {
+      updateRef(headerRef, "header");
+    }
+  }, [isMounted, updateRef]);
+  return {
+    scrollPosition,
+    boundingHeight,
+    headerRef,
+    isMounted: isMounted(),
+  };
+}
+
 export default Header;
+
+const LinkWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+`;
 
 const links = [
   {
@@ -38,10 +83,33 @@ const links = [
     label: "For builders",
     href: "#",
   },
+  {
+    label: (
+      <>
+        Docs <SmUpRightArrow style={{ marginLeft: "4px" }} />
+      </>
+    ),
+    href: "#",
+  },
+  {
+    label: (
+      <>
+        Projects <SmUpRightArrow style={{ marginLeft: "4px" }} />
+      </>
+    ),
+    href: "#",
+  },
 ];
 
-const Wrapper = styled.div`
-  background: var(--grey-200);
+interface IStyledProps {
+  inDarkSection: boolean;
+}
+
+interface IWrapper extends IStyledProps {
+  scrollPosition: number;
+}
+
+const Wrapper = styled.div<IWrapper>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -49,8 +117,15 @@ const Wrapper = styled.div`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  padding-top: 24px;
   margin: 0 auto;
+  z-index: 100;
+  margin-top: 24px;
+  backdrop-filter: ${({ inDarkSection }) => {
+    return inDarkSection ? "blur(6px)" : "none";
+  }};
+  background: ${({ inDarkSection }) => {
+    return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
+  }};
 `;
 
 const Links = styled.div`
@@ -62,8 +137,14 @@ const Links = styled.div`
   gap: 32px;
 `;
 
-const Link = styled.a`
-  color: var(--grey-500);
+interface ILinkProps extends IStyledProps {
+  active?: boolean;
+}
+
+const StyledLink = styled.a<ILinkProps>`
+  color: ${({ active }) => {
+    return active ? "var(--red)" : "var(--grey-400)";
+  }};
   text-decoration: none;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
@@ -72,17 +153,41 @@ const Link = styled.a`
   }
 `;
 
-const LaunchButton = styled.button`
-  color: var(--grey-200);
+const LaunchButton = styled.button<IStyledProps>`
   padding: 8px 16px 12px;
   height: 40px;
   gap: 2px;
   width: 118px;
-  background-color: var(--white);
   border-radius: 8px;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
+  color: ${({ inDarkSection }) => {
+    return inDarkSection ? "var(--white)" : "var(--grey-100)";
+  }};
+  background-color: ${({ inDarkSection }) => {
+    return inDarkSection ? "var(--grey-100)" : "var(--white)";
+  }};
   &:hover {
     opacity: 0.8;
+  }
+`;
+
+const Dot = styled.div`
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 3px;
+  visibility: hidden;
+`;
+const RedDot = styled(Dot)`
+  background: var(--red);
+  visibility: visible;
+`;
+
+const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
+  > div {
+    background: ${({ inDarkSection }) => {
+      return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
+    }};
   }
 `;

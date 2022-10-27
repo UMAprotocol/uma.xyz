@@ -1,9 +1,14 @@
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import OOLogo from "public/assets/oo-logo.svg";
 import DownArrow from "public/assets/down-arrow.svg";
+import { useIsMounted } from "hooks";
+import { HeaderContext } from "contexts";
+
 const Hero = () => {
+  const { sectionRef, isMounted } = useHero();
   return (
-    <Section>
+    <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>A decentralized</Title>
         <Title>
@@ -27,6 +32,22 @@ const Hero = () => {
 
 export default Hero;
 
+function useHero() {
+  const { updateRef } = useContext(HeaderContext);
+  const isMounted = useIsMounted();
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (isMounted()) {
+      updateRef(sectionRef, "heroSection");
+    }
+  }, [isMounted, updateRef]);
+  return {
+    updateRef,
+    sectionRef,
+    isMounted: isMounted(),
+  };
+}
+
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
@@ -39,8 +60,9 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: var(--max-section-width);
-  margin-top: 153px;
-  margin: 153px auto 96px;
+  margin: 0 auto;
+  padding-top: 153px;
+  padding-bottom: 96px;
 `;
 
 const Title = styled.div`

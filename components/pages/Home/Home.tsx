@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   Layout,
   Header,
@@ -10,19 +11,30 @@ import {
   Footer,
 } from "components";
 import styled from "styled-components";
+import { useIntersectionObserver } from "hooks";
 
 export function Home() {
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const howItWorksRef = useRef<HTMLDivElement | null>(null);
+  const eHotItWorks = useIntersectionObserver(howItWorksRef, {
+    threshold: 0.49,
+  });
+  const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
   return (
     <Layout>
       <Wrapper>
-        <Header />
+        <Header activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
         <Hero />
-        <HowItWorks />
-        <VoteParticipation />
-        <Builder />
-        <Projects />
-        <SupportSection />
-        <Footer />
+        <div ref={headerRef}>
+          <div ref={howItWorksRef}>
+            <HowItWorks />
+          </div>
+          <VoteParticipation />
+          <Builder />
+          <Projects />
+          <SupportSection />
+          <Footer />
+        </div>
       </Wrapper>
     </Layout>
   );

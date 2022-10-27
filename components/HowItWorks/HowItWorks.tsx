@@ -2,17 +2,20 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import Illustration from "public/assets/illustration.svg";
-import { useIntersectionObserver, useScrollPosition } from "hooks";
+import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+
 const HowItWorks = () => {
+  const { sectionRef, isMounted } = useHowItWorks();
+
   const ref = useRef<HTMLDivElement | null>(null);
-  const refTwo = useRef<HTMLDivElement | null>(null);
+  // const refTwo = useRef<HTMLDivElement | null>(null);
   const entryOne = useIntersectionObserver(ref, {});
-  const entryTwo = useIntersectionObserver(ref, {});
+  // const entryTwo = useIntersectionObserver(ref, {});
   const isOneVisible = !!entryOne?.isIntersecting;
 
   const [entryScrollY, setEntryScrollY] = useState(0);
   const [topRedHeight, setRedTopHeight] = useState(0);
-  if (entryOne) console.log(entryOne);
+  // if (entryOne) console.log(entryOne);
   // WIP on animation here.
   useScrollPosition(
     ({ currPos }) => {
@@ -33,7 +36,7 @@ const HowItWorks = () => {
     [entryOne, entryScrollY]
   );
   return (
-    <Section>
+    <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
@@ -83,6 +86,15 @@ const HowItWorks = () => {
 };
 
 export default HowItWorks;
+
+function useHowItWorks() {
+  const isMounted = useIsMounted();
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  return {
+    sectionRef,
+    isMounted: isMounted(),
+  };
+}
 
 const Section = styled.section`
   width: 100%;

@@ -8,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof Header> = () => (
   <div style={{ padding: "1rem 2rem", background: "var(--black)" }}>
-    <Header />
+    <Header activeLink={0} />
   </div>
 );
 
