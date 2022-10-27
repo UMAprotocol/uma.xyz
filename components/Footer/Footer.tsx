@@ -228,6 +228,9 @@ const Button = styled.button`
   border-radius: 8px;
   color: var(--grey-200);
   font: var(--body-md);
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const LinksFlex = styled.div`

@@ -119,8 +119,8 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
             </NumVotes>
           </VoteBlock>
           <MoreDetailsBlock>
-            <span>More details</span>
             <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
+              <span>More details</span>
               <UpRightArrow />
             </a>
           </MoreDetailsBlock>
@@ -217,14 +217,20 @@ const NumVotes = styled.div`
 `;
 
 const MoreDetailsBlock = styled.div`
-  font: var(--body-sm);
-  color: ${({ theme }: { theme: Theme }) => theme.moreDetails.color};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 4px;
-  path {
-    stroke: ${({ theme }: { theme: Theme }) => theme.moreDetails.stroke};
+  a {
+    text-decoration: none;
+    font: var(--body-sm);
+    color: ${({ theme }: { theme: Theme }) => theme.moreDetails.color};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    path {
+      stroke: ${({ theme }: { theme: Theme }) => theme.moreDetails.stroke};
+    }
+    &:hover {
+      opacity: 0.5;
+    }
   }
 `;

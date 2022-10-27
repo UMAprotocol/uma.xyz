@@ -168,7 +168,7 @@ const LaunchButton = styled.button<IStyledProps>`
     return inDarkSection ? "var(--grey-100)" : "var(--white)";
   }};
   &:hover {
-    opacity: 0.8;
+    opacity: 0.75;
   }
 `;
 
