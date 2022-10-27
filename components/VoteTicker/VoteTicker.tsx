@@ -12,8 +12,40 @@ interface Props {
   phase: "commit" | "reveal";
 }
 
+interface Theme {
+  section: {
+    bg: string;
+    pt: string;
+  };
+  wrapper: {
+    bg: string;
+  };
+  clock: {
+    br: string;
+    fill: string;
+  };
+  voteText: {
+    color: string;
+    spanColor: string;
+    borderRight: string;
+  };
+  numVotes: {
+    bg: string;
+    color: string;
+  };
+  moreDetails: {
+    color: string;
+    stroke: string;
+  };
+}
+
+interface TickerTheme {
+  light: Theme;
+  dark: Theme;
+}
+
 // styled theme
-const styledTheme = {
+const styledTheme: TickerTheme = {
   light: {
     section: {
       bg: "var(--grey-700)",
@@ -114,8 +146,8 @@ function useVoteTicker() {
 
 const Section = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.section.bg};
-  padding-top: ${({ theme }) => theme.section.pt}; ;
+  background: ${({ theme }: { theme: Theme }) => theme.section.bg};
+  padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt}; ;
 `;
 
 const Wrapper = styled.div`
@@ -129,7 +161,7 @@ const Wrapper = styled.div`
   max-width: var(--max-section-width);
   margin: 0 auto;
   height: 48px;
-  background: ${({ theme }) => theme.wrapper.bg};
+  background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
   border-radius: 8px;
 `;
 
@@ -150,21 +182,21 @@ const ClockBG = styled.div`
   width: 32px;
   height: 32px;
   background: var(--red-510-opacity-15);
-  border-radius: ${({ theme }) => theme.clock.br};
+  border-radius: ${({ theme }: { theme: Theme }) => theme.clock.br};
   g {
-    fill: ${({ theme }) => theme.clock.fill};
+    fill: ${({ theme }: { theme: Theme }) => theme.clock.fill};
   }
 `;
 
 const VoteText = styled.div`
   font: var(--body-sm);
-  color: ${({ theme }) => theme.voteText.color};
+  color: ${({ theme }: { theme: Theme }) => theme.voteText.color};
   span {
-    color: ${({ theme }) => theme.voteText.spanColor};
+    color: ${({ theme }: { theme: Theme }) => theme.voteText.spanColor};
     margin-left: 4px;
   }
   padding-right: 16px;
-  border-right: ${({ theme }) => theme.voteText.borderRight};
+  border-right: ${({ theme }: { theme: Theme }) => theme.voteText.borderRight};
 `;
 
 const NumVotes = styled.div`
@@ -176,23 +208,23 @@ const NumVotes = styled.div`
   gap: 2px;
   width: 63px;
   height: 24px;
-  background: ${({ theme }) => theme.numVotes.bg};
+  background: ${({ theme }: { theme: Theme }) => theme.numVotes.bg};
   border-radius: 12px;
   > div {
     font: var(--body-sm);
-    color: ${({ theme }) => theme.numVotes.color};
+    color: ${({ theme }: { theme: Theme }) => theme.numVotes.color};
   }
 `;
 
 const MoreDetailsBlock = styled.div`
   font: var(--body-sm);
-  color: ${({ theme }) => theme.moreDetails.color};
+  color: ${({ theme }: { theme: Theme }) => theme.moreDetails.color};
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px;
   gap: 4px;
   path {
-    stroke: ${({ theme }) => theme.moreDetails.stroke};
+    stroke: ${({ theme }: { theme: Theme }) => theme.moreDetails.stroke};
   }
 `;

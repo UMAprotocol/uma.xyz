@@ -8,6 +8,7 @@ import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
 import { useIsMounted } from "hooks";
+import Link from "next/link";
 
 interface Props {
   activeLink: number;
@@ -21,15 +22,15 @@ const Header: React.FC<Props> = ({ activeLink }) => {
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
       <Headroom inDarkSection={inDarkSection} style={{ paddingTop: "24px" }}>
         <Wrapper scrollPosition={scrollPosition} inDarkSection={inDarkSection}>
-          <a href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</a>
+          <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
           <Links>
             {/* TODO: Get links */}
             {links.map(({ label, href }, i) => (
-              <Link active={activeLink === i} inDarkSection={inDarkSection} key={i} href={href}>
+              <StyledLink active={activeLink === i} inDarkSection={inDarkSection} key={i} href={href}>
                 <LinkWrapper>
                   {activeLink === i ? <RedDot /> : <Dot />} {label}
                 </LinkWrapper>
-              </Link>
+              </StyledLink>
             ))}
           </Links>
           <LaunchButton inDarkSection={inDarkSection} onClick={() => null}>
@@ -53,7 +54,7 @@ function useHeader() {
     if (isMounted()) {
       updateRef(headerRef, "header");
     }
-  }, [isMounted()]);
+  }, [isMounted, updateRef]);
   return {
     scrollPosition,
     boundingHeight,
@@ -140,7 +141,7 @@ interface ILinkProps extends IStyledProps {
   active?: boolean;
 }
 
-const Link = styled.a<ILinkProps>`
+const StyledLink = styled.a<ILinkProps>`
   color: ${({ active }) => {
     return active ? "var(--red)" : "var(--grey-400)";
   }};

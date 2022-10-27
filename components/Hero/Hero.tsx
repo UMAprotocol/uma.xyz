@@ -40,7 +40,7 @@ function useHero() {
     if (isMounted()) {
       updateRef(sectionRef, "heroSection");
     }
-  }, [isMounted()]);
+  }, [isMounted, updateRef]);
   return {
     updateRef,
     sectionRef,
