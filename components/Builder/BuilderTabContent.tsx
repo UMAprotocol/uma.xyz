@@ -96,6 +96,17 @@ const RemixWrapper = styled.div`
   justify-content: center;
   gap: 20px;
   cursor: default;
+  &:hover {
+    span {
+      color: var(--grey-100);
+    }
+    a {
+      border-color: var(--grey-100);
+      path {
+        stroke: var(--grey-100);
+      }
+    }
+  }
 `;
 const RemixLink = styled.a`
   display: flex;
