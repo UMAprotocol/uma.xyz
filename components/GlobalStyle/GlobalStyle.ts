@@ -212,6 +212,7 @@ a:not([class]) {
     --body-lg: ${bodyLg};
     --body-md: ${bodyMd};
     --body-sm: ${bodySm};
+    --body-xs: ${bodyXs};
     --max-section-width: ${maxSectionWidth};
   }
 `;

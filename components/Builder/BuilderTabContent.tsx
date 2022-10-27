@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
-import { SandpackProvider, SandpackLayout, SandpackCodeEditor, SandpackCodeViewer } from "@codesandbox/sandpack-react";
+import { SandpackProvider, SandpackLayout, SandpackCodeViewer } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 interface Props {

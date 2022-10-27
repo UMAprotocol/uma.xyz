@@ -8,9 +8,9 @@ const HowItWorks = () => {
   const { sectionRef, isMounted } = useHowItWorks();
 
   const ref = useRef<HTMLDivElement | null>(null);
-  const refTwo = useRef<HTMLDivElement | null>(null);
+  // const refTwo = useRef<HTMLDivElement | null>(null);
   const entryOne = useIntersectionObserver(ref, {});
-  const entryTwo = useIntersectionObserver(ref, {});
+  // const entryTwo = useIntersectionObserver(ref, {});
   const isOneVisible = !!entryOne?.isIntersecting;
 
   const [entryScrollY, setEntryScrollY] = useState(0);

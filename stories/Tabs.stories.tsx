@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Tabs } from "components";
-import BuilderTabContent from "components/Builder/BuilderTabContent";
 import WandIcon from "public/assets/wand.svg";
 import TubeIcon from "public/assets/tube.svg";
 export default {
