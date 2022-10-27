@@ -119,11 +119,11 @@ const Wrapper = styled.div<IWrapper>`
   margin: 0 auto;
   z-index: 100;
   margin-top: 24px;
-  backdrop-filter: ${({ isIntersecting }) => {
-    return isIntersecting ? "blur(6px)" : "none";
+  backdrop-filter: ${({ inDarkSection }) => {
+    return inDarkSection ? "blur(6px)" : "none";
   }};
-  background: ${({ isIntersecting }) => {
-    return isIntersecting ? "var(--grey-900)" : "var(--grey-200)";
+  background: ${({ inDarkSection }) => {
+    return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
   }};
 `;
 
@@ -160,11 +160,11 @@ const LaunchButton = styled.button<IStyledProps>`
   border-radius: 8px;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
-  color: ${({ isIntersecting }) => {
-    return isIntersecting ? "var(--white)" : "var(--grey-100)";
+  color: ${({ inDarkSection }) => {
+    return inDarkSection ? "var(--white)" : "var(--grey-100)";
   }};
-  background-color: ${({ isIntersecting }) => {
-    return isIntersecting ? "var(--grey-100)" : "var(--white)";
+  background-color: ${({ inDarkSection }) => {
+    return inDarkSection ? "var(--grey-100)" : "var(--white)";
   }};
   &:hover {
     opacity: 0.8;
@@ -185,8 +185,8 @@ const RedDot = styled(Dot)`
 
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
   > div {
-    background: ${({ isIntersecting }) => {
-      return isIntersecting ? "var(--grey-900)" : "var(--grey-200)";
+    background: ${({ inDarkSection }) => {
+      return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
     }};
   }
 `;
