@@ -6,8 +6,10 @@ export const Title = styled.div`
   color: var(--grey-200);
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     margin: 0 16px;
+  }
+  @media ${QUERIES.md.andDown} {
     font: var(--body-lg);
   }
   > span {

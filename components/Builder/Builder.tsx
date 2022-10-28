@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
-import OOLogo from "public/assets/oo-logo.svg";
 import { Tabs } from "components";
 import BuilderTabContent from "./BuilderTabContent";
 import WandIcon from "public/assets/wand.svg";
@@ -8,22 +7,37 @@ import TubeIcon from "public/assets/tube.svg";
 import MedalIcon from "public/assets/medal.svg";
 import CreditCardsIcon from "public/assets/credit-cards.svg";
 import GlobeIcon from "public/assets/globe.svg";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 
 const Builder = () => {
+  const { width } = useBuilder();
   return (
     <Section>
       <Wrapper>
         <Title>
           Participate as a <span>Builder</span>
         </Title>
-        <TopHeader>Launch products with</TopHeader>
-        <BottomHeader>
-          the{" "}
-          <span>
-            <OOLogo />
-          </span>
-          as your backbone
-        </BottomHeader>
+        {width > BREAKPOINTS.tb ? (
+          <>
+            <TopHeader>Launch products with</TopHeader>
+            <BottomHeader>
+              the{" "}
+              <span>
+                <img src="/assets/oo-logo.svg" alt="oo-logo" />
+              </span>
+              as your backbone
+            </BottomHeader>
+          </>
+        ) : (
+          <MobileHeader>
+            Launch products with the
+            <span>
+              <MobileImg src="/assets/oo-mobile-red.svg" alt="oo-logo" />
+            </span>
+            as your backbone
+          </MobileHeader>
+        )}
         <Tabs
           tabs={[
             {
@@ -120,6 +134,11 @@ const Builder = () => {
 
 export default Builder;
 
+function useBuilder() {
+  const { width } = useWindowSize();
+  return { width };
+}
+
 const Section = styled.section`
   width: 100%;
   background: var(--white);
@@ -135,6 +154,10 @@ const Header = styled(BaseHeader)`
   justify-content: flex-start;
   align-items: center;
   align-self: center;
+
+  @media ${QUERIES.tb.andDown} {
+    font: var(--header-sm);
+  }
 `;
 
 const TopHeader = styled(Header)`
@@ -148,5 +171,34 @@ const BottomHeader = styled(Header)`
     margin: 20px 12px 0;
     display: flex;
     align-items: center;
+    @media ${QUERIES.tb.andDown} {
+      margin: 0 6px;
+    }
   }
+  img {
+    @media ${QUERIES.tb.andDown} {
+      /* transform: scale(0.6); */
+      font: var(--header-md);
+    }
+  }
+`;
+
+const MobileHeader = styled(Header)`
+  display: inline-flex;
+  margin-bottom: 24px;
+  margin: 24px 12px 40px;
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px 4px 0;
+    height: 100%;
+  }
+`;
+
+const MobileImg = styled.img`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 6px;
 `;
