@@ -146,6 +146,10 @@ const Section = styled.section`
 
 const Wrapper = styled(DefaultWrapper)`
   padding: 100px 0 113px;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 100%;
+    padding-bottom: 40px;
+  }
 `;
 
 const Header = styled(BaseHeader)`

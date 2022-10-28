@@ -52,10 +52,28 @@ const TabList = styled(ReachTabList)`
     fill: var(--grey-900);
   }
   [data-selected] {
-    border-bottom: 3px solid var(--red);
+    border-bottom: 2px solid var(--red);
     color: var(--red);
     path {
       fill: var(--red);
+    }
+  }
+  @media ${QUERIES.tb.andDown} {
+    width: 1024px;
+    height: 100px;
+    white-space: nowrap;
+    display: inline-flex !important;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: scroll;
+    [data-selected] {
+      border-bottom: none;
+      color: var(--red);
+      path {
+        fill: var(--red);
+      }
     }
   }
 `;
@@ -72,8 +90,18 @@ const Tab = styled(ReachTab)`
   font: var(--body-md);
   color: var(--grey-500);
   flex: 1;
+  svg {
+    height: 34px;
+  }
+  &:hover {
+    opacity: 0.5;
+  }
   @media ${QUERIES.lg.andDown} {
     font: var(--body-sm);
+    border-bottom: none;
+  }
+  @media ${QUERIES.md.andDown} {
+    padding-inline: 12px;
   }
 `;
 

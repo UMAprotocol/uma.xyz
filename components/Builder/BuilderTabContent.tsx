@@ -55,7 +55,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 100px;
+  gap: 40px;
   @media ${QUERIES.tb.andDown} {
     flex-direction: column;
   }
@@ -92,6 +92,10 @@ const CodeColumn = styled.div`
   max-width: 50%;
   margin-left: auto;
   flex-direction: column;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 100%;
+    margin-left: 0;
+  }
 `;
 
 const RemixWrapper = styled.div`
