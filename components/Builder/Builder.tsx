@@ -190,7 +190,9 @@ const MobileHeader = styled(Header)`
   display: inline-flex;
   flex-wrap: wrap;
   margin-bottom: 24px;
-  margin: 24px 12px 40px;
+  /* margin: 24px 12px 40px; */
+  margin: 24px 0 40px;
+  padding-left: 16px;
   span {
     display: inline-flex;
     align-items: center;

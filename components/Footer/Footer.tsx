@@ -8,6 +8,8 @@ import Discourse from "public/assets/discourse.svg";
 import BlackCircle from "public/assets/black-circle.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { VoteTicker } from "components";
+import { QUERIES } from "constants/breakpoints";
+
 const Footer = () => {
   const { value, setValue } = useFooter();
   return (
@@ -155,6 +157,12 @@ const FooterLinks = styled.div`
   justify-content: flex-start;
   width: 52%;
   gap: 100px;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -164,6 +172,12 @@ const LogoWrapper = styled.div`
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
 `;
 
 const Links = styled.div`
@@ -188,6 +202,11 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: baseline;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
 `;
 
 const FormTitle = styled.h3`
@@ -251,6 +270,12 @@ const CopyrightRow = styled(Row)`
   margin-top: 365px;
   display: flex;
   justify-content: space-between;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
 `;
 
 const AddressWrapper = styled.div`
