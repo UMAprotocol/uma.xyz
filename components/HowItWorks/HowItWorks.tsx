@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import Illustration from "public/assets/illustration.svg";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+import { QUERIES } from "constants/breakpoints";
 
 const HowItWorks = () => {
   const { sectionRef, isMounted } = useHowItWorks();
@@ -109,6 +110,9 @@ const Wrapper = styled(BaseWrapper)`
 const Title = styled(BaseTitle)`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
+  @media ${QUERIES.md.andDown} {
+    margin: 0 16px;
+  }
 `;
 
 const Header = styled.div`
@@ -116,6 +120,10 @@ const Header = styled.div`
   font: var(--header-lg);
   color: var(--grey-100);
   max-width: 1020px;
+  @media ${QUERIES.md.andDown} {
+    font: var(--header-sm);
+    margin: 0 16px;
+  }
 `;
 
 const AnimationWrapper = styled.div`
@@ -125,18 +133,27 @@ const AnimationWrapper = styled.div`
 
 const TopWrapper = styled(AnimationWrapper)`
   margin-top: 231px;
+  @media ${QUERIES.md.andDown} {
+    margin: 231px 16px 0;
+  }
 `;
 
 const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
+  @media ${QUERIES.md.andDown} {
+    flex-direction: column;
+  }
 `;
 
 const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
+  @media ${QUERIES.md.andDown} {
+    max-width: 100%;
+  }
 `;
 
 const AnimationHeader = styled.div`
@@ -150,6 +167,10 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
+  @media ${QUERIES.md.andDown} {
+    font: var(--header-xs);
+    max-width: 100%;
+  }
 `;
 
 const AnimationSubBody = styled.div`
@@ -157,6 +178,10 @@ const AnimationSubBody = styled.div`
   color: var(--grey-100);
   font: var(--body-lg);
   max-width: 367px;
+  @media ${QUERIES.md.andDown} {
+    font: var(--body-sm);
+    max-width: 100%;
+  }
 `;
 
 const IllustrationColumn = styled.div`

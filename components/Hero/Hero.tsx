@@ -74,6 +74,11 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   align-self: center;
+  @media ${QUERIES.tb.andDown} {
+    font-size: 8.5vw;
+    line-height: 115%;
+    margin: 0 17px;
+  }
   @media ${QUERIES.md.andDown} {
     font-size: 8.5vw;
     line-height: 115%;
@@ -87,6 +92,10 @@ const Title = styled.div`
       height: auto;
       width: 100%;
       margin: 0 10px 0;
+      svg {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 `;

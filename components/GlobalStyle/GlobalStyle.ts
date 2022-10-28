@@ -16,7 +16,7 @@ import {
   whiteOpacity10,
   white200,
 } from "constants/colors";
-import { headerLg, headerMd, headerSm, subHeader, bodyLg, bodyMd, bodySm, bodyXs } from "constants/fonts";
+import { headerLg, headerMd, headerSm, headerXs, subHeader, bodyLg, bodyMd, bodySm, bodyXs } from "constants/fonts";
 import { maxSectionWidth } from "constants/breakpoints";
 import { createGlobalStyle } from "styled-components";
 
@@ -208,6 +208,7 @@ a:not([class]) {
     --header-lg: ${headerLg};
     --header-md: ${headerMd};
     --header-sm: ${headerSm};
+    --header-xs: ${headerXs};
     --sub-header: ${subHeader};
     --body-lg: ${bodyLg};
     --body-md: ${bodyMd};
