@@ -50,8 +50,8 @@ const VoteParticipation = () => {
         </ImageBlockRow>
         <VoterAppLinkRow>
           <VoterAppLinkBlock>
-            Link to voter app
             <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
+              Link to voter app
               <div>
                 <UpRightArrow />
               </div>
@@ -158,21 +158,33 @@ const VoterAppLinkBlock = styled.div`
   color: var(--red);
   font: var(--body-lg);
   margin-left: 40px;
+  display: inline-block;
 `;
 
 const VoterAppLink = styled.a`
-  display: inline-block;
-  margin-left: 12px;
   font: var(--body-lg);
-  > div {
+  text-decoration: none;
+  div {
+    margin-left: 12px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 28px;
     height: 28px;
-
     border: 1px solid var(--red);
     border-radius: 8px;
+  }
+  &:visited {
+    color: var(--red);
+  }
+  &:hover {
+    color: var(--grey-100);
+    div {
+      border-color: var(--grey-100);
+      path {
+        stroke: var(--grey-100);
+      }
+    }
   }
 `;
 

@@ -76,6 +76,18 @@ const ButtonGroup = styled.div`
   flex-direction: row;
   gap: 20px;
   align-items: center;
+  &:hover {
+    span {
+      color: var(--red);
+    }
+    a {
+      background: var(--red);
+      border-color: var(--red);
+    }
+    path {
+      stroke: var(--white);
+    }
+  }
 `;
 
 const ButtonLink = styled.a`

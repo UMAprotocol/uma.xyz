@@ -179,6 +179,9 @@ const Link = styled.a`
   color: var(--grey-200);
   font: var(--body-sm);
   text-decoration: none;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const FormWrapper = styled.div`
@@ -213,6 +216,11 @@ const Input = styled.input`
   outline: none;
   cursor: initial;
   font: var(--body-md);
+  caret-color: var(--grey-100);
+  border: 2px solid transparent;
+  &:hover {
+    border: 2px solid var(--grey-500);
+  }
 `;
 
 const Button = styled.button`
@@ -226,8 +234,11 @@ const Button = styled.button`
   height: 48px;
   background: var(--red);
   border-radius: 8px;
-  color: var(--grey-200);
+  color: var(--grey-800);
   font: var(--body-md);
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const LinksFlex = styled.div`
@@ -270,6 +281,6 @@ const SocialLink = styled.a`
     fill: var(--grey-200);
   }
   &:hover {
-    opacity: 0.8;
+    opacity: 0.5;
   }
 `;
