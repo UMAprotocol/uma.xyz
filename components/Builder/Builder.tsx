@@ -177,7 +177,6 @@ const BottomHeader = styled(Header)`
   }
   img {
     @media ${QUERIES.tb.andDown} {
-      /* transform: scale(0.6); */
       font: var(--header-md);
     }
   }
@@ -185,6 +184,7 @@ const BottomHeader = styled(Header)`
 
 const MobileHeader = styled(Header)`
   display: inline-flex;
+  flex-wrap: wrap;
   margin-bottom: 24px;
   margin: 24px 12px 40px;
   span {

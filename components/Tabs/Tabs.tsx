@@ -7,6 +7,7 @@ import {
 } from "@reach/tabs";
 import { ReactNode } from "react";
 import styled from "styled-components";
+import { QUERIES } from "constants/breakpoints";
 
 type Tab = {
   title: string;
@@ -71,10 +72,13 @@ const Tab = styled(ReachTab)`
   font: var(--body-md);
   color: var(--grey-500);
   flex: 1;
+  @media ${QUERIES.lg.andDown} {
+    font: var(--body-sm);
+  }
 `;
 
 const TabPanels = styled(ReachTabPanels)`
-  margin-top: 60px;
+  margin: 60px 12px 0;
 `;
 
 const TabPanel = styled(ReachTabPanel)``;

@@ -3,6 +3,8 @@ import { ReactNode } from "react";
 import { SandpackProvider, SandpackLayout, SandpackCodeViewer } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
+import { QUERIES } from "constants/breakpoints";
+
 interface Props {
   title: string;
   body: ReactNode;
@@ -51,8 +53,12 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   gap: 100px;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h2`
