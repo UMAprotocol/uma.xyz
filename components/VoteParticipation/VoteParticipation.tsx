@@ -119,6 +119,7 @@ const ImageBlockRow = styled.div`
   @media ${QUERIES.md.andDown} {
     flex-direction: column;
     align-self: center;
+    width: 100%;
   }
 `;
 
@@ -130,6 +131,9 @@ const ImageBlockWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  @media ${QUERIES.md.andDown} {
+    width: inherit;
+  }
 `;
 
 const ImageBlock = styled.div`
@@ -139,6 +143,10 @@ const ImageBlock = styled.div`
 const ImageBlockWhite = styled(ImageBlock)`
   background-color: var(--white);
   border: 1px solid var(--grey-600);
+  @media ${QUERIES.md.andDown} {
+    border-right: 0;
+    border-left: 0;
+  }
 `;
 
 const ImageTitle = styled.div`
