@@ -61,7 +61,7 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <Illustration />
+                <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
               </IllustrationColumn>
             </AnimationRow>
           </TopWrapper>
@@ -76,7 +76,7 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <Illustration />
+                <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
               </IllustrationColumn>
             </AnimationRow>
           </AnimationWrapper>
@@ -128,13 +128,17 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin-top: 31px;
+  margin-top: 31px 0 0;
+  @media ${QUERIES.md.andDown} {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
   margin-top: 231px;
   @media ${QUERIES.md.andDown} {
-    margin: 231px 16px 0;
+    margin-top: 24px;
   }
 `;
 
@@ -143,7 +147,8 @@ const AnimationRow = styled.div`
   flex-direction: row;
   gap: 100px;
   @media ${QUERIES.md.andDown} {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 58px;
   }
 `;
 
@@ -237,4 +242,10 @@ export const Seperator = styled.div<ISeperator>`
 
 export const RedSeperator = styled(Seperator)`
   background-color: var(--red);
+`;
+
+const IllustrationImg = styled.img`
+  @media ${QUERIES.md.andDown} {
+    margin-top: 58px;
+  }
 `;
