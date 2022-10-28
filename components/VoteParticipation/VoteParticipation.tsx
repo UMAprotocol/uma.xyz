@@ -179,6 +179,11 @@ const VoterAppLinkRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  @media ${QUERIES.md.andDown} {
+    justify-content: center;
+
+    margin-top: 24px;
+  }
 `;
 
 const VoterAppLinkBlock = styled.div`
