@@ -105,6 +105,7 @@ const Section = styled.section`
 const Wrapper = styled(BaseWrapper)`
   padding-top: 100px;
   padding-bottom: 26px;
+  /* margin: 0 12px; */
 `;
 
 const Title = styled(BaseTitle)`
@@ -120,16 +121,18 @@ const Header = styled.div`
   font: var(--header-lg);
   color: var(--grey-100);
   max-width: 1020px;
-  @media ${QUERIES.md.andDown} {
-    font: var(--header-sm);
+  @media ${QUERIES.tb.andDown} {
     margin: 0 16px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    font: var(--header-sm);
   }
 `;
 
 const AnimationWrapper = styled.div`
   position: relative;
   margin-top: 31px 0 0;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -146,7 +149,7 @@ const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     flex-direction: column-reverse;
     gap: 58px;
   }
@@ -156,7 +159,7 @@ const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     max-width: 100%;
   }
 `;
@@ -172,7 +175,7 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     font: var(--header-xs);
     max-width: 100%;
   }
@@ -183,7 +186,7 @@ const AnimationSubBody = styled.div`
   color: var(--grey-100);
   font: var(--body-lg);
   max-width: 367px;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     font: var(--body-sm);
     max-width: 100%;
   }
