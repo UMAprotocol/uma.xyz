@@ -31,7 +31,7 @@ export function Home() {
           </div>
           <VoteParticipation />
           <Builder />
-          <Projects />
+          {/* <Projects /> */}
           <SupportSection />
           <Footer />
         </div>

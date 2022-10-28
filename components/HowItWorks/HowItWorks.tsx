@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
-import Illustration from "public/assets/illustration.svg";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
 import { QUERIES } from "constants/breakpoints";
 
@@ -105,15 +104,11 @@ const Section = styled.section`
 const Wrapper = styled(BaseWrapper)`
   padding-top: 100px;
   padding-bottom: 26px;
-  /* margin: 0 12px; */
 `;
 
 const Title = styled(BaseTitle)`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
-  @media ${QUERIES.md.andDown} {
-    margin: 0 16px;
-  }
 `;
 
 const Header = styled.div`
