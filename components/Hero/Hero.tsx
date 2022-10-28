@@ -1,26 +1,26 @@
 import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import OOLogo from "public/assets/oo-logo.svg";
+import OOMobileLogo from "public/assets/oo-mobile.svg";
 import DownArrow from "public/assets/down-arrow.svg";
 import { useIsMounted } from "hooks";
 import { HeaderContext } from "contexts";
-
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 const Hero = () => {
-  const { sectionRef, isMounted } = useHero();
+  const { sectionRef, isMounted, width } = useHero();
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>A decentralized</Title>
         <Title>
           truth
-          <span>
-            <OOLogo />
-          </span>
+          <div>{width >= BREAKPOINTS.md ? <OOLogo /> : <OOMobileLogo />}</div>
           machine
         </Title>
         <Subheader>
-          The Optimistic Oracle (OO) provides decentralized truth in a world where people <br /> have to rely on
-          questionable third-parties for centralized truth.
+          UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
+          onto a blockchain.
         </Subheader>
         <ArrowButton>
           <DownArrow />
@@ -41,10 +41,12 @@ function useHero() {
       updateRef(sectionRef, "heroSection");
     }
   }, [isMounted, updateRef]);
+  const { width } = useWindowSize();
   return {
     updateRef,
     sectionRef,
     isMounted: isMounted(),
+    width,
   };
 }
 
@@ -72,18 +74,31 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   align-self: center;
-  span {
+  @media ${QUERIES.md.andDown} {
+    font-size: 8.5vw;
+    line-height: 115%;
+  }
+  div {
     margin: 20px 12px 0;
     display: flex;
     align-items: center;
+    align-self: center;
+    @media ${QUERIES.md.andDown} {
+      height: auto;
+      width: 100%;
+      margin: 0 10px 0;
+    }
   }
 `;
 
 const Subheader = styled.div`
-  margin-top: 32px;
+  margin: 32px 0 0;
   font: var(--body-lg);
   color: var(--grey-500);
   text-align: center;
+  @media ${QUERIES.md.andDown} {
+    margin: 32px 16px 0;
+  }
 `;
 
 const ArrowButton = styled.button`

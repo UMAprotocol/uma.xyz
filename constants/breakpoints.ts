@@ -10,7 +10,7 @@ const breakpoint = (width: number) => ({
   andDown: `(max-width: ${width}px)`,
   andUp: `(min-width: ${width}px)`,
 });
-export const QUERIESV2 = {
+export const QUERIES = {
   xs: breakpoint(BREAKPOINTS.xs),
   sm: breakpoint(BREAKPOINTS.sm),
   md: breakpoint(BREAKPOINTS.md),
