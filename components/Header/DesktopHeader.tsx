@@ -54,6 +54,14 @@ const links = [
   {
     label: (
       <>
+        Oracle <SmUpRightArrow style={{ marginLeft: "4px" }} />
+      </>
+    ),
+    href: "#",
+  },
+  {
+    label: (
+      <>
         Docs <SmUpRightArrow style={{ marginLeft: "4px" }} />
       </>
     ),
