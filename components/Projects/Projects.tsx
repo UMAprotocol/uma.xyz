@@ -10,6 +10,7 @@ import JarvisLogo from "public/assets/jarvis.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
 import { QUERIES } from "constants/breakpoints";
+import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 
 const Projects = () => {
   return (
@@ -59,6 +60,12 @@ const Projects = () => {
               Being in the cross-chain bridging space, for us it’s important to lorem ipsum of centralized authorities
               and (potentially) biased third-parties.
             </ProjectsBlurbSubheader>
+            <RemixWrapper>
+              <span>All projects</span>
+              <RemixLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
+                <UpRightArrowRed />
+              </RemixLink>
+            </RemixWrapper>
           </ProjectsBlurb>
         </ProjectsRow>
       </Wrapper>
@@ -256,6 +263,10 @@ const ProjectsBlurb = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `;
 
 const ProjectsBlurbHeader = styled.h2`
@@ -264,13 +275,64 @@ const ProjectsBlurbHeader = styled.h2`
 
   color: var(--grey-200);
   max-width: 366px;
+  @media ${QUERIES.tb.andDown} {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const ProjectsBlurbSubheader = styled.h3`
   margin-top: 24px;
   font: var(--body-lg);
   line-height: 140%;
-
+  padding-bottom: 48px;
   color: var(--grey-200);
   max-width: 366px;
+  border-bottom: 1px solid var(--grey-700);
+  @media ${QUERIES.tb.andDown} {
+    width: 100%;
+    max-width: 100%;
+  }
+`;
+
+const RemixWrapper = styled.div`
+  margin-top: 26px;
+  display: flex;
+  font: var(--body-lg);
+  color: var(--red);
+  justify-content: center;
+  gap: 20px;
+  cursor: default;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: flex-start;
+    margin-bottom: 44px;
+    font: var(--body-md);
+    align-items: end;
+  }
+  &:hover {
+    span {
+      color: var(--grey-100);
+    }
+    a {
+      border-color: var(--grey-100);
+      path {
+        stroke: var(--grey-100);
+      }
+    }
+  }
+`;
+
+const RemixLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  @media ${QUERIES.tb.andDown} {
+    width: 32px;
+    height: 32px;
+  }
 `;
