@@ -9,6 +9,7 @@ import CozyLogo from "public/assets/cozy.svg";
 import JarvisLogo from "public/assets/jarvis.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
+import { QUERIES } from "constants/breakpoints";
 
 const Projects = () => {
   return (
@@ -114,10 +115,20 @@ const ProjectsRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
+  margin-left: 0;
+  margin-right: 0;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column-reverse;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;
 
 const ProjectsColumn = styled.div`
   max-width: 560px;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 100%;
+  }
 `;
 const BigProjects = styled.div`
   display: flex;
@@ -130,6 +141,7 @@ const BigProject = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* justify-content: center; */
   padding: 80px;
   isolation: isolate;
   border: 1px solid var(--grey-600);
@@ -137,6 +149,10 @@ const BigProject = styled.div`
   flex-grow: 1;
   width: 280px;
   height: 280px;
+  @media ${QUERIES.tb.andDown} {
+    flex-grow: 0;
+    width: 50%;
+  }
   &:hover {
     border: 1px solid var(--red);
     color: var(--red);
