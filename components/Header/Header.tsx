@@ -8,13 +8,15 @@ import { useIsMounted } from "hooks";
 import { BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 import DesktopHeader from "./DesktopHeader";
+import MobileHeader from "./MobileHeader";
 
 interface Props {
   activeLink: number;
 }
 
 const Header: React.FC<Props> = ({ activeLink }) => {
-  const { scrollPosition, boundingHeight, isMounted, headerRef, width } = useHeader();
+  const { scrollPosition, boundingHeight, isMounted, headerRef, width, showMobileMenu, setShowMobileMenu } =
+    useHeader();
   const inDarkSection = scrollPosition >= boundingHeight;
   return (
     <div ref={isMounted ? headerRef : null}>
@@ -22,8 +24,19 @@ const Header: React.FC<Props> = ({ activeLink }) => {
       <Headroom inDarkSection={inDarkSection} style={{ paddingTop: "24px" }}>
         {width > BREAKPOINTS.tb ? (
           <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} inDarkSection={inDarkSection} />
-        ) : null}
+        ) : (
+          <div />
+        )}
       </Headroom>
+      {width <= BREAKPOINTS.tb ? (
+        <MobileHeader
+          showMobileMenu={showMobileMenu}
+          onToggle={() => {
+            setShowMobileMenu((pv) => !pv);
+          }}
+          inDarkSection={inDarkSection}
+        />
+      ) : null}
     </div>
   );
 };
@@ -42,12 +55,15 @@ function useHeader() {
     }
   }, [isMounted, updateRef]);
   const { width } = useWindowSize();
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   return {
     scrollPosition,
     boundingHeight,
     headerRef,
     isMounted: isMounted(),
     width,
+    showMobileMenu,
+    setShowMobileMenu,
   };
 }
 

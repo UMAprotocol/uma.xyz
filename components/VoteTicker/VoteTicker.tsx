@@ -171,6 +171,7 @@ const Wrapper = styled.div`
   width: calc(100% - 15px);
   @media ${QUERIES.tb.andDown} {
     margin: 0 24px;
+    width: calc(100% - 24px);
   }
 `;
 

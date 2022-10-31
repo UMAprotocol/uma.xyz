@@ -1,15 +1,28 @@
 import styled from "styled-components";
 import { QUERIES } from "constants/breakpoints";
-import Image from "next/image";
+import Link from "next/link";
+import Logo from "public/assets/uma-logo.svg";
+import BlackLogo from "public/assets/uma-black-logo.svg";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
 
 interface Props {
   showMobileMenu: boolean;
   onToggle: () => void;
+  inDarkSection: boolean;
 }
-const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle }) => {
+const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, inDarkSection }) => {
   return (
     <div>
-      <MenuToggle toggled={showMobileMenu} onToggle={onToggle} />
+      <Wrapper>
+        <MenuToggle toggled={showMobileMenu} onToggle={onToggle} />
+        <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
+        <AppBlock>
+          <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
+            <span>App</span>
+            <UpRightArrow />
+          </a>
+        </AppBlock>
+      </Wrapper>
       <MobileMenuComponent show={showMobileMenu} onClickLink={onToggle} />
     </div>
   );
@@ -25,7 +38,7 @@ const MobileMenuComponent: React.FC<{
       <MobileCommunityLinks>
         {COMMUNITY_LINKS.map((link, idx) => (
           <MobileCommunityLink key={idx} href={link.href} target="_blank">
-            <Image src={link.iconSrc} alt={link.alt} width={25} height={25} />
+            <img src={link.iconSrc} alt={link.alt} width={25} height={25} />
           </MobileCommunityLink>
         ))}
       </MobileCommunityLinks>
@@ -36,7 +49,6 @@ const MobileMenuComponent: React.FC<{
 const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void }> = ({ toggled, onToggle }) => {
   return (
     <MenuToggleButton onClick={onToggle} toggled={toggled}>
-      <span></span>
       <span></span>
       <span></span>
     </MenuToggleButton>
@@ -77,18 +89,25 @@ const MOBILE_HEADER_LINKS: IHeaderLink[] = [
 
 export default MobileHeader;
 
+const Wrapper = styled.div`
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
   display: block;
   position: relative;
   height: 18px;
   width: 25px;
-
+  background: var(--grey-900);
   span {
     position: absolute;
     display: block;
     height: 2px;
     width: 25px;
-    background-color: ${({ toggled }) => (toggled ? "var(--gray-600)" : "var(--gray-700)")};
+    background-color: ${({ toggled }) => (toggled ? "var(--white)" : "var(--white)")};
     transition: ${({ toggled }) =>
       toggled
         ? "background .2s, top .2s, opacity .2s, transform .2s .25s"
@@ -100,11 +119,6 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
     }
 
     :nth-of-type(2) {
-      top: 8px;
-      opacity: ${({ toggled }) => (toggled ? 0 : 1)};
-    }
-
-    :nth-of-type(3) {
       top: ${({ toggled }) => (toggled ? "9px" : "16px")};
       transform: ${({ toggled }) => (toggled ? "rotate(-45deg)" : "rotate(0)")};
     }
@@ -114,10 +128,10 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
 export const MobileMenuContainer = styled.div<{ show: boolean }>`
   width: 100%;
   position: absolute;
-  top: 60px;
+  top: 12ppx;
   left: 0;
   padding: 0 20px;
-  background-color: var(--white);
+  background-color: var(--);
   transform: ${({ show }) => (show ? "translateY(0)" : "translateY(-20px)")};
   opacity: ${({ show }) => (show ? 1 : 0)};
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
@@ -162,6 +176,32 @@ const MobileCommunityLinks = styled.div`
 const MobileCommunityLink = styled.a`
   margin-right: 25px;
 `;
+
+const AppBlock = styled.div`
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: baseline;
+    text-decoration: none;
+    font: var(--body-sm);
+    color: var(--white)};
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    svg {
+      margin-left: 8px;
+    }
+    path {
+      stroke: var(--grey-500);
+    }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+`;
+
 const COMMUNITY_LINKS = [
   {
     name: "Medium",
