@@ -19,7 +19,7 @@ const Header: React.FC<Props> = ({ activeLink }) => {
   const inDarkSection = scrollPosition >= boundingHeight;
   return (
     <div ref={isMounted ? headerRef : null}>
-      <VoteTicker theme="dark" numVotes={2} phase="commit" />
+      <VoteTicker theme="dark" numVotes={2} phase="Commit" />
       <Headroom inDarkSection={inDarkSection} style={{ paddingTop: "24px" }}>
         <Wrapper scrollPosition={scrollPosition} inDarkSection={inDarkSection}>
           <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>

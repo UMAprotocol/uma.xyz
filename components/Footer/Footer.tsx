@@ -14,7 +14,7 @@ const Footer = () => {
   const { value, setValue } = useFooter();
   return (
     <>
-      <VoteTicker theme="light" numVotes={2} phase="commit" />
+      <VoteTicker theme="light" numVotes={2} phase="Commit" />
       <Section>
         <Wrapper>
           <BottomRow>
