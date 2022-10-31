@@ -142,13 +142,15 @@ const BigProjects = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  @media ${QUERIES.sm.andDown} {
+    flex-direction: column;
+  }
 `;
 const BigProject = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   padding: 80px;
   isolation: isolate;
   border: 1px solid var(--grey-600);
@@ -159,6 +161,10 @@ const BigProject = styled.div`
   @media ${QUERIES.tb.andDown} {
     flex-grow: 0;
     width: 50%;
+  }
+  @media ${QUERIES.sm.andDown} {
+    flex-direction: column;
+    width: 100%;
   }
   &:hover {
     border: 1px solid var(--red);
@@ -226,6 +232,10 @@ const SmallProject = styled.div`
   padding: 40px;
   width: 186px;
   height: 186px;
+  @media ${QUERIES.sm.andDown} {
+    min-width: 50%;
+    width: 50%;
+  }
   &:hover {
     path {
       fill: var(--red);
