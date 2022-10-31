@@ -8,10 +8,11 @@ import Discourse from "public/assets/discourse.svg";
 import BlackCircle from "public/assets/black-circle.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { VoteTicker } from "components";
-import { QUERIES } from "constants/breakpoints";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 
 const Footer = () => {
-  const { value, setValue } = useFooter();
+  const { value, setValue, width } = useFooter();
   return (
     <>
       <VoteTicker theme="light" numVotes={2} phase="Commit" />
@@ -19,9 +20,11 @@ const Footer = () => {
         <Wrapper>
           <BottomRow>
             <FooterLinks>
-              <LogoWrapper>
-                <StyledLogo />
-              </LogoWrapper>
+              {width > BREAKPOINTS.tb ? (
+                <LogoWrapper>
+                  <StyledLogo />
+                </LogoWrapper>
+              ) : null}
               <LinksFlex>
                 <Links>
                   {middleLinks.map(({ label, href }, i) => (
@@ -40,6 +43,11 @@ const Footer = () => {
               </LinksFlex>
             </FooterLinks>
             <FormWrapper>
+              {width <= BREAKPOINTS.tb ? (
+                <LogoWrapper>
+                  <StyledLogo />
+                </LogoWrapper>
+              ) : null}
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
               <Form>
                 <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
@@ -69,7 +77,9 @@ export default Footer;
 
 function useFooter() {
   const [value, setValue] = useState("");
-  return { value, setValue };
+  const { width } = useWindowSize();
+
+  return { value, setValue, width };
 }
 
 const socialLinks = [
@@ -140,6 +150,9 @@ const Wrapper = styled.div`
   max-width: var(--max-section-width);
   margin: 0 auto;
   padding: 96px 0 66px;
+  @media ${QUERIES.tb.andDown} {
+    padding-top: 61px;
+  }
 `;
 
 const Row = styled.div`
@@ -167,13 +180,16 @@ const FooterLinks = styled.div`
 
 const LogoWrapper = styled.div`
   width: 85px;
+  @media ${QUERIES.tb.andDown} {
+    margin-bottom: 24px;
+  }
 `;
 
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
   @media ${QUERIES.tb.andDown} {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     align-self: center;
@@ -206,6 +222,8 @@ const FormWrapper = styled.div`
     justify-content: center;
     align-items: center;
     align-self: center;
+    margin-left: 24px;
+    margin-right: 24px;
   }
 `;
 
@@ -214,6 +232,11 @@ const FormTitle = styled.h3`
   color: var(--grey-300);
   max-width: 338px;
   margin-bottom: 32px;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 428px;
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const Form = styled.div`
@@ -223,6 +246,14 @@ const Form = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+    max-width: 428px;
+    width: 100%;
+    @media ${QUERIES.tb.andDown} {
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 const Input = styled.input`
@@ -239,6 +270,10 @@ const Input = styled.input`
   border: 2px solid transparent;
   &:hover {
     border: 2px solid var(--grey-500);
+  }
+  @media ${QUERIES.tb.andDown} {
+    max-width: 428px;
+    width: 100%;
   }
 `;
 
@@ -257,6 +292,10 @@ const Button = styled.button`
   font: var(--body-md);
   &:hover {
     opacity: 0.5;
+  }
+  @media ${QUERIES.tb.andDown} {
+    max-width: 428px;
+    width: 100%;
   }
 `;
 
