@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
+import { QUERIES } from "constants/breakpoints";
 
 const SupportSection = () => {
   return (
@@ -46,6 +47,10 @@ const Section = styled.div`
 const Wrapper = styled(BaseWrapper)`
   padding: 261px 0 234px;
   background: transparent;
+  @media ${QUERIES.tb.andDown} {
+    padding-top: 130px;
+    padding-bottom: 118px;
+  }
 `;
 
 const Title = styled(BaseTitle)`
@@ -56,12 +61,24 @@ const Title = styled(BaseTitle)`
 const Subtitle = styled.h3`
   font: var(--body-lg);
   max-width: 466px;
+  margin-left: 0;
+  margin-right: 0;
+  @media ${QUERIES.tb.andDown} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;
 
 const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-left: 0;
+  margin-right: 0;
+  @media ${QUERIES.tb.andDown} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;
 
 const ButtonColumn = styled.div`
@@ -69,6 +86,14 @@ const ButtonColumn = styled.div`
   flex-direction: column;
   margin-top: 74px;
   gap: 16px;
+  margin-left: 0;
+  margin-right: 0;
+  @media ${QUERIES.tb.andDown} {
+    margin-top: 36px;
+    margin-left: 15px;
+    margin-right: 15px;
+    gap: 23px;
+  }
 `;
 
 const ButtonGroup = styled.div`
@@ -76,6 +101,12 @@ const ButtonGroup = styled.div`
   flex-direction: row;
   gap: 20px;
   align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+  @media ${QUERIES.tb.andDown} {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
   &:hover {
     span {
       color: var(--red);

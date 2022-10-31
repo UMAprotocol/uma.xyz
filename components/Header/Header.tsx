@@ -9,7 +9,6 @@ import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
 import { useIsMounted } from "hooks";
 import Link from "next/link";
-import { QUERIES } from "constants/breakpoints";
 
 interface Props {
   activeLink: number;
