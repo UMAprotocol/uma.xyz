@@ -124,6 +124,7 @@ const rightLinks = [
   {
     label: "Oracle",
     href: "https://optimistic-oracle-dapp.vercel.app/",
+    Logo: UpRightArrowBlack,
   },
   {
     label: "Docs",
@@ -152,6 +153,7 @@ const Wrapper = styled.div`
   padding: 96px 0 66px;
   @media ${QUERIES.tb.andDown} {
     padding-top: 61px;
+    padding-bottom: 32px;
   }
 `;
 
@@ -200,9 +202,12 @@ const Links = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  row-gap: 16px;
+  gap: 16px;
   max-height: 136px;
   flex-basis: 45%;
+  @media ${QUERIES.tb.andDown} {
+    margin-top: 16px;
+  }
 `;
 
 const Link = styled.a`
@@ -303,6 +308,9 @@ const LinksFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-basis: 75%;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+  }
 `;
 
 const CopyrightRow = styled(Row)`
@@ -314,6 +322,7 @@ const CopyrightRow = styled(Row)`
     justify-content: center;
     align-items: center;
     align-self: center;
+    margin-top: 85px;
   }
 `;
 
