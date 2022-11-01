@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import StakeBlock from "public/assets/stake-block.svg";
-import VoteBlock from "public/assets/vote-block.svg";
-import EarnBlock from "public/assets/earn-block.svg";
+
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { Title, Header as BaseHeader } from "components/Widgets";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 
 const VoteParticipation = () => {
+  const { width } = useVoteParticipation();
   return (
     <Section>
       <Wrapper>
@@ -14,36 +15,31 @@ const VoteParticipation = () => {
         </Title>
         <HeaderWrapper>
           {/* <RedCircleFilter /> */}
-          <Header>
-            Stake, vote &amp; earn <br /> up to 30% APY
-          </Header>
+          <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.md ? <br /> : null} up to 30% APY</Header>
         </HeaderWrapper>
 
         <ImageBlockRow>
           <ImageBlockWrapper>
             <ImageBlockWhite>
-              <StakeBlock />
+              <img src="/assets/stake-block.svg" alt="stake-block" />
               <ImageTitleRed>Stake</ImageTitleRed>
-              <ImageText>
-                As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
-              </ImageText>
+              <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
             </ImageBlockWhite>
           </ImageBlockWrapper>
           <ImageBlockWrapper>
             <ImageBlock>
-              <VoteBlock />
+              <img src="/assets/vote-block.svg" alt="vote-block" />
               <ImageTitle>Vote</ImageTitle>
-              <ImageText>
-                As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
-              </ImageText>
+              <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
           <ImageBlockWrapper>
             <ImageBlock>
-              <EarnBlock />
+              <img src="/assets/earn-block.svg" alt="earn-block" />
               <ImageTitle>Earn</ImageTitle>
               <ImageText>
-                As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
+                Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
+                voters.{" "}
               </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -63,6 +59,11 @@ const VoteParticipation = () => {
   );
 };
 
+function useVoteParticipation() {
+  const { width } = useWindowSize();
+  return { width };
+}
+
 const Section = styled.section`
   background: var(--grey-800);
   width: 100%;
@@ -78,7 +79,14 @@ const Wrapper = styled.div`
 
 const Header = styled(BaseHeader)`
   margin-top: 65px;
-  width: 921px;
+  max-width: 921px;
+  @media ${QUERIES.md.andDown} {
+    margin: 0 16px;
+    max-width: 100%;
+  }
+  @media ${QUERIES.md.andDown} {
+    font: var(--header-sm);
+  }
 `;
 
 // WIP for filter effect. Not working yet.
@@ -108,6 +116,11 @@ const ImageBlockRow = styled.div`
   svg {
     fill: var(--white);
   }
+  @media ${QUERIES.md.andDown} {
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+  }
 `;
 
 const ImageBlockWrapper = styled.div`
@@ -118,6 +131,9 @@ const ImageBlockWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  @media ${QUERIES.md.andDown} {
+    width: inherit;
+  }
 `;
 
 const ImageBlock = styled.div`
@@ -127,15 +143,21 @@ const ImageBlock = styled.div`
 const ImageBlockWhite = styled(ImageBlock)`
   background-color: var(--white);
   border: 1px solid var(--grey-600);
+  @media ${QUERIES.md.andDown} {
+    border-right: 0;
+    border-left: 0;
+  }
 `;
 
 const ImageTitle = styled.div`
   color: var(--grey-200);
-  font-family: "Halyard Display";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 64px;
+  font: var(--header-md);
   line-height: 115%;
+  margin-top: 40px;
+  @media ${QUERIES.md.andDown} {
+    font: var(--header-sm);
+    margin-top: 48px;
+  }
 `;
 
 const ImageTitleRed = styled(ImageTitle)`
@@ -145,6 +167,11 @@ const ImageTitleRed = styled(ImageTitle)`
 const ImageText = styled.div`
   font: var(--body-lg);
   color: var(--grey-200);
+  margin-top: 16px;
+  @media ${QUERIES.md.andDown} {
+    font: var(--body-sm);
+    margin-top: 12px;
+  }
 `;
 
 const VoterAppLinkRow = styled.div`
@@ -152,6 +179,11 @@ const VoterAppLinkRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  @media ${QUERIES.md.andDown} {
+    justify-content: center;
+
+    margin-top: 24px;
+  }
 `;
 
 const VoterAppLinkBlock = styled.div`

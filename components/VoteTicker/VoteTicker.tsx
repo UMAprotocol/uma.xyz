@@ -4,12 +4,14 @@ import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { formatDateTimeFromUTC } from "./utils";
 import useInterval from "hooks/helpers/useInterval";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 type TickerThemes = "light" | "dark";
 
 interface Props {
   theme: TickerThemes;
   numVotes: number;
-  phase: "commit" | "reveal";
+  phase: "Commit" | "Reveal";
 }
 
 interface Theme {
@@ -101,7 +103,7 @@ const styledTheme: TickerTheme = {
 };
 
 const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
-  const { timeRemaining } = useVoteTicker();
+  const { timeRemaining, width } = useVoteTicker();
   return (
     <ThemeProvider theme={styledTheme[theme]}>
       <Section>
@@ -111,16 +113,18 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
               <Clock />
             </ClockBG>
             <VoteText>
-              Time to {phase} vote:
+              {width > BREAKPOINTS.tb ? `Time to ${phase} vote: ` : `${phase} vote: `}
               <span>{timeRemaining}</span>
             </VoteText>
-            <NumVotes>
-              <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
-            </NumVotes>
+            {width > BREAKPOINTS.tb ? (
+              <NumVotes>
+                <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
+              </NumVotes>
+            ) : null}
           </VoteBlock>
           <MoreDetailsBlock>
             <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
-              <span>More details</span>
+              {width > BREAKPOINTS.tb ? <span>More details</span> : null}
               <UpRightArrow />
             </a>
           </MoreDetailsBlock>
@@ -141,7 +145,8 @@ function useVoteTicker() {
     setTimeRemaining(formatDateTimeFromUTC());
   }, 1000);
 
-  return { timeRemaining };
+  const { width } = useWindowSize();
+  return { timeRemaining, width };
 }
 
 const Section = styled.div`
@@ -163,6 +168,7 @@ const Wrapper = styled.div`
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
   border-radius: 8px;
+  width: calc(100% - 24px);
 `;
 
 const VoteBlock = styled.div`
@@ -197,6 +203,9 @@ const VoteText = styled.div`
   }
   padding-right: 16px;
   border-right: ${({ theme }: { theme: Theme }) => theme.voteText.borderRight};
+  @media ${QUERIES.tb.andDown} {
+    border-right: none;
+  }
 `;
 
 const NumVotes = styled.div`

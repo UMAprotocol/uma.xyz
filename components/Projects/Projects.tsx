@@ -9,47 +9,67 @@ import CozyLogo from "public/assets/cozy.svg";
 import JarvisLogo from "public/assets/jarvis.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
+import { useWindowSize } from "hooks";
 
 const Projects = () => {
+  const { width } = useProjects();
   return (
     <Section>
       <Wrapper>
         <ProjectsRow>
           <ProjectsColumn>
-            <BigProjects>
-              <BigProject>
-                <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
-                  <UpRightArrowWhite />
-                </LinkButton>
-                <div>
-                  <AcrossLogo />
-                </div>
-                <BigProjectText>Across.to</BigProjectText>
-              </BigProject>
-              <BigProject>
-                <LinkButton href="https://outcome.finance" target="_blank" rel="noreferrer">
-                  <UpRightArrowWhite />
-                </LinkButton>
-                <div>
-                  <OutcomeLogo />
-                </div>
-                <BigProjectText>Outcome.finance</BigProjectText>
-              </BigProject>
-            </BigProjects>
+            {width > BREAKPOINTS.sm ? (
+              <BigProjects>
+                <BigProject>
+                  <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
+                    <UpRightArrowWhite />
+                  </LinkButton>
+                  <div>
+                    <AcrossLogo />
+                  </div>
+                  <BigProjectText>Across.to</BigProjectText>
+                </BigProject>
+                <BigProject>
+                  <LinkButton href="https://outcome.finance" target="_blank" rel="noreferrer">
+                    <UpRightArrowWhite />
+                  </LinkButton>
+                  <div>
+                    <OutcomeLogo />
+                  </div>
+                  <BigProjectText>Outcome.finance</BigProjectText>
+                </BigProject>
+              </BigProjects>
+            ) : null}
             <SmallProjects>
-              {smallProjects.map(({ name, link, Logo }, index) => {
-                return (
-                  <SmallProject key={index}>
-                    <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                      <UpRightArrowWhite />
-                    </SmallLinkButton>
-                    <div>
-                      <Logo />
-                    </div>
-                    <SmallProjectText>{name}</SmallProjectText>
-                  </SmallProject>
-                );
-              })}
+              {width > BREAKPOINTS.sm
+                ? smallProjects.map(({ name, link, Logo }, index) => {
+                    return (
+                      <SmallProject key={index}>
+                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                          <UpRightArrowWhite />
+                        </SmallLinkButton>
+                        <div>
+                          <Logo />
+                        </div>
+                        <SmallProjectText>{name}</SmallProjectText>
+                      </SmallProject>
+                    );
+                  })
+                : mobileSmallProjects.map(({ name, link, Logo }, index) => {
+                    return (
+                      <SmallProject key={index}>
+                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                          <UpRightArrowWhite />
+                        </SmallLinkButton>
+                        <div>
+                          <Logo />
+                        </div>
+                        <SmallProjectText>{name}</SmallProjectText>
+                      </SmallProject>
+                    );
+                  })}
             </SmallProjects>
           </ProjectsColumn>
           <ProjectsBlurb>
@@ -58,12 +78,23 @@ const Projects = () => {
               Being in the cross-chain bridging space, for us it’s important to lorem ipsum of centralized authorities
               and (potentially) biased third-parties.
             </ProjectsBlurbSubheader>
+            <RemixWrapper>
+              <span>All projects</span>
+              <RemixLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
+                <UpRightArrowRed />
+              </RemixLink>
+            </RemixWrapper>
           </ProjectsBlurb>
         </ProjectsRow>
       </Wrapper>
     </Section>
   );
 };
+
+function useProjects() {
+  const { width } = useWindowSize();
+  return { width };
+}
 
 const smallProjects = [
   {
@@ -98,6 +129,20 @@ const smallProjects = [
   },
 ];
 
+const mobileSmallProjects = [
+  {
+    name: "Across",
+    Logo: AcrossLogo,
+    link: "https://across.to",
+  },
+  {
+    name: "Outcome",
+    Logo: OutcomeLogo,
+    link: "https://outcome.finance",
+  },
+  ...smallProjects,
+];
+
 export default Projects;
 
 const Section = styled.section`
@@ -114,16 +159,29 @@ const ProjectsRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
+  margin-left: 0;
+  margin-right: 0;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column-reverse;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;
 
 const ProjectsColumn = styled.div`
   max-width: 560px;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 100%;
+  }
 `;
 const BigProjects = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  @media ${QUERIES.sm.andDown} {
+    flex-direction: column;
+  }
 `;
 const BigProject = styled.div`
   position: relative;
@@ -137,6 +195,14 @@ const BigProject = styled.div`
   flex-grow: 1;
   width: 280px;
   height: 280px;
+  @media ${QUERIES.tb.andDown} {
+    flex-grow: 0;
+    width: 50%;
+  }
+  @media ${QUERIES.sm.andDown} {
+    flex-direction: column;
+    width: 100%;
+  }
   &:hover {
     border: 1px solid var(--red);
     color: var(--red);
@@ -203,6 +269,11 @@ const SmallProject = styled.div`
   padding: 40px;
   width: 186px;
   height: 186px;
+  min-width: 0;
+  @media ${QUERIES.sm.andDown} {
+    min-width: 50%;
+    width: 50%;
+  }
   &:hover {
     path {
       fill: var(--red);
@@ -240,6 +311,10 @@ const ProjectsBlurb = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `;
 
 const ProjectsBlurbHeader = styled.h2`
@@ -248,13 +323,64 @@ const ProjectsBlurbHeader = styled.h2`
 
   color: var(--grey-200);
   max-width: 366px;
+  @media ${QUERIES.tb.andDown} {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const ProjectsBlurbSubheader = styled.h3`
   margin-top: 24px;
   font: var(--body-lg);
   line-height: 140%;
-
+  padding-bottom: 48px;
   color: var(--grey-200);
   max-width: 366px;
+  border-bottom: 1px solid var(--grey-700);
+  @media ${QUERIES.tb.andDown} {
+    width: 100%;
+    max-width: 100%;
+  }
+`;
+
+const RemixWrapper = styled.div`
+  margin-top: 26px;
+  display: flex;
+  font: var(--body-lg);
+  color: var(--red);
+  justify-content: center;
+  gap: 20px;
+  cursor: default;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: flex-start;
+    margin-bottom: 44px;
+    font: var(--body-md);
+    align-items: end;
+  }
+  &:hover {
+    span {
+      color: var(--grey-100);
+    }
+    a {
+      border-color: var(--grey-100);
+      path {
+        stroke: var(--grey-100);
+      }
+    }
+  }
+`;
+
+const RemixLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  @media ${QUERIES.tb.andDown} {
+    width: 32px;
+    height: 32px;
+  }
 `;

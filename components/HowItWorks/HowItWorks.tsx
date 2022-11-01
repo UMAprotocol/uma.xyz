@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
-import Illustration from "public/assets/illustration.svg";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+import { QUERIES } from "constants/breakpoints";
 
 const HowItWorks = () => {
   const { sectionRef, isMounted } = useHowItWorks();
@@ -60,7 +60,7 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <Illustration />
+                <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
               </IllustrationColumn>
             </AnimationRow>
           </TopWrapper>
@@ -75,7 +75,7 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <Illustration />
+                <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
               </IllustrationColumn>
             </AnimationRow>
           </AnimationWrapper>
@@ -116,27 +116,47 @@ const Header = styled.div`
   font: var(--header-lg);
   color: var(--grey-100);
   max-width: 1020px;
+  @media ${QUERIES.tb.andDown} {
+    margin: 0 16px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    font: var(--header-sm);
+  }
 `;
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin-top: 31px;
+  margin-top: 31px 0 0;
+  @media ${QUERIES.tb.andDown} {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
   margin-top: 231px;
+  @media ${QUERIES.md.andDown} {
+    margin-top: 24px;
+  }
 `;
 
 const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
+  @media ${QUERIES.tb.andDown} {
+    flex-direction: column-reverse;
+    gap: 58px;
+  }
 `;
 
 const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 100%;
+  }
 `;
 
 const AnimationHeader = styled.div`
@@ -150,6 +170,10 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
+  @media ${QUERIES.tb.andDown} {
+    font: var(--header-xs);
+    max-width: 100%;
+  }
 `;
 
 const AnimationSubBody = styled.div`
@@ -157,6 +181,10 @@ const AnimationSubBody = styled.div`
   color: var(--grey-100);
   font: var(--body-lg);
   max-width: 367px;
+  @media ${QUERIES.tb.andDown} {
+    font: var(--body-sm);
+    max-width: 100%;
+  }
 `;
 
 const IllustrationColumn = styled.div`
@@ -212,4 +240,10 @@ export const Seperator = styled.div<ISeperator>`
 
 export const RedSeperator = styled(Seperator)`
   background-color: var(--red);
+`;
+
+const IllustrationImg = styled.img`
+  @media ${QUERIES.md.andDown} {
+    margin-top: 58px;
+  }
 `;
