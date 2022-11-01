@@ -5,7 +5,11 @@ import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-
+import Twitter from "public/assets/twitter.svg";
+import Discord from "public/assets/discord.svg";
+import Github from "public/assets/github.svg";
+import Discourse from "public/assets/discourse.svg";
+import BlackCircle from "public/assets/black-circle.svg";
 interface Props {
   showMobileMenu: boolean;
   onToggle: () => void;
@@ -36,10 +40,17 @@ const MobileMenuComponent: React.FC<{
   return (
     <MobileMenuContainer show={show}>
       {links.map(({ href, label }, i) => (
-        <MobileNavLink key={i} href={href} target="_blank">
+        <MobileNavLink onClick={onClickLink} key={i} href={href} target="_blank">
           {label}
         </MobileNavLink>
       ))}
+      <SocialLinks>
+        {socialLinks.map(({ href, Icon }, i) => (
+          <SocialLink key={i} href={href} rel="noreferrer" target="_blank">
+            <Icon />
+          </SocialLink>
+        ))}
+      </SocialLinks>
     </MobileMenuContainer>
   );
 };
@@ -93,6 +104,29 @@ const links = [
 ];
 
 export default MobileHeader;
+
+const socialLinks = [
+  {
+    href: "http://discord.umaproject.org",
+    Icon: Discord,
+  },
+  {
+    href: "https://twitter.com/UMAprotocol",
+    Icon: BlackCircle,
+  },
+  {
+    href: "https://twitter.com/UMAprotocol",
+    Icon: Twitter,
+  },
+  {
+    href: "https://discourse.umaproject.org/",
+    Icon: Discourse,
+  },
+  {
+    href: "https://github.com/UMAprotocol",
+    Icon: Github,
+  },
+];
 
 const Section = styled.div`
   width: calc(100% - 32px);
@@ -198,6 +232,25 @@ const AppBlock = styled.div`
   }
   path {
     stroke: var(--grey-500);
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  flex-basis: 32%;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 64px;
+`;
+
+const SocialLink = styled.a`
+  path {
+    fill: var(--white);
   }
   &:hover {
     opacity: 0.5;
