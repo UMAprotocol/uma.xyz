@@ -18,8 +18,8 @@ interface Props {
 const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, inDarkSection }) => {
   return (
     <Section>
-      <Wrapper>
-        <MenuToggle toggled={showMobileMenu} onToggle={onToggle} />
+      <Wrapper inDarkSection={inDarkSection}>
+        <MenuToggle inDarkSection={inDarkSection} toggled={showMobileMenu} onToggle={onToggle} />
         <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
         <AppBlock>
           <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
@@ -55,9 +55,13 @@ const MobileMenuComponent: React.FC<{
   );
 };
 
-const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void }> = ({ toggled, onToggle }) => {
+const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void; inDarkSection: boolean }> = ({
+  toggled,
+  onToggle,
+  inDarkSection,
+}) => {
   return (
-    <MenuToggleButton onClick={onToggle} toggled={toggled}>
+    <MenuToggleButton inDarkSection={inDarkSection} onClick={onToggle} toggled={toggled}>
       <span></span>
       <span></span>
     </MenuToggleButton>
@@ -128,18 +132,25 @@ const socialLinks = [
   },
 ];
 
+interface IStyledProps {
+  inDarkSection: boolean;
+}
+
 const Section = styled.div`
   width: calc(100% - 32px);
   margin: 0 auto;
 `;
-const Wrapper = styled.div`
+const Wrapper = styled.div<IStyledProps>`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: ${({ inDarkSection }) => {
+    return inDarkSection ? "blur(6px)" : "none";
+  }};
 `;
 
-export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
+export const MenuToggleButton = styled.button<{ toggled?: boolean; inDarkSection: boolean }>`
   display: block;
   position: relative;
   height: 18px;
@@ -150,7 +161,8 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
     display: block;
     height: 2px;
     width: 25px;
-    background-color: ${({ toggled }) => (toggled ? "var(--white)" : "var(--white)")};
+    /* background-color: ${({ toggled }) => (toggled ? "var(--white)" : "var(--white)")}; */
+    background-color: ${({ inDarkSection }) => (inDarkSection ? "var(--white)" : "var(--grey-100)")};
     transition: ${({ toggled }) =>
       toggled
         ? "background .2s, top .2s, opacity .2s, transform .2s .25s"
@@ -189,8 +201,6 @@ const MobileNavLink = styled.a<{ active?: boolean }>`
   position: relative;
   display: inline-flex;
   align-items: center;
-  font-weight: 600;
-  font-size: ${16 / 16}rem;
   line-height: 22px;
   padding: 25px 0 4px;
   font: var(--body-sm);

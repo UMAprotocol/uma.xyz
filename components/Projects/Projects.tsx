@@ -9,49 +9,67 @@ import CozyLogo from "public/assets/cozy.svg";
 import JarvisLogo from "public/assets/jarvis.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
-import { QUERIES } from "constants/breakpoints";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
+import { useWindowSize } from "hooks";
 
 const Projects = () => {
+  const { width } = useProjects();
   return (
     <Section>
       <Wrapper>
         <ProjectsRow>
           <ProjectsColumn>
-            <BigProjects>
-              <BigProject>
-                <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
-                  <UpRightArrowWhite />
-                </LinkButton>
-                <div>
-                  <AcrossLogo />
-                </div>
-                <BigProjectText>Across.to</BigProjectText>
-              </BigProject>
-              <BigProject>
-                <LinkButton href="https://outcome.finance" target="_blank" rel="noreferrer">
-                  <UpRightArrowWhite />
-                </LinkButton>
-                <div>
-                  <OutcomeLogo />
-                </div>
-                <BigProjectText>Outcome.finance</BigProjectText>
-              </BigProject>
-            </BigProjects>
+            {width > BREAKPOINTS.sm ? (
+              <BigProjects>
+                <BigProject>
+                  <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
+                    <UpRightArrowWhite />
+                  </LinkButton>
+                  <div>
+                    <AcrossLogo />
+                  </div>
+                  <BigProjectText>Across.to</BigProjectText>
+                </BigProject>
+                <BigProject>
+                  <LinkButton href="https://outcome.finance" target="_blank" rel="noreferrer">
+                    <UpRightArrowWhite />
+                  </LinkButton>
+                  <div>
+                    <OutcomeLogo />
+                  </div>
+                  <BigProjectText>Outcome.finance</BigProjectText>
+                </BigProject>
+              </BigProjects>
+            ) : null}
             <SmallProjects>
-              {smallProjects.map(({ name, link, Logo }, index) => {
-                return (
-                  <SmallProject key={index}>
-                    <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                      <UpRightArrowWhite />
-                    </SmallLinkButton>
-                    <div>
-                      <Logo />
-                    </div>
-                    <SmallProjectText>{name}</SmallProjectText>
-                  </SmallProject>
-                );
-              })}
+              {width > BREAKPOINTS.sm
+                ? smallProjects.map(({ name, link, Logo }, index) => {
+                    return (
+                      <SmallProject key={index}>
+                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                          <UpRightArrowWhite />
+                        </SmallLinkButton>
+                        <div>
+                          <Logo />
+                        </div>
+                        <SmallProjectText>{name}</SmallProjectText>
+                      </SmallProject>
+                    );
+                  })
+                : mobileSmallProjects.map(({ name, link, Logo }, index) => {
+                    return (
+                      <SmallProject key={index}>
+                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                          <UpRightArrowWhite />
+                        </SmallLinkButton>
+                        <div>
+                          <Logo />
+                        </div>
+                        <SmallProjectText>{name}</SmallProjectText>
+                      </SmallProject>
+                    );
+                  })}
             </SmallProjects>
           </ProjectsColumn>
           <ProjectsBlurb>
@@ -72,6 +90,11 @@ const Projects = () => {
     </Section>
   );
 };
+
+function useProjects() {
+  const { width } = useWindowSize();
+  return { width };
+}
 
 const smallProjects = [
   {
@@ -104,6 +127,20 @@ const smallProjects = [
     Logo: SherlockLogo,
     link: "https://www.sherlock.xyz",
   },
+];
+
+const mobileSmallProjects = [
+  {
+    name: "Across",
+    Logo: AcrossLogo,
+    link: "https://across.to",
+  },
+  {
+    name: "Outcome",
+    Logo: OutcomeLogo,
+    link: "https://outcome.finance",
+  },
+  ...smallProjects,
 ];
 
 export default Projects;
@@ -232,6 +269,7 @@ const SmallProject = styled.div`
   padding: 40px;
   width: 186px;
   height: 186px;
+  min-width: 0;
   @media ${QUERIES.sm.andDown} {
     min-width: 50%;
     width: 50%;
