@@ -4,6 +4,7 @@ import Link from "next/link";
 import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 
 interface Props {
   showMobileMenu: boolean;
@@ -12,7 +13,7 @@ interface Props {
 }
 const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, inDarkSection }) => {
   return (
-    <div>
+    <Section>
       <Wrapper>
         <MenuToggle toggled={showMobileMenu} onToggle={onToggle} />
         <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
@@ -24,7 +25,7 @@ const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, inDarkSection
         </AppBlock>
       </Wrapper>
       <MobileMenuComponent show={showMobileMenu} onClickLink={onToggle} />
-    </div>
+    </Section>
   );
 };
 
@@ -34,14 +35,11 @@ const MobileMenuComponent: React.FC<{
 }> = ({ show, onClickLink }) => {
   return (
     <MobileMenuContainer show={show}>
-      {MOBILE_HEADER_LINKS.map((link) => link.component({ path: "#", onClick: onClickLink }))}
-      <MobileCommunityLinks>
-        {COMMUNITY_LINKS.map((link, idx) => (
-          <MobileCommunityLink key={idx} href={link.href} target="_blank">
-            <img src={link.iconSrc} alt={link.alt} width={25} height={25} />
-          </MobileCommunityLink>
-        ))}
-      </MobileCommunityLinks>
+      {links.map(({ href, label }, i) => (
+        <MobileNavLink key={i} href={href} target="_blank">
+          {label}
+        </MobileNavLink>
+      ))}
     </MobileMenuContainer>
   );
 };
@@ -55,45 +53,56 @@ const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void }> = ({ togg
   );
 };
 
-interface IHeaderLink {
-  key: string;
-  component: (args: { path: string; onClick?: () => void }) => JSX.Element;
-}
-
-const MOBILE_HEADER_LINKS: IHeaderLink[] = [
+const links = [
   {
-    key: "Projects",
-    component: () => <MobileNavLink href="https://projects.umaproject.org/">Projects</MobileNavLink>,
+    label: "How it works",
+    href: "#",
   },
   {
-    key: "Products",
-    component: ({ path, onClick }) => (
-      <MobileNavLink href="/products" active={path === "/products"} onClick={onClick}>
-        Products
-      </MobileNavLink>
+    label: "For Voters",
+    href: "#",
+  },
+  {
+    label: "For Builders",
+    href: "#",
+  },
+  {
+    label: (
+      <>
+        Oracle <SmUpRightArrow style={{ marginLeft: "8px" }} />
+      </>
     ),
+    href: "#",
   },
   {
-    key: "Docs",
-    component: () => (
-      <MobileNavLink href="https://docs.umaproject.org/" target="_blank">
-        Docs
-      </MobileNavLink>
+    label: (
+      <>
+        Docs <SmUpRightArrow style={{ marginLeft: "8px" }} />
+      </>
     ),
+    href: "#",
   },
   {
-    key: "Vote",
-    component: () => <MobileNavLink href="https://vote.umaproject.org/">Vote</MobileNavLink>,
+    label: (
+      <>
+        Projects <SmUpRightArrow style={{ marginLeft: "8px" }} />
+      </>
+    ),
+    href: "#",
   },
 ];
 
 export default MobileHeader;
 
-const Wrapper = styled.div`
+const Section = styled.div`
   width: calc(100% - 32px);
   margin: 0 auto;
+`;
+const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
@@ -128,53 +137,46 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean }>`
 export const MobileMenuContainer = styled.div<{ show: boolean }>`
   width: 100%;
   position: absolute;
-  top: 12ppx;
+  top: 50px;
   left: 0;
-  padding: 0 20px;
-  background-color: var(--);
+  padding: 120px 20px;
+  background-color: var(--grey-200);
   transform: ${({ show }) => (show ? "translateY(0)" : "translateY(-20px)")};
   opacity: ${({ show }) => (show ? 1 : 0)};
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   z-index: 5;
   pointer-events: ${({ show }) => (show ? "all" : "none")};
-
-  ::after {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    content: "";
-    height: 99999px;
-    background: #000;
-    opacity: 0.5;
-    pointer-events: none;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MobileNavLink = styled.a<{ active?: boolean }>`
   position: relative;
-  display: block;
+  display: inline-flex;
+  align-items: center;
   font-weight: 600;
   font-size: ${16 / 16}rem;
   line-height: 22px;
   padding: 25px 0 4px;
-  border-bottom: 1px solid;
-  border-color: ${({ active }) => (active ? "var(--primary)" : "var(--gray-500)")};
-
+  font: var(--body-sm);
+  color: var(--white);
+  text-decoration: none;
+  &:visited {
+    color: var(--white);
+  }
+  &:hover {
+    opacity: 0.75;
+  }
+  svg {
+    path {
+      stroke: var(--white);
+    }
+  }
   @media ${QUERIES.sm.andUp} {
     font-size: ${18 / 16}rem;
     line-height: 24px;
   }
-`;
-
-const MobileCommunityLinks = styled.div`
-  display: flex;
-  padding: 30px 0 25px;
-`;
-
-const MobileCommunityLink = styled.a`
-  margin-right: 25px;
 `;
 
 const AppBlock = styled.div`
@@ -184,53 +186,20 @@ const AppBlock = styled.div`
     align-items: baseline;
     text-decoration: none;
     font: var(--body-sm);
-    color: var(--white)};
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 4px;
-    svg {
-      margin-left: 8px;
-    }
-    path {
-      stroke: var(--grey-500);
-    }
-    &:hover {
-      opacity: 0.5;
-    }
+    color: var(--white);
+  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  svg {
+    margin-left: 8px;
+  }
+  path {
+    stroke: var(--grey-500);
+  }
+  &:hover {
+    opacity: 0.5;
   }
 `;
-
-const COMMUNITY_LINKS = [
-  {
-    name: "Medium",
-    href: "https://medium.com/uma-project",
-    iconSrc: "/images/social//medium.svg",
-    alt: "medium",
-  },
-  {
-    name: "Github",
-    href: "https://github.com/umaprotocol",
-    iconSrc: "/images/social//github.svg",
-    alt: "github",
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com/umaprotocol",
-    iconSrc: "/images/social//twitter.svg",
-    alt: "twitter",
-  },
-  {
-    name: "Discord",
-    href: "https://discord.com/invite/jsb9XQJ",
-    iconSrc: "/images/social//discord.svg",
-    alt: "discord",
-  },
-  {
-    name: "Discourse",
-    href: "https://discourse.umaproject.org/",
-    iconSrc: "/images/social//discourse.svg",
-    alt: "discourse",
-  },
-];

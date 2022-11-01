@@ -5,7 +5,7 @@ import { useScrollPosition } from "hooks";
 import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
 import { useIsMounted } from "hooks";
-import { BREAKPOINTS } from "constants/breakpoints";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
@@ -25,18 +25,15 @@ const Header: React.FC<Props> = ({ activeLink }) => {
         {width > BREAKPOINTS.tb ? (
           <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} inDarkSection={inDarkSection} />
         ) : (
-          <div />
+          <MobileHeader
+            showMobileMenu={showMobileMenu}
+            onToggle={() => {
+              setShowMobileMenu((pv) => !pv);
+            }}
+            inDarkSection={inDarkSection}
+          />
         )}
       </Headroom>
-      {width <= BREAKPOINTS.tb ? (
-        <MobileHeader
-          showMobileMenu={showMobileMenu}
-          onToggle={() => {
-            setShowMobileMenu((pv) => !pv);
-          }}
-          inDarkSection={inDarkSection}
-        />
-      ) : null}
     </div>
   );
 };
@@ -74,11 +71,19 @@ interface IStyledProps {
 }
 
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
+  @media ${QUERIES.tb.andDown} {
+    background: ${({ inDarkSection }) => {
+      return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
+    }};
+  }
   > div {
     margin: 0 15px;
-
     background: ${({ inDarkSection }) => {
       return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
     }};
   }
 `;
+
+interface IStyledProps {
+  inDarkSection: boolean;
+}

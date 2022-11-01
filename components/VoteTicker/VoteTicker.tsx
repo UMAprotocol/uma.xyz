@@ -168,11 +168,7 @@ const Wrapper = styled.div`
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
   border-radius: 8px;
-  width: calc(100% - 15px);
-  @media ${QUERIES.tb.andDown} {
-    margin: 0 24px;
-    width: calc(100% - 24px);
-  }
+  width: calc(100% - 24px);
 `;
 
 const VoteBlock = styled.div`

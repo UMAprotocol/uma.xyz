@@ -21,6 +21,7 @@ export const grey600 = "hsla(0, 0%, 91%,1)"; // #E9E9E9
 export const grey700 = "hsla(0, 0%, 94%,1)"; // #F0F0F0
 export const grey800 = "hsla(0, 0%, 99%,1)"; // #FDFDFD
 
+export const black = "hsla(0, 0%, 12%, 1)";
 // Helper function for adding opacity.
 export function addOpacityToHsl(hsl: string, opacity: number) {
   const betweenParens = hsl.match(/\(([^)]+)\)/)?.[1];

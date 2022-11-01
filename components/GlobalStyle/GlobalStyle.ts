@@ -15,6 +15,7 @@ import {
   white,
   whiteOpacity10,
   white200,
+  black,
 } from "constants/colors";
 import { headerLg, headerMd, headerSm, headerXs, subHeader, bodyLg, bodyMd, bodySm, bodyXs } from "constants/fonts";
 import { maxSectionWidth } from "constants/breakpoints";
@@ -187,6 +188,7 @@ a:not([class]) {
 
   html {
     /* Colors */
+    --black: ${black};
     --white: ${white};
     --white-opacity-10: ${whiteOpacity10};
     --white-200: ${white200};
