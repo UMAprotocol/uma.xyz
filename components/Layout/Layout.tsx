@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-import { HeaderProvider } from "contexts";
+import { HeaderProvider, VoteParticipationProvider } from "contexts";
 /** Used to wrap pages.
  *
  * Add headers, footers, and other common elements here.
@@ -9,7 +9,9 @@ import { HeaderProvider } from "contexts";
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <Main>
-      <HeaderProvider>{children}</HeaderProvider>
+      <VoteParticipationProvider>
+        <HeaderProvider>{children}</HeaderProvider>
+      </VoteParticipationProvider>
     </Main>
   );
 }

@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { useIntersectionObserver } from "hooks";
 
 export function Home() {
-  const headerRef = useRef<HTMLDivElement | null>(null);
+  const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
   const howItWorksRef = useRef<HTMLDivElement | null>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
     threshold: 0.49,
@@ -25,7 +25,7 @@ export function Home() {
       <Wrapper>
         <Header activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
         <Hero />
-        <div ref={headerRef}>
+        <div ref={headerThemeChangeRef}>
           <div ref={howItWorksRef}>
             <HowItWorks />
           </div>

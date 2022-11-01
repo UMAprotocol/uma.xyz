@@ -5,13 +5,13 @@ type RefType = MutableRefObject<HTMLDivElement | null>;
 type RefKeys = "stake" | "earn" | "vote";
 
 export interface HeaderContextState {
-  lightRefs: { [key: string]: RefType };
+  elementRefs: { [key: string]: RefType };
   updateRef: (ref: RefType, key: RefKeys) => void;
   boundingHeight: number;
 }
 
 export const VoteParticipationContext = createContext<HeaderContextState>({
-  lightRefs: {
+  elementRefs: {
     heroSection: createRef(),
     header: createRef(),
   },
@@ -19,7 +19,7 @@ export const VoteParticipationContext = createContext<HeaderContextState>({
   updateRef: () => null,
 });
 
-export const HeaderProvider = ({ children }: { children: ReactNode }) => {
+export const VoteParticipationProvider = ({ children }: { children: ReactNode }) => {
   const [refs, setRefs] = useState<{ [key in RefKeys]: RefType }>({
     stake: createRef(),
     earn: createRef(),
@@ -52,7 +52,7 @@ export const HeaderProvider = ({ children }: { children: ReactNode }) => {
   return (
     <VoteParticipationContext.Provider
       value={{
-        lightRefs: refs,
+        elementRefs: refs,
         updateRef,
         boundingHeight,
       }}

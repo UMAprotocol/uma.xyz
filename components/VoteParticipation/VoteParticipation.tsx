@@ -1,12 +1,15 @@
+import { useState, useEffect, useContext, useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
+import { useWindowSize, useScrollPosition, useIsMounted, useIntersectionObserver } from "hooks";
+import { VoteParticipationContext } from "contexts";
 
 const VoteParticipation = () => {
-  const { width } = useVoteParticipation();
+  const { width, earnRef, voteRef, stakeRef, isIntersectingEarn, isIntersectingStake, isIntersectingVote } =
+    useVoteParticipation();
   return (
     <Section>
       <Wrapper>
@@ -19,25 +22,29 @@ const VoteParticipation = () => {
         </HeaderWrapper>
 
         <ImageBlockRow>
-          <ImageBlockWrapper>
-            <ImageBlockWhite>
+          <ImageBlockWrapper ref={stakeRef} width={width} isIntersecting={isIntersectingStake}>
+            <ImageBlock>
               <img src="/assets/stake-block.svg" alt="stake-block" />
-              <ImageTitleRed>Stake</ImageTitleRed>
-              <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
-            </ImageBlockWhite>
+              <ImageTitle>Stake</ImageTitle>
+              <ImageText width={width} isIntersecting={isIntersectingStake}>
+                Stake your $UMA to help secure UMA’s Optimistic Oracle.{" "}
+              </ImageText>
+            </ImageBlock>
           </ImageBlockWrapper>
-          <ImageBlockWrapper>
+          <ImageBlockWrapper ref={voteRef} width={width} isIntersecting={isIntersectingVote}>
             <ImageBlock>
               <img src="/assets/vote-block.svg" alt="vote-block" />
               <ImageTitle>Vote</ImageTitle>
-              <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
+              <ImageText width={width} isIntersecting={isIntersectingStake}>
+                Token holders who vote correctly and consistently earn higher APYs.{" "}
+              </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
-          <ImageBlockWrapper>
+          <ImageBlockWrapper ref={earnRef} width={width} isIntersecting={isIntersectingEarn}>
             <ImageBlock>
               <img src="/assets/earn-block.svg" alt="earn-block" />
               <ImageTitle>Earn</ImageTitle>
-              <ImageText>
+              <ImageText width={width} isIntersecting={isIntersectingStake}>
                 Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
                 voters.{" "}
               </ImageText>
@@ -60,8 +67,41 @@ const VoteParticipation = () => {
 };
 
 function useVoteParticipation() {
+  const { boundingHeight, updateRef, elementRefs } = useContext(VoteParticipationContext);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const isMounted = useIsMounted();
+  useScrollPosition(({ currPos }) => {
+    setScrollPosition(Math.abs(currPos.y));
+  }, []);
+  const stakeRef = useRef<HTMLDivElement | null>(null);
+  const voteRef = useRef<HTMLDivElement | null>(null);
+  const earnRef = useRef<HTMLDivElement | null>(null);
+
+  const ioStake = useIntersectionObserver(stakeRef, {
+    threshold: 1,
+  });
+  const ioVote = useIntersectionObserver(voteRef, {
+    threshold: 1,
+  });
+  const ioEarn = useIntersectionObserver(earnRef, {
+    threshold: 1,
+  });
+
+  const isIntersectingStake = !!ioStake?.isIntersecting;
+  const isIntersectingVote = !!ioVote?.isIntersecting;
+  const isIntersectingEarn = !!ioEarn?.isIntersecting;
   const { width } = useWindowSize();
-  return { width };
+  return {
+    width,
+    boundingHeight,
+    scrollPosition,
+    earnRef,
+    voteRef,
+    stakeRef,
+    isIntersectingStake,
+    isIntersectingVote,
+    isIntersectingEarn,
+  };
 }
 
 const Section = styled.section`
@@ -123,10 +163,26 @@ const ImageBlockRow = styled.div`
   }
 `;
 
-const ImageBlockWrapper = styled.div`
+interface ScrollProps {
+  width: number;
+  isIntersecting: boolean;
+}
+
+const ImageBlockWrapper = styled.div<ScrollProps>`
   flex-basis: 33%;
-  background: var(--grey-800);
+  background: ${({ width, isIntersecting }) => {
+    if (width < BREAKPOINTS.tb && isIntersecting) return "var(--white)";
+    return "var(--grey-800)";
+  }};
   border: 1px solid transparent;
+  border-top-color: ${({ width, isIntersecting }) => {
+    if (width < BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    return "transparent";
+  }};
+  border-bottom-color: ${({ width, isIntersecting }) => {
+    if (width < BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    return "transparent";
+  }};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,11 +194,6 @@ const ImageBlockWrapper = styled.div`
 
 const ImageBlock = styled.div`
   padding: 40px;
-`;
-
-const ImageBlockWhite = styled(ImageBlock)`
-  background-color: var(--white);
-  border: 1px solid var(--grey-600);
   @media ${QUERIES.md.andDown} {
     border-right: 0;
     border-left: 0;
@@ -160,11 +211,7 @@ const ImageTitle = styled.div`
   }
 `;
 
-const ImageTitleRed = styled(ImageTitle)`
-  color: var(--red);
-`;
-
-const ImageText = styled.div`
+const ImageText = styled.div<ScrollProps>`
   font: var(--body-lg);
   color: var(--grey-200);
   margin-top: 16px;
