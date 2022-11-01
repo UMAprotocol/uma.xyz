@@ -13,14 +13,14 @@ import BlackCircle from "public/assets/black-circle.svg";
 interface Props {
   showMobileMenu: boolean;
   onToggle: () => void;
-  inDarkSection: boolean;
+  isLightTheme: boolean;
 }
-const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, inDarkSection }) => {
+const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, isLightTheme }) => {
   return (
     <Section>
-      <Wrapper inDarkSection={inDarkSection}>
-        <MenuToggle inDarkSection={inDarkSection} toggled={showMobileMenu} onToggle={onToggle} />
-        <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
+      <Wrapper isLightTheme={isLightTheme}>
+        <MenuToggle isLightTheme={isLightTheme} toggled={showMobileMenu} onToggle={onToggle} />
+        <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
         <AppBlock>
           <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
             <span>App</span>
@@ -55,13 +55,13 @@ const MobileMenuComponent: React.FC<{
   );
 };
 
-const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void; inDarkSection: boolean }> = ({
+const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void; isLightTheme: boolean }> = ({
   toggled,
   onToggle,
-  inDarkSection,
+  isLightTheme,
 }) => {
   return (
-    <MenuToggleButton inDarkSection={inDarkSection} onClick={onToggle} toggled={toggled}>
+    <MenuToggleButton isLightTheme={isLightTheme} onClick={onToggle} toggled={toggled}>
       <span></span>
       <span></span>
     </MenuToggleButton>
@@ -133,7 +133,7 @@ const socialLinks = [
 ];
 
 interface IStyledProps {
-  inDarkSection: boolean;
+  isLightTheme: boolean;
 }
 
 const Section = styled.div`
@@ -145,12 +145,12 @@ const Wrapper = styled.div<IStyledProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: ${({ inDarkSection }) => {
-    return inDarkSection ? "blur(6px)" : "none";
+  backdrop-filter: ${({ isLightTheme }) => {
+    return isLightTheme ? "blur(6px)" : "none";
   }};
 `;
 
-export const MenuToggleButton = styled.button<{ toggled?: boolean; inDarkSection: boolean }>`
+export const MenuToggleButton = styled.button<{ toggled?: boolean; isLightTheme: boolean }>`
   display: block;
   position: relative;
   height: 18px;
@@ -161,8 +161,8 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean; inDarkSection
     display: block;
     height: 2px;
     width: 25px;
-    background-color: ${({ inDarkSection }) => {
-      return inDarkSection ? "var(--grey-100)" : "var(--white)";
+    background-color: ${({ isLightTheme }) => {
+      return isLightTheme ? "var(--grey-100)" : "var(--white)";
     }};
     transition: ${({ toggled }) =>
       toggled

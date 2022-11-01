@@ -17,20 +17,20 @@ interface Props {
 const Header: React.FC<Props> = ({ activeLink }) => {
   const { scrollPosition, boundingHeight, isMounted, headerRef, width, showMobileMenu, setShowMobileMenu } =
     useHeader();
-  const inDarkSection = scrollPosition >= boundingHeight;
+  const isLightTheme = scrollPosition >= boundingHeight;
   return (
     <div ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="Commit" />
-      <Headroom inDarkSection={inDarkSection} style={{ paddingTop: "24px" }}>
+      <Headroom isLightTheme={isLightTheme} style={{ paddingTop: "24px" }}>
         {width > BREAKPOINTS.tb ? (
-          <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} inDarkSection={inDarkSection} />
+          <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
         ) : (
           <MobileHeader
             showMobileMenu={showMobileMenu}
             onToggle={() => {
               setShowMobileMenu((pv) => !pv);
             }}
-            inDarkSection={inDarkSection}
+            isLightTheme={isLightTheme}
           />
         )}
       </Headroom>
@@ -67,23 +67,23 @@ function useHeader() {
 export default Header;
 
 interface IStyledProps {
-  inDarkSection: boolean;
+  isLightTheme: boolean;
 }
 
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
   @media ${QUERIES.tb.andDown} {
-    background: ${({ inDarkSection }) => {
-      return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
+    background: ${({ isLightTheme }) => {
+      return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
     }};
   }
   > div {
     margin: 0 15px;
-    background: ${({ inDarkSection }) => {
-      return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
+    background: ${({ isLightTheme }) => {
+      return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
     }};
   }
 `;
 
 interface IStyledProps {
-  inDarkSection: boolean;
+  isLightTheme: boolean;
 }
