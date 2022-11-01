@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useContext, useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
@@ -6,10 +6,11 @@ import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useScrollPosition, useIsMounted, useIntersectionObserver } from "hooks";
 import { VoteParticipationContext } from "contexts";
-
+import Image from "next/image";
 const VoteParticipation = () => {
   const { width, earnRef, voteRef, stakeRef, isIntersectingEarn, isIntersectingStake, isIntersectingVote } =
     useVoteParticipation();
+
   return (
     <Section>
       <Wrapper>
@@ -24,29 +25,58 @@ const VoteParticipation = () => {
         <ImageBlockRow>
           <ImageBlockWrapper ref={stakeRef} width={width} isIntersecting={isIntersectingStake}>
             <ImageBlock>
-              <img src="/assets/stake-block.svg" alt="stake-block" />
-              <ImageTitle>Stake</ImageTitle>
-              <ImageText width={width} isIntersecting={isIntersectingStake}>
-                Stake your $UMA to help secure UMA’s Optimistic Oracle.{" "}
-              </ImageText>
+              <ImageWrapper width={width} isIntersecting={isIntersectingStake}>
+                <Image
+                  width="100%"
+                  height="100%"
+                  layout="responsive"
+                  objectFit="contain"
+                  src="/assets/stake-block-black.svg"
+                  alt="stake-block"
+                />
+              </ImageWrapper>
+              <ImageTitle width={width} isIntersecting={isIntersectingStake}>
+                Stake
+              </ImageTitle>
+              <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
           <ImageBlockWrapper ref={voteRef} width={width} isIntersecting={isIntersectingVote}>
             <ImageBlock>
-              <img src="/assets/vote-block.svg" alt="vote-block" />
-              <ImageTitle>Vote</ImageTitle>
-              <ImageText width={width} isIntersecting={isIntersectingStake}>
-                Token holders who vote correctly and consistently earn higher APYs.{" "}
-              </ImageText>
+              <ImageWrapper width={width} isIntersecting={isIntersectingVote}>
+                <Image
+                  width="100%"
+                  height="100%"
+                  layout="responsive"
+                  objectFit="contain"
+                  src="/assets/vote-block.svg"
+                  alt="vote-block"
+                />
+              </ImageWrapper>
+              <ImageTitle width={width} isIntersecting={isIntersectingVote}>
+                Vote
+              </ImageTitle>
+              <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
           <ImageBlockWrapper ref={earnRef} width={width} isIntersecting={isIntersectingEarn}>
             <ImageBlock>
-              <img src="/assets/earn-block.svg" alt="earn-block" />
-              <ImageTitle>Earn</ImageTitle>
-              <ImageText width={width} isIntersecting={isIntersectingStake}>
+              <ImageWrapper width={width} isIntersecting={isIntersectingEarn}>
+                <Image
+                  width="100%"
+                  height="100%"
+                  layout="responsive"
+                  objectFit="contain"
+                  src="/assets/earn-block.svg"
+                  alt="earn-block"
+                />
+              </ImageWrapper>
+              <ImageTitle width={width} isIntersecting={isIntersectingEarn}>
+                Earn
+              </ImageTitle>
+              <ImageText>
                 Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
-                voters.{" "}
+                voters.
               </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -65,6 +95,8 @@ const VoteParticipation = () => {
     </Section>
   );
 };
+
+export default VoteParticipation;
 
 function useVoteParticipation() {
   const { boundingHeight, updateRef, elementRefs } = useContext(VoteParticipationContext);
@@ -171,22 +203,34 @@ interface ScrollProps {
 const ImageBlockWrapper = styled.div<ScrollProps>`
   flex-basis: 33%;
   background: ${({ width, isIntersecting }) => {
-    if (width < BREAKPOINTS.tb && isIntersecting) return "var(--white)";
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--white)";
     return "var(--grey-800)";
   }};
   border: 1px solid transparent;
   border-top-color: ${({ width, isIntersecting }) => {
-    if (width < BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   border-bottom-color: ${({ width, isIntersecting }) => {
-    if (width < BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  &:hover {
+    img {
+      filter: ${({ width }) => {
+        if (width > BREAKPOINTS.tb)
+          return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
+        return "none";
+      }};
+    }
+    h3 {
+      color: var(--red);
+    }
+  }
   @media ${QUERIES.md.andDown} {
     width: inherit;
   }
@@ -200,8 +244,11 @@ const ImageBlock = styled.div`
   }
 `;
 
-const ImageTitle = styled.div`
-  color: var(--grey-200);
+const ImageTitle = styled.h3<ScrollProps>`
+  color: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--red)";
+    return "var(--grey-200)";
+  }};
   font: var(--header-md);
   line-height: 115%;
   margin-top: 40px;
@@ -211,7 +258,7 @@ const ImageTitle = styled.div`
   }
 `;
 
-const ImageText = styled.div<ScrollProps>`
+const ImageText = styled.div`
   font: var(--body-lg);
   color: var(--grey-200);
   margin-top: 16px;
@@ -267,4 +314,15 @@ const VoterAppLink = styled.a`
   }
 `;
 
-export default VoteParticipation;
+const ImageWrapper = styled.div<ScrollProps>`
+  max-width: 154px;
+  max-height: 160px;
+  img {
+    filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
+    filter: ${({ width, isIntersecting }) => {
+      if (width <= BREAKPOINTS.tb && isIntersecting)
+        return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
+      return "none";
+    }};
+  }
+`;
