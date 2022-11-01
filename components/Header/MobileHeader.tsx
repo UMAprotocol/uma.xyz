@@ -161,8 +161,9 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean; inDarkSection
     display: block;
     height: 2px;
     width: 25px;
-    /* background-color: ${({ toggled }) => (toggled ? "var(--white)" : "var(--white)")}; */
-    background-color: ${({ inDarkSection }) => (inDarkSection ? "var(--white)" : "var(--grey-100)")};
+    background-color: ${({ inDarkSection }) => {
+      return inDarkSection ? "var(--grey-100)" : "var(--white)";
+    }};
     transition: ${({ toggled }) =>
       toggled
         ? "background .2s, top .2s, opacity .2s, transform .2s .25s"
@@ -201,7 +202,6 @@ const MobileNavLink = styled.a<{ active?: boolean }>`
   position: relative;
   display: inline-flex;
   align-items: center;
-  line-height: 22px;
   padding: 25px 0 4px;
   font: var(--body-sm);
   color: var(--white);

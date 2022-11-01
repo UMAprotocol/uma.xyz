@@ -39,7 +39,7 @@ const Header: React.FC<Props> = ({ activeLink }) => {
 };
 
 function useHeader() {
-  const { boundingHeight, updateRef } = useContext(HeaderContext);
+  const { boundingHeight, updateRef, lightRefs } = useContext(HeaderContext);
   const [scrollPosition, setScrollPosition] = useState(0);
   useScrollPosition(({ currPos }) => {
     setScrollPosition(Math.abs(currPos.y));
@@ -47,7 +47,7 @@ function useHeader() {
   const isMounted = useIsMounted();
   const headerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (isMounted()) {
+    if (isMounted() && !lightRefs.header.current) {
       updateRef(headerRef, "header");
     }
   }, [isMounted, updateRef]);
