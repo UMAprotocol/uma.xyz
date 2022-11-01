@@ -33,14 +33,14 @@ const Hero = () => {
 export default Hero;
 
 function useHero() {
-  const { updateRef } = useContext(HeaderContext);
+  const { updateRef, lightRefs } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (isMounted()) {
+    if (isMounted() && !lightRefs.heroSection.current) {
       updateRef(sectionRef, "heroSection");
     }
-  }, [isMounted, updateRef]);
+  }, [isMounted, updateRef, lightRefs]);
   const { width } = useWindowSize();
   return {
     updateRef,
