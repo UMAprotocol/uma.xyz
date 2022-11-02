@@ -50,7 +50,7 @@ function useHeader() {
     if (isMounted() && !lightRefs.header.current) {
       updateRef(headerRef, "header");
     }
-  }, [isMounted, updateRef]);
+  }, [isMounted, updateRef, lightRefs.header]);
   const { width } = useWindowSize();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   return {
