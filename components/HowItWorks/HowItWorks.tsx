@@ -203,6 +203,9 @@ const Wrapper = styled(BaseWrapper)`
 const Title = styled(BaseTitle)`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
+  @media ${QUERIES.lg.andDown} {
+    margin: 0 16px;
+  }
 `;
 
 const Header = styled.div`
@@ -210,8 +213,9 @@ const Header = styled.div`
   font: var(--header-lg);
   color: var(--grey-100);
   max-width: 1020px;
-  @media ${QUERIES.tb.andDown} {
-    margin: 0 16px;
+  @media ${QUERIES.lg.andDown} {
+    margin-left: 16px;
+    margin-right: 16px;
   }
   @media ${QUERIES.tb.andDown} {
     font: var(--header-sm);
@@ -220,8 +224,8 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin-top: 31px 0 0;
-  @media ${QUERIES.tb.andDown} {
+  margin-top: 31px 16px 0;
+  @media ${QUERIES.lg.andDown} {
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -262,6 +266,9 @@ const AnimationHeader = styled.div`
   color: var(--red);
   font: var(--body-sm);
   text-transform: uppercase;
+  @media ${QUERIES.lg.andDown} {
+    margin: 0 16px;
+  }
 `;
 
 const AnimationBody = styled.div`
@@ -269,8 +276,11 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
+
   @media ${QUERIES.lg.andDown} {
     max-width: 640px;
+    margin-left: 16px;
+    margin-right: 16px;
   }
   @media ${QUERIES.tb.andDown} {
     font: var(--header-xs);
@@ -285,6 +295,8 @@ const AnimationSubBody = styled.div`
   max-width: 367px;
   @media ${QUERIES.lg.andDown} {
     max-width: 640px;
+    margin-left: 16px;
+    margin-right: 16px;
   }
   @media ${QUERIES.tb.andDown} {
     font: var(--body-sm);
@@ -370,5 +382,5 @@ const TrackAndIllustrationRow = styled.div`
 `;
 
 const IllustrationWrapper = styled.div`
-  flex-basis: 66%;
+  flex-basis: 70%;
 `;
