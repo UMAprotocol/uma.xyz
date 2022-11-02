@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
@@ -6,12 +6,44 @@ import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
-const VoteParticipation = () => {
-  const { width, earnRef, voteRef, stakeRef, isIntersectingEarn, isIntersectingStake, isIntersectingVote } =
-    useVoteParticipation();
+import { useScrollPosition } from "hooks";
+
+interface Props {
+  heightFromTop: number;
+}
+
+const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
+  const {
+    width,
+    earnRef,
+    voteRef,
+    stakeRef,
+    sectionRef,
+    isIntersectingEarn,
+    isIntersectingStake,
+    isIntersectingVote,
+    cp,
+  } = useVoteParticipation();
 
   return (
-    <Section>
+    <Section ref={sectionRef}>
+      {width <= BREAKPOINTS.tb && (
+        <MobileVoterRow
+          cp={cp}
+          diff={cp - heightFromTop}
+          heightFromTop={heightFromTop}
+          compHeight={sectionRef.current?.getBoundingClientRect().height || 0}
+        >
+          <MobileVoterAppLinkBlock>
+            <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
+              Link to voter app
+              <div>
+                <UpRightArrow />
+              </div>
+            </VoterAppLink>
+          </MobileVoterAppLinkBlock>
+        </MobileVoterRow>
+      )}
       <Wrapper>
         <Title>
           Participate as <span>Voter</span>
@@ -80,16 +112,18 @@ const VoteParticipation = () => {
             </ImageBlock>
           </ImageBlockWrapper>
         </ImageBlockRow>
-        <VoterAppLinkRow>
-          <VoterAppLinkBlock>
-            <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
-              Link to voter app
-              <div>
-                <UpRightArrow />
-              </div>
-            </VoterAppLink>
-          </VoterAppLinkBlock>
-        </VoterAppLinkRow>
+        {width > BREAKPOINTS.tb ? (
+          <VoterAppLinkRow>
+            <VoterAppLinkBlock>
+              <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
+                Link to voter app
+                <div>
+                  <UpRightArrow />
+                </div>
+              </VoterAppLink>
+            </VoterAppLinkBlock>
+          </VoterAppLinkRow>
+        ) : null}
       </Wrapper>
     </Section>
   );
@@ -101,7 +135,7 @@ function useVoteParticipation() {
   const stakeRef = useRef<HTMLDivElement | null>(null);
   const voteRef = useRef<HTMLDivElement | null>(null);
   const earnRef = useRef<HTMLDivElement | null>(null);
-
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const ioStake = useIntersectionObserver(stakeRef, {
     threshold: 1,
   });
@@ -112,25 +146,42 @@ function useVoteParticipation() {
     threshold: 1,
   });
 
+  const ioSection = useIntersectionObserver(sectionRef, {
+    threshold: 0.1,
+  });
+
   const isIntersectingStake = !!ioStake?.isIntersecting;
   const isIntersectingVote = !!ioVote?.isIntersecting;
   const isIntersectingEarn = !!ioEarn?.isIntersecting;
+  const isIntersectingSection = !!ioSection?.isIntersecting;
   const { width } = useWindowSize();
+  const [cp, setCp] = useState(0);
+  useScrollPosition(
+    ({ currPos }) => {
+      setCp(Math.abs(currPos.y));
+    },
+    [isIntersectingSection]
+  );
   return {
     width,
     earnRef,
     voteRef,
     stakeRef,
+    sectionRef,
     isIntersectingStake,
     isIntersectingVote,
     isIntersectingEarn,
+    isIntersectingSection,
+    cp,
   };
 }
 
 const Section = styled.section`
   background: var(--grey-800);
   width: 100%;
+  position: relative;
 `;
+
 const Wrapper = styled.div`
   background-color: inherit;
   width: 100%;
@@ -316,4 +367,29 @@ const ImageWrapper = styled.div<ScrollProps>`
       return "none";
     }};
   }
+`;
+
+interface IMobileVoterRow {
+  diff: number;
+  cp: number;
+  compHeight: number;
+  heightFromTop: number;
+}
+
+const MobileVoterRow = styled(VoterAppLinkRow)<IMobileVoterRow>`
+  position: absolute;
+  width: 100%;
+  margin-left: 0;
+  top: ${({ diff, cp, compHeight, heightFromTop }) => {
+    if (cp + 100 > compHeight + heightFromTop) return compHeight - 100;
+    return Math.max(10, diff);
+  }}px;
+`;
+
+const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
 `;

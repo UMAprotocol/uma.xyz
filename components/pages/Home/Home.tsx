@@ -16,6 +16,8 @@ import { useIntersectionObserver } from "hooks";
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
   const howItWorksRef = useRef<HTMLDivElement | null>(null);
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const voteParticipationRef = useRef<HTMLDivElement | null>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
     threshold: 0.49,
   });
@@ -24,12 +26,23 @@ export function Home() {
     <Layout>
       <Wrapper>
         <Header activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
-        <Hero />
+        <div ref={heroRef}>
+          <Hero />
+        </div>
         <div ref={headerThemeChangeRef}>
           <div ref={howItWorksRef}>
             <HowItWorks />
           </div>
-          <VoteParticipation />
+          <div ref={voteParticipationRef}>
+            <VoteParticipation
+              heightFromTop={
+                heroRef.current && howItWorksRef.current
+                  ? heroRef.current.getBoundingClientRect().height +
+                    howItWorksRef.current.getBoundingClientRect().height
+                  : 0
+              }
+            />
+          </div>
           <Builder />
           <Projects />
           <SupportSection />
