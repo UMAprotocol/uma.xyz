@@ -47,10 +47,9 @@ const Builder = () => {
                   title="Prediction markets"
                   body={
                     <>
-                      Prediction markets are based on the same lorem ipsum text that has been used for years in the web
-                      design industry. <br /> <br />
-                      The text should probably take up this amount of space, i.e. not be too long or too short and map
-                      well to the code.
+                      Prediction Markets: The OO can validate natural-language statements and answer questions about
+                      real-world events. <br /> <br /> There is a dispute resolution process if something unexpected
+                      happens.
                     </>
                   }
                 />
@@ -64,10 +63,8 @@ const Builder = () => {
                   title="Insurance"
                   body={
                     <>
-                      Insurance is based on the same lorem ipsum text that has been used for years in the web design
-                      industry. <br /> <br />
-                      The text should probably take up this amount of space, i.e. not be too long or too short and map
-                      well to the code.
+                      Insurance: The OO empowers and secures risk management platforms that provide permission-less,
+                      trustworthy coverage against smart contract exploits.
                     </>
                   }
                 />
@@ -81,10 +78,8 @@ const Builder = () => {
                   title="Cross-Chain Communication"
                   body={
                     <>
-                      Cross-Chain Communication are based on the same lorem ipsum text that has been used for years in
-                      the web design industry. <br /> <br />
-                      The text should probably take up this amount of space, i.e. not be too long or too short and map
-                      well to the code.
+                      Cross-chain Communication: The OO can verify any statement, including statements about data on
+                      other networks. <br /> <br /> Chains can use the OO to “see” things on every other chain.
                     </>
                   }
                 />
@@ -92,16 +87,15 @@ const Builder = () => {
               Icon: MedalIcon,
             },
             {
-              title: "Off-chain Governance",
+              title: "Governance",
               content: (
                 <BuilderTabContent
-                  title="Off-chain Governance"
+                  title="Governance"
                   body={
                     <>
-                      Off-chain Governance is based on the same lorem ipsum text that has been used for years in the web
-                      design industry. <br /> <br />
-                      The text should probably take up this amount of space, i.e. not be too long or too short and map
-                      well to the code.
+                      Governance: DAOs have used KPI Options to motivate community members to work toward shared goals.{" "}
+                      <br /> <br /> The OO also enables optimistic governance, a new coordination pattern that uses a
+                      “pass unless disputed” flow.
                     </>
                   }
                 />
@@ -109,16 +103,15 @@ const Builder = () => {
               Icon: CreditCardsIcon,
             },
             {
-              title: "Long-tail data",
+              title: "Long-Tail data",
               content: (
                 <BuilderTabContent
-                  title="Long-tail data"
+                  title="Long-Tail data"
                   body={
                     <>
-                      Long-tail data are based on the same lorem ipsum text that has been used for years in the web
-                      design industry. <br /> <br />
-                      The text should probably take up this amount of space, i.e. not be too long or too short and map
-                      well to the code.
+                      Long-Tail Data: If a piece of information is publicly provable, then UMA’s OO can verify it and
+                      put it on-chain. <br /> <br /> The OO accepts natural language questions as an input, and does not
+                      require first building pricefeeds.
                     </>
                   }
                 />
