@@ -1,15 +1,26 @@
 import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
-import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 
 interface Props {
   heightFromTop: number;
+  currentPosition: number;
 }
-const HowItWorks: React.FC<Props> = () => {
-  const { sectionRef, isMounted, width, ref, topRedHeight, refTrackOne, refPercentCrossed } = useHowItWorks();
+const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
+  const {
+    sectionRef,
+    isMounted,
+    width,
+    ref,
+    topRedHeight,
+    refTrackOne,
+    refTrackTwo,
+    refOnePercentCrossed,
+    refTwoPercentCrossed,
+  } = useHowItWorks(currentPosition);
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
@@ -41,8 +52,8 @@ const HowItWorks: React.FC<Props> = () => {
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem>01</TrackItem>
-                      <RedSeperator height={refPercentCrossed} />
-                      <Seperator height={100 - refPercentCrossed} />
+                      <RedSeperator height={refOnePercentCrossed} />
+                      <Seperator height={100 - refOnePercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -65,10 +76,10 @@ const HowItWorks: React.FC<Props> = () => {
               <IllustrationColumn>
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
-                    <TrackWrapper>
+                    <TrackWrapper ref={refTrackTwo}>
                       <TrackItem>02</TrackItem>
-                      <RedSeperator height={50} />
-                      <Seperator height={40} />
+                      <RedSeperator height={refTwoPercentCrossed} />
+                      <Seperator height={100 - refTwoPercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -86,50 +97,72 @@ const HowItWorks: React.FC<Props> = () => {
 
 export default HowItWorks;
 
-function useHowItWorks() {
+function useHowItWorks(currentPosition: number) {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useWindowSize();
   const ref = useRef<HTMLDivElement | null>(null);
 
   const [topRedHeight, setRedTopHeight] = useState(0);
+  const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
     threshold: 0.2,
   });
 
-  // console.log("entryTrackOne", entryTrackOne);
-  const isTrackOneVisible = !!entryTrackOne?.isIntersecting;
-  const [cp, setCp] = useState(0);
-  const [offsetTopRefOne, setOffsetTopRefOne] = useState(0);
   useEffect(() => {
-    if (isMounted() && refTrackOne.current && offsetTopRefOne === 0) {
+    if (isMounted() && refTrackOne.current && offsetTrackRefOne === 0) {
       setTimeout(() => {
         if (refTrackOne.current) {
-          setOffsetTopRefOne(refTrackOne.current.getBoundingClientRect().top);
+          setOffsetTrackRefOne(refTrackOne.current.getBoundingClientRect().top);
         }
       }, 1000);
     }
   }, [refTrackOne, isMounted]);
-  useScrollPosition(
-    ({ currPos }) => {
-      setCp(Math.abs(currPos.y));
-    },
-    [isTrackOneVisible]
-  );
-  const [refPercentCrossed, setRefPercentCrossed] = useState(0);
+
+  const [refOnePercentCrossed, setRefOnePercentCrossed] = useState(0);
   useEffect(() => {
     if (refTrackOne.current && entryTrackOne) {
-      setRefPercentCrossed(
+      setRefOnePercentCrossed(
         calculatePercentCrossed(
-          offsetTopRefOne,
-          cp,
+          offsetTrackRefOne,
+          currentPosition,
           entryTrackOne.rootBounds ? entryTrackOne.rootBounds.height : 0,
           refTrackOne.current?.getBoundingClientRect().height
         )
       );
     }
-  }, [cp, offsetTopRefOne, refTrackOne, entryTrackOne]);
+  }, [currentPosition, offsetTrackRefOne, refTrackOne, entryTrackOne]);
+
+  const [refTwoPercentCrossed, setRefTwoPercentCrossed] = useState(0);
+  const [offsetTrackRefTwo, setOffsetTrackRefTwo] = useState(0);
+  const refTrackTwo = useRef<HTMLDivElement | null>(null);
+  const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
+    threshold: 0.2,
+  });
+
+  useEffect(() => {
+    if (refTrackTwo.current && entryTrackTwo) {
+      setRefTwoPercentCrossed(
+        calculatePercentCrossed(
+          offsetTrackRefTwo,
+          currentPosition,
+          entryTrackTwo.rootBounds ? entryTrackTwo.rootBounds.height : 0,
+          refTrackTwo.current?.getBoundingClientRect().height
+        )
+      );
+    }
+  }, [currentPosition, offsetTrackRefTwo, refTrackTwo, entryTrackTwo]);
+
+  useEffect(() => {
+    if (isMounted() && refTrackTwo.current && offsetTrackRefTwo === 0) {
+      setTimeout(() => {
+        if (refTrackTwo.current) {
+          setOffsetTrackRefTwo(refTrackTwo.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackTwo, isMounted]);
 
   function calculatePercentCrossed(
     distanceFromTop: number,
@@ -138,20 +171,22 @@ function useHowItWorks() {
     heightOfElement: number
   ) {
     if (scrollPosition + distance < distanceFromTop) return 0;
-    if (scrollPosition + distance >= heightOfElement + distanceFromTop) return 100;
-    const percentCrossed = ((scrollPosition + distance - distanceFromTop) / heightOfElement) * 100 - 10;
-    return percentCrossed < 0 ? 0 : percentCrossed;
+    const REDUCE_SCROLL_IN_VIEW = 20;
+    const percentCrossed =
+      ((scrollPosition + distance - distanceFromTop) / heightOfElement) * 100 - REDUCE_SCROLL_IN_VIEW;
+    return percentCrossed < 0 ? 0 : percentCrossed >= 100 ? 100 : percentCrossed;
   }
+
   return {
     sectionRef,
     isMounted: isMounted(),
     width,
     topRedHeight,
-    cp,
     ref,
     refTrackOne,
-    refPercentCrossed,
-    offsetTopRefOne,
+    refTrackTwo,
+    refOnePercentCrossed,
+    refTwoPercentCrossed,
   };
 }
 
