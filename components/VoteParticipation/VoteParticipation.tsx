@@ -1,14 +1,49 @@
+import { useState, useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
+import { useWindowSize, useIntersectionObserver } from "hooks";
+import Image from "next/image";
+import { useScrollPosition } from "hooks";
 
-const VoteParticipation = () => {
-  const { width } = useVoteParticipation();
+interface Props {
+  heightFromTop: number;
+}
+
+const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
+  const {
+    width,
+    earnRef,
+    voteRef,
+    stakeRef,
+    sectionRef,
+    isIntersectingEarn,
+    isIntersectingStake,
+    isIntersectingVote,
+    cp,
+  } = useVoteParticipation();
+
   return (
-    <Section>
+    <Section ref={sectionRef}>
+      {width <= BREAKPOINTS.tb && (
+        <MobileVoterRow
+          cp={cp}
+          diff={cp - heightFromTop}
+          heightFromTop={heightFromTop}
+          compHeight={sectionRef.current?.getBoundingClientRect().height || 0}
+        >
+          <MobileVoterAppLinkBlock>
+            <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
+              Link to voter app
+              <div>
+                <UpRightArrow />
+              </div>
+            </VoterAppLink>
+          </MobileVoterAppLinkBlock>
+        </MobileVoterRow>
+      )}
       <Wrapper>
         <Title>
           Participate as <span>Voter</span>
@@ -19,55 +54,134 @@ const VoteParticipation = () => {
         </HeaderWrapper>
 
         <ImageBlockRow>
-          <ImageBlockWrapper>
-            <ImageBlockWhite>
-              <img src="/assets/stake-block.svg" alt="stake-block" />
-              <ImageTitleRed>Stake</ImageTitleRed>
-              <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
-            </ImageBlockWhite>
-          </ImageBlockWrapper>
-          <ImageBlockWrapper>
+          <ImageBlockWrapper ref={stakeRef} width={width} isIntersecting={isIntersectingStake}>
             <ImageBlock>
-              <img src="/assets/vote-block.svg" alt="vote-block" />
-              <ImageTitle>Vote</ImageTitle>
+              <ImageWrapper width={width} isIntersecting={isIntersectingStake}>
+                <Image
+                  width="100%"
+                  height="100%"
+                  layout="responsive"
+                  objectFit="contain"
+                  src="/assets/stake-block-black.svg"
+                  alt="stake-block"
+                />
+              </ImageWrapper>
+              <ImageTitle width={width} isIntersecting={isIntersectingStake}>
+                Stake
+              </ImageTitle>
+              <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
+            </ImageBlock>
+          </ImageBlockWrapper>
+          <ImageBlockWrapper ref={voteRef} width={width} isIntersecting={isIntersectingVote}>
+            <ImageBlock>
+              <ImageWrapper width={width} isIntersecting={isIntersectingVote}>
+                <Image
+                  width="100%"
+                  height="100%"
+                  layout="responsive"
+                  objectFit="contain"
+                  src="/assets/vote-block.svg"
+                  alt="vote-block"
+                />
+              </ImageWrapper>
+              <ImageTitle width={width} isIntersecting={isIntersectingVote}>
+                Vote
+              </ImageTitle>
               <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
-          <ImageBlockWrapper>
+          <ImageBlockWrapper ref={earnRef} width={width} isIntersecting={isIntersectingEarn}>
             <ImageBlock>
-              <img src="/assets/earn-block.svg" alt="earn-block" />
-              <ImageTitle>Earn</ImageTitle>
+              <ImageWrapper width={width} isIntersecting={isIntersectingEarn}>
+                <Image
+                  width="100%"
+                  height="100%"
+                  layout="responsive"
+                  objectFit="contain"
+                  src="/assets/earn-block.svg"
+                  alt="earn-block"
+                />
+              </ImageWrapper>
+              <ImageTitle width={width} isIntersecting={isIntersectingEarn}>
+                Earn
+              </ImageTitle>
               <ImageText>
                 Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
-                voters.{" "}
+                voters.
               </ImageText>
             </ImageBlock>
           </ImageBlockWrapper>
         </ImageBlockRow>
-        <VoterAppLinkRow>
-          <VoterAppLinkBlock>
-            <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
-              Link to voter app
-              <div>
-                <UpRightArrow />
-              </div>
-            </VoterAppLink>
-          </VoterAppLinkBlock>
-        </VoterAppLinkRow>
+        {width > BREAKPOINTS.tb ? (
+          <VoterAppLinkRow>
+            <VoterAppLinkBlock>
+              <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
+                Link to voter app
+                <div>
+                  <UpRightArrow />
+                </div>
+              </VoterAppLink>
+            </VoterAppLinkBlock>
+          </VoterAppLinkRow>
+        ) : null}
       </Wrapper>
     </Section>
   );
 };
 
+export default VoteParticipation;
+
 function useVoteParticipation() {
+  const stakeRef = useRef<HTMLDivElement | null>(null);
+  const voteRef = useRef<HTMLDivElement | null>(null);
+  const earnRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const ioStake = useIntersectionObserver(stakeRef, {
+    threshold: 1,
+  });
+  const ioVote = useIntersectionObserver(voteRef, {
+    threshold: 1,
+  });
+  const ioEarn = useIntersectionObserver(earnRef, {
+    threshold: 1,
+  });
+
+  const ioSection = useIntersectionObserver(sectionRef, {
+    threshold: 0.1,
+  });
+
+  const isIntersectingStake = !!ioStake?.isIntersecting;
+  const isIntersectingVote = !!ioVote?.isIntersecting;
+  const isIntersectingEarn = !!ioEarn?.isIntersecting;
+  const isIntersectingSection = !!ioSection?.isIntersecting;
   const { width } = useWindowSize();
-  return { width };
+  const [cp, setCp] = useState(0);
+  useScrollPosition(
+    ({ currPos }) => {
+      setCp(Math.abs(currPos.y));
+    },
+    [isIntersectingSection]
+  );
+  return {
+    width,
+    earnRef,
+    voteRef,
+    stakeRef,
+    sectionRef,
+    isIntersectingStake,
+    isIntersectingVote,
+    isIntersectingEarn,
+    isIntersectingSection,
+    cp,
+  };
 }
 
 const Section = styled.section`
   background: var(--grey-800);
   width: 100%;
+  position: relative;
 `;
+
 const Wrapper = styled.div`
   background-color: inherit;
   width: 100%;
@@ -123,14 +237,42 @@ const ImageBlockRow = styled.div`
   }
 `;
 
-const ImageBlockWrapper = styled.div`
+interface ScrollProps {
+  width: number;
+  isIntersecting: boolean;
+}
+
+const ImageBlockWrapper = styled.div<ScrollProps>`
   flex-basis: 33%;
-  background: var(--grey-800);
+  background: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--white)";
+    return "var(--grey-800)";
+  }};
   border: 1px solid transparent;
+  border-top-color: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    return "transparent";
+  }};
+  border-bottom-color: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    return "transparent";
+  }};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  &:hover {
+    img {
+      filter: ${({ width }) => {
+        if (width > BREAKPOINTS.tb)
+          return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
+        return "none";
+      }};
+    }
+    h3 {
+      color: var(--red);
+    }
+  }
   @media ${QUERIES.md.andDown} {
     width: inherit;
   }
@@ -138,19 +280,17 @@ const ImageBlockWrapper = styled.div`
 
 const ImageBlock = styled.div`
   padding: 40px;
-`;
-
-const ImageBlockWhite = styled(ImageBlock)`
-  background-color: var(--white);
-  border: 1px solid var(--grey-600);
   @media ${QUERIES.md.andDown} {
     border-right: 0;
     border-left: 0;
   }
 `;
 
-const ImageTitle = styled.div`
-  color: var(--grey-200);
+const ImageTitle = styled.h3<ScrollProps>`
+  color: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--red)";
+    return "var(--grey-200)";
+  }};
   font: var(--header-md);
   line-height: 115%;
   margin-top: 40px;
@@ -158,10 +298,6 @@ const ImageTitle = styled.div`
     font: var(--header-sm);
     margin-top: 48px;
   }
-`;
-
-const ImageTitleRed = styled(ImageTitle)`
-  color: var(--red);
 `;
 
 const ImageText = styled.div`
@@ -220,4 +356,40 @@ const VoterAppLink = styled.a`
   }
 `;
 
-export default VoteParticipation;
+const ImageWrapper = styled.div<ScrollProps>`
+  max-width: 154px;
+  max-height: 160px;
+  img {
+    filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
+    filter: ${({ width, isIntersecting }) => {
+      if (width <= BREAKPOINTS.tb && isIntersecting)
+        return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
+      return "none";
+    }};
+  }
+`;
+
+interface IMobileVoterRow {
+  diff: number;
+  cp: number;
+  compHeight: number;
+  heightFromTop: number;
+}
+
+const MobileVoterRow = styled(VoterAppLinkRow)<IMobileVoterRow>`
+  position: absolute;
+  width: 100%;
+  margin-left: 0;
+  top: ${({ diff, cp, compHeight, heightFromTop }) => {
+    if (cp + 100 > compHeight + heightFromTop) return compHeight - 100;
+    return Math.max(10, diff);
+  }}px;
+`;
+
+const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+`;

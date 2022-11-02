@@ -7,24 +7,24 @@ import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 interface Props {
   activeLink: number;
   scrollPosition: number;
-  inDarkSection: boolean;
+  isLightTheme: boolean;
 }
 
-const DesktopHeader: React.FC<Props> = ({ scrollPosition, inDarkSection, activeLink }) => {
+const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLink }) => {
   return (
-    <Wrapper scrollPosition={scrollPosition} inDarkSection={inDarkSection}>
-      <Link href="/">{inDarkSection ? <BlackLogo /> : <Logo />}</Link>
+    <Wrapper scrollPosition={scrollPosition} isLightTheme={isLightTheme}>
+      <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
       <Links>
         {/* TODO: Get links */}
         {links.map(({ label, href }, i) => (
-          <StyledLink active={activeLink === i} inDarkSection={inDarkSection} key={i} href={href}>
+          <StyledLink active={activeLink === i} isLightTheme={isLightTheme} key={i} href={href}>
             <LinkWrapper>
               {activeLink === i ? <RedDot /> : <Dot />} {label}
             </LinkWrapper>
           </StyledLink>
         ))}
       </Links>
-      <LaunchButton inDarkSection={inDarkSection} onClick={() => null}>
+      <LaunchButton isLightTheme={isLightTheme} onClick={() => null}>
         Launch app
       </LaunchButton>
     </Wrapper>
@@ -78,7 +78,7 @@ const links = [
 ];
 
 interface IStyledProps {
-  inDarkSection: boolean;
+  isLightTheme: boolean;
 }
 
 interface IWrapper extends IStyledProps {
@@ -96,11 +96,11 @@ const Wrapper = styled.div<IWrapper>`
   margin: 0 auto;
   z-index: 100;
   margin-top: 24px;
-  backdrop-filter: ${({ inDarkSection }) => {
-    return inDarkSection ? "blur(6px)" : "none";
+  backdrop-filter: ${({ isLightTheme }) => {
+    return isLightTheme ? "blur(6px)" : "none";
   }};
-  background: ${({ inDarkSection }) => {
-    return inDarkSection ? "var(--grey-900)" : "var(--grey-200)";
+  background: ${({ isLightTheme }) => {
+    return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
 `;
 
@@ -138,11 +138,11 @@ const LaunchButton = styled.button<IStyledProps>`
   border-radius: 8px;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
-  color: ${({ inDarkSection }) => {
-    return inDarkSection ? "var(--white)" : "var(--grey-100)";
+  color: ${({ isLightTheme }) => {
+    return isLightTheme ? "var(--white)" : "var(--grey-100)";
   }};
-  background-color: ${({ inDarkSection }) => {
-    return inDarkSection ? "var(--grey-100)" : "var(--white)";
+  background-color: ${({ isLightTheme }) => {
+    return isLightTheme ? "var(--grey-100)" : "var(--white)";
   }};
   &:hover {
     opacity: 0.75;
