@@ -63,7 +63,7 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <TrackAndIllustration>
+                <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem>01</TrackItem>
@@ -71,8 +71,10 @@ const HowItWorks = () => {
                       <Seperator height={40} />
                     </TrackWrapper>
                   )}
-                  <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
-                </TrackAndIllustration>
+                  <IllustrationWrapper>
+                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                  </IllustrationWrapper>
+                </TrackAndIllustrationRow>
               </IllustrationColumn>
             </AnimationRow>
           </TopWrapper>
@@ -171,8 +173,10 @@ const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.lg.andDown} {
     max-width: 100%;
+  }
+  @media ${QUERIES.tb.andDown} {
   }
 `;
 
@@ -187,6 +191,9 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
+  @media ${QUERIES.lg.andDown} {
+    max-width: 640px;
+  }
   @media ${QUERIES.tb.andDown} {
     font: var(--header-xs);
     max-width: 100%;
@@ -198,6 +205,9 @@ const AnimationSubBody = styled.div`
   color: var(--grey-100);
   font: var(--body-lg);
   max-width: 367px;
+  @media ${QUERIES.lg.andDown} {
+    max-width: 640px;
+  }
   @media ${QUERIES.tb.andDown} {
     font: var(--body-sm);
     max-width: 100%;
@@ -273,10 +283,14 @@ const IllustrationImg = styled.img`
   }
 `;
 
-const TrackAndIllustration = styled.div`
+const TrackAndIllustrationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 24px;
   width: 100%;
   justify-content: space-between;
+`;
+
+const IllustrationWrapper = styled.div`
+  flex-basis: 66%;
 `;
