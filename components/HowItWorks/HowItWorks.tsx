@@ -2,10 +2,11 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
-import { QUERIES } from "constants/breakpoints";
+import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 
 const HowItWorks = () => {
-  const { sectionRef, isMounted } = useHowItWorks();
+  const { sectionRef, isMounted, width } = useHowItWorks();
 
   const ref = useRef<HTMLDivElement | null>(null);
   // const refTwo = useRef<HTMLDivElement | null>(null);
@@ -41,14 +42,16 @@ const HowItWorks = () => {
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
         <IntersectionWrapper>
-          <TrackWrapper ref={ref}>
-            <TrackItem>01</TrackItem>
-            <RedSeperator height={topRedHeight} />
-            <Seperator height={100 - topRedHeight} />
-            <TrackItem>02</TrackItem>
-            <RedSeperator height={0} />
-            <Seperator height={100} />
-          </TrackWrapper>
+          {width > BREAKPOINTS.lg && (
+            <TrackWrapper ref={ref}>
+              <TrackItem>01</TrackItem>
+              <RedSeperator height={topRedHeight} />
+              <Seperator height={100 - topRedHeight} />
+              <TrackItem>02</TrackItem>
+              <RedSeperator height={0} />
+              <Seperator height={100} />
+            </TrackWrapper>
+          )}
           <TopWrapper>
             <AnimationRow>
               <AnimationTextBlock>
@@ -60,7 +63,16 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                <TrackAndIllustration>
+                  {width <= BREAKPOINTS.lg && (
+                    <TrackWrapper>
+                      <TrackItem>01</TrackItem>
+                      <RedSeperator height={50} />
+                      <Seperator height={40} />
+                    </TrackWrapper>
+                  )}
+                  <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                </TrackAndIllustration>
               </IllustrationColumn>
             </AnimationRow>
           </TopWrapper>
@@ -90,9 +102,11 @@ export default HowItWorks;
 function useHowItWorks() {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { width } = useWindowSize();
   return {
     sectionRef,
     isMounted: isMounted(),
+    width,
   };
 }
 
@@ -144,6 +158,9 @@ const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
+  @media ${QUERIES.lg.andDown} {
+    flex-direction: column;
+  }
   @media ${QUERIES.tb.andDown} {
     flex-direction: column-reverse;
     gap: 58px;
@@ -199,7 +216,7 @@ const IntersectionWrapper = styled.div`
   position: relative;
 `;
 
-export const TrackWrapper = styled.div`
+const TrackWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 1rem;
@@ -208,9 +225,17 @@ export const TrackWrapper = styled.div`
   top: -30px;
   left: -100px;
   height: 102.5%;
+  @media ${QUERIES.lg.andDown} {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: auto;
+    height: inherit;
+    margin-top: -40px;
+  }
 `;
 
-export const TrackItem = styled.div`
+const TrackItem = styled.div`
   flex: 0 0 48px;
   z-index: 5;
   display: flex;
@@ -231,19 +256,27 @@ export const TrackItem = styled.div`
 interface ISeperator {
   height: number;
 }
-export const Seperator = styled.div<ISeperator>`
+const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
-  background-color: var(--grey-500);
+  background: linear-gradient(180deg, var(--grey-500) 0%, rgba(176, 175, 179, 0) 100%);
   height: ${({ height }) => height}%;
 `;
 
-export const RedSeperator = styled(Seperator)`
-  background-color: var(--red);
+const RedSeperator = styled(Seperator)`
+  background: var(--red);
 `;
 
 const IllustrationImg = styled.img`
   @media ${QUERIES.md.andDown} {
     margin-top: 58px;
   }
+`;
+
+const TrackAndIllustration = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  justify-content: space-between;
 `;
