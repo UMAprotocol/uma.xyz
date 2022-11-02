@@ -3,16 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compiler: { styledComponents: true },
+  images: {
+    unoptimized: true,
+  },
   eslint: {
-    dirs: [
-      "components",
-      "constants",
-      "hooks",
-      "pages",
-      "queries",
-      "stories",
-      "types",
-    ]
+    dirs: ["components", "constants", "hooks", "pages", "queries", "stories", "types"],
   },
   webpack(config) {
     config.module.rules.push({
