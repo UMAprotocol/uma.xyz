@@ -1,11 +1,10 @@
-import { useState, useContext, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize, useScrollPosition, useIsMounted, useIntersectionObserver } from "hooks";
-import { VoteParticipationContext } from "contexts";
+import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
 const VoteParticipation = () => {
   const { width, earnRef, voteRef, stakeRef, isIntersectingEarn, isIntersectingStake, isIntersectingVote } =
@@ -99,12 +98,6 @@ const VoteParticipation = () => {
 export default VoteParticipation;
 
 function useVoteParticipation() {
-  const { boundingHeight, updateRef, elementRefs } = useContext(VoteParticipationContext);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const isMounted = useIsMounted();
-  useScrollPosition(({ currPos }) => {
-    setScrollPosition(Math.abs(currPos.y));
-  }, []);
   const stakeRef = useRef<HTMLDivElement | null>(null);
   const voteRef = useRef<HTMLDivElement | null>(null);
   const earnRef = useRef<HTMLDivElement | null>(null);
@@ -125,8 +118,6 @@ function useVoteParticipation() {
   const { width } = useWindowSize();
   return {
     width,
-    boundingHeight,
-    scrollPosition,
     earnRef,
     voteRef,
     stakeRef,
