@@ -1,41 +1,15 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 
-const HowItWorks = () => {
-  const { sectionRef, isMounted, width } = useHowItWorks();
-
-  const ref = useRef<HTMLDivElement | null>(null);
-  // const refTwo = useRef<HTMLDivElement | null>(null);
-  const entryOne = useIntersectionObserver(ref, {});
-  // const entryTwo = useIntersectionObserver(ref, {});
-  const isOneVisible = !!entryOne?.isIntersecting;
-
-  const [entryScrollY, setEntryScrollY] = useState(0);
-  const [topRedHeight, setRedTopHeight] = useState(0);
-  // if (entryOne) console.log(entryOne);
-  // WIP on animation here.
-  useScrollPosition(
-    ({ currPos }) => {
-      if (isOneVisible && entryOne.rootBounds) {
-        if (entryScrollY === 0) {
-          setEntryScrollY(Math.abs(currPos.y));
-        } else {
-          const height = ref.current?.getBoundingClientRect().height;
-          if (height) {
-            const calc = ((height / 2 + Math.abs(currPos.y) - entryScrollY) / height) * 100;
-            setRedTopHeight(calc > 100 ? 100 : calc);
-          }
-        }
-      } else {
-        setEntryScrollY(0);
-      }
-    },
-    [entryOne, entryScrollY]
-  );
+interface Props {
+  heightFromTop: number;
+}
+const HowItWorks: React.FC<Props> = () => {
+  const { sectionRef, isMounted, width, ref, topRedHeight, refTrackOne, refPercentCrossed } = useHowItWorks();
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
@@ -62,13 +36,13 @@ const HowItWorks = () => {
                   to the next step.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn>
+              <IllustrationColumn ref={refTrackOne}>
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem>01</TrackItem>
-                      <RedSeperator height={50} />
-                      <Seperator height={40} />
+                      <RedSeperator height={refPercentCrossed} />
+                      <Seperator height={100 - refPercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -89,7 +63,18 @@ const HowItWorks = () => {
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn>
-                <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                <TrackAndIllustrationRow>
+                  {width <= BREAKPOINTS.lg && (
+                    <TrackWrapper>
+                      <TrackItem>02</TrackItem>
+                      <RedSeperator height={50} />
+                      <Seperator height={40} />
+                    </TrackWrapper>
+                  )}
+                  <IllustrationWrapper>
+                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                  </IllustrationWrapper>
+                </TrackAndIllustrationRow>
               </IllustrationColumn>
             </AnimationRow>
           </AnimationWrapper>
@@ -105,10 +90,68 @@ function useHowItWorks() {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useWindowSize();
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const [topRedHeight, setRedTopHeight] = useState(0);
+  const refTrackOne = useRef<HTMLDivElement | null>(null);
+  const entryTrackOne = useIntersectionObserver(refTrackOne, {
+    threshold: 0.2,
+  });
+
+  // console.log("entryTrackOne", entryTrackOne);
+  const isTrackOneVisible = !!entryTrackOne?.isIntersecting;
+  const [cp, setCp] = useState(0);
+  const [offsetTopRefOne, setOffsetTopRefOne] = useState(0);
+  useEffect(() => {
+    if (isMounted() && refTrackOne.current && offsetTopRefOne === 0) {
+      setTimeout(() => {
+        if (refTrackOne.current) {
+          setOffsetTopRefOne(refTrackOne.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackOne, isMounted]);
+  useScrollPosition(
+    ({ currPos }) => {
+      setCp(Math.abs(currPos.y));
+    },
+    [isTrackOneVisible]
+  );
+  const [refPercentCrossed, setRefPercentCrossed] = useState(0);
+  useEffect(() => {
+    if (refTrackOne.current && entryTrackOne) {
+      setRefPercentCrossed(
+        calculatePercentCrossed(
+          offsetTopRefOne,
+          cp,
+          entryTrackOne.rootBounds ? entryTrackOne.rootBounds.height : 0,
+          refTrackOne.current?.getBoundingClientRect().height
+        )
+      );
+    }
+  }, [cp, offsetTopRefOne, refTrackOne, entryTrackOne]);
+
+  function calculatePercentCrossed(
+    distanceFromTop: number,
+    scrollPosition: number,
+    distance: number,
+    heightOfElement: number
+  ) {
+    if (scrollPosition + distance < distanceFromTop) return 0;
+    if (scrollPosition + distance >= heightOfElement + distanceFromTop) return 100;
+    const percentCrossed = ((scrollPosition + distance - distanceFromTop) / heightOfElement) * 100 - 10;
+    return percentCrossed < 0 ? 0 : percentCrossed;
+  }
   return {
     sectionRef,
     isMounted: isMounted(),
     width,
+    topRedHeight,
+    cp,
+    ref,
+    refTrackOne,
+    refPercentCrossed,
+    offsetTopRefOne,
   };
 }
 

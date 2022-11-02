@@ -31,7 +31,7 @@ export function Home() {
         </div>
         <div ref={headerThemeChangeRef}>
           <div ref={howItWorksRef}>
-            <HowItWorks />
+            <HowItWorks heightFromTop={heroRef.current ? heroRef.current.getBoundingClientRect().height : 0} />
           </div>
           <div ref={voteParticipationRef}>
             <VoteParticipation
