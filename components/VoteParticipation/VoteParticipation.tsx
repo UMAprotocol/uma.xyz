@@ -230,7 +230,7 @@ const ImageBlockRow = styled.div`
   svg {
     fill: var(--white);
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     flex-direction: column;
     align-self: center;
     width: 100%;
@@ -249,11 +249,7 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     return "var(--grey-800)";
   }};
   border: 1px solid transparent;
-  border-top-color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
-    return "transparent";
-  }};
-  border-bottom-color: ${({ width, isIntersecting }) => {
+  border-color: ${({ width, isIntersecting }) => {
     if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
@@ -273,8 +269,10 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
       color: var(--red);
     }
   }
-  @media ${QUERIES.md.andDown} {
-    width: inherit;
+  @media ${QUERIES.tb.andDown} {
+    width: calc(100% - 64px);
+    padding: 40px;
+    margin: 0 auto;
   }
 `;
 

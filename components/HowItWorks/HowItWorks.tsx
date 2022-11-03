@@ -233,7 +233,10 @@ const AnimationWrapper = styled.div`
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
-  margin-top: 231px;
+  margin-top: 143px;
+  @media ${QUERIES.lg.andDown} {
+    margin-top: 128px;
+  }
   @media ${QUERIES.md.andDown} {
     margin-top: 24px;
   }
@@ -333,6 +336,11 @@ const TrackWrapper = styled.div`
     margin-left: auto;
     height: inherit;
     margin-top: -40px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    height: inherit;
+    margin-top: 0px;
+    margin-left: 0;
   }
 `;
 
