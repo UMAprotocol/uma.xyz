@@ -70,7 +70,9 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                 <ImageTitle width={width} isIntersecting={isIntersectingStake}>
                   Stake
                 </ImageTitle>
-                <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
+                <ImageText>
+                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
+                </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -82,15 +84,17 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                   height="100%"
                   layout="responsive"
                   objectFit="contain"
-                  src="/assets/vote-block.svg"
-                  alt="vote-block"
+                  src="/assets/stake-block-black.svg"
+                  alt="stake-block"
                 />
               </ImageWrapper>
               <ImageTextWrapper>
                 <ImageTitle width={width} isIntersecting={isIntersectingVote}>
                   Vote
                 </ImageTitle>
-                <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
+                <ImageText>
+                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.{" "}
+                </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -102,8 +106,8 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                   height="100%"
                   layout="responsive"
                   objectFit="contain"
-                  src="/assets/earn-block.svg"
-                  alt="earn-block"
+                  src="/assets/stake-block-black.svg"
+                  alt="stake-block"
                 />
               </ImageWrapper>
               <ImageTextWrapper>
@@ -111,8 +115,7 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                   Earn
                 </ImageTitle>
                 <ImageText>
-                  Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
-                  voters.
+                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.{" "}
                 </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
@@ -241,6 +244,12 @@ const ImageBlockRow = styled.div`
     align-self: center;
     width: 100%;
   }
+  @media ${QUERIES.md.andDown} {
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    gap: 0px;
+  }
 `;
 
 interface ScrollProps {
@@ -256,7 +265,15 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
   }};
   border: 1px solid transparent;
   border-color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    if (width <= BREAKPOINTS.tb && width > BREAKPOINTS.md && isIntersecting) return "var(--grey-600)";
+    return "transparent";
+  }};
+  border-top-color: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.tb && width > BREAKPOINTS.md && isIntersecting) return "var(--grey-600)";
+    return "transparent";
+  }};
+  border-bottom-color: ${({ width, isIntersecting }) => {
+    if (width <= BREAKPOINTS.md && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   display: flex;
@@ -276,9 +293,15 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     }
   }
   @media ${QUERIES.tb.andDown} {
-    width: calc(100% - 64px);
+    width: 100%;
     padding: 40px;
     margin: 0 auto;
+    max-height: 196px;
+    gap: 48px;
+  }
+  @media ${QUERIES.md.andDown} {
+    width: 100%;
+    padding: 24px;
     max-height: 196px;
     gap: 48px;
   }
@@ -295,6 +318,7 @@ const ImageBlock = styled.div`
   @media ${QUERIES.md.andDown} {
     border-right: 0;
     border-left: 0;
+    gap: 32px;
   }
 `;
 
@@ -302,6 +326,10 @@ const ImageTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  @media ${QUERIES.md.andDown} {
+    max-width: 400px;
+    width: 100%;
+  }
 `;
 
 const ImageTitle = styled.h3<ScrollProps>`
@@ -314,7 +342,7 @@ const ImageTitle = styled.h3<ScrollProps>`
   margin-top: 40px;
   @media ${QUERIES.md.andDown} {
     font: var(--header-sm);
-    margin-top: 48px;
+    margin-top: 24px;
   }
 `;
 
@@ -344,6 +372,15 @@ const ImageWrapper = styled.div<ScrollProps>`
     align-self: center;
     max-width: 92px;
     max-height: 96px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    /* flex: 1 1 64px; */
+    align-items: center;
+    align-self: center;
+    max-width: 64px;
+    max-height: 64px;
+    /* width: 100%;
+    height: 100%; */
   }
 `;
 
