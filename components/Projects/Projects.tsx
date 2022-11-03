@@ -8,6 +8,12 @@ import ShapeshiftLogo from "public/assets/shapeshift.svg";
 import CozyLogo from "public/assets/cozy.svg";
 import JarvisLogo from "public/assets/jarvis.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
+import PolymarketSmLogo from "public/assets/polymarket-sm.svg";
+import BobaSmLogo from "public/assets/boba-sm.svg";
+import ShapeshiftSmLogo from "public/assets/shapeshift-sm.svg";
+import CozySmLogo from "public/assets/cozy-sm.svg";
+import JarvisSmLogo from "public/assets/jarvis-sm.svg";
+import SherlockSmLogo from "public/assets/sherlock-sm.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
@@ -43,8 +49,22 @@ const Projects = () => {
               </BigProjects>
             ) : null}
             <SmallProjects>
-              {width > BREAKPOINTS.sm
+              {width > BREAKPOINTS.lg
                 ? smallProjects.map(({ name, link, Logo }, index) => {
+                    return (
+                      <SmallProject key={index}>
+                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                          <UpRightArrowWhite />
+                        </SmallLinkButton>
+                        <div>
+                          <Logo />
+                        </div>
+                        <SmallProjectText>{name}</SmallProjectText>
+                      </SmallProject>
+                    );
+                  })
+                : width > BREAKPOINTS.sm
+                ? tabletSmallProjects.map(({ name, link, Logo }, index) => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
@@ -125,6 +145,39 @@ const smallProjects = [
   {
     name: "Sherlock",
     Logo: SherlockLogo,
+    link: "https://www.sherlock.xyz",
+  },
+];
+
+const tabletSmallProjects = [
+  {
+    name: "Polymarket",
+    Logo: PolymarketSmLogo,
+    link: "https://polymarket.com",
+  },
+  {
+    name: "Boba",
+    Logo: BobaSmLogo,
+    link: "https://boba.network",
+  },
+  {
+    name: "Shapeshift",
+    Logo: ShapeshiftSmLogo,
+    link: "https://shapeshift.com",
+  },
+  {
+    name: "Cozy",
+    Logo: CozySmLogo,
+    link: "https://www.cozy.finance",
+  },
+  {
+    name: "Jarvis",
+    Logo: JarvisSmLogo,
+    link: "https://jarvis.network",
+  },
+  {
+    name: "Sherlock",
+    Logo: SherlockSmLogo,
     link: "https://www.sherlock.xyz",
   },
 ];
