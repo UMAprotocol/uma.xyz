@@ -103,7 +103,8 @@ function useHowItWorks(currentPosition: number) {
   const { width } = useWindowSize();
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const [topRedHeight, setRedTopHeight] = useState(0);
+  /* the ref percent is WIP ignore for now */
+  const [topRedHeight] = useState(0);
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {

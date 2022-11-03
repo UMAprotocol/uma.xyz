@@ -172,8 +172,13 @@ const FooterLinks = styled.div`
   justify-content: flex-start;
   width: 52%;
   gap: 100px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.lg.andDown} {
     flex-direction: column;
+    gap: 32px;
+    width: 30%;
+    margin: 0 16px;
+  }
+  @media ${QUERIES.tb.andDown} {
     justify-content: center;
     align-items: center;
     align-self: center;
@@ -205,6 +210,7 @@ const Links = styled.div`
   gap: 16px;
   max-height: 136px;
   flex-basis: 45%;
+
   @media ${QUERIES.tb.andDown} {
     margin-top: 16px;
   }
@@ -223,6 +229,11 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: baseline;
+  margin: 0 16px;
+  @media ${QUERIES.lg.andDown} {
+    max-width: 640px;
+    width: 100%;
+  }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
     align-items: center;
@@ -237,8 +248,11 @@ const FormTitle = styled.h3`
   color: var(--grey-300);
   max-width: 338px;
   margin-bottom: 32px;
+  @media ${QUERIES.lg.andDown} {
+    width: 100%;
+    max-width: 640px;
+  }
   @media ${QUERIES.tb.andDown} {
-    max-width: 428px;
     width: 100%;
     text-align: center;
   }
@@ -251,6 +265,10 @@ const Form = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  @media ${QUERIES.lg.andDown} {
+    padding: 8px 16px;
+    gap: 16px;
+  }
   @media ${QUERIES.tb.andDown} {
     flex-direction: column;
     max-width: 428px;
@@ -276,6 +294,10 @@ const Input = styled.input`
   &:hover {
     border: 2px solid var(--grey-500);
   }
+  @media ${QUERIES.lg.andDown} {
+    width: 100%;
+    max-width: 525px;
+  }
   @media ${QUERIES.tb.andDown} {
     max-width: 428px;
     width: 100%;
@@ -298,6 +320,10 @@ const Button = styled.button`
   &:hover {
     opacity: 0.5;
   }
+  @media ${QUERIES.lg.andDown} {
+    width: 100%;
+    max-width: 103px;
+  }
   @media ${QUERIES.tb.andDown} {
     max-width: 428px;
     width: 100%;
@@ -308,8 +334,10 @@ const LinksFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-basis: 75%;
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.lg.andDown} {
     flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
   }
 `;
 
