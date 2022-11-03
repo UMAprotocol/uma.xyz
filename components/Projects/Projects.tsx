@@ -161,7 +161,7 @@ const ProjectsRow = styled.div`
   gap: 24px;
   margin-left: 0;
   margin-right: 0;
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
     margin-left: 15px;
     margin-right: 15px;
@@ -171,7 +171,8 @@ const ProjectsRow = styled.div`
 const ProjectsColumn = styled.div`
   max-width: 560px;
   @media ${QUERIES.tb.andDown} {
-    max-width: 100%;
+    width: 100%;
+    max-width: 438px;
   }
 `;
 const BigProjects = styled.div`
@@ -196,6 +197,10 @@ const BigProject = styled.div`
   width: 280px;
   height: 280px;
   @media ${QUERIES.tb.andDown} {
+    width: 218px;
+    height: 218px;
+  }
+  @media ${QUERIES.md.andDown} {
     flex-grow: 0;
     width: 50%;
   }
@@ -270,6 +275,10 @@ const SmallProject = styled.div`
   width: 186px;
   height: 186px;
   min-width: 0;
+  @media ${QUERIES.tb.andDown} {
+    width: 145.48px;
+    height: 145.48px;
+  }
   @media ${QUERIES.sm.andDown} {
     min-width: 50%;
     width: 50%;
@@ -314,6 +323,7 @@ const ProjectsBlurb = styled.div`
   @media ${QUERIES.tb.andDown} {
     justify-content: flex-start;
     align-items: flex-start;
+    max-width: 362px;
   }
 `;
 
