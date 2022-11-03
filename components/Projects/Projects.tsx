@@ -18,6 +18,7 @@ import { Wrapper as BaseWrapper } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { useWindowSize } from "hooks";
+import Image from "next/image";
 
 const Projects = () => {
   const { width } = useProjects();
@@ -50,15 +51,22 @@ const Projects = () => {
             ) : null}
             <SmallProjects>
               {width > BREAKPOINTS.lg
-                ? smallProjects.map(({ name, link, Logo }, index) => {
+                ? smallProjects.map(({ name, link, src }, index) => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
                           <UpRightArrowWhite />
                         </SmallLinkButton>
-                        <div>
-                          <Logo />
-                        </div>
+                        <SmallImageWrapper>
+                          <Image
+                            width="100%"
+                            height="100%"
+                            layout="responsive"
+                            objectFit="contain"
+                            src={src}
+                            alt="logo"
+                          />
+                        </SmallImageWrapper>
                         <SmallProjectText>{name}</SmallProjectText>
                       </SmallProject>
                     );
@@ -120,31 +128,37 @@ const smallProjects = [
   {
     name: "Polymarket",
     Logo: PolymarketLogo,
+    src: "/assets/polymarket.svg",
     link: "https://polymarket.com",
   },
   {
     name: "Boba",
     Logo: BobaLogo,
+    src: "/assets/boba.svg",
     link: "https://boba.network",
   },
   {
     name: "Shapeshift",
     Logo: ShapeshiftLogo,
+    src: "/assets/shapeshift.svg",
     link: "https://shapeshift.com",
   },
   {
     name: "Cozy",
     Logo: CozyLogo,
+    src: "/assets/cozy.svg",
     link: "https://www.cozy.finance",
   },
   {
     name: "Jarvis",
     Logo: JarvisLogo,
+    src: "/assets/jarvis.svg",
     link: "https://jarvis.network",
   },
   {
     name: "Sherlock",
     Logo: SherlockLogo,
+    src: "/assets/sherlock.svg",
     link: "https://www.sherlock.xyz",
   },
 ];
@@ -315,6 +329,13 @@ const SmallProjects = styled.div`
   flex-wrap: wrap;
 `;
 
+const SmallImageWrapper = styled.div`
+  max-width: 44.46px;
+  max-height: 55.9px;
+  height: inherit;
+  width: inherit;
+`;
+
 const SmallProject = styled.div`
   position: relative;
   display: flex;
@@ -349,8 +370,8 @@ const SmallProject = styled.div`
     a {
       display: flex;
     }
-    svg {
-      fill: var(--white);
+    img {
+      filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
     }
   }
   svg {
