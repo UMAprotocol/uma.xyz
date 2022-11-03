@@ -8,12 +8,6 @@ import ShapeshiftLogo from "public/assets/shapeshift.svg";
 import CozyLogo from "public/assets/cozy.svg";
 import JarvisLogo from "public/assets/jarvis.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
-import PolymarketSmLogo from "public/assets/polymarket-sm.svg";
-import BobaSmLogo from "public/assets/boba-sm.svg";
-import ShapeshiftSmLogo from "public/assets/shapeshift-sm.svg";
-import CozySmLogo from "public/assets/cozy-sm.svg";
-import JarvisSmLogo from "public/assets/jarvis-sm.svg";
-import SherlockSmLogo from "public/assets/sherlock-sm.svg";
 import { Wrapper as BaseWrapper } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
@@ -27,7 +21,7 @@ const Projects = () => {
       <Wrapper>
         <ProjectsRow>
           <ProjectsColumn>
-            {width > BREAKPOINTS.sm ? (
+            {width > BREAKPOINTS.md ? (
               <BigProjects>
                 <BigProject>
                   <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
@@ -50,7 +44,7 @@ const Projects = () => {
               </BigProjects>
             ) : null}
             <SmallProjects>
-              {width > BREAKPOINTS.sm
+              {width > BREAKPOINTS.md
                 ? smallProjects.map(({ name, link, src }, index) => {
                     return (
                       <SmallProject key={index}>
@@ -71,17 +65,23 @@ const Projects = () => {
                       </SmallProject>
                     );
                   })
-                : mobileSmallProjects.map(({ name, link, Logo }, index) => {
+                : mobileSmallProjects.map(({ name, link, src }, index) => {
                     return (
-                      <SmallProject key={index}>
-                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          <UpRightArrowWhite />
-                        </SmallLinkButton>
-                        <div>
-                          <Logo />
-                        </div>
-                        <SmallProjectText>{name}</SmallProjectText>
-                      </SmallProject>
+                      <MobileAnchor href={link} target="_blank" rel="noreferrer">
+                        <SmallProject key={index}>
+                          <SmallImageWrapper>
+                            <Image
+                              width="100%"
+                              height="100%"
+                              layout="responsive"
+                              objectFit="contain"
+                              src={src}
+                              alt="logo"
+                            />
+                          </SmallImageWrapper>
+                          <SmallProjectText>{name}</SmallProjectText>
+                        </SmallProject>
+                      </MobileAnchor>
                     );
                   })}
             </SmallProjects>
@@ -104,6 +104,8 @@ const Projects = () => {
     </Section>
   );
 };
+
+export default Projects;
 
 function useProjects() {
   const { width } = useWindowSize();
@@ -149,54 +151,25 @@ const smallProjects = [
   },
 ];
 
-const tabletSmallProjects = [
-  {
-    name: "Polymarket",
-    Logo: PolymarketSmLogo,
-    link: "https://polymarket.com",
-  },
-  {
-    name: "Boba",
-    Logo: BobaSmLogo,
-    link: "https://boba.network",
-  },
-  {
-    name: "Shapeshift",
-    Logo: ShapeshiftSmLogo,
-    link: "https://shapeshift.com",
-  },
-  {
-    name: "Cozy",
-    Logo: CozySmLogo,
-    link: "https://www.cozy.finance",
-  },
-  {
-    name: "Jarvis",
-    Logo: JarvisSmLogo,
-    link: "https://jarvis.network",
-  },
-  {
-    name: "Sherlock",
-    Logo: SherlockSmLogo,
-    link: "https://www.sherlock.xyz",
-  },
-];
-
 const mobileSmallProjects = [
   {
     name: "Across",
-    Logo: AcrossLogo,
+    src: "/assets/across.svg",
     link: "https://across.to",
   },
   {
     name: "Outcome",
-    Logo: OutcomeLogo,
+    src: "/assets/outcome.svg",
     link: "https://outcome.finance",
+  },
+  {
+    name: "Sherlock",
+    Logo: SherlockLogo,
+    src: "/assets/sherlock.svg",
+    link: "https://www.sherlock.xyz",
   },
   ...smallProjects,
 ];
-
-export default Projects;
 
 const Section = styled.section`
   width: 100%;
@@ -224,6 +197,9 @@ const ProjectsColumn = styled.div`
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 438px;
+  }
+  @media ${QUERIES.md.andDown} {
+    max-width: 100%;
   }
 `;
 const BigProjects = styled.div`
@@ -315,12 +291,24 @@ const SmallProjects = styled.div`
   @media ${QUERIES.tb.andDown} {
     max-width: 560px;
   }
+  @media ${QUERIES.md.andDown} {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 const SmallImageWrapper = styled.div`
   width: 44.46px;
   height: 55.9px;
   margin-top: 20px;
+  @media ${QUERIES.sm.andDown} {
+    /* height: 100%;
+    width: 100%; */
+    max-width: 60.37px;
+    max-height: 30.31px;
+  }
 `;
 
 const SmallProject = styled.div`
@@ -342,9 +330,11 @@ const SmallProject = styled.div`
     max-height: 145.48px;
     width: 33%;
   }
-  @media ${QUERIES.sm.andDown} {
-    min-width: 50%;
-    width: 50%;
+  @media ${QUERIES.md.andDown} {
+    flex: 1 0 auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
   }
   &:hover {
     path {
@@ -371,6 +361,10 @@ const SmallProject = styled.div`
 
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
+  @media ${QUERIES.md.andDown} {
+    margin-top: 8px;
+    font-size: 12px;
+  }
 `;
 
 const SmallLinkButton = styled(LinkButton)`
@@ -466,26 +460,13 @@ const RemixLink = styled.a`
   }
 `;
 
-/* 
- width > BREAKPOINTS.sm
-                ? tabletSmallProjects.map(({ name, link, Logo }, index) => {
-                    return (
-                      <SmallProject key={index}>
-                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          <UpRightArrowWhite />
-                        </SmallLinkButton>
-                        <SmallImageWrapper>
-                          <Image
-                            width="100%"
-                            height="100%"
-                            layout="responsive"
-                            objectFit="contain"
-                            src={src}
-                            alt="logo"
-                          />
-                        </SmallImageWrapper>
-                        <SmallProjectText>{name}</SmallProjectText>
-                      </SmallProject>
-                    );
-                  })
-*/
+const MobileAnchor = styled.a`
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+
+  width: 33%;
+  height: auto;
+  text-decoration: none;
+`;
