@@ -66,10 +66,12 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                   alt="stake-block"
                 />
               </ImageWrapper>
-              <ImageTitle width={width} isIntersecting={isIntersectingStake}>
-                Stake
-              </ImageTitle>
-              <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
+              <ImageTextWrapper>
+                <ImageTitle width={width} isIntersecting={isIntersectingStake}>
+                  Stake
+                </ImageTitle>
+                <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
+              </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
           <ImageBlockWrapper ref={voteRef} width={width} isIntersecting={isIntersectingVote}>
@@ -84,10 +86,12 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                   alt="vote-block"
                 />
               </ImageWrapper>
-              <ImageTitle width={width} isIntersecting={isIntersectingVote}>
-                Vote
-              </ImageTitle>
-              <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
+              <ImageTextWrapper>
+                <ImageTitle width={width} isIntersecting={isIntersectingVote}>
+                  Vote
+                </ImageTitle>
+                <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
+              </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
           <ImageBlockWrapper ref={earnRef} width={width} isIntersecting={isIntersectingEarn}>
@@ -102,13 +106,15 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
                   alt="earn-block"
                 />
               </ImageWrapper>
-              <ImageTitle width={width} isIntersecting={isIntersectingEarn}>
-                Earn
-              </ImageTitle>
-              <ImageText>
-                Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
-                voters.
-              </ImageText>
+              <ImageTextWrapper>
+                <ImageTitle width={width} isIntersecting={isIntersectingEarn}>
+                  Earn
+                </ImageTitle>
+                <ImageText>
+                  Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
+                  voters.
+                </ImageText>
+              </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
         </ImageBlockRow>
@@ -273,15 +279,29 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     width: calc(100% - 64px);
     padding: 40px;
     margin: 0 auto;
+    max-height: 196px;
+    gap: 48px;
   }
 `;
 
 const ImageBlock = styled.div`
   padding: 40px;
+  @media ${QUERIES.tb.andDown} {
+    display: inline-flex;
+    gap: 48px;
+    padding: 0;
+    width: 100%;
+  }
   @media ${QUERIES.md.andDown} {
     border-right: 0;
     border-left: 0;
   }
+`;
+
+const ImageTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 const ImageTitle = styled.h3<ScrollProps>`
@@ -301,10 +321,29 @@ const ImageTitle = styled.h3<ScrollProps>`
 const ImageText = styled.div`
   font: var(--body-lg);
   color: var(--grey-200);
-  margin-top: 16px;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     font: var(--body-sm);
-    margin-top: 12px;
+    max-width: 675px;
+  }
+`;
+
+const ImageWrapper = styled.div<ScrollProps>`
+  max-width: 154px;
+  max-height: 160px;
+  img {
+    filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
+    filter: ${({ width, isIntersecting }) => {
+      if (width <= BREAKPOINTS.tb && isIntersecting)
+        return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
+      return "none";
+    }};
+  }
+  @media ${QUERIES.tb.andDown} {
+    flex: 1 1 96px;
+    align-items: center;
+    align-self: center;
+    max-width: 92px;
+    max-height: 96px;
   }
 `;
 
@@ -351,19 +390,6 @@ const VoterAppLink = styled.a`
         stroke: var(--grey-100);
       }
     }
-  }
-`;
-
-const ImageWrapper = styled.div<ScrollProps>`
-  max-width: 154px;
-  max-height: 160px;
-  img {
-    filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
-    filter: ${({ width, isIntersecting }) => {
-      if (width <= BREAKPOINTS.tb && isIntersecting)
-        return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
-      return "none";
-    }};
   }
 `;
 
