@@ -20,7 +20,7 @@ const Footer = () => {
         <Wrapper>
           <BottomRow>
             <FooterLinks>
-              {width > BREAKPOINTS.tb ? (
+              {width > BREAKPOINTS.sm ? (
                 <LogoWrapper>
                   <StyledLogo />
                 </LogoWrapper>
@@ -43,7 +43,7 @@ const Footer = () => {
               </LinksFlex>
             </FooterLinks>
             <FormWrapper>
-              {width <= BREAKPOINTS.tb ? (
+              {width <= BREAKPOINTS.sm ? (
                 <LogoWrapper>
                   <StyledLogo />
                 </LogoWrapper>
@@ -180,22 +180,23 @@ const FooterLinks = styled.div`
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
-    align-items: center;
-    align-self: center;
+    align-items: flex-start;
+    align-self: flex-start;
   }
 `;
 
 const LogoWrapper = styled.div`
   width: 85px;
-  @media ${QUERIES.tb.andDown} {
-    margin-bottom: 24px;
-  }
 `;
 
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
   @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+    column-gap: 32px;
+  }
+  @media ${QUERIES.sm.andDown} {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
@@ -210,10 +211,6 @@ const Links = styled.div`
   gap: 16px;
   max-height: 136px;
   flex-basis: 45%;
-
-  @media ${QUERIES.tb.andDown} {
-    margin-top: 16px;
-  }
 `;
 
 const Link = styled.a`
@@ -236,10 +233,9 @@ const FormWrapper = styled.div`
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
-    align-items: center;
-    align-self: center;
-    margin-left: 24px;
-    margin-right: 24px;
+    align-items: flex-start;
+    align-self: flex-start;
+    margin-top: 64px;
   }
 `;
 
@@ -254,7 +250,7 @@ const FormTitle = styled.h3`
   }
   @media ${QUERIES.tb.andDown} {
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 `;
 
@@ -270,12 +266,17 @@ const Form = styled.div`
     gap: 16px;
   }
   @media ${QUERIES.tb.andDown} {
+    padding: 0;
+    flex-direction: row;
+    max-width: 640px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  @media ${QUERIES.sm.andDown} {
     flex-direction: column;
     max-width: 428px;
     width: 100%;
-    @media ${QUERIES.tb.andDown} {
-      margin-bottom: 24px;
-    }
+    margin-bottom: 24px;
   }
 `;
 
@@ -298,7 +299,7 @@ const Input = styled.input`
     width: 100%;
     max-width: 525px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.sm.andDown} {
     max-width: 428px;
     width: 100%;
   }
@@ -324,7 +325,7 @@ const Button = styled.button`
     width: 100%;
     max-width: 103px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.sm.andDown} {
     max-width: 428px;
     width: 100%;
   }
@@ -346,6 +347,11 @@ const CopyrightRow = styled(Row)`
   display: flex;
   justify-content: space-between;
   @media ${QUERIES.tb.andDown} {
+    margin-top: 85px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  @media ${QUERIES.sm.andDown} {
     flex-direction: column;
     justify-content: center;
     align-items: center;
