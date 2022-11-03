@@ -65,27 +65,22 @@ const Projects = () => {
                       </SmallProject>
                     );
                   })
-                : mobileSmallProjects.map(({ name, link, src }, index) => {
-                    return (
-                      <MobileAnchor href={link} target="_blank" rel="noreferrer">
-                        <SmallProject key={index}>
-                          <SmallImageWrapper>
-                            <Image
-                              width="100%"
-                              height="100%"
-                              layout="responsive"
-                              objectFit="contain"
-                              src={src}
-                              alt="logo"
-                            />
-                          </SmallImageWrapper>
-                          <SmallProjectText>{name}</SmallProjectText>
-                        </SmallProject>
-                      </MobileAnchor>
-                    );
-                  })}
+                : null}
             </SmallProjects>
           </ProjectsColumn>
+          {width <= BREAKPOINTS.md ? (
+            <MobileProjects>
+              {mobileSmallProjects.map(({ name, link, src }, index) => {
+                return (
+                  <MobileContainer href={link} key={index} target="_blank" rel="noreferrer">
+                    <MobileImageWrapper>
+                      <Image width="33px" height="33px" objectFit="contain" src={src} alt="logo" />
+                    </MobileImageWrapper>
+                  </MobileContainer>
+                );
+              })}
+            </MobileProjects>
+          ) : null}
           <ProjectsBlurb>
             <ProjectsBlurbHeader>Real projects built with our products</ProjectsBlurbHeader>
             <ProjectsBlurbSubheader>
@@ -304,8 +299,6 @@ const SmallImageWrapper = styled.div`
   height: 55.9px;
   margin-top: 20px;
   @media ${QUERIES.sm.andDown} {
-    /* height: 100%;
-    width: 100%; */
     max-width: 60.37px;
     max-height: 30.31px;
   }
@@ -470,3 +463,55 @@ const MobileAnchor = styled.a`
   height: auto;
   text-decoration: none;
 `;
+
+const MobileProjects = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+`;
+const MobileContainer = styled.a`
+  flex: 1 0 calc(33% - 16px);
+  border: 1px solid var(--grey-600);
+  height: auto;
+  border: 1;
+  text-decoration: none;
+  /* > img {
+    height: 30px;
+    width: 30px;
+  } */
+  &::before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+  }
+`;
+
+const MobileImageWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  align-self: end;
+  justify-content: center;
+`;
+/*  mobileSmallProjects.map(({ name, link, src }, index) => {
+                    return (
+                      <MobileAnchor href={link} target="_blank" rel="noreferrer">
+                        <SmallProject key={index}>
+                          <SmallImageWrapper>
+                            <Image
+                              width="100%"
+                              height="100%"
+                              layout="responsive"
+                              objectFit="contain"
+                              src={src}
+                              alt="logo"
+                            />
+                          </SmallImageWrapper>
+                          <SmallProjectText>{name}</SmallProjectText>
+                        </SmallProject>
+                      </MobileAnchor>
+                    );
+                  }) */
