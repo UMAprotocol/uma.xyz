@@ -78,9 +78,16 @@ const Projects = () => {
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
                           <UpRightArrowWhite />
                         </SmallLinkButton>
-                        <div>
-                          <Logo />
-                        </div>
+                        <SmallImageWrapper>
+                          <Image
+                            width="100%"
+                            height="100%"
+                            layout="responsive"
+                            objectFit="contain"
+                            src={src}
+                            alt="logo"
+                          />
+                        </SmallImageWrapper>
                         <SmallProjectText>{name}</SmallProjectText>
                       </SmallProject>
                     );
@@ -290,7 +297,7 @@ const BigProject = styled.div`
   }
 `;
 const BigProjectText = styled.h3`
-  display: none;
+  visibility: hidden;
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -334,6 +341,7 @@ const SmallImageWrapper = styled.div`
   max-height: 55.9px;
   height: inherit;
   width: inherit;
+  margin-top: 20px;
 `;
 
 const SmallProject = styled.div`
@@ -349,6 +357,7 @@ const SmallProject = styled.div`
   width: 186px;
   height: 186px;
   min-width: 0;
+  justify-content: center;
   @media ${QUERIES.tb.andDown} {
     width: 145.48px;
     height: 145.48px;
@@ -369,6 +378,7 @@ const SmallProject = styled.div`
     h3,
     a {
       display: flex;
+      visibility: visible;
     }
     img {
       filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
