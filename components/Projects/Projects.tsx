@@ -50,29 +50,8 @@ const Projects = () => {
               </BigProjects>
             ) : null}
             <SmallProjects>
-              {width > BREAKPOINTS.lg
+              {width > BREAKPOINTS.sm
                 ? smallProjects.map(({ name, link, src }, index) => {
-                    return (
-                      <SmallProject key={index}>
-                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          <UpRightArrowWhite />
-                        </SmallLinkButton>
-                        <SmallImageWrapper>
-                          <Image
-                            width="100%"
-                            height="100%"
-                            layout="responsive"
-                            objectFit="contain"
-                            src={src}
-                            alt="logo"
-                          />
-                        </SmallImageWrapper>
-                        <SmallProjectText>{name}</SmallProjectText>
-                      </SmallProject>
-                    );
-                  })
-                : width > BREAKPOINTS.sm
-                ? tabletSmallProjects.map(({ name, link, Logo }, index) => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
@@ -233,12 +212,10 @@ const ProjectsRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 15px;
+  margin-right: 15px;
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
-    margin-left: 15px;
-    margin-right: 15px;
   }
 `;
 
@@ -288,6 +265,7 @@ const BigProject = styled.div`
     h3,
     a {
       display: flex;
+      visibility: visible;
     }
     > div {
       path {
@@ -334,13 +312,14 @@ const SmallProjects = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 560px;
+  }
 `;
 
 const SmallImageWrapper = styled.div`
-  max-width: 44.46px;
-  max-height: 55.9px;
-  height: inherit;
-  width: inherit;
+  width: 44.46px;
+  height: 55.9px;
   margin-top: 20px;
 `;
 
@@ -359,8 +338,9 @@ const SmallProject = styled.div`
   min-width: 0;
   justify-content: center;
   @media ${QUERIES.tb.andDown} {
-    width: 145.48px;
-    height: 145.48px;
+    max-width: 145.48px;
+    max-height: 145.48px;
+    width: 33%;
   }
   @media ${QUERIES.sm.andDown} {
     min-width: 50%;
@@ -421,6 +401,9 @@ const ProjectsBlurbHeader = styled.h2`
     width: 100%;
     max-width: 100%;
   }
+  @media screen and (max-width: 740px) {
+    font: var(--header-sm);
+  }
 `;
 
 const ProjectsBlurbSubheader = styled.h3`
@@ -434,6 +417,10 @@ const ProjectsBlurbSubheader = styled.h3`
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 100%;
+    font: var(--body-md);
+  }
+  @media screen and (max-width: 740px) {
+    font: var(--body-md);
   }
 `;
 
@@ -478,3 +465,27 @@ const RemixLink = styled.a`
     height: 32px;
   }
 `;
+
+/* 
+ width > BREAKPOINTS.sm
+                ? tabletSmallProjects.map(({ name, link, Logo }, index) => {
+                    return (
+                      <SmallProject key={index}>
+                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
+                          <UpRightArrowWhite />
+                        </SmallLinkButton>
+                        <SmallImageWrapper>
+                          <Image
+                            width="100%"
+                            height="100%"
+                            layout="responsive"
+                            objectFit="contain"
+                            src={src}
+                            alt="logo"
+                          />
+                        </SmallImageWrapper>
+                        <SmallProjectText>{name}</SmallProjectText>
+                      </SmallProject>
+                    );
+                  })
+*/
