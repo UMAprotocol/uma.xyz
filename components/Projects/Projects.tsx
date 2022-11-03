@@ -76,6 +76,7 @@ const Projects = () => {
                     <MobileImageWrapper>
                       <Image width="33px" height="33px" objectFit="contain" src={src} alt="logo" />
                     </MobileImageWrapper>
+                    <MobileImageText>{name}</MobileImageText>
                   </MobileContainer>
                 );
               })}
@@ -453,17 +454,6 @@ const RemixLink = styled.a`
   }
 `;
 
-const MobileAnchor = styled.a`
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
-
-  width: 33%;
-  height: auto;
-  text-decoration: none;
-`;
-
 const MobileProjects = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -477,41 +467,37 @@ const MobileContainer = styled.a`
   height: auto;
   border: 1;
   text-decoration: none;
-  /* > img {
-    height: 30px;
-    width: 30px;
-  } */
   &::before {
     content: "";
     float: left;
     padding-top: 100%;
+  }
+  &:hover {
+    h3 {
+      visibility: visible;
+      color: var(--red);
+    }
+    img {
+      filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
+    }
   }
 `;
 
 const MobileImageWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 75%;
   align-content: center;
   align-self: end;
   justify-content: center;
 `;
-/*  mobileSmallProjects.map(({ name, link, src }, index) => {
-                    return (
-                      <MobileAnchor href={link} target="_blank" rel="noreferrer">
-                        <SmallProject key={index}>
-                          <SmallImageWrapper>
-                            <Image
-                              width="100%"
-                              height="100%"
-                              layout="responsive"
-                              objectFit="contain"
-                              src={src}
-                              alt="logo"
-                            />
-                          </SmallImageWrapper>
-                          <SmallProjectText>{name}</SmallProjectText>
-                        </SmallProject>
-                      </MobileAnchor>
-                    );
-                  }) */
+
+const MobileImageText = styled.h3`
+  visibility: visible;
+  font: var(--body-sm);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: -20px;
+  color: var(--grey-200);
+`;
