@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
@@ -6,13 +6,8 @@ import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
-import { useScrollPosition } from "hooks";
 
-interface Props {
-  heightFromTop: number;
-}
-
-const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
+const VoteParticipation = () => {
   const {
     width,
     earnRef,
@@ -23,19 +18,12 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
     isIntersectingStake,
     isIntersectingVote,
     isIntersectingSection,
-    cp,
   } = useVoteParticipation();
 
   return (
     <Section ref={sectionRef}>
       {width <= BREAKPOINTS.tb && (
-        <MobileVoterRow
-          // cp={cp}
-          // diff={cp - heightFromTop}
-          // heightFromTop={heightFromTop}
-          // compHeight={sectionRef.current?.getBoundingClientRect().height || 0}
-          isIntersecting={isIntersectingSection}
-        >
+        <MobileVoterRow isIntersecting={isIntersectingSection}>
           <MobileVoterAppLinkBlock>
             <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
               Link to voter app
@@ -158,8 +146,8 @@ function useVoteParticipation() {
   });
 
   const ioSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.45,
-    rootMargin: "-50px 0px 0px 0px",
+    threshold: 0.5,
+    rootMargin: "-200px 0px -25px 0px",
   });
 
   const isIntersectingStake = !!ioStake?.isIntersecting;
@@ -167,13 +155,7 @@ function useVoteParticipation() {
   const isIntersectingEarn = !!ioEarn?.isIntersecting;
   const isIntersectingSection = !!ioSection?.isIntersecting;
   const { width } = useWindowSize();
-  const [cp, setCp] = useState(0);
-  useScrollPosition(
-    ({ currPos }) => {
-      setCp(Math.abs(currPos.y));
-    },
-    [isIntersectingSection]
-  );
+
   return {
     width,
     earnRef,
@@ -184,7 +166,6 @@ function useVoteParticipation() {
     isIntersectingVote,
     isIntersectingEarn,
     isIntersectingSection,
-    cp,
   };
 }
 
