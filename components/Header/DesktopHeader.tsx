@@ -8,16 +8,46 @@ interface Props {
   activeLink: number;
   scrollPosition: number;
   isLightTheme: boolean;
+  topOfHowItWorks: number;
+  topOfVoteParticipation: number;
+  topOfBuilder: number;
 }
 
-const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLink }) => {
+const DesktopHeader: React.FC<Props> = ({
+  scrollPosition,
+  isLightTheme,
+  activeLink,
+  topOfBuilder,
+  topOfHowItWorks,
+  topOfVoteParticipation,
+}) => {
   return (
     <Wrapper scrollPosition={scrollPosition} isLightTheme={isLightTheme}>
       <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
       <Links>
-        {/* TODO: Get links */}
         {links.map(({ label, href }, i) => (
-          <StyledLink active={activeLink === i} isLightTheme={isLightTheme} key={i} href={href}>
+          <StyledLink
+            onClick={() => {
+              console.log("onClick", topOfHowItWorks, topOfVoteParticipation, topOfBuilder);
+
+              if (i === 0) {
+                console.log("firing? 0");
+                return window.scrollTo(0, topOfHowItWorks);
+              }
+              if (i === 1) {
+                console.log(">>>firing? 1<<<<");
+                return window.scrollTo(0, topOfVoteParticipation);
+              }
+              if (i === 2) {
+                console.log("firing? 2");
+                return window.scrollTo(0, topOfBuilder);
+              }
+            }}
+            active={activeLink === i}
+            isLightTheme={isLightTheme}
+            key={i}
+            href={href}
+          >
             <LinkWrapper>
               {activeLink === i ? <RedDot /> : <Dot />} {label}
             </LinkWrapper>

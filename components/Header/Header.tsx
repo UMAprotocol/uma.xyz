@@ -12,9 +12,12 @@ import MobileHeader from "./MobileHeader";
 
 interface Props {
   activeLink: number;
+  topOfHowItWorks: number;
+  topOfVoteParticipation: number;
+  topOfBuilder: number;
 }
 
-const Header: React.FC<Props> = ({ activeLink }) => {
+const Header: React.FC<Props> = ({ activeLink, topOfBuilder, topOfHowItWorks, topOfVoteParticipation }) => {
   const { scrollPosition, boundingHeight, isMounted, headerRef, width, showMobileMenu, setShowMobileMenu } =
     useHeader();
   const isLightTheme = scrollPosition >= boundingHeight;
@@ -23,7 +26,14 @@ const Header: React.FC<Props> = ({ activeLink }) => {
       <VoteTicker theme="dark" numVotes={2} phase="Commit" />
       <Headroom isLightTheme={isLightTheme} style={{ paddingTop: "24px" }}>
         {width > BREAKPOINTS.tb ? (
-          <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
+          <DesktopHeader
+            activeLink={activeLink}
+            scrollPosition={scrollPosition}
+            isLightTheme={isLightTheme}
+            topOfHowItWorks={topOfHowItWorks}
+            topOfVoteParticipation={topOfVoteParticipation}
+            topOfBuilder={topOfBuilder}
+          />
         ) : (
           <MobileHeader
             showMobileMenu={showMobileMenu}
