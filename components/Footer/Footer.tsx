@@ -20,7 +20,7 @@ const Footer = () => {
         <Wrapper>
           <BottomRow>
             <FooterLinks>
-              {width > BREAKPOINTS.tb ? (
+              {width > BREAKPOINTS.md ? (
                 <LogoWrapper>
                   <StyledLogo />
                 </LogoWrapper>
@@ -43,7 +43,7 @@ const Footer = () => {
               </LinksFlex>
             </FooterLinks>
             <FormWrapper>
-              {width <= BREAKPOINTS.tb ? (
+              {width <= BREAKPOINTS.md ? (
                 <LogoWrapper>
                   <StyledLogo />
                 </LogoWrapper>
@@ -172,9 +172,18 @@ const FooterLinks = styled.div`
   justify-content: flex-start;
   width: 52%;
   gap: 100px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.lg.andDown} {
     flex-direction: column;
+    gap: 32px;
+    width: 30%;
+    margin: 0 16px;
+  }
+  @media ${QUERIES.tb.andDown} {
     justify-content: center;
+    align-items: flex-start;
+    align-self: flex-start;
+  }
+  @media ${QUERIES.md.andDown} {
     align-items: center;
     align-self: center;
   }
@@ -182,15 +191,16 @@ const FooterLinks = styled.div`
 
 const LogoWrapper = styled.div`
   width: 85px;
-  @media ${QUERIES.tb.andDown} {
-    margin-bottom: 24px;
-  }
 `;
 
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
   @media ${QUERIES.tb.andDown} {
+    flex-direction: column;
+    column-gap: 32px;
+  }
+  @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
@@ -205,9 +215,6 @@ const Links = styled.div`
   gap: 16px;
   max-height: 136px;
   flex-basis: 45%;
-  @media ${QUERIES.tb.andDown} {
-    margin-top: 16px;
-  }
 `;
 
 const Link = styled.a`
@@ -223,12 +230,21 @@ const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-self: baseline;
+  margin: 0 16px;
+  @media ${QUERIES.lg.andDown} {
+    max-width: 640px;
+    width: 100%;
+  }
   @media ${QUERIES.tb.andDown} {
+    justify-content: center;
+    align-items: flex-start;
+    align-self: flex-start;
+    margin-top: 64px;
+  }
+  @media ${QUERIES.md.andDown} {
     justify-content: center;
     align-items: center;
     align-self: center;
-    margin-left: 24px;
-    margin-right: 24px;
   }
 `;
 
@@ -237,10 +253,19 @@ const FormTitle = styled.h3`
   color: var(--grey-300);
   max-width: 338px;
   margin-bottom: 32px;
+  @media ${QUERIES.lg.andDown} {
+    width: 100%;
+    max-width: 640px;
+  }
   @media ${QUERIES.tb.andDown} {
-    max-width: 428px;
+    width: 100%;
+    text-align: left;
+  }
+  @media ${QUERIES.md.andDown} {
     width: 100%;
     text-align: center;
+    margin-top: 24px;
+    margin-bottom: 36px;
   }
 `;
 
@@ -251,13 +276,21 @@ const Form = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  @media ${QUERIES.lg.andDown} {
+    padding: 8px 16px;
+    gap: 16px;
+  }
   @media ${QUERIES.tb.andDown} {
-    flex-direction: column;
-    max-width: 428px;
+    padding: 0;
+    flex-direction: row;
+    max-width: 640px;
     width: 100%;
-    @media ${QUERIES.tb.andDown} {
-      margin-bottom: 24px;
-    }
+    margin-bottom: 24px;
+  }
+  @media ${QUERIES.md.andDown} {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 24px;
   }
 `;
 
@@ -276,9 +309,13 @@ const Input = styled.input`
   &:hover {
     border: 2px solid var(--grey-500);
   }
-  @media ${QUERIES.tb.andDown} {
-    max-width: 428px;
+  @media ${QUERIES.lg.andDown} {
     width: 100%;
+    max-width: 525px;
+  }
+  @media ${QUERIES.md.andDown} {
+    width: 100%;
+    max-width: calc(100% - 32px);
   }
 `;
 
@@ -298,9 +335,13 @@ const Button = styled.button`
   &:hover {
     opacity: 0.5;
   }
-  @media ${QUERIES.tb.andDown} {
-    max-width: 428px;
+  @media ${QUERIES.lg.andDown} {
     width: 100%;
+    max-width: 103px;
+  }
+  @media ${QUERIES.md.andDown} {
+    width: 100%;
+    max-width: calc(100% - 32px);
   }
 `;
 
@@ -308,8 +349,10 @@ const LinksFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-basis: 75%;
-  @media ${QUERIES.tb.andDown} {
+  @media ${QUERIES.lg.andDown} {
     flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
   }
 `;
 
@@ -318,11 +361,15 @@ const CopyrightRow = styled(Row)`
   display: flex;
   justify-content: space-between;
   @media ${QUERIES.tb.andDown} {
+    margin-top: 85px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  @media ${QUERIES.md.andDown} {
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: center;
-    margin-top: 85px;
   }
 `;
 

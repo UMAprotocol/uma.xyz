@@ -12,6 +12,7 @@ import { Wrapper as BaseWrapper } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { useWindowSize } from "hooks";
+import Image from "next/image";
 
 const Projects = () => {
   const { width } = useProjects();
@@ -20,7 +21,7 @@ const Projects = () => {
       <Wrapper>
         <ProjectsRow>
           <ProjectsColumn>
-            {width > BREAKPOINTS.sm ? (
+            {width > BREAKPOINTS.md ? (
               <BigProjects>
                 <BigProject>
                   <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
@@ -43,35 +44,44 @@ const Projects = () => {
               </BigProjects>
             ) : null}
             <SmallProjects>
-              {width > BREAKPOINTS.sm
-                ? smallProjects.map(({ name, link, Logo }, index) => {
+              {width > BREAKPOINTS.md
+                ? smallProjects.map(({ name, link, src }, index) => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
                           <UpRightArrowWhite />
                         </SmallLinkButton>
-                        <div>
-                          <Logo />
-                        </div>
+                        <SmallImageWrapper>
+                          <Image
+                            width="100%"
+                            height="100%"
+                            layout="responsive"
+                            objectFit="contain"
+                            src={src}
+                            alt="logo"
+                          />
+                        </SmallImageWrapper>
                         <SmallProjectText>{name}</SmallProjectText>
                       </SmallProject>
                     );
                   })
-                : mobileSmallProjects.map(({ name, link, Logo }, index) => {
-                    return (
-                      <SmallProject key={index}>
-                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          <UpRightArrowWhite />
-                        </SmallLinkButton>
-                        <div>
-                          <Logo />
-                        </div>
-                        <SmallProjectText>{name}</SmallProjectText>
-                      </SmallProject>
-                    );
-                  })}
+                : null}
             </SmallProjects>
           </ProjectsColumn>
+          {width <= BREAKPOINTS.md ? (
+            <MobileProjects>
+              {mobileSmallProjects.map(({ name, link, src }, index) => {
+                return (
+                  <MobileContainer href={link} key={index} target="_blank" rel="noreferrer">
+                    <MobileImageWrapper>
+                      <Image width="33px" height="33px" objectFit="contain" src={src} alt="logo" />
+                    </MobileImageWrapper>
+                    <MobileImageText>{name}</MobileImageText>
+                  </MobileContainer>
+                );
+              })}
+            </MobileProjects>
+          ) : null}
           <ProjectsBlurb>
             <ProjectsBlurbHeader>Real projects built with our products</ProjectsBlurbHeader>
             <ProjectsBlurbSubheader>
@@ -91,6 +101,8 @@ const Projects = () => {
   );
 };
 
+export default Projects;
+
 function useProjects() {
   const { width } = useWindowSize();
   return { width };
@@ -100,31 +112,37 @@ const smallProjects = [
   {
     name: "Polymarket",
     Logo: PolymarketLogo,
+    src: "/assets/polymarket.svg",
     link: "https://polymarket.com",
   },
   {
     name: "Boba",
     Logo: BobaLogo,
+    src: "/assets/boba.svg",
     link: "https://boba.network",
   },
   {
     name: "Shapeshift",
     Logo: ShapeshiftLogo,
+    src: "/assets/shapeshift.svg",
     link: "https://shapeshift.com",
   },
   {
     name: "Cozy",
     Logo: CozyLogo,
+    src: "/assets/cozy.svg",
     link: "https://www.cozy.finance",
   },
   {
     name: "Jarvis",
     Logo: JarvisLogo,
+    src: "/assets/jarvis.svg",
     link: "https://jarvis.network",
   },
   {
     name: "Sherlock",
     Logo: SherlockLogo,
+    src: "/assets/sherlock.svg",
     link: "https://www.sherlock.xyz",
   },
 ];
@@ -132,18 +150,22 @@ const smallProjects = [
 const mobileSmallProjects = [
   {
     name: "Across",
-    Logo: AcrossLogo,
+    src: "/assets/across.svg",
     link: "https://across.to",
   },
   {
     name: "Outcome",
-    Logo: OutcomeLogo,
+    src: "/assets/outcome.svg",
     link: "https://outcome.finance",
+  },
+  {
+    name: "Sherlock",
+    Logo: SherlockLogo,
+    src: "/assets/sherlock.svg",
+    link: "https://www.sherlock.xyz",
   },
   ...smallProjects,
 ];
-
-export default Projects;
 
 const Section = styled.section`
   width: 100%;
@@ -159,18 +181,20 @@ const ProjectsRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
-  margin-left: 0;
-  margin-right: 0;
-  @media ${QUERIES.tb.andDown} {
+  margin-left: 15px;
+  margin-right: 15px;
+  @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
-    margin-left: 15px;
-    margin-right: 15px;
   }
 `;
 
 const ProjectsColumn = styled.div`
   max-width: 560px;
   @media ${QUERIES.tb.andDown} {
+    width: 100%;
+    max-width: 438px;
+  }
+  @media ${QUERIES.md.andDown} {
     max-width: 100%;
   }
 `;
@@ -196,6 +220,10 @@ const BigProject = styled.div`
   width: 280px;
   height: 280px;
   @media ${QUERIES.tb.andDown} {
+    width: 218px;
+    height: 218px;
+  }
+  @media ${QUERIES.md.andDown} {
     flex-grow: 0;
     width: 50%;
   }
@@ -209,6 +237,7 @@ const BigProject = styled.div`
     h3,
     a {
       display: flex;
+      visibility: visible;
     }
     > div {
       path {
@@ -218,7 +247,7 @@ const BigProject = styled.div`
   }
 `;
 const BigProjectText = styled.h3`
-  display: none;
+  visibility: hidden;
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -255,6 +284,25 @@ const SmallProjects = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 560px;
+  }
+  @media ${QUERIES.md.andDown} {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+`;
+
+const SmallImageWrapper = styled.div`
+  width: 44.46px;
+  height: 55.9px;
+  margin-top: 20px;
+  @media ${QUERIES.sm.andDown} {
+    max-width: 60.37px;
+    max-height: 30.31px;
+  }
 `;
 
 const SmallProject = styled.div`
@@ -270,9 +318,17 @@ const SmallProject = styled.div`
   width: 186px;
   height: 186px;
   min-width: 0;
-  @media ${QUERIES.sm.andDown} {
-    min-width: 50%;
-    width: 50%;
+  justify-content: center;
+  @media ${QUERIES.tb.andDown} {
+    max-width: 145.48px;
+    max-height: 145.48px;
+    width: 33%;
+  }
+  @media ${QUERIES.md.andDown} {
+    flex: 1 0 auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
   }
   &:hover {
     path {
@@ -286,9 +342,10 @@ const SmallProject = styled.div`
     h3,
     a {
       display: flex;
+      visibility: visible;
     }
-    svg {
-      fill: var(--white);
+    img {
+      filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
     }
   }
   svg {
@@ -298,6 +355,10 @@ const SmallProject = styled.div`
 
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
+  @media ${QUERIES.md.andDown} {
+    margin-top: 8px;
+    font-size: 12px;
+  }
 `;
 
 const SmallLinkButton = styled(LinkButton)`
@@ -314,6 +375,7 @@ const ProjectsBlurb = styled.div`
   @media ${QUERIES.tb.andDown} {
     justify-content: flex-start;
     align-items: flex-start;
+    max-width: 362px;
   }
 `;
 
@@ -326,6 +388,9 @@ const ProjectsBlurbHeader = styled.h2`
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 100%;
+  }
+  @media screen and (max-width: 740px) {
+    font: var(--header-sm);
   }
 `;
 
@@ -340,6 +405,10 @@ const ProjectsBlurbSubheader = styled.h3`
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 100%;
+    font: var(--body-md);
+  }
+  @media screen and (max-width: 740px) {
+    font: var(--body-md);
   }
 `;
 
@@ -383,4 +452,52 @@ const RemixLink = styled.a`
     width: 32px;
     height: 32px;
   }
+`;
+
+const MobileProjects = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  justify-content: space-around;
+`;
+const MobileContainer = styled.a`
+  flex: 1 0 calc(33% - 16px);
+  border: 1px solid var(--grey-600);
+  height: auto;
+  border: 1;
+  text-decoration: none;
+  &::before {
+    content: "";
+    float: left;
+    padding-top: 100%;
+  }
+  &:hover {
+    h3 {
+      visibility: visible;
+      color: var(--red);
+    }
+    img {
+      filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
+    }
+  }
+`;
+
+const MobileImageWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 75%;
+  align-content: center;
+  align-self: end;
+  justify-content: center;
+`;
+
+const MobileImageText = styled.h3`
+  visibility: visible;
+  font: var(--body-sm);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: -20px;
+  color: var(--grey-200);
 `;

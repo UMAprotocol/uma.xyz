@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Layout,
   Header,
@@ -11,7 +11,7 @@ import {
   Footer,
 } from "components";
 import styled from "styled-components";
-import { useIntersectionObserver } from "hooks";
+import { useIntersectionObserver, useScrollPosition } from "hooks";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
@@ -19,9 +19,13 @@ export function Home() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const voteParticipationRef = useRef<HTMLDivElement | null>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
-    threshold: 0.49,
+    threshold: 0.47,
   });
   const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
+  const [cp, setCp] = useState(0);
+  useScrollPosition(({ currPos }) => {
+    setCp(Math.abs(currPos.y));
+  }, []);
   return (
     <Layout>
       <Wrapper>
@@ -31,7 +35,10 @@ export function Home() {
         </div>
         <div ref={headerThemeChangeRef}>
           <div ref={howItWorksRef}>
-            <HowItWorks />
+            <HowItWorks
+              currentPosition={cp}
+              heightFromTop={heroRef.current ? heroRef.current.getBoundingClientRect().height : 0}
+            />
           </div>
           <div ref={voteParticipationRef}>
             <VoteParticipation

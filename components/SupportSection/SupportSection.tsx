@@ -56,6 +56,10 @@ const Wrapper = styled(BaseWrapper)`
 const Title = styled(BaseTitle)`
   max-width: 562px;
   font: var(--header-md);
+  @media ${QUERIES.md.andDown} {
+    max-width: 400px;
+    font: var(--header-sm);
+  }
 `;
 
 const Subtitle = styled.h3`
@@ -66,6 +70,10 @@ const Subtitle = styled.h3`
   @media ${QUERIES.tb.andDown} {
     margin-left: 15px;
     margin-right: 15px;
+  }
+  @media ${QUERIES.md.andDown} {
+    max-width: 400px;
+    font: var(--body-md);
   }
 `;
 
@@ -140,4 +148,7 @@ const ButtonText = styled.span`
   font: var(--header-sm);
   color: var(--grey-200);
   line-height: 115%;
+  @media ${QUERIES.md.andDown} {
+    font-size: 32px;
+  }
 `;

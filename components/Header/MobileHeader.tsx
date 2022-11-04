@@ -137,7 +137,7 @@ interface IStyledProps {
 }
 
 const Section = styled.div`
-  width: calc(100% - 32px);
+  width: 100%;
   margin: 0 auto;
 `;
 const Wrapper = styled.div<IStyledProps>`
@@ -156,6 +156,7 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean; isLightTheme:
   height: 18px;
   width: 25px;
   background: var(--grey-900);
+  margin-left: 16px;
   span {
     position: absolute;
     display: block;
@@ -231,6 +232,7 @@ const AppBlock = styled.div`
     text-decoration: none;
     font: var(--body-sm);
     color: var(--white);
+    margin-right: 16px;
   }
   display: flex;
   flex-direction: row;
