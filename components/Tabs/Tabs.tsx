@@ -17,12 +17,13 @@ type Tab = {
 
 interface Props {
   tabs: Tab[];
+  isIntersecting?: boolean;
 }
 
-const Tabs = ({ tabs }: Props) => {
+const Tabs = ({ tabs, isIntersecting }: Props) => {
   return (
     <TabsWrapper>
-      <TabList>
+      <TabList isIntersecting={isIntersecting}>
         {tabs.map(({ title, Icon }) => {
           return (
             <Tab key={title}>
@@ -42,7 +43,11 @@ const Tabs = ({ tabs }: Props) => {
 };
 const TabsWrapper = styled(ReachTabs)``;
 
-const TabList = styled(ReachTabList)`
+interface ITabList {
+  isIntersecting?: boolean;
+}
+
+const TabList = styled(ReachTabList)<ITabList>`
   width: 100%;
   height: 68px;
   display: flex;
@@ -62,7 +67,6 @@ const TabList = styled(ReachTabList)`
     width: 1024px;
     height: 100px;
     white-space: nowrap;
-    display: inline-flex !important;
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
@@ -75,6 +79,12 @@ const TabList = styled(ReachTabList)`
         fill: var(--red);
       }
     }
+    z-index: 10000;
+    bottom: 6px;
+    background: #ffffff;
+    padding-top: 16px;
+    position: ${(props) => (props.isIntersecting ? "fixed" : "relative")};
+    display: ${(props) => (props.isIntersecting ? "inline-flex !important" : "none !important")};
   }
 `;
 

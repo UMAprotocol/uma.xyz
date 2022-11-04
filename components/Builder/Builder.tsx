@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import styled from "styled-components";
 import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
 import { Tabs } from "components";
@@ -8,13 +9,18 @@ import MedalIcon from "public/assets/medal.svg";
 import CreditCardsIcon from "public/assets/credit-cards.svg";
 import GlobeIcon from "public/assets/globe.svg";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
+import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
 
 const Builder = () => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useBuilder();
+  const eSection = useIntersectionObserver(sectionRef, {
+    threshold: 0.6,
+  });
+  const isIntersectingSection = !!eSection?.isIntersecting;
   return (
-    <Section>
+    <Section ref={sectionRef}>
       <Wrapper>
         <Title>
           Participate as a <span>Builder</span>
@@ -40,6 +46,7 @@ const Builder = () => {
           </MobileHeader>
         )}
         <Tabs
+          isIntersecting={isIntersectingSection}
           tabs={[
             {
               title: "Prediction markets",
