@@ -3,6 +3,7 @@ import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Link from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
+import { useScrollTo } from "react-use-window-scroll";
 
 interface Props {
   activeLink: number;
@@ -21,6 +22,8 @@ const DesktopHeader: React.FC<Props> = ({
   topOfHowItWorks,
   topOfVoteParticipation,
 }) => {
+  const scrollTo = useScrollTo();
+
   return (
     <Wrapper scrollPosition={scrollPosition} isLightTheme={isLightTheme}>
       <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
@@ -30,15 +33,18 @@ const DesktopHeader: React.FC<Props> = ({
             onClick={() => {
               if (i === 0) {
                 console.log("firing? 0");
-                return window.scrollTo(0, topOfHowItWorks);
+                // return window.scrollTo(0, topOfHowItWorks);
+                scrollTo(topOfHowItWorks, 0);
               }
               if (i === 1) {
                 console.log(">>>firing? 1<<<<");
-                return window.scrollTo(0, topOfVoteParticipation);
+                // return window.scrollTo(0, topOfVoteParticipation);
+                scrollTo(topOfVoteParticipation, 0);
               }
               if (i === 2) {
                 console.log("firing? 2");
-                return window.scrollTo(0, topOfBuilder);
+                // return window.scrollTo(0, topOfBuilder);
+                scrollTo(topOfBuilder, 0);
               }
             }}
             active={activeLink === i}
