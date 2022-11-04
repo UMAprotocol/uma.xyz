@@ -49,7 +49,6 @@ export function Home() {
     voteParticipationRef,
     builderRef
   );
-  // console.log("top", topOfHowItWorks, topOfVoteParticipation, topOfBuilder);
 
   return (
     <Layout>

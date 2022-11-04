@@ -28,8 +28,6 @@ const DesktopHeader: React.FC<Props> = ({
         {links.map(({ label, href }, i) => (
           <StyledLink
             onClick={() => {
-              console.log("onClick", topOfHowItWorks, topOfVoteParticipation, topOfBuilder);
-
               if (i === 0) {
                 console.log("firing? 0");
                 return window.scrollTo(0, topOfHowItWorks);
