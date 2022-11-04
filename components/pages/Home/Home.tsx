@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import {
   Layout,
   Header,
@@ -18,18 +18,34 @@ export function Home() {
   const howItWorksRef = useRef<HTMLDivElement | null>(null);
   const heroRef = useRef<HTMLDivElement | null>(null);
   const voteParticipationRef = useRef<HTMLDivElement | null>(null);
+  const builderRef = useRef<HTMLDivElement | null>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
+    threshold: 0.37,
+  });
+  const eVoteParticipation = useIntersectionObserver(voteParticipationRef, {
+    threshold: 0.47,
+  });
+  const eBuilder = useIntersectionObserver(builderRef, {
     threshold: 0.47,
   });
   const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
+  const isIntersectingVoteParticipationSection = !!eVoteParticipation?.isIntersecting;
+  const isIntersectingBuilderSection = !!eBuilder?.isIntersecting;
+
   const [cp, setCp] = useState(0);
+  const currentActiveLink = useCallback(() => {
+    if (isIntersectingHowItWorksSection) return 0;
+    if (isIntersectingVoteParticipationSection) return 1;
+    if (isIntersectingBuilderSection) return 2;
+    return -1;
+  }, [isIntersectingHowItWorksSection, isIntersectingVoteParticipationSection, isIntersectingBuilderSection]);
   useScrollPosition(({ currPos }) => {
     setCp(Math.abs(currPos.y));
   }, []);
   return (
     <Layout>
       <Wrapper>
-        <Header activeLink={isIntersectingHowItWorksSection ? 0 : -1} />
+        <Header activeLink={currentActiveLink()} />
         <div ref={heroRef}>
           <Hero />
         </div>
@@ -43,7 +59,9 @@ export function Home() {
           <div ref={voteParticipationRef}>
             <VoteParticipation />
           </div>
-          <Builder />
+          <div ref={builderRef}>
+            <Builder />
+          </div>
           <Projects />
           <SupportSection />
           <Footer />
