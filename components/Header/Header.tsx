@@ -77,7 +77,7 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     }};
   }
   > div {
-    margin: 0 15px;
+    margin: 0;
     background: ${({ isLightTheme }) => {
       return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
     }};

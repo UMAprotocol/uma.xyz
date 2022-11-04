@@ -19,7 +19,7 @@ export function Home() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const voteParticipationRef = useRef<HTMLDivElement | null>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
-    threshold: 0.49,
+    threshold: 0.47,
   });
   const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
   const [cp, setCp] = useState(0);
