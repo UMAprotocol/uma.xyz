@@ -22,6 +22,7 @@ const DesktopHeader: React.FC<Props> = ({
   topOfHowItWorks,
   topOfVoteParticipation,
 }) => {
+  // Not necc, was just trying this out
   const scrollTo = useScrollTo();
 
   return (
