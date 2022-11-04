@@ -8,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof VoteParticipation> = () => (
   <div style={{ padding: "2rem", background: "var(--black)" }}>
-    <VoteParticipation heightFromTop={0} />
+    <VoteParticipation />
   </div>
 );
 
