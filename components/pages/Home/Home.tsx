@@ -41,14 +41,7 @@ export function Home() {
             />
           </div>
           <div ref={voteParticipationRef}>
-            <VoteParticipation
-              heightFromTop={
-                heroRef.current && howItWorksRef.current
-                  ? heroRef.current.getBoundingClientRect().height +
-                    howItWorksRef.current.getBoundingClientRect().height
-                  : 0
-              }
-            />
+            <VoteParticipation />
           </div>
           <Builder />
           <Projects />

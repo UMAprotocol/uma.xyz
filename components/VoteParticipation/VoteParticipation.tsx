@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
@@ -6,13 +6,8 @@ import { Title, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
-import { useScrollPosition } from "hooks";
 
-interface Props {
-  heightFromTop: number;
-}
-
-const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
+const VoteParticipation = () => {
   const {
     width,
     earnRef,
@@ -22,18 +17,13 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
     isIntersectingEarn,
     isIntersectingStake,
     isIntersectingVote,
-    cp,
+    isIntersectingSection,
   } = useVoteParticipation();
 
   return (
     <Section ref={sectionRef}>
       {width <= BREAKPOINTS.tb && (
-        <MobileVoterRow
-          cp={cp}
-          diff={cp - heightFromTop}
-          heightFromTop={heightFromTop}
-          compHeight={sectionRef.current?.getBoundingClientRect().height || 0}
-        >
+        <MobileVoterRow isIntersecting={isIntersectingSection}>
           <MobileVoterAppLinkBlock>
             <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
               Link to voter app
@@ -156,7 +146,8 @@ function useVoteParticipation() {
   });
 
   const ioSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.1,
+    threshold: 0.5,
+    rootMargin: "-200px 0px -25px 0px",
   });
 
   const isIntersectingStake = !!ioStake?.isIntersecting;
@@ -164,13 +155,7 @@ function useVoteParticipation() {
   const isIntersectingEarn = !!ioEarn?.isIntersecting;
   const isIntersectingSection = !!ioSection?.isIntersecting;
   const { width } = useWindowSize();
-  const [cp, setCp] = useState(0);
-  useScrollPosition(
-    ({ currPos }) => {
-      setCp(Math.abs(currPos.y));
-    },
-    [isIntersectingSection]
-  );
+
   return {
     width,
     earnRef,
@@ -181,7 +166,6 @@ function useVoteParticipation() {
     isIntersectingVote,
     isIntersectingEarn,
     isIntersectingSection,
-    cp,
   };
 }
 
@@ -374,13 +358,10 @@ const ImageWrapper = styled.div<ScrollProps>`
     max-height: 96px;
   }
   @media ${QUERIES.tb.andDown} {
-    /* flex: 1 1 64px; */
     align-items: center;
     align-self: center;
     max-width: 64px;
     max-height: 64px;
-    /* width: 100%;
-    height: 100%; */
   }
 `;
 
@@ -431,20 +412,20 @@ const VoterAppLink = styled.a`
 `;
 
 interface IMobileVoterRow {
-  diff: number;
-  cp: number;
-  compHeight: number;
-  heightFromTop: number;
+  isIntersecting: boolean;
 }
 
 const MobileVoterRow = styled(VoterAppLinkRow)<IMobileVoterRow>`
-  position: absolute;
+  position: fixed;
   width: 100%;
   margin-left: 0;
-  top: ${({ diff, cp, compHeight, heightFromTop }) => {
-    if (cp + 100 > compHeight + heightFromTop) return compHeight - 100;
-    return Math.max(10, diff);
-  }}px;
+  bottom: 0;
+  padding: 1.5rem;
+  display: ${({ isIntersecting }) => {
+    return isIntersecting ? "flex" : "none";
+  }};
+  backdrop-filter: blur(6px);
+  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
 `;
 
 const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
