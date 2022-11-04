@@ -9,6 +9,7 @@ import CreditCardsIcon from "public/assets/credit-cards.svg";
 import GlobeIcon from "public/assets/globe.svg";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+import Image from "next/image";
 
 const Builder = () => {
   const { width } = useBuilder();
@@ -33,7 +34,7 @@ const Builder = () => {
           <MobileHeader>
             Launch products with the
             <span>
-              <MobileImg src="/assets/oo-mobile-red.svg" alt="oo-logo" />
+              <MobileImg width="45px" height="20px" objectFit="contain" src="/assets/oo-mobile-red.svg" alt="oo-logo" />
             </span>
             as your backbone
           </MobileHeader>
@@ -183,19 +184,22 @@ const MobileHeader = styled(Header)`
   display: inline-flex;
   flex-wrap: wrap;
   margin-bottom: 24px;
-  /* margin: 24px 12px 40px; */
   margin: 24px 0 40px;
   padding-left: 16px;
   span {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: 6px 4px 0;
+    margin: 6px 8px 0;
     height: 100%;
+  }
+  @media ${QUERIES.sm.andDown} {
+    display: inline-block;
+    word-break: wrap;
   }
 `;
 
-const MobileImg = styled.img`
+const MobileImg = styled(Image)`
   display: inline-flex;
   justify-content: center;
   align-items: center;
