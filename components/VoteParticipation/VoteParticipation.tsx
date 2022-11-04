@@ -22,6 +22,7 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
     isIntersectingEarn,
     isIntersectingStake,
     isIntersectingVote,
+    isIntersectingSection,
     cp,
   } = useVoteParticipation();
 
@@ -29,10 +30,11 @@ const VoteParticipation: React.FC<Props> = ({ heightFromTop }) => {
     <Section ref={sectionRef}>
       {width <= BREAKPOINTS.tb && (
         <MobileVoterRow
-          cp={cp}
-          diff={cp - heightFromTop}
-          heightFromTop={heightFromTop}
-          compHeight={sectionRef.current?.getBoundingClientRect().height || 0}
+          // cp={cp}
+          // diff={cp - heightFromTop}
+          // heightFromTop={heightFromTop}
+          // compHeight={sectionRef.current?.getBoundingClientRect().height || 0}
+          isIntersecting={isIntersectingSection}
         >
           <MobileVoterAppLinkBlock>
             <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
@@ -156,7 +158,8 @@ function useVoteParticipation() {
   });
 
   const ioSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.1,
+    threshold: 0.45,
+    rootMargin: "-50px 0px 0px 0px",
   });
 
   const isIntersectingStake = !!ioStake?.isIntersecting;
@@ -374,13 +377,10 @@ const ImageWrapper = styled.div<ScrollProps>`
     max-height: 96px;
   }
   @media ${QUERIES.tb.andDown} {
-    /* flex: 1 1 64px; */
     align-items: center;
     align-self: center;
     max-width: 64px;
     max-height: 64px;
-    /* width: 100%;
-    height: 100%; */
   }
 `;
 
@@ -431,20 +431,20 @@ const VoterAppLink = styled.a`
 `;
 
 interface IMobileVoterRow {
-  diff: number;
-  cp: number;
-  compHeight: number;
-  heightFromTop: number;
+  isIntersecting: boolean;
 }
 
 const MobileVoterRow = styled(VoterAppLinkRow)<IMobileVoterRow>`
-  position: absolute;
+  position: fixed;
   width: 100%;
   margin-left: 0;
-  top: ${({ diff, cp, compHeight, heightFromTop }) => {
-    if (cp + 100 > compHeight + heightFromTop) return compHeight - 100;
-    return Math.max(10, diff);
-  }}px;
+  bottom: 0;
+  padding: 1.5rem;
+  display: ${({ isIntersecting }) => {
+    return isIntersecting ? "flex" : "none";
+  }};
+  backdrop-filter: blur(6px);
+  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
 `;
 
 const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
