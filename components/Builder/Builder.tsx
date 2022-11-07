@@ -20,7 +20,7 @@ const Builder = () => {
   });
   const isIntersectingSection = !!eSection?.isIntersecting;
   return (
-    <Section ref={sectionRef}>
+    <Section id="builder" ref={sectionRef}>
       <Wrapper>
         <Title>
           Participate as a <span>Builder</span>

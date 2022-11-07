@@ -15,7 +15,6 @@ const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLi
     <Wrapper scrollPosition={scrollPosition} isLightTheme={isLightTheme}>
       <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
       <Links>
-        {/* TODO: Get links */}
         {links.map(({ label, href }, i) => (
           <StyledLink active={activeLink === i} isLightTheme={isLightTheme} key={i} href={href}>
             <LinkWrapper>
@@ -41,15 +40,15 @@ const LinkWrapper = styled.div`
 const links = [
   {
     label: "How it works",
-    href: "#",
+    href: "#howItWorks",
   },
   {
     label: "For voters",
-    href: "#",
+    href: "#voter",
   },
   {
     label: "For builders",
-    href: "#",
+    href: "#builder",
   },
   {
     label: (
