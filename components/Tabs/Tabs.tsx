@@ -65,7 +65,7 @@ const TabList = styled(ReachTabList)<ITabList>`
   }
   @media ${QUERIES.tb.andDown} {
     width: 1024px;
-    height: 110px;
+    height: 112px;
     white-space: nowrap;
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
@@ -83,7 +83,6 @@ const TabList = styled(ReachTabList)<ITabList>`
     bottom: 0px;
     background: #ffffff;
     padding-top: 16px;
-    /* padding-bottom: 6px; */
     position: ${(props) => (props.isIntersecting ? "fixed" : "relative")};
     display: ${(props) => (props.isIntersecting ? "inline-flex !important" : "none !important")};
   }
