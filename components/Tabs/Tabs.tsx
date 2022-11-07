@@ -65,7 +65,7 @@ const TabList = styled(ReachTabList)<ITabList>`
   }
   @media ${QUERIES.tb.andDown} {
     width: 1024px;
-    height: 100px;
+    height: 110px;
     white-space: nowrap;
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
