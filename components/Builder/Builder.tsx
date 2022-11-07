@@ -14,7 +14,7 @@ import Image from "next/image";
 const Builder = () => {
   const { width } = useBuilder();
   return (
-    <Section>
+    <Section id="builder">
       <Wrapper>
         <Title>
           Participate as a <span>Builder</span>

@@ -21,7 +21,7 @@ const VoteParticipation = () => {
   } = useVoteParticipation();
 
   return (
-    <Section ref={sectionRef}>
+    <Section ref={sectionRef} id="voter">
       {width <= BREAKPOINTS.tb && (
         <MobileVoterRow isIntersecting={isIntersectingSection}>
           <MobileVoterAppLinkBlock>

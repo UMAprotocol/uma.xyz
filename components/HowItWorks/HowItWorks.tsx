@@ -22,7 +22,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
     refTwoPercentCrossed,
   } = useHowItWorks(currentPosition);
   return (
-    <Section ref={isMounted ? sectionRef : null}>
+    <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>

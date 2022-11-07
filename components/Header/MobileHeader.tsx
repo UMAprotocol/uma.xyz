@@ -71,15 +71,15 @@ const MenuToggle: React.FC<{ toggled: boolean; onToggle: () => void; isLightThem
 const links = [
   {
     label: "How it works",
-    href: "#",
+    href: "#howItWorks",
   },
   {
     label: "For Voters",
-    href: "#",
+    href: "#voter",
   },
   {
     label: "For Builders",
-    href: "#",
+    href: "#builder",
   },
   {
     label: (
