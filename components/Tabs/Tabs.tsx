@@ -84,7 +84,7 @@ const TabList = styled(ReachTabList)<ITabList>`
     background: #ffffff;
     padding-top: 16px;
     position: ${(props) => (props.isIntersecting ? "fixed" : "relative")};
-    display: ${(props) => (props.isIntersecting ? "inline-flex !important" : "none !important")};
+    display: ${(props) => (props.isIntersecting ? "inline-flex" : "none")} !important;
   }
 `;
 
