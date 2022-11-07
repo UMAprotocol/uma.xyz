@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback, MutableRefObject } from "react";
+import { useRef, useState, useCallback } from "react";
 import {
   Layout,
   Header,
@@ -44,21 +44,10 @@ export function Home() {
     return -1;
   }, [isIntersectingHowItWorksSection, isIntersectingVoteParticipationSection, isIntersectingBuilderSection]);
 
-  const { topOfHowItWorks, topOfVoteParticipation, topOfBuilder } = useHome(
-    howItWorksRef,
-    voteParticipationRef,
-    builderRef
-  );
-
   return (
     <Layout>
       <Wrapper>
-        <Header
-          activeLink={currentActiveLink()}
-          topOfHowItWorks={topOfHowItWorks}
-          topOfVoteParticipation={topOfVoteParticipation}
-          topOfBuilder={topOfBuilder}
-        />
+        <Header activeLink={currentActiveLink()} />
         <div ref={heroRef}>
           <Hero />
         </div>
@@ -82,35 +71,6 @@ export function Home() {
       </Wrapper>
     </Layout>
   );
-}
-
-function useHome(
-  howItWorksRef: MutableRefObject<HTMLDivElement | null>,
-  voteParticipationRef: MutableRefObject<HTMLDivElement | null>,
-  builderRef: MutableRefObject<HTMLDivElement | null>
-) {
-  const [topOfHowItWorks, setTopOfHowItWorks] = useState(0);
-  const [topOfVoteParticipation, setTopOfVoteParticipation] = useState(0);
-  const [topOfBuilder, setTopOfBuilder] = useState(0);
-  const isMounted = useIsMounted();
-  useEffect(() => {
-    if (isMounted()) {
-      if (howItWorksRef.current && topOfHowItWorks === 0)
-        setTopOfHowItWorks(howItWorksRef.current.getBoundingClientRect().top);
-      if (voteParticipationRef.current && topOfVoteParticipation === 0)
-        setTopOfVoteParticipation(voteParticipationRef.current.getBoundingClientRect().top);
-      if (builderRef.current && topOfBuilder === 0) setTopOfBuilder(builderRef.current.getBoundingClientRect().top);
-    }
-  }, [isMounted]);
-
-  return {
-    topOfHowItWorks,
-    topOfVoteParticipation,
-    topOfBuilder,
-    howItWorksRef,
-    voteParticipationRef,
-    builderRef,
-  };
 }
 
 const Wrapper = styled.div`

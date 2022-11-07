@@ -3,56 +3,20 @@ import Logo from "public/assets/uma-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Link from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import { useScrollTo } from "react-use-window-scroll";
 
 interface Props {
   activeLink: number;
   scrollPosition: number;
   isLightTheme: boolean;
-  topOfHowItWorks: number;
-  topOfVoteParticipation: number;
-  topOfBuilder: number;
 }
 
-const DesktopHeader: React.FC<Props> = ({
-  scrollPosition,
-  isLightTheme,
-  activeLink,
-  topOfBuilder,
-  topOfHowItWorks,
-  topOfVoteParticipation,
-}) => {
-  // Not necc, was just trying this out
-  const scrollTo = useScrollTo();
-
+const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLink }) => {
   return (
     <Wrapper scrollPosition={scrollPosition} isLightTheme={isLightTheme}>
       <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
       <Links>
         {links.map(({ label, href }, i) => (
-          <StyledLink
-            onClick={() => {
-              if (i === 0) {
-                console.log("firing? 0");
-                // return window.scrollTo(0, topOfHowItWorks);
-                scrollTo(topOfHowItWorks, 0);
-              }
-              if (i === 1) {
-                console.log(">>>firing? 1<<<<");
-                // return window.scrollTo(0, topOfVoteParticipation);
-                scrollTo(topOfVoteParticipation, 0);
-              }
-              if (i === 2) {
-                console.log("firing? 2");
-                // return window.scrollTo(0, topOfBuilder);
-                scrollTo(topOfBuilder, 0);
-              }
-            }}
-            active={activeLink === i}
-            isLightTheme={isLightTheme}
-            key={i}
-            href={href}
-          >
+          <StyledLink active={activeLink === i} isLightTheme={isLightTheme} key={i} href={href}>
             <LinkWrapper>
               {activeLink === i ? <RedDot /> : <Dot />} {label}
             </LinkWrapper>
@@ -76,15 +40,15 @@ const LinkWrapper = styled.div`
 const links = [
   {
     label: "How it works",
-    href: "#",
+    href: "#howItWorks",
   },
   {
     label: "For voters",
-    href: "#",
+    href: "#voter",
   },
   {
     label: "For builders",
-    href: "#",
+    href: "#builder",
   },
   {
     label: (
