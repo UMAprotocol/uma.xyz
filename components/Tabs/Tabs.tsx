@@ -80,9 +80,10 @@ const TabList = styled(ReachTabList)<ITabList>`
       }
     }
     z-index: 10000;
-    bottom: 6px;
+    bottom: 0px;
     background: #ffffff;
     padding-top: 16px;
+    /* padding-bottom: 6px; */
     position: ${(props) => (props.isIntersecting ? "fixed" : "relative")};
     display: ${(props) => (props.isIntersecting ? "inline-flex !important" : "none !important")};
   }
