@@ -16,7 +16,7 @@ const Builder = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useBuilder();
   const eSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.6,
+    threshold: 0.5,
   });
   const isIntersectingSection = !!eSection?.isIntersecting;
   return (
