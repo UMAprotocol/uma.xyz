@@ -11,7 +11,7 @@ import {
   Footer,
 } from "components";
 import styled from "styled-components";
-import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+import { useIntersectionObserver, useScrollPosition } from "hooks";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
