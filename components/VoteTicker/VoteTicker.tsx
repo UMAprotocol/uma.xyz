@@ -244,7 +244,7 @@ const MoreDetailsBlock = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 4px;
+    gap: 8px;
     path {
       stroke: ${({ theme }: { theme: Theme }) => theme.moreDetails.stroke};
     }

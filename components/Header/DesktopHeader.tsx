@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "public/assets/uma-logo.svg";
+import Logo from "public/assets/uma-white-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Link from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
@@ -53,7 +53,7 @@ const links = [
   {
     label: (
       <>
-        Oracle <SmUpRightArrow style={{ marginLeft: "4px" }} />
+        Oracle <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
     href: "#",
@@ -61,7 +61,7 @@ const links = [
   {
     label: (
       <>
-        Docs <SmUpRightArrow style={{ marginLeft: "4px" }} />
+        Docs <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
     href: "#",
@@ -69,7 +69,7 @@ const links = [
   {
     label: (
       <>
-        Projects <SmUpRightArrow style={{ marginLeft: "4px" }} />
+        Projects <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
     href: "#",
@@ -94,7 +94,8 @@ const Wrapper = styled.div<IWrapper>`
   max-width: var(--max-section-width);
   margin: 0 auto;
   z-index: 100;
-  margin-top: 24px;
+  margin-top: 16px;
+  border-radius: 12px;
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
   }};
@@ -126,7 +127,6 @@ const StyledLink = styled.a<ILinkProps>`
   &:hover {
     opacity: 0.8;
   }
-  /* margin: 0 15px; */
 `;
 
 const LaunchButton = styled.button<IStyledProps>`
