@@ -102,7 +102,7 @@ const Title = styled.div`
 
 const Subheader = styled.div`
   margin: 32px 0 0;
-  font: var(--body-lg);
+  font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
   @media ${QUERIES.md.andDown} {

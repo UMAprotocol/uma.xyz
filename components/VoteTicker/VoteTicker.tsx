@@ -11,7 +11,7 @@ type TickerThemes = "light" | "dark";
 interface Props {
   theme: TickerThemes;
   numVotes: number;
-  phase: "Commit" | "Reveal";
+  phase: "commit" | "reveal";
 }
 
 interface Theme {
@@ -200,6 +200,7 @@ const VoteText = styled.div`
   span {
     color: ${({ theme }: { theme: Theme }) => theme.voteText.spanColor};
     margin-left: 4px;
+    letter-spacing: 0.02em;
   }
   padding-right: 16px;
   border-right: ${({ theme }: { theme: Theme }) => theme.voteText.borderRight};
