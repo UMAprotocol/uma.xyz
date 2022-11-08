@@ -6,6 +6,7 @@ import { formatDateTimeFromUTC } from "./utils";
 import useInterval from "hooks/helpers/useInterval";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+
 type TickerThemes = "light" | "dark";
 
 interface Props {
@@ -21,6 +22,7 @@ interface Theme {
   };
   wrapper: {
     bg: string;
+    url: string;
   };
   clock: {
     br: string;
@@ -55,6 +57,7 @@ const styledTheme: TickerTheme = {
     },
     wrapper: {
       bg: "var(--grey-800)",
+      url: "/assets/white-lines.png",
     },
     clock: {
       br: "4px",
@@ -81,6 +84,7 @@ const styledTheme: TickerTheme = {
     },
     wrapper: {
       bg: "var(--grey-300)",
+      url: "/assets/black-lines.png",
     },
     clock: {
       br: "16px",
@@ -152,7 +156,9 @@ function useVoteTicker() {
 const Section = styled.div`
   width: 100%;
   background: ${({ theme }: { theme: Theme }) => theme.section.bg};
-  padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt}; ;
+  padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt};
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const Wrapper = styled.div`
@@ -167,6 +173,9 @@ const Wrapper = styled.div`
   margin: 0 auto;
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
+  background-image: ${({ theme }: { theme: Theme }) => `url(${theme.wrapper.url})`};
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 8px;
   width: calc(100% - 24px);
 `;
