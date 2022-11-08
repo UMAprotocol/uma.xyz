@@ -126,7 +126,7 @@ const StyledLink = styled.a<ILinkProps>`
   &:hover {
     opacity: 0.8;
   }
-  margin: 0 15px;
+  /* margin: 0 15px; */
 `;
 
 const LaunchButton = styled.button<IStyledProps>`
