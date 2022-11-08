@@ -21,7 +21,7 @@ const Header: React.FC<Props> = ({ activeLink }) => {
   return (
     <div ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Headroom isLightTheme={isLightTheme} style={{ paddingTop: "24px" }}>
+      <Headroom isLightTheme={isLightTheme}>
         {width > BREAKPOINTS.tb ? (
           <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
         ) : (
