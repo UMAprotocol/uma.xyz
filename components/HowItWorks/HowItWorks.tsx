@@ -225,7 +225,7 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin-top: 31px 16px 0;
+  margin: 270px 16px 0;
   @media ${QUERIES.lg.andDown} {
     margin-left: 16px;
     margin-right: 16px;
@@ -233,7 +233,7 @@ const AnimationWrapper = styled.div`
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
-  margin-top: 143px;
+  margin-top: 31px;
   @media ${QUERIES.lg.andDown} {
     margin-top: 128px;
   }
@@ -280,6 +280,7 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
+  letter-spacing: -0.01em;
 
   @media ${QUERIES.lg.andDown} {
     max-width: 640px;
