@@ -12,22 +12,32 @@ interface Props {
   currentPosition: number;
 }
 const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
-  const { sectionRef, isMounted, width, ref, refTrackOne, refTrackTwo, refOnePercentCrossed, refTwoPercentCrossed } =
-    useHowItWorks(currentPosition);
+  const {
+    sectionRef,
+    isMounted,
+    width,
+    desktopTrackerRef,
+    refDesktopPercentCrossed,
+    refTrackOne,
+    refTrackTwo,
+    refOnePercentCrossed,
+    refTwoPercentCrossed,
+  } = useHowItWorks(currentPosition);
+  console.log("refDesktopPercentCrossed", refDesktopPercentCrossed);
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
-        <IntersectionWrapper>
+        <IntersectionWrapper ref={desktopTrackerRef}>
           {width > BREAKPOINTS.lg && (
-            <TrackWrapper ref={ref}>
-              <TrackItem tracked>01</TrackItem>
-              <RedSeperator height={50} />
-              <Seperator height={50} />
-              <TrackItem>02</TrackItem>
-              <RedSeperator height={0} />
-              <Seperator height={100} />
+            <TrackWrapper>
+              <TrackItem tracked={refDesktopPercentCrossed > 0}>01</TrackItem>
+              <RedSeperator height={Math.min(refDesktopPercentCrossed - 25, 100)} />
+              <Seperator height={100 - Math.min(refDesktopPercentCrossed - 25, 100)} />
+              <TrackItem tracked={refDesktopPercentCrossed >= 75}>02</TrackItem>
+              <RedSeperator height={Math.min(refDesktopPercentCrossed - 25, 100)} />
+              <Seperator height={100 - Math.min(refDesktopPercentCrossed - 25, 100)} />
             </TrackWrapper>
           )}
           <TopWrapper>
@@ -73,10 +83,10 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                   to the next step.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn>
+              <IllustrationColumn ref={refTrackTwo}>
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
-                    <TrackWrapper ref={refTrackTwo}>
+                    <TrackWrapper>
                       <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
                       <RedSeperator height={refTwoPercentCrossed} />
                       <Seperator height={100 - refTwoPercentCrossed} />
@@ -108,7 +118,6 @@ function useHowItWorks(currentPosition: number) {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useWindowSize();
-  const ref = useRef<HTMLDivElement | null>(null);
 
   /* the ref percent is WIP ignore for now */
   const [topRedHeight] = useState(0);
@@ -147,14 +156,35 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackTwo, isMounted]);
 
-  console.log("refOnePercentCrossed", refOnePercentCrossed, "refTwoPercentCrossed", refTwoPercentCrossed);
+  const desktopTrackerRef = useRef<HTMLDivElement | null>(null);
+  const [offsetDesktopRef, setOffsetDesktopRef] = useState(0);
+  const entryDesktop = useIntersectionObserver(desktopTrackerRef, {
+    threshold: 1,
+  });
+
+  const refDesktopPercentCrossed = useTrackRefCrossed(
+    desktopTrackerRef,
+    entryDesktop,
+    offsetDesktopRef,
+    currentPosition
+  );
+  useEffect(() => {
+    if (isMounted() && desktopTrackerRef.current && offsetDesktopRef === 0) {
+      setTimeout(() => {
+        if (desktopTrackerRef.current) {
+          setOffsetDesktopRef(desktopTrackerRef.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackTwo, isMounted]);
 
   return {
     sectionRef,
     isMounted: isMounted(),
     width,
     topRedHeight,
-    ref,
+    desktopTrackerRef,
+    refDesktopPercentCrossed,
     refTrackOne,
     refTrackTwo,
     refOnePercentCrossed,
@@ -379,10 +409,3 @@ const IllustrationWrapper = styled.div`
     height: inherit;
   }
 `;
-
-// const ImageContainer = styled.div`
-//   position: relative;
-//   width: 100%;
-//   height: 632px;
-//   display: block;
-// `;
