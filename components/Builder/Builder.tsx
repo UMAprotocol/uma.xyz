@@ -59,6 +59,8 @@ const Builder = () => {
                       <br /> <br /> There is a dispute resolution process if something unexpected happens.
                     </>
                   }
+                  greyBlurb="Real contract used by Polymarket:"
+                  redBlurb="“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”"
                 />
               ),
               Icon: WandIcon,
@@ -74,6 +76,8 @@ const Builder = () => {
                       defending against exploits with human-powered dispute resolution.
                     </>
                   }
+                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
                 />
               ),
               Icon: TubeIcon,
@@ -89,6 +93,8 @@ const Builder = () => {
                       Chains can use the OO to “see” things on every other chain.
                     </>
                   }
+                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
                 />
               ),
               Icon: TelescopeIcon,
@@ -105,6 +111,8 @@ const Builder = () => {
                       unless disputed” flow.
                     </>
                   }
+                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
                 />
               ),
               Icon: ScaleIcon,
@@ -121,6 +129,8 @@ const Builder = () => {
                       building pricefeeds.
                     </>
                   }
+                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
                 />
               ),
               Icon: GlobeIcon,

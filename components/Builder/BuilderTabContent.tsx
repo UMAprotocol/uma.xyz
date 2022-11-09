@@ -8,6 +8,8 @@ import { QUERIES } from "constants/breakpoints";
 interface Props {
   title: string;
   body: ReactNode;
+  greyBlurb: string;
+  redBlurb: string;
 }
 
 const code = `pragma solidity ^0.8.14;
@@ -24,14 +26,14 @@ contract OO_GettingStarted {
     IERC20 bondCurrency = IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
     uint256 reward = 0;
 `;
-const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
+const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb }) => {
   return (
     <Wrapper>
       <TextColumn>
         <Title>{title}</Title>
         <Body>{body}</Body>
-        <GreyBlurb>Real contract used by Polymarket:</GreyBlurb>
-        <RedBlurb>“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”</RedBlurb>
+        <GreyBlurb>{greyBlurb}</GreyBlurb>
+        <RedBlurb>{redBlurb}</RedBlurb>
       </TextColumn>
       <CodeColumn>
         <SandpackProvider
