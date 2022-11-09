@@ -4,6 +4,7 @@ import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+import Image from "next/image";
 
 interface Props {
   heightFromTop: number;
@@ -57,7 +58,17 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                    {/* <IllustrationImg src="/assets/illustration.svg" alt="illustration" /> */}
+                    <ImageContainer>
+                      <Image
+                        height="100%"
+                        width="100%"
+                        layout="responsive"
+                        objectFit="contain"
+                        src="/assets/illustration.svg"
+                        alt="logo"
+                      />
+                    </ImageContainer>
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
@@ -83,7 +94,15 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                    {/* <IllustrationImg src="/assets/illustration.svg" alt="illustration" /> */}
+                    <Image
+                      width="100%"
+                      height="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/illustration.svg"
+                      alt="logo"
+                    />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
@@ -198,7 +217,7 @@ const Section = styled.section`
 
 const Wrapper = styled(BaseWrapper)`
   padding-top: 100px;
-  padding-bottom: 26px;
+  padding-bottom: 426px;
 `;
 
 const Title = styled(BaseTitle)`
@@ -233,7 +252,7 @@ const AnimationWrapper = styled.div`
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
-  margin-top: 31px;
+  margin-top: 231px;
   @media ${QUERIES.lg.andDown} {
     margin-top: 128px;
   }
@@ -329,7 +348,7 @@ const TrackWrapper = styled.div`
   position: absolute;
   top: -30px;
   left: -100px;
-  height: 102.5%;
+  height: 125.5%;
   @media ${QUERIES.lg.andDown} {
     position: relative;
     top: 0;
@@ -377,12 +396,6 @@ const RedSeperator = styled(Seperator)`
   background: var(--red);
 `;
 
-const IllustrationImg = styled.img`
-  @media ${QUERIES.md.andDown} {
-    margin-top: 58px;
-  }
-`;
-
 const TrackAndIllustrationRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -392,5 +405,17 @@ const TrackAndIllustrationRow = styled.div`
 `;
 
 const IllustrationWrapper = styled.div`
-  flex-basis: 70%;
+  /* flex-basis: 70%; */
+  /* height: 612px; */
+  margin-top: 30px;
+  width: 632px;
+  height: inherit;
+  position: relative;
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 632px;
+  display: block;
 `;
