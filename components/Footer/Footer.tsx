@@ -390,7 +390,7 @@ const StyledLogo = styled(Logo)`
 const SocialLinks = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 22px;
+  gap: 24px;
   flex-basis: 32%;
   justify-content: flex-end;
   align-items: center;
