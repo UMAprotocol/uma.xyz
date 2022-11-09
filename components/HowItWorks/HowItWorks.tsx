@@ -12,8 +12,19 @@ interface Props {
   currentPosition: number;
 }
 const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
-  const { sectionRef, isMounted, width, refTrackOne, refTrackTwo, refOnePercentCrossed, refTwoPercentCrossed } =
-    useHowItWorks(currentPosition);
+  const {
+    sectionRef,
+    isMounted,
+    width,
+    refTrackOne,
+    refTrackTwo,
+    refTrackThree,
+    refTrackFour,
+    refOnePercentCrossed,
+    refTwoPercentCrossed,
+    refThreePercentCrossed,
+    refFourPercentCrossed,
+  } = useHowItWorks(currentPosition);
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
       <Wrapper>
@@ -28,16 +39,22 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
               <RedSeperator height={refTwoPercentCrossed} />
               <Seperator height={100 - refTwoPercentCrossed} />
+              <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
+              <RedSeperator height={refThreePercentCrossed} />
+              <Seperator height={100 - refThreePercentCrossed} />
+              <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
+              <RedSeperator height={refFourPercentCrossed} />
+              <Seperator height={100 - refFourPercentCrossed} />
             </TrackWrapper>
           )}
           <TopWrapper>
             <AnimationRow>
               <AnimationTextBlock>
                 <AnimationHeader>Statement</AnimationHeader>
-                <AnimationBody>A statement is proposed to initiate the process</AnimationBody>
+                <AnimationBody>A statement is proposed as true</AnimationBody>
                 <AnimationSubBody>
-                  Someone proposes an answer to a request made by another party. This answer is then processed and sent
-                  to the next step.
+                  A natural-language statement is submitted along with a bond. The bond acts as a bounty for anyone to
+                  dispute it if they have evidence to the contrary.
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackOne}>
@@ -67,10 +84,10 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
             <AnimationRow>
               <AnimationTextBlock>
                 <AnimationHeader>Challenge period</AnimationHeader>
-                <AnimationBody>Challenge periods allow for disputes</AnimationBody>
+                <AnimationBody>Most statements goes undisputed</AnimationBody>
                 <AnimationSubBody>
-                  Someone proposes an answer to a request made by another party. This answer is then processed and sent
-                  to the next step.
+                  Anyone can propose an answer to a data request, and it is accepted as true if it is not disputed
+                  during the challenge period.
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackTwo}>
@@ -80,6 +97,74 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
                       <RedSeperator height={refTwoPercentCrossed} />
                       <Seperator height={100 - refTwoPercentCrossed} />
+                    </TrackWrapper>
+                  )}
+                  <IllustrationWrapper>
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/illustration.svg"
+                      alt="logo"
+                    />
+                  </IllustrationWrapper>
+                </TrackAndIllustrationRow>
+              </IllustrationColumn>
+            </AnimationRow>
+          </AnimationWrapper>
+          <AnimationWrapper>
+            <AnimationRow>
+              <AnimationTextBlock>
+                <AnimationHeader>Dispute</AnimationHeader>
+                <AnimationBody>Anyone can dispute a statement</AnimationBody>
+                <AnimationSubBody>
+                  Each statement submitted for validation is an opportunity for anyone to earn a reward by disputing it
+                  successfully. As the game theory would predict, disputes are rare in practice because the incentives
+                  are always to be honest. That makes the OO “optimistic”.
+                </AnimationSubBody>
+              </AnimationTextBlock>
+              <IllustrationColumn ref={refTrackThree}>
+                <TrackAndIllustrationRow>
+                  {width <= BREAKPOINTS.lg && (
+                    <TrackWrapper>
+                      <TrackItem tracked={refThreePercentCrossed > 0}>02</TrackItem>
+                      <RedSeperator height={refThreePercentCrossed} />
+                      <Seperator height={100 - refThreePercentCrossed} />
+                    </TrackWrapper>
+                  )}
+                  <IllustrationWrapper>
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/illustration.svg"
+                      alt="logo"
+                    />
+                  </IllustrationWrapper>
+                </TrackAndIllustrationRow>
+              </IllustrationColumn>
+            </AnimationRow>
+          </AnimationWrapper>
+          <AnimationWrapper>
+            <AnimationRow>
+              <AnimationTextBlock>
+                <AnimationHeader>Voting</AnimationHeader>
+                <AnimationBody>Tokenholders vote on disputes and earn rewards</AnimationBody>
+                <AnimationSubBody>
+                  The UMA token provides economic guarantees to the Optimistic Oracle. The community of tokenholders
+                  provide the human component, as voters, for the OO's final resolution on disputes or queries. Those
+                  who vote with the majority earn rewards.
+                </AnimationSubBody>
+              </AnimationTextBlock>
+              <IllustrationColumn ref={refTrackFour}>
+                <TrackAndIllustrationRow>
+                  {width <= BREAKPOINTS.lg && (
+                    <TrackWrapper>
+                      <TrackItem tracked={refFourPercentCrossed > 0}>02</TrackItem>
+                      <RedSeperator height={refFourPercentCrossed} />
+                      <Seperator height={100 - refFourPercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -109,8 +194,6 @@ function useHowItWorks(currentPosition: number) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useWindowSize();
 
-  /* the ref percent is WIP ignore for now */
-  const [topRedHeight] = useState(0);
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
@@ -148,15 +231,59 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackTwo, isMounted]);
 
+  const [offsetTrackRefThree, setOffsetTrackRefThree] = useState(0);
+  const refTrackThree = useRef<HTMLDivElement | null>(null);
+  const entryTrackThree = useIntersectionObserver(refTrackTwo, {
+    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+  });
+
+  const refThreePercentCrossed = useTrackRefCrossed(
+    refTrackThree,
+    entryTrackThree,
+    offsetTrackRefThree,
+    currentPosition
+  );
+  useEffect(() => {
+    if (isMounted() && refTrackThree.current && offsetTrackRefThree === 0) {
+      setTimeout(() => {
+        if (refTrackThree.current) {
+          setOffsetTrackRefThree(refTrackThree.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackTwo, isMounted]);
+
+  const [offsetTrackRefFour, setOffsetTrackRefFour] = useState(0);
+  const refTrackFour = useRef<HTMLDivElement | null>(null);
+  const entryTrackFour = useIntersectionObserver(refTrackTwo, {
+    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+  });
+
+  const refFourPercentCrossed = useTrackRefCrossed(refTrackFour, entryTrackFour, offsetTrackRefFour, currentPosition);
+  useEffect(() => {
+    if (isMounted() && refTrackFour.current && offsetTrackRefFour === 0) {
+      setTimeout(() => {
+        if (refTrackFour.current) {
+          setOffsetTrackRefFour(refTrackFour.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackTwo, isMounted]);
+
   return {
     sectionRef,
     isMounted: isMounted(),
     width,
-    topRedHeight,
     refTrackOne,
     refTrackTwo,
+    refTrackThree,
+    refTrackFour,
     refOnePercentCrossed,
     refTwoPercentCrossed,
+    refThreePercentCrossed,
+    refFourPercentCrossed,
   };
 }
 
@@ -194,7 +321,7 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin: 0 16px 0;
+  margin: 392px 0 0;
   @media ${QUERIES.lg.andDown} {
     margin-left: 16px;
     margin-right: 16px;
@@ -203,6 +330,7 @@ const AnimationWrapper = styled.div`
 
 const TopWrapper = styled(AnimationWrapper)`
   margin-bottom: 270px;
+  margin-top: 0;
   @media ${QUERIES.lg.andDown} {
     margin-top: 128px;
   }
