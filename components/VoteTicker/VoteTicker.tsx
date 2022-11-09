@@ -207,14 +207,11 @@ const VoteText = styled.div`
   font: var(--body-sm);
   color: ${({ theme }: { theme: Theme }) => theme.voteText.color};
   span {
+    display: inline-block;
     color: ${({ theme }: { theme: Theme }) => theme.voteText.spanColor};
     margin-left: 4px;
     letter-spacing: 0.02em;
-  }
-  padding-right: 16px;
-  border-right: ${({ theme }: { theme: Theme }) => theme.voteText.borderRight};
-  @media ${QUERIES.tb.andDown} {
-    border-right: none;
+    min-width: 96px; // 96px is the width of the clock to prevent spacing changing on numbers.
   }
 `;
 
