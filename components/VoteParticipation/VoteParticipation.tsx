@@ -60,9 +60,7 @@ const VoteParticipation = () => {
                 <ImageTitle width={width} isIntersecting={isIntersectingStake}>
                   Stake
                 </ImageTitle>
-                <ImageText>
-                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
-                </ImageText>
+                <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -82,9 +80,7 @@ const VoteParticipation = () => {
                 <ImageTitle width={width} isIntersecting={isIntersectingVote}>
                   Vote
                 </ImageTitle>
-                <ImageText>
-                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.{" "}
-                </ImageText>
+                <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -105,7 +101,8 @@ const VoteParticipation = () => {
                   Earn
                 </ImageTitle>
                 <ImageText>
-                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.{" "}
+                  Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
+                  voters.{" "}
                 </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
