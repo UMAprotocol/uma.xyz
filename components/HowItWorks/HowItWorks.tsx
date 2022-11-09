@@ -5,6 +5,7 @@ import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 import Image from "next/image";
+import useTrackRefCrossed from "./useTrackRefCrossed";
 
 interface Props {
   heightFromTop: number;
@@ -43,7 +44,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
-                      <TrackItem>01</TrackItem>
+                      <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
                       <RedSeperator height={refOnePercentCrossed} />
                       <Seperator height={100 - refOnePercentCrossed} />
                     </TrackWrapper>
@@ -76,7 +77,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper ref={refTrackTwo}>
-                      <TrackItem>02</TrackItem>
+                      <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
                       <RedSeperator height={refTwoPercentCrossed} />
                       <Seperator height={100 - refTwoPercentCrossed} />
                     </TrackWrapper>
@@ -114,8 +115,10 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
-    threshold: 0.2,
+    threshold: 0.9,
   });
+
+  const refOnePercentCrossed = useTrackRefCrossed(refTrackOne, entryTrackOne, offsetTrackRefOne, currentPosition);
 
   useEffect(() => {
     if (isMounted() && refTrackOne.current && offsetTrackRefOne === 0) {
@@ -127,40 +130,13 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackOne, isMounted]);
 
-  const [refOnePercentCrossed, setRefOnePercentCrossed] = useState(0);
-  useEffect(() => {
-    if (refTrackOne.current && entryTrackOne) {
-      setRefOnePercentCrossed(
-        calculatePercentCrossed(
-          offsetTrackRefOne,
-          currentPosition,
-          entryTrackOne.rootBounds ? entryTrackOne.rootBounds.height : 0,
-          refTrackOne.current?.getBoundingClientRect().height
-        )
-      );
-    }
-  }, [currentPosition, offsetTrackRefOne, refTrackOne, entryTrackOne]);
-
-  const [refTwoPercentCrossed, setRefTwoPercentCrossed] = useState(0);
   const [offsetTrackRefTwo, setOffsetTrackRefTwo] = useState(0);
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
-    threshold: 0.2,
+    threshold: 0.9,
   });
 
-  useEffect(() => {
-    if (refTrackTwo.current && entryTrackTwo) {
-      setRefTwoPercentCrossed(
-        calculatePercentCrossed(
-          offsetTrackRefTwo,
-          currentPosition,
-          entryTrackTwo.rootBounds ? entryTrackTwo.rootBounds.height : 0,
-          refTrackTwo.current?.getBoundingClientRect().height
-        )
-      );
-    }
-  }, [currentPosition, offsetTrackRefTwo, refTrackTwo, entryTrackTwo]);
-
+  const refTwoPercentCrossed = useTrackRefCrossed(refTrackTwo, entryTrackTwo, offsetTrackRefTwo, currentPosition);
   useEffect(() => {
     if (isMounted() && refTrackTwo.current && offsetTrackRefTwo === 0) {
       setTimeout(() => {
@@ -171,18 +147,7 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackTwo, isMounted]);
 
-  function calculatePercentCrossed(
-    distanceFromTop: number,
-    scrollPosition: number,
-    distance: number,
-    heightOfElement: number
-  ) {
-    if (scrollPosition + distance < distanceFromTop) return 0;
-    const REDUCE_SCROLL_IN_VIEW = 20;
-    const percentCrossed =
-      ((scrollPosition + distance - distanceFromTop) / heightOfElement) * 100 - REDUCE_SCROLL_IN_VIEW;
-    return percentCrossed < 0 ? 0 : percentCrossed >= 100 ? 100 : percentCrossed;
-  }
+  console.log("refOnePercentCrossed", refOnePercentCrossed, "refTwoPercentCrossed", refTwoPercentCrossed);
 
   return {
     sectionRef,
@@ -383,8 +348,10 @@ const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
   background: var(--grey-500); // #B0AFB3
-  /* height: ${({ height }) => height}%; */
   height: ${({ height }) => 672 * (height / 100)}px;
+  @media ${QUERIES.lg.andDown} {
+    height: ${({ height }) => height}%;
+  }
 `;
 
 const RedSeperator = styled(Seperator)`
@@ -406,6 +373,11 @@ const IllustrationWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+  @media ${QUERIES.lg.andDown} {
+    position: relative;
+    width: 70%;
+    height: inherit;
+  }
 `;
 
 // const ImageContainer = styled.div`
