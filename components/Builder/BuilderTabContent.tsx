@@ -34,7 +34,14 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
         <RedBlurb>“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”</RedBlurb>
       </TextColumn>
       <CodeColumn>
-        <SandpackProvider theme={githubLight}>
+        <SandpackProvider
+          options={{
+            classes: {
+              "sp-layout": "custom-layout",
+            },
+          }}
+          theme={githubLight}
+        >
           <SandpackLayout>
             <SandpackCodeViewer code={code} showLineNumbers showTabs />
           </SandpackLayout>
@@ -55,7 +62,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 40px;
+  gap: 112px;
   @media ${QUERIES.tb.andDown} {
     flex-direction: column;
   }

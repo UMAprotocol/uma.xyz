@@ -116,7 +116,7 @@ const Tab = styled(ReachTab)`
 `;
 
 const TabPanels = styled(ReachTabPanels)`
-  margin: 60px 12px 0;
+  margin: 60px 0px 0;
 `;
 
 const TabPanel = styled(ReachTabPanel)``;

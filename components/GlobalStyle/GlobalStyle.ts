@@ -229,5 +229,7 @@ a:not([class]) {
     --body-sm: ${bodySm};
     --body-xs: ${bodyXs};
     --max-section-width: ${maxSectionWidth};
+    // Sandpack override
+    --sp-layout-height: ${`347px`} !important;
   }
 `;
