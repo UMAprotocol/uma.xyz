@@ -83,11 +83,8 @@ const Projects = () => {
             </MobileProjects>
           ) : null}
           <ProjectsBlurb>
-            <ProjectsBlurbHeader>Real projects built with our products</ProjectsBlurbHeader>
-            <ProjectsBlurbSubheader>
-              Being in the cross-chain bridging space, for us it’s important to lorem ipsum of centralized authorities
-              and (potentially) biased third-parties.
-            </ProjectsBlurbSubheader>
+            <ProjectsBlurbHeader>Projects built with the OO</ProjectsBlurbHeader>
+            <ProjectsBlurbSubheader>UMA’s oracle serves diverse use cases</ProjectsBlurbSubheader>
             <RemixWrapper>
               <span>All projects</span>
               <RemixLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
@@ -403,6 +400,7 @@ const ProjectsBlurbSubheader = styled.h3`
   color: var(--grey-200);
   max-width: 366px;
   border-bottom: 1px solid var(--grey-700);
+  text-align: left;
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 100%;
