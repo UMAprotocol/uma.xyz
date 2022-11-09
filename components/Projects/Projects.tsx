@@ -212,7 +212,7 @@ const BigProject = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px;
+  padding: 110px;
   isolation: isolate;
   border: 1px solid var(--grey-600);
   order: 1;
@@ -296,9 +296,10 @@ const SmallProjects = styled.div`
 `;
 
 const SmallImageWrapper = styled.div`
-  width: 44.46px;
-  height: 55.9px;
-  margin-top: 20px;
+  width: 60px;
+  height: 60px;
+  margin-top: 40px;
+
   @media ${QUERIES.sm.andDown} {
     max-width: 60.37px;
     max-height: 30.31px;
