@@ -49,15 +49,14 @@ const Builder = () => {
           isIntersecting={isIntersectingSection}
           tabs={[
             {
-              title: "Prediction markets",
+              title: "Prediction Markets",
               content: (
                 <BuilderTabContent
-                  title="Prediction markets"
+                  title="Prediction Markets"
                   body={
                     <>
-                      Prediction Markets: The OO can validate natural-language statements and answer questions about
-                      real-world events. <br /> <br /> There is a dispute resolution process if something unexpected
-                      happens.
+                      The OO can validate natural-language statements and answer questions about real-world events.{" "}
+                      <br /> <br /> There is a dispute resolution process if something unexpected happens.
                     </>
                   }
                 />
@@ -71,8 +70,8 @@ const Builder = () => {
                   title="Insurance"
                   body={
                     <>
-                      Insurance: The OO empowers and secures risk management platforms that provide permission-less,
-                      trustworthy coverage against smart contract exploits.
+                      The OO empowers and secures risk management platforms that provide permission-less, trustworthy
+                      coverage against smart contract exploits.
                     </>
                   }
                 />
@@ -86,8 +85,8 @@ const Builder = () => {
                   title="Cross-Chain Communication"
                   body={
                     <>
-                      Cross-chain Communication: The OO can verify any statement, including statements about data on
-                      other networks. <br /> <br /> Chains can use the OO to “see” things on every other chain.
+                      The OO can verify any statement, including statements about data on other networks. <br /> <br />{" "}
+                      Chains can use the OO to “see” things on every other chain.
                     </>
                   }
                 />
@@ -101,9 +100,9 @@ const Builder = () => {
                   title="Governance"
                   body={
                     <>
-                      Governance: DAOs have used KPI Options to motivate community members to work toward shared goals.{" "}
-                      <br /> <br /> The OO also enables optimistic governance, a new coordination pattern that uses a
-                      “pass unless disputed” flow.
+                      DAOs have used KPI Options to motivate community members to work toward shared goals. <br />{" "}
+                      <br /> The OO also enables optimistic governance, a new coordination pattern that uses a “pass
+                      unless disputed” flow.
                     </>
                   }
                 />
@@ -117,9 +116,9 @@ const Builder = () => {
                   title="Long-Tail data"
                   body={
                     <>
-                      Long-Tail Data: If a piece of information is publicly provable, then UMA’s OO can verify it and
-                      put it on-chain. <br /> <br /> The OO accepts natural language questions as an input, and does not
-                      require first building pricefeeds.
+                      If a piece of information is publicly provable, then UMA’s OO can verify it and put it on-chain.{" "}
+                      <br /> <br /> The OO accepts natural language questions as an input, and does not require first
+                      building pricefeeds.
                     </>
                   }
                 />

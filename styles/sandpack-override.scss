@@ -52,6 +52,7 @@
 
 .sp-layout.custom-layout {
   border-color: var(--grey-500) !important;
+  border-radius: 8px;
   .sp-stack {
     height: 347px !important;
     .sp-tabs {
@@ -61,5 +62,8 @@
   }
   .cm-editor {
     border-bottom: 1px solid var(--grey-500) !important;
+  }
+  .sp-tabs-scrollable-container {
+    min-height: 44px;
   }
 }

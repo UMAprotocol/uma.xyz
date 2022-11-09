@@ -72,6 +72,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h2`
   font: var(--header-sm);
+  margin-bottom: 16px;
 `;
 
 const TextColumn = styled.div`
@@ -101,6 +102,7 @@ const CodeColumn = styled.div`
   max-width: 50%;
   margin-left: auto;
   flex-direction: column;
+  margin-top: 8px;
   @media ${QUERIES.tb.andDown} {
     max-width: 100%;
     margin-left: 0;
