@@ -70,8 +70,8 @@ const Builder = () => {
                   title="Insurance"
                   body={
                     <>
-                      The OO empowers and secures risk management platforms that provide permission-less, trustworthy
-                      coverage against smart contract exploits.
+                      The OO can insure any type of outcome whether they are smart contracts or real-world events, while
+                      defending against exploits with human-powered dispute resolution.
                     </>
                   }
                 />

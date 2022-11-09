@@ -57,7 +57,7 @@ const Footer = () => {
           </BottomRow>
           <CopyrightRow>
             <AddressWrapper>
-              <div>© 2022 Risk Labs</div>
+              <div>© 2022 Risk Labs Foundation</div>
             </AddressWrapper>
             <SocialLinks>
               {socialLinks.map(({ href, Icon }, i) => (
