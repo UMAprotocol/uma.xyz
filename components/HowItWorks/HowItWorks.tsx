@@ -4,7 +4,7 @@ import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
-// import Image from "next/image";
+import Image from "next/image";
 
 interface Props {
   heightFromTop: number;
@@ -48,19 +48,16 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       <Seperator height={100 - refOnePercentCrossed} />
                     </TrackWrapper>
                   )}
-                  {/* <IllustrationWrapper>
-                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
-                    <ImageContainer>
-                      <Image
-                        height="100%"
-                        width="100%"
-                        layout="responsive"
-                        objectFit="contain"
-                        src="/assets/illustration.svg"
-                        alt="logo"
-                      />
-                    </ImageContainer>
-                  </IllustrationWrapper> */}
+                  <IllustrationWrapper>
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/illustration.svg"
+                      alt="logo"
+                    />
+                  </IllustrationWrapper>
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
             </AnimationRow>
@@ -84,17 +81,16 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       <Seperator height={100 - refTwoPercentCrossed} />
                     </TrackWrapper>
                   )}
-                  {/* <IllustrationWrapper>
-                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                  <IllustrationWrapper>
                     <Image
-                      width="100%"
                       height="100%"
+                      width="100%"
                       layout="responsive"
                       objectFit="contain"
                       src="/assets/illustration.svg"
                       alt="logo"
                     />
-                  </IllustrationWrapper> */}
+                  </IllustrationWrapper>
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
             </AnimationRow>
@@ -403,12 +399,14 @@ const TrackAndIllustrationRow = styled.div`
   justify-content: space-between;
 `;
 
-// const IllustrationWrapper = styled.div`
-//   margin-top: 30px;
-//   width: 632px;
-//   height: inherit;
-//   position: relative;
-// `;
+const IllustrationWrapper = styled.div`
+  margin-top: 60px;
+  width: 632px;
+  height: inherit;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
 
 // const ImageContainer = styled.div`
 //   position: relative;
