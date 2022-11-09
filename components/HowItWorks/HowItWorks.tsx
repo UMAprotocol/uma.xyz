@@ -30,7 +30,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
         <IntersectionWrapper>
           {width > BREAKPOINTS.lg && (
             <TrackWrapper ref={ref}>
-              <TrackItem>01</TrackItem>
+              <TrackItem tracked>01</TrackItem>
               <RedSeperator height={topRedHeight} />
               <Seperator height={100 - topRedHeight} />
               <TrackItem>02</TrackItem>
@@ -57,8 +57,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       <Seperator height={100 - refOnePercentCrossed} />
                     </TrackWrapper>
                   )}
-                  <IllustrationWrapper>
-                    {/* <IllustrationImg src="/assets/illustration.svg" alt="illustration" /> */}
+                  {/* <IllustrationWrapper>
+                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
                     <ImageContainer>
                       <Image
                         height="100%"
@@ -69,7 +69,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                         alt="logo"
                       />
                     </ImageContainer>
-                  </IllustrationWrapper>
+                  </IllustrationWrapper> */}
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
             </AnimationRow>
@@ -93,8 +93,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       <Seperator height={100 - refTwoPercentCrossed} />
                     </TrackWrapper>
                   )}
-                  <IllustrationWrapper>
-                    {/* <IllustrationImg src="/assets/illustration.svg" alt="illustration" /> */}
+                  {/* <IllustrationWrapper>
+                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
                     <Image
                       width="100%"
                       height="100%"
@@ -103,7 +103,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       src="/assets/illustration.svg"
                       alt="logo"
                     />
-                  </IllustrationWrapper>
+                  </IllustrationWrapper> */}
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
             </AnimationRow>
@@ -212,7 +212,7 @@ function useHowItWorks(currentPosition: number) {
 
 const Section = styled.section`
   width: 100%;
-  background: linear-gradient(180deg, var(--white-200) 0%, var(--white) 100%);
+  background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 100%);
 `;
 
 const Wrapper = styled(BaseWrapper)`
@@ -364,11 +364,13 @@ const TrackWrapper = styled.div`
   }
 `;
 
-const TrackItem = styled.div`
+interface TrackProps {
+  tracked?: boolean;
+}
+const TrackItem = styled.div<TrackProps>`
   flex: 0 0 48px;
   z-index: 5;
   display: flex;
-  background: var(--red);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -378,8 +380,12 @@ const TrackItem = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 8px;
-  color: var(--white);
+  border: 1px solid transparent;
+  border-color: ${(p) => (p.tracked ? "transparent" : "var(--grey-500)")};
+  background: ${(p) => (p.tracked ? "var(--red)" : "var(--grey-800)")};
+  color: ${(p) => (p.tracked ? "var(--white)" : "var(--grey-500)")};
   font: var(--body-sm);
+  letter-spacing: 0.09em;
 `;
 
 interface ISeperator {
@@ -388,7 +394,7 @@ interface ISeperator {
 const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
-  background: linear-gradient(180deg, var(--grey-500) 0%, rgba(176, 175, 179, 0) 100%);
+  background: var(--grey-500); // #B0AFB3
   height: ${({ height }) => height}%;
 `;
 
@@ -405,8 +411,6 @@ const TrackAndIllustrationRow = styled.div`
 `;
 
 const IllustrationWrapper = styled.div`
-  /* flex-basis: 70%; */
-  /* height: 612px; */
   margin-top: 30px;
   width: 632px;
   height: inherit;

@@ -171,6 +171,7 @@ function useVoteParticipation() {
 
 const Section = styled.section`
   background: var(--grey-800);
+  background: linear-gradient(180deg, var(--white-200) 0%, var(--white) 100%);
   width: 100%;
   position: relative;
 `;
