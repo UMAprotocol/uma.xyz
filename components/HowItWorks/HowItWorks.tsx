@@ -11,17 +11,8 @@ interface Props {
   currentPosition: number;
 }
 const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
-  const {
-    sectionRef,
-    isMounted,
-    width,
-    ref,
-    topRedHeight,
-    refTrackOne,
-    refTrackTwo,
-    refOnePercentCrossed,
-    refTwoPercentCrossed,
-  } = useHowItWorks(currentPosition);
+  const { sectionRef, isMounted, width, ref, refTrackOne, refTrackTwo, refOnePercentCrossed, refTwoPercentCrossed } =
+    useHowItWorks(currentPosition);
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
       <Wrapper>
@@ -31,8 +22,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
           {width > BREAKPOINTS.lg && (
             <TrackWrapper ref={ref}>
               <TrackItem tracked>01</TrackItem>
-              <RedSeperator height={topRedHeight} />
-              <Seperator height={100 - topRedHeight} />
+              <RedSeperator height={50} />
+              <Seperator height={50} />
               <TrackItem>02</TrackItem>
               <RedSeperator height={0} />
               <Seperator height={100} />
@@ -244,7 +235,7 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin: 270px 16px 0;
+  margin: 0 16px 0;
   @media ${QUERIES.lg.andDown} {
     margin-left: 16px;
     margin-right: 16px;
@@ -252,7 +243,7 @@ const AnimationWrapper = styled.div`
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
-  margin-top: 231px;
+  margin-bottom: 270px;
   @media ${QUERIES.lg.andDown} {
     margin-top: 128px;
   }
@@ -338,6 +329,7 @@ const IllustrationColumn = styled.div`
 
 const IntersectionWrapper = styled.div`
   position: relative;
+  padding-top: 231px;
 `;
 
 const TrackWrapper = styled.div`
@@ -346,9 +338,9 @@ const TrackWrapper = styled.div`
   margin-top: 1rem;
   flex-direction: column;
   position: absolute;
-  top: -30px;
+  top: 200px;
   left: -100px;
-  height: 125.5%;
+  height: 115%;
   @media ${QUERIES.lg.andDown} {
     position: relative;
     top: 0;
@@ -395,7 +387,8 @@ const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
   background: var(--grey-500); // #B0AFB3
-  height: ${({ height }) => height}%;
+  /* height: ${({ height }) => height}%; */
+  height: ${({ height }) => 672 * (height / 100)}px;
 `;
 
 const RedSeperator = styled(Seperator)`
