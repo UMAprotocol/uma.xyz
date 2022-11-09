@@ -53,7 +53,11 @@ function useHero() {
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
+  background-image: url("/assets/hero-bg-img.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
 `;
+
 const Wrapper = styled.div`
   background: inherit;
   width: 100%;
