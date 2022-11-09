@@ -111,6 +111,7 @@ const VoteParticipation = () => {
             </ImageBlock>
           </ImageBlockWrapper>
         </ImageBlockRow>
+        <Divider />
         {width > BREAKPOINTS.tb ? (
           <VoterAppLinkRow>
             <VoterAppLinkBlock>
@@ -171,7 +172,7 @@ function useVoteParticipation() {
 
 const Section = styled.section`
   background: var(--grey-800);
-  background: linear-gradient(180deg, var(--white-200) 0%, var(--white) 100%);
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
   width: 100%;
   position: relative;
 `;
@@ -221,6 +222,7 @@ const ImageBlockRow = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 48px;
+
   svg {
     fill: var(--white);
   }
@@ -293,7 +295,7 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
 `;
 
 const ImageBlock = styled.div`
-  padding: 40px;
+  padding: 0 40px;
   @media ${QUERIES.tb.andDown} {
     display: inline-flex;
     gap: 48px;
@@ -367,7 +369,6 @@ const ImageWrapper = styled.div<ScrollProps>`
 `;
 
 const VoterAppLinkRow = styled.div`
-  margin-top: 102px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -421,7 +422,7 @@ const MobileVoterRow = styled(VoterAppLinkRow)<IMobileVoterRow>`
   width: 100%;
   margin-left: 0;
   bottom: 0;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   display: ${({ isIntersecting }) => {
     return isIntersecting ? "flex" : "none";
   }};
@@ -435,4 +436,12 @@ const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
   justify-content: center;
   align-items: center;
   align-self: center;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
+  width: 100%;
+  margin-top: 84px;
+  margin-bottom: 24px;
 `;
