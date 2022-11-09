@@ -5,8 +5,8 @@ import { Tabs } from "components";
 import BuilderTabContent from "./BuilderTabContent";
 import WandIcon from "public/assets/wand.svg";
 import TubeIcon from "public/assets/tube.svg";
-import MedalIcon from "public/assets/medal.svg";
-import CreditCardsIcon from "public/assets/credit-cards.svg";
+import TelescopeIcon from "public/assets/telescope.svg";
+import ScaleIcon from "public/assets/scale.svg";
 import GlobeIcon from "public/assets/globe.svg";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
@@ -92,7 +92,7 @@ const Builder = () => {
                   }
                 />
               ),
-              Icon: MedalIcon,
+              Icon: TelescopeIcon,
             },
             {
               title: "Governance",
@@ -108,7 +108,7 @@ const Builder = () => {
                   }
                 />
               ),
-              Icon: CreditCardsIcon,
+              Icon: ScaleIcon,
             },
             {
               title: "Long-Tail data",
