@@ -4,7 +4,7 @@ import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
-import Image from "next/image";
+// import Image from "next/image";
 
 interface Props {
   heightFromTop: number;
@@ -410,16 +410,16 @@ const TrackAndIllustrationRow = styled.div`
   justify-content: space-between;
 `;
 
-const IllustrationWrapper = styled.div`
-  margin-top: 30px;
-  width: 632px;
-  height: inherit;
-  position: relative;
-`;
+// const IllustrationWrapper = styled.div`
+//   margin-top: 30px;
+//   width: 632px;
+//   height: inherit;
+//   position: relative;
+// `;
 
-const ImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 632px;
-  display: block;
-`;
+// const ImageContainer = styled.div`
+//   position: relative;
+//   width: 100%;
+//   height: 632px;
+//   display: block;
+// `;
