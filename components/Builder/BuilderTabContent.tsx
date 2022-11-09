@@ -46,12 +46,14 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
             <SandpackCodeViewer code={code} showLineNumbers showTabs />
           </SandpackLayout>
         </SandpackProvider>
-        <RemixWrapper>
-          <span>Remix code in Sandbox</span>
+        <RemixRow>
           <RemixLink href="https://remix-project.org/" target="_blank" rel="noreferrer">
-            <UpRightArrowRed />
+            Remix code in Sandbox
+            <div>
+              <UpRightArrowRed />
+            </div>
           </RemixLink>
-        </RemixWrapper>
+        </RemixRow>
       </CodeColumn>
     </Wrapper>
   );
@@ -105,34 +107,42 @@ const CodeColumn = styled.div`
   }
 `;
 
-const RemixWrapper = styled.div`
-  margin-top: 26px;
+const RemixRow = styled.div`
+  color: var(--red);
+  font: var(--body-lg);
+  display: inline-block;
+  margin-top: 24px;
   display: flex;
   font: var(--body-lg);
   color: var(--red);
   justify-content: center;
   gap: 20px;
-  cursor: default;
+`;
+
+const RemixLink = styled.a`
+  font: var(--body-lg);
+  text-decoration: none;
+  div {
+    margin-left: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--red);
+    border-radius: 8px;
+  }
+  &:visited {
+    color: var(--red);
+  }
   &:hover {
-    span {
-      color: var(--grey-100);
-    }
-    a {
+    color: var(--grey-100);
+    div {
       border-color: var(--grey-100);
       path {
         stroke: var(--grey-100);
       }
     }
   }
-`;
-const RemixLink = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  gap: 8px;
-  border: 1px solid var(--red);
-  border-radius: 8px;
 `;
 export default BuilderTabContent;
