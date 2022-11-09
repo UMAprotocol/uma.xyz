@@ -12,32 +12,22 @@ interface Props {
   currentPosition: number;
 }
 const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
-  const {
-    sectionRef,
-    isMounted,
-    width,
-    desktopTrackerRef,
-    refDesktopPercentCrossed,
-    refTrackOne,
-    refTrackTwo,
-    refOnePercentCrossed,
-    refTwoPercentCrossed,
-  } = useHowItWorks(currentPosition);
-  console.log("refDesktopPercentCrossed", refDesktopPercentCrossed);
+  const { sectionRef, isMounted, width, refTrackOne, refTrackTwo, refOnePercentCrossed, refTwoPercentCrossed } =
+    useHowItWorks(currentPosition);
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
       <Wrapper>
         <Title>How it works</Title>
         <Header>The Optimistic Oracle verifies data in stages </Header>
-        <IntersectionWrapper ref={desktopTrackerRef}>
+        <IntersectionWrapper>
           {width > BREAKPOINTS.lg && (
             <TrackWrapper>
-              <TrackItem tracked={refDesktopPercentCrossed > 0}>01</TrackItem>
-              <RedSeperator height={Math.min(refDesktopPercentCrossed - 25, 100)} />
-              <Seperator height={100 - Math.min(refDesktopPercentCrossed - 25, 100)} />
-              <TrackItem tracked={refDesktopPercentCrossed >= 75}>02</TrackItem>
-              <RedSeperator height={Math.min(refDesktopPercentCrossed - 25, 100)} />
-              <Seperator height={100 - Math.min(refDesktopPercentCrossed - 25, 100)} />
+              <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
+              <RedSeperator height={refOnePercentCrossed} />
+              <Seperator height={100 - refOnePercentCrossed} />
+              <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
+              <RedSeperator height={refTwoPercentCrossed} />
+              <Seperator height={100 - refTwoPercentCrossed} />
             </TrackWrapper>
           )}
           <TopWrapper>
@@ -124,7 +114,8 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
-    threshold: 0.9,
+    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    rootMargin: width > BREAKPOINTS.lg ? "-200px 0px 0px 0px" : "0px",
   });
 
   const refOnePercentCrossed = useTrackRefCrossed(refTrackOne, entryTrackOne, offsetTrackRefOne, currentPosition);
@@ -142,7 +133,8 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefTwo, setOffsetTrackRefTwo] = useState(0);
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
-    threshold: 0.9,
+    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
 
   const refTwoPercentCrossed = useTrackRefCrossed(refTrackTwo, entryTrackTwo, offsetTrackRefTwo, currentPosition);
@@ -156,35 +148,11 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackTwo, isMounted]);
 
-  const desktopTrackerRef = useRef<HTMLDivElement | null>(null);
-  const [offsetDesktopRef, setOffsetDesktopRef] = useState(0);
-  const entryDesktop = useIntersectionObserver(desktopTrackerRef, {
-    threshold: 1,
-  });
-
-  const refDesktopPercentCrossed = useTrackRefCrossed(
-    desktopTrackerRef,
-    entryDesktop,
-    offsetDesktopRef,
-    currentPosition
-  );
-  useEffect(() => {
-    if (isMounted() && desktopTrackerRef.current && offsetDesktopRef === 0) {
-      setTimeout(() => {
-        if (desktopTrackerRef.current) {
-          setOffsetDesktopRef(desktopTrackerRef.current.getBoundingClientRect().top);
-        }
-      }, 1000);
-    }
-  }, [refTrackTwo, isMounted]);
-
   return {
     sectionRef,
     isMounted: isMounted(),
     width,
     topRedHeight,
-    desktopTrackerRef,
-    refDesktopPercentCrossed,
     refTrackOne,
     refTrackTwo,
     refOnePercentCrossed,

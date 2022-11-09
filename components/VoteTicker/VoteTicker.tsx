@@ -4,7 +4,7 @@ import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { formatDateTimeFromUTC } from "./utils";
 import useInterval from "hooks/helpers/useInterval";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 
 type TickerThemes = "light" | "dark";
