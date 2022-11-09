@@ -29,7 +29,7 @@ const Builder = () => {
           <>
             <TopHeader>Launch products with</TopHeader>
             <BottomHeader>
-              the{" "}
+              the
               <span>
                 <img src="/assets/oo-logo.svg" alt="oo-logo" />
               </span>
@@ -55,7 +55,7 @@ const Builder = () => {
                   title="Prediction Markets"
                   body={
                     <>
-                      The OO can validate natural-language statements and answer questions about real-world events.{" "}
+                      The OO can validate natural-language statements and answer questions about real-world events.
                       <br /> <br /> There is a dispute resolution process if something unexpected happens.
                     </>
                   }

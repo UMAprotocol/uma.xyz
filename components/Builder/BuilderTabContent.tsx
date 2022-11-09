@@ -47,7 +47,7 @@ const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
           </SandpackLayout>
         </SandpackProvider>
         <RemixRow>
-          <RemixLink href="https://remix-project.org/" target="_blank" rel="noreferrer">
+          <RemixLink href="https://remix.ethereum.org/" target="_blank" rel="noreferrer">
             Remix code in Sandbox
             <div>
               <UpRightArrowRed />

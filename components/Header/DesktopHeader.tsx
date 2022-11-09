@@ -92,9 +92,8 @@ const Wrapper = styled.div<IWrapper>`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  margin: 0 auto;
+  margin: 16px auto 0;
   z-index: 100;
-  margin-top: 16px;
   border-radius: 12px;
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
