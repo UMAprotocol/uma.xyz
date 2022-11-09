@@ -61,6 +61,7 @@ const Builder = () => {
                   }
                   greyBlurb="Real contract used by Polymarket:"
                   redBlurb="“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”"
+                  code={code}
                 />
               ),
               Icon: WandIcon,
@@ -78,6 +79,7 @@ const Builder = () => {
                   }
                   greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
                   redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                  code={code}
                 />
               ),
               Icon: TubeIcon,
@@ -95,6 +97,7 @@ const Builder = () => {
                   }
                   greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
                   redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                  code={code}
                 />
               ),
               Icon: TelescopeIcon,
@@ -113,6 +116,7 @@ const Builder = () => {
                   }
                   greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
                   redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                  code={code}
                 />
               ),
               Icon: ScaleIcon,
@@ -131,6 +135,7 @@ const Builder = () => {
                   }
                   greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
                   redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                  code={code}
                 />
               ),
               Icon: GlobeIcon,
@@ -220,4 +225,19 @@ const MobileImg = styled(Image)`
   justify-content: center;
   align-items: center;
   margin: 0 6px;
+`;
+
+const code = `pragma solidity ^0.8.14;
+
+contract OO_GettingStarted {
+  bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
+  bytes ancillaryData =
+
+    bytes("Q: Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c? A:1 for yes. 0 for no.");
+
+  uint256 requestTime = 0;
+  function requestPrice() public {
+    requestTime = block.timestamp;
+    IERC20 bondCurrency = IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
+    uint256 reward = 0;
 `;

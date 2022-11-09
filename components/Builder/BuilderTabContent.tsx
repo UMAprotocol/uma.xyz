@@ -10,23 +10,10 @@ interface Props {
   body: ReactNode;
   greyBlurb: string;
   redBlurb: string;
+  code: string;
 }
 
-const code = `pragma solidity ^0.8.14;
-
-contract OO_GettingStarted {
-  bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
-  bytes ancillaryData =
-
-    bytes("Q: Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c? A:1 for yes. 0 for no.");
-
-  uint256 requestTime = 0;
-  function requestPrice() public {
-    requestTime = block.timestamp;
-    IERC20 bondCurrency = IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
-    uint256 reward = 0;
-`;
-const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb }) => {
+const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb, code }) => {
   return (
     <Wrapper>
       <TextColumn>
