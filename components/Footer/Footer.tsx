@@ -171,7 +171,7 @@ const FooterLinks = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   width: 52%;
-  gap: 100px;
+  gap: 116px;
   @media ${QUERIES.lg.andDown} {
     flex-direction: column;
     gap: 32px;
@@ -214,7 +214,7 @@ const Links = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   max-height: 136px;
-  flex-basis: 45%;
+  flex-basis: 50%;
 `;
 
 const Link = styled.a`
