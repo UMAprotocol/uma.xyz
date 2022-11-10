@@ -356,8 +356,10 @@ const AnimationRow = styled.div`
     flex-direction: column;
   }
   @media ${QUERIES.tb.andDown} {
-    flex-direction: column-reverse;
     gap: 58px;
+  }
+  @media ${QUERIES.md.andDown} {
+    flex-direction: column-reverse;
   }
 `;
 

@@ -37,13 +37,7 @@ const Builder = () => {
             </BottomHeader>
           </>
         ) : (
-          <MobileHeader>
-            Launch products with the
-            <span>
-              <MobileImg width="45px" height="20px" objectFit="contain" src="/assets/oo-mobile-red.svg" alt="oo-logo" />
-            </span>
-            as your backbone
-          </MobileHeader>
+          <MobileHeader>Launch products with the OO as your backbone</MobileHeader>
         )}
         <Tabs
           isIntersecting={isIntersectingSection}
@@ -181,6 +175,8 @@ const Header = styled(BaseHeader)`
 
 const Title = styled(BaseTitle)`
   @media ${QUERIES.lg.andDown} {
+    margin-left: 0;
+    margin-right: 0;
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -222,6 +218,7 @@ const MobileHeader = styled(Header)`
   margin-bottom: 24px;
   margin: 24px 0 40px;
   padding-left: 16px;
+  font: var(--header-lg);
   span {
     display: inline-flex;
     align-items: center;
