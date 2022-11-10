@@ -209,13 +209,14 @@ const BigProject = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 110px;
+  /* padding: 110px; */
   isolation: isolate;
   border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
   width: 280px;
   height: 280px;
+  justify-content: center;
   @media ${QUERIES.tb.andDown} {
     width: 218px;
     height: 218px;
@@ -249,6 +250,8 @@ const BigProjectText = styled.h3`
   letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-top: 24px;
+  position: absolute;
+  bottom: 60px;
 `;
 const LinkButton = styled.a`
   display: none;
@@ -353,6 +356,8 @@ const SmallProject = styled.div`
 
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
+  position: relative;
+  bottom: 0;
   @media ${QUERIES.md.andDown} {
     margin-top: 8px;
     font-size: 12px;
