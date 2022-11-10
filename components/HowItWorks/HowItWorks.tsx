@@ -324,6 +324,7 @@ const AnimationWrapper = styled.div`
   position: relative;
   margin: 392px 0 0;
   @media ${QUERIES.lg.andDown} {
+    margin-top: 96px;
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -334,6 +335,7 @@ const TopWrapper = styled(AnimationWrapper)`
   margin-top: 0;
   @media ${QUERIES.lg.andDown} {
     margin-top: 128px;
+    margin-bottom: 0;
   }
   @media ${QUERIES.md.andDown} {
     margin-top: 24px;
