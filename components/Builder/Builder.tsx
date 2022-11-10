@@ -262,8 +262,8 @@ const Wrapper = styled(BaseWrapper)`
   @media ${QUERIES.tb.andDown} {
     max-width: 100%;
     padding-bottom: 40px;
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 
@@ -315,7 +315,7 @@ const MobileHeader = styled(Header)`
   flex-wrap: wrap;
   margin-bottom: 24px;
   margin: 24px 0 40px;
-  padding-left: 16px;
+  padding-left: 0;
   font: var(--header-lg);
   span {
     display: inline-flex;

@@ -57,6 +57,8 @@ const Wrapper = styled.div`
   @media ${QUERIES.tb.andDown} {
     flex-direction: column-reverse;
     gap: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 
