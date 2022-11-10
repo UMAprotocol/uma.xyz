@@ -72,7 +72,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       width="100%"
                       layout="responsive"
                       objectFit="contain"
-                      src="/assets/illustration.svg"
+                      src="/assets/scene-one.svg"
                       alt="logo"
                     />
                   </IllustrationWrapper>
@@ -105,7 +105,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       width="100%"
                       layout="responsive"
                       objectFit="contain"
-                      src="/assets/illustration.svg"
+                      src="/assets/scene-two.svg"
                       alt="logo"
                     />
                   </IllustrationWrapper>
@@ -139,7 +139,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       width="100%"
                       layout="responsive"
                       objectFit="contain"
-                      src="/assets/illustration.svg"
+                      src="/assets/scene-one.svg"
                       alt="logo"
                     />
                   </IllustrationWrapper>
@@ -173,7 +173,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                       width="100%"
                       layout="responsive"
                       objectFit="contain"
-                      src="/assets/illustration.svg"
+                      src="/assets/scene-two.svg"
                       alt="logo"
                     />
                   </IllustrationWrapper>
@@ -493,8 +493,7 @@ const TrackAndIllustrationRow = styled.div`
 `;
 
 const IllustrationWrapper = styled.div`
-  margin-top: 60px;
-  width: 632px;
+  width: 562px;
   height: inherit;
   position: absolute;
   right: 0;
