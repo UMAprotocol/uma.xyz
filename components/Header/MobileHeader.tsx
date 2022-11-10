@@ -237,7 +237,7 @@ const AppBlock = styled.div`
     text-decoration: none;
     font: var(--body-sm);
     color: var(--white);
-    margin-right: 16px;
+    margin-right: 28px;
   }
   display: flex;
   flex-direction: row;
