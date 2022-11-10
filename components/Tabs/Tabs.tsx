@@ -125,6 +125,9 @@ const TabPanels = styled(ReachTabPanels)`
     padding-left: 16px;
     padding-right: 16px;
   }
+  @media ${QUERIES.tb.andDown} {
+    margin: 96px 0 0;
+  }
 `;
 
 const TabPanel = styled(ReachTabPanel)``;

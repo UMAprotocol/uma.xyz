@@ -226,18 +226,24 @@ const MobileHeader = styled(Header)`
     margin: 6px 8px 0;
     height: 100%;
   }
+
+  @media ${QUERIES.tb.andDown} {
+    margin-bottom: 0;
+  }
+
   @media ${QUERIES.sm.andDown} {
     display: inline-block;
     word-break: wrap;
   }
 `;
 
-const MobileImg = styled(Image)`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 6px;
-`;
+// May add this back in later.
+// const MobileImg = styled(Image)`
+//   display: inline-flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0 6px;
+// `;
 
 const code = `pragma solidity ^0.8.14;
 

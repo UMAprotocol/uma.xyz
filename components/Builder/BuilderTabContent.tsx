@@ -55,7 +55,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   gap: 112px;
   @media ${QUERIES.tb.andDown} {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 40px;
   }
 `;
 
@@ -108,6 +109,9 @@ const RemixRow = styled.div`
   color: var(--red);
   justify-content: center;
   gap: 20px;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: flex-start;
+  }
 `;
 
 const RemixLink = styled.a`
