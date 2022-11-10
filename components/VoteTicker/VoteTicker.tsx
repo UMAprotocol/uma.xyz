@@ -179,7 +179,7 @@ const Wrapper = styled.div`
   border-radius: 8px;
   width: calc(100% - 24px);
   @media ${QUERIES.lg.andDown} {
-    width: calc(100% - 80px);
+    width: calc(100% - 64px);
   }
 `;
 

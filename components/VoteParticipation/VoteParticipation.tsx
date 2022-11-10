@@ -40,7 +40,7 @@ const VoteParticipation = () => {
         </Title>
         <HeaderWrapper>
           {/* <RedCircleFilter /> */}
-          <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.md ? <br /> : null} up to 30% APY</Header>
+          <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.tb ? <br /> : null} up to 30% APY</Header>
         </HeaderWrapper>
 
         <ImageBlockRow>
@@ -183,8 +183,8 @@ const Wrapper = styled.div`
   padding-bottom: 130px;
   @media ${QUERIES.lg.andDown} {
     padding-bottom: 64px;
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 `;
 

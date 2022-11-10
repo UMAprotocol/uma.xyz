@@ -183,8 +183,8 @@ const ProjectsRow = styled.div`
   margin-right: 16px;
   @media ${QUERIES.lg.andDown} {
     margin: 0;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 24px;
+    padding-right: 24px;
     gap: 100px;
   }
   @media ${QUERIES.tb.andDown} {

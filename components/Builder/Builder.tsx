@@ -38,6 +38,107 @@ const Builder = () => {
         ) : (
           <MobileHeader>Launch products with the OO as your backbone</MobileHeader>
         )}
+        {width > BREAKPOINTS.lg ? (
+          <Tabs
+            isIntersecting={isIntersectingSection}
+            tabs={[
+              {
+                title: "Prediction Markets",
+                content: (
+                  <BuilderTabContent
+                    title="Prediction Markets"
+                    body={
+                      <>
+                        The OO can validate natural-language statements and answer questions about real-world events.
+                        <br /> <br /> There is a dispute resolution process if something unexpected happens.
+                      </>
+                    }
+                    greyBlurb="Real contract used by Polymarket:"
+                    redBlurb="“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”"
+                    code={code}
+                  />
+                ),
+                Icon: WandIcon,
+              },
+              {
+                title: "Insurance",
+                content: (
+                  <BuilderTabContent
+                    title="Insurance"
+                    body={
+                      <>
+                        The OO can insure any type of outcome whether they are smart contracts or real-world events,
+                        while defending against exploits with human-powered dispute resolution.
+                      </>
+                    }
+                    greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                    redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                    code={code}
+                  />
+                ),
+                Icon: TubeIcon,
+              },
+              {
+                title: "Cross-Chain Communication",
+                content: (
+                  <BuilderTabContent
+                    title="Cross-Chain Communication"
+                    body={
+                      <>
+                        The OO can verify any statement, including statements about data on other networks. <br />{" "}
+                        <br /> Chains can use the OO to “see” things on every other chain.
+                      </>
+                    }
+                    greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                    redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                    code={code}
+                  />
+                ),
+                Icon: TelescopeIcon,
+              },
+              {
+                title: "Governance",
+                content: (
+                  <BuilderTabContent
+                    title="Governance"
+                    body={
+                      <>
+                        DAOs have used KPI Options to motivate community members to work toward shared goals. <br />{" "}
+                        <br /> The OO also enables optimistic governance, a new coordination pattern that uses a “pass
+                        unless disputed” flow.
+                      </>
+                    }
+                    greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                    redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                    code={code}
+                  />
+                ),
+                Icon: ScaleIcon,
+              },
+              {
+                title: "Long-Tail data",
+                content: (
+                  <BuilderTabContent
+                    title="Long-Tail data"
+                    body={
+                      <>
+                        If a piece of information is publicly provable, then UMA’s OO can verify it and put it on-chain.{" "}
+                        <br /> <br /> The OO accepts natural language questions as an input, and does not require first
+                        building pricefeeds.
+                      </>
+                    }
+                    greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
+                    redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
+                    code={code}
+                  />
+                ),
+                Icon: GlobeIcon,
+              },
+            ]}
+          />
+        ) : null}
+      </Wrapper>
+      {width <= BREAKPOINTS.lg ? (
         <Tabs
           isIntersecting={isIntersectingSection}
           tabs={[
@@ -134,8 +235,8 @@ const Builder = () => {
               Icon: GlobeIcon,
             },
           ]}
-        ></Tabs>
-      </Wrapper>
+        />
+      ) : null}
     </Section>
   );
 };
@@ -155,8 +256,8 @@ const Section = styled.section`
 const Wrapper = styled(BaseWrapper)`
   padding: 100px 0 113px;
   @media ${QUERIES.lg.andDown} {
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   @media ${QUERIES.tb.andDown} {
     max-width: 100%;

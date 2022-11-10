@@ -103,8 +103,8 @@ const Wrapper = styled.div<IWrapper>`
     return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
   @media ${QUERIES.lg.andDown} {
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 `;
 

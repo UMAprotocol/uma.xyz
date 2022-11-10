@@ -204,8 +204,8 @@ const BottomRow = styled(Row)`
     width: 100%;
     flex-direction: column;
     column-gap: 32px;
-    padding-left: 48px;
-    padding-right: 48px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
