@@ -66,6 +66,7 @@ const TabList = styled(ReachTabList)<ITabList>`
   @media ${QUERIES.lg.andDown} {
     padding-left: 16px;
     padding-right: 16px;
+    font-size: 14px;
   }
   @media ${QUERIES.tb.andDown} {
     width: 1024px;

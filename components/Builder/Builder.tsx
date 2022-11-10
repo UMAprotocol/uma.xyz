@@ -24,7 +24,7 @@ const Builder = () => {
         <Title>
           Participate as a <span>Builder</span>
         </Title>
-        {width > BREAKPOINTS.tb ? (
+        {width > BREAKPOINTS.lg ? (
           <>
             <TopHeader>Launch products with</TopHeader>
             <BottomHeader>
@@ -155,8 +155,8 @@ const Section = styled.section`
 const Wrapper = styled(BaseWrapper)`
   padding: 100px 0 113px;
   @media ${QUERIES.lg.andDown} {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 64px;
+    padding-right: 64px;
   }
   @media ${QUERIES.tb.andDown} {
     max-width: 100%;

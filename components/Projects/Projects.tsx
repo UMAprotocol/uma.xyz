@@ -179,8 +179,14 @@ const ProjectsRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 16px;
+  margin-right: 16px;
+  @media ${QUERIES.lg.andDown} {
+    margin: 0;
+    padding-left: 48px;
+    padding-right: 48px;
+    gap: 100px;
+  }
   @media ${QUERIES.tb.andDown} {
     gap: 96px;
   }

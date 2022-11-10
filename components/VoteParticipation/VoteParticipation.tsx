@@ -183,6 +183,8 @@ const Wrapper = styled.div`
   padding-bottom: 130px;
   @media ${QUERIES.lg.andDown} {
     padding-bottom: 64px;
+    padding-left: 64px;
+    padding-right: 64px;
   }
 `;
 

@@ -52,7 +52,7 @@ const Wrapper = styled(BaseWrapper)`
   padding: 261px 0 234px;
   background: transparent;
   @media ${QUERIES.lg.andDown} {
-    padding: 160px 16px 200px;
+    padding: 160px 64px 200px;
   }
 
   @media ${QUERIES.tb.andDown} {
