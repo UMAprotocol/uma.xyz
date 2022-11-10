@@ -128,7 +128,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
-                      <TrackItem tracked={refThreePercentCrossed > 0}>02</TrackItem>
+                      <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
                       <RedSeperator height={refThreePercentCrossed} />
                       <Seperator height={100 - refThreePercentCrossed} />
                     </TrackWrapper>
@@ -162,7 +162,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
-                      <TrackItem tracked={refFourPercentCrossed > 0}>02</TrackItem>
+                      <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
                       <RedSeperator height={refFourPercentCrossed} />
                       <Seperator height={100 - refFourPercentCrossed} />
                     </TrackWrapper>
