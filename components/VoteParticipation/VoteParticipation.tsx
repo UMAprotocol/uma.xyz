@@ -181,6 +181,9 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 85px;
   padding-bottom: 130px;
+  @media ${QUERIES.lg.andDown} {
+    padding-bottom: 64px;
+  }
 `;
 
 const Header = styled(BaseHeader)`
@@ -369,9 +372,10 @@ const VoterAppLinkRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.lg.andDown} {
     justify-content: center;
-
+  }
+  @media ${QUERIES.md.andDown} {
     margin-top: 24px;
   }
 `;

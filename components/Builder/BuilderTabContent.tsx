@@ -113,6 +113,7 @@ const RemixRow = styled.div`
 const RemixLink = styled.a`
   font: var(--body-lg);
   text-decoration: none;
+  color: var(--red);
   div {
     margin-left: 12px;
     display: inline-flex;
