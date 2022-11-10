@@ -311,6 +311,7 @@ const Header = styled.div`
   color: var(--grey-100);
   max-width: 1020px;
   @media ${QUERIES.lg.andDown} {
+    max-width: 720px;
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -417,6 +418,9 @@ const IllustrationColumn = styled.div`
 const IntersectionWrapper = styled.div`
   position: relative;
   padding-top: 231px;
+  @media ${QUERIES.lg.andDown} {
+    padding-top: 0;
+  }
 `;
 
 const TrackWrapper = styled.div`
