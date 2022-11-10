@@ -434,7 +434,7 @@ const TrackWrapper = styled.div`
     left: 0;
     margin-left: auto;
     height: inherit;
-    margin-top: -40px;
+    margin-top: 0;
   }
   @media ${QUERIES.tb.andDown} {
     height: inherit;
@@ -490,6 +490,9 @@ const TrackAndIllustrationRow = styled.div`
   gap: 24px;
   width: 100%;
   justify-content: space-between;
+  @media ${QUERIES.lg.andDown} {
+    gap: 48px;
+  }
 `;
 
 const IllustrationWrapper = styled.div`
