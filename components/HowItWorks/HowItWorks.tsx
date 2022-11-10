@@ -197,7 +197,7 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
-    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    threshold: 1,
     rootMargin: width > BREAKPOINTS.lg ? "-200px 0px 0px 0px" : "0px",
   });
 
@@ -216,7 +216,7 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefTwo, setOffsetTrackRefTwo] = useState(0);
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
-    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    threshold: 1,
     rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
 
@@ -234,7 +234,7 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefThree, setOffsetTrackRefThree] = useState(0);
   const refTrackThree = useRef<HTMLDivElement | null>(null);
   const entryTrackThree = useIntersectionObserver(refTrackTwo, {
-    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    threshold: 1,
     rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
 
@@ -257,7 +257,7 @@ function useHowItWorks(currentPosition: number) {
   const [offsetTrackRefFour, setOffsetTrackRefFour] = useState(0);
   const refTrackFour = useRef<HTMLDivElement | null>(null);
   const entryTrackFour = useIntersectionObserver(refTrackTwo, {
-    threshold: width > BREAKPOINTS.lg ? 1 : 0.9,
+    threshold: 1,
     rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
 
