@@ -3,6 +3,7 @@ import Logo from "public/assets/uma-white-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Link from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
+import { QUERIES } from "constants/breakpoints";
 
 interface Props {
   activeLink: number;
@@ -101,6 +102,10 @@ const Wrapper = styled.div<IWrapper>`
   background: ${({ isLightTheme }) => {
     return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const Links = styled.div`
