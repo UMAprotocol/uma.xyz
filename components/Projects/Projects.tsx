@@ -86,12 +86,14 @@ const Projects = () => {
           <ProjectsBlurb>
             <ProjectsBlurbHeader>Projects built with the OO</ProjectsBlurbHeader>
             <ProjectsBlurbSubheader>UMA’s oracle serves diverse use cases</ProjectsBlurbSubheader>
-            <RemixWrapper>
-              <span>All projects</span>
-              <RemixLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
-                <UpRightArrowRed />
-              </RemixLink>
-            </RemixWrapper>
+            <ProjectLinkWrapper>
+              <ProjectLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
+                All Projects
+                <div>
+                  <UpRightArrowRed />
+                </div>
+              </ProjectLink>
+            </ProjectLinkWrapper>
           </ProjectsBlurb>
         </ProjectsRow>
       </Wrapper>
@@ -441,7 +443,7 @@ const ProjectsBlurbSubheader = styled.h3`
   }
 `;
 
-const RemixWrapper = styled.div`
+const ProjectLinkWrapper = styled.div`
   margin-top: 26px;
   display: flex;
   font: var(--body-lg);
@@ -465,21 +467,6 @@ const RemixWrapper = styled.div`
         stroke: var(--grey-100);
       }
     }
-  }
-`;
-
-const RemixLink = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  gap: 8px;
-  border: 1px solid var(--red);
-  border-radius: 8px;
-  @media ${QUERIES.tb.andDown} {
-    width: 32px;
-    height: 32px;
   }
 `;
 
@@ -529,4 +516,34 @@ const MobileImageText = styled.h3`
   text-align: center;
   margin: -20px;
   color: var(--grey-200);
+`;
+
+const ProjectLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  text-decoration: none;
+  div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--red);
+    border-radius: 8px;
+  }
+  &:visited {
+    color: var(--red);
+  }
+  &:hover {
+    color: var(--grey-100);
+    div {
+      border-color: var(--grey-100);
+      path {
+        stroke: var(--grey-100);
+      }
+    }
+  }
 `;
