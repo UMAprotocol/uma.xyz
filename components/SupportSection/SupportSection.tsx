@@ -56,8 +56,7 @@ const Wrapper = styled(BaseWrapper)`
   }
 
   @media ${QUERIES.tb.andDown} {
-    padding-top: 130px;
-    padding-bottom: 118px;
+    padding: 130px 24px 118px;
   }
 `;
 

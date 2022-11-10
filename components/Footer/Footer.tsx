@@ -182,8 +182,6 @@ const FooterLinks = styled.div`
     justify-content: center;
     align-items: flex-start;
     align-self: flex-start;
-    padding-left: 64px;
-    padding-right: 64px;
   }
   @media ${QUERIES.md.andDown} {
     align-items: center;
@@ -203,10 +201,11 @@ const BottomRow = styled(Row)`
     margin: 0 auto;
   }
   @media ${QUERIES.tb.andDown} {
+    width: 100%;
     flex-direction: column;
     column-gap: 32px;
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: 48px;
+    padding-right: 48px;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
