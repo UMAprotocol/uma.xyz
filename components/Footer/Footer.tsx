@@ -204,8 +204,8 @@ const BottomRow = styled(Row)`
     width: 100%;
     flex-direction: column;
     column-gap: 32px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 36px;
+    padding-right: 36px;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
@@ -370,7 +370,7 @@ const CopyrightRow = styled(Row)`
   @media ${QUERIES.lg.andDown} {
     padding-left: 16px;
     padding-right: 16px;
-    width: calc(100% - 80px);
+    width: calc(100% - 48px);
     margin-left: auto;
     margin-right: auto;
   }
@@ -408,6 +408,14 @@ const SocialLinks = styled.div`
   flex-basis: 32%;
   justify-content: flex-end;
   align-items: center;
+
+  @media ${QUERIES.tb.andDown} {
+    gap: 16px;
+    a {
+      height: 24px;
+      width: 24px;
+    }
+  }
 `;
 
 const SocialLink = styled.a`

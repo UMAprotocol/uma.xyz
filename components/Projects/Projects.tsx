@@ -190,6 +190,9 @@ const ProjectsRow = styled.div`
   @media ${QUERIES.tb.andDown} {
     gap: 96px;
   }
+  @media screen and (max-width: 740px) {
+    gap: 40px;
+  }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
   }
