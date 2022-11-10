@@ -2,7 +2,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { Title, Header as BaseHeader } from "components/Widgets";
+import { Title as BaseTitle, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
@@ -198,6 +198,13 @@ const Header = styled(BaseHeader)`
   }
 `;
 
+const Title = styled(BaseTitle)`
+  @media ${QUERIES.lg.andDown} {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+`;
+
 // WIP for filter effect. Not working yet.
 // const RedCircleFilter = styled.div`
 //   position: absolute;
@@ -213,6 +220,10 @@ const Header = styled(BaseHeader)`
 
 const HeaderWrapper = styled.div`
   position: relative;
+  @media ${QUERIES.lg.andDown} {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 `;
 
 const ImageBlockRow = styled.div`
