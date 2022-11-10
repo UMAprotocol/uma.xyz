@@ -63,6 +63,10 @@ const TabList = styled(ReachTabList)<ITabList>`
       fill: var(--red);
     }
   }
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   @media ${QUERIES.tb.andDown} {
     width: 1024px;
     height: 112px;
@@ -117,6 +121,10 @@ const Tab = styled(ReachTab)`
 
 const TabPanels = styled(ReachTabPanels)`
   margin: 60px 0px 0;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const TabPanel = styled(ReachTabPanel)``;
