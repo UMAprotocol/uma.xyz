@@ -154,8 +154,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                 <AnimationBody>Tokenholders vote on disputes and earn rewards</AnimationBody>
                 <AnimationSubBody>
                   The UMA token provides economic guarantees to the Optimistic Oracle. The community of tokenholders
-                  provide the human component, as voters, for the OO's final resolution on disputes or queries. Those
-                  who vote with the majority earn rewards.
+                  provide the human component, as voters, for the OO&apos;s final resolution on disputes or queries.
+                  Those who vote with the majority earn rewards.
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackFour}>
