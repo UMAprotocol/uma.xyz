@@ -298,6 +298,9 @@ const Wrapper = styled(BaseWrapper)`
   @media ${QUERIES.lg.andDown} {
     padding-bottom: 200px;
   }
+  @media ${QUERIES.tb.andDown} {
+    padding-bottom: 100px;
+  }
 `;
 
 const Title = styled(BaseTitle)`
