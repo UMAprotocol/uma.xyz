@@ -4,7 +4,7 @@ import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { formatDateTimeFromUTC } from "./utils";
 import useInterval from "hooks/helpers/useInterval";
-import { BREAKPOINTS } from "constants/breakpoints";
+import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 
 type TickerThemes = "light" | "dark";
@@ -178,6 +178,9 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   border-radius: 8px;
   width: calc(100% - 24px);
+  @media ${QUERIES.lg.andDown} {
+    width: calc(100% - 80px);
+  }
 `;
 
 const VoteBlock = styled.div`

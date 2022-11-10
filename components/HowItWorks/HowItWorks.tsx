@@ -295,6 +295,8 @@ const Section = styled.section`
 const Wrapper = styled(BaseWrapper)`
   padding-top: 100px;
   padding-bottom: 426px;
+  padding-left: 32px;
+  padding-right: 32px;
   @media ${QUERIES.lg.andDown} {
     padding-bottom: 200px;
   }

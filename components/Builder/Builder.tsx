@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
-import { Title as BaseTitle, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
+import { Title as BaseTitle, Wrapper as BaseWrapper, Header as BaseHeader } from "components/Widgets";
 import { Tabs } from "components";
 import BuilderTabContent from "./BuilderTabContent";
 import WandIcon from "public/assets/wand.svg";
@@ -10,7 +10,6 @@ import ScaleIcon from "public/assets/scale.svg";
 import GlobeIcon from "public/assets/globe.svg";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
-import Image from "next/image";
 
 const Builder = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -153,11 +152,17 @@ const Section = styled.section`
   background: var(--white);
 `;
 
-const Wrapper = styled(DefaultWrapper)`
+const Wrapper = styled(BaseWrapper)`
   padding: 100px 0 113px;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
   @media ${QUERIES.tb.andDown} {
     max-width: 100%;
     padding-bottom: 40px;
+    padding-left: 64px;
+    padding-right: 64px;
   }
 `;
 
@@ -167,7 +172,9 @@ const Header = styled(BaseHeader)`
   justify-content: flex-start;
   align-items: center;
   align-self: center;
-
+  @media ${QUERIES.lg.andDown} {
+    padding: 0;
+  }
   @media ${QUERIES.tb.andDown} {
     font: var(--header-sm);
   }
@@ -177,26 +184,16 @@ const Title = styled(BaseTitle)`
   @media ${QUERIES.lg.andDown} {
     margin-left: 0;
     margin-right: 0;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 `;
 
 const TopHeader = styled(Header)`
   margin-top: 65px;
-  @media ${QUERIES.lg.andDown} {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 `;
 
 const BottomHeader = styled(Header)`
   margin-top: 24px;
   margin-bottom: 216px;
-  @media ${QUERIES.lg.andDown} {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
   span {
     margin: 20px 12px 0;
     display: flex;

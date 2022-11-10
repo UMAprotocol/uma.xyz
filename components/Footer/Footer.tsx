@@ -177,13 +177,13 @@ const FooterLinks = styled.div`
     flex-direction: column;
     gap: 32px;
     width: 30%;
-    padding-left: 16px;
-    padding-right: 16px;
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
     align-items: flex-start;
     align-self: flex-start;
+    padding-left: 64px;
+    padding-right: 64px;
   }
   @media ${QUERIES.md.andDown} {
     align-items: center;
@@ -198,9 +198,15 @@ const LogoWrapper = styled.div`
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
+  @media ${QUERIES.lg.andDown} {
+    width: calc(100% - 48px);
+    margin: 0 auto;
+  }
   @media ${QUERIES.tb.andDown} {
     flex-direction: column;
     column-gap: 32px;
+    padding-left: 64px;
+    padding-right: 64px;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
@@ -236,6 +242,7 @@ const FormWrapper = styled.div`
   @media ${QUERIES.lg.andDown} {
     max-width: 640px;
     width: 100%;
+    margin: 0;
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
@@ -279,7 +286,6 @@ const Form = styled.div`
   justify-content: space-between;
   gap: 12px;
   @media ${QUERIES.lg.andDown} {
-    padding: 8px 16px;
     gap: 16px;
   }
   @media ${QUERIES.tb.andDown} {
