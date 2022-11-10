@@ -151,6 +151,7 @@ const Wrapper = styled.div`
   max-width: var(--max-section-width);
   margin: 0 auto;
   padding: 96px 0 66px;
+
   @media ${QUERIES.tb.andDown} {
     padding-top: 61px;
     padding-bottom: 32px;
@@ -176,7 +177,8 @@ const FooterLinks = styled.div`
     flex-direction: column;
     gap: 32px;
     width: 30%;
-    margin: 0 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
@@ -360,6 +362,10 @@ const CopyrightRow = styled(Row)`
   margin-top: 365px;
   display: flex;
   justify-content: space-between;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   @media ${QUERIES.tb.andDown} {
     margin-top: 85px;
     margin-left: 16px;
