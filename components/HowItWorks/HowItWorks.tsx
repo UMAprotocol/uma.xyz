@@ -295,6 +295,9 @@ const Section = styled.section`
 const Wrapper = styled(BaseWrapper)`
   padding-top: 100px;
   padding-bottom: 426px;
+  @media ${QUERIES.lg.andDown} {
+    padding-bottom: 200px;
+  }
 `;
 
 const Title = styled(BaseTitle)`
