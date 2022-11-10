@@ -200,8 +200,8 @@ const Header = styled(BaseHeader)`
 
 const Title = styled(BaseTitle)`
   @media ${QUERIES.lg.andDown} {
-    margin-left: 16px;
-    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
@@ -221,8 +221,8 @@ const Title = styled(BaseTitle)`
 const HeaderWrapper = styled.div`
   position: relative;
   @media ${QUERIES.lg.andDown} {
-    margin-left: 16px;
-    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 

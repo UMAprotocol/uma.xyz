@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
-import { Title, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
+import { Title as BaseTitle, Wrapper as DefaultWrapper, Header as BaseHeader } from "components/Widgets";
 import { Tabs } from "components";
 import BuilderTabContent from "./BuilderTabContent";
 import WandIcon from "public/assets/wand.svg";
@@ -179,13 +179,28 @@ const Header = styled(BaseHeader)`
   }
 `;
 
+const Title = styled(BaseTitle)`
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+`;
+
 const TopHeader = styled(Header)`
   margin-top: 65px;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const BottomHeader = styled(Header)`
   margin-top: 24px;
   margin-bottom: 216px;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   span {
     margin: 20px 12px 0;
     display: flex;
