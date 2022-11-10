@@ -13,6 +13,7 @@ import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { useWindowSize } from "hooks";
 import Image from "next/image";
+import SmArrow from "public/assets/sm-arrow.svg";
 
 const Projects = () => {
   const { width } = useProjects();
@@ -49,7 +50,7 @@ const Projects = () => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          <UpRightArrowWhite />
+                          {width > BREAKPOINTS.lg ? <UpRightArrowWhite /> : <SmArrow />}
                         </SmallLinkButton>
                         <SmallImageWrapper>
                           <Image
@@ -180,6 +181,9 @@ const ProjectsRow = styled.div`
   gap: 24px;
   margin-left: 15px;
   margin-right: 15px;
+  @media ${QUERIES.tb.andDown} {
+    gap: 96px;
+  }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
   }
@@ -209,7 +213,6 @@ const BigProject = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 110px; */
   isolation: isolate;
   border: 1px solid var(--grey-600);
   order: 1;
@@ -252,6 +255,9 @@ const BigProjectText = styled.h3`
   margin-top: 24px;
   position: absolute;
   bottom: 60px;
+  @media ${QUERIES.tb.andDown} {
+    bottom: 24px;
+  }
 `;
 const LinkButton = styled.a`
   display: none;
@@ -300,6 +306,10 @@ const SmallImageWrapper = styled.div`
   height: 60px;
   margin-top: 40px;
 
+  @media ${QUERIES.tb.andDown} {
+    height: 30px;
+    width: 40px;
+  }
   @media ${QUERIES.sm.andDown} {
     max-width: 60.37px;
     max-height: 30.31px;
@@ -369,6 +379,12 @@ const SmallLinkButton = styled(LinkButton)`
   right: 16px;
   width: 32px;
   height: 32px;
+  @media ${QUERIES.tb.andDown} {
+    width: 26px;
+    height: 26px;
+    top: 12px;
+    right: 12px;
+  }
 `;
 
 const ProjectsBlurb = styled.div`
