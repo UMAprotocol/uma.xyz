@@ -369,7 +369,7 @@ const CopyrightRow = styled(Row)`
   justify-content: space-between;
   @media ${QUERIES.lg.andDown} {
     padding-left: 16px;
-    padding-right: 16px;
+    padding-right: 0px;
     width: calc(100% - 48px);
     margin-left: auto;
     margin-right: auto;
@@ -377,7 +377,7 @@ const CopyrightRow = styled(Row)`
   @media ${QUERIES.tb.andDown} {
     margin-top: 85px;
     margin-left: 16px;
-    margin-right: 16px;
+    margin-right: 0;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column;
