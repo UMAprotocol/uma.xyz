@@ -425,6 +425,7 @@ const ProjectsBlurbSubheader = styled.h3`
   max-width: 366px;
   border-bottom: 1px solid var(--grey-700);
   text-align: left;
+  align-self: flex-start;
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 100%;
@@ -443,6 +444,8 @@ const ProjectLinkWrapper = styled.div`
   justify-content: center;
   gap: 20px;
   cursor: default;
+  align-self: flex-start;
+
   @media ${QUERIES.tb.andDown} {
     justify-content: flex-start;
     margin-bottom: 44px;

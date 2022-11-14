@@ -19,6 +19,7 @@ interface Theme {
   section: {
     bg: string;
     pt: string;
+    mb: string;
   };
   wrapper: {
     bg: string;
@@ -54,6 +55,7 @@ const styledTheme: TickerTheme = {
     section: {
       bg: "var(--grey-700)",
       pt: "48px",
+      mb: "0px",
     },
     wrapper: {
       bg: "var(--grey-800)",
@@ -81,6 +83,7 @@ const styledTheme: TickerTheme = {
     section: {
       bg: "inherit",
       pt: "16px",
+      mb: "4px",
     },
     wrapper: {
       bg: "var(--grey-300)",
@@ -157,9 +160,9 @@ const Section = styled.div`
   width: 100%;
   background: ${({ theme }: { theme: Theme }) => theme.section.bg};
   padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt};
+  margin-bottom: ${({ theme }: { theme: Theme }) => theme.section.mb};
   background-size: cover;
   background-repeat: no-repeat;
-  margin-bottom: 4px;
 `;
 
 const Wrapper = styled.div`
