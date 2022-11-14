@@ -63,6 +63,7 @@ const Wrapper = styled(BaseWrapper)`
 const Title = styled(BaseTitle)`
   max-width: 562px;
   font: var(--header-md);
+  border-bottom: none;
   @media ${QUERIES.md.andDown} {
     max-width: 400px;
     font: var(--header-sm);
@@ -99,7 +100,7 @@ const TextColumn = styled.div`
 const ButtonColumn = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 72px;
+  margin-top: 64px;
   gap: 24px;
   margin-left: 0;
   margin-right: 0;
