@@ -54,14 +54,6 @@ const links = [
   {
     label: (
       <>
-        Oracle <SmUpRightArrow style={{ marginLeft: "8px" }} />
-      </>
-    ),
-    href: "#",
-  },
-  {
-    label: (
-      <>
         Docs <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
@@ -93,12 +85,11 @@ const Wrapper = styled.div<IWrapper>`
   align-items: center;
   height: 40px;
   max-width: var(--max-section-width);
-  margin: 16px auto 0;
+  margin: 0 auto;
   z-index: 100;
   border-radius: 12px;
-  backdrop-filter: ${({ isLightTheme }) => {
-    return isLightTheme ? "blur(6px)" : "none";
-  }};
+  padding: 32px 0;
+  backdrop-filter: blur(6px);
   background: ${({ isLightTheme }) => {
     return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
@@ -114,7 +105,7 @@ const Links = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0px;
-  gap: 32px;
+  gap: 16px;
 `;
 
 interface ILinkProps extends IStyledProps {

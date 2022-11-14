@@ -229,6 +229,7 @@ const NumVotes = styled.div`
   height: 24px;
   background: ${({ theme }: { theme: Theme }) => theme.numVotes.bg};
   border-radius: 12px;
+  margin-left: -8px;
   > div {
     font: var(--body-sm);
     color: ${({ theme }: { theme: Theme }) => theme.numVotes.color};

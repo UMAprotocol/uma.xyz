@@ -20,7 +20,7 @@ export function Home() {
   const voteParticipationRef = useRef<HTMLDivElement | null>(null);
   const builderRef = useRef<HTMLDivElement | null>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
-    threshold: 0.37,
+    threshold: 0.27,
   });
   const eVoteParticipation = useIntersectionObserver(voteParticipationRef, {
     threshold: 0.47,

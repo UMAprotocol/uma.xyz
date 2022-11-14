@@ -404,12 +404,12 @@ const VoterAppLink = styled.a`
   font: var(--body-lg);
   text-decoration: none;
   div {
-    margin-left: 12px;
+    margin-left: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
   }
