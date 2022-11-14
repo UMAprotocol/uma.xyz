@@ -249,7 +249,6 @@ const BigProject = styled.div`
     h3,
     a {
       display: flex;
-      visibility: visible;
     }
     > div {
       path {
@@ -259,16 +258,11 @@ const BigProject = styled.div`
   }
 `;
 const BigProjectText = styled.h3`
-  visibility: hidden;
+  display: none;
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-top: 24px;
-  position: absolute;
-  bottom: 60px;
-  @media ${QUERIES.tb.andDown} {
-    bottom: 24px;
-  }
 `;
 const LinkButton = styled.a`
   display: none;
@@ -315,7 +309,6 @@ const SmallProjects = styled.div`
 const SmallImageWrapper = styled.div`
   width: 60px;
   height: 60px;
-  margin-top: 40px;
 
   @media ${QUERIES.tb.andDown} {
     height: 30px;
@@ -364,7 +357,6 @@ const SmallProject = styled.div`
     h3,
     a {
       display: flex;
-      visibility: visible;
     }
     img {
       filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
