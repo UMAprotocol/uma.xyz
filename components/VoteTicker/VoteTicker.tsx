@@ -159,6 +159,7 @@ const Section = styled.div`
   padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt};
   background-size: cover;
   background-repeat: no-repeat;
+  margin-bottom: 4px;
 `;
 
 const Wrapper = styled.div`
