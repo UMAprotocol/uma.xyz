@@ -403,7 +403,10 @@ const VoterAppLinkBlock = styled.div`
 const VoterAppLink = styled.a`
   font: var(--body-lg);
   text-decoration: none;
+
   div {
+    position: relative;
+    left: 0;
     margin-left: 16px;
     display: inline-flex;
     align-items: center;
@@ -412,6 +415,7 @@ const VoterAppLink = styled.a`
     height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
+    transition: all 0.3s ease;
   }
   &:visited {
     color: var(--red);
@@ -420,8 +424,11 @@ const VoterAppLink = styled.a`
     color: var(--grey-100);
     div {
       border-color: var(--grey-100);
+      background-color: var(--grey-100);
+      margin-left: 12px;
+
       path {
-        stroke: var(--grey-100);
+        stroke: var(--white);
       }
     }
   }
