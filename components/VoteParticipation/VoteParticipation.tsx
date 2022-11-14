@@ -2,7 +2,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { Title, Header as BaseHeader } from "components/Widgets";
+import { Title as BaseTitle, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
@@ -40,7 +40,7 @@ const VoteParticipation = () => {
         </Title>
         <HeaderWrapper>
           {/* <RedCircleFilter /> */}
-          <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.md ? <br /> : null} up to 30% APY</Header>
+          <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.tb ? <br /> : null} up to 30% APY</Header>
         </HeaderWrapper>
 
         <ImageBlockRow>
@@ -60,9 +60,7 @@ const VoteParticipation = () => {
                 <ImageTitle width={width} isIntersecting={isIntersectingStake}>
                   Stake
                 </ImageTitle>
-                <ImageText>
-                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.
-                </ImageText>
+                <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -82,9 +80,7 @@ const VoteParticipation = () => {
                 <ImageTitle width={width} isIntersecting={isIntersectingVote}>
                   Vote
                 </ImageTitle>
-                <ImageText>
-                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.{" "}
-                </ImageText>
+                <ImageText>Token holders who vote correctly and consistently earn higher APYs. </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
@@ -105,12 +101,14 @@ const VoteParticipation = () => {
                   Earn
                 </ImageTitle>
                 <ImageText>
-                  As an UMA voter you receive token rewards, consectetur adipiscing elit. Purus egestas odio.{" "}
+                  Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
+                  voters.{" "}
                 </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
         </ImageBlockRow>
+        <Divider />
         {width > BREAKPOINTS.tb ? (
           <VoterAppLinkRow>
             <VoterAppLinkBlock>
@@ -171,6 +169,7 @@ function useVoteParticipation() {
 
 const Section = styled.section`
   background: var(--grey-800);
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
   width: 100%;
   position: relative;
 `;
@@ -182,6 +181,11 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 85px;
   padding-bottom: 130px;
+  @media ${QUERIES.lg.andDown} {
+    padding-bottom: 64px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 `;
 
 const Header = styled(BaseHeader)`
@@ -193,6 +197,13 @@ const Header = styled(BaseHeader)`
   }
   @media ${QUERIES.md.andDown} {
     font: var(--header-sm);
+  }
+`;
+
+const Title = styled(BaseTitle)`
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
@@ -211,6 +222,10 @@ const Header = styled(BaseHeader)`
 
 const HeaderWrapper = styled.div`
   position: relative;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const ImageBlockRow = styled.div`
@@ -220,6 +235,7 @@ const ImageBlockRow = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 48px;
+
   svg {
     fill: var(--white);
   }
@@ -292,7 +308,7 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
 `;
 
 const ImageBlock = styled.div`
-  padding: 40px;
+  padding: 0 40px;
   @media ${QUERIES.tb.andDown} {
     display: inline-flex;
     gap: 48px;
@@ -366,13 +382,13 @@ const ImageWrapper = styled.div<ScrollProps>`
 `;
 
 const VoterAppLinkRow = styled.div`
-  margin-top: 102px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.lg.andDown} {
     justify-content: center;
-
+  }
+  @media ${QUERIES.md.andDown} {
     margin-top: 24px;
   }
 `;
@@ -388,12 +404,12 @@ const VoterAppLink = styled.a`
   font: var(--body-lg);
   text-decoration: none;
   div {
-    margin-left: 12px;
+    margin-left: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
   }
@@ -420,7 +436,7 @@ const MobileVoterRow = styled(VoterAppLinkRow)<IMobileVoterRow>`
   width: 100%;
   margin-left: 0;
   bottom: 0;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   display: ${({ isIntersecting }) => {
     return isIntersecting ? "flex" : "none";
   }};
@@ -434,4 +450,12 @@ const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
   justify-content: center;
   align-items: center;
   align-self: center;
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
+  width: 100%;
+  margin-top: 84px;
+  margin-bottom: 24px;
 `;

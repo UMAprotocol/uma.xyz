@@ -4,23 +4,26 @@ import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { formatDateTimeFromUTC } from "./utils";
 import useInterval from "hooks/helpers/useInterval";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+
 type TickerThemes = "light" | "dark";
 
 interface Props {
   theme: TickerThemes;
   numVotes: number;
-  phase: "Commit" | "Reveal";
+  phase: "commit" | "reveal";
 }
 
 interface Theme {
   section: {
     bg: string;
     pt: string;
+    mb: string;
   };
   wrapper: {
     bg: string;
+    url: string;
   };
   clock: {
     br: string;
@@ -52,9 +55,11 @@ const styledTheme: TickerTheme = {
     section: {
       bg: "var(--grey-700)",
       pt: "48px",
+      mb: "0px",
     },
     wrapper: {
       bg: "var(--grey-800)",
+      url: "/assets/white-lines.png",
     },
     clock: {
       br: "4px",
@@ -78,9 +83,11 @@ const styledTheme: TickerTheme = {
     section: {
       bg: "inherit",
       pt: "16px",
+      mb: "4px",
     },
     wrapper: {
       bg: "var(--grey-300)",
+      url: "/assets/black-lines.png",
     },
     clock: {
       br: "16px",
@@ -152,7 +159,10 @@ function useVoteTicker() {
 const Section = styled.div`
   width: 100%;
   background: ${({ theme }: { theme: Theme }) => theme.section.bg};
-  padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt}; ;
+  padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt};
+  margin-bottom: ${({ theme }: { theme: Theme }) => theme.section.mb};
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 
 const Wrapper = styled.div`
@@ -167,8 +177,14 @@ const Wrapper = styled.div`
   margin: 0 auto;
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
+  background-image: ${({ theme }: { theme: Theme }) => `url(${theme.wrapper.url})`};
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 8px;
   width: calc(100% - 24px);
+  @media ${QUERIES.lg.andDown} {
+    width: calc(100% - 64px);
+  }
 `;
 
 const VoteBlock = styled.div`
@@ -198,13 +214,11 @@ const VoteText = styled.div`
   font: var(--body-sm);
   color: ${({ theme }: { theme: Theme }) => theme.voteText.color};
   span {
+    display: inline-block;
     color: ${({ theme }: { theme: Theme }) => theme.voteText.spanColor};
     margin-left: 4px;
-  }
-  padding-right: 16px;
-  border-right: ${({ theme }: { theme: Theme }) => theme.voteText.borderRight};
-  @media ${QUERIES.tb.andDown} {
-    border-right: none;
+    letter-spacing: 0.02em;
+    min-width: 96px; // 96px is the width of the clock to prevent spacing changing on numbers.
   }
 `;
 
@@ -219,6 +233,7 @@ const NumVotes = styled.div`
   height: 24px;
   background: ${({ theme }: { theme: Theme }) => theme.numVotes.bg};
   border-radius: 12px;
+  margin-left: -8px;
   > div {
     font: var(--body-sm);
     color: ${({ theme }: { theme: Theme }) => theme.numVotes.color};
@@ -234,7 +249,7 @@ const MoreDetailsBlock = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 4px;
+    gap: 8px;
     path {
       stroke: ${({ theme }: { theme: Theme }) => theme.moreDetails.stroke};
     }

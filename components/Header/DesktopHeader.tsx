@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import Logo from "public/assets/uma-logo.svg";
+import Logo from "public/assets/uma-white-logo.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Link from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
+import { QUERIES } from "constants/breakpoints";
 
 interface Props {
   activeLink: number;
@@ -53,7 +54,7 @@ const links = [
   {
     label: (
       <>
-        Oracle <SmUpRightArrow style={{ marginLeft: "4px" }} />
+        Docs <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
     href: "#",
@@ -61,15 +62,7 @@ const links = [
   {
     label: (
       <>
-        Docs <SmUpRightArrow style={{ marginLeft: "4px" }} />
-      </>
-    ),
-    href: "#",
-  },
-  {
-    label: (
-      <>
-        Projects <SmUpRightArrow style={{ marginLeft: "4px" }} />
+        Projects <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
     href: "#",
@@ -94,13 +87,16 @@ const Wrapper = styled.div<IWrapper>`
   max-width: var(--max-section-width);
   margin: 0 auto;
   z-index: 100;
-  margin-top: 24px;
-  backdrop-filter: ${({ isLightTheme }) => {
-    return isLightTheme ? "blur(6px)" : "none";
-  }};
+  border-radius: 12px;
+  padding: 32px 0;
+  backdrop-filter: blur(6px);
   background: ${({ isLightTheme }) => {
     return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 `;
 
 const Links = styled.div`
@@ -109,7 +105,7 @@ const Links = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0px;
-  gap: 32px;
+  gap: 16px;
 `;
 
 interface ILinkProps extends IStyledProps {
@@ -126,7 +122,6 @@ const StyledLink = styled.a<ILinkProps>`
   &:hover {
     opacity: 0.8;
   }
-  margin: 0 15px;
 `;
 
 const LaunchButton = styled.button<IStyledProps>`

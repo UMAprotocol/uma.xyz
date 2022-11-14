@@ -8,43 +8,41 @@ import { QUERIES } from "constants/breakpoints";
 interface Props {
   title: string;
   body: ReactNode;
+  greyBlurb: string;
+  redBlurb: string;
+  code: string;
 }
 
-const code = `pragma solidity ^0.8.14;
-
-contract OO_GettingStarted {
-  bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
-  bytes ancillaryData =
-
-    bytes("Q: Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c? A:1 for yes. 0 for no.");
-
-  uint256 requestTime = 0;
-  function requestPrice() public {
-    requestTime = block.timestamp;
-    IERC20 bondCurrency = IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
-    uint256 reward = 0;
-`;
-const BuilderTabContent: React.FC<Props> = ({ title, body }) => {
+const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb, code }) => {
   return (
     <Wrapper>
       <TextColumn>
         <Title>{title}</Title>
         <Body>{body}</Body>
-        <GreyBlurb>Real contract used by Polymarket:</GreyBlurb>
-        <RedBlurb>“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”</RedBlurb>
+        <GreyBlurb>{greyBlurb}</GreyBlurb>
+        <RedBlurb>{redBlurb}</RedBlurb>
       </TextColumn>
       <CodeColumn>
-        <SandpackProvider theme={githubLight}>
+        <SandpackProvider
+          options={{
+            classes: {
+              "sp-layout": "custom-layout",
+            },
+          }}
+          theme={githubLight}
+        >
           <SandpackLayout>
             <SandpackCodeViewer code={code} showLineNumbers showTabs />
           </SandpackLayout>
         </SandpackProvider>
-        <RemixWrapper>
-          <span>Remix code in Sandbox</span>
-          <RemixLink href="https://remix-project.org/" target="_blank" rel="noreferrer">
-            <UpRightArrowRed />
+        <RemixRow>
+          <RemixLink href="https://remix.ethereum.org/" target="_blank" rel="noreferrer">
+            Remix code in Sandbox
+            <div>
+              <UpRightArrowRed />
+            </div>
           </RemixLink>
-        </RemixWrapper>
+        </RemixRow>
       </CodeColumn>
     </Wrapper>
   );
@@ -55,14 +53,18 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 40px;
+  gap: 112px;
   @media ${QUERIES.tb.andDown} {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 
 const Title = styled.h2`
   font: var(--header-sm);
+  margin-bottom: 16px;
 `;
 
 const TextColumn = styled.div`
@@ -92,40 +94,53 @@ const CodeColumn = styled.div`
   max-width: 50%;
   margin-left: auto;
   flex-direction: column;
+  margin-top: 8px;
   @media ${QUERIES.tb.andDown} {
     max-width: 100%;
     margin-left: 0;
   }
 `;
 
-const RemixWrapper = styled.div`
-  margin-top: 26px;
+const RemixRow = styled.div`
+  color: var(--red);
+  font: var(--body-lg);
+  display: inline-block;
+  margin-top: 24px;
   display: flex;
   font: var(--body-lg);
   color: var(--red);
   justify-content: center;
   gap: 20px;
-  cursor: default;
+  @media ${QUERIES.tb.andDown} {
+    justify-content: flex-start;
+  }
+`;
+
+const RemixLink = styled.a`
+  font: var(--body-lg);
+  text-decoration: none;
+  color: var(--red);
+  div {
+    margin-left: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--red);
+    border-radius: 8px;
+  }
+  &:visited {
+    color: var(--red);
+  }
   &:hover {
-    span {
-      color: var(--grey-100);
-    }
-    a {
+    color: var(--grey-100);
+    div {
       border-color: var(--grey-100);
       path {
         stroke: var(--grey-100);
       }
     }
   }
-`;
-const RemixLink = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  gap: 8px;
-  border: 1px solid var(--red);
-  border-radius: 8px;
 `;
 export default BuilderTabContent;

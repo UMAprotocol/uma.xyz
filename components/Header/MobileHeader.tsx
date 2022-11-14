@@ -139,12 +139,17 @@ interface IStyledProps {
 const Section = styled.div`
   width: 100%;
   margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
+
 const Wrapper = styled.div<IStyledProps>`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 16px auto 0;
+
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
   }};
@@ -232,7 +237,7 @@ const AppBlock = styled.div`
     text-decoration: none;
     font: var(--body-sm);
     color: var(--white);
-    margin-right: 16px;
+    margin-right: 28px;
   }
   display: flex;
   flex-direction: row;

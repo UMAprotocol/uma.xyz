@@ -63,6 +63,11 @@ const TabList = styled(ReachTabList)<ITabList>`
       fill: var(--red);
     }
   }
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;
+  }
   @media ${QUERIES.tb.andDown} {
     width: 1024px;
     height: 112px;
@@ -116,7 +121,14 @@ const Tab = styled(ReachTab)`
 `;
 
 const TabPanels = styled(ReachTabPanels)`
-  margin: 60px 12px 0;
+  margin: 60px 0px 0;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    margin: 96px 0 0;
+  }
 `;
 
 const TabPanel = styled(ReachTabPanel)``;

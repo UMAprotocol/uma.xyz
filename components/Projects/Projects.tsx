@@ -13,6 +13,7 @@ import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { useWindowSize } from "hooks";
 import Image from "next/image";
+import SmArrow from "public/assets/sm-arrow.svg";
 
 const Projects = () => {
   const { width } = useProjects();
@@ -49,7 +50,7 @@ const Projects = () => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          <UpRightArrowWhite />
+                          {width > BREAKPOINTS.lg ? <UpRightArrowWhite /> : <SmArrow />}
                         </SmallLinkButton>
                         <SmallImageWrapper>
                           <Image
@@ -83,17 +84,16 @@ const Projects = () => {
             </MobileProjects>
           ) : null}
           <ProjectsBlurb>
-            <ProjectsBlurbHeader>Real projects built with our products</ProjectsBlurbHeader>
-            <ProjectsBlurbSubheader>
-              Being in the cross-chain bridging space, for us it’s important to lorem ipsum of centralized authorities
-              and (potentially) biased third-parties.
-            </ProjectsBlurbSubheader>
-            <RemixWrapper>
-              <span>All projects</span>
-              <RemixLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
-                <UpRightArrowRed />
-              </RemixLink>
-            </RemixWrapper>
+            <ProjectsBlurbHeader>Projects built with the OO</ProjectsBlurbHeader>
+            <ProjectsBlurbSubheader>UMA’s oracle serves diverse use cases</ProjectsBlurbSubheader>
+            <ProjectLinkWrapper>
+              <ProjectLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
+                All Projects
+                <div>
+                  <UpRightArrowRed />
+                </div>
+              </ProjectLink>
+            </ProjectLinkWrapper>
           </ProjectsBlurb>
         </ProjectsRow>
       </Wrapper>
@@ -181,8 +181,20 @@ const ProjectsRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 16px;
+  margin-right: 16px;
+  @media ${QUERIES.lg.andDown} {
+    margin: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+    gap: 100px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    gap: 96px;
+  }
+  @media screen and (max-width: 740px) {
+    gap: 40px;
+  }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
   }
@@ -212,13 +224,13 @@ const BigProject = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px;
   isolation: isolate;
   border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
   width: 280px;
   height: 280px;
+  justify-content: center;
   @media ${QUERIES.tb.andDown} {
     width: 218px;
     height: 218px;
@@ -237,7 +249,6 @@ const BigProject = styled.div`
     h3,
     a {
       display: flex;
-      visibility: visible;
     }
     > div {
       path {
@@ -247,7 +258,7 @@ const BigProject = styled.div`
   }
 `;
 const BigProjectText = styled.h3`
-  visibility: hidden;
+  display: none;
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -296,9 +307,13 @@ const SmallProjects = styled.div`
 `;
 
 const SmallImageWrapper = styled.div`
-  width: 44.46px;
-  height: 55.9px;
-  margin-top: 20px;
+  width: 60px;
+  height: 60px;
+
+  @media ${QUERIES.tb.andDown} {
+    height: 30px;
+    width: 40px;
+  }
   @media ${QUERIES.sm.andDown} {
     max-width: 60.37px;
     max-height: 30.31px;
@@ -342,7 +357,6 @@ const SmallProject = styled.div`
     h3,
     a {
       display: flex;
-      visibility: visible;
     }
     img {
       filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
@@ -355,6 +369,8 @@ const SmallProject = styled.div`
 
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
+  position: relative;
+  bottom: 0;
   @media ${QUERIES.md.andDown} {
     margin-top: 8px;
     font-size: 12px;
@@ -366,6 +382,12 @@ const SmallLinkButton = styled(LinkButton)`
   right: 16px;
   width: 32px;
   height: 32px;
+  @media ${QUERIES.tb.andDown} {
+    width: 26px;
+    height: 26px;
+    top: 12px;
+    right: 12px;
+  }
 `;
 
 const ProjectsBlurb = styled.div`
@@ -402,6 +424,8 @@ const ProjectsBlurbSubheader = styled.h3`
   color: var(--grey-200);
   max-width: 366px;
   border-bottom: 1px solid var(--grey-700);
+  text-align: left;
+  align-self: flex-start;
   @media ${QUERIES.tb.andDown} {
     width: 100%;
     max-width: 100%;
@@ -412,7 +436,7 @@ const ProjectsBlurbSubheader = styled.h3`
   }
 `;
 
-const RemixWrapper = styled.div`
+const ProjectLinkWrapper = styled.div`
   margin-top: 26px;
   display: flex;
   font: var(--body-lg);
@@ -420,6 +444,8 @@ const RemixWrapper = styled.div`
   justify-content: center;
   gap: 20px;
   cursor: default;
+  align-self: flex-start;
+
   @media ${QUERIES.tb.andDown} {
     justify-content: flex-start;
     margin-bottom: 44px;
@@ -436,21 +462,6 @@ const RemixWrapper = styled.div`
         stroke: var(--grey-100);
       }
     }
-  }
-`;
-
-const RemixLink = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  gap: 8px;
-  border: 1px solid var(--red);
-  border-radius: 8px;
-  @media ${QUERIES.tb.andDown} {
-    width: 32px;
-    height: 32px;
   }
 `;
 
@@ -500,4 +511,34 @@ const MobileImageText = styled.h3`
   text-align: center;
   margin: -20px;
   color: var(--grey-200);
+`;
+
+const ProjectLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  text-decoration: none;
+  div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--red);
+    border-radius: 8px;
+  }
+  &:visited {
+    color: var(--red);
+  }
+  &:hover {
+    color: var(--grey-100);
+    div {
+      border-color: var(--grey-100);
+      path {
+        stroke: var(--grey-100);
+      }
+    }
+  }
 `;

@@ -20,8 +20,8 @@ const Header: React.FC<Props> = ({ activeLink }) => {
   const isLightTheme = scrollPosition >= boundingHeight;
   return (
     <div ref={isMounted ? headerRef : null}>
-      <VoteTicker theme="dark" numVotes={2} phase="Commit" />
-      <Headroom isLightTheme={isLightTheme} style={{ paddingTop: "24px" }}>
+      <VoteTicker theme="dark" numVotes={2} phase="commit" />
+      <Headroom isLightTheme={isLightTheme}>
         {width > BREAKPOINTS.tb ? (
           <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
         ) : (

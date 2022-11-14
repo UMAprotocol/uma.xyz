@@ -4,6 +4,8 @@ import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+import Image from "next/image";
+import useTrackRefCrossed from "./useTrackRefCrossed";
 
 interface Props {
   heightFromTop: number;
@@ -14,12 +16,14 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
     sectionRef,
     isMounted,
     width,
-    ref,
-    topRedHeight,
     refTrackOne,
     refTrackTwo,
+    refTrackThree,
+    refTrackFour,
     refOnePercentCrossed,
     refTwoPercentCrossed,
+    refThreePercentCrossed,
+    refFourPercentCrossed,
   } = useHowItWorks(currentPosition);
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
@@ -28,36 +32,49 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
         <Header>The Optimistic Oracle verifies data in stages </Header>
         <IntersectionWrapper>
           {width > BREAKPOINTS.lg && (
-            <TrackWrapper ref={ref}>
-              <TrackItem>01</TrackItem>
-              <RedSeperator height={topRedHeight} />
-              <Seperator height={100 - topRedHeight} />
-              <TrackItem>02</TrackItem>
-              <RedSeperator height={0} />
-              <Seperator height={100} />
+            <TrackWrapper>
+              <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
+              <RedSeperator height={refOnePercentCrossed} />
+              <Seperator height={100 - refOnePercentCrossed} />
+              <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
+              <RedSeperator height={refTwoPercentCrossed} />
+              <Seperator height={100 - refTwoPercentCrossed} />
+              <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
+              <RedSeperator height={refThreePercentCrossed} />
+              <Seperator height={100 - refThreePercentCrossed} />
+              <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
+              <RedSeperator height={refFourPercentCrossed} />
+              <Seperator height={100 - refFourPercentCrossed} />
             </TrackWrapper>
           )}
           <TopWrapper>
             <AnimationRow>
               <AnimationTextBlock>
                 <AnimationHeader>Statement</AnimationHeader>
-                <AnimationBody>A statement is proposed to initiate the process</AnimationBody>
+                <AnimationBody>A statement is proposed as true</AnimationBody>
                 <AnimationSubBody>
-                  Someone proposes an answer to a request made by another party. This answer is then processed and sent
-                  to the next step.
+                  A natural-language statement is submitted along with a bond. The bond acts as a bounty for anyone to
+                  dispute it if they have evidence to the contrary.
                 </AnimationSubBody>
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackOne}>
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
-                      <TrackItem>01</TrackItem>
+                      <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
                       <RedSeperator height={refOnePercentCrossed} />
                       <Seperator height={100 - refOnePercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/scene-one.svg"
+                      alt="logo"
+                    />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
@@ -67,23 +84,98 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
             <AnimationRow>
               <AnimationTextBlock>
                 <AnimationHeader>Challenge period</AnimationHeader>
-                <AnimationBody>Challenge periods allow for disputes</AnimationBody>
+                <AnimationBody>Most statements goes undisputed</AnimationBody>
                 <AnimationSubBody>
-                  Someone proposes an answer to a request made by another party. This answer is then processed and sent
-                  to the next step.
+                  Anyone can propose an answer to a data request, and it is accepted as true if it is not disputed
+                  during the challenge period.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn>
+              <IllustrationColumn ref={refTrackTwo}>
                 <TrackAndIllustrationRow>
                   {width <= BREAKPOINTS.lg && (
-                    <TrackWrapper ref={refTrackTwo}>
-                      <TrackItem>02</TrackItem>
+                    <TrackWrapper>
+                      <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
                       <RedSeperator height={refTwoPercentCrossed} />
                       <Seperator height={100 - refTwoPercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <IllustrationImg src="/assets/illustration.svg" alt="illustration" />
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/scene-two.svg"
+                      alt="logo"
+                    />
+                  </IllustrationWrapper>
+                </TrackAndIllustrationRow>
+              </IllustrationColumn>
+            </AnimationRow>
+          </AnimationWrapper>
+          <AnimationWrapper>
+            <AnimationRow>
+              <AnimationTextBlock>
+                <AnimationHeader>Dispute</AnimationHeader>
+                <AnimationBody>Anyone can dispute a statement</AnimationBody>
+                <AnimationSubBody>
+                  Each statement submitted for validation is an opportunity for anyone to earn a reward by disputing it
+                  successfully. As the game theory would predict, disputes are rare in practice because the incentives
+                  are always to be honest. That makes the OO “optimistic”.
+                </AnimationSubBody>
+              </AnimationTextBlock>
+              <IllustrationColumn ref={refTrackThree}>
+                <TrackAndIllustrationRow>
+                  {width <= BREAKPOINTS.lg && (
+                    <TrackWrapper>
+                      <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
+                      <RedSeperator height={refThreePercentCrossed} />
+                      <Seperator height={100 - refThreePercentCrossed} />
+                    </TrackWrapper>
+                  )}
+                  <IllustrationWrapper>
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/scene-one.svg"
+                      alt="logo"
+                    />
+                  </IllustrationWrapper>
+                </TrackAndIllustrationRow>
+              </IllustrationColumn>
+            </AnimationRow>
+          </AnimationWrapper>
+          <AnimationWrapper>
+            <AnimationRow>
+              <AnimationTextBlock>
+                <AnimationHeader>Voting</AnimationHeader>
+                <AnimationBody>Tokenholders vote on disputes and earn rewards</AnimationBody>
+                <AnimationSubBody>
+                  The UMA token provides economic guarantees to the Optimistic Oracle. The community of tokenholders
+                  provide the human component, as voters, for the OO&apos;s final resolution on disputes or queries.
+                  Those who vote with the majority earn rewards.
+                </AnimationSubBody>
+              </AnimationTextBlock>
+              <IllustrationColumn ref={refTrackFour}>
+                <TrackAndIllustrationRow>
+                  {width <= BREAKPOINTS.lg && (
+                    <TrackWrapper>
+                      <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
+                      <RedSeperator height={refFourPercentCrossed} />
+                      <Seperator height={100 - refFourPercentCrossed} />
+                    </TrackWrapper>
+                  )}
+                  <IllustrationWrapper>
+                    <Image
+                      height="100%"
+                      width="100%"
+                      layout="responsive"
+                      objectFit="contain"
+                      src="/assets/scene-two.svg"
+                      alt="logo"
+                    />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
               </IllustrationColumn>
@@ -101,15 +193,15 @@ function useHowItWorks(currentPosition: number) {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { width } = useWindowSize();
-  const ref = useRef<HTMLDivElement | null>(null);
 
-  /* the ref percent is WIP ignore for now */
-  const [topRedHeight] = useState(0);
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
-    threshold: 0.2,
+    threshold: 1,
+    rootMargin: width > BREAKPOINTS.lg ? "-200px 0px 0px 0px" : "0px",
   });
+
+  const refOnePercentCrossed = useTrackRefCrossed(refTrackOne, entryTrackOne, offsetTrackRefOne, currentPosition);
 
   useEffect(() => {
     if (isMounted() && refTrackOne.current && offsetTrackRefOne === 0) {
@@ -121,40 +213,14 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackOne, isMounted]);
 
-  const [refOnePercentCrossed, setRefOnePercentCrossed] = useState(0);
-  useEffect(() => {
-    if (refTrackOne.current && entryTrackOne) {
-      setRefOnePercentCrossed(
-        calculatePercentCrossed(
-          offsetTrackRefOne,
-          currentPosition,
-          entryTrackOne.rootBounds ? entryTrackOne.rootBounds.height : 0,
-          refTrackOne.current?.getBoundingClientRect().height
-        )
-      );
-    }
-  }, [currentPosition, offsetTrackRefOne, refTrackOne, entryTrackOne]);
-
-  const [refTwoPercentCrossed, setRefTwoPercentCrossed] = useState(0);
   const [offsetTrackRefTwo, setOffsetTrackRefTwo] = useState(0);
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
-    threshold: 0.2,
+    threshold: 1,
+    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
 
-  useEffect(() => {
-    if (refTrackTwo.current && entryTrackTwo) {
-      setRefTwoPercentCrossed(
-        calculatePercentCrossed(
-          offsetTrackRefTwo,
-          currentPosition,
-          entryTrackTwo.rootBounds ? entryTrackTwo.rootBounds.height : 0,
-          refTrackTwo.current?.getBoundingClientRect().height
-        )
-      );
-    }
-  }, [currentPosition, offsetTrackRefTwo, refTrackTwo, entryTrackTwo]);
-
+  const refTwoPercentCrossed = useTrackRefCrossed(refTrackTwo, entryTrackTwo, offsetTrackRefTwo, currentPosition);
   useEffect(() => {
     if (isMounted() && refTrackTwo.current && offsetTrackRefTwo === 0) {
       setTimeout(() => {
@@ -165,40 +231,78 @@ function useHowItWorks(currentPosition: number) {
     }
   }, [refTrackTwo, isMounted]);
 
-  function calculatePercentCrossed(
-    distanceFromTop: number,
-    scrollPosition: number,
-    distance: number,
-    heightOfElement: number
-  ) {
-    if (scrollPosition + distance < distanceFromTop) return 0;
-    const REDUCE_SCROLL_IN_VIEW = 20;
-    const percentCrossed =
-      ((scrollPosition + distance - distanceFromTop) / heightOfElement) * 100 - REDUCE_SCROLL_IN_VIEW;
-    return percentCrossed < 0 ? 0 : percentCrossed >= 100 ? 100 : percentCrossed;
-  }
+  const [offsetTrackRefThree, setOffsetTrackRefThree] = useState(0);
+  const refTrackThree = useRef<HTMLDivElement | null>(null);
+  const entryTrackThree = useIntersectionObserver(refTrackTwo, {
+    threshold: 1,
+    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+  });
+
+  const refThreePercentCrossed = useTrackRefCrossed(
+    refTrackThree,
+    entryTrackThree,
+    offsetTrackRefThree,
+    currentPosition
+  );
+  useEffect(() => {
+    if (isMounted() && refTrackThree.current && offsetTrackRefThree === 0) {
+      setTimeout(() => {
+        if (refTrackThree.current) {
+          setOffsetTrackRefThree(refTrackThree.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackTwo, isMounted]);
+
+  const [offsetTrackRefFour, setOffsetTrackRefFour] = useState(0);
+  const refTrackFour = useRef<HTMLDivElement | null>(null);
+  const entryTrackFour = useIntersectionObserver(refTrackTwo, {
+    threshold: 1,
+    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+  });
+
+  const refFourPercentCrossed = useTrackRefCrossed(refTrackFour, entryTrackFour, offsetTrackRefFour, currentPosition);
+  useEffect(() => {
+    if (isMounted() && refTrackFour.current && offsetTrackRefFour === 0) {
+      setTimeout(() => {
+        if (refTrackFour.current) {
+          setOffsetTrackRefFour(refTrackFour.current.getBoundingClientRect().top);
+        }
+      }, 1000);
+    }
+  }, [refTrackTwo, isMounted]);
 
   return {
     sectionRef,
     isMounted: isMounted(),
     width,
-    topRedHeight,
-    ref,
     refTrackOne,
     refTrackTwo,
+    refTrackThree,
+    refTrackFour,
     refOnePercentCrossed,
     refTwoPercentCrossed,
+    refThreePercentCrossed,
+    refFourPercentCrossed,
   };
 }
 
 const Section = styled.section`
   width: 100%;
-  background: linear-gradient(180deg, var(--white-200) 0%, var(--white) 100%);
+  background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 100%);
 `;
 
 const Wrapper = styled(BaseWrapper)`
   padding-top: 100px;
-  padding-bottom: 26px;
+  padding-bottom: 426px;
+  padding-left: 32px;
+  padding-right: 32px;
+  @media ${QUERIES.lg.andDown} {
+    padding-bottom: 200px;
+  }
+  @media ${QUERIES.tb.andDown} {
+    padding-bottom: 100px;
+  }
 `;
 
 const Title = styled(BaseTitle)`
@@ -215,6 +319,7 @@ const Header = styled.div`
   color: var(--grey-100);
   max-width: 1020px;
   @media ${QUERIES.lg.andDown} {
+    max-width: 720px;
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -225,17 +330,20 @@ const Header = styled.div`
 
 const AnimationWrapper = styled.div`
   position: relative;
-  margin-top: 31px 16px 0;
+  margin: 392px 0 0;
   @media ${QUERIES.lg.andDown} {
+    margin-top: 96px;
     margin-left: 16px;
     margin-right: 16px;
   }
 `;
 
 const TopWrapper = styled(AnimationWrapper)`
-  margin-top: 143px;
+  margin-bottom: 270px;
+  margin-top: 0;
   @media ${QUERIES.lg.andDown} {
     margin-top: 128px;
+    margin-bottom: 0;
   }
   @media ${QUERIES.md.andDown} {
     margin-top: 24px;
@@ -250,8 +358,10 @@ const AnimationRow = styled.div`
     flex-direction: column;
   }
   @media ${QUERIES.tb.andDown} {
-    flex-direction: column-reverse;
     gap: 58px;
+  }
+  @media ${QUERIES.md.andDown} {
+    flex-direction: column-reverse;
   }
 `;
 
@@ -280,6 +390,7 @@ const AnimationBody = styled.div`
   color: var(--grey-100);
   font: var(--header-md);
   max-width: 465px;
+  letter-spacing: -0.01em;
 
   @media ${QUERIES.lg.andDown} {
     max-width: 640px;
@@ -318,6 +429,10 @@ const IllustrationColumn = styled.div`
 
 const IntersectionWrapper = styled.div`
   position: relative;
+  padding-top: 231px;
+  @media ${QUERIES.lg.andDown} {
+    padding-top: 0;
+  }
 `;
 
 const TrackWrapper = styled.div`
@@ -326,16 +441,16 @@ const TrackWrapper = styled.div`
   margin-top: 1rem;
   flex-direction: column;
   position: absolute;
-  top: -30px;
+  top: 200px;
   left: -100px;
-  height: 102.5%;
+  height: 115%;
   @media ${QUERIES.lg.andDown} {
     position: relative;
     top: 0;
     left: 0;
     margin-left: auto;
     height: inherit;
-    margin-top: -40px;
+    margin-top: 0;
   }
   @media ${QUERIES.tb.andDown} {
     height: inherit;
@@ -344,11 +459,13 @@ const TrackWrapper = styled.div`
   }
 `;
 
-const TrackItem = styled.div`
+interface TrackProps {
+  tracked?: boolean;
+}
+const TrackItem = styled.div<TrackProps>`
   flex: 0 0 48px;
   z-index: 5;
   display: flex;
-  background: var(--red);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -358,8 +475,12 @@ const TrackItem = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 8px;
-  color: var(--white);
+  border: 1px solid transparent;
+  border-color: ${(p) => (p.tracked ? "transparent" : "var(--grey-500)")};
+  background: ${(p) => (p.tracked ? "var(--red)" : "var(--grey-800)")};
+  color: ${(p) => (p.tracked ? "var(--white)" : "var(--grey-500)")};
   font: var(--body-sm);
+  letter-spacing: 0.09em;
 `;
 
 interface ISeperator {
@@ -368,18 +489,15 @@ interface ISeperator {
 const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
-  background: linear-gradient(180deg, var(--grey-500) 0%, rgba(176, 175, 179, 0) 100%);
-  height: ${({ height }) => height}%;
+  background: var(--grey-500); // #B0AFB3
+  height: ${({ height }) => 672 * (height / 100)}px;
+  @media ${QUERIES.lg.andDown} {
+    height: ${({ height }) => height}%;
+  }
 `;
 
 const RedSeperator = styled(Seperator)`
   background: var(--red);
-`;
-
-const IllustrationImg = styled.img`
-  @media ${QUERIES.md.andDown} {
-    margin-top: 58px;
-  }
 `;
 
 const TrackAndIllustrationRow = styled.div`
@@ -388,8 +506,20 @@ const TrackAndIllustrationRow = styled.div`
   gap: 24px;
   width: 100%;
   justify-content: space-between;
+  @media ${QUERIES.lg.andDown} {
+    gap: 48px;
+  }
 `;
 
 const IllustrationWrapper = styled.div`
-  flex-basis: 70%;
+  width: 562px;
+  height: inherit;
+  position: absolute;
+  right: 0;
+  top: 0;
+  @media ${QUERIES.lg.andDown} {
+    position: relative;
+    width: 70%;
+    height: inherit;
+  }
 `;

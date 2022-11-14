@@ -10,22 +10,26 @@ const SupportSection = () => {
         <TextColumn>
           <Title>Supported by the Risk Labs Foundation</Title>
           <Subtitle>
-            Tortor id tellus tellus vel. In consectetur consectetur non in amet orci amet dui. Leo dictum in vitae
-            blandit quisque. Amet eu enim orci gravida semper est.
+            Risk Labs is the foundation and team behind UMA. Risk Labs’ mission is to make global markets universally
+            fair, accessible, secure and decentralized.
           </Subtitle>
         </TextColumn>
         <ButtonColumn>
           <ButtonGroup>
-            <ButtonLink href="https://jobs.lever.co/umaproject" target="_blank" rel="noreferrer">
-              <UpRightArrowLg />
-            </ButtonLink>
-            <ButtonText>Careers</ButtonText>
+            <div>
+              <ButtonLink href="https://jobs.lever.co/umaproject" target="_blank" rel="noreferrer">
+                <UpRightArrowLg />
+              </ButtonLink>
+              <ButtonText>Careers</ButtonText>
+            </div>
           </ButtonGroup>
           <ButtonGroup>
-            <ButtonLink href="https://docs.umaproject.org/" target="_blank" rel="noreferrer">
-              <UpRightArrowLg />
-            </ButtonLink>
-            <ButtonText>About</ButtonText>
+            <div>
+              <ButtonLink href="https://docs.umaproject.org/" target="_blank" rel="noreferrer">
+                <UpRightArrowLg />
+              </ButtonLink>
+              <ButtonText>About</ButtonText>
+            </div>
           </ButtonGroup>
         </ButtonColumn>
       </Wrapper>
@@ -47,15 +51,19 @@ const Section = styled.div`
 const Wrapper = styled(BaseWrapper)`
   padding: 261px 0 234px;
   background: transparent;
+  @media ${QUERIES.lg.andDown} {
+    padding: 160px 64px 200px;
+  }
+
   @media ${QUERIES.tb.andDown} {
-    padding-top: 130px;
-    padding-bottom: 118px;
+    padding: 130px 24px 118px;
   }
 `;
 
 const Title = styled(BaseTitle)`
   max-width: 562px;
   font: var(--header-md);
+  border-bottom: none;
   @media ${QUERIES.md.andDown} {
     max-width: 400px;
     font: var(--header-sm);
@@ -92,8 +100,8 @@ const TextColumn = styled.div`
 const ButtonColumn = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 74px;
-  gap: 16px;
+  margin-top: 64px;
+  gap: 24px;
   margin-left: 0;
   margin-right: 0;
   @media ${QUERIES.tb.andDown} {
@@ -115,16 +123,23 @@ const ButtonGroup = styled.div`
     margin-left: 15px;
     margin-right: 15px;
   }
-  &:hover {
-    span {
-      color: var(--red);
-    }
-    a {
-      background: var(--red);
-      border-color: var(--red);
-    }
-    path {
-      stroke: var(--white);
+  > div {
+    display: inline-flex;
+    gap: 20px;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      span {
+        color: var(--red);
+      }
+      a {
+        background: var(--red);
+        border-color: var(--red);
+      }
+      path {
+        stroke: var(--white);
+      }
     }
   }
 `;

@@ -15,7 +15,7 @@ const Footer = () => {
   const { value, setValue, width } = useFooter();
   return (
     <>
-      <VoteTicker theme="light" numVotes={2} phase="Commit" />
+      <VoteTicker theme="light" numVotes={2} phase="commit" />
       <Section>
         <Wrapper>
           <BottomRow>
@@ -57,7 +57,7 @@ const Footer = () => {
           </BottomRow>
           <CopyrightRow>
             <AddressWrapper>
-              <div>© 2022 Risk Labs</div>
+              <div>© 2022 Risk Labs Foundation</div>
             </AddressWrapper>
             <SocialLinks>
               {socialLinks.map(({ href, Icon }, i) => (
@@ -151,6 +151,7 @@ const Wrapper = styled.div`
   max-width: var(--max-section-width);
   margin: 0 auto;
   padding: 96px 0 66px;
+
   @media ${QUERIES.tb.andDown} {
     padding-top: 61px;
     padding-bottom: 32px;
@@ -171,12 +172,11 @@ const FooterLinks = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   width: 52%;
-  gap: 100px;
+  gap: 116px;
   @media ${QUERIES.lg.andDown} {
     flex-direction: column;
     gap: 32px;
     width: 30%;
-    margin: 0 16px;
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
@@ -196,9 +196,16 @@ const LogoWrapper = styled.div`
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
+  @media ${QUERIES.lg.andDown} {
+    width: calc(100% - 84px);
+    margin: 0 auto;
+  }
   @media ${QUERIES.tb.andDown} {
+    width: 100%;
     flex-direction: column;
     column-gap: 32px;
+    padding-left: 36px;
+    padding-right: 36px;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column-reverse;
@@ -214,7 +221,7 @@ const Links = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   max-height: 136px;
-  flex-basis: 45%;
+  flex-basis: 50%;
 `;
 
 const Link = styled.a`
@@ -234,6 +241,7 @@ const FormWrapper = styled.div`
   @media ${QUERIES.lg.andDown} {
     max-width: 640px;
     width: 100%;
+    margin: 0;
   }
   @media ${QUERIES.tb.andDown} {
     justify-content: center;
@@ -277,7 +285,6 @@ const Form = styled.div`
   justify-content: space-between;
   gap: 12px;
   @media ${QUERIES.lg.andDown} {
-    padding: 8px 16px;
     gap: 16px;
   }
   @media ${QUERIES.tb.andDown} {
@@ -360,10 +367,17 @@ const CopyrightRow = styled(Row)`
   margin-top: 365px;
   display: flex;
   justify-content: space-between;
+  @media ${QUERIES.lg.andDown} {
+    padding-left: 16px;
+    padding-right: 0px;
+    width: calc(100% - 48px);
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media ${QUERIES.tb.andDown} {
     margin-top: 85px;
     margin-left: 16px;
-    margin-right: 16px;
+    margin-right: 0;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column;
@@ -390,10 +404,18 @@ const StyledLogo = styled(Logo)`
 const SocialLinks = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 22px;
+  gap: 24px;
   flex-basis: 32%;
   justify-content: flex-end;
   align-items: center;
+
+  @media ${QUERIES.tb.andDown} {
+    gap: 16px;
+    a {
+      height: 24px;
+      width: 24px;
+    }
+  }
 `;
 
 const SocialLink = styled.a`

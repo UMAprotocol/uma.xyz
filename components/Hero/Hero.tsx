@@ -53,7 +53,11 @@ function useHero() {
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
+  background-image: url("/assets/hero-bg-img.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
 `;
+
 const Wrapper = styled.div`
   background: inherit;
   width: 100%;
@@ -74,6 +78,8 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   align-self: center;
+  letter-spacing: -0.01em;
+  line-height: 100%;
   @media ${QUERIES.tb.andDown} {
     font-size: 8.5vw;
     line-height: 115%;
@@ -82,6 +88,9 @@ const Title = styled.div`
   @media ${QUERIES.md.andDown} {
     font-size: 8.5vw;
     line-height: 115%;
+  }
+  path {
+    fill: var(--color-white);
   }
   div {
     margin: 20px 12px 0;
@@ -102,7 +111,7 @@ const Title = styled.div`
 
 const Subheader = styled.div`
   margin: 32px 0 0;
-  font: var(--body-lg);
+  font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
   @media ${QUERIES.md.andDown} {
@@ -111,7 +120,7 @@ const Subheader = styled.div`
 `;
 
 const ArrowButton = styled.button`
-  margin-top: 193px;
+  margin-top: 179px;
   background-color: var(--grey-200);
   box-sizing: border-box;
   display: flex;
@@ -123,6 +132,6 @@ const ArrowButton = styled.button`
   isolation: isolate;
   border: 1px solid var(--red);
   border-radius: 8px;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
 `;
