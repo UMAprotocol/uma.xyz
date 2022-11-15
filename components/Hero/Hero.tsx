@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOMobileLogo from "public/assets/oo-mobile.svg";
 import DownArrow from "public/assets/down-arrow.svg";
@@ -8,17 +8,17 @@ import { HeaderContext } from "contexts";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 const Hero = () => {
-  const { sectionRef, isMounted, width } = useHero();
+  const { sectionRef, isMounted, width, showText, showHeader } = useHero();
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
-        <Title>A decentralized</Title>
-        <Title>
+        <Title show={showText}>A decentralized</Title>
+        <Title show={showText}>
           truth
           <div>{width >= BREAKPOINTS.md ? <OOLogo /> : <OOMobileLogo />}</div>
           machine
         </Title>
-        <Subheader>
+        <Subheader show={showText}>
           UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
           onto a blockchain.
         </Subheader>
@@ -32,21 +32,24 @@ const Hero = () => {
 
 export default Hero;
 
+const textDelayMS = 2000;
+const headerDelayinMs = 3500;
+
 function useHero() {
   const { updateRef, lightRefs } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [revealText, setRevealText] = useState(false);
-  const [revealHeader, setRevealHeader] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
 
   // Run reveal animation on mount
   useEffect(() => {
     setTimeout(() => {
-      setRevealText(true);
-    }, 4000);
+      setShowText(true);
+    }, textDelayMS);
     setTimeout(() => {
-      setRevealHeader(true);
-    }, 5500);
+      setShowHeader(true);
+    }, headerDelayinMs);
   }, []);
 
   useEffect(() => {
@@ -60,8 +63,8 @@ function useHero() {
     sectionRef,
     isMounted: isMounted(),
     width,
-    revealText,
-    revealHeader,
+    showText,
+    showHeader,
   };
 }
 
@@ -73,7 +76,6 @@ const animateBackground = keyframes`
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
-  background-color: #1e1e1e;
   position: relative;
   overflow: hidden;
   &::after {
@@ -87,7 +89,7 @@ const Section = styled.div`
     z-index: 100;
     bottom: 0;
     left: 0;
-    animation: ${animateBackground} 3s ease-in-out;
+    animation: ${animateBackground} 2s ease-in-out;
   }
 `;
 
@@ -104,7 +106,16 @@ const Wrapper = styled.div`
   padding-bottom: 96px;
 `;
 
-const Title = styled.div`
+interface ITextProps {
+  show: boolean;
+}
+
+const textReveal = keyframes`
+  0% {opacity: 0; transform: translateY(30px);}
+  100% {opacity: 1; transform: translateY(0px);}
+`;
+
+const Title = styled.div<ITextProps>`
   font: var(--header-lg);
   color: var(--white);
   display: flex;
@@ -113,6 +124,10 @@ const Title = styled.div`
   align-self: center;
   letter-spacing: -0.01em;
   line-height: 100%;
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+  animation: ${textReveal} 1s ease-in-out;
+  animation-delay: ${textDelayMS}ms;
+  opacity: 1;
   @media ${QUERIES.tb.andDown} {
     font-size: 8.5vw;
     line-height: 115%;
@@ -142,11 +157,14 @@ const Title = styled.div`
   }
 `;
 
-const Subheader = styled.div`
+const Subheader = styled.div<ITextProps>`
   margin: 32px 0 0;
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+  animation: ${textReveal} 1s ease-in-out;
+  animation-delay: ${textDelayMS}ms;
   @media ${QUERIES.md.andDown} {
     margin: 32px 16px 0;
   }
