@@ -354,6 +354,11 @@ const SmallImageWrapper = styled.div`
   }
 `;
 
+const textSlideUpSmall = keyframes`
+  0% {bottom: 0; opacity: 0;}
+  100% {bottom: 12px; opacity: 1;}
+`;
+
 const SmallProject = styled.div`
   position: relative;
   display: flex;
@@ -363,11 +368,25 @@ const SmallProject = styled.div`
   border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
-  padding: 40px;
   width: 186px;
   height: 186px;
   min-width: 0;
   justify-content: center;
+  transition: all 0.2s ease-in-out;
+
+  path {
+    transition: fill 0.2s ease-in-out;
+  }
+  h3 {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  a {
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    cursor: default;
+  }
   @media ${QUERIES.tb.andDown} {
     max-width: 145.48px;
     max-height: 145.48px;
@@ -380,6 +399,8 @@ const SmallProject = styled.div`
     max-height: none;
   }
   &:hover {
+    padding-bottom: 12px;
+
     path {
       fill: var(--red);
     }
@@ -391,6 +412,15 @@ const SmallProject = styled.div`
     h3,
     a {
       display: flex;
+    }
+    h3 {
+      animation: ${textSlideUpSmall} 0.2s ease-in-out forwards;
+    }
+    a {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      cursor: pointer;
     }
     img {
       filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
