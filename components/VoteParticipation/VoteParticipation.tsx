@@ -39,7 +39,6 @@ const VoteParticipation = () => {
           Participate as <span>Voter</span>
         </Title>
         <HeaderWrapper>
-          {/* <RedCircleFilter /> */}
           <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.tb ? <br /> : null} up to 30% APY</Header>
         </HeaderWrapper>
 
@@ -191,11 +190,10 @@ const Wrapper = styled.div`
 const Header = styled(BaseHeader)`
   margin-top: 65px;
   max-width: 921px;
+  margin-bottom: 128px;
   @media ${QUERIES.md.andDown} {
     margin: 0 16px;
     max-width: 100%;
-  }
-  @media ${QUERIES.md.andDown} {
     font: var(--header-sm);
   }
 `;
@@ -206,19 +204,6 @@ const Title = styled(BaseTitle)`
     padding-right: 16px;
   }
 `;
-
-// WIP for filter effect. Not working yet.
-// const RedCircleFilter = styled.div`
-//   position: absolute;
-//   width: 249px;
-//   height: 249px;
-//   left: 168px;
-//   top: 50px;
-//   border-radius: 50%;
-//   border: 1px solid var(--red);
-//   background: -webkit-radial-gradient(center, 50% 50%, red, yellow);
-//   background-clip: text;
-// `;
 
 const HeaderWrapper = styled.div`
   position: relative;
@@ -235,7 +220,9 @@ const ImageBlockRow = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 48px;
-
+  justify-content: stretch;
+  width: 100%;
+  height: 420px;
   svg {
     fill: var(--white);
   }
@@ -280,7 +267,28 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  transition: all 0.2s ease-in-out;
+  /* align-self: stretch; */
+  /* height: 100%; */
+  > div {
+    position: relative;
+    top: 0;
+    > div:first-of-type {
+      position: relative;
+      top: 0;
+      transition: all 0.2s ease-in-out;
+    }
+  }
   &:hover {
+    margin-top: -36px;
+    background-color: var(--white);
+    border: 1px solid var(--grey-600);
+    padding-top: 20px;
+    > div {
+      > div:first-of-type {
+        transition: all 0.2s ease-in-out;
+      }
+    }
     img {
       filter: ${({ width }) => {
         if (width > BREAKPOINTS.tb)
@@ -290,6 +298,10 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     }
     h3 {
       color: var(--red);
+      margin-top: 48px;
+    }
+    h4 {
+      padding-bottom: 20px;
     }
   }
   @media ${QUERIES.tb.andDown} {
@@ -309,6 +321,11 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
 
 const ImageBlock = styled.div`
   padding: 0 40px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  top: 0;
+  align-self: stretch;
+
   @media ${QUERIES.tb.andDown} {
     display: inline-flex;
     gap: 48px;
@@ -340,15 +357,21 @@ const ImageTitle = styled.h3<ScrollProps>`
   font: var(--header-md);
   line-height: 115%;
   margin-top: 40px;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  top: 0;
   @media ${QUERIES.md.andDown} {
     font: var(--header-sm);
     margin-top: 24px;
   }
 `;
 
-const ImageText = styled.div`
+const ImageText = styled.h4`
   font: var(--body-lg);
   color: var(--grey-200);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  top: 0;
   @media ${QUERIES.tb.andDown} {
     font: var(--body-sm);
     max-width: 675px;
