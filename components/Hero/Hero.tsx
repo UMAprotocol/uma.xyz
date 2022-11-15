@@ -8,7 +8,7 @@ import { HeaderContext } from "contexts";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 const Hero = () => {
-  const { sectionRef, isMounted, width, showText, showHeader } = useHero();
+  const { sectionRef, isMounted, width, showText } = useHero();
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
@@ -33,23 +33,18 @@ const Hero = () => {
 export default Hero;
 
 const textDelayMS = 2000;
-const headerDelayinMs = 3500;
 
 function useHero() {
   const { updateRef, lightRefs } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [showText, setShowText] = useState(false);
-  const [showHeader, setShowHeader] = useState(false);
 
   // Run reveal animation on mount
   useEffect(() => {
     setTimeout(() => {
       setShowText(true);
     }, textDelayMS);
-    setTimeout(() => {
-      setShowHeader(true);
-    }, headerDelayinMs);
   }, []);
 
   useEffect(() => {
@@ -64,7 +59,6 @@ function useHero() {
     isMounted: isMounted(),
     width,
     showText,
-    showHeader,
   };
 }
 

@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { VoteTicker } from "components";
 import { useScrollPosition } from "hooks";
 import UnstyledHeadroom from "react-headroom";
@@ -15,11 +15,12 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ activeLink }) => {
-  const { scrollPosition, boundingHeight, isMounted, headerRef, width, showMobileMenu, setShowMobileMenu } =
+  const { scrollPosition, boundingHeight, isMounted, headerRef, width, showMobileMenu, setShowMobileMenu, showHeader } =
     useHeader();
   const isLightTheme = scrollPosition >= boundingHeight;
+
   return (
-    <div ref={isMounted ? headerRef : null}>
+    <Section show={showHeader} ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
       <Headroom isLightTheme={isLightTheme}>
         {width > BREAKPOINTS.tb ? (
@@ -34,7 +35,7 @@ const Header: React.FC<Props> = ({ activeLink }) => {
           />
         )}
       </Headroom>
-    </div>
+    </Section>
   );
 };
 
@@ -53,6 +54,15 @@ function useHeader() {
   }, [isMounted, updateRef, lightRefs.header]);
   const { width } = useWindowSize();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const [showHeader, setHeaderText] = useState(false);
+  // Run reveal animation on mount
+  useEffect(() => {
+    setTimeout(() => {
+      setHeaderText(true);
+    }, headerDelayMS);
+  }, []);
+
   return {
     scrollPosition,
     boundingHeight,
@@ -61,6 +71,7 @@ function useHeader() {
     width,
     showMobileMenu,
     setShowMobileMenu,
+    showHeader,
   };
 }
 
@@ -69,6 +80,24 @@ export default Header;
 interface IStyledProps {
   isLightTheme: boolean;
 }
+
+interface IHeaderProps {
+  show: boolean;
+}
+
+const headerDelayMS = 3000;
+
+const headerReveal = keyframes`
+  0% {opacity: 0; transform: translateY(-30px);}
+  100% {opacity: 1; transform: translateY(0px);}
+`;
+
+const Section = styled.div<IHeaderProps>`
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+  animation: ${headerReveal} 1s ease-in-out;
+  animation-delay: ${headerDelayMS}ms;
+  opacity: 1;
+`;
 
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
   @media ${QUERIES.tb.andDown} {
