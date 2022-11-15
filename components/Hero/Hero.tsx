@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOMobileLogo from "public/assets/oo-mobile.svg";
 import DownArrow from "public/assets/down-arrow.svg";
@@ -50,12 +50,18 @@ function useHero() {
   };
 }
 
+const animateBackground = keyframes` 
+  0% { background-position: center bottom -300px; }
+  100% { background-position: center bottom }
+`;
+
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
   background-image: url("/assets/hero-bg-img.svg");
   background-repeat: no-repeat;
   background-position: center bottom;
+  animation: ${animateBackground} 2s linear;
 `;
 
 const Wrapper = styled.div`
