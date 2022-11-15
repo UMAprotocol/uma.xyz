@@ -186,6 +186,7 @@ const svgAnimation = keyframes`
   10% {transform: translateY(5px); opacity: .5;}
   20% {transform: translateY(10px); opacity: 0;}
   30% {transform: translateY(-10px); opacity: 0;}
+  35% {transform: translateY(-10px); opacity: .25;}
   40% {transform: translateY(-5px); opacity: .5;}
   50% {transform: translateY(0); opacity: 1;}
   100% {transform: translateY(0); opacity: 1;}
