@@ -61,7 +61,7 @@ const Section = styled.div`
   background-image: url("/assets/hero-bg-img.svg");
   background-repeat: no-repeat;
   background-position: center bottom;
-  animation: ${animateBackground} 2s linear;
+  animation: ${animateBackground} 2.5s ease-in-out;
 `;
 
 const Wrapper = styled.div`
