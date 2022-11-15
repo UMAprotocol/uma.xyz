@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOMobileLogo from "public/assets/oo-mobile.svg";
 import DownArrow from "public/assets/down-arrow.svg";
@@ -181,6 +181,16 @@ const Subheader = styled.div<ITextProps>`
   }
 `;
 
+const svgAnimation = keyframes`
+  0% {transform: translateY(0); opacity: 1;}
+  10% {transform: translateY(5px); opacity: .5;}
+  20% {transform: translateY(10px); opacity: 0;}
+  30% {transform: translateY(-10px); opacity: 0;}
+  40% {transform: translateY(-5px); opacity: .5;}
+  50% {transform: translateY(0); opacity: 1;}
+  100% {transform: translateY(0); opacity: 1;}
+`;
+
 const ArrowButton = styled.button<ITextProps>`
   margin-top: 179px;
   background-color: var(--grey-200);
@@ -200,4 +210,8 @@ const ArrowButton = styled.button<ITextProps>`
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: ${arrowDelay}ms;
   opacity: 1;
+  > svg {
+    animation: ${svgAnimation} 2s linear infinite;
+    animation-delay: ${arrowDelay + 2000}ms;
+  }
 `;
