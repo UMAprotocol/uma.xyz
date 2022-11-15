@@ -313,6 +313,7 @@ const Input = styled.input`
   font: var(--body-md);
   caret-color: var(--grey-100);
   border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
   &:hover {
     border: 2px solid var(--grey-500);
   }
@@ -339,6 +340,7 @@ const Button = styled.button`
   border-radius: 8px;
   color: var(--grey-800);
   font: var(--body-md);
+  transition: all 0.3s ease-in-out;
   &:hover {
     opacity: 0.5;
   }
@@ -421,8 +423,11 @@ const SocialLinks = styled.div`
 const SocialLink = styled.a`
   path {
     fill: var(--grey-200);
+    transition: all 0.3s ease-in-out;
   }
   &:hover {
-    opacity: 0.5;
+    path {
+      fill: var(--red);
+    }
   }
 `;
