@@ -293,7 +293,6 @@ const BigProjectText = styled.h3`
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  margin-top: 24px;
   position: absolute;
   bottom: calc(33% - 16px);
   color: var(--red);
@@ -356,11 +355,12 @@ const SmallImageWrapper = styled.div`
 
 const textSlideUpSmall = keyframes`
   0% {bottom: 0; opacity: 0;}
-  100% {bottom: 12px; opacity: 1;}
+  100% {bottom: 36px; opacity: 1;}
 `;
 
 const SmallProject = styled.div`
   position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -373,7 +373,6 @@ const SmallProject = styled.div`
   min-width: 0;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-
   path {
     transition: fill 0.2s ease-in-out;
   }
@@ -399,7 +398,8 @@ const SmallProject = styled.div`
     max-height: none;
   }
   &:hover {
-    padding-bottom: 12px;
+    padding-bottom: 36px;
+    border: 1px solid var(--red);
 
     path {
       fill: var(--red);
@@ -433,8 +433,7 @@ const SmallProject = styled.div`
 
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
-  position: relative;
-  bottom: 0;
+  bottom: 40px;
   @media ${QUERIES.md.andDown} {
     margin-top: 8px;
     font-size: 12px;
