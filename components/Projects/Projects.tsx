@@ -258,6 +258,12 @@ const BigProject = styled.div`
     opacity: 0;
     transition: all 0.2s ease-in-out;
   }
+  a {
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    cursor: default;
+  }
   &:hover {
     border: 1px solid var(--red);
     color: var(--red);
@@ -268,6 +274,12 @@ const BigProject = styled.div`
     }
     h3 {
       animation: ${textSlideUp} 0.2s ease-in-out forwards;
+    }
+    a {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      cursor: pointer;
     }
     > div {
       path {
@@ -287,7 +299,8 @@ const BigProjectText = styled.h3`
   color: var(--red);
 `;
 const LinkButton = styled.a`
-  display: none;
+  opacity: 0;
+  display: flex;
   position: absolute;
   top: 20px;
   right: 24px;
@@ -302,7 +315,6 @@ const LinkButton = styled.a`
   background: var(--red);
   padding: 8px;
   gap: 8px;
-
   button {
     display: flex;
     flex-direction: row;
