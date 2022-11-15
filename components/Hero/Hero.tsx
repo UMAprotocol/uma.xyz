@@ -8,7 +8,7 @@ import { HeaderContext } from "contexts";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 const Hero = () => {
-  const { sectionRef, isMounted, width, showText } = useHero();
+  const { sectionRef, isMounted, width, showText, showButton } = useHero();
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
@@ -24,7 +24,7 @@ const Hero = () => {
           UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
           onto a blockchain.
         </Subheader>
-        <ArrowButton>
+        <ArrowButton show={showButton}>
           <DownArrow />
         </ArrowButton>
       </Wrapper>
@@ -35,18 +35,23 @@ const Hero = () => {
 export default Hero;
 
 const textDelayMS = 2000;
+const arrowDelay = textDelayMS + 1600;
 
 function useHero() {
   const { updateRef, lightRefs } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [showText, setShowText] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   // Run reveal animation on mount
   useEffect(() => {
     setTimeout(() => {
       setShowText(true);
     }, textDelayMS);
+    setTimeout(() => {
+      setShowButton(true);
+    }, arrowDelay);
   }, []);
 
   useEffect(() => {
@@ -61,6 +66,7 @@ function useHero() {
     isMounted: isMounted(),
     width,
     showText,
+    showButton,
   };
 }
 
@@ -175,7 +181,7 @@ const Subheader = styled.div<ITextProps>`
   }
 `;
 
-const ArrowButton = styled.button`
+const ArrowButton = styled.button<ITextProps>`
   margin-top: 179px;
   background-color: var(--grey-200);
   box-sizing: border-box;
@@ -190,4 +196,8 @@ const ArrowButton = styled.button`
   border-radius: 8px;
   width: 48px;
   height: 48px;
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+  animation: ${textReveal} 1s ease-in-out;
+  animation-delay: ${arrowDelay}ms;
+  opacity: 1;
 `;
