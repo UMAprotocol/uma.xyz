@@ -55,11 +55,11 @@ function useHeader() {
   const { width } = useWindowSize();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const [showHeader, setHeaderText] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
   // Run reveal animation on mount
   useEffect(() => {
     setTimeout(() => {
-      setHeaderText(true);
+      setShowHeader(true);
     }, headerDelayMS);
   }, []);
 

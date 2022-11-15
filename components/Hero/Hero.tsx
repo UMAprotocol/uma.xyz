@@ -88,7 +88,7 @@ const Section = styled.div`
     background-image: url("/assets/hero-bg-img.svg");
     background-repeat: no-repeat;
     background-position: center bottom;
-    z-index: 100;
+    z-index: 0;
     bottom: 0;
     left: 0;
     animation: ${animateBackground} 2s ease-in-out;
