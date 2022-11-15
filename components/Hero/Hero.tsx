@@ -109,6 +109,11 @@ const textReveal = keyframes`
   100% {opacity: 1; transform: translateY(0px);}
 `;
 
+const animateImage = keyframes`
+  0% {transform: rotate(-30deg) }
+  100% {transform: rotate(0deg)  }
+`;
+
 const Title = styled.div<ITextProps>`
   font: var(--header-lg);
   color: var(--white);
@@ -122,6 +127,10 @@ const Title = styled.div<ITextProps>`
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: ${textDelayMS}ms;
   opacity: 1;
+  > div {
+    animation: ${animateImage} 1s ease-in-out;
+    animation-delay: ${textDelayMS}ms;
+  }
   @media ${QUERIES.tb.andDown} {
     font-size: 8.5vw;
     line-height: 115%;
