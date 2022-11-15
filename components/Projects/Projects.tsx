@@ -521,6 +521,8 @@ const ProjectLink = styled.a`
   gap: 16px;
   text-decoration: none;
   div {
+    position: relative;
+    left: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -528,6 +530,7 @@ const ProjectLink = styled.a`
     height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
+    transition: margin 0.3s ease, border-color 0.3s ease;
   }
   &:visited {
     color: var(--red);
@@ -536,8 +539,11 @@ const ProjectLink = styled.a`
     color: var(--grey-100);
     div {
       border-color: var(--grey-100);
+      background-color: var(--grey-100);
+      margin-left: -4px;
+
       path {
-        stroke: var(--grey-100);
+        stroke: var(--white);
       }
     }
   }

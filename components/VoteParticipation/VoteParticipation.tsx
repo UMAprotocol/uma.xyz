@@ -415,7 +415,7 @@ const VoterAppLink = styled.a`
     height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: margin 0.3s ease, border-color 0.3s ease;
   }
   &:visited {
     color: var(--red);

@@ -118,10 +118,17 @@ const RemixRow = styled.div`
 
 const RemixLink = styled.a`
   font: var(--body-lg);
-  text-decoration: none;
   color: var(--red);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  text-decoration: none;
+  width: 300px;
   div {
-    margin-left: 12px;
+    position: relative;
+    left: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -129,6 +136,7 @@ const RemixLink = styled.a`
     height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
+    transition: margin 0.3s ease, border-color 0.3s ease;
   }
   &:visited {
     color: var(--red);
@@ -137,8 +145,11 @@ const RemixLink = styled.a`
     color: var(--grey-100);
     div {
       border-color: var(--grey-100);
+      background-color: var(--grey-100);
+      margin-left: -4px;
+
       path {
-        stroke: var(--grey-100);
+        stroke: var(--white);
       }
     }
   }
