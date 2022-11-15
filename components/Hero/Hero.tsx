@@ -50,18 +50,30 @@ function useHero() {
   };
 }
 
-const animateBackground = keyframes` 
-  0% { background-position: center bottom -300px; }
-  100% { background-position: center bottom }
+const animateBackground = keyframes`
+  0% {bottom: -75%; left: -75%; }
+  100% {bottom: 0%; left: 0%; }
 `;
 
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
-  background-image: url("/assets/hero-bg-img.svg");
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  animation: ${animateBackground} 2.5s ease-in-out;
+  background-color: #1e1e1e;
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/hero-bg-img.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    animation: ${animateBackground} 3s ease-in-out;
+  }
 `;
 
 const Wrapper = styled.div`
