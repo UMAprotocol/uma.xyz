@@ -12,11 +12,13 @@ const Hero = () => {
   return (
     <Section ref={isMounted ? sectionRef : null}>
       <Wrapper>
-        <Title show={showText}>A decentralized</Title>
         <Title show={showText}>
-          truth
+          <span>A decentralized</span>
+        </Title>
+        <Title show={showText}>
+          <span>truth</span>
           <div>{width >= BREAKPOINTS.md ? <OOLogo /> : <OOMobileLogo />}</div>
-          machine
+          <span>machine</span>
         </Title>
         <Subheader show={showText}>
           UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
@@ -109,8 +111,8 @@ const textReveal = keyframes`
   100% {opacity: 1; transform: translateY(0px);}
 `;
 
-const animateImage = keyframes`
-  0% {transform: rotate(-30deg) }
+const animateText = keyframes`
+  0% {transform: rotate(10deg) }
   100% {transform: rotate(0deg)  }
 `;
 
@@ -127,8 +129,8 @@ const Title = styled.div<ITextProps>`
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: ${textDelayMS}ms;
   opacity: 1;
-  > div {
-    animation: ${animateImage} 1s ease-in-out;
+  > span {
+    animation: ${animateText} 1s ease-in-out;
     animation-delay: ${textDelayMS}ms;
   }
   @media ${QUERIES.tb.andDown} {
