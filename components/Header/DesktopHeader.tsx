@@ -19,7 +19,7 @@ const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLi
         {links.map(({ label, href }, i) => (
           <StyledLink active={activeLink === i} isLightTheme={isLightTheme} key={i} href={href}>
             <LinkWrapper>
-              {activeLink === i ? <RedDot /> : <Dot />} {label}
+              {activeLink === i ? <RedDot /> : i <= 2 ? <Dot /> : null} {label}
             </LinkWrapper>
           </StyledLink>
         ))}
@@ -105,7 +105,7 @@ const Links = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0px;
-  gap: 16px;
+  gap: 20px;
 `;
 
 interface ILinkProps extends IStyledProps {
@@ -113,14 +113,28 @@ interface ILinkProps extends IStyledProps {
 }
 
 const StyledLink = styled.a<ILinkProps>`
+  position: relative;
+  left: 0;
   color: ${({ active }) => {
     return active ? "var(--red)" : "var(--grey-400)";
   }};
   text-decoration: none;
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  text-decoration: none;
+  span {
+    transition: all 0.3s ease-in-out;
+  }
   &:hover {
     opacity: 0.8;
+    span {
+      visibility: visible;
+      left: -12px;
+    }
   }
 `;
 
@@ -143,14 +157,20 @@ const LaunchButton = styled.button<IStyledProps>`
   }
 `;
 
-const Dot = styled.div`
+const Dot = styled.span`
   width: 6px;
   height: 6px;
   margin-right: 8px;
   border-radius: 3px;
   visibility: hidden;
+  background-color: var(--grey-400);
+  position: absolute;
+  left: -16px;
+  opacity: 0.8;
 `;
 const RedDot = styled(Dot)`
   background: var(--red);
   visibility: visible;
+  left: -12px;
+  opacity: 1;
 `;
