@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOMobileLogo from "public/assets/oo-mobile.svg";
@@ -36,6 +36,19 @@ function useHero() {
   const { updateRef, lightRefs } = useContext(HeaderContext);
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [revealText, setRevealText] = useState(false);
+  const [revealHeader, setRevealHeader] = useState(false);
+
+  // Run reveal animation on mount
+  useEffect(() => {
+    setTimeout(() => {
+      setRevealText(true);
+    }, 4000);
+    setTimeout(() => {
+      setRevealHeader(true);
+    }, 5500);
+  }, []);
+
   useEffect(() => {
     if (isMounted() && !lightRefs.heroSection.current) {
       updateRef(sectionRef, "heroSection");
@@ -47,6 +60,8 @@ function useHero() {
     sectionRef,
     isMounted: isMounted(),
     width,
+    revealText,
+    revealHeader,
   };
 }
 

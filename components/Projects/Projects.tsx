@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
 import AcrossLogo from "public/assets/across.svg";
 import OutcomeLogo from "public/assets/outcome.svg";
@@ -219,8 +219,15 @@ const BigProjects = styled.div`
     flex-direction: column;
   }
 `;
+
+const textSlideUp = keyframes`
+  0% {bottom: calc(33% - 36px); opacity: 0;}
+  100% {bottom: 33%; opacity: 1;}
+`;
+
 const BigProject = styled.div`
   position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,6 +238,7 @@ const BigProject = styled.div`
   width: 280px;
   height: 280px;
   justify-content: center;
+  transition: all 0.2s ease-in-out;
   @media ${QUERIES.tb.andDown} {
     width: 218px;
     height: 218px;
@@ -243,12 +251,23 @@ const BigProject = styled.div`
     flex-direction: column;
     width: 100%;
   }
+  path {
+    transition: fill 0.2s ease-in-out;
+  }
+  h3 {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
   &:hover {
     border: 1px solid var(--red);
     color: var(--red);
+    padding-bottom: 48px;
     h3,
     a {
       display: flex;
+    }
+    h3 {
+      animation: ${textSlideUp} 0.2s ease-in-out forwards;
     }
     > div {
       path {
@@ -263,6 +282,9 @@ const BigProjectText = styled.h3`
   letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-top: 24px;
+  position: absolute;
+  bottom: calc(33% - 16px);
+  color: var(--red);
 `;
 const LinkButton = styled.a`
   display: none;
