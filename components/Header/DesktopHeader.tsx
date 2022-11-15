@@ -145,7 +145,7 @@ const LaunchButton = styled.button<IStyledProps>`
   width: 118px;
   border-radius: 8px;
   font: var(--body-md);
-  transition: opacity, background-color 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   color: ${({ isLightTheme }) => {
     return isLightTheme ? "var(--white)" : "var(--grey-100)";
   }};
