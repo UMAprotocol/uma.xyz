@@ -583,6 +583,7 @@ const ProjectLink = styled.a`
   padding: 0px;
   gap: 16px;
   text-decoration: none;
+  color: var(--red);
   div {
     position: relative;
     left: 0;

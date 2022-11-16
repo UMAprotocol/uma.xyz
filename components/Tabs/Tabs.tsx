@@ -133,7 +133,6 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
   }
   @media ${QUERIES.lg.andDown} {
     font: var(--body-sm);
-    border-bottom: none;
   }
   @media ${QUERIES.md.andDown} {
     padding-inline: 12px;
