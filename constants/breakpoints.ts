@@ -9,7 +9,7 @@ export const BREAKPOINTS = {
 
 const breakpoint = (width: number) => ({
   andDown: `(max-width: ${width}px)`,
-  andUp: `(min-width: ${width}px)`,
+  andUp: `(min-width: ${width + 1}px)`,
 });
 
 export const QUERIES = {

@@ -230,6 +230,7 @@ const ImageBlockRow = styled.div`
     flex-direction: column;
     align-self: center;
     width: 100%;
+    height 100%;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column;
@@ -260,7 +261,7 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     return "transparent";
   }};
   border-bottom-color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.md && isIntersecting) return "var(--grey-600)";
+    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   display: flex;
@@ -268,8 +269,6 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
   justify-content: center;
   align-items: flex-start;
   transition: all 0.2s ease-in-out;
-  /* align-self: stretch; */
-  /* height: 100%; */
   > div {
     position: relative;
     top: 0;
@@ -280,10 +279,12 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     }
   }
   &:hover {
-    margin-top: -36px;
-    background-color: var(--white);
-    border: 1px solid var(--grey-600);
-    padding-top: 20px;
+    @media ${QUERIES.tb.andUp} {
+      margin-top: -36px;
+      background-color: var(--white);
+      border: 1px solid var(--grey-600);
+      padding-top: 20px;
+    }
     > div {
       > div:first-of-type {
         transition: all 0.2s ease-in-out;
@@ -297,11 +298,15 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
       }};
     }
     h3 {
-      color: var(--red);
-      margin-top: 48px;
+      @media ${QUERIES.tb.andUp} {
+        color: var(--red);
+        margin-top: 48px;
+      }
     }
     h4 {
-      padding-bottom: 20px;
+      @media ${QUERIES.tb.andUp} {
+        padding-bottom: 20px;
+      }
     }
   }
   @media ${QUERIES.tb.andDown} {
