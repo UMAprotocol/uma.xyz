@@ -192,7 +192,7 @@ const ProjectsRow = styled.div`
   @media ${QUERIES.tb.andDown} {
     gap: 96px;
   }
-  @media screen and (max-width: 740px) {
+  @media screen and (max-width: 780px) {
     gap: 40px;
   }
   @media ${QUERIES.md.andDown} {
