@@ -1,12 +1,10 @@
 import { useState, useContext, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { VoteTicker } from "components";
-import { useScrollPosition } from "hooks";
 import UnstyledHeadroom from "react-headroom";
 import { HeaderContext } from "contexts";
-import { useIsMounted } from "hooks";
+import { useIsMounted, useWindowSize, useScrollPosition } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 
@@ -15,14 +13,31 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ activeLink }) => {
-  const { scrollPosition, boundingHeight, isMounted, headerRef, width, showMobileMenu, setShowMobileMenu, showHeader } =
-    useHeader();
+  const {
+    scrollPosition,
+    boundingHeight,
+    isMounted,
+    headerRef,
+    width,
+    showMobileMenu,
+    setShowMobileMenu,
+    showHeader,
+    addUnpinClass,
+    setAddUnpinClass,
+  } = useHeader();
   const isLightTheme = scrollPosition >= boundingHeight;
 
   return (
     <Section show={showHeader} ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
-      <Headroom isLightTheme={isLightTheme}>
+      <Headroom
+        onUnfix={() => {
+          setAddUnpinClass(true);
+        }}
+        isLightTheme={isLightTheme}
+        calcHeightOnResize
+        className={addUnpinClass ? "unpinning" : ""}
+      >
         {width > BREAKPOINTS.tb ? (
           <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
         ) : (
@@ -63,6 +78,15 @@ function useHeader() {
     }, headerDelayMS);
   }, []);
 
+  const [addUnpinClass, setAddUnpinClass] = useState(false);
+  useEffect(() => {
+    if (addUnpinClass) {
+      setTimeout(() => {
+        setAddUnpinClass(false);
+      }, 1000);
+    }
+  }, [addUnpinClass]);
+
   return {
     scrollPosition,
     boundingHeight,
@@ -72,6 +96,8 @@ function useHeader() {
     showMobileMenu,
     setShowMobileMenu,
     showHeader,
+    addUnpinClass,
+    setAddUnpinClass,
   };
 }
 
@@ -99,11 +125,21 @@ const Section = styled.div<IHeaderProps>`
   opacity: 1;
 `;
 
+const unpinning = keyframes`
+  0% {opacity: .5; transform: translateY(-60px);}
+  100% {opacity: 1; transform: translateY(0px);}
+`;
+
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
   @media ${QUERIES.tb.andDown} {
     background: ${({ isLightTheme }) => {
       return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
     }};
+  }
+  &.unpinning {
+    > div {
+      animation: ${unpinning} 0.5s ease-in-out;
+    }
   }
   > div {
     margin: 0;
