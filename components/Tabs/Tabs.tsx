@@ -79,7 +79,7 @@ const TabList = styled(ReachTabList)<ITabList>`
       transition: all 0.4s ease-in-out;
     }
     svg {
-      /* margin-bottom: 8px; */
+      margin-top: -8px;
     }
     path {
       transition: all 0.4s ease-in-out;
