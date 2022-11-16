@@ -33,7 +33,16 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
         <HeaderWrapper show={showHeader} ref={isMounted ? headerWrapperRef : null}>
           <Title show={showHeader}>How it works</Title>
           <Header show={showHeader}>
-            <div>The Optimistic Oracle</div> <div>verifies data in stages</div>
+            {width > BREAKPOINTS.lg && (
+              <>
+                <div>The Optimistic Oracle</div> <div>verifies data in stages</div>
+              </>
+            )}
+            {width <= BREAKPOINTS.lg && width > BREAKPOINTS.tb && (
+              <>
+                <div>The Optimistic</div> <div>Oracle verifies</div> <div>data in stages</div>
+              </>
+            )}
           </Header>
         </HeaderWrapper>
         <IntersectionWrapper>
@@ -356,7 +365,8 @@ const HeaderWrapper = styled.div<IShowHeader>`
       div:first-of-type {
         animation: ${topHeaderReveal} 1.25s linear;
       }
-      div:nth-of-type(2) {
+      div:nth-of-type(2),
+      div:nth-of-type(3) {
         animation: ${bottomHeaderReveal} 1.25s linear;
       }
     }
@@ -381,6 +391,11 @@ const Header = styled.div<IShowHeader>`
     opacity: 1;
     &:first-of-type {
       margin-bottom: 24px;
+    }
+    &:nth-of-type(2) {
+      @media ${QUERIES.lg.andDown} {
+        margin-bottom: 24px;
+      }
     }
   }
   @media ${QUERIES.lg.andDown} {
