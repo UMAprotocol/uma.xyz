@@ -153,6 +153,9 @@ const Wrapper = styled.div<IStyledProps>`
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
   }};
+  @media ${QUERIES.md.andDown} {
+    width: calc(100% - 40px);
+  }
 `;
 
 export const MenuToggleButton = styled.button<{ toggled?: boolean; isLightTheme: boolean }>`

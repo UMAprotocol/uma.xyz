@@ -146,6 +146,10 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     background: ${({ isLightTheme }) => {
       return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
     }};
+    @media ${QUERIES.md.andDown} {
+      height: 60px;
+      width: 100%;
+    }
   }
 `;
 
