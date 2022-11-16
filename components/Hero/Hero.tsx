@@ -7,6 +7,7 @@ import { useIsMounted } from "hooks";
 import { HeaderContext } from "contexts";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+
 const Hero = () => {
   const { sectionRef, isMounted, width, showText, showButton } = useHero();
   return (

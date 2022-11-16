@@ -138,6 +138,8 @@ const rightLinks = [
   },
 ];
 
+const animationDuration = "0.3s";
+
 const Section = styled.div`
   width: 100%;
   background: var(--grey-700);
@@ -340,7 +342,7 @@ const Button = styled.button`
   border-radius: 8px;
   color: var(--grey-800);
   font: var(--body-md);
-  transition: all 0.3s ease-in-out;
+  transition: opacity ${animationDuration} ease-in-out;
   &:hover {
     opacity: 0.5;
   }
@@ -423,7 +425,7 @@ const SocialLinks = styled.div`
 const SocialLink = styled.a`
   path {
     fill: var(--grey-200);
-    transition: all 0.3s ease-in-out;
+    transition: fill ${animationDuration} ease-in-out;
   }
   &:hover {
     path {
