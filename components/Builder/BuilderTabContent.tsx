@@ -49,8 +49,8 @@ const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb, 
 };
 
 const translate = keyframes`
-  0% {  transform: translateY(-20px); };
-  100% { transform: translateY(0px); };
+  0% {  transform: translateY(-20px); opacity: .2; };
+  100% { transform: translateY(0px); opacity: 1; };
 `;
 
 const Wrapper = styled.div`
