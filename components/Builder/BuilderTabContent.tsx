@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { ReactNode } from "react";
+import styled, { keyframes } from "styled-components";
 import { SandpackProvider, SandpackLayout, SandpackCodeViewer } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
@@ -48,6 +48,11 @@ const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb, 
   );
 };
 
+const translate = keyframes`
+  0% {  transform: translateY(-20px); };
+  100% { transform: translateY(0px); };
+`;
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -70,6 +75,7 @@ const Title = styled.h2`
 const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
+  animation: ${translate} 0.4s ease-in-out;
 `;
 
 const Body = styled.div`

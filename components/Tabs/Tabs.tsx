@@ -151,7 +151,9 @@ const TabPanels = styled(ReachTabPanels)`
   }
 `;
 
-const TabPanel = styled(ReachTabPanel)``;
+const TabPanel = styled(ReachTabPanel)`
+  transition: all 0.2 linear;
+`;
 
 const BottomBorder = styled.div<ITabList>`
   position: absolute;
