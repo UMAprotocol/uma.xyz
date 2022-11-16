@@ -164,7 +164,7 @@ const BottomBorder = styled.div<ITabList>`
   top: 78px;
   transition: all 0.3s linear;
   left: ${({ selectedIndex }) => {
-    return selectedIndex * 20 + "%";
+    return `${selectedIndex * 20}%`;
   }};
 `;
 export default Tabs;
