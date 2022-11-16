@@ -123,13 +123,22 @@ const ButtonGroup = styled.div`
     margin-left: 15px;
     margin-right: 15px;
   }
+  div,
+  span,
+  a,
+  path {
+    transition: all 0.3s ease-in-out;
+  }
   > div {
     display: inline-flex;
     gap: 20px;
     align-content: center;
     align-items: center;
     cursor: pointer;
+    position: relative;
+    left: 0;
     &:hover {
+      gap: 16px;
       span {
         color: var(--red);
       }

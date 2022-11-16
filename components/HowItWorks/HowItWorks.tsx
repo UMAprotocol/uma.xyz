@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
@@ -16,6 +16,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
     sectionRef,
     isMounted,
     width,
+    showHeader,
+    headerWrapperRef,
     refTrackOne,
     refTrackTwo,
     refTrackThree,
@@ -28,8 +30,12 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
       <Wrapper>
-        <Title>How it works</Title>
-        <Header>The Optimistic Oracle verifies data in stages </Header>
+        <HeaderWrapper show={showHeader} ref={isMounted ? headerWrapperRef : null}>
+          <Title show={showHeader}>How it works</Title>
+          <Header show={showHeader}>
+            <div>The Optimistic Oracle</div> <div>verifies data in stages</div>
+          </Header>
+        </HeaderWrapper>
         <IntersectionWrapper>
           {width > BREAKPOINTS.lg && (
             <TrackWrapper>
@@ -192,6 +198,20 @@ export default HowItWorks;
 function useHowItWorks(currentPosition: number) {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  const headerWrapperRef = useRef<HTMLDivElement | null>(null);
+  const headerWrapperEntry = useIntersectionObserver(headerWrapperRef, {
+    threshold: 1,
+  });
+  const [showHeader, setShowHeader] = useState(false);
+  const hasEnteredSection = !!headerWrapperEntry?.isIntersecting;
+  useEffect(() => {
+    if (hasEnteredSection && !showHeader) {
+      headerWrapperEntry.target?.classList.add("fade-in");
+      setShowHeader(true);
+    }
+  }, [hasEnteredSection]);
+
   const { width } = useWindowSize();
 
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
@@ -284,6 +304,8 @@ function useHowItWorks(currentPosition: number) {
     refTwoPercentCrossed,
     refThreePercentCrossed,
     refFourPercentCrossed,
+    showHeader,
+    headerWrapperRef,
   };
 }
 
@@ -305,19 +327,62 @@ const Wrapper = styled(BaseWrapper)`
   }
 `;
 
-const Title = styled(BaseTitle)`
+interface IShowHeader {
+  show: boolean;
+}
+const titleReveal = keyframes`
+  0% {opacity: 0; transform: translateY(-20px);}
+  100% {opacity: 1; transform: translateY(0px);}
+`;
+
+const topHeaderReveal = keyframes`
+  0% {opacity: 0; transform: rotate(2deg);}
+  50% {opacity:.5; transform: rotate(1deg);}
+  100% {opacity: 1; transform: rotate(0deg);}
+  `;
+
+const bottomHeaderReveal = keyframes`
+  0% {opacity: 0; transform: rotate(-2deg);}
+  50% {opacity: .5; transform: rotate(-1deg);}
+  100% {opacity: 1; transform: rotate(0deg);}
+`;
+
+const HeaderWrapper = styled.div<IShowHeader>`
+  &.fade-in {
+    div:first-of-type {
+      animation: ${titleReveal} 1.25s ease-in-out;
+    }
+    div:nth-of-type(2) {
+      div:first-of-type {
+        animation: ${topHeaderReveal} 1.25s linear;
+      }
+      div:nth-of-type(2) {
+        animation: ${bottomHeaderReveal} 1.25s linear;
+      }
+    }
+  }
+`;
+const Title = styled(BaseTitle)<IShowHeader>`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
   @media ${QUERIES.lg.andDown} {
     margin: 0 16px;
   }
 `;
 
-const Header = styled.div`
+const Header = styled.div<IShowHeader>`
   padding-top: 48px;
   font: var(--header-lg);
   color: var(--grey-100);
   max-width: 1020px;
+  div {
+    visibility: ${(props) => (props.show ? "visible" : "hidden")};
+    opacity: 1;
+    &:first-of-type {
+      margin-bottom: 24px;
+    }
+  }
   @media ${QUERIES.lg.andDown} {
     max-width: 720px;
     margin-left: 16px;

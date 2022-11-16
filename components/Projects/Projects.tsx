@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
 import AcrossLogo from "public/assets/across.svg";
 import OutcomeLogo from "public/assets/outcome.svg";
@@ -219,8 +219,15 @@ const BigProjects = styled.div`
     flex-direction: column;
   }
 `;
+
+const textSlideUp = keyframes`
+  0% {bottom: calc(33% - 36px); opacity: 0;}
+  100% {bottom: 33%; opacity: 1;}
+`;
+
 const BigProject = styled.div`
   position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,6 +238,7 @@ const BigProject = styled.div`
   width: 280px;
   height: 280px;
   justify-content: center;
+  transition: all 0.2s ease-in-out;
   @media ${QUERIES.tb.andDown} {
     width: 218px;
     height: 218px;
@@ -243,12 +251,35 @@ const BigProject = styled.div`
     flex-direction: column;
     width: 100%;
   }
+  path {
+    transition: fill 0.2s ease-in-out;
+  }
+  h3 {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  a {
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    cursor: default;
+  }
   &:hover {
     border: 1px solid var(--red);
     color: var(--red);
+    padding-bottom: 48px;
     h3,
     a {
       display: flex;
+    }
+    h3 {
+      animation: ${textSlideUp} 0.2s ease-in-out forwards;
+    }
+    a {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      cursor: pointer;
     }
     > div {
       path {
@@ -262,10 +293,13 @@ const BigProjectText = styled.h3`
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  margin-top: 24px;
+  position: absolute;
+  bottom: calc(33% - 16px);
+  color: var(--red);
 `;
 const LinkButton = styled.a`
-  display: none;
+  opacity: 0;
+  display: flex;
   position: absolute;
   top: 20px;
   right: 24px;
@@ -280,7 +314,6 @@ const LinkButton = styled.a`
   background: var(--red);
   padding: 8px;
   gap: 8px;
-
   button {
     display: flex;
     flex-direction: row;
@@ -320,8 +353,14 @@ const SmallImageWrapper = styled.div`
   }
 `;
 
+const textSlideUpSmall = keyframes`
+  0% {bottom: 0; opacity: 0;}
+  100% {bottom: 36px; opacity: 1;}
+`;
+
 const SmallProject = styled.div`
   position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -329,11 +368,24 @@ const SmallProject = styled.div`
   border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
-  padding: 40px;
   width: 186px;
   height: 186px;
   min-width: 0;
   justify-content: center;
+  transition: all 0.2s ease-in-out;
+  path {
+    transition: fill 0.2s ease-in-out;
+  }
+  h3 {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  a {
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    cursor: default;
+  }
   @media ${QUERIES.tb.andDown} {
     max-width: 145.48px;
     max-height: 145.48px;
@@ -346,6 +398,9 @@ const SmallProject = styled.div`
     max-height: none;
   }
   &:hover {
+    padding-bottom: 36px;
+    border: 1px solid var(--red);
+
     path {
       fill: var(--red);
     }
@@ -358,6 +413,15 @@ const SmallProject = styled.div`
     a {
       display: flex;
     }
+    h3 {
+      animation: ${textSlideUpSmall} 0.2s ease-in-out forwards;
+    }
+    a {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      cursor: pointer;
+    }
     img {
       filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
     }
@@ -369,8 +433,7 @@ const SmallProject = styled.div`
 
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
-  position: relative;
-  bottom: 0;
+  bottom: 40px;
   @media ${QUERIES.md.andDown} {
     margin-top: 8px;
     font-size: 12px;
@@ -521,6 +584,8 @@ const ProjectLink = styled.a`
   gap: 16px;
   text-decoration: none;
   div {
+    position: relative;
+    left: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -528,6 +593,7 @@ const ProjectLink = styled.a`
     height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
+    transition: margin 0.3s ease, border-color 0.3s ease;
   }
   &:visited {
     color: var(--red);
@@ -536,8 +602,11 @@ const ProjectLink = styled.a`
     color: var(--grey-100);
     div {
       border-color: var(--grey-100);
+      background-color: var(--grey-100);
+      margin-left: -4px;
+
       path {
-        stroke: var(--grey-100);
+        stroke: var(--white);
       }
     }
   }

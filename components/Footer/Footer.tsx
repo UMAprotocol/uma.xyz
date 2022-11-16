@@ -138,6 +138,8 @@ const rightLinks = [
   },
 ];
 
+const animationDuration = "0.3s";
+
 const Section = styled.div`
   width: 100%;
   background: var(--grey-700);
@@ -313,6 +315,7 @@ const Input = styled.input`
   font: var(--body-md);
   caret-color: var(--grey-100);
   border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
   &:hover {
     border: 2px solid var(--grey-500);
   }
@@ -339,6 +342,7 @@ const Button = styled.button`
   border-radius: 8px;
   color: var(--grey-800);
   font: var(--body-md);
+  transition: opacity ${animationDuration} ease-in-out;
   &:hover {
     opacity: 0.5;
   }
@@ -421,8 +425,11 @@ const SocialLinks = styled.div`
 const SocialLink = styled.a`
   path {
     fill: var(--grey-200);
+    transition: fill ${animationDuration} ease-in-out;
   }
   &:hover {
-    opacity: 0.5;
+    path {
+      fill: var(--red);
+    }
   }
 `;

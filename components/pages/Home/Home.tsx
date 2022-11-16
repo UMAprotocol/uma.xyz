@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import {
   Layout,
   Header,
@@ -11,7 +11,7 @@ import {
   Footer,
 } from "components";
 import styled from "styled-components";
-import { useIntersectionObserver, useScrollPosition } from "hooks";
+import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
@@ -43,7 +43,14 @@ export function Home() {
     if (isIntersectingBuilderSection) return 2;
     return -1;
   }, [isIntersectingHowItWorksSection, isIntersectingVoteParticipationSection, isIntersectingBuilderSection]);
+  const isMounted = useIsMounted();
 
+  // Make sure to scroll to top on page load
+  useEffect(() => {
+    if (isMounted()) {
+      window.scrollTo(0, 0);
+    }
+  }, [isMounted]);
   return (
     <Layout>
       <Wrapper>

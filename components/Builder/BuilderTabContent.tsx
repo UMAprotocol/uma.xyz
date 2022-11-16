@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { ReactNode } from "react";
+import styled, { keyframes } from "styled-components";
 import { SandpackProvider, SandpackLayout, SandpackCodeViewer } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
@@ -48,6 +48,11 @@ const BuilderTabContent: React.FC<Props> = ({ title, body, greyBlurb, redBlurb, 
   );
 };
 
+const translate = keyframes`
+  0% {  transform: translateY(-20px); opacity: .2; };
+  100% { transform: translateY(0px); opacity: 1; };
+`;
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -70,6 +75,7 @@ const Title = styled.h2`
 const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
+  animation: ${translate} 0.4s ease-in-out;
 `;
 
 const Body = styled.div`
@@ -118,10 +124,17 @@ const RemixRow = styled.div`
 
 const RemixLink = styled.a`
   font: var(--body-lg);
-  text-decoration: none;
   color: var(--red);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  text-decoration: none;
+  width: 300px;
   div {
-    margin-left: 12px;
+    position: relative;
+    left: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -129,6 +142,7 @@ const RemixLink = styled.a`
     height: 32px;
     border: 1px solid var(--red);
     border-radius: 8px;
+    transition: margin 0.3s ease, border-color 0.3s ease;
   }
   &:visited {
     color: var(--red);
@@ -137,8 +151,11 @@ const RemixLink = styled.a`
     color: var(--grey-100);
     div {
       border-color: var(--grey-100);
+      background-color: var(--grey-100);
+      margin-left: -4px;
+
       path {
-        stroke: var(--grey-100);
+        stroke: var(--white);
       }
     }
   }
