@@ -50,8 +50,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
 };
 const TabsWrapper = styled(ReachTabs)`
   position: relative;
-  @media ${QUERIES.tb.andDown} {
-  }
+  width: 100%;
 `;
 
 interface ITabList {
@@ -124,8 +123,9 @@ const TabList = styled(ReachTabList)<ITabList>`
     [data-selected] {
       border-bottom: none;
     }
+    margin-top: auto;
     position: ${(props) => (props.isIntersecting ? "fixed" : "relative")};
-    display: ${(props) => (props.isIntersecting ? "inline-flex" : "none")} !important;
+    display: ${(props) => (props.isIntersecting ? "inline-flex" : "none")};
   }
 `;
 

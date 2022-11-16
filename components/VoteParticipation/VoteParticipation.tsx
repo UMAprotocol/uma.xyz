@@ -230,7 +230,7 @@ const ImageBlockRow = styled.div`
     flex-direction: column;
     align-self: center;
     width: 100%;
-    height 100%;
+    height: 100%;
   }
   @media ${QUERIES.md.andDown} {
     flex-direction: column;
