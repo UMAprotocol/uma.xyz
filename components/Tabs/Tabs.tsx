@@ -32,7 +32,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
       <TabList selectedIndex={selectedIndex} isIntersecting={isIntersecting}>
         {tabs.map(({ title, Icon }, i) => {
           return (
-            <Tab key={title}>
+            <Tab key={title} selected={selectedIndex === i}>
               <Icon />
               <div>{title}</div>
             </Tab>
@@ -116,7 +116,7 @@ const TabList = styled(ReachTabList)<ITabList>`
   }
 `;
 
-const Tab = styled(ReachTab)`
+const Tab = styled(ReachTab)<{ selected: boolean }>`
   background: transparent;
   padding-inline: 3px;
   padding-bottom: 22px;
@@ -124,7 +124,7 @@ const Tab = styled(ReachTab)`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid var(--grey-600);
+  border-bottom: ${(props) => (props.selected ? "none" : "1px solid var(--grey-600)")};
   font: var(--body-md);
   color: var(--grey-500);
   flex: 1;
