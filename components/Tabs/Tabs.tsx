@@ -1,3 +1,5 @@
+import { useState, ReactNode } from "react";
+
 import {
   Tab as ReachTab,
   TabList as ReachTabList,
@@ -5,7 +7,6 @@ import {
   TabPanels as ReachTabPanels,
   Tabs as ReachTabs,
 } from "@reach/tabs";
-import { ReactNode } from "react";
 import styled from "styled-components";
 import { QUERIES } from "constants/breakpoints";
 
@@ -21,10 +22,15 @@ interface Props {
 }
 
 const Tabs = ({ tabs, isIntersecting }: Props) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
   return (
-    <TabsWrapper>
-      <TabList isIntersecting={isIntersecting}>
-        {tabs.map(({ title, Icon }) => {
+    <TabsWrapper
+      onChange={(index) => {
+        setSelectedIndex(index);
+      }}
+    >
+      <TabList selectedIndex={selectedIndex} isIntersecting={isIntersecting}>
+        {tabs.map(({ title, Icon }, i) => {
           return (
             <Tab key={title}>
               <Icon />
@@ -33,6 +39,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
           );
         })}
       </TabList>
+      <BottomBorder selectedIndex={selectedIndex} />
       <TabPanels>
         {tabs.map(({ content, title }) => (
           <TabPanel key={title}>{content}</TabPanel>
@@ -41,10 +48,13 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
     </TabsWrapper>
   );
 };
-const TabsWrapper = styled(ReachTabs)``;
+const TabsWrapper = styled(ReachTabs)`
+  position: relative;
+`;
 
 interface ITabList {
   isIntersecting?: boolean;
+  selectedIndex: number;
 }
 
 const TabList = styled(ReachTabList)<ITabList>`
@@ -53,13 +63,26 @@ const TabList = styled(ReachTabList)<ITabList>`
   display: flex;
   align-items: center;
   background: inherit;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  top: 0;
+  svg {
+    transition: all 0.4s ease-in-out;
+  }
   path {
+    transition: all 0.4s ease-in-out;
     fill: var(--grey-900);
   }
   [data-selected] {
-    border-bottom: 2px solid var(--red);
     color: var(--red);
+    > div {
+      transition: all 0.4s ease-in-out;
+    }
+    svg {
+      /* margin-bottom: 8px; */
+    }
     path {
+      transition: all 0.4s ease-in-out;
       fill: var(--red);
     }
   }
@@ -101,15 +124,12 @@ const Tab = styled(ReachTab)`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  border-bottom: 2px solid var(--grey-600);
+  border-bottom: 1px solid var(--grey-600);
   font: var(--body-md);
   color: var(--grey-500);
   flex: 1;
   svg {
     height: 34px;
-  }
-  &:hover {
-    opacity: 0.5;
   }
   @media ${QUERIES.lg.andDown} {
     font: var(--body-sm);
@@ -133,4 +153,16 @@ const TabPanels = styled(ReachTabPanels)`
 
 const TabPanel = styled(ReachTabPanel)``;
 
+const BottomBorder = styled.div<ITabList>`
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 3px;
+  background-color: var(--red);
+  top: 78px;
+  transition: all 0.3s linear;
+  left: ${({ selectedIndex }) => {
+    return selectedIndex * 20 + "%";
+  }};
+`;
 export default Tabs;
