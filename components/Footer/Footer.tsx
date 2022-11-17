@@ -57,22 +57,33 @@ const Footer = () => {
               <MailchimpSubscribe
                 url={MAILCHIMP_URL}
                 render={({ subscribe, status, message }) => (
-                  <Form
-                    onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                      evt.preventDefault();
-                      // @ts-expect-error Doesn't like the input being taken like this
-                      subscribe({ EMAIL: evt.target[0].value });
-                    }}
-                  >
-                    <Input
-                      type="email"
-                      name="email"
-                      value={value}
-                      onChange={(e) => setValue(e.target.value)}
-                      placeholder="satoshi@nakamoto.com"
-                    ></Input>
-                    <Button type="submit">Sign up</Button>
-                  </Form>
+                  <>
+                    <Form
+                      onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                        evt.preventDefault();
+                        // @ts-expect-error Doesn't like the input being taken like this
+                        subscribe({ EMAIL: evt.target[0].value });
+                      }}
+                    >
+                      <Input
+                        type="email"
+                        name="email"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        placeholder="satoshi@nakamoto.com"
+                      />
+
+                      <Button type="submit">Sign up</Button>
+                    </Form>
+                    {status === "sending" && <StatusMessage>Sending...</StatusMessage>}
+                    {status === "error" && (
+                      <StatusMessage
+                        style={{ color: "var(--red)" }}
+                        dangerouslySetInnerHTML={{ __html: message as string }}
+                      />
+                    )}
+                    {status === "success" && <StatusMessage style={{ color: "#20A93E" }}>Subscribed!</StatusMessage>}
+                  </>
                 )}
               />
             </FormWrapper>
@@ -454,4 +465,11 @@ const SocialLink = styled.a`
       fill: var(--red);
     }
   }
+`;
+
+const StatusMessage = styled.div`
+  font: var(--body-sm);
+  color: var(--grey-300);
+  margin-top: 16px;
+  padding-left: 16px;
 `;
