@@ -524,6 +524,7 @@ const TrackWrapper = styled.div`
   top: 200px;
   left: -100px;
   height: 115%;
+  z-index: 0;
   @media ${QUERIES.lg.andDown} {
     position: relative;
     top: 0;
