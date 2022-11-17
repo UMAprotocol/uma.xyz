@@ -4,7 +4,6 @@ import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
-import Image from "next/image";
 import useTrackRefCrossed from "./useTrackRefCrossed";
 import Lottie from "react-lottie";
 import sceneOne from "public/assets/lottie/scene-1.json";
