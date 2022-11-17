@@ -34,6 +34,9 @@ const Header: React.FC<Props> = ({ activeLink }) => {
         onUnfix={() => {
           setAddUnpinClass(true);
         }}
+        onUnpin={() => {
+          setShowMobileMenu(false);
+        }}
         isLightTheme={isLightTheme}
         calcHeightOnResize
         className={addUnpinClass ? "unpinning" : ""}
