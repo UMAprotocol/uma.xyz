@@ -546,9 +546,13 @@ const MobileContainer = styled.a`
     float: left;
     padding-top: 100%;
   }
-  &:hover {
+  &:hover,
+  &:focus {
+    div {
+      height: 75%;
+    }
     h3 {
-      visibility: visible;
+      display: block;
       color: var(--red);
     }
     img {
@@ -560,20 +564,23 @@ const MobileContainer = styled.a`
 const MobileImageWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 75%;
+  height: 100%;
   align-content: center;
   align-self: end;
   justify-content: center;
 `;
 
 const MobileImageText = styled.h3`
-  visibility: visible;
+  display: none;
   font: var(--body-sm);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   text-align: center;
-  margin: -20px;
+  margin: -10px;
   color: var(--grey-200);
+  @media ${QUERIES.xs.andDown} {
+    font: var(--body-xs);
+  }
 `;
 
 const ProjectLink = styled.a`
