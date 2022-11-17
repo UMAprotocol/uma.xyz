@@ -21,7 +21,7 @@ const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, isLightTheme 
       <Wrapper isLightTheme={isLightTheme}>
         <MenuToggle isLightTheme={isLightTheme} toggled={showMobileMenu} onToggle={onToggle} />
         <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
-        <AppBlock>
+        <AppBlock isLightTheme={isLightTheme}>
           <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
             <span>App</span>
             <UpRightArrow />
@@ -139,6 +139,7 @@ interface IStyledProps {
 const Section = styled.div`
   width: 100%;
   margin: 0 auto;
+  height: 48px;
 `;
 
 const Wrapper = styled.div<IStyledProps>`
@@ -191,7 +192,7 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean; isLightTheme:
 export const MobileMenuContainer = styled.div<{ show: boolean }>`
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: 56px;
   left: 0;
   padding: 120px 20px;
   background-color: var(--grey-200);
@@ -230,14 +231,14 @@ const MobileNavLink = styled.a<{ active?: boolean }>`
   }
 `;
 
-const AppBlock = styled.div`
+const AppBlock = styled.div<IStyledProps>`
   a {
     display: inline-flex;
     justify-content: center;
     align-items: baseline;
     text-decoration: none;
     font: var(--body-sm);
-    color: var(--white);
+    color: ${({ isLightTheme }) => (isLightTheme ? "var(--grey-500)" : "var(--white)")};
     margin-right: 28px;
   }
   display: flex;
