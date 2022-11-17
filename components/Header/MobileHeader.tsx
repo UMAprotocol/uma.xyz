@@ -139,8 +139,8 @@ interface IStyledProps {
 const Section = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  /* padding-left: 20px;
+  padding-right: 20px; */
 `;
 
 const Wrapper = styled.div<IStyledProps>`
@@ -153,7 +153,7 @@ const Wrapper = styled.div<IStyledProps>`
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
   }};
-  @media ${QUERIES.md.andDown} {
+  @media ${QUERIES.tb.andDown} {
     width: calc(100% - 40px);
   }
 `;
