@@ -29,7 +29,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
         setSelectedIndex(index);
       }}
     >
-      <TabList selectedIndex={selectedIndex} isIntersecting={isIntersecting}>
+      <TabList scrollable-force-tab selectedIndex={selectedIndex} isIntersecting={isIntersecting}>
         {tabs.map(({ title, Icon }, i) => {
           return (
             <Tab key={title} selected={selectedIndex === i}>
@@ -50,6 +50,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
 };
 const TabsWrapper = styled(ReachTabs)`
   position: relative;
+  width: 100%;
 `;
 
 interface ITabList {
@@ -80,11 +81,17 @@ const TabList = styled(ReachTabList)<ITabList>`
     }
     svg {
       margin-top: -8px;
+      @media ${QUERIES.tb.andDown} {
+        margin-top: 0;
+      }
     }
     path {
       transition: all 0.4s ease-in-out;
       fill: var(--red);
     }
+  }
+  [data-reach-tab-panels] {
+    overflow-x: scroll;
   }
   @media ${QUERIES.lg.andDown} {
     padding-left: 16px;
@@ -92,16 +99,15 @@ const TabList = styled(ReachTabList)<ITabList>`
     font-size: 14px;
   }
   @media ${QUERIES.tb.andDown} {
-    width: 1024px;
+    width: 100%;
+    overflow-x: scroll;
     height: 112px;
     white-space: nowrap;
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    max-width: 100%;
-    overflow-x: scroll;
     [data-selected] {
-      border-bottom: none;
+      border-bottom: 3px solid var(--red);
       color: var(--red);
       path {
         fill: var(--red);
@@ -111,8 +117,15 @@ const TabList = styled(ReachTabList)<ITabList>`
     bottom: 0px;
     background: #ffffff;
     padding-top: 16px;
+    position: static;
+  }
+  @media ${QUERIES.md.andDown} {
+    [data-selected] {
+      border-bottom: none;
+    }
+    margin-top: auto;
     position: ${(props) => (props.isIntersecting ? "fixed" : "relative")};
-    display: ${(props) => (props.isIntersecting ? "inline-flex" : "none")} !important;
+    display: ${(props) => (props.isIntersecting ? "inline-flex" : "none")};
   }
 `;
 
@@ -133,10 +146,12 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
   }
   @media ${QUERIES.lg.andDown} {
     font: var(--body-sm);
-    border-bottom: none;
+  }
+  @media ${QUERIES.tb.andDown} {
   }
   @media ${QUERIES.md.andDown} {
     padding-inline: 12px;
+    border-bottom: none;
   }
 `;
 
@@ -166,5 +181,11 @@ const BottomBorder = styled.div<ITabList>`
   left: ${({ selectedIndex }) => {
     return `${selectedIndex * 20}%`;
   }};
+  @media ${QUERIES.tb.andDown} {
+    display: none;
+    top: 108px;
+  }
+  @media ${QUERIES.md.andDown} {
+  }
 `;
 export default Tabs;

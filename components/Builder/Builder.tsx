@@ -329,6 +329,9 @@ const MobileHeader = styled(Header)`
     margin-bottom: 0;
   }
 
+  @media ${QUERIES.md.andDown} {
+    font: var(--header-sm);
+  }
   @media ${QUERIES.sm.andDown} {
     display: inline-block;
     word-break: wrap;
