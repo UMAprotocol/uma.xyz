@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import Twitter from "public/assets/twitter.svg";
@@ -10,6 +10,10 @@ import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { VoteTicker } from "components";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+import MailchimpSubscribe from "react-mailchimp-subscribe";
+
+const MAILCHIMP_URL =
+  "https://umaproject.us19.list-manage.com/subscribe/post?u=b2e789cb476a06f1261e79e05&id=85dfd6c316";
 
 const Footer = () => {
   const { value, setValue, width } = useFooter();
@@ -42,6 +46,7 @@ const Footer = () => {
                 </Links>
               </LinksFlex>
             </FooterLinks>
+
             <FormWrapper>
               {width <= BREAKPOINTS.md ? (
                 <LogoWrapper>
@@ -49,10 +54,27 @@ const Footer = () => {
                 </LogoWrapper>
               ) : null}
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
-              <Form>
-                <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
-                <Button onClick={() => null}>Sign up</Button>
-              </Form>
+              <MailchimpSubscribe
+                url={MAILCHIMP_URL}
+                render={({ subscribe, status, message }) => (
+                  <Form
+                    onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                      evt.preventDefault();
+                      // @ts-expect-error Doesn't like the input being taken like this
+                      subscribe({ EMAIL: evt.target[0].value });
+                    }}
+                  >
+                    <Input
+                      type="email"
+                      name="email"
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                      placeholder="satoshi@nakamoto.com"
+                    ></Input>
+                    <Button type="submit">Sign up</Button>
+                  </Form>
+                )}
+              />
             </FormWrapper>
           </BottomRow>
           <CopyrightRow>
@@ -279,7 +301,7 @@ const FormTitle = styled.h3`
   }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
