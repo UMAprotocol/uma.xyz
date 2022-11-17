@@ -134,12 +134,15 @@ function useVoteParticipation() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const ioStake = useIntersectionObserver(stakeRef, {
     threshold: 1,
+    rootMargin: "-400px 0px -100px 0px",
   });
   const ioVote = useIntersectionObserver(voteRef, {
     threshold: 1,
+    rootMargin: "-400px 0px -100px 0px",
   });
   const ioEarn = useIntersectionObserver(earnRef, {
     threshold: 1,
+    rootMargin: "-400px 0px -100px 0px",
   });
 
   const ioSection = useIntersectionObserver(sectionRef, {
@@ -236,7 +239,7 @@ const ImageBlockRow = styled.div`
     flex-direction: column;
     align-self: center;
     width: 100%;
-    gap: 0px;
+    gap: 28px;
   }
 `;
 
