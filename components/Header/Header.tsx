@@ -134,11 +134,11 @@ const unpinning = keyframes`
 `;
 
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
-  @media ${QUERIES.tb.andDown} {
+  /* @media ${QUERIES.tb.andDown} {
     background: ${({ isLightTheme }) => {
-      return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
-    }};
-  }
+    return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
+  }};
+  } */
   &.unpinning {
     > div {
       animation: ${unpinning} 0.5s ease-in-out;
@@ -151,6 +151,7 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     background: ${({ isLightTheme }) => {
       return isLightTheme ? "var(--white)" : "var(--grey-200)";
     }};
+    transition: all 0.2s ease-in-out;
 
     @media ${QUERIES.md.andDown} {
       height: 60px;
