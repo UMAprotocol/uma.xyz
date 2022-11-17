@@ -28,7 +28,7 @@ const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, isLightTheme 
           </a>
         </AppBlock>
       </Wrapper>
-      <MobileMenuComponent show={showMobileMenu} onClickLink={onToggle} />
+      <MobileMenuComponent isLightTheme={isLightTheme} show={showMobileMenu} onClickLink={onToggle} />
     </Section>
   );
 };
@@ -36,17 +36,18 @@ const MobileHeader: React.FC<Props> = ({ showMobileMenu, onToggle, isLightTheme 
 const MobileMenuComponent: React.FC<{
   show: boolean;
   onClickLink: () => void;
-}> = ({ show, onClickLink }) => {
+  isLightTheme: boolean;
+}> = ({ show, onClickLink, isLightTheme }) => {
   return (
-    <MobileMenuContainer show={show}>
+    <MobileMenuContainer isLightTheme={isLightTheme} show={show}>
       {links.map(({ href, label }, i) => (
-        <MobileNavLink onClick={onClickLink} key={i} href={href} target="_blank">
+        <MobileNavLink isLightTheme={isLightTheme} onClick={onClickLink} key={i} href={href} target="_blank">
           {label}
         </MobileNavLink>
       ))}
       <SocialLinks>
         {socialLinks.map(({ href, Icon }, i) => (
-          <SocialLink key={i} href={href} rel="noreferrer" target="_blank">
+          <SocialLink isLightTheme={isLightTheme} key={i} href={href} rel="noreferrer" target="_blank">
             <Icon />
           </SocialLink>
         ))}
@@ -189,13 +190,13 @@ export const MenuToggleButton = styled.button<{ toggled?: boolean; isLightTheme:
   }
 `;
 
-export const MobileMenuContainer = styled.div<{ show: boolean }>`
+export const MobileMenuContainer = styled.div<{ show: boolean; isLightTheme: boolean }>`
   width: 100%;
   position: absolute;
   top: 56px;
   left: 0;
   padding: 120px 20px;
-  background-color: var(--grey-200);
+  background-color: ${({ isLightTheme }) => (isLightTheme ? "var(--white)" : "var(--grey-200)")};
   transform: ${({ show }) => (show ? "translateY(0)" : "translateY(-20px)")};
   opacity: ${({ show }) => (show ? 1 : 0)};
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
@@ -206,23 +207,23 @@ export const MobileMenuContainer = styled.div<{ show: boolean }>`
   align-items: center;
 `;
 
-const MobileNavLink = styled.a<{ active?: boolean }>`
+const MobileNavLink = styled.a<{ active?: boolean; isLightTheme: boolean }>`
   position: relative;
   display: inline-flex;
   align-items: center;
   padding: 25px 0 4px;
   font: var(--body-sm);
-  color: var(--white);
+  color: ${({ isLightTheme }) => (isLightTheme ? "var(--grey-500)" : "var(--white)")};
   text-decoration: none;
   &:visited {
-    color: var(--white);
+    color: ${({ isLightTheme }) => (isLightTheme ? "var(--grey-500)" : "var(--white)")};
   }
   &:hover {
     opacity: 0.75;
   }
   svg {
     path {
-      stroke: var(--white);
+      stroke: ${({ isLightTheme }) => (isLightTheme ? "var(--grey-500)" : "var(--white)")};
     }
   }
   @media ${QUERIES.sm.andUp} {
@@ -267,11 +268,13 @@ const SocialLinks = styled.div`
   margin-top: 64px;
 `;
 
-const SocialLink = styled.a`
+const SocialLink = styled.a<{ isLightTheme: boolean }>`
   path {
-    fill: var(--white);
+    fill: ${({ isLightTheme }) => (isLightTheme ? "var(--grey-500)" : "var(--white)")};
   }
   &:hover {
-    opacity: 0.5;
+    path {
+      fill: var(--red);
+    }
   }
 `;
