@@ -62,7 +62,7 @@ const Footer = () => {
                       onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                         evt.preventDefault();
                         // @ts-expect-error Doesn't like the input being taken like this
-                        subscribe({ EMAIL: evt.target[0].value });
+                        subscribe({ EMAIL: evt.target[0].value }); // eslint-disable-line
                       }}
                     >
                       <Input
