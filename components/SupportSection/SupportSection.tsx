@@ -9,6 +9,7 @@ const SupportSection = () => {
       <BackgroundLayer autoPlay loop muted>
         <source src={"/assets/uma.xyz.mp4"} type="video/mp4" />
       </BackgroundLayer>
+      <OverlayText />
       <Overlay />
       <Wrapper>
         <TextColumn>
@@ -193,9 +194,7 @@ const BackgroundLayer = styled.video`
   width: 100%;
   height: 100%;
   margin-left: auto;
-
   z-index: 0 !important;
-  transform: matrix(-1, 0, 0, 1, 0, 0);
   mix-blend-mode: luminosity !important;
   pointer-events: none;
   object-fit: cover;
@@ -216,4 +215,23 @@ const Overlay = styled.div`
   pointer-events: none;
   margin-left: auto;
   margin-right: auto;
+`;
+
+const OverlayText = styled.div`
+  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 240, 240, 0.85) 100%); */
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85) 0.14%,
+    rgba(248, 248, 248, 0.85) 80%,
+    rgba(240, 240, 240, 0.05) 99.91%
+  );
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  max-width: calc(var(--max-width) -40%);
 `;
