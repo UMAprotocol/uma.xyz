@@ -28,7 +28,7 @@ const Footer = () => {
               <LinksFlex>
                 <Links>
                   {middleLinks.map(({ label, href }, i) => (
-                    <Link key={i} href={href} target="_blank" rel="noreferrer">
+                    <Link key={i} href={href}>
                       {label}
                     </Link>
                   ))}
