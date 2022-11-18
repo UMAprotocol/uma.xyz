@@ -6,6 +6,10 @@ import { QUERIES } from "constants/breakpoints";
 const SupportSection = () => {
   return (
     <Section>
+      <BackgroundLayer autoPlay loop muted>
+        <source src={"/assets/uma.xyz.mp4"} type="video/mp4" />
+      </BackgroundLayer>
+      <Overlay />
       <Wrapper>
         <TextColumn>
           <Title>Supported by the Risk Labs Foundation</Title>
@@ -41,14 +45,16 @@ export default SupportSection;
 
 const Section = styled.div`
   width: 100%;
-  background: linear-gradient(359.87deg, #f0f0f0 0.14%, rgba(248, 248, 248, 0.45) 52.48%, var(--white) 99.91%),
-    url("/assets/temp-support.png");
+  background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left top;
+  position: relative;
 `;
 
 const Wrapper = styled(BaseWrapper)`
+  z-index: 100;
+  pointer-events: all;
   padding: 261px 0 234px;
   background: transparent;
   @media ${QUERIES.lg.andDown} {
@@ -175,4 +181,27 @@ const ButtonText = styled.span`
   @media ${QUERIES.md.andDown} {
     font-size: 32px;
   }
+`;
+
+const BackgroundLayer = styled.video`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0 !important;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  mix-blend-mode: luminosity !important;
+  pointer-events: none;
+`;
+
+const Overlay = styled.div`
+  background: linear-gradient(359.87deg, #f0f0f0 0.14%, rgba(248, 248, 248, 0.45) 52.48%, #ffffff 99.91%);
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 `;
