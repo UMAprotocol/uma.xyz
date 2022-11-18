@@ -60,14 +60,14 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               <RedSeperator heightPercent={refOnePercentCrossed} />
               <Seperator heightPercent={100 - refOnePercentCrossed} />
               <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
-              <RedSeperator additionalMaxHeight={-30} heightPercent={refTwoPercentCrossed} />
-              <Seperator additionalMaxHeight={-30} heightPercent={100 - refTwoPercentCrossed} />
+              <RedSeperator additionalMaxHeight={-36} heightPercent={refTwoPercentCrossed} />
+              <Seperator additionalMaxHeight={-36} heightPercent={100 - refTwoPercentCrossed} />
               <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
-              <RedSeperator additionalMaxHeight={63} heightPercent={refThreePercentCrossed} />
-              <Seperator additionalMaxHeight={63} heightPercent={100 - refThreePercentCrossed} />
+              <RedSeperator additionalMaxHeight={124} heightPercent={refThreePercentCrossed} />
+              <Seperator additionalMaxHeight={124} heightPercent={100 - refThreePercentCrossed} />
               <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
-              <RedSeperator heightPercent={refFourPercentCrossed} />
-              <Seperator heightPercent={100 - refFourPercentCrossed} />
+              <RedSeperator additionalMaxHeight={-50} heightPercent={refFourPercentCrossed} />
+              <Seperator additionalMaxHeight={-50} heightPercent={100 - refFourPercentCrossed} />
             </TrackWrapper>
           )}
           <TopWrapper>
@@ -580,7 +580,7 @@ const TrackWrapper = styled.div`
   position: absolute;
   top: 200px;
   left: -100px;
-  height: 100%;
+  height: 120%;
   z-index: 0;
   @media ${QUERIES.lg.andDown} {
     position: relative;
@@ -635,7 +635,7 @@ interface ISeperator {
   additionalMaxHeight?: number;
 }
 
-const SEPERATOR_HEIGHT = 678;
+const SEPERATOR_HEIGHT = 680;
 const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
