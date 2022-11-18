@@ -252,7 +252,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-200px 0px 0px 0px" : "0px",
+    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneOne, setStartSceneOne] = useState(false);
@@ -278,7 +278,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneTwo, setStartSceneTwo] = useState(false);
@@ -303,7 +303,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackThree = useRef<HTMLDivElement | null>(null);
   const entryTrackThree = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneThree, setStartSceneThree] = useState(false);
@@ -333,7 +333,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackFour = useRef<HTMLDivElement | null>(null);
   const entryTrackFour = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
+    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneFour, setStartSceneFour] = useState(false);
@@ -673,5 +673,5 @@ const Backdrop = styled.div<{ height: number }>`
   z-index: 500;
   mix-blend-mode: screen;
   background-color: var(--red);
-  /* transition: height 0.2s ease-in-out; */
+  border-bottom: 2px solid var(--grey-500);
 `;
