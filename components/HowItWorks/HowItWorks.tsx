@@ -4,8 +4,12 @@ import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
 import { useIntersectionObserver, useIsMounted } from "hooks";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
-import Image from "next/image";
 import useTrackRefCrossed from "./useTrackRefCrossed";
+import Lottie from "react-lottie";
+import sceneOne from "public/assets/lottie/scene-1.json";
+import sceneTwo from "public/assets/lottie/scene-2.json";
+import sceneThree from "public/assets/lottie/scene-3.json";
+import sceneFour from "public/assets/lottie/scene-4.json";
 
 interface Props {
   heightFromTop: number;
@@ -26,6 +30,10 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
     refTwoPercentCrossed,
     refThreePercentCrossed,
     refFourPercentCrossed,
+    startSceneOne,
+    startSceneTwo,
+    startSceneThree,
+    startSceneFour,
   } = useHowItWorks(currentPosition);
   return (
     <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
@@ -82,13 +90,16 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Image
-                      height="100%"
-                      width="100%"
-                      layout="responsive"
-                      objectFit="contain"
-                      src="/assets/scene-one.svg"
-                      alt="logo"
+                    <Lottie
+                      isStopped={!startSceneOne}
+                      options={{
+                        loop: true,
+                        autoplay: false,
+                        animationData: sceneOne,
+                        rendererSettings: {
+                          preserveAspectRatio: "xMidYMid slice",
+                        },
+                      }}
                     />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
@@ -115,13 +126,16 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Image
-                      height="100%"
-                      width="100%"
-                      layout="responsive"
-                      objectFit="contain"
-                      src="/assets/scene-two.svg"
-                      alt="logo"
+                    <Lottie
+                      isStopped={!startSceneTwo}
+                      options={{
+                        loop: true,
+                        autoplay: false,
+                        animationData: sceneTwo,
+                        rendererSettings: {
+                          preserveAspectRatio: "xMidYMid slice",
+                        },
+                      }}
                     />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
@@ -149,13 +163,17 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Image
-                      height="100%"
-                      width="100%"
-                      layout="responsive"
-                      objectFit="contain"
-                      src="/assets/scene-one.svg"
-                      alt="logo"
+                    <Lottie
+                      isStopped={!startSceneThree}
+                      options={{
+                        loop: true,
+                        autoplay: false,
+                        animationData: sceneThree,
+                        rendererSettings: {
+                          preserveAspectRatio: "xMidYMid slice",
+                          progressiveLoad: true,
+                        },
+                      }}
                     />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
@@ -183,13 +201,16 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Image
-                      height="100%"
-                      width="100%"
-                      layout="responsive"
-                      objectFit="contain"
-                      src="/assets/scene-two.svg"
-                      alt="logo"
+                    <Lottie
+                      isStopped={!startSceneFour}
+                      options={{
+                        loop: true,
+                        autoplay: false,
+                        animationData: sceneFour,
+                        rendererSettings: {
+                          preserveAspectRatio: "xMidYMid slice",
+                        },
+                      }}
                     />
                   </IllustrationWrapper>
                 </TrackAndIllustrationRow>
@@ -230,6 +251,13 @@ function useHowItWorks(currentPosition: number) {
     rootMargin: width > BREAKPOINTS.lg ? "-200px 0px 0px 0px" : "0px",
   });
 
+  const [startSceneOne, setStartSceneOne] = useState(false);
+  useEffect(() => {
+    if (entryTrackOne?.isIntersecting && !startSceneOne) {
+      setStartSceneOne(true);
+    }
+  }, [startSceneOne, entryTrackOne]);
+
   const refOnePercentCrossed = useTrackRefCrossed(refTrackOne, entryTrackOne, offsetTrackRefOne, currentPosition);
 
   useEffect(() => {
@@ -249,6 +277,13 @@ function useHowItWorks(currentPosition: number) {
     rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
 
+  const [startSceneTwo, setStartSceneTwo] = useState(false);
+  useEffect(() => {
+    if (entryTrackTwo?.isIntersecting && !startSceneTwo) {
+      setStartSceneTwo(true);
+    }
+  }, [startSceneTwo, entryTrackTwo]);
+
   const refTwoPercentCrossed = useTrackRefCrossed(refTrackTwo, entryTrackTwo, offsetTrackRefTwo, currentPosition);
   useEffect(() => {
     if (isMounted() && refTrackTwo.current && offsetTrackRefTwo === 0) {
@@ -266,6 +301,13 @@ function useHowItWorks(currentPosition: number) {
     threshold: 1,
     rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
+
+  const [startSceneThree, setStartSceneThree] = useState(false);
+  useEffect(() => {
+    if (entryTrackThree?.isIntersecting && !startSceneThree) {
+      setStartSceneThree(true);
+    }
+  }, [startSceneThree, entryTrackThree]);
 
   const refThreePercentCrossed = useTrackRefCrossed(
     refTrackThree,
@@ -289,6 +331,13 @@ function useHowItWorks(currentPosition: number) {
     threshold: 1,
     rootMargin: width > BREAKPOINTS.lg ? "-225px 0px 0px 0px" : "0px",
   });
+
+  const [startSceneFour, setStartSceneFour] = useState(false);
+  useEffect(() => {
+    if (entryTrackFour?.isIntersecting && !startSceneFour) {
+      setStartSceneFour(true);
+    }
+  }, [startSceneFour, entryTrackFour]);
 
   const refFourPercentCrossed = useTrackRefCrossed(refTrackFour, entryTrackFour, offsetTrackRefFour, currentPosition);
   useEffect(() => {
@@ -315,6 +364,10 @@ function useHowItWorks(currentPosition: number) {
     refFourPercentCrossed,
     showHeader,
     headerWrapperRef,
+    startSceneOne,
+    startSceneTwo,
+    startSceneThree,
+    startSceneFour,
   };
 }
 
@@ -598,6 +651,8 @@ const IllustrationWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+  border: 1px solid var(--grey-700);
+
   @media ${QUERIES.lg.andDown} {
     position: relative;
     width: 70%;
