@@ -70,6 +70,7 @@ const Title = styled(BaseTitle)`
   max-width: 562px;
   font: var(--header-md);
   border-bottom: none;
+  z-index: 100;
   @media ${QUERIES.md.andDown} {
     max-width: 400px;
     font: var(--header-sm);
@@ -81,6 +82,8 @@ const Subtitle = styled.h3`
   max-width: 466px;
   margin-left: 0;
   margin-right: 0;
+  z-index: 100;
+
   @media ${QUERIES.tb.andDown} {
     margin-left: 15px;
     margin-right: 15px;
@@ -189,14 +192,21 @@ const BackgroundLayer = styled.video`
   top: 0;
   width: 100%;
   height: 100%;
+  margin-left: auto;
+
   z-index: 0 !important;
   transform: matrix(-1, 0, 0, 1, 0, 0);
   mix-blend-mode: luminosity !important;
   pointer-events: none;
+  object-fit: cover;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Overlay = styled.div`
   background: linear-gradient(359.87deg, #f0f0f0 0.14%, rgba(248, 248, 248, 0.45) 52.48%, #ffffff 99.91%);
+  max-width: var(--max-width);
   position: absolute;
   right: 0;
   top: 0;
@@ -204,4 +214,6 @@ const Overlay = styled.div`
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  margin-left: auto;
+  margin-right: auto;
 `;
