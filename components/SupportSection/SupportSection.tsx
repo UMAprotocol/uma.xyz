@@ -218,14 +218,12 @@ const Overlay = styled.div`
 `;
 
 const OverlayText = styled.div`
-  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(240, 240, 240, 0.85) 100%); */
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.85) 0.14%,
     rgba(248, 248, 248, 0.85) 80%,
     rgba(240, 240, 240, 0.05) 99.91%
   );
-
   position: absolute;
   left: 0;
   top: 0;
