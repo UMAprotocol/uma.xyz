@@ -41,7 +41,14 @@ const MobileMenuComponent: React.FC<{
   return (
     <MobileMenuContainer isLightTheme={isLightTheme} show={show}>
       {links.map(({ href, label }, i) => (
-        <MobileNavLink isLightTheme={isLightTheme} onClick={onClickLink} key={i} href={href} target="_blank">
+        <MobileNavLink
+          isLightTheme={isLightTheme}
+          onClick={onClickLink}
+          key={i}
+          href={href}
+          target={i > 2 ? "_blank" : undefined}
+          rel={i > 2 ? "norefferer" : undefined}
+        >
           {label}
         </MobileNavLink>
       ))}
