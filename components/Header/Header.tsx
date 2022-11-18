@@ -159,6 +159,15 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
       height: 60px;
       width: 100%;
     }
+    &.headroom--pinned.headroom--scrolled {
+      &:after {
+        content: "";
+        width: 100%;
+        height: 48px;
+        position: fixed;
+        backdrop-filter: blur(1px);
+      }
+    }
   }
 `;
 
