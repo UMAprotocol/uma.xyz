@@ -108,15 +108,15 @@ const socialLinks = [
 const middleLinks = [
   {
     label: "How it works",
-    href: "#",
+    href: "#howItWorks",
   },
   {
-    label: "For Voters",
-    href: "https://medium.com/uma-project",
+    label: "For voters",
+    href: "#voter",
   },
   {
-    label: "For Builders",
-    href: "https://medium.com/uma-project",
+    label: "For builders",
+    href: "#builder",
   },
 ];
 
@@ -133,7 +133,7 @@ const rightLinks = [
   },
   {
     label: "Projects",
-    href: "https://umaproject.org/projects",
+    href: "https://projects.umaproject.org/",
     Logo: UpRightArrowBlack,
   },
 ];
