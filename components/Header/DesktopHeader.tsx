@@ -57,7 +57,7 @@ const links = [
         Docs <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
-    href: "#",
+    href: "https://docs.umaproject.org/",
   },
   {
     label: (
@@ -65,7 +65,7 @@ const links = [
         Projects <SmUpRightArrow style={{ marginLeft: "8px" }} />
       </>
     ),
-    href: "#",
+    href: "https://projects.umaproject.org/",
   },
 ];
 
