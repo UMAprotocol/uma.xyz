@@ -17,7 +17,14 @@ const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLi
       <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
       <Links>
         {links.map(({ label, href }, i) => (
-          <StyledLink active={activeLink === i} isLightTheme={isLightTheme} key={i} href={href}>
+          <StyledLink
+            active={activeLink === i}
+            isLightTheme={isLightTheme}
+            key={i}
+            href={href}
+            target={i > 2 ? "_blank" : undefined}
+            rel={i > 2 ? "norefferer" : undefined}
+          >
             <LinkWrapper>
               {activeLink === i ? <RedDot /> : i <= 2 ? <Dot /> : null} {label}
             </LinkWrapper>
