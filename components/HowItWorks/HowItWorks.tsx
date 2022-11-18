@@ -57,17 +57,17 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
           {width > BREAKPOINTS.lg && (
             <TrackWrapper>
               <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
-              <RedSeperator height={refOnePercentCrossed} />
-              <Seperator height={100 - refOnePercentCrossed} />
+              <RedSeperator heightPercent={refOnePercentCrossed} />
+              <Seperator heightPercent={100 - refOnePercentCrossed} />
               <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
-              <RedSeperator height={refTwoPercentCrossed} />
-              <Seperator height={100 - refTwoPercentCrossed} />
+              <RedSeperator additionalMaxHeight={-30} heightPercent={refTwoPercentCrossed} />
+              <Seperator additionalMaxHeight={-30} heightPercent={100 - refTwoPercentCrossed} />
               <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
-              <RedSeperator height={refThreePercentCrossed} />
-              <Seperator height={100 - refThreePercentCrossed} />
+              <RedSeperator additionalMaxHeight={63} heightPercent={refThreePercentCrossed} />
+              <Seperator additionalMaxHeight={63} heightPercent={100 - refThreePercentCrossed} />
               <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
-              <RedSeperator height={refFourPercentCrossed} />
-              <Seperator height={100 - refFourPercentCrossed} />
+              <RedSeperator heightPercent={refFourPercentCrossed} />
+              <Seperator heightPercent={100 - refFourPercentCrossed} />
             </TrackWrapper>
           )}
           <TopWrapper>
@@ -85,8 +85,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
-                      <RedSeperator height={refOnePercentCrossed} />
-                      <Seperator height={100 - refOnePercentCrossed} />
+                      <RedSeperator heightPercent={refOnePercentCrossed} />
+                      <Seperator heightPercent={100 - refOnePercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -122,8 +122,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
-                      <RedSeperator height={refTwoPercentCrossed} />
-                      <Seperator height={100 - refTwoPercentCrossed} />
+                      <RedSeperator heightPercent={refTwoPercentCrossed} />
+                      <Seperator heightPercent={100 - refTwoPercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -160,8 +160,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
-                      <RedSeperator height={refThreePercentCrossed} />
-                      <Seperator height={100 - refThreePercentCrossed} />
+                      <RedSeperator heightPercent={refThreePercentCrossed} />
+                      <Seperator heightPercent={100 - refThreePercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -199,8 +199,8 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                   {width <= BREAKPOINTS.lg && (
                     <TrackWrapper>
                       <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
-                      <RedSeperator height={refFourPercentCrossed} />
-                      <Seperator height={100 - refFourPercentCrossed} />
+                      <RedSeperator heightPercent={refFourPercentCrossed} />
+                      <Seperator heightPercent={100 - refFourPercentCrossed} />
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
@@ -580,7 +580,7 @@ const TrackWrapper = styled.div`
   position: absolute;
   top: 200px;
   left: -100px;
-  height: 115%;
+  height: 100%;
   z-index: 0;
   @media ${QUERIES.lg.andDown} {
     position: relative;
@@ -594,6 +594,15 @@ const TrackWrapper = styled.div`
     height: inherit;
     margin-top: 0px;
     margin-left: 0;
+  }
+  // Because the text for the column varies, need to manually adjust absolute tracker on desktop.
+  @media ${QUERIES.lg.andUp} {
+    /* > div:nth-of-type(7) {
+      margin-top: -20px;
+    }
+    > div:nth-of-type(8) {
+      height: 715px;
+    } */
   }
 `;
 
@@ -622,15 +631,21 @@ const TrackItem = styled.div<TrackProps>`
 `;
 
 interface ISeperator {
-  height: number;
+  heightPercent: number;
+  additionalMaxHeight?: number;
 }
+
+const SEPERATOR_HEIGHT = 678;
 const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
   background: var(--grey-500); // #B0AFB3
-  height: ${({ height }) => 672 * (height / 100)}px;
+  height: ${({ heightPercent, additionalMaxHeight }) => {
+    const maxHeight = additionalMaxHeight ? SEPERATOR_HEIGHT + additionalMaxHeight : SEPERATOR_HEIGHT;
+    return `${maxHeight * (heightPercent / 100)}px`;
+  }};
   @media ${QUERIES.lg.andDown} {
-    height: ${({ height }) => height}%;
+    height: ${({ heightPercent }) => heightPercent}%;
   }
 `;
 
