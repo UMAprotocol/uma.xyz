@@ -31,6 +31,7 @@ const Header: React.FC<Props> = ({ activeLink }) => {
     <Section show={showHeader} ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
       <Headroom
+        style={{ zIndex: 1000 }}
         onUnfix={() => {
           setAddUnpinClass(true);
         }}
