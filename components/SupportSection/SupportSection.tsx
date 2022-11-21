@@ -6,6 +6,11 @@ import { QUERIES } from "constants/breakpoints";
 const SupportSection = () => {
   return (
     <Section>
+      <BackgroundLayer autoPlay loop muted>
+        <source src={"/assets/uma.xyz.mp4"} type="video/mp4" />
+      </BackgroundLayer>
+      <OverlayText />
+      <Overlay />
       <Wrapper>
         <TextColumn>
           <Title>Supported by the Risk Labs Foundation</Title>
@@ -41,14 +46,16 @@ export default SupportSection;
 
 const Section = styled.div`
   width: 100%;
-  background: linear-gradient(359.87deg, #f0f0f0 0.14%, rgba(248, 248, 248, 0.45) 52.48%, var(--white) 99.91%),
-    url("/assets/temp-support.png");
+  background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left top;
+  position: relative;
 `;
 
 const Wrapper = styled(BaseWrapper)`
+  z-index: 100;
+  pointer-events: all;
   padding: 261px 0 234px;
   background: transparent;
   @media ${QUERIES.lg.andDown} {
@@ -64,6 +71,7 @@ const Title = styled(BaseTitle)`
   max-width: 562px;
   font: var(--header-md);
   border-bottom: none;
+  z-index: 100;
   @media ${QUERIES.md.andDown} {
     max-width: 400px;
     font: var(--header-sm);
@@ -75,6 +83,8 @@ const Subtitle = styled.h3`
   max-width: 466px;
   margin-left: 0;
   margin-right: 0;
+  z-index: 100;
+
   @media ${QUERIES.tb.andDown} {
     margin-left: 15px;
     margin-right: 15px;
@@ -175,4 +185,51 @@ const ButtonText = styled.span`
   @media ${QUERIES.md.andDown} {
     font-size: 32px;
   }
+`;
+
+const BackgroundLayer = styled.video`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  z-index: 0 !important;
+  mix-blend-mode: luminosity !important;
+  pointer-events: none;
+  object-fit: cover;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const Overlay = styled.div`
+  background: linear-gradient(359.87deg, #f0f0f0 0.14%, rgba(248, 248, 248, 0.45) 52.48%, #ffffff 99.91%);
+  max-width: var(--max-width);
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const OverlayText = styled.div`
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85) 0.14%,
+    rgba(248, 248, 248, 0.85) 80%,
+    rgba(240, 240, 240, 0.05) 99.91%
+  );
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  max-width: calc(var(--max-width) - 40%);
 `;
