@@ -7,6 +7,7 @@ import useInterval from "hooks/helpers/useInterval";
 import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 import { capitalizeFirstLetter } from "utils/format";
+
 type TickerThemes = "light" | "dark";
 
 interface Props {
@@ -111,6 +112,7 @@ const styledTheme: TickerTheme = {
 
 const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
   const { timeRemaining, width } = useVoteTicker();
+
   return (
     <ThemeProvider theme={styledTheme[theme]}>
       <Section>

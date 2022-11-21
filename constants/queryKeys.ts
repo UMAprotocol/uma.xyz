@@ -1,1 +1,1 @@
-export const exampleKey = "exampleKey";
+export const voteTickerKey = "voteTickerKey";
