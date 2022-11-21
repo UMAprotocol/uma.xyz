@@ -595,15 +595,6 @@ const TrackWrapper = styled.div`
     margin-top: 0px;
     margin-left: 0;
   }
-  // Because the text for the column varies, need to manually adjust absolute tracker on desktop.
-  @media ${QUERIES.lg.andUp} {
-    /* > div:nth-of-type(7) {
-      margin-top: -20px;
-    }
-    > div:nth-of-type(8) {
-      height: 715px;
-    } */
-  }
 `;
 
 interface TrackProps {

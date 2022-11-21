@@ -31,7 +31,6 @@ const Header: React.FC<Props> = ({ activeLink }) => {
     <Section show={showHeader} ref={isMounted ? headerRef : null}>
       <VoteTicker theme="dark" numVotes={2} phase="commit" />
       <Headroom
-        style={{ zIndex: 1000 }}
         onUnfix={() => {
           setAddUnpinClass(true);
         }}
@@ -146,6 +145,8 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     }
   }
   > div {
+    // lib overwrites it without important
+    z-index: 1000 !important;
     margin: 0;
     background: ${({ isLightTheme }) => {
       return isLightTheme ? "var(--white)" : "var(--grey-200)";

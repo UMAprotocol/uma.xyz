@@ -231,5 +231,5 @@ const OverlayText = styled.div`
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  max-width: calc(var(--max-width) -40%);
+  max-width: calc(var(--max-width) - 40%);
 `;
