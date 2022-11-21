@@ -6,14 +6,13 @@ import { formatDateTimeFromUTC } from "./utils";
 import useInterval from "hooks/helpers/useInterval";
 import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
-import { capitalizeFirstLetter } from "utils/format";
 
 type TickerThemes = "light" | "dark";
 
 interface Props {
   theme: TickerThemes;
   numVotes: number;
-  phase: "commit" | "reveal";
+  phase: "Commit" | "Reveal" | null;
 }
 
 interface Theme {
@@ -122,7 +121,7 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
               <Clock />
             </ClockBG>
             <VoteText>
-              {width > BREAKPOINTS.md ? `Time to ${phase} vote: ` : `${capitalizeFirstLetter(phase)} vote: `}
+              {width > BREAKPOINTS.md ? `Time to ${phase && phase.toLowerCase()} vote: ` : `${phase} vote: `}
               <span>{timeRemaining}</span>
             </VoteText>
             {width > BREAKPOINTS.md ? (
