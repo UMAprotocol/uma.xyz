@@ -121,7 +121,9 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
               <Clock />
             </ClockBG>
             <VoteText>
-              {width > BREAKPOINTS.md ? `Time to ${phase && phase.toLowerCase()} vote: ` : `${phase} vote: `}
+              {width > BREAKPOINTS.md
+                ? `Time to ${phase ? phase.toLowerCase() : ""} vote: `
+                : `${phase ? phase : ""} vote: `}
               <span>{timeRemaining}</span>
             </VoteText>
             {width > BREAKPOINTS.md ? (

@@ -55,7 +55,7 @@ export function Home() {
   }, [isMounted]);
 
   const result = useVoteTickerData();
-  const data: VoteTickerData = result.data;
+  const data = result.data as VoteTickerData;
   console.log("data", data);
   return (
     <Layout>
