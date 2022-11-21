@@ -31,3 +31,8 @@ We use [Styled Components](https://styled-components.com/) for styling. Global s
 We use [Storybook](https://storybook.js.org/) for component development. To run it, use `yarn storybook`. It will be available at [http://localhost:6006](http://localhost:6006).
 
 Storybook is deployed to [Chromatic](https://chromatic.com) via `yarn chromatic`.
+
+## Environment variables
+
+CHAIN_ID = 1 // (or 5 for goerli)
+NODE_URLS ={"1":"https://mainnet.infura.io/v3/xxx","5":"https://goerli.infura.io/v3/xxx"}
