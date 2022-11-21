@@ -7,6 +7,6 @@ export interface VoteTickerData {
 }
 
 export default async function getVoteTickerData() {
-  const { data } = await axios.get("/api/get-voting-info");
+  const { data } = await axios.get<VoteTickerData>("/api/get-voting-info");
   return data;
 }

@@ -13,7 +13,6 @@ import {
 import styled from "styled-components";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
 import useVoteTickerData from "hooks/queries/useVoteTickerData";
-import { VoteTickerData } from "queries/getVoteTickerData";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
@@ -54,9 +53,7 @@ export function Home() {
     }
   }, [isMounted]);
 
-  const result = useVoteTickerData();
-  const data = result.data as VoteTickerData;
-  console.log("data", data);
+  const { data } = useVoteTickerData();
   return (
     <Layout>
       <Wrapper>

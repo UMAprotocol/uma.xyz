@@ -7,5 +7,6 @@ export default function useVoteTickerData() {
     refetchInterval: 1000 * 60,
     retry: 5,
   });
-  return queryResult;
+
+  return { data: queryResult.data, isLoading: queryResult.isLoading };
 }
