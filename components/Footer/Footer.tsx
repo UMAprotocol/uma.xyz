@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import styled from "styled-components";
 import Logo from "public/assets/uma-logo.svg";
 import Twitter from "public/assets/twitter.svg";
@@ -10,6 +10,7 @@ import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { VoteTicker } from "components";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 const Footer = () => {
   const { value, setValue, width } = useFooter();
@@ -42,6 +43,7 @@ const Footer = () => {
                 </Links>
               </LinksFlex>
             </FooterLinks>
+
             <FormWrapper>
               {width <= BREAKPOINTS.md ? (
                 <LogoWrapper>
@@ -49,10 +51,38 @@ const Footer = () => {
                 </LogoWrapper>
               ) : null}
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
-              <Form>
-                <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="jane@doe.com"></Input>
-                <Button onClick={() => null}>Sign up</Button>
-              </Form>
+              <MailchimpSubscribe
+                url={process.env.MAILCHIMP_URL || ""}
+                render={({ subscribe, status, message }) => (
+                  <>
+                    <Form
+                      onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                        evt.preventDefault();
+                        // @ts-expect-error Doesn't like the input being taken like this
+                        subscribe({ EMAIL: evt.target[0].value }); // eslint-disable-line
+                      }}
+                    >
+                      <Input
+                        type="email"
+                        name="email"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        placeholder="satoshi@nakamoto.com"
+                      />
+
+                      <Button type="submit">Sign up</Button>
+                    </Form>
+                    {status === "sending" && <StatusMessage>Sending...</StatusMessage>}
+                    {status === "error" && (
+                      <StatusMessage
+                        style={{ color: "var(--red)" }}
+                        dangerouslySetInnerHTML={{ __html: message as string }}
+                      />
+                    )}
+                    {status === "success" && <StatusMessage style={{ color: "#20a93e" }}>Subscribed!</StatusMessage>}
+                  </>
+                )}
+              />
             </FormWrapper>
           </BottomRow>
           <CopyrightRow>
@@ -279,7 +309,7 @@ const FormTitle = styled.h3`
   }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -432,4 +462,11 @@ const SocialLink = styled.a`
       fill: var(--red);
     }
   }
+`;
+
+const StatusMessage = styled.div`
+  font: var(--body-sm);
+  color: var(--grey-300);
+  margin-top: 16px;
+  padding-left: 16px;
 `;

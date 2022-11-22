@@ -100,6 +100,7 @@ const Wrapper = styled.div<IWrapper>`
   background: ${({ isLightTheme }) => {
     return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
+  transition: all 0.2s ease-in-out;
   @media ${QUERIES.lg.andDown} {
     width: calc(100% - 64px);
   }
