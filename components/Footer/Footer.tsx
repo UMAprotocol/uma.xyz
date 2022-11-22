@@ -12,9 +12,6 @@ import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
-const MAILCHIMP_URL =
-  "https://umaproject.us19.list-manage.com/subscribe/post?u=b2e789cb476a06f1261e79e05&id=8ba4ed7b0c&f_id=005e8fe4f0";
-
 const Footer = () => {
   const { value, setValue, width } = useFooter();
   return (
@@ -55,7 +52,7 @@ const Footer = () => {
               ) : null}
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
               <MailchimpSubscribe
-                url={MAILCHIMP_URL}
+                url={process.env.MAILCHIMP_URL || ""}
                 render={({ subscribe, status, message }) => (
                   <>
                     <Form
