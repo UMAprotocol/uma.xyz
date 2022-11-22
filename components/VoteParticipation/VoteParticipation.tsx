@@ -12,7 +12,7 @@ interface Props {
 }
 
 // If API errors, show a default guess APY.
-const DEFAULT_APY = "30.1";
+export const DEFAULT_APY = "30.1";
 const VoteParticipation: React.FC<Props> = ({ apy }) => {
   const {
     width,
