@@ -79,7 +79,7 @@ const Footer = () => {
                         dangerouslySetInnerHTML={{ __html: message as string }}
                       />
                     )}
-                    {status === "success" && <StatusMessage style={{ color: "#20A93E" }}>Subscribed!</StatusMessage>}
+                    {status === "success" && <StatusMessage style={{ color: "#20a93e" }}>Subscribed!</StatusMessage>}
                   </>
                 )}
               />
