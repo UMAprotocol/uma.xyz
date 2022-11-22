@@ -90,7 +90,6 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Backdrop height={refOnePercentCrossed} />
                     <Lottie
                       isStopped={!startSceneOne}
                       options={{
@@ -127,7 +126,6 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Backdrop height={refTwoPercentCrossed} />
                     <Lottie
                       isStopped={!startSceneTwo}
                       options={{
@@ -165,7 +163,6 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Backdrop height={refThreePercentCrossed} />
                     <Lottie
                       isStopped={!startSceneThree}
                       options={{
@@ -204,7 +201,6 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
                     </TrackWrapper>
                   )}
                   <IllustrationWrapper>
-                    <Backdrop height={refFourPercentCrossed} />
                     <Lottie
                       isStopped={!startSceneFour}
                       options={{
@@ -668,16 +664,4 @@ const IllustrationWrapper = styled.div`
     width: 70%;
     height: inherit;
   }
-`;
-
-const Backdrop = styled.div<{ height: number }>`
-  position: absolute;
-  height: ${({ height }) => height}%;
-  width: 100%;
-  top: 0;
-  right: 0;
-  z-index: 500;
-  mix-blend-mode: screen;
-  background-color: var(--red);
-  border-bottom: 2px solid var(--grey-500);
 `;
