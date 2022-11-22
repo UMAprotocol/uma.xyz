@@ -134,11 +134,6 @@ const unpinning = keyframes`
 `;
 
 const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
-  /* @media ${QUERIES.tb.andDown} {
-    background: ${({ isLightTheme }) => {
-    return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
-  }};
-  } */
   &.unpinning {
     > div {
       animation: ${unpinning} 0.5s ease-in-out;
