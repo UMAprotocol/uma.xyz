@@ -8,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof Footer> = () => (
   <div style={{ padding: "1rem 2rem", background: "var(--black)" }}>
-    <Footer />
+    <Footer numVotes={2} phase="Commit" />
   </div>
 );
 

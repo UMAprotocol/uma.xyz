@@ -10,9 +10,11 @@ import MobileHeader from "./MobileHeader";
 
 interface Props {
   activeLink: number;
+  phase: "Commit" | "Reveal" | null;
+  numVotes: number;
 }
 
-const Header: React.FC<Props> = ({ activeLink }) => {
+const Header: React.FC<Props> = ({ activeLink, phase, numVotes }) => {
   const {
     scrollPosition,
     boundingHeight,
@@ -29,7 +31,7 @@ const Header: React.FC<Props> = ({ activeLink }) => {
 
   return (
     <Section show={showHeader} ref={isMounted ? headerRef : null}>
-      <VoteTicker theme="dark" numVotes={2} phase="commit" />
+      {numVotes > 0 && <VoteTicker theme="dark" numVotes={numVotes} phase={phase} />}
       <Headroom
         onUnfix={() => {
           setAddUnpinClass(true);

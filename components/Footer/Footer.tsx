@@ -12,11 +12,16 @@ import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
-const Footer = () => {
+interface Props {
+  phase: "Commit" | "Reveal" | null;
+  numVotes: number;
+}
+
+const Footer: React.FC<Props> = ({ phase, numVotes }) => {
   const { value, setValue, width } = useFooter();
   return (
     <>
-      <VoteTicker theme="light" numVotes={2} phase="commit" />
+      {numVotes > 0 && <VoteTicker theme="light" numVotes={numVotes} phase={phase} />}
       <Section>
         <Wrapper>
           <BottomRow>
@@ -52,7 +57,7 @@ const Footer = () => {
               ) : null}
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
               <MailchimpSubscribe
-                url={process.env.MAILCHIMP_URL || ""}
+                url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
                 render={({ subscribe, status, message }) => (
                   <>
                     <Form

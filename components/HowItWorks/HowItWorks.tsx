@@ -626,7 +626,7 @@ const SEPERATOR_HEIGHT = 680;
 const Seperator = styled.div<ISeperator>`
   width: 1px;
   margin: 0 12px;
-  background: var(--grey-500); // #B0AFB3
+  background: var(--grey-500);
   height: ${({ heightPercent, additionalMaxHeight }) => {
     const maxHeight = additionalMaxHeight ? SEPERATOR_HEIGHT + additionalMaxHeight : SEPERATOR_HEIGHT;
     return `${maxHeight * (heightPercent / 100)}px`;

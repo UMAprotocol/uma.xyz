@@ -12,6 +12,7 @@ import {
 } from "components";
 import styled from "styled-components";
 import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
+import useVoteTickerData from "hooks/queries/useVoteTickerData";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
@@ -51,10 +52,16 @@ export function Home() {
       window.scrollTo(0, 0);
     }
   }, [isMounted]);
+
+  const { data } = useVoteTickerData();
   return (
     <Layout>
       <Wrapper>
-        <Header activeLink={currentActiveLink()} />
+        <Header
+          activeLink={currentActiveLink()}
+          phase={data ? data.phase : null}
+          numVotes={data ? Number(data.activeRequests) : 0}
+        />
         <div ref={heroRef}>
           <Hero />
         </div>
@@ -66,14 +73,14 @@ export function Home() {
             />
           </div>
           <div ref={voteParticipationRef}>
-            <VoteParticipation />
+            <VoteParticipation apy={data ? data.apy : ""} />
           </div>
           <div ref={builderRef}>
             <Builder />
           </div>
           <Projects />
           <SupportSection />
-          <Footer />
+          <Footer phase={data ? data.phase : null} numVotes={data ? Number(data.activeRequests) : 0} />
         </div>
       </Wrapper>
     </Layout>

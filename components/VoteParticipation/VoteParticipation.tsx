@@ -7,7 +7,13 @@ import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
 
-const VoteParticipation = () => {
+interface Props {
+  apy: string;
+}
+
+// If API errors, show a default guess APY.
+export const DEFAULT_APY = process.env.NEXT_PUBLIC_DEFAULT_APY || "30.1";
+const VoteParticipation: React.FC<Props> = ({ apy }) => {
   const {
     width,
     earnRef,
@@ -39,7 +45,9 @@ const VoteParticipation = () => {
           Participate as <span>Voter</span>
         </Title>
         <HeaderWrapper>
-          <Header>Stake, vote &amp; earn {width >= BREAKPOINTS.tb ? <br /> : null} up to 30% APY</Header>
+          <Header>
+            Stake, vote &amp; earn {width >= BREAKPOINTS.tb ? <br /> : null} up to {apy || DEFAULT_APY}% APY
+          </Header>
         </HeaderWrapper>
 
         <ImageBlockRow>
