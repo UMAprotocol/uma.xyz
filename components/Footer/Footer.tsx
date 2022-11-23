@@ -57,7 +57,7 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
               ) : null}
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
               <MailchimpSubscribe
-                url={process.env.MAILCHIMP_URL || ""}
+                url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
                 render={({ subscribe, status, message }) => (
                   <>
                     <Form
