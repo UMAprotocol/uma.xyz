@@ -14,7 +14,7 @@ interface Props {
 const DesktopHeader: React.FC<Props> = ({ scrollPosition, isLightTheme, activeLink }) => {
   return (
     <Wrapper scrollPosition={scrollPosition} isLightTheme={isLightTheme}>
-      <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
+      <Link href="/">{isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}</Link>
       <Links>
         {links.map(({ label, href }, i) => (
           <StyledLink
@@ -180,4 +180,12 @@ const RedDot = styled(Dot)`
   visibility: visible;
   left: -12px;
   opacity: 1;
+`;
+
+const StyledLogoBlack = styled(BlackLogo)`
+  cursor: pointer;
+`;
+
+const StyledLogo = styled(Logo)`
+  cursor: pointer;
 `;
