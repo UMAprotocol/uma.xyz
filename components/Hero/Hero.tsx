@@ -25,7 +25,7 @@ const Hero = () => {
           UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
           onto a blockchain.
         </Subheader>
-        <ArrowButton show={showButton}>
+        <ArrowButton href="#howItWorks" show={showButton}>
           <DownArrow />
         </ArrowButton>
       </Wrapper>
@@ -193,7 +193,7 @@ const svgAnimation = keyframes`
   100% {transform: translateY(0); opacity: 1;}
 `;
 
-const ArrowButton = styled.button<ITextProps>`
+const ArrowButton = styled.a<ITextProps>`
   margin-top: 179px;
   background-color: var(--grey-200);
   box-sizing: border-box;
@@ -212,6 +212,7 @@ const ArrowButton = styled.button<ITextProps>`
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: ${arrowDelay}ms;
   opacity: 1;
+  z-index: 100;
   > svg {
     animation: ${svgAnimation} 2s linear infinite;
     animation-delay: ${arrowDelay + 2000}ms;
