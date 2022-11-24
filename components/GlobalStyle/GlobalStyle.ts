@@ -198,6 +198,7 @@ a:not([class]) {
   /*  All CSS custom properties that are intended to be global must be defined here */
 
   html {
+    scroll-behavior:smooth;
     /* Colors */
     --black: ${black};
     --white: ${white};
