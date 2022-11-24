@@ -76,6 +76,9 @@ const TabList = styled(ReachTabList)<ITabList>`
   }
   [data-selected] {
     color: var(--red);
+    &:hover {
+      color: var(--red);
+    }
     > div {
       transition: all 0.4s ease-in-out;
     }
@@ -143,6 +146,12 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
   flex: 1;
   svg {
     height: 34px;
+  }
+  &:hover {
+    color: var(--grey-400);
+    path[aria-selected="false"] {
+      fill: var(--grey-400);
+    }
   }
   @media ${QUERIES.lg.andDown} {
     font: var(--body-sm);
