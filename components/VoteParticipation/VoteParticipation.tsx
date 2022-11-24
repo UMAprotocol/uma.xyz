@@ -196,6 +196,10 @@ const Wrapper = styled.div`
     padding-left: 24px;
     padding-right: 24px;
   }
+  @media ${QUERIES.md.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const Header = styled(BaseHeader)`

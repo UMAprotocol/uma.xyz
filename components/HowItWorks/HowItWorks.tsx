@@ -82,7 +82,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackOne}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && (
+                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
                     <TrackWrapper>
                       <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
                       <RedSeperator heightPercent={refOnePercentCrossed} />
@@ -118,7 +118,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackTwo}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && (
+                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
                     <TrackWrapper>
                       <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
                       <RedSeperator heightPercent={refTwoPercentCrossed} />
@@ -155,7 +155,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackThree}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && (
+                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
                     <TrackWrapper>
                       <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
                       <RedSeperator heightPercent={refThreePercentCrossed} />
@@ -193,7 +193,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackFour}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && (
+                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
                     <TrackWrapper>
                       <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
                       <RedSeperator heightPercent={refFourPercentCrossed} />
@@ -386,6 +386,10 @@ const Wrapper = styled(BaseWrapper)`
   }
   @media ${QUERIES.tb.andDown} {
     padding-bottom: 100px;
+  }
+  @media ${QUERIES.md.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
@@ -663,5 +667,8 @@ const IllustrationWrapper = styled.div`
     position: relative;
     width: 70%;
     height: inherit;
+  }
+  @media ${QUERIES.md.andDown} {
+    width: 100%;
   }
 `;
