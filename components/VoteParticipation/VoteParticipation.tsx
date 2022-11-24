@@ -442,7 +442,7 @@ const VoterAppLinkBlock = styled.div`
 const VoterAppLink = styled.a`
   font: var(--body-lg);
   text-decoration: none;
-
+  color: var(--red);
   div {
     position: relative;
     left: 0;
