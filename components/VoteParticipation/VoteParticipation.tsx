@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 import UpRightArrow from "public/assets/up-right-arrow.svg";
@@ -6,6 +6,10 @@ import { Title as BaseTitle, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
 import Image from "next/image";
+import Lottie from "react-lottie";
+import earn from "public/assets/lottie/earn.json";
+import vote from "public/assets/lottie/vote.json";
+import stake from "public/assets/lottie/stake.json";
 
 interface Props {
   apy: string;
@@ -25,6 +29,9 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
     isIntersectingVote,
     isIntersectingSection,
   } = useVoteParticipation();
+  const [playEarn, setPlayEarn] = useState(false);
+  const [playVote, setPlayVote] = useState(false);
+  const [playStake, setPlayStake] = useState(false);
 
   return (
     <Section ref={sectionRef} id="voter">
@@ -51,16 +58,25 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
         </HeaderWrapper>
 
         <ImageBlockRow>
-          <ImageBlockWrapper ref={stakeRef} width={width} isIntersecting={isIntersectingStake}>
+          <ImageBlockWrapper
+            onMouseEnter={() => setPlayStake(true)}
+            onMouseLeave={() => setPlayStake(false)}
+            ref={stakeRef}
+            width={width}
+            isIntersecting={isIntersectingStake}
+          >
             <ImageBlock>
               <ImageWrapper width={width} isIntersecting={isIntersectingStake}>
-                <Image
-                  width="100%"
-                  height="100%"
-                  layout="responsive"
-                  objectFit="contain"
-                  src="/assets/stake-block-black.svg"
-                  alt="stake-block"
+                <Lottie
+                  isStopped={!playStake}
+                  options={{
+                    loop: false,
+                    autoplay: false,
+                    animationData: stake,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
                 />
               </ImageWrapper>
               <ImageTextWrapper>
@@ -71,16 +87,25 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
-          <ImageBlockWrapper ref={voteRef} width={width} isIntersecting={isIntersectingVote}>
+          <ImageBlockWrapper
+            onMouseEnter={() => setPlayVote(true)}
+            onMouseLeave={() => setPlayVote(false)}
+            ref={voteRef}
+            width={width}
+            isIntersecting={isIntersectingVote}
+          >
             <ImageBlock>
               <ImageWrapper width={width} isIntersecting={isIntersectingVote}>
-                <Image
-                  width="100%"
-                  height="100%"
-                  layout="responsive"
-                  objectFit="contain"
-                  src="/assets/stake-block-black.svg"
-                  alt="stake-block"
+                <Lottie
+                  isStopped={!playVote}
+                  options={{
+                    loop: false,
+                    autoplay: false,
+                    animationData: vote,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
                 />
               </ImageWrapper>
               <ImageTextWrapper>
@@ -91,16 +116,25 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>
-          <ImageBlockWrapper ref={earnRef} width={width} isIntersecting={isIntersectingEarn}>
+          <ImageBlockWrapper
+            onMouseEnter={() => setPlayEarn(true)}
+            onMouseLeave={() => setPlayEarn(false)}
+            ref={earnRef}
+            width={width}
+            isIntersecting={isIntersectingEarn}
+          >
             <ImageBlock>
               <ImageWrapper width={width} isIntersecting={isIntersectingEarn}>
-                <Image
-                  width="100%"
-                  height="100%"
-                  layout="responsive"
-                  objectFit="contain"
-                  src="/assets/stake-block-black.svg"
-                  alt="stake-block"
+                <Lottie
+                  isStopped={!playEarn}
+                  options={{
+                    loop: false,
+                    autoplay: false,
+                    animationData: earn,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
                 />
               </ImageWrapper>
               <ImageTextWrapper>
@@ -408,6 +442,9 @@ const ImageWrapper = styled.div<ScrollProps>`
         return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
       return "none";
     }};
+  }
+  > div {
+    cursor: default;
   }
   @media ${QUERIES.tb.andDown} {
     flex: 1 1 96px;
