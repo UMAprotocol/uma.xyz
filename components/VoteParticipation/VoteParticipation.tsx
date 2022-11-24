@@ -5,7 +5,6 @@ import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { Title as BaseTitle, Header as BaseHeader } from "components/Widgets";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize, useIntersectionObserver } from "hooks";
-import Image from "next/image";
 import Lottie from "react-lottie";
 import earn from "public/assets/lottie/earn.json";
 import vote from "public/assets/lottie/vote.json";
