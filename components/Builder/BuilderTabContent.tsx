@@ -65,6 +65,10 @@ const Wrapper = styled.div`
     padding-left: 32px;
     padding-right: 32px;
   }
+  @media ${QUERIES.md.andDown} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 const Title = styled.h2`

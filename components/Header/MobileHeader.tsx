@@ -155,8 +155,8 @@ const Wrapper = styled.div<IStyledProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px auto 0;
-
+  margin: 0 auto;
+  padding-top: 16px;
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
   }};

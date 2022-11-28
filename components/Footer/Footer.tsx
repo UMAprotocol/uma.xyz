@@ -72,7 +72,7 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
                         name="email"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
-                        placeholder="satoshi@nakamoto.com"
+                        placeholder="Your Email"
                       />
 
                       <Button type="submit">Sign up</Button>
