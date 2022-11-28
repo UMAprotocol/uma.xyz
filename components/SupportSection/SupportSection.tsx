@@ -204,7 +204,7 @@ const BackgroundLayer = styled.video`
 `;
 
 const Overlay = styled.div`
-  background: linear-gradient(359.87deg, #f0f0f0 0.14%, rgba(248, 248, 248, 0.45) 52.48%, #ffffff 99.91%);
+  background: linear-gradient(0deg, #f0f0f0 0%, rgba(255, 255, 255, 0.45) 50%, #ffffff 100%);
   max-width: var(--max-width);
   position: absolute;
   right: 0;
@@ -220,9 +220,9 @@ const Overlay = styled.div`
 const OverlayText = styled.div`
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.85) 0.14%,
-    rgba(248, 248, 248, 0.85) 80%,
-    rgba(240, 240, 240, 0.05) 99.91%
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0) 100%
   );
   position: absolute;
   left: 0;
