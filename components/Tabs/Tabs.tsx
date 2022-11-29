@@ -176,6 +176,7 @@ const TabPanels = styled(ReachTabPanels)`
 `;
 
 const TabPanel = styled(ReachTabPanel)`
+  cursor: default;
   transition: all 0.2 linear;
 `;
 
