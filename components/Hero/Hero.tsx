@@ -7,11 +7,25 @@ import { useIsMounted } from "hooks";
 import { HeaderContext } from "contexts";
 import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
 import { useWindowSize } from "hooks";
+import Lottie from "react-lottie";
+import heroAnimation from "public/assets/lottie/hero_animation.json";
 
 const Hero = () => {
   const { sectionRef, isMounted, width, showText, showButton } = useHero();
   return (
     <Section ref={isMounted ? sectionRef : null}>
+      <Background>
+        <Lottie
+          options={{
+            loop: true,
+            autoplay: false,
+            animationData: heroAnimation,
+            rendererSettings: {
+              preserveAspectRatio: "xMidYMid slice",
+            },
+          }}
+        />
+      </Background>
       <Wrapper>
         <Title show={showText}>
           <span>A decentralized</span>
@@ -76,6 +90,15 @@ const animateBackground = keyframes`
   100% {bottom: 0%; left: 0%; }
 `;
 
+const Background = styled.div`
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.2;
+`;
 const Section = styled.div`
   background: var(--grey-200);
   width: 100%;
@@ -86,9 +109,6 @@ const Section = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url("/assets/hero-bg-img.svg");
-    background-repeat: no-repeat;
-    background-position: center bottom;
     z-index: 0;
     bottom: 0;
     left: 0;
@@ -124,6 +144,7 @@ const animateText = keyframes`
 `;
 
 const Title = styled.div<ITextProps>`
+  z-index: 50;
   font: var(--header-lg);
   color: var(--white);
   display: flex;
@@ -180,6 +201,7 @@ const Subheader = styled.div<ITextProps>`
   @media ${QUERIES.md.andDown} {
     margin: 32px 16px 0;
   }
+  z-index: 50;
 `;
 
 const svgAnimation = keyframes`
