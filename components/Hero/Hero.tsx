@@ -97,7 +97,7 @@ const Background = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.2;
+  opacity: 0.15;
 `;
 const Section = styled.div`
   background: var(--grey-200);
