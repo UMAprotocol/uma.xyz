@@ -1,18 +1,17 @@
-import { useRef, useState, useCallback, useEffect } from "react";
 import {
-  Layout,
+  Builder,
+  Footer,
   Header,
   Hero,
   HowItWorks,
-  VoteParticipation,
+  Layout,
   Projects,
-  Builder,
   SupportSection,
-  Footer,
+  VoteParticipation,
 } from "components";
+import { useIntersectionObserver, useIsMounted, useScrollPosition, useVoteTickerData } from "hooks";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
-import useVoteTickerData from "hooks/queries/useVoteTickerData";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
@@ -54,6 +53,7 @@ export function Home() {
   }, [isMounted]);
 
   const { data } = useVoteTickerData();
+
   return (
     <Layout>
       <Wrapper>

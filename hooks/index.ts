@@ -1,5 +1,6 @@
-export { useMounted } from "./helpers/useMounted";
 export { useIntersectionObserver } from "./helpers/useIntersectionObserver";
-export { default as useWindowSize } from "./helpers/useWindowSize";
+export { useIsMounted } from "./helpers/useIsMounted";
+export { useMounted } from "./helpers/useMounted";
 export { useScrollPosition } from "./helpers/useScrollPosition";
-export { default as useIsMounted } from "./helpers/useIsMounted";
+export { useWindowSize } from "./helpers/useWindowSize";
+export { useVoteTickerData } from "./queries/useVoteTickerData";
