@@ -1,15 +1,15 @@
+import { Tabs } from "components";
+import { Header as BaseHeader, Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
+import { large, largeAndUnder, mediumAndUnder, smallAndUnder, tabletAndUnder } from "constant";
+import { useIntersectionObserver, useWindowSize } from "hooks";
+import GlobeIcon from "public/assets/globe.svg";
+import ScaleIcon from "public/assets/scale.svg";
+import TelescopeIcon from "public/assets/telescope.svg";
+import TubeIcon from "public/assets/tube.svg";
+import WandIcon from "public/assets/wand.svg";
 import { useRef } from "react";
 import styled from "styled-components";
-import { Title as BaseTitle, Wrapper as BaseWrapper, Header as BaseHeader } from "components/Widgets";
-import { Tabs } from "components";
 import BuilderTabContent from "./BuilderTabContent";
-import WandIcon from "public/assets/wand.svg";
-import TubeIcon from "public/assets/tube.svg";
-import TelescopeIcon from "public/assets/telescope.svg";
-import ScaleIcon from "public/assets/scale.svg";
-import GlobeIcon from "public/assets/globe.svg";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize, useIntersectionObserver } from "hooks";
 
 const Builder = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -24,7 +24,7 @@ const Builder = () => {
         <Title>
           Participate as a <span>Builder</span>
         </Title>
-        {width > BREAKPOINTS.lg ? (
+        {width > large ? (
           <>
             <TopHeader>Launch products with</TopHeader>
             <BottomHeader>
@@ -38,7 +38,7 @@ const Builder = () => {
         ) : (
           <MobileHeader>Launch products with the OO as your backbone</MobileHeader>
         )}
-        {width > BREAKPOINTS.lg ? (
+        {width > large ? (
           <Tabs
             isIntersecting={isIntersectingSection}
             tabs={[
@@ -138,7 +138,7 @@ const Builder = () => {
           />
         ) : null}
       </Wrapper>
-      {width <= BREAKPOINTS.lg ? (
+      {width <= large ? (
         <Tabs
           isIntersecting={isIntersectingSection}
           tabs={[
@@ -255,11 +255,11 @@ const Section = styled.section`
 
 const Wrapper = styled(BaseWrapper)`
   padding: 100px 0 113px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-left: 24px;
     padding-right: 24px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     max-width: 100%;
     padding-bottom: 40px;
     padding-left: 32px;
@@ -273,16 +273,16 @@ const Header = styled(BaseHeader)`
   justify-content: flex-start;
   align-items: center;
   align-self: center;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding: 0;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font: var(--header-sm);
   }
 `;
 
 const Title = styled(BaseTitle)`
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     margin-left: 0;
     margin-right: 0;
   }
@@ -299,12 +299,12 @@ const BottomHeader = styled(Header)`
     margin: 20px 12px 0;
     display: flex;
     align-items: center;
-    @media ${QUERIES.tb.andDown} {
+    @media ${tabletAndUnder} {
       margin: 0 6px;
     }
   }
   img {
-    @media ${QUERIES.tb.andDown} {
+    @media ${tabletAndUnder} {
       font: var(--header-md);
     }
   }
@@ -325,14 +325,14 @@ const MobileHeader = styled(Header)`
     height: 100%;
   }
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin-bottom: 0;
   }
 
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     font: var(--header-sm);
   }
-  @media ${QUERIES.sm.andDown} {
+  @media ${smallAndUnder} {
     display: inline-block;
     word-break: wrap;
   }

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { voteTickerKey } from "constants/queryKeys";
+import { voteTickerKey } from "constant/queryKeys";
 import getVoteTickerData from "queries/getVoteTickerData";
 
 export default function useVoteTickerData() {

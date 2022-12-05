@@ -1,14 +1,13 @@
-import { useContext, useState, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
+import { medium, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { HeaderContext } from "contexts";
+import { useIsMounted, useWindowSize } from "hooks";
+import DownArrow from "public/assets/down-arrow.svg";
+import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOMobileLogo from "public/assets/oo-mobile.svg";
-import DownArrow from "public/assets/down-arrow.svg";
-import { useIsMounted } from "hooks";
-import { HeaderContext } from "contexts";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
+import { useContext, useEffect, useRef, useState } from "react";
 import Lottie from "react-lottie";
-import heroAnimation from "public/assets/lottie/hero_animation.json";
+import styled, { keyframes } from "styled-components";
 
 const Hero = () => {
   const { sectionRef, isMounted, width, showText, showButton } = useHero();
@@ -32,12 +31,12 @@ const Hero = () => {
         </Title>
         <Title show={showText}>
           <span>truth</span>
-          <div>{width >= BREAKPOINTS.md ? <OOLogo /> : <OOMobileLogo />}</div>
+          <div>{width >= medium ? <OOLogo /> : <OOMobileLogo />}</div>
           <span>machine</span>
         </Title>
         <Subheader show={showText}>
-          UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
-          onto a blockchain.
+          UMA’s optimistic oracle (OO) can record any {width >= medium ? <br /> : null} verifiable truth or data onto a
+          blockchain.
         </Subheader>
         <ArrowButton href="#howItWorks" show={showButton}>
           <DownArrow />
@@ -161,12 +160,12 @@ const Title = styled.div<ITextProps>`
     animation: ${animateText} 1s ease-in-out;
     animation-delay: ${textDelayMS}ms;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
     margin: 0 17px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
   }
@@ -178,7 +177,7 @@ const Title = styled.div<ITextProps>`
     display: flex;
     align-items: center;
     align-self: center;
-    @media ${QUERIES.md.andDown} {
+    @media ${mediumAndUnder} {
       height: auto;
       width: 100%;
       margin: 0 10px 0;
@@ -198,7 +197,7 @@ const Subheader = styled.div<ITextProps>`
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: ${textDelayMS}ms;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     margin: 32px 16px 0;
   }
   z-index: 50;

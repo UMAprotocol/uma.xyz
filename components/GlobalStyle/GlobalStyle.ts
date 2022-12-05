@@ -1,4 +1,6 @@
+import { maxSectionWidth } from "constant/breakpoints";
 import {
+  black,
   grey100,
   grey100Opacity20,
   grey200,
@@ -13,23 +15,21 @@ import {
   red510Opacity15,
   red550,
   white,
-  whiteOpacity10,
   white200,
-  black,
-} from "constants/colors";
+  whiteOpacity10,
+} from "constant/colors";
 import {
+  bodyLg,
+  bodyMd,
+  bodySm,
+  bodyXl,
+  bodyXs,
   headerLg,
   headerMd,
   headerSm,
   headerXs,
   subHeader,
-  bodyXl,
-  bodyLg,
-  bodyMd,
-  bodySm,
-  bodyXs,
-} from "constants/fonts";
-import { maxSectionWidth } from "constants/breakpoints";
+} from "constant/fonts";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -229,7 +229,7 @@ a:not([class]) {
     --body-md: ${bodyMd};
     --body-sm: ${bodySm};
     --body-xs: ${bodyXs};
-    --max-section-width: ${maxSectionWidth};
+    --max-section-width: ${maxSectionWidth}px;
     // Sandpack override
     --sp-layout-height: ${`347px`} !important;
   }

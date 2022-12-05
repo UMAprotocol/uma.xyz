@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { QUERIES } from "constants/breakpoints";
+import { smallAndOver, tabletAndUnder } from "constant";
 import Link from "next/link";
-import Logo from "public/assets/uma-logo.svg";
-import BlackLogo from "public/assets/uma-black-logo.svg";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
+import BlackCircle from "public/assets/black-circle.svg";
+import Discord from "public/assets/discord.svg";
+import Discourse from "public/assets/discourse.svg";
+import Github from "public/assets/github.svg";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import Twitter from "public/assets/twitter.svg";
-import Discord from "public/assets/discord.svg";
-import Github from "public/assets/github.svg";
-import Discourse from "public/assets/discourse.svg";
-import BlackCircle from "public/assets/black-circle.svg";
+import BlackLogo from "public/assets/uma-black-logo.svg";
+import Logo from "public/assets/uma-logo.svg";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
+import styled from "styled-components";
 interface Props {
   showMobileMenu: boolean;
   onToggle: () => void;
@@ -160,7 +160,7 @@ const Wrapper = styled.div<IStyledProps>`
   backdrop-filter: ${({ isLightTheme }) => {
     return isLightTheme ? "blur(6px)" : "none";
   }};
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: calc(100% - 40px);
   }
 `;
@@ -233,7 +233,7 @@ const MobileNavLink = styled.a<{ active?: boolean; isLightTheme: boolean }>`
       stroke: ${({ isLightTheme }) => (isLightTheme ? "var(--grey-500)" : "var(--white)")};
     }
   }
-  @media ${QUERIES.sm.andUp} {
+  @media ${smallAndOver} {
     font-size: ${18 / 16}rem;
     line-height: 24px;
   }

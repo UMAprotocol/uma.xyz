@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
 import { VoteTicker } from "components";
-import UnstyledHeadroom from "react-headroom";
+import { mediumAndUnder, tablet } from "constant/breakpoints";
 import { HeaderContext } from "contexts";
-import { useIsMounted, useWindowSize, useScrollPosition } from "hooks";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { useIsMounted, useScrollPosition, useWindowSize } from "hooks";
+import { useContext, useEffect, useRef, useState } from "react";
+import UnstyledHeadroom from "react-headroom";
+import styled, { keyframes } from "styled-components";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 
@@ -43,7 +43,7 @@ const Header: React.FC<Props> = ({ activeLink, phase, numVotes }) => {
         calcHeightOnResize
         className={addUnpinClass ? "unpinning" : ""}
       >
-        {width > BREAKPOINTS.tb ? (
+        {width > tablet ? (
           <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
         ) : (
           <MobileHeader
@@ -150,7 +150,7 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     }};
     transition: all 0.2s ease-in-out;
 
-    @media ${QUERIES.md.andDown} {
+    @media ${mediumAndUnder} {
       height: 60px;
       width: 100%;
     }

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
+import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
+import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
-import { QUERIES } from "constants/breakpoints";
+import styled from "styled-components";
 
 const SupportSection = () => {
   return (
@@ -58,11 +58,11 @@ const Wrapper = styled(BaseWrapper)`
   pointer-events: all;
   padding: 261px 0 234px;
   background: transparent;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding: 160px 64px 200px;
   }
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     padding: 130px 24px 118px;
   }
 `;
@@ -72,7 +72,7 @@ const Title = styled(BaseTitle)`
   font: var(--header-md);
   border-bottom: none;
   z-index: 100;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     max-width: 400px;
     font: var(--header-sm);
   }
@@ -85,11 +85,11 @@ const Subtitle = styled.h3`
   margin-right: 0;
   z-index: 100;
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin-left: 15px;
     margin-right: 15px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     max-width: 400px;
     font: var(--body-md);
   }
@@ -101,7 +101,7 @@ const TextColumn = styled.div`
   gap: 24px;
   margin-left: 0;
   margin-right: 0;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin-left: 15px;
     margin-right: 15px;
   }
@@ -114,7 +114,7 @@ const ButtonColumn = styled.div`
   gap: 24px;
   margin-left: 0;
   margin-right: 0;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin-top: 36px;
     margin-left: 15px;
     margin-right: 15px;
@@ -129,7 +129,7 @@ const ButtonGroup = styled.div`
   align-items: center;
   margin-left: 0;
   margin-right: 0;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin-left: 15px;
     margin-right: 15px;
   }
@@ -182,7 +182,7 @@ const ButtonText = styled.span`
   font: var(--header-sm);
   color: var(--grey-200);
   line-height: 115%;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     font-size: 32px;
   }
 `;

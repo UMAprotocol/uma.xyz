@@ -1,16 +1,16 @@
-import { useState, SyntheticEvent } from "react";
-import styled from "styled-components";
-import Logo from "public/assets/uma-logo.svg";
-import Twitter from "public/assets/twitter.svg";
-import Discord from "public/assets/discord.svg";
-import Github from "public/assets/github.svg";
-import Discourse from "public/assets/discourse.svg";
-import BlackCircle from "public/assets/black-circle.svg";
-import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { VoteTicker } from "components";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
+import { largeAndUnder, medium, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
 import { useWindowSize } from "hooks";
+import BlackCircle from "public/assets/black-circle.svg";
+import Discord from "public/assets/discord.svg";
+import Discourse from "public/assets/discourse.svg";
+import Github from "public/assets/github.svg";
+import Twitter from "public/assets/twitter.svg";
+import Logo from "public/assets/uma-logo.svg";
+import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
+import { SyntheticEvent, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
+import styled from "styled-components";
 
 interface Props {
   phase: "Commit" | "Reveal" | null;
@@ -26,7 +26,7 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
         <Wrapper>
           <BottomRow>
             <FooterLinks>
-              {width > BREAKPOINTS.md ? (
+              {width > medium ? (
                 <LogoWrapper>
                   <StyledLogo />
                 </LogoWrapper>
@@ -50,7 +50,7 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
             </FooterLinks>
 
             <FormWrapper>
-              {width <= BREAKPOINTS.md ? (
+              {width <= medium ? (
                 <LogoWrapper>
                   <StyledLogo />
                 </LogoWrapper>
@@ -189,7 +189,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: 96px 0 66px;
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     padding-top: 61px;
     padding-bottom: 32px;
   }
@@ -210,17 +210,17 @@ const FooterLinks = styled.div`
   justify-content: flex-start;
   width: 52%;
   gap: 116px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     flex-direction: column;
     gap: 32px;
     width: 30%;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     justify-content: center;
     align-items: flex-start;
     align-self: flex-start;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     align-items: center;
     align-self: center;
   }
@@ -233,18 +233,18 @@ const LogoWrapper = styled.div`
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     width: calc(100% - 84px);
     margin: 0 auto;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     flex-direction: column;
     column-gap: 32px;
     padding-left: 36px;
     padding-right: 36px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
@@ -275,18 +275,18 @@ const FormWrapper = styled.div`
   flex-direction: column;
   align-self: baseline;
   margin: 0 16px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     max-width: 640px;
     width: 100%;
     margin: 0;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     justify-content: center;
     align-items: flex-start;
     align-self: flex-start;
     margin-top: 64px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     justify-content: center;
     align-items: center;
     align-self: center;
@@ -298,15 +298,15 @@ const FormTitle = styled.h3`
   color: var(--grey-300);
   max-width: 338px;
   margin-bottom: 32px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     width: 100%;
     max-width: 640px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     text-align: left;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     width: 100%;
     text-align: center;
     margin-top: 24px;
@@ -321,17 +321,17 @@ const Form = styled.form`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     gap: 16px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     padding: 0;
     flex-direction: row;
     max-width: 640px;
     width: 100%;
     margin-bottom: 24px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-direction: column;
     width: 100%;
     margin-bottom: 24px;
@@ -354,11 +354,11 @@ const Input = styled.input`
   &:hover {
     border: 2px solid var(--grey-500);
   }
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     width: 100%;
     max-width: 525px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     width: 100%;
     max-width: calc(100% - 32px);
   }
@@ -381,11 +381,11 @@ const Button = styled.button`
   &:hover {
     opacity: 0.5;
   }
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     width: 100%;
     max-width: 103px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     width: 100%;
     max-width: calc(100% - 32px);
   }
@@ -395,7 +395,7 @@ const LinksFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-basis: 75%;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     flex-direction: column;
     gap: 12px;
     margin-bottom: 12px;
@@ -406,19 +406,19 @@ const CopyrightRow = styled(Row)`
   margin-top: 365px;
   display: flex;
   justify-content: space-between;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-left: 16px;
     padding-right: 0px;
     width: calc(100% - 48px);
     margin-left: auto;
     margin-right: auto;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin-top: 85px;
     margin-left: 16px;
     margin-right: 0;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -448,7 +448,7 @@ const SocialLinks = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     gap: 16px;
     a {
       height: 24px;

@@ -1,9 +1,9 @@
+import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
+import { githubLight } from "@codesandbox/sandpack-themes";
+import { mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
-import { SandpackProvider, SandpackLayout, SandpackCodeViewer } from "@codesandbox/sandpack-react";
-import { githubLight } from "@codesandbox/sandpack-themes";
-import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
-import { QUERIES } from "constants/breakpoints";
 
 interface Props {
   title: string;
@@ -59,13 +59,13 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 112px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     flex-direction: column-reverse;
     gap: 40px;
     padding-left: 32px;
     padding-right: 32px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -105,7 +105,7 @@ const CodeColumn = styled.div`
   margin-left: auto;
   flex-direction: column;
   margin-top: 8px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     max-width: 100%;
     margin-left: 0;
   }
@@ -121,7 +121,7 @@ const RemixRow = styled.div`
   color: var(--red);
   justify-content: center;
   gap: 20px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     justify-content: flex-start;
   }
 `;

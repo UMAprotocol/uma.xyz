@@ -1,15 +1,14 @@
-import { useRef, useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import { Wrapper as BaseWrapper, Title as BaseTitle } from "components/Widgets";
-import { useIntersectionObserver, useIsMounted } from "hooks";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
-import useTrackRefCrossed from "./useTrackRefCrossed";
-import Lottie from "react-lottie";
+import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
+import { large, largeAndUnder, medium, mediumAndUnder, tablet, tabletAndUnder } from "constant/breakpoints";
+import { useIntersectionObserver, useIsMounted, useWindowSize } from "hooks";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
+import { useEffect, useRef, useState } from "react";
+import Lottie from "react-lottie";
+import styled, { keyframes } from "styled-components";
+import useTrackRefCrossed from "./useTrackRefCrossed";
 
 interface Props {
   heightFromTop: number;
@@ -41,12 +40,12 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
         <HeaderWrapper show={showHeader} ref={isMounted ? headerWrapperRef : null}>
           <Title show={showHeader}>How it works</Title>
           <Header show={showHeader}>
-            {width > BREAKPOINTS.lg && (
+            {width > large && (
               <>
                 <div>The Optimistic Oracle</div> <div>verifies data in stages</div>
               </>
             )}
-            {width <= BREAKPOINTS.lg && width > BREAKPOINTS.tb && (
+            {width <= large && width > tablet && (
               <>
                 <div>The Optimistic</div> <div>Oracle verifies</div> <div>data in stages</div>
               </>
@@ -54,7 +53,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
           </Header>
         </HeaderWrapper>
         <IntersectionWrapper>
-          {width > BREAKPOINTS.lg && (
+          {width > large && (
             <TrackWrapper>
               <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
               <RedSeperator heightPercent={refOnePercentCrossed} />
@@ -82,7 +81,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackOne}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
+                  {width <= large && width > medium && (
                     <TrackWrapper>
                       <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
                       <RedSeperator heightPercent={refOnePercentCrossed} />
@@ -118,7 +117,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackTwo}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
+                  {width <= large && width > medium && (
                     <TrackWrapper>
                       <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
                       <RedSeperator heightPercent={refTwoPercentCrossed} />
@@ -155,7 +154,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackThree}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
+                  {width <= large && width > medium && (
                     <TrackWrapper>
                       <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
                       <RedSeperator heightPercent={refThreePercentCrossed} />
@@ -193,7 +192,7 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackFour}>
                 <TrackAndIllustrationRow>
-                  {width <= BREAKPOINTS.lg && width > BREAKPOINTS.md && (
+                  {width <= large && width > medium && (
                     <TrackWrapper>
                       <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
                       <RedSeperator heightPercent={refFourPercentCrossed} />
@@ -248,7 +247,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneOne, setStartSceneOne] = useState(false);
@@ -274,7 +273,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneTwo, setStartSceneTwo] = useState(false);
@@ -299,7 +298,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackThree = useRef<HTMLDivElement | null>(null);
   const entryTrackThree = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneThree, setStartSceneThree] = useState(false);
@@ -329,7 +328,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackFour = useRef<HTMLDivElement | null>(null);
   const entryTrackFour = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > BREAKPOINTS.lg ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneFour, setStartSceneFour] = useState(false);
@@ -381,13 +380,13 @@ const Wrapper = styled(BaseWrapper)`
   padding-bottom: 426px;
   padding-left: 32px;
   padding-right: 32px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-bottom: 200px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     padding-bottom: 100px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -433,7 +432,7 @@ const Title = styled(BaseTitle)<IShowHeader>`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     margin: 0 16px;
   }
 `;
@@ -450,17 +449,17 @@ const Header = styled.div<IShowHeader>`
       margin-bottom: 24px;
     }
     &:nth-of-type(2) {
-      @media ${QUERIES.lg.andDown} {
+      @media ${largeAndUnder} {
         margin-bottom: 24px;
       }
     }
   }
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     max-width: 720px;
     margin-left: 16px;
     margin-right: 16px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font: var(--header-sm);
   }
 `;
@@ -468,7 +467,7 @@ const Header = styled.div<IShowHeader>`
 const AnimationWrapper = styled.div`
   position: relative;
   margin: 392px 0 0;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     margin-top: 96px;
     margin-left: 16px;
     margin-right: 16px;
@@ -478,11 +477,11 @@ const AnimationWrapper = styled.div`
 const TopWrapper = styled(AnimationWrapper)`
   margin-bottom: 270px;
   margin-top: 0;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     margin-top: 128px;
     margin-bottom: 0;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     margin-top: 24px;
   }
 `;
@@ -491,13 +490,13 @@ const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     flex-direction: column;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     gap: 58px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-direction: column-reverse;
   }
 `;
@@ -506,10 +505,10 @@ const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     max-width: 100%;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
   }
 `;
 
@@ -517,7 +516,7 @@ const AnimationHeader = styled.div`
   color: var(--red);
   font: var(--body-sm);
   text-transform: uppercase;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     margin: 0 16px;
   }
 `;
@@ -529,12 +528,12 @@ const AnimationBody = styled.div`
   max-width: 465px;
   letter-spacing: -0.01em;
 
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     max-width: 640px;
     margin-left: 16px;
     margin-right: 16px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font: var(--header-xs);
     max-width: 100%;
   }
@@ -545,12 +544,12 @@ const AnimationSubBody = styled.div`
   color: var(--grey-100);
   font: var(--body-lg);
   max-width: 367px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     max-width: 640px;
     margin-left: 16px;
     margin-right: 16px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font: var(--body-sm);
     max-width: 100%;
   }
@@ -567,7 +566,7 @@ const IllustrationColumn = styled.div`
 const IntersectionWrapper = styled.div`
   position: relative;
   padding-top: 231px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-top: 0;
   }
 `;
@@ -582,7 +581,7 @@ const TrackWrapper = styled.div`
   left: -100px;
   height: 120%;
   z-index: 0;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     position: relative;
     top: 0;
     left: 0;
@@ -590,7 +589,7 @@ const TrackWrapper = styled.div`
     height: inherit;
     margin-top: 0;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     height: inherit;
     margin-top: 0px;
     margin-left: 0;
@@ -635,7 +634,7 @@ const Seperator = styled.div<ISeperator>`
     const maxHeight = additionalMaxHeight ? SEPERATOR_HEIGHT + additionalMaxHeight : SEPERATOR_HEIGHT;
     return `${maxHeight * (heightPercent / 100)}px`;
   }};
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     height: ${({ heightPercent }) => heightPercent}%;
   }
 `;
@@ -650,7 +649,7 @@ const TrackAndIllustrationRow = styled.div`
   gap: 24px;
   width: 100%;
   justify-content: space-between;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     gap: 48px;
   }
 `;
@@ -663,12 +662,12 @@ const IllustrationWrapper = styled.div`
   top: 0;
   border: 1px solid var(--grey-700);
 
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     position: relative;
     width: 70%;
     height: inherit;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     width: 100%;
   }
 `;

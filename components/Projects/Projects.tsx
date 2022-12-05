@@ -1,5 +1,13 @@
 import { Wrapper as BaseWrapper } from "components/Widgets";
-import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
+import {
+  extraSmallAndUnder,
+  large,
+  largeAndUnder,
+  medium,
+  mediumAndUnder,
+  smallAndUnder,
+  tabletAndUnder,
+} from "constant";
 import { useWindowSize } from "hooks";
 import AcrossLogo from "public/assets/across.svg";
 import BobaLogo from "public/assets/boba.svg";
@@ -21,7 +29,7 @@ const Projects = () => {
       <Wrapper>
         <ProjectsRow>
           <ProjectsColumn>
-            {width > BREAKPOINTS.md ? (
+            {width > medium ? (
               <BigProjects>
                 <BigProject>
                   <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
@@ -44,12 +52,12 @@ const Projects = () => {
               </BigProjects>
             ) : null}
             <SmallProjects>
-              {width > BREAKPOINTS.md
+              {width > medium
                 ? smallProjects.map(({ name, link, Logo }, index) => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          {width > BREAKPOINTS.lg ? <UpRightArrowWhite /> : <SmArrow />}
+                          {width > large ? <UpRightArrowWhite /> : <SmArrow />}
                         </SmallLinkButton>
                         <SmallImageWrapper>
                           <Logo />
@@ -61,7 +69,7 @@ const Projects = () => {
                 : null}
             </SmallProjects>
           </ProjectsColumn>
-          {width <= BREAKPOINTS.md ? (
+          {width <= medium ? (
             <MobileProjects>
               {mobileSmallProjects.map(({ name, link, Logo }, index) => {
                 return (
@@ -77,7 +85,7 @@ const Projects = () => {
           ) : null}
           <ProjectsBlurb>
             <ProjectsBlurbHeader>Projects built with the OO</ProjectsBlurbHeader>
-            <ProjectsBlurbSubheader>UMA’s oracle serves diverse use cases</ProjectsBlurbSubheader>
+            <ProjectsBlurbSubheader>UMA&apos;s oracle serves diverse use cases</ProjectsBlurbSubheader>
             <ProjectLinkWrapper>
               <ProjectLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
                 All Projects
@@ -168,30 +176,30 @@ const ProjectsRow = styled.div`
   gap: 24px;
   margin-left: 16px;
   margin-right: 16px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     margin: 0;
     padding-left: 24px;
     padding-right: 24px;
     gap: 100px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     gap: 96px;
   }
   @media screen and (max-width: 780px) {
     gap: 40px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-direction: column-reverse;
   }
 `;
 
 const ProjectsColumn = styled.div`
   max-width: 560px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     max-width: 438px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     max-width: 100%;
   }
 `;
@@ -200,7 +208,7 @@ const BigProjects = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  @media ${QUERIES.sm.andDown} {
+  @media ${smallAndUnder} {
     flex-direction: column;
   }
 `;
@@ -224,15 +232,15 @@ const BigProject = styled.div`
   height: 280px;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 218px;
     height: 218px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-grow: 0;
     width: 50%;
   }
-  @media ${QUERIES.sm.andDown} {
+  @media ${smallAndUnder} {
     flex-direction: column;
     width: 100%;
   }
@@ -313,10 +321,10 @@ const SmallProjects = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     max-width: 560px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     max-width: 100%;
     width: 100%;
     padding: 0;
@@ -328,11 +336,11 @@ const SmallImageWrapper = styled.div`
   width: 60px;
   height: 60px;
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     height: 30px;
     width: 40px;
   }
-  @media ${QUERIES.sm.andDown} {
+  @media ${smallAndUnder} {
     max-width: 60.37px;
     max-height: 30.31px;
   }
@@ -371,12 +379,12 @@ const SmallProject = styled.div`
     pointer-events: none;
     cursor: default;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     max-width: 145.48px;
     max-height: 145.48px;
     width: 33%;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex: 1 0 auto;
     height: auto;
     max-width: none;
@@ -419,7 +427,7 @@ const SmallProject = styled.div`
 const SmallProjectText = styled(BigProjectText)`
   font-size: 14px;
   bottom: 40px;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     margin-top: 8px;
     font-size: 12px;
   }
@@ -430,7 +438,7 @@ const SmallLinkButton = styled(LinkButton)`
   right: 16px;
   width: 32px;
   height: 32px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 26px;
     height: 26px;
     top: 12px;
@@ -442,7 +450,7 @@ const ProjectsBlurb = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     justify-content: flex-start;
     align-items: flex-start;
     max-width: 362px;
@@ -455,7 +463,7 @@ const ProjectsBlurbHeader = styled.h2`
 
   color: var(--grey-200);
   max-width: 366px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     max-width: 100%;
   }
@@ -474,7 +482,7 @@ const ProjectsBlurbSubheader = styled.h3`
   border-bottom: 1px solid var(--grey-700);
   text-align: left;
   align-self: flex-start;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     max-width: 100%;
     font: var(--body-md);
@@ -494,7 +502,7 @@ const ProjectLinkWrapper = styled.div`
   cursor: default;
   align-self: flex-start;
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     justify-content: flex-start;
     margin-bottom: 44px;
     font: var(--body-md);
@@ -563,7 +571,7 @@ const MobileImageText = styled.h3`
   text-align: center;
   margin: -10px;
   color: var(--grey-200);
-  @media ${QUERIES.xs.andDown} {
+  @media ${extraSmallAndUnder} {
     font: var(--body-xs);
   }
 `;

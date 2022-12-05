@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { Title as BaseTitle, Header as BaseHeader } from "components/Widgets";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize, useIntersectionObserver } from "hooks";
-import Lottie from "react-lottie";
+import { Header as BaseHeader, Title as BaseTitle } from "components/Widgets";
+import { largeAndUnder, medium, mediumAndUnder, tablet, tabletAndOver, tabletAndUnder } from "constant";
+import { useIntersectionObserver, useWindowSize } from "hooks";
 import earn from "public/assets/lottie/earn.json";
-import vote from "public/assets/lottie/vote.json";
 import stake from "public/assets/lottie/stake.json";
+import vote from "public/assets/lottie/vote.json";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
+import Lottie from "react-lottie";
 
 interface Props {
   apy: string;
@@ -34,7 +34,7 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
 
   return (
     <Section ref={sectionRef} id="voter">
-      {width <= BREAKPOINTS.tb && (
+      {width <= tablet && (
         <MobileVoterRow isIntersecting={isIntersectingSection}>
           <MobileVoterAppLinkBlock>
             <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
@@ -52,7 +52,7 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
         </Title>
         <HeaderWrapper>
           <Header>
-            Stake, vote &amp; earn {width >= BREAKPOINTS.tb ? <br /> : null} up to {apy || DEFAULT_APY}% APY
+            Stake, vote &amp; earn {width >= tablet ? <br /> : null} up to {apy || DEFAULT_APY}% APY
           </Header>
         </HeaderWrapper>
 
@@ -149,7 +149,7 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
           </ImageBlockWrapper>
         </ImageBlockRow>
         <Divider />
-        {width > BREAKPOINTS.tb ? (
+        {width > tablet ? (
           <VoterAppLinkRow>
             <VoterAppLinkBlock>
               <VoterAppLink href="https://vote.umaproject.org" target="_blank" rel="noreferrer">
@@ -224,12 +224,12 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 85px;
   padding-bottom: 130px;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-bottom: 64px;
     padding-left: 24px;
     padding-right: 24px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -239,7 +239,7 @@ const Header = styled(BaseHeader)`
   margin-top: 65px;
   max-width: 921px;
   margin-bottom: 128px;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     margin: 0 16px;
     max-width: 100%;
     font: var(--header-sm);
@@ -247,7 +247,7 @@ const Header = styled(BaseHeader)`
 `;
 
 const Title = styled(BaseTitle)`
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -255,7 +255,7 @@ const Title = styled(BaseTitle)`
 
 const HeaderWrapper = styled.div`
   position: relative;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -274,13 +274,13 @@ const ImageBlockRow = styled.div`
   svg {
     fill: var(--white);
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     flex-direction: column;
     align-self: center;
     width: 100%;
     height: 100%;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     flex-direction: column;
     align-self: center;
     width: 100%;
@@ -296,20 +296,20 @@ interface ScrollProps {
 const ImageBlockWrapper = styled.div<ScrollProps>`
   flex-basis: 33%;
   background: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--white)";
+    if (width <= tablet && isIntersecting) return "var(--white)";
     return "var(--grey-800)";
   }};
   border: 1px solid transparent;
   border-color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && width > BREAKPOINTS.md && isIntersecting) return "var(--grey-600)";
+    if (width <= tablet && width > medium && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   border-top-color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && width > BREAKPOINTS.md && isIntersecting) return "var(--grey-600)";
+    if (width <= tablet && width > medium && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   border-bottom-color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--grey-600)";
+    if (width <= tablet && isIntersecting) return "var(--grey-600)";
     return "transparent";
   }};
   display: flex;
@@ -327,7 +327,7 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     }
   }
   &:hover {
-    @media ${QUERIES.tb.andUp} {
+    @media ${tabletAndOver} {
       margin-top: -36px;
       background-color: var(--white);
       border: 1px solid var(--grey-600);
@@ -340,31 +340,31 @@ const ImageBlockWrapper = styled.div<ScrollProps>`
     }
     img {
       filter: ${({ width }) => {
-        if (width > BREAKPOINTS.tb)
+        if (width > tablet)
           return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
         return "none";
       }};
     }
     h3 {
-      @media ${QUERIES.tb.andUp} {
+      @media ${tabletAndOver} {
         color: var(--red);
         margin-top: 48px;
       }
     }
     h4 {
-      @media ${QUERIES.tb.andUp} {
+      @media ${tabletAndOver} {
         padding-bottom: 20px;
       }
     }
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     padding: 40px;
     margin: 0 auto;
     max-height: 196px;
     gap: 48px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     width: 100%;
     padding: 24px;
     max-height: 196px;
@@ -379,13 +379,13 @@ const ImageBlock = styled.div`
   top: 0;
   align-self: stretch;
 
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     display: inline-flex;
     gap: 48px;
     padding: 0;
     width: 100%;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     border-right: 0;
     border-left: 0;
     gap: 32px;
@@ -396,7 +396,7 @@ const ImageTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     max-width: 400px;
     width: 100%;
   }
@@ -404,7 +404,7 @@ const ImageTextWrapper = styled.div`
 
 const ImageTitle = styled.h3<ScrollProps>`
   color: ${({ width, isIntersecting }) => {
-    if (width <= BREAKPOINTS.tb && isIntersecting) return "var(--red)";
+    if (width <= tablet && isIntersecting) return "var(--red)";
     return "var(--grey-200)";
   }};
   font: var(--header-md);
@@ -413,7 +413,7 @@ const ImageTitle = styled.h3<ScrollProps>`
   transition: all 0.2s ease-in-out;
   position: relative;
   top: 0;
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     font: var(--header-sm);
     margin-top: 24px;
   }
@@ -425,7 +425,7 @@ const ImageText = styled.h4`
   transition: all 0.2s ease-in-out;
   position: relative;
   top: 0;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font: var(--body-sm);
     max-width: 675px;
   }
@@ -437,7 +437,7 @@ const ImageWrapper = styled.div<ScrollProps>`
   img {
     filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
     filter: ${({ width, isIntersecting }) => {
-      if (width <= BREAKPOINTS.tb && isIntersecting)
+      if (width <= tablet && isIntersecting)
         return "invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%)";
       return "none";
     }};
@@ -445,14 +445,14 @@ const ImageWrapper = styled.div<ScrollProps>`
   > div {
     cursor: default;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     flex: 1 1 96px;
     align-items: center;
     align-self: center;
     max-width: 92px;
     max-height: 96px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     align-items: center;
     align-self: center;
     max-width: 64px;
@@ -464,10 +464,10 @@ const VoterAppLinkRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     justify-content: center;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     margin-top: 24px;
   }
 `;

@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import Logo from "public/assets/uma-white-logo.svg";
-import BlackLogo from "public/assets/uma-black-logo.svg";
+import { largeAndUnder } from "constant";
 import Link from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import { QUERIES } from "constants/breakpoints";
+import BlackLogo from "public/assets/uma-black-logo.svg";
+import Logo from "public/assets/uma-white-logo.svg";
+import styled from "styled-components";
 
 interface Props {
   activeLink: number;
@@ -101,7 +101,7 @@ const Wrapper = styled.div<IWrapper>`
     return isLightTheme ? "var(--grey-900)" : "var(--grey-200)";
   }};
   transition: all 0.2s ease-in-out;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     width: calc(100% - 64px);
   }
 `;
