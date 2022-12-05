@@ -7,6 +7,7 @@ import ScaleIcon from "public/assets/scale.svg";
 import TelescopeIcon from "public/assets/telescope.svg";
 import TubeIcon from "public/assets/tube.svg";
 import WandIcon from "public/assets/wand.svg";
+import OoIcon from "public/assets/oo-log.svg";
 import { useRef } from "react";
 import styled from "styled-components";
 import BuilderTabContent from "./BuilderTabContent";
@@ -30,7 +31,7 @@ const Builder = () => {
             <BottomHeader>
               the
               <span>
-                <img src="/assets/oo-logo.svg" alt="oo-logo" />
+                <OoIcon />
               </span>
               as your backbone
             </BottomHeader>
