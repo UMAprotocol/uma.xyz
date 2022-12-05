@@ -35,8 +35,8 @@ const Hero = () => {
           <span>machine</span>
         </Title>
         <Subheader show={showText}>
-          UMA’s optimistic oracle (OO) can record any {width >= medium ? <br /> : null} verifiable truth or data onto a
-          blockchain.
+          UMA&apos;s optimistic oracle (OO) can record any {width >= medium ? <br /> : null} verifiable truth or data
+          onto a blockchain.
         </Subheader>
         <ArrowButton href="#howItWorks" show={showButton}>
           <DownArrow />

@@ -82,7 +82,7 @@ const VoteParticipation: React.FC<Props> = ({ apy }) => {
                 <ImageTitle width={width} isIntersecting={isIntersectingStake}>
                   Stake
                 </ImageTitle>
-                <ImageText>Stake your $UMA to help secure UMA’s Optimistic Oracle. </ImageText>
+                <ImageText>Stake your $UMA to help secure UMA&apos;s Optimistic Oracle. </ImageText>
               </ImageTextWrapper>
             </ImageBlock>
           </ImageBlockWrapper>

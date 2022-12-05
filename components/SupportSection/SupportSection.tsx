@@ -15,8 +15,8 @@ const SupportSection = () => {
         <TextColumn>
           <Title>Supported by the Risk Labs Foundation</Title>
           <Subtitle>
-            Risk Labs is the foundation and team behind UMA. Risk Labs’ mission is to make global markets universally
-            fair, accessible, secure and decentralized.
+            Risk Labs is the foundation and team behind UMA. Risk Labs&apos; mission is to make global markets
+            universally fair, accessible, secure and decentralized.
           </Subtitle>
         </TextColumn>
         <ButtonColumn>

@@ -3,11 +3,11 @@ import { Header as BaseHeader, Title as BaseTitle, Wrapper as BaseWrapper } from
 import { large, largeAndUnder, mediumAndUnder, smallAndUnder, tabletAndUnder } from "constant";
 import { useIntersectionObserver, useWindowSize } from "hooks";
 import GlobeIcon from "public/assets/globe.svg";
+import OoIcon from "public/assets/oo-logo.svg";
 import ScaleIcon from "public/assets/scale.svg";
 import TelescopeIcon from "public/assets/telescope.svg";
 import TubeIcon from "public/assets/tube.svg";
 import WandIcon from "public/assets/wand.svg";
-import OoIcon from "public/assets/oo-log.svg";
 import { useRef } from "react";
 import styled from "styled-components";
 import BuilderTabContent from "./BuilderTabContent";
@@ -123,9 +123,9 @@ const Builder = () => {
                     title="Long-Tail data"
                     body={
                       <>
-                        If a piece of information is publicly provable, then UMA’s OO can verify it and put it on-chain.{" "}
-                        <br /> <br /> The OO accepts natural language questions as an input, and does not require first
-                        building pricefeeds.
+                        If a piece of information is publicly provable, then UMA&apos;s OO can verify it and put it
+                        on-chain. <br /> <br /> The OO accepts natural language questions as an input, and does not
+                        require first building pricefeeds.
                       </>
                     }
                     greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
@@ -223,9 +223,9 @@ const Builder = () => {
                   title="Long-Tail data"
                   body={
                     <>
-                      If a piece of information is publicly provable, then UMA’s OO can verify it and put it on-chain.{" "}
-                      <br /> <br /> The OO accepts natural language questions as an input, and does not require first
-                      building pricefeeds.
+                      If a piece of information is publicly provable, then UMA&apos;s OO can verify it and put it
+                      on-chain. <br /> <br /> The OO accepts natural language questions as an input, and does not
+                      require first building pricefeeds.
                     </>
                   }
                   greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
