@@ -14,11 +14,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 export function Home() {
-  const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
-  const howItWorksRef = useRef<HTMLDivElement | null>(null);
-  const heroRef = useRef<HTMLDivElement | null>(null);
-  const voteParticipationRef = useRef<HTMLDivElement | null>(null);
-  const builderRef = useRef<HTMLDivElement | null>(null);
+  const headerThemeChangeRef = useRef<HTMLDivElement>(null);
+  const howItWorksRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const voteParticipationRef = useRef<HTMLDivElement>(null);
+  const builderRef = useRef<HTMLDivElement>(null);
   const eHotItWorks = useIntersectionObserver(howItWorksRef, {
     threshold: 0.27,
   });
