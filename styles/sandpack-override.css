@@ -1,0 +1,50 @@
+.cm-gutter.cm-lineNumbers {
+  height: 22px;
+  width: 48px;
+  text-align: right;
+  font: var(--body-sm) !important;
+  color: var(--grey-910);
+  margin-bottom: 2px;
+}
+.cm-content.cm-readonly .cm-line span {
+  font: var(--body-sm);
+}
+.sp-tab-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: relative;
+}
+.sp-tab-button:after {
+  position: absolute;
+  visibility: visible;
+  content: url("../public/assets/dots.png");
+  width: 30px;
+  font: var(--body-sm);
+  color: var(--grey-910);
+}
+.sp-layout:after {
+  display: block;
+  border-radius: 8px;
+  width: 100%;
+  background-image: url("../public/assets/lines-editor.svg");
+  display: inline-flex;
+  content: ' ';
+  background-size: 20px auto;
+  height: 8px;
+}
+.sp-layout.custom-layout {
+  border-color: var(--grey-500) !important;
+  border-radius: 8px;
+}
+.sp-layout.custom-layout .sp-stack {
+  height: 347px !important;
+}
+.sp-layout.custom-layout .sp-stack .sp-tabs {
+  border-bottom: 1px solid var(--grey-500) !important;
+}
+.sp-layout.custom-layout .cm-editor {
+  border-bottom: 1px solid var(--grey-500) !important;
+}
+.sp-layout.custom-layout .sp-tabs-scrollable-container {
+  min-height: 44px;
+}

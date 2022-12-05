@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/react/types";
-import path from "path";
 
 const config: StorybookConfig = {
   stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -28,34 +27,10 @@ const config: StorybookConfig = {
     }
 
     // configure .svg files to be loaded with @svgr/webpack
-    config?.module?.rules?.push(
-      {
-        test: /\.svg$/,
-        use: ["@svgr/webpack"],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          // Translates CSS into CommonJS
-          "css-loader",
-          {
-            // Compiles Sass to CSS
-            loader: "sass-loader",
-            options: {
-              data: `@import "./assets/scss/app.scss";`,
-              includePaths: [__dirname, "./assets/**/*"],
-            },
-          },
-        ],
-        resolve: {
-          alias: {
-            "@": path.resolve(__dirname, "assets"),
-            "~": path.resolve(__dirname, "assets"),
-          },
-        },
-      }
-    );
+    config?.module?.rules?.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
 
     return config;
   },
