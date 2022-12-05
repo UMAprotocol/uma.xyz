@@ -4,7 +4,7 @@ export { Home } from "./pages/Home/Home";
 export { Header } from "./Header/Header";
 export { default as Footer } from "./Footer";
 export { default as VoteParticipation } from "./VoteParticipation";
-export { default as Hero } from "./Hero";
+export { Hero } from "./Hero/Hero";
 export { default as Projects } from "./Projects";
 export { default as Builder } from "./Builder";
 export { default as Tabs } from "./Tabs";

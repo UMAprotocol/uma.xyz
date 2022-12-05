@@ -143,7 +143,7 @@ const socialLinks = [
 const middleLinks = [
   {
     label: "How it works",
-    href: "#howItWorks",
+    href: "#how-it-works",
   },
   {
     label: "For voters",

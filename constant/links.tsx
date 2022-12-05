@@ -8,7 +8,7 @@ import Twitter from "public/assets/twitter.svg";
 export const links = [
   {
     label: "How it works",
-    href: "#howItWorks",
+    href: "#how-it-works",
   },
   {
     label: "For Voters",
