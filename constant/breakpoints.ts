@@ -14,11 +14,11 @@ function makeBreakpoint(width: number, isAndOver = false) {
 export const extraSmallAndUnder = makeBreakpoint(extraSmall);
 export const smallAndUnder = makeBreakpoint(small);
 export const mediumAndUnder = makeBreakpoint(medium);
-export const largeAndUnder = makeBreakpoint(large);
 export const tabletAndUnder = makeBreakpoint(tablet);
+export const largeAndUnder = makeBreakpoint(large);
 
 export const extraSmallAndOver = makeBreakpoint(extraSmall, true);
 export const smallAndOver = makeBreakpoint(small, true);
 export const mediumAndOver = makeBreakpoint(medium, true);
-export const largeAndOver = makeBreakpoint(large, true);
 export const tabletAndOver = makeBreakpoint(tablet, true);
+export const largeAndOver = makeBreakpoint(large, true);
