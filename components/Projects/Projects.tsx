@@ -1,19 +1,18 @@
-import styled, { keyframes } from "styled-components";
-import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
+import { Wrapper as BaseWrapper } from "components/Widgets";
+import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
+import { useWindowSize } from "hooks";
 import AcrossLogo from "public/assets/across.svg";
-import OutcomeLogo from "public/assets/outcome.svg";
-import PolymarketLogo from "public/assets/polymarket.svg";
 import BobaLogo from "public/assets/boba.svg";
-import ShapeshiftLogo from "public/assets/shapeshift.svg";
 import CozyLogo from "public/assets/cozy.svg";
 import JarvisLogo from "public/assets/jarvis.svg";
+import OutcomeLogo from "public/assets/outcome.svg";
+import PolymarketLogo from "public/assets/polymarket.svg";
+import ShapeshiftLogo from "public/assets/shapeshift.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
-import { Wrapper as BaseWrapper } from "components/Widgets";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
-import { useWindowSize } from "hooks";
-import Image from "next/image";
 import SmArrow from "public/assets/sm-arrow.svg";
+import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
+import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
+import styled, { keyframes } from "styled-components";
 
 const Projects = () => {
   const { width } = useProjects();
@@ -46,21 +45,14 @@ const Projects = () => {
             ) : null}
             <SmallProjects>
               {width > BREAKPOINTS.md
-                ? smallProjects.map(({ name, link, src }, index) => {
+                ? smallProjects.map(({ name, link, Logo }, index) => {
                     return (
                       <SmallProject key={index}>
                         <SmallLinkButton href={link} target="_blank" rel="noreferrer">
                           {width > BREAKPOINTS.lg ? <UpRightArrowWhite /> : <SmArrow />}
                         </SmallLinkButton>
                         <SmallImageWrapper>
-                          <Image
-                            width="100%"
-                            height="100%"
-                            layout="responsive"
-                            objectFit="contain"
-                            src={src}
-                            alt="logo"
-                          />
+                          <Logo />
                         </SmallImageWrapper>
                         <SmallProjectText>{name}</SmallProjectText>
                       </SmallProject>
@@ -71,11 +63,11 @@ const Projects = () => {
           </ProjectsColumn>
           {width <= BREAKPOINTS.md ? (
             <MobileProjects>
-              {mobileSmallProjects.map(({ name, link, src }, index) => {
+              {mobileSmallProjects.map(({ name, link, Logo }, index) => {
                 return (
                   <MobileContainer href={link} key={index} target="_blank" rel="noreferrer">
                     <MobileImageWrapper>
-                      <Image width="33px" height="33px" objectFit="contain" src={src} alt="logo" />
+                      <Logo />
                     </MobileImageWrapper>
                     <MobileImageText>{name}</MobileImageText>
                   </MobileContainer>
@@ -112,37 +104,31 @@ const smallProjects = [
   {
     name: "Polymarket",
     Logo: PolymarketLogo,
-    src: "/assets/polymarket.svg",
     link: "https://polymarket.com",
   },
   {
     name: "Boba",
     Logo: BobaLogo,
-    src: "/assets/boba.svg",
     link: "https://boba.network",
   },
   {
     name: "Shapeshift",
     Logo: ShapeshiftLogo,
-    src: "/assets/shapeshift.svg",
     link: "https://shapeshift.com",
   },
   {
     name: "Cozy",
     Logo: CozyLogo,
-    src: "/assets/cozy.svg",
     link: "https://www.cozy.finance",
   },
   {
     name: "Jarvis",
     Logo: JarvisLogo,
-    src: "/assets/jarvis.svg",
     link: "https://jarvis.network",
   },
   {
     name: "Sherlock",
     Logo: SherlockLogo,
-    src: "/assets/sherlock.svg",
     link: "https://www.sherlock.xyz",
   },
 ];
@@ -150,18 +136,17 @@ const smallProjects = [
 const mobileSmallProjects = [
   {
     name: "Across",
-    src: "/assets/across.svg",
+    Logo: AcrossLogo,
     link: "https://across.to",
   },
   {
     name: "Outcome",
-    src: "/assets/outcome.svg",
+    Logo: OutcomeLogo,
     link: "https://outcome.finance",
   },
   {
     name: "Sherlock",
     Logo: SherlockLogo,
-    src: "/assets/sherlock.svg",
     link: "https://www.sherlock.xyz",
   },
   ...smallProjects,
