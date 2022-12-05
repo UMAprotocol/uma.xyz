@@ -67,10 +67,7 @@ export function Home() {
         </div>
         <div ref={headerThemeChangeRef}>
           <div ref={howItWorksRef}>
-            <HowItWorks
-              currentPosition={cp}
-              heightFromTop={heroRef.current ? heroRef.current.getBoundingClientRect().height : 0}
-            />
+            <HowItWorks currentPosition={cp} />
           </div>
           <div ref={voteParticipationRef}>
             <VoteParticipation apy={data ? data.apy : ""} />

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 // This hook tracks the percentage of the element that has been scrolled past
 // For the Tracker in HowItWorks
-export default function useTrackRefCrossed(
+export function useTrackRefCrossed(
   trackRef: React.MutableRefObject<HTMLDivElement | null>,
   observerTrack: IntersectionObserverEntry | undefined,
   offset: number,

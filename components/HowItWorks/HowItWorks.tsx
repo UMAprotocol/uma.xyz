@@ -1,24 +1,20 @@
 import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { large, largeAndUnder, medium, mediumAndUnder, tablet, tabletAndUnder } from "constant/breakpoints";
-import { useIntersectionObserver, useIsMounted, useWindowSize } from "hooks";
+import { grey500, grey800, large, largeAndUnder, mediumAndUnder, red, tabletAndUnder, white } from "constant";
+import { useIntersectionObserver, useIsMounted, useTrackRefCrossed, useWindowSize } from "hooks";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
 import { useEffect, useRef, useState } from "react";
 import Lottie from "react-lottie";
-import styled, { keyframes } from "styled-components";
-import useTrackRefCrossed from "./useTrackRefCrossed";
+import styled, { CSSProperties } from "styled-components";
 
 interface Props {
-  heightFromTop: number;
   currentPosition: number;
 }
-const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
+export function HowItWorks({ currentPosition }: Props) {
   const {
     sectionRef,
-    isMounted,
-    width,
     showHeader,
     headerWrapperRef,
     refTrackOne,
@@ -34,41 +30,58 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
     startSceneThree,
     startSceneFour,
   } = useHowItWorks(currentPosition);
+
+  function makeTrackStyle(percentCrossed: number) {
+    const isIntersecting = percentCrossed > 0;
+
+    return {
+      "--border-color": isIntersecting ? "transparent" : grey500,
+      "--background": isIntersecting ? red : grey800,
+      "--color": isIntersecting ? white : grey500,
+    } as CSSProperties;
+  }
+
+  function makeSeparatorStyle(heightPercent: number, additionalMaxHeight = 0) {
+    // todo: magic number
+    const separatorHeight = 680;
+    const height = separatorHeight + additionalMaxHeight;
+
+    return {
+      "--height": `${(heightPercent / 100) * height}px`,
+      "--height-percent": `${heightPercent}%`,
+    } as CSSProperties;
+  }
+
   return (
-    <Section id="howItWorks" ref={isMounted ? sectionRef : null}>
+    <Section
+      id="how-it-works"
+      ref={sectionRef}
+      style={
+        {
+          "--visibility": showHeader ? "visible" : "hidden",
+        } as CSSProperties
+      }
+    >
       <Wrapper>
-        <HeaderWrapper show={showHeader} ref={isMounted ? headerWrapperRef : null}>
-          <Title show={showHeader}>How it works</Title>
-          <Header show={showHeader}>
-            {width > large && (
-              <>
-                <div>The Optimistic Oracle</div> <div>verifies data in stages</div>
-              </>
-            )}
-            {width <= large && width > tablet && (
-              <>
-                <div>The Optimistic</div> <div>Oracle verifies</div> <div>data in stages</div>
-              </>
-            )}
-          </Header>
+        <HeaderWrapper ref={headerWrapperRef}>
+          <Title>How it works</Title>
+          <Header>The Optimistic Oracle verifies data in stages</Header>
         </HeaderWrapper>
         <IntersectionWrapper>
-          {width > large && (
-            <TrackWrapper>
-              <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
-              <RedSeperator heightPercent={refOnePercentCrossed} />
-              <Seperator heightPercent={100 - refOnePercentCrossed} />
-              <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
-              <RedSeperator additionalMaxHeight={-36} heightPercent={refTwoPercentCrossed} />
-              <Seperator additionalMaxHeight={-36} heightPercent={100 - refTwoPercentCrossed} />
-              <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
-              <RedSeperator additionalMaxHeight={124} heightPercent={refThreePercentCrossed} />
-              <Seperator additionalMaxHeight={124} heightPercent={100 - refThreePercentCrossed} />
-              <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
-              <RedSeperator additionalMaxHeight={-50} heightPercent={refFourPercentCrossed} />
-              <Seperator additionalMaxHeight={-50} heightPercent={100 - refFourPercentCrossed} />
-            </TrackWrapper>
-          )}
+          <TrackWrapper>
+            <TrackItem style={makeTrackStyle(refOnePercentCrossed)}>01</TrackItem>
+            <RedSeparator style={makeSeparatorStyle(refOnePercentCrossed)} />
+            <Separator style={makeSeparatorStyle(100 - refOnePercentCrossed)} />
+            <TrackItem style={makeTrackStyle(refTwoPercentCrossed)}>02</TrackItem>
+            <RedSeparator style={makeSeparatorStyle(refTwoPercentCrossed, -36)} />
+            <Separator style={makeSeparatorStyle(100 - refTwoPercentCrossed, -36)} />
+            <TrackItem style={makeTrackStyle(refThreePercentCrossed)}>03</TrackItem>
+            <RedSeparator style={makeSeparatorStyle(refThreePercentCrossed, 124)} />
+            <Separator style={makeSeparatorStyle(100 - refThreePercentCrossed, 124)} />
+            <TrackItem style={makeTrackStyle(refFourPercentCrossed)}>04</TrackItem>
+            <RedSeparator style={makeSeparatorStyle(refFourPercentCrossed, -50)} />
+            <Separator style={makeSeparatorStyle(100 - refFourPercentCrossed, -50)} />
+          </TrackWrapper>
           <TopWrapper>
             <AnimationRow>
               <AnimationTextBlock>
@@ -81,13 +94,11 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackOne}>
                 <TrackAndIllustrationRow>
-                  {width <= large && width > medium && (
-                    <TrackWrapper>
-                      <TrackItem tracked={refOnePercentCrossed > 0}>01</TrackItem>
-                      <RedSeperator heightPercent={refOnePercentCrossed} />
-                      <Seperator heightPercent={100 - refOnePercentCrossed} />
-                    </TrackWrapper>
-                  )}
+                  <TrackWrapper>
+                    <TrackItem style={makeTrackStyle(refOnePercentCrossed)}>01</TrackItem>
+                    <RedSeparator style={makeSeparatorStyle(refOnePercentCrossed)} />
+                    <Separator style={makeSeparatorStyle(100 - refOnePercentCrossed)} />
+                  </TrackWrapper>
                   <IllustrationWrapper>
                     <Lottie
                       isStopped={!startSceneOne}
@@ -117,13 +128,11 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackTwo}>
                 <TrackAndIllustrationRow>
-                  {width <= large && width > medium && (
-                    <TrackWrapper>
-                      <TrackItem tracked={refTwoPercentCrossed > 0}>02</TrackItem>
-                      <RedSeperator heightPercent={refTwoPercentCrossed} />
-                      <Seperator heightPercent={100 - refTwoPercentCrossed} />
-                    </TrackWrapper>
-                  )}
+                  <TrackWrapper>
+                    <TrackItem style={makeTrackStyle(refTwoPercentCrossed)}>02</TrackItem>
+                    <RedSeparator style={makeSeparatorStyle(refTwoPercentCrossed)} />
+                    <Separator style={makeSeparatorStyle(100 - refTwoPercentCrossed)} />
+                  </TrackWrapper>
                   <IllustrationWrapper>
                     <Lottie
                       isStopped={!startSceneTwo}
@@ -154,13 +163,11 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackThree}>
                 <TrackAndIllustrationRow>
-                  {width <= large && width > medium && (
-                    <TrackWrapper>
-                      <TrackItem tracked={refThreePercentCrossed > 0}>03</TrackItem>
-                      <RedSeperator heightPercent={refThreePercentCrossed} />
-                      <Seperator heightPercent={100 - refThreePercentCrossed} />
-                    </TrackWrapper>
-                  )}
+                  <TrackWrapper>
+                    <TrackItem style={makeTrackStyle(refThreePercentCrossed)}>03</TrackItem>
+                    <RedSeparator style={makeSeparatorStyle(refThreePercentCrossed)} />
+                    <Separator style={makeSeparatorStyle(100 - refThreePercentCrossed)} />
+                  </TrackWrapper>
                   <IllustrationWrapper>
                     <Lottie
                       isStopped={!startSceneThree}
@@ -192,13 +199,11 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
               </AnimationTextBlock>
               <IllustrationColumn ref={refTrackFour}>
                 <TrackAndIllustrationRow>
-                  {width <= large && width > medium && (
-                    <TrackWrapper>
-                      <TrackItem tracked={refFourPercentCrossed > 0}>04</TrackItem>
-                      <RedSeperator heightPercent={refFourPercentCrossed} />
-                      <Seperator heightPercent={100 - refFourPercentCrossed} />
-                    </TrackWrapper>
-                  )}
+                  <TrackWrapper>
+                    <TrackItem style={makeTrackStyle(refFourPercentCrossed)}>04</TrackItem>
+                    <RedSeparator style={makeSeparatorStyle(refFourPercentCrossed)} />
+                    <Separator style={makeSeparatorStyle(100 - refFourPercentCrossed)} />
+                  </TrackWrapper>
                   <IllustrationWrapper>
                     <Lottie
                       isStopped={!startSceneFour}
@@ -220,13 +225,12 @@ const HowItWorks: React.FC<Props> = ({ currentPosition }) => {
       </Wrapper>
     </Section>
   );
-};
-
-export default HowItWorks;
+}
 
 function useHowItWorks(currentPosition: number) {
   const isMounted = useIsMounted();
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { width } = useWindowSize();
 
   const headerWrapperRef = useRef<HTMLDivElement | null>(null);
   const headerWrapperEntry = useIntersectionObserver(headerWrapperRef, {
@@ -240,8 +244,6 @@ function useHowItWorks(currentPosition: number) {
       setShowHeader(true);
     }
   }, [hasEnteredSection]);
-
-  const { width } = useWindowSize();
 
   const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
   const refTrackOne = useRef<HTMLDivElement | null>(null);
@@ -352,7 +354,6 @@ function useHowItWorks(currentPosition: number) {
   return {
     sectionRef,
     isMounted: isMounted(),
-    width,
     refTrackOne,
     refTrackTwo,
     refTrackThree,
@@ -392,68 +393,23 @@ const Wrapper = styled(BaseWrapper)`
   }
 `;
 
-interface IShowHeader {
-  show: boolean;
-}
-const titleReveal = keyframes`
-  0% {opacity: 0; transform: translateY(-20px);}
-  100% {opacity: 1; transform: translateY(0px);}
-`;
+const HeaderWrapper = styled.div``;
 
-const topHeaderReveal = keyframes`
-  0% {opacity: 0; transform: rotate(2deg);}
-  50% {opacity:.5; transform: rotate(1deg);}
-  100% {opacity: 1; transform: rotate(0deg);}
-  `;
-
-const bottomHeaderReveal = keyframes`
-  0% {opacity: 0; transform: rotate(-2deg);}
-  50% {opacity: .5; transform: rotate(-1deg);}
-  100% {opacity: 1; transform: rotate(0deg);}
-`;
-
-const HeaderWrapper = styled.div<IShowHeader>`
-  &.fade-in {
-    div:first-of-type {
-      animation: ${titleReveal} 1.25s ease-in-out;
-    }
-    div:nth-of-type(2) {
-      div:first-of-type {
-        animation: ${topHeaderReveal} 1.25s linear;
-      }
-      div:nth-of-type(2),
-      div:nth-of-type(3) {
-        animation: ${bottomHeaderReveal} 1.25s linear;
-      }
-    }
-  }
-`;
-const Title = styled(BaseTitle)<IShowHeader>`
+const Title = styled(BaseTitle)`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
-  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+  visibility: var(--visibility);
   @media ${largeAndUnder} {
     margin: 0 16px;
   }
 `;
 
-const Header = styled.div<IShowHeader>`
+const Header = styled.div`
   padding-top: 48px;
   font: var(--header-lg);
   color: var(--grey-100);
+  // todo: magic number
   max-width: 1020px;
-  div {
-    visibility: ${(props) => (props.show ? "visible" : "hidden")};
-    opacity: 1;
-    &:first-of-type {
-      margin-bottom: 24px;
-    }
-    &:nth-of-type(2) {
-      @media ${largeAndUnder} {
-        margin-bottom: 24px;
-      }
-    }
-  }
   @media ${largeAndUnder} {
     max-width: 720px;
     margin-left: 16px;
@@ -572,7 +528,7 @@ const IntersectionWrapper = styled.div`
 `;
 
 const TrackWrapper = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   margin-top: 1rem;
   flex-direction: column;
@@ -582,6 +538,7 @@ const TrackWrapper = styled.div`
   height: 120%;
   z-index: 0;
   @media ${largeAndUnder} {
+    display: flex;
     position: relative;
     top: 0;
     left: 0;
@@ -594,12 +551,12 @@ const TrackWrapper = styled.div`
     margin-top: 0px;
     margin-left: 0;
   }
+  @media ${mediumAndUnder} {
+    display: none;
+  }
 `;
 
-interface TrackProps {
-  tracked?: boolean;
-}
-const TrackItem = styled.div<TrackProps>`
+const TrackItem = styled.div`
   flex: 0 0 48px;
   z-index: 5;
   display: flex;
@@ -613,39 +570,30 @@ const TrackItem = styled.div<TrackProps>`
   height: 48px;
   border-radius: 8px;
   border: 1px solid transparent;
-  border-color: ${(p) => (p.tracked ? "transparent" : "var(--grey-500)")};
-  background: ${(p) => (p.tracked ? "var(--red)" : "var(--grey-800)")};
-  color: ${(p) => (p.tracked ? "var(--white)" : "var(--grey-500)")};
+  border-color: var(--border-color);
+  background: var(--background);
+  color: var(--color);
   font: var(--body-sm);
   letter-spacing: 0.09em;
 `;
 
-interface ISeperator {
-  heightPercent: number;
-  additionalMaxHeight?: number;
-}
-
-const SEPERATOR_HEIGHT = 680;
-const Seperator = styled.div<ISeperator>`
+const Separator = styled.div`
   width: 1px;
   margin: 0 12px;
   background: var(--grey-500);
-  height: ${({ heightPercent, additionalMaxHeight }) => {
-    const maxHeight = additionalMaxHeight ? SEPERATOR_HEIGHT + additionalMaxHeight : SEPERATOR_HEIGHT;
-    return `${maxHeight * (heightPercent / 100)}px`;
-  }};
+  height: var(--height);
+
   @media ${largeAndUnder} {
-    height: ${({ heightPercent }) => heightPercent}%;
+    height: var(--height-percent);
   }
 `;
 
-const RedSeperator = styled(Seperator)`
+const RedSeparator = styled(Separator)`
   background: var(--red);
 `;
 
 const TrackAndIllustrationRow = styled.div`
   display: flex;
-  flex-direction: row;
   gap: 24px;
   width: 100%;
   justify-content: space-between;
