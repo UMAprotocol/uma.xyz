@@ -99,7 +99,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--desktop-page-width);
+  max-width: var(--page-width);
   margin: 0 auto;
   padding-top: 153px;
   padding-bottom: 96px;

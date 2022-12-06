@@ -172,7 +172,7 @@ const Section = styled.div`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  max-width: var(--desktop-page-width);
+  max-width: var(--page-width);
   margin: 0 auto;
   padding: 96px 0 66px;
 

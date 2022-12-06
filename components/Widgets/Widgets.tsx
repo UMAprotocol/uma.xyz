@@ -16,7 +16,7 @@ export const Title = styled.div`
 export const Wrapper = styled.div`
   background: inherit;
   width: 100%;
-  max-width: var(--desktop-page-width);
+  max-width: var(--page-width);
   margin: 0 auto;
 `;
 

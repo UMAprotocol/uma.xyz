@@ -70,7 +70,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  max-width: var(--desktop-page-width);
+  max-width: var(--page-width);
   margin: 0 auto;
   z-index: 100;
   border-radius: 12px;

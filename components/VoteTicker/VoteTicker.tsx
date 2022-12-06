@@ -172,7 +172,7 @@ const Wrapper = styled.div`
   padding: 8px 16px 8px 8px;
   gap: 16px;
   isolation: isolate;
-  max-width: var(--desktop-page-width);
+  max-width: var(--page-width);
   margin: 0 auto;
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
