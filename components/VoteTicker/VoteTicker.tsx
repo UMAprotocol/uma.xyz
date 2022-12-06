@@ -109,7 +109,7 @@ const styledTheme: TickerTheme = {
   },
 };
 
-const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
+export function VoteTicker({ theme, numVotes, phase }: Props) {
   const { timeRemaining, width } = useVoteTicker();
 
   return (
@@ -140,9 +140,7 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
       </Section>
     </ThemeProvider>
   );
-};
-
-export default VoteTicker;
+}
 
 function useVoteTicker() {
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");

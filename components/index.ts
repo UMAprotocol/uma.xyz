@@ -1,5 +1,5 @@
 export { Builder } from "./Builder/Builder";
-export { default as Footer } from "./Footer";
+export { Footer } from "./Footer/Footer";
 export { GlobalStyle } from "./GlobalStyle/GlobalStyle";
 export { Header } from "./Header/Header";
 export { Hero } from "./Hero/Hero";
@@ -8,6 +8,6 @@ export { Layout } from "./Layout/Layout";
 export { Home } from "./pages/Home/Home";
 export { Projects } from "./Projects/Projects";
 export { SupportSection } from "./SupportSection/SupportSection";
-export { default as Tabs } from "./Tabs";
+export { Tabs } from "./Tabs/Tabs";
 export { VoteParticipation } from "./VoteParticipation/VoteParticipation";
-export { default as VoteTicker } from "./VoteTicker";
+export { VoteTicker } from "./VoteTicker/VoteTicker";

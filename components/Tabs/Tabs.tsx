@@ -21,7 +21,7 @@ interface Props {
   isIntersecting?: boolean;
 }
 
-const Tabs = ({ tabs, isIntersecting }: Props) => {
+export function Tabs({ tabs, isIntersecting }: Props) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <TabsWrapper
@@ -47,7 +47,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
       </TabPanels>
     </TabsWrapper>
   );
-};
+}
 const TabsWrapper = styled(ReachTabs)`
   position: relative;
   width: 100%;
@@ -194,4 +194,3 @@ const BottomBorder = styled.div<ITabList>`
   @media ${mediumAndUnder} {
   }
 `;
-export default Tabs;

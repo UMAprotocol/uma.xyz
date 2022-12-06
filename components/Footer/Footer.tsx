@@ -1,6 +1,5 @@
 import { VoteTicker } from "components";
-import { largeAndUnder, medium, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
-import { useWindowSize } from "hooks";
+import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
 import BlackCircle from "public/assets/black-circle.svg";
 import Discord from "public/assets/discord.svg";
 import Discourse from "public/assets/discourse.svg";
@@ -17,8 +16,65 @@ interface Props {
   numVotes: number;
 }
 
-const Footer: React.FC<Props> = ({ phase, numVotes }) => {
-  const { value, setValue, width } = useFooter();
+export function Footer({ phase, numVotes }: Props) {
+  const [value, setValue] = useState("");
+
+  const socialLinks = [
+    {
+      href: "http://discord.umaproject.org",
+      Icon: Discord,
+    },
+    {
+      href: "https://twitter.com/UMAprotocol",
+      Icon: BlackCircle,
+    },
+    {
+      href: "https://twitter.com/UMAprotocol",
+      Icon: Twitter,
+    },
+    {
+      href: "https://discourse.umaproject.org/",
+      Icon: Discourse,
+    },
+    {
+      href: "https://github.com/UMAprotocol",
+      Icon: Github,
+    },
+  ];
+
+  const middleLinks = [
+    {
+      label: "How it works",
+      href: "#how-it-works",
+    },
+    {
+      label: "For voters",
+      href: "#voter",
+    },
+    {
+      label: "For builders",
+      href: "#builder",
+    },
+  ];
+
+  const rightLinks = [
+    {
+      label: "Oracle",
+      href: "https://optimistic-oracle-dapp.vercel.app/",
+      Logo: UpRightArrowBlack,
+    },
+    {
+      label: "Docs",
+      href: "https://docs.umaproject.org/",
+      Logo: UpRightArrowBlack,
+    },
+    {
+      label: "Projects",
+      href: "https://projects.umaproject.org/",
+      Logo: UpRightArrowBlack,
+    },
+  ];
+
   return (
     <>
       {numVotes > 0 && <VoteTicker theme="light" numVotes={numVotes} phase={phase} />}
@@ -26,11 +82,9 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
         <Wrapper>
           <BottomRow>
             <FooterLinks>
-              {width > medium ? (
-                <LogoWrapper>
-                  <StyledLogo />
-                </LogoWrapper>
-              ) : null}
+              <LogoWrapper>
+                <StyledLogo />
+              </LogoWrapper>
               <LinksFlex>
                 <Links>
                   {middleLinks.map(({ label, href }, i) => (
@@ -50,11 +104,9 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
             </FooterLinks>
 
             <FormWrapper>
-              {width <= medium ? (
-                <LogoWrapper>
-                  <StyledLogo />
-                </LogoWrapper>
-              ) : null}
+              <FormLogoWrapper>
+                <StyledLogo />
+              </FormLogoWrapper>
               <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
               <MailchimpSubscribe
                 url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
@@ -96,7 +148,7 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
             </AddressWrapper>
             <SocialLinks>
               {socialLinks.map(({ href, Icon }, i) => (
-                <SocialLink key={i} href={href} rel="noreferrer" target="_blank">
+                <SocialLink key={i} href={href} target="_blank">
                   <Icon />
                 </SocialLink>
               ))}
@@ -106,72 +158,7 @@ const Footer: React.FC<Props> = ({ phase, numVotes }) => {
       </Section>
     </>
   );
-};
-
-export default Footer;
-
-function useFooter() {
-  const [value, setValue] = useState("");
-  const { width } = useWindowSize();
-
-  return { value, setValue, width };
 }
-
-const socialLinks = [
-  {
-    href: "http://discord.umaproject.org",
-    Icon: Discord,
-  },
-  {
-    href: "https://twitter.com/UMAprotocol",
-    Icon: BlackCircle,
-  },
-  {
-    href: "https://twitter.com/UMAprotocol",
-    Icon: Twitter,
-  },
-  {
-    href: "https://discourse.umaproject.org/",
-    Icon: Discourse,
-  },
-  {
-    href: "https://github.com/UMAprotocol",
-    Icon: Github,
-  },
-];
-
-const middleLinks = [
-  {
-    label: "How it works",
-    href: "#how-it-works",
-  },
-  {
-    label: "For voters",
-    href: "#voter",
-  },
-  {
-    label: "For builders",
-    href: "#builder",
-  },
-];
-
-const rightLinks = [
-  {
-    label: "Oracle",
-    href: "https://optimistic-oracle-dapp.vercel.app/",
-    Logo: UpRightArrowBlack,
-  },
-  {
-    label: "Docs",
-    href: "https://docs.umaproject.org/",
-    Logo: UpRightArrowBlack,
-  },
-  {
-    label: "Projects",
-    href: "https://projects.umaproject.org/",
-    Logo: UpRightArrowBlack,
-  },
-];
 
 const animationDuration = "0.3s";
 
@@ -228,6 +215,16 @@ const FooterLinks = styled.div`
 
 const LogoWrapper = styled.div`
   width: 85px;
+  @media ${mediumAndUnder} {
+    display: none;
+  }
+`;
+
+const FormLogoWrapper = styled(LogoWrapper)`
+  display: none;
+  @media ${mediumAndUnder} {
+    display: block;
+  }
 `;
 
 const BottomRow = styled(Row)`
