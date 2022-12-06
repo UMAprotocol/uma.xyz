@@ -1,4 +1,4 @@
-export { default as Builder } from "./Builder";
+export { Builder } from "./Builder/Builder";
 export { default as Footer } from "./Footer";
 export { GlobalStyle } from "./GlobalStyle/GlobalStyle";
 export { Header } from "./Header/Header";
