@@ -6,7 +6,7 @@ export { Hero } from "./Hero/Hero";
 export { HowItWorks } from "./HowItWorks/HowItWorks";
 export { Layout } from "./Layout/Layout";
 export { Home } from "./pages/Home/Home";
-export { default as Projects } from "./Projects";
+export { Projects } from "./Projects/Projects";
 export { default as SupportSection } from "./SupportSection";
 export { default as Tabs } from "./Tabs";
 export { VoteParticipation } from "./VoteParticipation/VoteParticipation";

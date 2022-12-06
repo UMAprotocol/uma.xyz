@@ -1,14 +1,6 @@
 import { Wrapper as BaseWrapper } from "components/Widgets";
-import {
-  extraSmallAndUnder,
-  large,
-  largeAndUnder,
-  medium,
-  mediumAndUnder,
-  smallAndUnder,
-  tabletAndUnder,
-} from "constant";
-import { useWindowSize } from "hooks";
+import { extraSmallAndUnder, largeAndUnder, mediumAndUnder, smallAndUnder, tabletAndUnder } from "constant";
+import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
 import BobaLogo from "public/assets/boba.svg";
 import CozyLogo from "public/assets/cozy.svg";
@@ -22,93 +14,8 @@ import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import UpRightArrowWhite from "public/assets/up-right-arrow-white.svg";
 import styled, { keyframes } from "styled-components";
 
-const Projects = () => {
-  const { width } = useProjects();
-  return (
-    <Section>
-      <Wrapper>
-        <ProjectsRow>
-          <ProjectsColumn>
-            {width > medium ? (
-              <BigProjects>
-                <BigProject>
-                  <LinkButton href="https://across.to" target="_blank" rel="noreferrer">
-                    <UpRightArrowWhite />
-                  </LinkButton>
-                  <div>
-                    <AcrossLogo />
-                  </div>
-                  <BigProjectText>Across.to</BigProjectText>
-                </BigProject>
-                <BigProject>
-                  <LinkButton href="https://outcome.finance" target="_blank" rel="noreferrer">
-                    <UpRightArrowWhite />
-                  </LinkButton>
-                  <div>
-                    <OutcomeLogo />
-                  </div>
-                  <BigProjectText>Outcome.finance</BigProjectText>
-                </BigProject>
-              </BigProjects>
-            ) : null}
-            <SmallProjects>
-              {width > medium
-                ? smallProjects.map(({ name, link, Logo }, index) => {
-                    return (
-                      <SmallProject key={index}>
-                        <SmallLinkButton href={link} target="_blank" rel="noreferrer">
-                          {width > large ? <UpRightArrowWhite /> : <SmArrow />}
-                        </SmallLinkButton>
-                        <SmallImageWrapper>
-                          <Logo />
-                        </SmallImageWrapper>
-                        <SmallProjectText>{name}</SmallProjectText>
-                      </SmallProject>
-                    );
-                  })
-                : null}
-            </SmallProjects>
-          </ProjectsColumn>
-          {width <= medium ? (
-            <MobileProjects>
-              {mobileSmallProjects.map(({ name, link, Logo }, index) => {
-                return (
-                  <MobileContainer href={link} key={index} target="_blank" rel="noreferrer">
-                    <MobileImageWrapper>
-                      <Logo />
-                    </MobileImageWrapper>
-                    <MobileImageText>{name}</MobileImageText>
-                  </MobileContainer>
-                );
-              })}
-            </MobileProjects>
-          ) : null}
-          <ProjectsBlurb>
-            <ProjectsBlurbHeader>Projects built with the OO</ProjectsBlurbHeader>
-            <ProjectsBlurbSubheader>UMA&apos;s oracle serves diverse use cases</ProjectsBlurbSubheader>
-            <ProjectLinkWrapper>
-              <ProjectLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
-                All Projects
-                <div>
-                  <UpRightArrowRed />
-                </div>
-              </ProjectLink>
-            </ProjectLinkWrapper>
-          </ProjectsBlurb>
-        </ProjectsRow>
-      </Wrapper>
-    </Section>
-  );
-};
-
-export default Projects;
-
-function useProjects() {
-  const { width } = useWindowSize();
-  return { width };
-}
-
-const smallProjects = [
+// excludes Across and Outcome because we have custom components for them on desktop
+const projects = [
   {
     name: "Polymarket",
     Logo: PolymarketLogo,
@@ -141,7 +48,7 @@ const smallProjects = [
   },
 ];
 
-const mobileSmallProjects = [
+const mobileProjects = [
   {
     name: "Across",
     Logo: AcrossLogo,
@@ -152,24 +59,98 @@ const mobileSmallProjects = [
     Logo: OutcomeLogo,
     link: "https://outcome.finance",
   },
-  {
-    name: "Sherlock",
-    Logo: SherlockLogo,
-    link: "https://www.sherlock.xyz",
-  },
-  ...smallProjects,
+  ...projects,
 ];
+
+export function Projects() {
+  return (
+    <Section>
+      <OuterWrapper>
+        <InnerWrapper>
+          <DesktopProjects>
+            <BigProjectsWrapper>
+              <BigProject>
+                <LinkButton href="https://across.to" target="_blank">
+                  <DesktopArrowIcon />
+                </LinkButton>
+                <AcrossLogoIcon />
+                <BigProjectText>Across.to</BigProjectText>
+              </BigProject>
+              <BigProject>
+                <LinkButton href="https://outcome.finance" target="_blank">
+                  <DesktopArrowIcon />
+                </LinkButton>
+                <OutcomeLogoIcon />
+                <BigProjectText>Outcome.finance</BigProjectText>
+              </BigProject>
+            </BigProjectsWrapper>
+            <SmallProjectsWrapper>
+              {projects.map(({ name, link, Logo }, index) => {
+                return (
+                  <SmallProject key={index}>
+                    <SmallLinkButton href={link} target="_blank">
+                      <>
+                        <DesktopArrowIcon />
+                        <MobileArrowIcon />
+                      </>
+                    </SmallLinkButton>
+                    <SmallImageWrapper>
+                      <Logo />
+                    </SmallImageWrapper>
+                    <SmallProjectText>{name}</SmallProjectText>
+                  </SmallProject>
+                );
+              })}
+            </SmallProjectsWrapper>
+          </DesktopProjects>
+          <MobileProjects>
+            {mobileProjects.map(({ name, link, Logo }, index) => {
+              return (
+                <MobileContainer href={link} key={index} target="_blank" rel="noreferrer">
+                  <MobileImageWrapper>
+                    <Logo />
+                  </MobileImageWrapper>
+                  <MobileImageText>{name}</MobileImageText>
+                </MobileContainer>
+              );
+            })}
+          </MobileProjects>
+          <ProjectsBlurb>
+            <ProjectsBlurbHeader>Projects built with the OO</ProjectsBlurbHeader>
+            <ProjectsBlurbSubheader>UMA&apos;s oracle serves diverse use cases</ProjectsBlurbSubheader>
+            <ProjectLinkWrapper>
+              <ProjectLink href="https://projects.umaproject.org/" target="_blank" rel="noreferrer">
+                All Projects
+                <div>
+                  <UpRightArrowRed />
+                </div>
+              </ProjectLink>
+            </ProjectLinkWrapper>
+          </ProjectsBlurb>
+        </InnerWrapper>
+      </OuterWrapper>
+    </Section>
+  );
+}
+
+const DesktopArrowIcon = styled(UpRightArrowWhite)``;
+
+const MobileArrowIcon = styled(SmArrow)``;
+
+const AcrossLogoIcon = styled(AcrossLogo)``;
+
+const OutcomeLogoIcon = styled(OutcomeLogo)``;
 
 const Section = styled.section`
   width: 100%;
   background: var(--white);
 `;
 
-const Wrapper = styled(BaseWrapper)`
+const OuterWrapper = styled(BaseWrapper)`
   padding: 128px 0 117px;
 `;
 
-const ProjectsRow = styled.div`
+const InnerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -185,6 +166,7 @@ const ProjectsRow = styled.div`
   @media ${tabletAndUnder} {
     gap: 96px;
   }
+  // todo: use real breakpoint
   @media screen and (max-width: 780px) {
     gap: 40px;
   }
@@ -193,23 +175,28 @@ const ProjectsRow = styled.div`
   }
 `;
 
-const ProjectsColumn = styled.div`
+const DesktopProjects = styled.div`
   max-width: 560px;
   @media ${tabletAndUnder} {
     width: 100%;
     max-width: 438px;
   }
   @media ${mediumAndUnder} {
-    max-width: 100%;
+    display: none;
   }
 `;
-const BigProjects = styled.div`
+
+const ProjectsWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  @media ${smallAndUnder} {
-    flex-direction: column;
+`;
+
+const BigProjectsWrapper = styled(ProjectsWrapper)``;
+
+const SmallProjectsWrapper = styled.div`
+  @media ${tabletAndUnder} {
+    max-width: 560px;
   }
 `;
 
@@ -218,7 +205,12 @@ const textSlideUp = keyframes`
   100% {bottom: 33%; opacity: 1;}
 `;
 
-const BigProject = styled.div`
+const textSlideUpSmall = keyframes`
+  0% {bottom: 0; opacity: 0;}
+  100% {bottom: 36px; opacity: 1;}
+`;
+
+const Project = styled.div`
   position: relative;
   top: 0;
   display: flex;
@@ -228,22 +220,8 @@ const BigProject = styled.div`
   border: 1px solid var(--grey-600);
   order: 1;
   flex-grow: 1;
-  width: 280px;
-  height: 280px;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  @media ${tabletAndUnder} {
-    width: 218px;
-    height: 218px;
-  }
-  @media ${mediumAndUnder} {
-    flex-grow: 0;
-    width: 50%;
-  }
-  @media ${smallAndUnder} {
-    flex-direction: column;
-    width: 100%;
-  }
   path {
     transition: fill 0.2s ease-in-out;
   }
@@ -274,14 +252,53 @@ const BigProject = styled.div`
       pointer-events: auto;
       cursor: pointer;
     }
-    > div {
-      path {
-        fill: var(--red);
-      }
+    path {
+      fill: var(--red);
     }
   }
 `;
-const BigProjectText = styled.h3`
+
+const BigProject = styled(Project)`
+  width: 280px;
+  height: 280px;
+  @media ${tabletAndUnder} {
+    width: 218px;
+    height: 218px;
+  }
+  @media ${mediumAndUnder} {
+    flex-grow: 0;
+    width: 50%;
+  }
+  @media ${smallAndUnder} {
+    flex-direction: column;
+    width: 100%;
+  }
+`;
+
+const SmallProject = styled(Project)`
+  width: 186px;
+  height: 186px;
+  min-width: 0;
+  @media ${tabletAndUnder} {
+    max-width: 145.48px;
+    max-height: 145.48px;
+    width: 33%;
+  }
+  @media ${mediumAndUnder} {
+    flex: 1 0 auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+  }
+  &:hover {
+    padding-bottom: 36px;
+    h3 {
+      animation: ${textSlideUpSmall} 0.2s ease-in-out forwards;
+    }
+  }
+`;
+
+const ProjectText = styled.h3`
   display: none;
   font: var(--body-sm);
   letter-spacing: 0.09em;
@@ -290,7 +307,19 @@ const BigProjectText = styled.h3`
   bottom: calc(33% - 16px);
   color: var(--red);
 `;
-const LinkButton = styled.a`
+
+const BigProjectText = styled(ProjectText)``;
+
+const SmallProjectText = styled(ProjectText)`
+  font-size: 14px;
+  bottom: 40px;
+  @media ${mediumAndUnder} {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+`;
+
+const LinkButton = styled(NextLink)`
   opacity: 0;
   display: flex;
   position: absolute;
@@ -307,29 +336,6 @@ const LinkButton = styled.a`
   background: var(--red);
   padding: 8px;
   gap: 8px;
-  button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
-const SmallProjects = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  @media ${tabletAndUnder} {
-    max-width: 560px;
-  }
-  @media ${mediumAndUnder} {
-    max-width: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
 `;
 
 const SmallImageWrapper = styled.div`
@@ -346,93 +352,6 @@ const SmallImageWrapper = styled.div`
   }
 `;
 
-const textSlideUpSmall = keyframes`
-  0% {bottom: 0; opacity: 0;}
-  100% {bottom: 36px; opacity: 1;}
-`;
-
-const SmallProject = styled.div`
-  position: relative;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  isolation: isolate;
-  border: 1px solid var(--grey-600);
-  order: 1;
-  flex-grow: 1;
-  width: 186px;
-  height: 186px;
-  min-width: 0;
-  justify-content: center;
-  transition: all 0.2s ease-in-out;
-  path {
-    transition: fill 0.2s ease-in-out;
-  }
-  h3 {
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-  }
-  a {
-    visibility: hidden;
-    transition: all 0.2s ease-in-out;
-    pointer-events: none;
-    cursor: default;
-  }
-  @media ${tabletAndUnder} {
-    max-width: 145.48px;
-    max-height: 145.48px;
-    width: 33%;
-  }
-  @media ${mediumAndUnder} {
-    flex: 1 0 auto;
-    height: auto;
-    max-width: none;
-    max-height: none;
-  }
-  &:hover {
-    padding-bottom: 36px;
-    border: 1px solid var(--red);
-
-    path {
-      fill: var(--red);
-    }
-  }
-
-  &:hover {
-    color: var(--red);
-
-    h3,
-    a {
-      display: flex;
-    }
-    h3 {
-      animation: ${textSlideUpSmall} 0.2s ease-in-out forwards;
-    }
-    a {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      cursor: pointer;
-    }
-    img {
-      filter: invert(47%) sepia(65%) saturate(5018%) hue-rotate(336deg) brightness(111%) contrast(103%);
-    }
-  }
-  svg {
-    fill: var(--white);
-  }
-`;
-
-const SmallProjectText = styled(BigProjectText)`
-  font-size: 14px;
-  bottom: 40px;
-  @media ${mediumAndUnder} {
-    margin-top: 8px;
-    font-size: 12px;
-  }
-`;
-
 const SmallLinkButton = styled(LinkButton)`
   top: 12px;
   right: 16px;
@@ -443,6 +362,20 @@ const SmallLinkButton = styled(LinkButton)`
     height: 26px;
     top: 12px;
     right: 12px;
+  }
+  ${DesktopArrowIcon} {
+    display: block;
+  }
+  ${MobileArrowIcon} {
+    display: none;
+  }
+  @media ${largeAndUnder} {
+    ${DesktopArrowIcon} {
+      display: none;
+    }
+    ${MobileArrowIcon} {
+      display: block;
+    }
   }
 `;
 
@@ -467,6 +400,7 @@ const ProjectsBlurbHeader = styled.h2`
     width: 100%;
     max-width: 100%;
   }
+  // todo: use real breakpoint
   @media screen and (max-width: 740px) {
     font: var(--header-sm);
   }
@@ -487,6 +421,7 @@ const ProjectsBlurbSubheader = styled.h3`
     max-width: 100%;
     font: var(--body-md);
   }
+  // todo: use real breakpoint
   @media screen and (max-width: 740px) {
     font: var(--body-md);
   }
@@ -522,11 +457,15 @@ const ProjectLinkWrapper = styled.div`
 `;
 
 const MobileProjects = styled.div`
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   padding: 0;
   margin: 0;
   justify-content: space-around;
+
+  @media ${mediumAndUnder} {
+    display: flex;
+  }
 `;
 const MobileContainer = styled.a`
   flex: 1 0 calc(33% - 16px);
