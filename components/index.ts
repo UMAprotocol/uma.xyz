@@ -9,5 +9,5 @@ export { Home } from "./pages/Home/Home";
 export { default as Projects } from "./Projects";
 export { default as SupportSection } from "./SupportSection";
 export { default as Tabs } from "./Tabs";
-export { default as VoteParticipation } from "./VoteParticipation";
+export { VoteParticipation } from "./VoteParticipation/VoteParticipation";
 export { default as VoteTicker } from "./VoteTicker";

@@ -19,7 +19,7 @@ export function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const voteParticipationRef = useRef<HTMLDivElement>(null);
   const builderRef = useRef<HTMLDivElement>(null);
-  const eHotItWorks = useIntersectionObserver(howItWorksRef, {
+  const eHowItWorks = useIntersectionObserver(howItWorksRef, {
     threshold: 0.27,
   });
   const eVoteParticipation = useIntersectionObserver(voteParticipationRef, {
@@ -28,7 +28,7 @@ export function Home() {
   const eBuilder = useIntersectionObserver(builderRef, {
     threshold: 0.47,
   });
-  const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
+  const isIntersectingHowItWorksSection = !!eHowItWorks?.isIntersecting;
   const isIntersectingVoteParticipationSection = !!eVoteParticipation?.isIntersecting;
   const isIntersectingBuilderSection = !!eBuilder?.isIntersecting;
 

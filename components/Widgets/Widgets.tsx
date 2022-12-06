@@ -12,9 +12,6 @@ export const Title = styled.div`
   @media ${mediumAndUnder} {
     font: var(--body-lg);
   }
-  > span {
-    color: var(--red);
-  }
 `;
 export const Wrapper = styled.div`
   background: inherit;
