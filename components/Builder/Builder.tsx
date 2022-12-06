@@ -1,6 +1,6 @@
 import { Tabs } from "components";
 import { Header as BaseHeader, Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { largeAndUnder, mediumAndUnder, smallAndUnder, tabletAndUnder } from "constant";
+import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant";
 import { useIntersectionObserver } from "hooks";
 import GlobeIcon from "public/assets/globe.svg";
 import OoIcon from "public/assets/oo-logo.svg";
@@ -245,10 +245,6 @@ const MobileHeader = styled(Header)`
 
   @media ${mediumAndUnder} {
     font: var(--header-sm);
-  }
-  @media ${smallAndUnder} {
-    display: inline-block;
-    word-break: wrap;
   }
 `;
 

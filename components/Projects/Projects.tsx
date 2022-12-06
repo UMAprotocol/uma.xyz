@@ -1,5 +1,5 @@
 import { Wrapper as BaseWrapper } from "components/Widgets";
-import { extraSmallAndUnder, largeAndUnder, mediumAndUnder, smallAndUnder, tabletAndUnder } from "constant";
+import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
 import BobaLogo from "public/assets/boba.svg";
@@ -269,10 +269,6 @@ const BigProject = styled(Project)`
     flex-grow: 0;
     width: 50%;
   }
-  @media ${smallAndUnder} {
-    flex-direction: column;
-    width: 100%;
-  }
 `;
 
 const SmallProject = styled(Project)`
@@ -345,10 +341,6 @@ const SmallImageWrapper = styled.div`
   @media ${tabletAndUnder} {
     height: 30px;
     width: 40px;
-  }
-  @media ${smallAndUnder} {
-    max-width: 60.37px;
-    max-height: 30.31px;
   }
 `;
 
@@ -510,9 +502,6 @@ const MobileImageText = styled.h3`
   text-align: center;
   margin: -10px;
   color: var(--grey-200);
-  @media ${extraSmallAndUnder} {
-    font: var(--body-xs);
-  }
 `;
 
 const ProjectLink = styled.a`
