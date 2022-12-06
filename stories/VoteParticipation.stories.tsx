@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { VoteParticipation } from "components";
-import { defaultApy } from "components/VoteParticipation/VoteParticipation";
+import { defaultApy } from "constant";
 
 export default {
   title: "VoteParticipation",
