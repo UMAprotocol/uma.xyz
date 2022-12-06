@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { GlobalStyle } from "components";
 import type { AppProps } from "next/app";
 import "styles/fonts.css";
-import "styles/sandpack-override.scss";
+import "styles/sandpack-override.css";
 
 const queryClient = new QueryClient();
 

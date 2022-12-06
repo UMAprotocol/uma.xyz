@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Builder } from "components";
-import "../styles/sandpack-override.scss";
+import "../styles/sandpack-override.css";
 
 export default {
   title: "Builder",

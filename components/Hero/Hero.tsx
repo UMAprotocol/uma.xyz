@@ -1,24 +1,24 @@
-import { useContext, useState, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
-import OOLogo from "public/assets/oo-logo.svg";
-import OOMobileLogo from "public/assets/oo-mobile.svg";
-import DownArrow from "public/assets/down-arrow.svg";
-import { useIsMounted } from "hooks";
+import { mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
 import { HeaderContext } from "contexts";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
-import Lottie from "react-lottie";
+import { useIsMounted } from "hooks";
+import NextLink from "next/link";
+import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
+import OOLogo from "public/assets/oo-logo.svg";
+import OOLogoMobile from "public/assets/oo-mobile.svg";
+import { useContext, useEffect, useRef } from "react";
+import Lottie from "react-lottie";
+import styled, { keyframes } from "styled-components";
 
-const Hero = () => {
-  const { sectionRef, isMounted, width, showText, showButton } = useHero();
+export function Hero() {
+  const { sectionRef } = useHero();
   return (
-    <Section ref={isMounted ? sectionRef : null}>
+    <Section ref={sectionRef}>
       <Background>
         <Lottie
           options={{
             loop: true,
-            autoplay: false,
+            autoplay: true,
             animationData: heroAnimation,
             rendererSettings: {
               preserveAspectRatio: "xMidYMid slice",
@@ -27,61 +27,37 @@ const Hero = () => {
         />
       </Background>
       <Wrapper>
-        <Title show={showText}>
+        <Title>
           <span>A decentralized</span>
         </Title>
-        <Title show={showText}>
+        <Title>
           <span>truth</span>
-          <div>{width >= BREAKPOINTS.md ? <OOLogo /> : <OOMobileLogo />}</div>
+          <OOLogoIcon />
+          <OOLogoIconMobile />
           <span>machine</span>
         </Title>
-        <Subheader show={showText}>
-          UMA’s optimistic oracle (OO) can record any {width >= BREAKPOINTS.md ? <br /> : null} verifiable truth or data
-          onto a blockchain.
+        <Subheader>
+          UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
         </Subheader>
-        <ArrowButton href="#howItWorks" show={showButton}>
+        <ArrowButton href="#how-it-works">
           <DownArrow />
         </ArrowButton>
       </Wrapper>
     </Section>
   );
-};
-
-export default Hero;
-
-const textDelayMS = 2000;
-const arrowDelay = textDelayMS + 1600;
+}
 
 function useHero() {
   const { updateRef, lightRefs } = useContext(HeaderContext);
   const isMounted = useIsMounted();
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [showText, setShowText] = useState(false);
-  const [showButton, setShowButton] = useState(false);
-
-  // Run reveal animation on mount
-  useEffect(() => {
-    setTimeout(() => {
-      setShowText(true);
-    }, textDelayMS);
-    setTimeout(() => {
-      setShowButton(true);
-    }, arrowDelay);
-  }, []);
-
+  const sectionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (isMounted() && !lightRefs.heroSection.current) {
       updateRef(sectionRef, "heroSection");
     }
   }, [isMounted, updateRef, lightRefs]);
-  const { width } = useWindowSize();
   return {
-    updateRef,
     sectionRef,
-    isMounted: isMounted(),
-    width,
-    showText,
-    showButton,
   };
 }
 
@@ -129,10 +105,6 @@ const Wrapper = styled.div`
   padding-bottom: 96px;
 `;
 
-interface ITextProps {
-  show: boolean;
-}
-
 const textReveal = keyframes`
   0% {opacity: 0; transform: translateY(30px);}
   100% {opacity: 1; transform: translateY(0px);}
@@ -143,7 +115,7 @@ const animateText = keyframes`
   100% {transform: rotate(0deg)  }
 `;
 
-const Title = styled.div<ITextProps>`
+const Title = styled.div`
   z-index: 50;
   font: var(--header-lg);
   color: var(--white);
@@ -153,20 +125,19 @@ const Title = styled.div<ITextProps>`
   align-self: center;
   letter-spacing: -0.01em;
   line-height: 100%;
-  visibility: ${(props) => (props.show ? "visible" : "hidden")};
   animation: ${textReveal} 1s ease-in-out;
-  animation-delay: ${textDelayMS}ms;
+  animation-delay: 400ms;
   opacity: 1;
   > span {
     animation: ${animateText} 1s ease-in-out;
-    animation-delay: ${textDelayMS}ms;
+    animation-delay: 400ms;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
     margin: 0 17px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
   }
@@ -178,7 +149,7 @@ const Title = styled.div<ITextProps>`
     display: flex;
     align-items: center;
     align-self: center;
-    @media ${QUERIES.md.andDown} {
+    @media ${mediumAndUnder} {
       height: auto;
       width: 100%;
       margin: 0 10px 0;
@@ -190,15 +161,14 @@ const Title = styled.div<ITextProps>`
   }
 `;
 
-const Subheader = styled.div<ITextProps>`
+const Subheader = styled.div`
   margin: 32px 0 0;
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
-  visibility: ${(props) => (props.show ? "visible" : "hidden")};
   animation: ${textReveal} 1s ease-in-out;
-  animation-delay: ${textDelayMS}ms;
-  @media ${QUERIES.md.andDown} {
+  animation-delay: 200ms;
+  @media ${mediumAndUnder} {
     margin: 32px 16px 0;
   }
   z-index: 50;
@@ -215,7 +185,7 @@ const svgAnimation = keyframes`
   100% {transform: translateY(0); opacity: 1;}
 `;
 
-const ArrowButton = styled.a<ITextProps>`
+const ArrowButton = styled(NextLink)`
   margin-top: 179px;
   background-color: var(--grey-200);
   box-sizing: border-box;
@@ -230,13 +200,26 @@ const ArrowButton = styled.a<ITextProps>`
   border-radius: 8px;
   width: 48px;
   height: 48px;
-  visibility: ${(props) => (props.show ? "visible" : "hidden")};
   animation: ${textReveal} 1s ease-in-out;
-  animation-delay: ${arrowDelay}ms;
+  animation-delay: 400ms;
   opacity: 1;
   z-index: 100;
   > svg {
     animation: ${svgAnimation} 2s linear infinite;
-    animation-delay: ${arrowDelay + 2000}ms;
+    animation-delay: 600ms;
+  }
+`;
+
+const OOLogoIcon = styled(OOLogo)`
+  @media ${mediumAndUnder} {
+    display: none;
+  }
+`;
+
+const OOLogoIconMobile = styled(OOLogoMobile)`
+  display: none;
+
+  @media ${mediumAndUnder} {
+    display: block;
   }
 `;

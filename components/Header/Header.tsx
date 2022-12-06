@@ -1,12 +1,12 @@
-import { useState, useContext, useEffect, useRef } from "react";
-import styled, { keyframes } from "styled-components";
 import { VoteTicker } from "components";
-import UnstyledHeadroom from "react-headroom";
+import { grey200, mediumAndUnder, white } from "constant";
 import { HeaderContext } from "contexts";
-import { useIsMounted, useWindowSize, useScrollPosition } from "hooks";
-import { QUERIES, BREAKPOINTS } from "constants/breakpoints";
-import DesktopHeader from "./DesktopHeader";
-import MobileHeader from "./MobileHeader";
+import { useIsMounted, useScrollPosition } from "hooks";
+import { useContext, useEffect, useRef, useState } from "react";
+import UnstyledHeadroom from "react-headroom";
+import styled, { CSSProperties, keyframes } from "styled-components";
+import { DesktopHeader } from "./DesktopHeader";
+import { MobileHeader } from "./MobileHeader";
 
 interface Props {
   activeLink: number;
@@ -14,13 +14,12 @@ interface Props {
   numVotes: number;
 }
 
-const Header: React.FC<Props> = ({ activeLink, phase, numVotes }) => {
+export function Header({ activeLink, phase, numVotes }: Props) {
   const {
     scrollPosition,
     boundingHeight,
-    isMounted,
+    headerDelay,
     headerRef,
-    width,
     showMobileMenu,
     setShowMobileMenu,
     showHeader,
@@ -30,7 +29,15 @@ const Header: React.FC<Props> = ({ activeLink, phase, numVotes }) => {
   const isLightTheme = scrollPosition >= boundingHeight;
 
   return (
-    <Section show={showHeader} ref={isMounted ? headerRef : null}>
+    <Wrapper
+      ref={headerRef}
+      style={
+        {
+          "--visibility": showHeader ? "visible" : "hidden",
+          "--animation-delay": `${headerDelay}ms`,
+        } as CSSProperties
+      }
+    >
       {numVotes > 0 && <VoteTicker theme="dark" numVotes={numVotes} phase={phase} />}
       <Headroom
         onUnfix={() => {
@@ -39,25 +46,26 @@ const Header: React.FC<Props> = ({ activeLink, phase, numVotes }) => {
         onUnpin={() => {
           setShowMobileMenu(false);
         }}
-        isLightTheme={isLightTheme}
         calcHeightOnResize
         className={addUnpinClass ? "unpinning" : ""}
+        style={
+          {
+            "--background": isLightTheme ? white : grey200,
+          } as CSSProperties
+        }
       >
-        {width > BREAKPOINTS.tb ? (
-          <DesktopHeader activeLink={activeLink} scrollPosition={scrollPosition} isLightTheme={isLightTheme} />
-        ) : (
-          <MobileHeader
-            showMobileMenu={showMobileMenu}
-            onToggle={() => {
-              setShowMobileMenu((pv) => !pv);
-            }}
-            isLightTheme={isLightTheme}
-          />
-        )}
+        <DesktopHeader activeLink={activeLink} isLightTheme={isLightTheme} />
+        <MobileHeader
+          showMobileMenu={showMobileMenu}
+          onToggle={() => {
+            setShowMobileMenu((pv) => !pv);
+          }}
+          isLightTheme={isLightTheme}
+        />
       </Headroom>
-    </Section>
+    </Wrapper>
   );
-};
+}
 
 function useHeader() {
   const { boundingHeight, updateRef, lightRefs } = useContext(HeaderContext);
@@ -67,12 +75,13 @@ function useHeader() {
   }, []);
   const isMounted = useIsMounted();
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const headerDelay = 3000;
+
   useEffect(() => {
     if (isMounted() && !lightRefs.header.current) {
       updateRef(headerRef, "header");
     }
   }, [isMounted, updateRef, lightRefs.header]);
-  const { width } = useWindowSize();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const [showHeader, setShowHeader] = useState(false);
@@ -80,7 +89,7 @@ function useHeader() {
   useEffect(() => {
     setTimeout(() => {
       setShowHeader(true);
-    }, headerDelayMS);
+    }, headerDelay);
   }, []);
 
   const [addUnpinClass, setAddUnpinClass] = useState(false);
@@ -96,8 +105,7 @@ function useHeader() {
     scrollPosition,
     boundingHeight,
     headerRef,
-    isMounted: isMounted(),
-    width,
+    headerDelay,
     showMobileMenu,
     setShowMobileMenu,
     showHeader,
@@ -106,27 +114,15 @@ function useHeader() {
   };
 }
 
-export default Header;
-
-interface IStyledProps {
-  isLightTheme: boolean;
-}
-
-interface IHeaderProps {
-  show: boolean;
-}
-
-const headerDelayMS = 3000;
-
 const headerReveal = keyframes`
   0% {opacity: 0; transform: translateY(-30px);}
   100% {opacity: 1; transform: translateY(0px);}
 `;
 
-const Section = styled.div<IHeaderProps>`
-  visibility: ${(props) => (props.show ? "visible" : "hidden")};
+const Wrapper = styled.header`
+  visibility: var(--visibility);
   animation: ${headerReveal} 1s ease-in-out;
-  animation-delay: ${headerDelayMS}ms;
+  animation-delay: var(--animation-delay);
   opacity: 1;
 `;
 
@@ -135,7 +131,7 @@ const unpinning = keyframes`
   100% {opacity: 1; transform: translateY(0px);}
 `;
 
-const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
+const Headroom = styled(UnstyledHeadroom)`
   &.unpinning {
     > div {
       animation: ${unpinning} 0.5s ease-in-out;
@@ -145,12 +141,10 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     // lib overwrites it without important
     z-index: 1000 !important;
     margin: 0;
-    background: ${({ isLightTheme }) => {
-      return isLightTheme ? "var(--white)" : "var(--grey-200)";
-    }};
+    background: var(--background);
     transition: all 0.2s ease-in-out;
 
-    @media ${QUERIES.md.andDown} {
+    @media ${mediumAndUnder} {
       height: 60px;
       width: 100%;
     }
@@ -165,7 +159,3 @@ const Headroom = styled(UnstyledHeadroom)<IStyledProps>`
     }
   }
 `;
-
-interface IStyledProps {
-  isLightTheme: boolean;
-}

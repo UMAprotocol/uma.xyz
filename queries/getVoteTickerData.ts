@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export interface VoteTickerData {
   apy: string;
   activeRequests: string;
@@ -7,6 +5,6 @@ export interface VoteTickerData {
 }
 
 export default async function getVoteTickerData() {
-  const { data } = await axios.get<VoteTickerData>("/api/get-voting-info");
-  return data;
+  const response = await fetch("/api/get-voting-info");
+  return (await response.json()) as VoteTickerData;
 }

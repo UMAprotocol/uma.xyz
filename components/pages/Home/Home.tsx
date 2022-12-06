@@ -1,26 +1,25 @@
-import { useRef, useState, useCallback, useEffect } from "react";
 import {
-  Layout,
+  Builder,
+  Footer,
   Header,
   Hero,
   HowItWorks,
-  VoteParticipation,
+  Layout,
   Projects,
-  Builder,
   SupportSection,
-  Footer,
+  VoteParticipation,
 } from "components";
+import { useIntersectionObserver, useIsMounted, useScrollPosition, useVoteTickerData } from "hooks";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useIntersectionObserver, useScrollPosition, useIsMounted } from "hooks";
-import useVoteTickerData from "hooks/queries/useVoteTickerData";
 
 export function Home() {
-  const headerThemeChangeRef = useRef<HTMLDivElement | null>(null);
-  const howItWorksRef = useRef<HTMLDivElement | null>(null);
-  const heroRef = useRef<HTMLDivElement | null>(null);
-  const voteParticipationRef = useRef<HTMLDivElement | null>(null);
-  const builderRef = useRef<HTMLDivElement | null>(null);
-  const eHotItWorks = useIntersectionObserver(howItWorksRef, {
+  const headerThemeChangeRef = useRef<HTMLDivElement>(null);
+  const howItWorksRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const voteParticipationRef = useRef<HTMLDivElement>(null);
+  const builderRef = useRef<HTMLDivElement>(null);
+  const eHowItWorks = useIntersectionObserver(howItWorksRef, {
     threshold: 0.27,
   });
   const eVoteParticipation = useIntersectionObserver(voteParticipationRef, {
@@ -29,7 +28,7 @@ export function Home() {
   const eBuilder = useIntersectionObserver(builderRef, {
     threshold: 0.47,
   });
-  const isIntersectingHowItWorksSection = !!eHotItWorks?.isIntersecting;
+  const isIntersectingHowItWorksSection = !!eHowItWorks?.isIntersecting;
   const isIntersectingVoteParticipationSection = !!eVoteParticipation?.isIntersecting;
   const isIntersectingBuilderSection = !!eBuilder?.isIntersecting;
 
@@ -54,6 +53,7 @@ export function Home() {
   }, [isMounted]);
 
   const { data } = useVoteTickerData();
+
   return (
     <Layout>
       <Wrapper>
@@ -67,10 +67,7 @@ export function Home() {
         </div>
         <div ref={headerThemeChangeRef}>
           <div ref={howItWorksRef}>
-            <HowItWorks
-              currentPosition={cp}
-              heightFromTop={heroRef.current ? heroRef.current.getBoundingClientRect().height : 0}
-            />
+            <HowItWorks currentPosition={cp} />
           </div>
           <div ref={voteParticipationRef}>
             <VoteParticipation apy={data ? data.apy : ""} />

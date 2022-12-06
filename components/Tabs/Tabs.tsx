@@ -1,4 +1,4 @@
-import { useState, ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 import {
   Tab as ReachTab,
@@ -7,8 +7,8 @@ import {
   TabPanels as ReachTabPanels,
   Tabs as ReachTabs,
 } from "@reach/tabs";
+import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
 import styled from "styled-components";
-import { QUERIES } from "constants/breakpoints";
 
 type Tab = {
   title: string;
@@ -21,7 +21,7 @@ interface Props {
   isIntersecting?: boolean;
 }
 
-const Tabs = ({ tabs, isIntersecting }: Props) => {
+export function Tabs({ tabs, isIntersecting }: Props) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <TabsWrapper
@@ -47,7 +47,7 @@ const Tabs = ({ tabs, isIntersecting }: Props) => {
       </TabPanels>
     </TabsWrapper>
   );
-};
+}
 const TabsWrapper = styled(ReachTabs)`
   position: relative;
   width: 100%;
@@ -80,7 +80,7 @@ const TabList = styled(ReachTabList)<ITabList>`
     }
     svg {
       margin-top: -8px;
-      @media ${QUERIES.tb.andDown} {
+      @media ${tabletAndUnder} {
         margin-top: 0;
       }
     }
@@ -92,12 +92,12 @@ const TabList = styled(ReachTabList)<ITabList>`
   [data-reach-tab-panels] {
     overflow-x: scroll;
   }
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 14px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     width: 100%;
     overflow-x: scroll;
     height: 112px;
@@ -118,7 +118,7 @@ const TabList = styled(ReachTabList)<ITabList>`
     padding-top: 16px;
     position: static;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     [data-selected] {
       border-bottom: none;
     }
@@ -149,12 +149,12 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
       fill: var(--grey-400);
     }
   }
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     font: var(--body-sm);
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     padding-inline: 12px;
     border-bottom: none;
   }
@@ -162,11 +162,11 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
 
 const TabPanels = styled(ReachTabPanels)`
   margin: 60px 0px 0;
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin: 96px 0 0;
   }
 `;
@@ -187,11 +187,10 @@ const BottomBorder = styled.div<ITabList>`
   left: ${({ selectedIndex }) => {
     return `${selectedIndex * 20}%`;
   }};
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     display: none;
     top: 108px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
   }
 `;
-export default Tabs;

@@ -1,19 +1,16 @@
+import { mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
 import styled from "styled-components";
-import { QUERIES } from "constants/breakpoints";
 
 export const Title = styled.div`
   font: var(--header-sm);
   color: var(--grey-200);
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
-  @media ${QUERIES.tb.andDown} {
+  @media ${tabletAndUnder} {
     margin: 0 16px;
   }
-  @media ${QUERIES.md.andDown} {
+  @media ${mediumAndUnder} {
     font: var(--body-lg);
-  }
-  > span {
-    color: var(--red);
   }
 `;
 export const Wrapper = styled.div`

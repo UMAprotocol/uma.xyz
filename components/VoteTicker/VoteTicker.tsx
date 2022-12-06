@@ -1,11 +1,11 @@
-import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import { largeAndUnder, medium, tablet } from "constant/breakpoints";
+import { useWindowSize } from "hooks";
+import useInterval from "hooks/helpers/useInterval";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import { formatDateTimeFromUTC } from "./utils";
-import useInterval from "hooks/helpers/useInterval";
-import { BREAKPOINTS, QUERIES } from "constants/breakpoints";
-import { useWindowSize } from "hooks";
 
 type TickerThemes = "light" | "dark";
 
@@ -109,7 +109,7 @@ const styledTheme: TickerTheme = {
   },
 };
 
-const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
+export function VoteTicker({ theme, numVotes, phase }: Props) {
   const { timeRemaining, width } = useVoteTicker();
 
   return (
@@ -121,12 +121,10 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
               <Clock />
             </ClockBG>
             <VoteText>
-              {width > BREAKPOINTS.md
-                ? `Time to ${phase ? phase.toLowerCase() : ""} vote: `
-                : `${phase ? phase : ""} vote: `}
+              {width > medium ? `Time to ${phase ? phase.toLowerCase() : ""} vote: ` : `${phase ? phase : ""} vote: `}
               <span>{timeRemaining}</span>
             </VoteText>
-            {width > BREAKPOINTS.md ? (
+            {width > medium ? (
               <NumVotes>
                 <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
               </NumVotes>
@@ -134,7 +132,7 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
           </VoteBlock>
           <MoreDetailsBlock>
             <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
-              {width > BREAKPOINTS.tb ? <span>More details</span> : null}
+              {width > tablet ? <span>More details</span> : null}
               <UpRightArrow />
             </a>
           </MoreDetailsBlock>
@@ -142,9 +140,7 @@ const VoteTicker: React.FC<Props> = ({ theme, numVotes, phase }) => {
       </Section>
     </ThemeProvider>
   );
-};
-
-export default VoteTicker;
+}
 
 function useVoteTicker() {
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
@@ -185,7 +181,7 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   border-radius: 8px;
   width: calc(100% - 24px);
-  @media ${QUERIES.lg.andDown} {
+  @media ${largeAndUnder} {
     width: calc(100% - 64px);
   }
 `;
