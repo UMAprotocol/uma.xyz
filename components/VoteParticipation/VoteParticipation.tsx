@@ -1,5 +1,5 @@
 import { Header as BaseHeader, Title as BaseTitle } from "components/Widgets";
-import { defaultApy, largeAndUnder, mediumAndOver, mediumAndUnder, tabletAndOver, tabletAndUnder } from "constant";
+import { defaultApy, laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useIntersectionObserver } from "hooks";
 import NextLink from "next/link";
 import earn from "public/assets/lottie/earn.json";
@@ -208,12 +208,12 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding-top: 85px;
   padding-bottom: 130px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-bottom: 64px;
     padding-left: 24px;
     padding-right: 24px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -223,7 +223,7 @@ const Header = styled(BaseHeader)`
   margin-top: 65px;
   max-width: 921px;
   margin-bottom: 128px;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     margin: 0 16px;
     max-width: 100%;
     font: var(--header-sm);
@@ -231,7 +231,7 @@ const Header = styled(BaseHeader)`
 `;
 
 const Title = styled(BaseTitle)`
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -239,7 +239,7 @@ const Title = styled(BaseTitle)`
 
 const HeaderWrapper = styled.div`
   position: relative;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -263,7 +263,7 @@ const ImageBlockRow = styled.div`
     width: 100%;
     height: 100%;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-direction: column;
     align-self: center;
     width: 100%;
@@ -285,11 +285,6 @@ const isIntersectingStyle = css`
     border-top-color: var(--grey-600);
     border-bottom-color: var(--grey-600);
   }
-
-  @media ${mediumAndOver} {
-    border-color: transparent;
-    border-top-color: transparent;
-  }
 `;
 
 const ImageBlockWrapper = styled.div<{ isIntersecting: boolean }>`
@@ -300,26 +295,6 @@ const ImageBlockWrapper = styled.div<{ isIntersecting: boolean }>`
   justify-content: center;
   align-items: flex-start;
   transition: all 0.2s ease-in-out;
-  &:hover {
-    @media ${tabletAndOver} {
-      margin-top: -36px;
-      background-color: var(--white);
-      border: 1px solid var(--grey-600);
-      padding-top: 20px;
-    }
-
-    h3 {
-      @media ${tabletAndOver} {
-        color: var(--red);
-        margin-top: 48px;
-      }
-    }
-    h4 {
-      @media ${tabletAndOver} {
-        padding-bottom: 20px;
-      }
-    }
-  }
   @media ${tabletAndUnder} {
     width: 100%;
     padding: 40px;
@@ -327,7 +302,7 @@ const ImageBlockWrapper = styled.div<{ isIntersecting: boolean }>`
     max-height: 196px;
     gap: 48px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     width: 100%;
     padding: 24px;
     max-height: 196px;
@@ -348,7 +323,7 @@ const ImageBlock = styled.div`
     padding: 0;
     width: 100%;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     border-right: 0;
     border-left: 0;
     gap: 32px;
@@ -359,7 +334,7 @@ const ImageTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     max-width: 400px;
     width: 100%;
   }
@@ -373,7 +348,7 @@ const ImageTitle = styled.h3<{ isIntersecting: boolean }>`
   transition: all 0.2s ease-in-out;
   position: relative;
   top: 0;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     font: var(--header-sm);
     margin-top: 24px;
   }
@@ -419,10 +394,10 @@ const VoterAppLinkRow = styled.div`
   @media ${tabletAndUnder} {
     display: none;
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     justify-content: center;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     margin-top: 24px;
   }
 `;
@@ -486,9 +461,6 @@ const MobileVoterRow = styled(VoterAppLinkRow)`
   display: var(--display);
   backdrop-filter: blur(6px);
   background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
-  @media ${tabletAndOver} {
-    display: none;
-  }
 `;
 
 const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`

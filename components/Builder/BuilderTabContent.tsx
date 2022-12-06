@@ -1,6 +1,6 @@
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
-import { mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
     padding-left: 32px;
     padding-right: 32px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }

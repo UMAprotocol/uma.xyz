@@ -1,4 +1,4 @@
-import { mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
 import styled from "styled-components";
 
 export const Title = styled.div`
@@ -9,7 +9,7 @@ export const Title = styled.div`
   @media ${tabletAndUnder} {
     margin: 0 16px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     font: var(--body-lg);
   }
 `;

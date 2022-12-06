@@ -1,5 +1,5 @@
 import { VoteTicker } from "components";
-import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
 import BlackCircle from "public/assets/black-circle.svg";
 import Discord from "public/assets/discord.svg";
 import Discourse from "public/assets/discourse.svg";
@@ -197,7 +197,7 @@ const FooterLinks = styled.div`
   justify-content: flex-start;
   width: 52%;
   gap: 116px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     flex-direction: column;
     gap: 32px;
     width: 30%;
@@ -207,7 +207,7 @@ const FooterLinks = styled.div`
     align-items: flex-start;
     align-self: flex-start;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     align-items: center;
     align-self: center;
   }
@@ -215,14 +215,14 @@ const FooterLinks = styled.div`
 
 const LogoWrapper = styled.div`
   width: 85px;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: none;
   }
 `;
 
 const FormLogoWrapper = styled(LogoWrapper)`
   display: none;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: block;
   }
 `;
@@ -230,7 +230,7 @@ const FormLogoWrapper = styled(LogoWrapper)`
 const BottomRow = styled(Row)`
   justify-content: space-between;
   column-gap: 100px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     width: calc(100% - 84px);
     margin: 0 auto;
   }
@@ -241,7 +241,7 @@ const BottomRow = styled(Row)`
     padding-left: 36px;
     padding-right: 36px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
@@ -272,7 +272,7 @@ const FormWrapper = styled.div`
   flex-direction: column;
   align-self: baseline;
   margin: 0 16px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     max-width: 640px;
     width: 100%;
     margin: 0;
@@ -283,7 +283,7 @@ const FormWrapper = styled.div`
     align-self: flex-start;
     margin-top: 64px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     justify-content: center;
     align-items: center;
     align-self: center;
@@ -295,7 +295,7 @@ const FormTitle = styled.h3`
   color: var(--grey-300);
   max-width: 338px;
   margin-bottom: 32px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     width: 100%;
     max-width: 640px;
   }
@@ -303,7 +303,7 @@ const FormTitle = styled.h3`
     width: 100%;
     text-align: left;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     width: 100%;
     text-align: center;
     margin-top: 24px;
@@ -318,7 +318,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     gap: 16px;
   }
   @media ${tabletAndUnder} {
@@ -328,7 +328,7 @@ const Form = styled.form`
     width: 100%;
     margin-bottom: 24px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-direction: column;
     width: 100%;
     margin-bottom: 24px;
@@ -351,11 +351,11 @@ const Input = styled.input`
   &:hover {
     border: 2px solid var(--grey-500);
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     width: 100%;
     max-width: 525px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     width: 100%;
     max-width: calc(100% - 32px);
   }
@@ -378,11 +378,11 @@ const Button = styled.button`
   &:hover {
     opacity: 0.5;
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     width: 100%;
     max-width: 103px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     width: 100%;
     max-width: calc(100% - 32px);
   }
@@ -392,7 +392,7 @@ const LinksFlex = styled.div`
   display: flex;
   flex-direction: row;
   flex-basis: 75%;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     flex-direction: column;
     gap: 12px;
     margin-bottom: 12px;
@@ -403,7 +403,7 @@ const CopyrightRow = styled(Row)`
   margin-top: 365px;
   display: flex;
   justify-content: space-between;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-left: 16px;
     padding-right: 0px;
     width: calc(100% - 48px);
@@ -415,7 +415,7 @@ const CopyrightRow = styled(Row)`
     margin-left: 16px;
     margin-right: 0;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-direction: column;
     justify-content: center;
     align-items: center;

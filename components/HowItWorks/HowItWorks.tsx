@@ -1,5 +1,5 @@
 import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { grey500, grey800, large, largeAndUnder, mediumAndUnder, red, tabletAndUnder, white } from "constant";
+import { grey500, grey800, laptop, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { useIntersectionObserver, useIsMounted, useTrackRefCrossed, useWindowSize } from "hooks";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
@@ -249,7 +249,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackOne = useRef<HTMLDivElement | null>(null);
   const entryTrackOne = useIntersectionObserver(refTrackOne, {
     threshold: 1,
-    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneOne, setStartSceneOne] = useState(false);
@@ -275,7 +275,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackTwo = useRef<HTMLDivElement | null>(null);
   const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneTwo, setStartSceneTwo] = useState(false);
@@ -300,7 +300,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackThree = useRef<HTMLDivElement | null>(null);
   const entryTrackThree = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneThree, setStartSceneThree] = useState(false);
@@ -330,7 +330,7 @@ function useHowItWorks(currentPosition: number) {
   const refTrackFour = useRef<HTMLDivElement | null>(null);
   const entryTrackFour = useIntersectionObserver(refTrackTwo, {
     threshold: 1,
-    rootMargin: width > large ? "-250px 0px 0px 0px" : "0px",
+    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
   });
 
   const [startSceneFour, setStartSceneFour] = useState(false);
@@ -381,13 +381,13 @@ const Wrapper = styled(BaseWrapper)`
   padding-bottom: 426px;
   padding-left: 32px;
   padding-right: 32px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-bottom: 200px;
   }
   @media ${tabletAndUnder} {
     padding-bottom: 100px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -399,7 +399,7 @@ const Title = styled(BaseTitle)`
   border-bottom: 1px solid var(--grey-600);
   padding-bottom: 16px;
   visibility: var(--visibility);
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     margin: 0 16px;
   }
 `;
@@ -410,7 +410,7 @@ const Header = styled.div`
   color: var(--grey-100);
   // todo: magic number
   max-width: 1020px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     max-width: 720px;
     margin-left: 16px;
     margin-right: 16px;
@@ -423,7 +423,7 @@ const Header = styled.div`
 const AnimationWrapper = styled.div`
   position: relative;
   margin: 392px 0 0;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     margin-top: 96px;
     margin-left: 16px;
     margin-right: 16px;
@@ -433,11 +433,11 @@ const AnimationWrapper = styled.div`
 const TopWrapper = styled(AnimationWrapper)`
   margin-bottom: 270px;
   margin-top: 0;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     margin-top: 128px;
     margin-bottom: 0;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     margin-top: 24px;
   }
 `;
@@ -446,13 +446,13 @@ const AnimationRow = styled.div`
   display: flex;
   flex-direction: row;
   gap: 100px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     flex-direction: column;
   }
   @media ${tabletAndUnder} {
     gap: 58px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-direction: column-reverse;
   }
 `;
@@ -461,7 +461,7 @@ const AnimationTextBlock = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     max-width: 100%;
   }
   @media ${tabletAndUnder} {
@@ -472,7 +472,7 @@ const AnimationHeader = styled.div`
   color: var(--red);
   font: var(--body-sm);
   text-transform: uppercase;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     margin: 0 16px;
   }
 `;
@@ -484,7 +484,7 @@ const AnimationBody = styled.div`
   max-width: 465px;
   letter-spacing: -0.01em;
 
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     max-width: 640px;
     margin-left: 16px;
     margin-right: 16px;
@@ -500,7 +500,7 @@ const AnimationSubBody = styled.div`
   color: var(--grey-100);
   font: var(--body-lg);
   max-width: 367px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     max-width: 640px;
     margin-left: 16px;
     margin-right: 16px;
@@ -522,7 +522,7 @@ const IllustrationColumn = styled.div`
 const IntersectionWrapper = styled.div`
   position: relative;
   padding-top: 231px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-top: 0;
   }
 `;
@@ -537,7 +537,7 @@ const TrackWrapper = styled.div`
   left: -100px;
   height: 120%;
   z-index: 0;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     display: flex;
     position: relative;
     top: 0;
@@ -551,7 +551,7 @@ const TrackWrapper = styled.div`
     margin-top: 0px;
     margin-left: 0;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: none;
   }
 `;
@@ -583,7 +583,7 @@ const Separator = styled.div`
   background: var(--grey-500);
   height: var(--height);
 
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     height: var(--height-percent);
   }
 `;
@@ -597,7 +597,7 @@ const TrackAndIllustrationRow = styled.div`
   gap: 24px;
   width: 100%;
   justify-content: space-between;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     gap: 48px;
   }
 `;
@@ -610,12 +610,12 @@ const IllustrationWrapper = styled.div`
   top: 0;
   border: 1px solid var(--grey-700);
 
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     position: relative;
     width: 70%;
     height: inherit;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     width: 100%;
   }
 `;

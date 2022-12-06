@@ -1,5 +1,5 @@
 import { VoteTicker } from "components";
-import { grey200, mediumAndUnder, white } from "constant";
+import { grey200, mobileAndUnder, white } from "constant";
 import { HeaderContext } from "contexts";
 import { useIsMounted, useScrollPosition } from "hooks";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -144,7 +144,7 @@ const Headroom = styled(UnstyledHeadroom)`
     background: var(--background);
     transition: all 0.2s ease-in-out;
 
-    @media ${mediumAndUnder} {
+    @media ${mobileAndUnder} {
       height: 60px;
       width: 100%;
     }

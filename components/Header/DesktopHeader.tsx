@@ -1,4 +1,4 @@
-import { grey100, grey200, grey400, grey800, largeAndUnder, links, red, tabletAndUnder, white } from "constant";
+import { grey100, grey200, grey400, grey800, laptopAndUnder, links, red, tabletAndUnder, white } from "constant";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-white-logo.svg";
@@ -81,7 +81,7 @@ const Wrapper = styled.div`
   @media ${tabletAndUnder} {
     display: none;
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     width: calc(100% - 64px);
   }
 `;

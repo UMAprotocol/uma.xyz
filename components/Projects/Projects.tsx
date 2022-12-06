@@ -1,5 +1,5 @@
 import { Wrapper as BaseWrapper } from "components/Widgets";
-import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
 import BobaLogo from "public/assets/boba.svg";
@@ -157,7 +157,7 @@ const InnerWrapper = styled.div`
   gap: 24px;
   margin-left: 16px;
   margin-right: 16px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     margin: 0;
     padding-left: 24px;
     padding-right: 24px;
@@ -170,7 +170,7 @@ const InnerWrapper = styled.div`
   @media screen and (max-width: 780px) {
     gap: 40px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-direction: column-reverse;
   }
 `;
@@ -181,7 +181,7 @@ const DesktopProjects = styled.div`
     width: 100%;
     max-width: 438px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: none;
   }
 `;
@@ -265,7 +265,7 @@ const BigProject = styled(Project)`
     width: 218px;
     height: 218px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex-grow: 0;
     width: 50%;
   }
@@ -280,7 +280,7 @@ const SmallProject = styled(Project)`
     max-height: 145.48px;
     width: 33%;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     flex: 1 0 auto;
     height: auto;
     max-width: none;
@@ -309,7 +309,7 @@ const BigProjectText = styled(ProjectText)``;
 const SmallProjectText = styled(ProjectText)`
   font-size: 14px;
   bottom: 40px;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     margin-top: 8px;
     font-size: 12px;
   }
@@ -361,7 +361,7 @@ const SmallLinkButton = styled(LinkButton)`
   ${MobileArrowIcon} {
     display: none;
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     ${DesktopArrowIcon} {
       display: none;
     }
@@ -455,7 +455,7 @@ const MobileProjects = styled.div`
   margin: 0;
   justify-content: space-around;
 
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: flex;
   }
 `;
