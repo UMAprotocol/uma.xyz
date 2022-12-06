@@ -7,7 +7,7 @@ export { HowItWorks } from "./HowItWorks/HowItWorks";
 export { Layout } from "./Layout/Layout";
 export { Home } from "./pages/Home/Home";
 export { Projects } from "./Projects/Projects";
-export { default as SupportSection } from "./SupportSection";
+export { SupportSection } from "./SupportSection/SupportSection";
 export { default as Tabs } from "./Tabs";
 export { VoteParticipation } from "./VoteParticipation/VoteParticipation";
 export { default as VoteTicker } from "./VoteTicker";

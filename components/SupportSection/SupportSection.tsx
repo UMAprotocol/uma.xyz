@@ -3,7 +3,7 @@ import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoi
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import styled from "styled-components";
 
-const SupportSection = () => {
+export function SupportSection() {
   return (
     <Section>
       <BackgroundLayer autoPlay loop muted>
@@ -40,9 +40,7 @@ const SupportSection = () => {
       </Wrapper>
     </Section>
   );
-};
-
-export default SupportSection;
+}
 
 const Section = styled.div`
   width: 100%;
