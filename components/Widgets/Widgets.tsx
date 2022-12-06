@@ -1,4 +1,4 @@
-import { mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { mobileAndUnder, tabletAndUnder } from "constant";
 import styled from "styled-components";
 
 export const Title = styled.div`
@@ -16,7 +16,7 @@ export const Title = styled.div`
 export const Wrapper = styled.div`
   background: inherit;
   width: 100%;
-  max-width: var(--max-section-width);
+  max-width: var(--desktop-page-width);
   margin: 0 auto;
 `;
 

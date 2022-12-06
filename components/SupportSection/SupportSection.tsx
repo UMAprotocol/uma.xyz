@@ -1,5 +1,5 @@
 import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import styled from "styled-components";
 

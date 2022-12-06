@@ -7,7 +7,7 @@ import {
   TabPanels as ReachTabPanels,
   Tabs as ReachTabs,
 } from "@reach/tabs";
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import styled from "styled-components";
 
 type Tab = {

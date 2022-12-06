@@ -1,6 +1,6 @@
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
-import { mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { mobileAndUnder, tabletAndUnder } from "constant";
 import UpRightArrowRed from "public/assets/up-right-arrow-red.svg";
 import { ReactNode } from "react";
 import styled, { keyframes } from "styled-components";

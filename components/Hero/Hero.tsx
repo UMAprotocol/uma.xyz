@@ -1,4 +1,4 @@
-import { mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { mobileAndUnder, tabletAndUnder } from "constant";
 import { HeaderContext } from "contexts";
 import { useIsMounted } from "hooks";
 import NextLink from "next/link";
@@ -99,7 +99,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--max-section-width);
+  max-width: var(--desktop-page-width);
   margin: 0 auto;
   padding-top: 153px;
   padding-bottom: 96px;

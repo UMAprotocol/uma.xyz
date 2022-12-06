@@ -1,5 +1,5 @@
 import { VoteTicker } from "components";
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import BlackCircle from "public/assets/black-circle.svg";
 import Discord from "public/assets/discord.svg";
 import Discourse from "public/assets/discourse.svg";
@@ -172,7 +172,7 @@ const Section = styled.div`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  max-width: var(--max-section-width);
+  max-width: var(--desktop-page-width);
   margin: 0 auto;
   padding: 96px 0 66px;
 

@@ -1,4 +1,4 @@
-import { laptopAndUnder, mobile, tablet } from "constant/breakpoints";
+import { laptopAndUnder, mobile, tablet } from "constant";
 import { useWindowSize } from "hooks";
 import useInterval from "hooks/helpers/useInterval";
 import Clock from "public/assets/clock.svg";
@@ -172,7 +172,7 @@ const Wrapper = styled.div`
   padding: 8px 16px 8px 8px;
   gap: 16px;
   isolation: isolate;
-  max-width: var(--max-section-width);
+  max-width: var(--desktop-page-width);
   margin: 0 auto;
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};

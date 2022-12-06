@@ -204,7 +204,7 @@ const Section = styled.section`
 const Wrapper = styled.div`
   background-color: inherit;
   width: 100%;
-  max-width: var(--max-section-width);
+  max-width: var(--desktop-page-width);
   margin: 0 auto;
   padding-top: 85px;
   padding-bottom: 130px;

@@ -1,4 +1,4 @@
-import { maxSectionWidth } from "constant/breakpoints";
+import { desktopPageWidth } from "constant";
 import {
   black,
   grey100,
@@ -29,7 +29,7 @@ import {
   headerSm,
   headerXs,
   subHeader,
-} from "constant/fonts";
+} from "constant/style/fonts";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -229,7 +229,7 @@ a:not([class]) {
     --body-md: ${bodyMd};
     --body-sm: ${bodySm};
     --body-xs: ${bodyXs};
-    --max-section-width: ${maxSectionWidth}px;
+    --desktop-page-width: ${desktopPageWidth}px;
     // Sandpack override
     --sp-layout-height: ${`347px`} !important;
   }
