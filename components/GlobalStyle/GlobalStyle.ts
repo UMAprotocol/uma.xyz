@@ -5,6 +5,7 @@ import {
   bodySm,
   bodyXl,
   bodyXs,
+  desktopHeaderHeight,
   desktopPageWidth,
   grey100,
   grey100Opacity20,
@@ -21,6 +22,7 @@ import {
   headerSm,
   headerXs,
   mobileAndUnder,
+  mobileHeaderHeight,
   mobilePageWidth,
   red,
   red510Opacity15,
@@ -28,6 +30,7 @@ import {
   subHeader,
   tabletAndUnder,
   tabletPageWidth,
+  voteTickerHeight,
   white,
   white200,
   whiteOpacity10,
@@ -235,6 +238,8 @@ html, body, #__next {
     --body-md: ${bodyMd};
     --body-sm: ${bodySm};
     --body-xs: ${bodyXs};
+
+    /* Containers */
     --desktop-page-width: ${desktopPageWidth}px;
     --tablet-page-width: ${tabletPageWidth}px;
     --mobile-page-width: ${mobilePageWidth}px;
@@ -245,8 +250,15 @@ html, body, #__next {
     @media ${mobileAndUnder} {
       --page-width: var(--mobile-page-width);
     }
+    --desktop-header-height: ${desktopHeaderHeight}px;
+    --mobile-header-height: ${mobileHeaderHeight}px;
+    --header-height: var(--desktop-header-height);
+    @media ${mobileAndUnder} {
+      --header-height: var(--mobile-header-height);
+    }
+    --vote-ticker-height: ${voteTickerHeight}px;
 
     // Sandpack override
-    --sp-layout-height: ${`347px`} !important;
+    --sp-layout-height: 347px !important;
   }
 `;
