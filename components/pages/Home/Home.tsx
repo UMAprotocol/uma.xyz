@@ -11,7 +11,6 @@ import {
 } from "components";
 import { useIntersectionObserver, useIsMounted, useScrollPosition, useVoteTickerData } from "hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
 
 export function Home() {
   const headerThemeChangeRef = useRef<HTMLDivElement>(null);
@@ -56,34 +55,28 @@ export function Home() {
 
   return (
     <Layout>
-      <Wrapper>
-        <Header
-          activeLink={currentActiveLink()}
-          phase={data ? data.phase : null}
-          numVotes={data ? Number(data.activeRequests) : 0}
-        />
-        <div ref={heroRef}>
-          <Hero />
+      <Header
+        activeLink={currentActiveLink()}
+        phase={data ? data.phase : null}
+        numVotes={data ? Number(data.activeRequests) : 0}
+      />
+      <div ref={heroRef}>
+        <Hero />
+      </div>
+      <div ref={headerThemeChangeRef}>
+        <div ref={howItWorksRef}>
+          <HowItWorks currentPosition={cp} />
         </div>
-        <div ref={headerThemeChangeRef}>
-          <div ref={howItWorksRef}>
-            <HowItWorks currentPosition={cp} />
-          </div>
-          <div ref={voteParticipationRef}>
-            <VoteParticipation apy={data ? data.apy : ""} />
-          </div>
-          <div ref={builderRef}>
-            <Builder />
-          </div>
-          <Projects />
-          <SupportSection />
-          <Footer phase={data ? data.phase : null} numVotes={data ? Number(data.activeRequests) : 0} />
+        <div ref={voteParticipationRef}>
+          <VoteParticipation apy={data ? data.apy : ""} />
         </div>
-      </Wrapper>
+        <div ref={builderRef}>
+          <Builder />
+        </div>
+        <Projects />
+        <SupportSection />
+        <Footer phase={data ? data.phase : null} numVotes={data ? Number(data.activeRequests) : 0} />
+      </div>
     </Layout>
   );
 }
-
-const Wrapper = styled.div`
-  background: var(--grey-200);
-`;

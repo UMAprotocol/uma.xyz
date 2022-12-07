@@ -61,11 +61,6 @@ function useHero() {
   };
 }
 
-const animateBackground = keyframes`
-  0% {bottom: -75%; left: -75%; }
-  100% {bottom: 0%; left: 0%; }
-`;
-
 const Background = styled.div`
   position: absolute;
   z-index: 0;
@@ -75,26 +70,14 @@ const Background = styled.div`
   right: 0;
   opacity: 0.15;
 `;
-const Section = styled.div`
+
+const Section = styled.section`
   background: var(--grey-200);
-  width: 100%;
   position: relative;
-  overflow: hidden;
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    bottom: 0;
-    left: 0;
-    animation: ${animateBackground} 2s ease-in-out;
-  }
 `;
 
 const Wrapper = styled.div`
   background: inherit;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

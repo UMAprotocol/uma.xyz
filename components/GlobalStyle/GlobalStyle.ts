@@ -195,12 +195,16 @@ a:not([class]) {
   cursor: not-allowed;
 }
 
+/* Allow percentage-based full height */
+html, body, #__next {
+  height: 100%;
+}
+
 /* Global style definitions */
 
   /*  All CSS custom properties that are intended to be global must be defined here */
 
   html {
-    scroll-behavior:smooth;
     /* Colors */
     --black: ${black};
     --white: ${white};

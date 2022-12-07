@@ -15,6 +15,6 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 const Main = styled.main`
-  min-height: 100vh;
   background: var(--grey-200);
+  height: 100%;
 `;
