@@ -7,7 +7,7 @@ import {
   TabPanels as ReachTabPanels,
   Tabs as ReachTabs,
 } from "@reach/tabs";
-import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import styled from "styled-components";
 
 type Tab = {
@@ -92,7 +92,7 @@ const TabList = styled(ReachTabList)<ITabList>`
   [data-reach-tab-panels] {
     overflow-x: scroll;
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 14px;
@@ -118,7 +118,7 @@ const TabList = styled(ReachTabList)<ITabList>`
     padding-top: 16px;
     position: static;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     [data-selected] {
       border-bottom: none;
     }
@@ -149,12 +149,12 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
       fill: var(--grey-400);
     }
   }
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     font: var(--body-sm);
   }
   @media ${tabletAndUnder} {
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     padding-inline: 12px;
     border-bottom: none;
   }
@@ -162,7 +162,7 @@ const Tab = styled(ReachTab)<{ selected: boolean }>`
 
 const TabPanels = styled(ReachTabPanels)`
   margin: 60px 0px 0;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -191,6 +191,6 @@ const BottomBorder = styled.div<ITabList>`
     display: none;
     top: 108px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
   }
 `;

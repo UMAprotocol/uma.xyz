@@ -1,6 +1,11 @@
-import { maxSectionWidth } from "constant/breakpoints";
 import {
   black,
+  bodyLg,
+  bodyMd,
+  bodySm,
+  bodyXl,
+  bodyXs,
+  desktopPageWidth,
   grey100,
   grey100Opacity20,
   grey200,
@@ -11,25 +16,22 @@ import {
   grey600,
   grey700,
   grey800,
-  red,
-  red510Opacity15,
-  red550,
-  white,
-  white200,
-  whiteOpacity10,
-} from "constant/colors";
-import {
-  bodyLg,
-  bodyMd,
-  bodySm,
-  bodyXl,
-  bodyXs,
   headerLg,
   headerMd,
   headerSm,
   headerXs,
+  mobileAndUnder,
+  mobilePageWidth,
+  red,
+  red510Opacity15,
+  red550,
   subHeader,
-} from "constant/fonts";
+  tabletAndUnder,
+  tabletPageWidth,
+  white,
+  white200,
+  whiteOpacity10,
+} from "constant";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -229,7 +231,17 @@ a:not([class]) {
     --body-md: ${bodyMd};
     --body-sm: ${bodySm};
     --body-xs: ${bodyXs};
-    --max-section-width: ${maxSectionWidth}px;
+    --desktop-page-width: ${desktopPageWidth}px;
+    --tablet-page-width: ${tabletPageWidth}px;
+    --mobile-page-width: ${mobilePageWidth}px;
+    --page-width: var(--desktop-page-width);
+    @media ${tabletAndUnder} {
+      --page-width: var(--tablet-page-width);
+    }
+    @media ${mobileAndUnder} {
+      --page-width: var(--mobile-page-width);
+    }
+
     // Sandpack override
     --sp-layout-height: ${`347px`} !important;
   }

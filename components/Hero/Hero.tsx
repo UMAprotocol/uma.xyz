@@ -1,4 +1,4 @@
-import { mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { mobileAndUnder, tabletAndUnder } from "constant";
 import { HeaderContext } from "contexts";
 import { useIsMounted } from "hooks";
 import NextLink from "next/link";
@@ -99,7 +99,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-width: var(--max-section-width);
+  max-width: var(--page-width);
   margin: 0 auto;
   padding-top: 153px;
   padding-bottom: 96px;
@@ -137,7 +137,7 @@ const Title = styled.div`
     line-height: 115%;
     margin: 0 17px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
   }
@@ -149,7 +149,7 @@ const Title = styled.div`
     display: flex;
     align-items: center;
     align-self: center;
-    @media ${mediumAndUnder} {
+    @media ${mobileAndUnder} {
       height: auto;
       width: 100%;
       margin: 0 10px 0;
@@ -168,7 +168,7 @@ const Subheader = styled.div`
   text-align: center;
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: 200ms;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     margin: 32px 16px 0;
   }
   z-index: 50;
@@ -211,7 +211,7 @@ const ArrowButton = styled(NextLink)`
 `;
 
 const OOLogoIcon = styled(OOLogo)`
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: none;
   }
 `;
@@ -219,7 +219,7 @@ const OOLogoIcon = styled(OOLogo)`
 const OOLogoIconMobile = styled(OOLogoMobile)`
   display: none;
 
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     display: block;
   }
 `;

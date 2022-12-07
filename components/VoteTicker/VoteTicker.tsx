@@ -1,4 +1,4 @@
-import { largeAndUnder, medium, tablet } from "constant/breakpoints";
+import { laptopAndUnder, mobile, tablet } from "constant";
 import { useWindowSize } from "hooks";
 import useInterval from "hooks/helpers/useInterval";
 import Clock from "public/assets/clock.svg";
@@ -121,10 +121,10 @@ export function VoteTicker({ theme, numVotes, phase }: Props) {
               <Clock />
             </ClockBG>
             <VoteText>
-              {width > medium ? `Time to ${phase ? phase.toLowerCase() : ""} vote: ` : `${phase ? phase : ""} vote: `}
+              {width > mobile ? `Time to ${phase ? phase.toLowerCase() : ""} vote: ` : `${phase ? phase : ""} vote: `}
               <span>{timeRemaining}</span>
             </VoteText>
-            {width > medium ? (
+            {width > mobile ? (
               <NumVotes>
                 <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
               </NumVotes>
@@ -172,7 +172,7 @@ const Wrapper = styled.div`
   padding: 8px 16px 8px 8px;
   gap: 16px;
   isolation: isolate;
-  max-width: var(--max-section-width);
+  max-width: var(--page-width);
   margin: 0 auto;
   height: 48px;
   background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
@@ -181,7 +181,7 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   border-radius: 8px;
   width: calc(100% - 24px);
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     width: calc(100% - 64px);
   }
 `;

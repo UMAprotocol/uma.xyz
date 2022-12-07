@@ -1,4 +1,4 @@
-import { grey200, grey500, links, smallAndOver, socialLinks, white } from "constant";
+import { grey200, grey500, links, socialLinks, white } from "constant";
 import NextLink from "next/link";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
@@ -68,10 +68,6 @@ const Link = styled(NextLink)`
   }
   &:hover {
     opacity: 0.75;
-  }
-  @media ${smallAndOver} {
-    font-size: ${18 / 16}rem;
-    line-height: 24px;
   }
 `;
 

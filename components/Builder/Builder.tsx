@@ -1,6 +1,6 @@
 import { Tabs } from "components";
 import { Header as BaseHeader, Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { largeAndUnder, mediumAndUnder, smallAndUnder, tabletAndUnder } from "constant";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useIntersectionObserver } from "hooks";
 import GlobeIcon from "public/assets/globe.svg";
 import OoIcon from "public/assets/oo-logo.svg";
@@ -161,7 +161,7 @@ const Section = styled.section`
 
 const Wrapper = styled(BaseWrapper)`
   padding: 100px 0 113px;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -179,7 +179,7 @@ const Header = styled(BaseHeader)`
   justify-content: flex-start;
   align-items: center;
   align-self: center;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding: 0;
   }
   @media ${tabletAndUnder} {
@@ -188,7 +188,7 @@ const Header = styled(BaseHeader)`
 `;
 
 const Title = styled(BaseTitle)`
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     margin-left: 0;
     margin-right: 0;
   }
@@ -197,7 +197,7 @@ const Title = styled(BaseTitle)`
 const TopHeader = styled(Header)`
   margin-top: 65px;
 
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     display: none;
   }
 `;
@@ -215,7 +215,7 @@ const BottomHeader = styled(Header)`
   margin-top: 24px;
   margin-bottom: 216px;
 
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     display: none;
   }
 `;
@@ -235,7 +235,7 @@ const MobileHeader = styled(Header)`
     height: 100%;
   }
 
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     display: inline-flex;
   }
 
@@ -243,12 +243,8 @@ const MobileHeader = styled(Header)`
     margin-bottom: 0;
   }
 
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     font: var(--header-sm);
-  }
-  @media ${smallAndUnder} {
-    display: inline-block;
-    word-break: wrap;
   }
 `;
 

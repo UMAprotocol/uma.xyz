@@ -1,5 +1,5 @@
 import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { largeAndUnder, mediumAndUnder, tabletAndUnder } from "constant/breakpoints";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import styled from "styled-components";
 
@@ -56,7 +56,7 @@ const Wrapper = styled(BaseWrapper)`
   pointer-events: all;
   padding: 261px 0 234px;
   background: transparent;
-  @media ${largeAndUnder} {
+  @media ${laptopAndUnder} {
     padding: 160px 64px 200px;
   }
 
@@ -70,7 +70,7 @@ const Title = styled(BaseTitle)`
   font: var(--header-md);
   border-bottom: none;
   z-index: 100;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     max-width: 400px;
     font: var(--header-sm);
   }
@@ -87,7 +87,7 @@ const Subtitle = styled.h3`
     margin-left: 15px;
     margin-right: 15px;
   }
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     max-width: 400px;
     font: var(--body-md);
   }
@@ -180,7 +180,7 @@ const ButtonText = styled.span`
   font: var(--header-sm);
   color: var(--grey-200);
   line-height: 115%;
-  @media ${mediumAndUnder} {
+  @media ${mobileAndUnder} {
     font-size: 32px;
   }
 `;
