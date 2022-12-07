@@ -45,7 +45,6 @@ export function Hero() {
 
 const Background = styled.div`
   position: absolute;
-  z-index: 0;
   top: 0;
   bottom: 0;
   left: 0;
@@ -136,7 +135,6 @@ const Subheader = styled.div`
   @media ${mobileAndUnder} {
     margin: 32px 16px 0;
   }
-  z-index: 50;
 `;
 
 const svgAnimation = keyframes`
