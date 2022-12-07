@@ -9,16 +9,22 @@ import styled from "styled-components";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <Main>
+    <Wrapper>
       <VoteTicker />
       <Header />
-      {children}
-      <Footer />
-    </Main>
+      <Main>
+        {children}
+        <Footer />
+      </Main>
+    </Wrapper>
   );
 }
 
 const Main = styled.main`
-  background: var(--grey-200);
   height: 100%;
+`;
+
+const Wrapper = styled.div`
+  background: var(--grey-200);
+  scroll-behavior: smooth;
 `;

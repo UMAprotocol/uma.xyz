@@ -19,4 +19,8 @@ export function Header() {
   );
 }
 
-const Wrapper = styled.header``;
+const Wrapper = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+`;

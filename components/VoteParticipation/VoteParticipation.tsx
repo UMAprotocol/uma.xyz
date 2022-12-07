@@ -33,12 +33,12 @@ export function VoteParticipation() {
         }
       >
         <MobileVoterAppLinkBlock>
-          <VoterAppLink href="https://vote.umaproject.org" target="_blank">
+          {/* <VoterAppLink href="https://vote.umaproject.org" target="_blank">
             Link to voter app
             <ArrowIconWrapper>
               <ArrowIcon />
             </ArrowIconWrapper>
-          </VoterAppLink>
+          </VoterAppLink> */}
         </MobileVoterAppLinkBlock>
       </MobileVoterRow>
       <Wrapper>

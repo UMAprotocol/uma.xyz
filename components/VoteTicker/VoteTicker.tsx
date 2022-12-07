@@ -114,7 +114,7 @@ const OuterWrapper = styled.div`
   height: var(--vote-ticker-height);
   background: var(--background);
   padding-top: var(--padding-top);
-  margin-bottom: var(--margin-bottom);
+  padding-bottom: var(--margin-bottom);
   background-size: cover;
   background-repeat: no-repeat;
 `;

@@ -9,7 +9,7 @@ import styled, { keyframes } from "styled-components";
 
 export function Hero() {
   return (
-    <Section>
+    <OuterWrapper>
       <Background>
         <Lottie
           options={{
@@ -22,7 +22,7 @@ export function Hero() {
           }}
         />
       </Background>
-      <Wrapper>
+      <InnerWrapper>
         <Title>
           <span>A decentralized</span>
         </Title>
@@ -38,8 +38,8 @@ export function Hero() {
         <ArrowButton href="#how-it-works">
           <DownArrow />
         </ArrowButton>
-      </Wrapper>
-    </Section>
+      </InnerWrapper>
+    </OuterWrapper>
   );
 }
 
@@ -53,12 +53,13 @@ const Background = styled.div`
   opacity: 0.15;
 `;
 
-const Section = styled.section`
+const OuterWrapper = styled.section`
+  height: calc(100% - var(--header-height) - var(--vote));
   background: var(--grey-200);
   position: relative;
 `;
 
-const Wrapper = styled.div`
+const InnerWrapper = styled.div`
   background: inherit;
   display: flex;
   flex-direction: column;
@@ -81,7 +82,6 @@ const animateText = keyframes`
 `;
 
 const Title = styled.div`
-  z-index: 50;
   font: var(--header-lg);
   color: var(--white);
   display: flex;
@@ -168,7 +168,6 @@ const ArrowButton = styled(NextLink)`
   animation: ${textReveal} 1s ease-in-out;
   animation-delay: 400ms;
   opacity: 1;
-  z-index: 100;
   > svg {
     animation: ${svgAnimation} 2s linear infinite;
     animation-delay: 600ms;
