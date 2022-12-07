@@ -1,0 +1,1 @@
+export { getVotingInfo } from "./getVotingInfo";

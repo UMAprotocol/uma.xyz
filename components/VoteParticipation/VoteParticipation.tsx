@@ -1,36 +1,30 @@
 import { Header as BaseHeader, Title as BaseTitle } from "components/Widgets";
-import { defaultApy, laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { useIntersectionObserver } from "hooks";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { useVotingInfo } from "hooks";
 import NextLink from "next/link";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Lottie from "react-lottie";
 import styled, { css, CSSProperties } from "styled-components";
 
-interface Props {
-  apy: string;
-}
-
-export function VoteParticipation({ apy }: Props) {
+export function VoteParticipation() {
   const {
-    earnRef,
-    voteRef,
-    stakeRef,
-    sectionRef,
-    isIntersectingEarn,
-    isIntersectingStake,
-    isIntersectingVote,
-    isIntersectingSection,
-  } = useVoteParticipation();
+    data: { apy },
+  } = useVotingInfo();
   const [playEarn, setPlayEarn] = useState(false);
   const [playVote, setPlayVote] = useState(false);
   const [playStake, setPlayStake] = useState(false);
 
+  const isIntersectingSection = true;
+  const isIntersectingEarn = true;
+  const isIntersectingVote = true;
+  const isIntersectingStake = true;
+
   return (
-    <Section ref={sectionRef} id="voter">
+    <Section id="voter">
       <MobileVoterRow
         style={
           {
@@ -52,14 +46,13 @@ export function VoteParticipation({ apy }: Props) {
           Participate as <RedEmphasis>Voter</RedEmphasis>
         </Title>
         <HeaderWrapper>
-          <Header>Stake, vote &amp; earn up to {apy || defaultApy}% APY</Header>
+          <Header>Stake, vote &amp; earn up to {apy}% APY</Header>
         </HeaderWrapper>
 
         <ImageBlockRow>
           <ImageBlockWrapper
             onMouseEnter={() => setPlayStake(true)}
             onMouseLeave={() => setPlayStake(false)}
-            ref={stakeRef}
             isIntersecting={isIntersectingStake}
           >
             <ImageBlock>
@@ -85,7 +78,6 @@ export function VoteParticipation({ apy }: Props) {
           <ImageBlockWrapper
             onMouseEnter={() => setPlayVote(true)}
             onMouseLeave={() => setPlayVote(false)}
-            ref={voteRef}
             isIntersecting={isIntersectingVote}
           >
             <ImageBlock>
@@ -111,7 +103,6 @@ export function VoteParticipation({ apy }: Props) {
           <ImageBlockWrapper
             onMouseEnter={() => setPlayEarn(true)}
             onMouseLeave={() => setPlayEarn(false)}
-            ref={earnRef}
             isIntersecting={isIntersectingEarn}
           >
             <ImageBlock>
@@ -152,46 +143,6 @@ export function VoteParticipation({ apy }: Props) {
       </Wrapper>
     </Section>
   );
-}
-
-function useVoteParticipation() {
-  const stakeRef = useRef<HTMLDivElement | null>(null);
-  const voteRef = useRef<HTMLDivElement | null>(null);
-  const earnRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const ioStake = useIntersectionObserver(stakeRef, {
-    threshold: 1,
-    rootMargin: "-400px 0px -100px 0px",
-  });
-  const ioVote = useIntersectionObserver(voteRef, {
-    threshold: 1,
-    rootMargin: "-400px 0px -100px 0px",
-  });
-  const ioEarn = useIntersectionObserver(earnRef, {
-    threshold: 1,
-    rootMargin: "-400px 0px -100px 0px",
-  });
-
-  const ioSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.5,
-    rootMargin: "-200px 0px -25px 0px",
-  });
-
-  const isIntersectingStake = !!ioStake?.isIntersecting;
-  const isIntersectingVote = !!ioVote?.isIntersecting;
-  const isIntersectingEarn = !!ioEarn?.isIntersecting;
-  const isIntersectingSection = !!ioSection?.isIntersecting;
-
-  return {
-    earnRef,
-    voteRef,
-    stakeRef,
-    sectionRef,
-    isIntersectingStake,
-    isIntersectingVote,
-    isIntersectingEarn,
-    isIntersectingSection,
-  };
 }
 
 const Section = styled.section`

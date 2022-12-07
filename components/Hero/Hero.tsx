@@ -1,19 +1,15 @@
 import { mobileAndUnder, tabletAndUnder } from "constant";
-import { HeaderContext } from "contexts";
-import { useIsMounted } from "hooks";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOLogoMobile from "public/assets/oo-mobile.svg";
-import { useContext, useEffect, useRef } from "react";
 import Lottie from "react-lottie";
 import styled, { keyframes } from "styled-components";
 
 export function Hero() {
-  const { sectionRef } = useHero();
   return (
-    <Section ref={sectionRef}>
+    <Section>
       <Background>
         <Lottie
           options={{
@@ -45,20 +41,6 @@ export function Hero() {
       </Wrapper>
     </Section>
   );
-}
-
-function useHero() {
-  const { updateRef, lightRefs } = useContext(HeaderContext);
-  const isMounted = useIsMounted();
-  const sectionRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (isMounted() && !lightRefs.heroSection.current) {
-      updateRef(sectionRef, "heroSection");
-    }
-  }, [isMounted, updateRef, lightRefs]);
-  return {
-    sectionRef,
-  };
 }
 
 const Background = styled.div`

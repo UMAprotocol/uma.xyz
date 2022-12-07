@@ -1,39 +1,27 @@
 import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
-import { grey500, grey800, laptop, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
-import { useIntersectionObserver, useIsMounted, useTrackRefCrossed, useWindowSize } from "hooks";
+import { grey500, grey800, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Lottie from "react-lottie";
 import styled, { CSSProperties } from "styled-components";
 
-interface Props {
-  currentPosition: number;
-}
-export function HowItWorks({ currentPosition }: Props) {
-  const {
-    sectionRef,
-    showHeader,
-    headerWrapperRef,
-    refTrackOne,
-    refTrackTwo,
-    refTrackThree,
-    refTrackFour,
-    refOnePercentCrossed,
-    refTwoPercentCrossed,
-    refThreePercentCrossed,
-    refFourPercentCrossed,
-    startSceneOne,
-    startSceneTwo,
-    startSceneThree,
-    startSceneFour,
-  } = useHowItWorks(currentPosition);
+export function HowItWorks() {
+  const [showHeader, setShowHeader] = useState(false);
+
+  const refOnePercentCrossed = 0;
+  const refTwoPercentCrossed = 0;
+  const refThreePercentCrossed = 0;
+  const refFourPercentCrossed = 0;
+  const startSceneOne = true;
+  const startSceneTwo = true;
+  const startSceneThree = true;
+  const startSceneFour = true;
 
   function makeTrackStyle(percentCrossed: number) {
     const isIntersecting = percentCrossed > 0;
-
     return {
       "--border-color": isIntersecting ? "transparent" : grey500,
       "--background": isIntersecting ? red : grey800,
@@ -55,7 +43,6 @@ export function HowItWorks({ currentPosition }: Props) {
   return (
     <Section
       id="how-it-works"
-      ref={sectionRef}
       style={
         {
           "--visibility": showHeader ? "visible" : "hidden",
@@ -63,7 +50,7 @@ export function HowItWorks({ currentPosition }: Props) {
       }
     >
       <Wrapper>
-        <HeaderWrapper ref={headerWrapperRef}>
+        <HeaderWrapper>
           <Title>How it works</Title>
           <Header>The Optimistic Oracle verifies data in stages</Header>
         </HeaderWrapper>
@@ -92,7 +79,7 @@ export function HowItWorks({ currentPosition }: Props) {
                   dispute it if they have evidence to the contrary.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn ref={refTrackOne}>
+              <IllustrationColumn>
                 <TrackAndIllustrationRow>
                   <TrackWrapper>
                     <TrackItem style={makeTrackStyle(refOnePercentCrossed)}>01</TrackItem>
@@ -126,7 +113,7 @@ export function HowItWorks({ currentPosition }: Props) {
                   during the challenge period.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn ref={refTrackTwo}>
+              <IllustrationColumn>
                 <TrackAndIllustrationRow>
                   <TrackWrapper>
                     <TrackItem style={makeTrackStyle(refTwoPercentCrossed)}>02</TrackItem>
@@ -161,7 +148,7 @@ export function HowItWorks({ currentPosition }: Props) {
                   are always to be honest. That makes the OO “optimistic”.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn ref={refTrackThree}>
+              <IllustrationColumn>
                 <TrackAndIllustrationRow>
                   <TrackWrapper>
                     <TrackItem style={makeTrackStyle(refThreePercentCrossed)}>03</TrackItem>
@@ -197,7 +184,7 @@ export function HowItWorks({ currentPosition }: Props) {
                   Those who vote with the majority earn rewards.
                 </AnimationSubBody>
               </AnimationTextBlock>
-              <IllustrationColumn ref={refTrackFour}>
+              <IllustrationColumn>
                 <TrackAndIllustrationRow>
                   <TrackWrapper>
                     <TrackItem style={makeTrackStyle(refFourPercentCrossed)}>04</TrackItem>
@@ -225,150 +212,6 @@ export function HowItWorks({ currentPosition }: Props) {
       </Wrapper>
     </Section>
   );
-}
-
-function useHowItWorks(currentPosition: number) {
-  const isMounted = useIsMounted();
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const { width } = useWindowSize();
-
-  const headerWrapperRef = useRef<HTMLDivElement | null>(null);
-  const headerWrapperEntry = useIntersectionObserver(headerWrapperRef, {
-    threshold: 1,
-  });
-  const [showHeader, setShowHeader] = useState(false);
-  const hasEnteredSection = !!headerWrapperEntry?.isIntersecting;
-  useEffect(() => {
-    if (hasEnteredSection && !showHeader) {
-      headerWrapperEntry.target?.classList.add("fade-in");
-      setShowHeader(true);
-    }
-  }, [hasEnteredSection]);
-
-  const [offsetTrackRefOne, setOffsetTrackRefOne] = useState(0);
-  const refTrackOne = useRef<HTMLDivElement | null>(null);
-  const entryTrackOne = useIntersectionObserver(refTrackOne, {
-    threshold: 1,
-    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
-  });
-
-  const [startSceneOne, setStartSceneOne] = useState(false);
-  useEffect(() => {
-    if (entryTrackOne?.isIntersecting && !startSceneOne) {
-      setStartSceneOne(true);
-    }
-  }, [startSceneOne, entryTrackOne]);
-
-  const refOnePercentCrossed = useTrackRefCrossed(refTrackOne, entryTrackOne, offsetTrackRefOne, currentPosition);
-
-  useEffect(() => {
-    if (isMounted() && refTrackOne.current && offsetTrackRefOne === 0) {
-      setTimeout(() => {
-        if (refTrackOne.current) {
-          setOffsetTrackRefOne(refTrackOne.current.getBoundingClientRect().top);
-        }
-      }, 1000);
-    }
-  }, [refTrackOne, isMounted]);
-
-  const [offsetTrackRefTwo, setOffsetTrackRefTwo] = useState(0);
-  const refTrackTwo = useRef<HTMLDivElement | null>(null);
-  const entryTrackTwo = useIntersectionObserver(refTrackTwo, {
-    threshold: 1,
-    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
-  });
-
-  const [startSceneTwo, setStartSceneTwo] = useState(false);
-  useEffect(() => {
-    if (entryTrackTwo?.isIntersecting && !startSceneTwo) {
-      setStartSceneTwo(true);
-    }
-  }, [startSceneTwo, entryTrackTwo]);
-
-  const refTwoPercentCrossed = useTrackRefCrossed(refTrackTwo, entryTrackTwo, offsetTrackRefTwo, currentPosition);
-  useEffect(() => {
-    if (isMounted() && refTrackTwo.current && offsetTrackRefTwo === 0) {
-      setTimeout(() => {
-        if (refTrackTwo.current) {
-          setOffsetTrackRefTwo(refTrackTwo.current.getBoundingClientRect().top);
-        }
-      }, 1000);
-    }
-  }, [refTrackTwo, isMounted]);
-
-  const [offsetTrackRefThree, setOffsetTrackRefThree] = useState(0);
-  const refTrackThree = useRef<HTMLDivElement | null>(null);
-  const entryTrackThree = useIntersectionObserver(refTrackTwo, {
-    threshold: 1,
-    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
-  });
-
-  const [startSceneThree, setStartSceneThree] = useState(false);
-  useEffect(() => {
-    if (entryTrackThree?.isIntersecting && !startSceneThree) {
-      setStartSceneThree(true);
-    }
-  }, [startSceneThree, entryTrackThree]);
-
-  const refThreePercentCrossed = useTrackRefCrossed(
-    refTrackThree,
-    entryTrackThree,
-    offsetTrackRefThree,
-    currentPosition
-  );
-  useEffect(() => {
-    if (isMounted() && refTrackThree.current && offsetTrackRefThree === 0) {
-      setTimeout(() => {
-        if (refTrackThree.current) {
-          setOffsetTrackRefThree(refTrackThree.current.getBoundingClientRect().top);
-        }
-      }, 1000);
-    }
-  }, [refTrackTwo, isMounted]);
-
-  const [offsetTrackRefFour, setOffsetTrackRefFour] = useState(0);
-  const refTrackFour = useRef<HTMLDivElement | null>(null);
-  const entryTrackFour = useIntersectionObserver(refTrackTwo, {
-    threshold: 1,
-    rootMargin: width > laptop ? "-250px 0px 0px 0px" : "0px",
-  });
-
-  const [startSceneFour, setStartSceneFour] = useState(false);
-  useEffect(() => {
-    if (entryTrackFour?.isIntersecting && !startSceneFour) {
-      setStartSceneFour(true);
-    }
-  }, [startSceneFour, entryTrackFour]);
-
-  const refFourPercentCrossed = useTrackRefCrossed(refTrackFour, entryTrackFour, offsetTrackRefFour, currentPosition);
-  useEffect(() => {
-    if (isMounted() && refTrackFour.current && offsetTrackRefFour === 0) {
-      setTimeout(() => {
-        if (refTrackFour.current) {
-          setOffsetTrackRefFour(refTrackFour.current.getBoundingClientRect().top);
-        }
-      }, 1000);
-    }
-  }, [refTrackTwo, isMounted]);
-
-  return {
-    sectionRef,
-    isMounted: isMounted(),
-    refTrackOne,
-    refTrackTwo,
-    refTrackThree,
-    refTrackFour,
-    refOnePercentCrossed,
-    refTwoPercentCrossed,
-    refThreePercentCrossed,
-    refFourPercentCrossed,
-    showHeader,
-    headerWrapperRef,
-    startSceneOne,
-    startSceneTwo,
-    startSceneThree,
-    startSceneFour,
-  };
 }
 
 const Section = styled.section`

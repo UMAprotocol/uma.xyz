@@ -1,5 +1,6 @@
 import { grey100, grey200, grey400, grey800, laptopAndUnder, links, red, tabletAndUnder, white } from "constant";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
@@ -7,14 +8,12 @@ import styled from "styled-components";
 import { isExternalLink } from "utils";
 
 interface Props {
-  activeLink: number;
   isLightTheme: boolean;
 }
 
-export function DesktopHeader({ isLightTheme, activeLink }: Props) {
-  function isActive(index: number, activeLink: number) {
-    return index === activeLink;
-  }
+export function DesktopHeader({ isLightTheme }: Props) {
+  const router = useRouter();
+  const isActive = (href: string) => router.pathname === href;
 
   return (
     <Wrapper
@@ -33,12 +32,12 @@ export function DesktopHeader({ isLightTheme, activeLink }: Props) {
             target={isExternalLink(href) ? "_blank" : undefined}
             style={
               {
-                "--color": isActive(i, activeLink) ? red : grey400,
+                "--color": isActive(href) ? red : grey400,
               } as CSSProperties
             }
           >
             <LinkWrapper>
-              {activeLink === i ? <RedDot /> : i <= 2 ? <Dot /> : null} {label}
+              {isActive(href) ? <RedDot /> : i <= 2 ? <Dot /> : null} {label}
             </LinkWrapper>
           </Link>
         ))}

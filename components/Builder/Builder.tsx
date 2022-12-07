@@ -1,14 +1,12 @@
 import { Tabs } from "components";
 import { Header as BaseHeader, Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { useIntersectionObserver } from "hooks";
 import GlobeIcon from "public/assets/globe.svg";
 import OoIcon from "public/assets/oo-logo.svg";
 import ScaleIcon from "public/assets/scale.svg";
 import TelescopeIcon from "public/assets/telescope.svg";
 import TubeIcon from "public/assets/tube.svg";
 import WandIcon from "public/assets/wand.svg";
-import { useRef } from "react";
 import styled from "styled-components";
 import BuilderTabContent from "./BuilderTabContent";
 
@@ -28,14 +26,8 @@ contract OO_GettingStarted {
 `;
 
 export function Builder() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const eSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.5,
-  });
-  const isIntersectingSection = !!eSection?.isIntersecting;
-
   return (
-    <Section id="builder" ref={sectionRef}>
+    <Section id="builder">
       <Wrapper>
         <Title>
           Participate as a <RedEmphasis>Builder</RedEmphasis>
@@ -52,7 +44,6 @@ export function Builder() {
 
         <MobileHeader>Launch products with the OO as your backbone</MobileHeader>
         <Tabs
-          isIntersecting={isIntersectingSection}
           tabs={[
             {
               title: "Prediction Markets",

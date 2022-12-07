@@ -11,12 +11,7 @@ import { SyntheticEvent, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import styled from "styled-components";
 
-interface Props {
-  phase: "Commit" | "Reveal" | null;
-  numVotes: number;
-}
-
-export function Footer({ phase, numVotes }: Props) {
+export function Footer() {
   const [value, setValue] = useState("");
 
   const socialLinks = [
@@ -77,7 +72,7 @@ export function Footer({ phase, numVotes }: Props) {
 
   return (
     <>
-      {numVotes > 0 && <VoteTicker theme="light" numVotes={numVotes} phase={phase} />}
+      <VoteTicker />
       <Section>
         <Wrapper>
           <BottomRow>

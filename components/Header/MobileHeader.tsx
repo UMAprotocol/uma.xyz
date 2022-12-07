@@ -3,17 +3,21 @@ import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { MobileMenu } from "./MobileMenu";
 interface Props {
-  showMobileMenu: boolean;
   isLightTheme: boolean;
-  onToggle: () => void;
 }
 
-export function MobileHeader({ showMobileMenu, onToggle, isLightTheme }: Props) {
+export function MobileHeader({ isLightTheme }: Props) {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const transitionWhenShow = "background 200ms, top 200ms, opacity 200ms, transform 200ms 250ms";
   const transitionWhenHide = "top 200ms 250ms, opacity 200ms 250ms, transform 200ms";
+
+  function toggleMobileMenu() {
+    setShowMobileMenu(!showMobileMenu);
+  }
 
   return (
     <OuterWrapper>
@@ -25,7 +29,7 @@ export function MobileHeader({ showMobileMenu, onToggle, isLightTheme }: Props) 
         }
       >
         <MenuToggleButton
-          onClick={onToggle}
+          onClick={toggleMobileMenu}
           style={
             {
               "--background": isLightTheme ? grey100 : white,
@@ -66,7 +70,7 @@ export function MobileHeader({ showMobileMenu, onToggle, isLightTheme }: Props) 
           </Link>
         </AppBlock>
       </InnerWrapper>
-      <MobileMenu isLightTheme={isLightTheme} show={showMobileMenu} onClickLink={onToggle} />
+      <MobileMenu isLightTheme={isLightTheme} show={showMobileMenu} onClickLink={toggleMobileMenu} />
     </OuterWrapper>
   );
 }
