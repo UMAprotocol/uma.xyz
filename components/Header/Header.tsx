@@ -48,7 +48,7 @@ const BlurBackground = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: var(--header-blur-height);
   background: var(--background);
   filter: blur(28px);
   z-index: -1;

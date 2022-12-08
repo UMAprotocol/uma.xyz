@@ -1,4 +1,4 @@
-import { desktopHeaderHeight } from "constant";
+import { headerBlurHeight } from "constant";
 import { useMounted } from "hooks";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 
@@ -35,10 +35,9 @@ export function HeaderProvider({ children }: { children: ReactNode }) {
   }, [mounted]);
 
   useEffect(() => {
-    console.log(scrollY, colorChangeSectionRef.current?.offsetTop, isLightTheme);
     if (colorChangeSectionRef.current?.offsetTop === undefined) return;
 
-    if (scrollY > colorChangeSectionRef.current.offsetTop - desktopHeaderHeight) {
+    if (scrollY > colorChangeSectionRef.current.offsetTop - headerBlurHeight) {
       setIsLightTheme(true);
     } else {
       setIsLightTheme(false);

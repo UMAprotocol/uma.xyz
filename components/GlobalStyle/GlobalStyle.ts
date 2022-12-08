@@ -17,6 +17,7 @@ import {
   grey600,
   grey700,
   grey800,
+  headerBlurHeight,
   headerLg,
   headerMd,
   headerSm,
@@ -203,6 +204,11 @@ html, body, #__next {
   height: 100%;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
 /* Global style definitions */
 
   /*  All CSS custom properties that are intended to be global must be defined here */
@@ -256,6 +262,7 @@ html, body, #__next {
     @media ${mobileAndUnder} {
       --header-height: var(--mobile-header-height);
     }
+    --header-blur-height: ${headerBlurHeight}px;
     --vote-ticker-height: ${voteTickerHeight}px;
 
     // Sandpack override
