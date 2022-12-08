@@ -1,10 +1,11 @@
 import { grey200, white } from "constant";
+import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import styled, { CSSProperties } from "styled-components";
 import { DesktopHeader } from "./DesktopHeader";
 import { MobileHeader } from "./MobileHeader";
 
 export function Header() {
-  const isLightTheme = false;
+  const { isLightTheme } = useHeaderContext();
   return (
     <Wrapper
       style={

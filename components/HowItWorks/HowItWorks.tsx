@@ -1,15 +1,22 @@
 import { Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
 import { grey500, grey800, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
+import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lottie from "react-lottie";
 import styled, { CSSProperties } from "styled-components";
 
 export function HowItWorks() {
   const [showHeader, setShowHeader] = useState(false);
+  const { setColorChangeSectionRef } = useHeaderContext();
+  const howItWorksRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setColorChangeSectionRef(howItWorksRef);
+  }, [howItWorksRef.current]);
 
   const refOnePercentCrossed = 0;
   const refTwoPercentCrossed = 0;
@@ -42,6 +49,7 @@ export function HowItWorks() {
 
   return (
     <Section
+      ref={howItWorksRef}
       id="how-it-works"
       style={
         {
