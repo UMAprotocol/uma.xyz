@@ -58,23 +58,18 @@ const LinkWrapper = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  max-width: var(--page-width);
-  margin: 0 auto;
+  padding-inline: 8px;
   @media ${tabletAndUnder} {
     display: none;
   }
 `;
 
 const Links = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0px;
+  display: grid;
+  grid-auto-flow: column;
   gap: 20px;
 `;
 
@@ -101,10 +96,6 @@ const Link = styled(NextLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  position: relative;
-  left: 0;
-  text-decoration: none;
-  padding: 0;
   color: var(--color);
   font: var(--body-md);
   transition: opacity, background-color 0.2s ease-in-out;
@@ -123,6 +114,7 @@ const Link = styled(NextLink)`
 const HomeLink = styled(NextLink)``;
 
 const LaunchButton = styled(NextLink)`
+  justify-self: end;
   padding: 8px 16px 12px;
   height: 40px;
   gap: 2px;

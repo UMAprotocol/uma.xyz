@@ -54,12 +54,10 @@ const Background = styled.div`
 
 const OuterWrapper = styled.section`
   height: calc(100% - var(--header-height) - var(--vote));
-  background: var(--grey-200);
   position: relative;
 `;
 
 const InnerWrapper = styled.div`
-  background: inherit;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,6 +79,7 @@ const animateText = keyframes`
 `;
 
 const Title = styled.div`
+  z-index: 1;
   font: var(--header-lg);
   color: var(--white);
   display: flex;

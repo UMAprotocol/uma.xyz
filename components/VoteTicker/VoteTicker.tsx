@@ -5,7 +5,6 @@ import {
   grey600,
   grey700,
   grey800,
-  laptopAndUnder,
   mobileAndUnder,
   red,
   red510Opacity15,
@@ -111,6 +110,9 @@ export function VoteTicker() {
 }
 
 const OuterWrapper = styled.div`
+  padding-inline: 8px;
+  display: grid;
+  place-items: center;
   height: var(--vote-ticker-height);
   background: var(--background);
   padding-top: var(--padding-top);
@@ -120,6 +122,8 @@ const OuterWrapper = styled.div`
 `;
 
 const InnerWrapper = styled.div`
+  width: 100%;
+  max-width: var(--page-width);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -127,17 +131,11 @@ const InnerWrapper = styled.div`
   padding: 8px 16px 8px 8px;
   gap: 16px;
   isolation: isolate;
-  max-width: var(--page-width);
-  margin: 0 auto;
   background: var(--background);
   background-image: url(var(--url));
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 8px;
-  width: calc(100% - 24px);
-  @media ${laptopAndUnder} {
-    width: calc(100% - 64px);
-  }
 `;
 
 const VoteBlock = styled.div`

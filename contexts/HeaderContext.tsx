@@ -43,6 +43,7 @@ export function HeaderProvider({ children }: { children: ReactNode }) {
     } else {
       setIsLightTheme(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollY, colorChangeSectionRef.current]);
 
   return (

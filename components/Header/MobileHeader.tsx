@@ -20,81 +20,62 @@ export function MobileHeader({ isLightTheme }: Props) {
   }
 
   return (
-    <OuterWrapper>
-      <InnerWrapper
+    <Wrapper>
+      <MenuToggleButton
+        onClick={toggleMobileMenu}
         style={
           {
-            "--blur": isLightTheme ? "6px" : "0px",
+            "--background": isLightTheme ? grey100 : white,
+            "--transition": showMobileMenu ? transitionWhenShow : transitionWhenHide,
           } as CSSProperties
         }
       >
-        <MenuToggleButton
-          onClick={toggleMobileMenu}
+        <ToggleButtonBar
           style={
             {
-              "--background": isLightTheme ? grey100 : white,
-              "--transition": showMobileMenu ? transitionWhenShow : transitionWhenHide,
+              "--top": showMobileMenu ? "9px" : 0,
+              "--transform": showMobileMenu ? "rotate(45deg)" : "rotate(0)",
+            } as CSSProperties
+          }
+        />
+        <ToggleButtonBar
+          style={
+            {
+              "--top": showMobileMenu ? "9px" : "16px",
+              "--transform": showMobileMenu ? "rotate(-45deg)" : "rotate(0)",
+            } as CSSProperties
+          }
+        />
+      </MenuToggleButton>
+      <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
+      <AppBlock>
+        <Link
+          href="https://vote.umaproject.org/"
+          target="_blank"
+          style={
+            {
+              "--color": isLightTheme ? grey500 : white,
             } as CSSProperties
           }
         >
-          <ToggleButtonBar
-            style={
-              {
-                "--top": showMobileMenu ? "9px" : 0,
-                "--transform": showMobileMenu ? "rotate(45deg)" : "rotate(0)",
-              } as CSSProperties
-            }
-          />
-          <ToggleButtonBar
-            style={
-              {
-                "--top": showMobileMenu ? "9px" : "16px",
-                "--transform": showMobileMenu ? "rotate(-45deg)" : "rotate(0)",
-              } as CSSProperties
-            }
-          />
-        </MenuToggleButton>
-        <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
-        <AppBlock>
-          <Link
-            href="https://vote.umaproject.org/"
-            target="_blank"
-            style={
-              {
-                "--color": isLightTheme ? grey500 : white,
-              } as CSSProperties
-            }
-          >
-            App
-            <ArrowIcon />
-          </Link>
-        </AppBlock>
-      </InnerWrapper>
+          App
+          <ArrowIcon />
+        </Link>
+      </AppBlock>
       <MobileMenu isLightTheme={isLightTheme} show={showMobileMenu} onClickLink={toggleMobileMenu} />
-    </OuterWrapper>
+    </Wrapper>
   );
 }
 
-const OuterWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  height: 48px;
+const Wrapper = styled.div`
   display: none;
-  @media ${tabletAndUnder} {
-    display: block;
-  }
-`;
-
-const InnerWrapper = styled.div`
   width: 100%;
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding-top: 16px;
-  backdrop-filter: blur(var(--blur));
+  padding-left: 8px;
+  padding-right: 16px;
   @media ${tabletAndUnder} {
-    width: calc(100% - 40px);
+    display: flex;
   }
 `;
 
@@ -115,7 +96,6 @@ export const MenuToggleButton = styled.button`
   height: 18px;
   width: 25px;
   background: var(--grey-900);
-  margin-left: 16px;
 `;
 
 const AppBlock = styled.div`
@@ -143,5 +123,4 @@ const Link = styled(NextLink)`
   text-decoration: none;
   font: var(--body-sm);
   color: var(--color);
-  margin-right: 28px;
 `;

@@ -16,8 +16,10 @@ export function Header() {
         } as CSSProperties
       }
     >
-      <DesktopHeader isLightTheme={isLightTheme} />
-      <MobileHeader isLightTheme={isLightTheme} />
+      <InnerWrapper>
+        <DesktopHeader isLightTheme={isLightTheme} />
+        <MobileHeader isLightTheme={isLightTheme} />
+      </InnerWrapper>
       <BlurBackground />
     </Wrapper>
   );
@@ -29,11 +31,16 @@ const Wrapper = styled.header`
   height: var(--header-height);
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   background: var(--background);
   backdrop-filter: blur(6px);
   box-shadow: 0px 10px 20px 20px var(--background);
   transition: background 0.2s, box-shadow 0.2s;
+`;
+
+const InnerWrapper = styled.div`
+  width: 100%;
+  max-width: var(--page-width);
 `;
 
 const BlurBackground = styled.div`
