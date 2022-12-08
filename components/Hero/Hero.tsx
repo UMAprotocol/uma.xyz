@@ -5,7 +5,7 @@ import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
 import OOLogoMobile from "public/assets/oo-mobile.svg";
 import Lottie from "react-lottie";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export function Hero() {
   return (
@@ -53,7 +53,7 @@ const Background = styled.div`
 `;
 
 const OuterWrapper = styled.section`
-  height: calc(100% - var(--header-height) - var(--vote));
+  height: calc(100% - var(--header-height) - var(--vote-ticker-height));
   position: relative;
 `;
 
@@ -68,16 +68,6 @@ const InnerWrapper = styled.div`
   padding-bottom: 96px;
 `;
 
-const textReveal = keyframes`
-  0% {opacity: 0; transform: translateY(30px);}
-  100% {opacity: 1; transform: translateY(0px);}
-`;
-
-const animateText = keyframes`
-  0% {transform: rotate(10deg) }
-  100% {transform: rotate(0deg)  }
-`;
-
 const Title = styled.div`
   z-index: 1;
   font: var(--header-lg);
@@ -88,13 +78,7 @@ const Title = styled.div`
   align-self: center;
   letter-spacing: -0.01em;
   line-height: 100%;
-  animation: ${textReveal} 1s ease-in-out;
-  animation-delay: 400ms;
   opacity: 1;
-  > span {
-    animation: ${animateText} 1s ease-in-out;
-    animation-delay: 400ms;
-  }
   @media ${tabletAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
@@ -103,9 +87,6 @@ const Title = styled.div`
   @media ${mobileAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
-  }
-  path {
-    fill: var(--color-white);
   }
   div {
     margin: 20px 12px 0;
@@ -129,22 +110,9 @@ const Subheader = styled.div`
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
-  animation: ${textReveal} 1s ease-in-out;
-  animation-delay: 200ms;
   @media ${mobileAndUnder} {
     margin: 32px 16px 0;
   }
-`;
-
-const svgAnimation = keyframes`
-  0% {transform: translateY(0); opacity: 1;}
-  10% {transform: translateY(5px); opacity: .5;}
-  20% {transform: translateY(10px); opacity: 0;}
-  30% {transform: translateY(-10px); opacity: 0;}
-  35% {transform: translateY(-10px); opacity: .25;}
-  40% {transform: translateY(-5px); opacity: .5;}
-  50% {transform: translateY(0); opacity: 1;}
-  100% {transform: translateY(0); opacity: 1;}
 `;
 
 const ArrowButton = styled(NextLink)`
@@ -162,16 +130,14 @@ const ArrowButton = styled(NextLink)`
   border-radius: 8px;
   width: 48px;
   height: 48px;
-  animation: ${textReveal} 1s ease-in-out;
-  animation-delay: 400ms;
   opacity: 1;
-  > svg {
-    animation: ${svgAnimation} 2s linear infinite;
-    animation-delay: 600ms;
-  }
 `;
 
 const OOLogoIcon = styled(OOLogo)`
+  margin-inline: 12px;
+  path {
+    fill: var(--white);
+  }
   @media ${mobileAndUnder} {
     display: none;
   }
@@ -179,7 +145,9 @@ const OOLogoIcon = styled(OOLogo)`
 
 const OOLogoIconMobile = styled(OOLogoMobile)`
   display: none;
-
+  path {
+    fill: var(--white);
+  }
   @media ${mobileAndUnder} {
     display: block;
   }
