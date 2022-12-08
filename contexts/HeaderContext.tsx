@@ -1,4 +1,4 @@
-import { desktopHeaderHeight, mobileHeaderHeight } from "constant";
+import { desktopHeaderHeight } from "constant";
 import { useMounted } from "hooks";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 
@@ -46,11 +46,14 @@ export function HeaderProvider({ children }: { children: ReactNode }) {
   }, [scrollY, colorChangeSectionRef.current]);
 
   return (
-    <HeaderContext.Provider value={{
-      isLightTheme,
-      setIsLightTheme,
-      colorChangeSectionRef, setColorChangeSectionRef
-    }}>
+    <HeaderContext.Provider
+      value={{
+        isLightTheme,
+        setIsLightTheme,
+        colorChangeSectionRef,
+        setColorChangeSectionRef,
+      }}
+    >
       {children}
     </HeaderContext.Provider>
   );

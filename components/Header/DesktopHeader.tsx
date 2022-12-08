@@ -1,4 +1,4 @@
-import { grey100, grey200, grey400, grey800, laptopAndUnder, links, red, tabletAndUnder, white } from "constant";
+import { grey100, grey400, links, red, tabletAndUnder, white } from "constant";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import BlackLogo from "public/assets/uma-black-logo.svg";
@@ -16,13 +16,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
   const isActive = (href: string) => router.pathname === href;
 
   return (
-    <Wrapper
-      style={
-        {
-          "--background": isLightTheme ? grey800 : grey200,
-        } as CSSProperties
-      }
-    >
+    <Wrapper>
       <HomeLink href="/">{isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}</HomeLink>
       <Links>
         {links.map(({ label, href }, i) => (
@@ -68,20 +62,10 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
   max-width: var(--page-width);
   margin: 0 auto;
-  z-index: 100;
-  border-radius: 12px;
-  padding: 32px 0;
-  backdrop-filter: blur(6px);
-  background: var(--background);
-  transition: all 0.2s ease-in-out;
   @media ${tabletAndUnder} {
     display: none;
-  }
-  @media ${laptopAndUnder} {
-    width: calc(100% - 64px);
   }
 `;
 
