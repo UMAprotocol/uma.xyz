@@ -148,6 +148,8 @@ export function Builder() {
 const Section = styled.section`
   width: 100%;
   background: var(--white);
+  padding-top: var(--header-blur-height);
+  scroll-snap-align: start;
 `;
 
 const Wrapper = styled(BaseWrapper)`
