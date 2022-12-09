@@ -29,6 +29,7 @@ import {
   red510Opacity15,
   red550,
   subHeader,
+  subHeaderSm,
   tabletAndUnder,
   tabletPageWidth,
   voteTickerHeight,
@@ -239,6 +240,7 @@ html {
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
     --sub-header: ${subHeader};
+    --sub-header-sm: ${subHeaderSm};
     --body-xl: ${bodyXl};
     --body-lg: ${bodyLg};
     --body-md: ${bodyMd};

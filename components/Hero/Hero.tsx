@@ -108,6 +108,7 @@ const Title = styled.div`
 `;
 
 const Subheader = styled.div`
+  z-index: 1;
   margin: 32px 0 0;
   font: var(--body-xl);
   color: var(--grey-500);
