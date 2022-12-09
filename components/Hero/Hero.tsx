@@ -1,9 +1,8 @@
-import { mobileAndUnder, tabletAndUnder } from "constant";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
-import OOLogoMobile from "public/assets/oo-mobile.svg";
 import Lottie from "react-lottie";
 import styled from "styled-components";
 
@@ -24,13 +23,11 @@ export function Hero() {
       </Background>
       <InnerWrapper>
         <Title>
-          <span>A decentralized</span>
-        </Title>
-        <Title>
-          <span>truth</span>
-          <OOLogoIcon />
-          <OOLogoIconMobile />
-          <span>machine</span>
+          A decentralized <br /> truth
+          <OOIconWrapper>
+            <OOLogoIcon />
+          </OOIconWrapper>
+          machine
         </Title>
         <Subheader>
           UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
@@ -74,13 +71,6 @@ const Title = styled.div`
   z-index: 1;
   font: var(--header-lg);
   color: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  letter-spacing: -0.01em;
-  line-height: 100%;
-  opacity: 1;
   @media ${tabletAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
@@ -89,21 +79,6 @@ const Title = styled.div`
   @media ${mobileAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
-  }
-  div {
-    margin: 20px 12px 0;
-    display: flex;
-    align-items: center;
-    align-self: center;
-    @media ${mobileAndUnder} {
-      height: auto;
-      width: 100%;
-      margin: 0 10px 0;
-      svg {
-        width: 100%;
-        height: auto;
-      }
-    }
   }
 `;
 
@@ -136,22 +111,44 @@ const ArrowButton = styled(NextLink)`
   opacity: 1;
 `;
 
-const OOLogoIcon = styled(OOLogo)`
-  margin-inline: 12px;
-  path {
-    fill: var(--white);
-  }
+const OOIconWrapper = styled.span`
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline: 16px;
   @media ${mobileAndUnder} {
-    display: none;
+    margin-inline: 8px;
   }
 `;
 
-const OOLogoIconMobile = styled(OOLogoMobile)`
-  display: none;
+const OOLogoIcon = styled(OOLogo)`
   path {
     fill: var(--white);
   }
+  width: var(--width);
+  height: var(--height);
+  --desktop-width: 164px;
+  --desktop-height: 82px;
+  --laptop-width: 124px;
+  --laptop-height: 62px;
+  --tablet-width: 114px;
+  --tablet-height: 57px;
+  --mobile-width: 64px;
+  --mobile-height: 32px;
+  --width: var(--desktop-width);
+  --height: var(--desktop-height);
+
+  @media ${laptopAndUnder} {
+    --width: var(--laptop-width);
+    --height: var(--laptop-height);
+  }
+
+  @media ${tabletAndUnder} {
+    --width: var(--tablet-width);
+    --height: var(--tablet-height);
+  }
+
   @media ${mobileAndUnder} {
-    display: block;
+    --width: var(--mobile-width);
+    --height: var(--mobile-height);
   }
 `;

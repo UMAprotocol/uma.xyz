@@ -99,7 +99,7 @@ const OuterWrapper = styled.section`
 `;
 
 const InnerWrapper = styled.div`
-  width: var(--page-width);
+  max-width: var(--page-width);
   margin-inline: auto;
 `;
 

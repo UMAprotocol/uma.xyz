@@ -206,7 +206,7 @@ html, body, #__next {
 }
 
 html {
-  scroll-snap-type: y proximity;
+  /* scroll-snap-type: y proximity; */
   scroll-behavior: smooth;
 }
 

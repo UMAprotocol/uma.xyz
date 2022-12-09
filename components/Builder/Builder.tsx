@@ -1,243 +1,97 @@
 import { Tabs } from "components";
-import { Header as BaseHeader, Title as BaseTitle, Wrapper as BaseWrapper } from "components/Widgets";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import GlobeIcon from "public/assets/globe.svg";
-import OoIcon from "public/assets/oo-logo.svg";
-import ScaleIcon from "public/assets/scale.svg";
-import TelescopeIcon from "public/assets/telescope.svg";
-import TubeIcon from "public/assets/tube.svg";
-import WandIcon from "public/assets/wand.svg";
+import OO from "public/assets/oo-logo.svg";
 import styled from "styled-components";
-import BuilderTabContent from "./BuilderTabContent";
-
-const code = `pragma solidity ^0.8.14;
-
-contract OO_GettingStarted {
-  bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
-  bytes ancillaryData =
-
-    bytes("Q: Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c? A:1 for yes. 0 for no.");
-
-  uint256 requestTime = 0;
-  function requestPrice() public {
-    requestTime = block.timestamp;
-    IERC20 bondCurrency = IERC20(0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6);
-    uint256 reward = 0;
-`;
 
 export function Builder() {
   return (
-    <Section id="builder">
-      <Wrapper>
+    <OuterWrapper id="builder">
+      <InnerWrapper>
         <Title>
           Participate as a <RedEmphasis>Builder</RedEmphasis>
         </Title>
-
-        <TopHeader>Launch products with</TopHeader>
-        <BottomHeader>
-          the
+        <Header>
+          <span>Launch products with the</span>
           <OOIconWrapper>
-            <OoIcon />
+            <OOIcon />
           </OOIconWrapper>
-          as your backbone
-        </BottomHeader>
-
-        <MobileHeader>Launch products with the OO as your backbone</MobileHeader>
-        <Tabs
-          tabs={[
-            {
-              title: "Prediction Markets",
-              content: (
-                <BuilderTabContent
-                  title="Prediction Markets"
-                  body={
-                    <>
-                      The OO can validate natural-language statements and answer questions about real-world events.
-                      <br /> <br /> There is a dispute resolution process if something unexpected happens.
-                    </>
-                  }
-                  greyBlurb="Real contract used by Polymarket:"
-                  redBlurb="“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”"
-                  code={code}
-                />
-              ),
-              Icon: WandIcon,
-            },
-            {
-              title: "Insurance",
-              content: (
-                <BuilderTabContent
-                  title="Insurance"
-                  body={
-                    <>
-                      The OO can insure any type of outcome whether they are smart contracts or real-world events, while
-                      defending against exploits with human-powered dispute resolution.
-                    </>
-                  }
-                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
-                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
-                  code={code}
-                />
-              ),
-              Icon: TubeIcon,
-            },
-            {
-              title: "Cross-Chain Communication",
-              content: (
-                <BuilderTabContent
-                  title="Cross-Chain Communication"
-                  body={
-                    <>
-                      The OO can verify any statement, including statements about data on other networks.
-                      <br /> <br /> Chains can use the OO to “see” things on every other chain.
-                    </>
-                  }
-                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
-                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
-                  code={code}
-                />
-              ),
-              Icon: TelescopeIcon,
-            },
-            {
-              title: "Governance",
-              content: (
-                <BuilderTabContent
-                  title="Governance"
-                  body={
-                    <>
-                      DAOs have used KPI Options to motivate community members to work toward shared goals.
-                      <br /> <br /> The OO also enables optimistic governance, a new coordination pattern that uses a
-                      “pass unless disputed” flow.
-                    </>
-                  }
-                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
-                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
-                  code={code}
-                />
-              ),
-              Icon: ScaleIcon,
-            },
-            {
-              title: "Long-Tail data",
-              content: (
-                <BuilderTabContent
-                  title="Long-Tail data"
-                  body={
-                    <>
-                      If a piece of information is publicly provable, then UMA&apos;s OO can verify it and put it
-                      on-chain.
-                      <br /> <br /> The OO accepts natural language questions as an input, and does not require first
-                      building pricefeeds.
-                    </>
-                  }
-                  greyBlurb="Real contract used by xxxxxxxxxxxxxx:"
-                  redBlurb="“If we could get a real example here it would be cool text text text text text, maybe Sean knows?”"
-                  code={code}
-                />
-              ),
-              Icon: GlobeIcon,
-            },
-          ]}
-        />
-      </Wrapper>
-    </Section>
+          <span>as your backbone</span>
+        </Header>
+        <Tabs />
+      </InnerWrapper>
+    </OuterWrapper>
   );
 }
 
-const Section = styled.section`
-  width: 100%;
+const OuterWrapper = styled.section`
   background: var(--white);
   padding-top: var(--header-blur-height);
   scroll-snap-align: start;
 `;
 
-const Wrapper = styled(BaseWrapper)`
-  padding: 100px 0 113px;
-  @media ${laptopAndUnder} {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  @media ${tabletAndUnder} {
-    max-width: 100%;
-    padding-bottom: 40px;
-    padding-left: 32px;
-    padding-right: 32px;
+const InnerWrapper = styled.div`
+  max-width: var(--page-width);
+  margin-inline: auto;
+`;
+
+const Title = styled.h1`
+  font: var(--header-sm);
+  border-bottom: 1px solid var(--grey-600);
+  @media ${mobileAndUnder} {
+    font: var(--body-lg);
   }
 `;
 
-const Header = styled(BaseHeader)`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  align-self: center;
+const Header = styled.h2`
+  font: var(--header-lg);
+  margin-top: 48px;
+  margin-bottom: 128px;
   @media ${laptopAndUnder} {
-    padding: 0;
+    max-width: 720px;
   }
-  @media ${tabletAndUnder} {
+  @media ${mobileAndUnder} {
     font: var(--header-sm);
-  }
-`;
-
-const Title = styled(BaseTitle)`
-  @media ${laptopAndUnder} {
-    margin-left: 0;
-    margin-right: 0;
-  }
-`;
-
-const TopHeader = styled(Header)`
-  margin-top: 65px;
-
-  @media ${laptopAndUnder} {
-    display: none;
+    margin-top: 24px;
+    margin-bottom: 32px;
   }
 `;
 
 const OOIconWrapper = styled.span`
-  margin: 20px 12px 0;
-  display: flex;
-  align-items: center;
-  @media ${tabletAndUnder} {
-    margin: 0 6px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline: 16px;
+  @media ${mobileAndUnder} {
+    margin-inline: 8px;
   }
 `;
 
-const BottomHeader = styled(Header)`
-  margin-top: 24px;
-  margin-bottom: 216px;
+const OOIcon = styled(OO)`
+  width: var(--width);
+  height: var(--height);
+  --desktop-width: 164px;
+  --desktop-height: 82px;
+  --laptop-width: 124px;
+  --laptop-height: 62px;
+  --tablet-width: 114px;
+  --tablet-height: 57px;
+  --mobile-width: 64px;
+  --mobile-height: 32px;
+  --width: var(--desktop-width);
+  --height: var(--desktop-height);
 
   @media ${laptopAndUnder} {
-    display: none;
-  }
-`;
-
-const MobileHeader = styled(Header)`
-  display: none;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-  margin: 24px 0 40px;
-  padding-left: 0;
-  font: var(--header-lg);
-  span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 6px 8px 0;
-    height: 100%;
-  }
-
-  @media ${laptopAndUnder} {
-    display: inline-flex;
+    --width: var(--laptop-width);
+    --height: var(--laptop-height);
   }
 
   @media ${tabletAndUnder} {
-    margin-bottom: 0;
+    --width: var(--tablet-width);
+    --height: var(--tablet-height);
   }
 
   @media ${mobileAndUnder} {
-    font: var(--header-sm);
+    --width: var(--mobile-width);
+    --height: var(--mobile-height);
   }
 `;
 

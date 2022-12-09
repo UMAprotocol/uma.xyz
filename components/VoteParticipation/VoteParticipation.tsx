@@ -1,10 +1,9 @@
+import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
-import NextLink from "next/link";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import Lottie from "react-lottie";
 import styled from "styled-components";
@@ -74,14 +73,7 @@ export function VoteParticipation() {
           ))}
         </ActivitiesWrapper>
         <Divider />
-        <VoterAppLinkWrapper>
-          <VoterAppLink href="https://vote.umaproject.org" target="_blank">
-            Link to voter app
-            <ArrowIconWrapper>
-              <ArrowIcon />
-            </ArrowIconWrapper>
-          </VoterAppLink>
-        </VoterAppLinkWrapper>
+        <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
       </InnerWrapper>
     </OuterWrapper>
   );
@@ -132,10 +124,10 @@ const ActivitiesWrapper = styled.div`
 const Activity = styled.div`
   display: grid;
   justify-content: start;
+  align-items: start;
   padding: 40px;
   @media ${tabletAndUnder} {
     grid-template-columns: auto 1fr;
-    align-items: start;
     gap: 32px;
   }
   @media ${mobileAndUnder} {
@@ -176,54 +168,6 @@ const LottieWrapper = styled.div`
   }
   @media ${mobileAndUnder} {
     --width: var(--mobile-width);
-  }
-`;
-
-const VoterAppLinkWrapper = styled.div`
-  display: grid;
-  place-items: center;
-`;
-
-const VoterAppLink = styled(NextLink)`
-  display: flex;
-  align-items: baseline;
-  font: var(--body-lg);
-  color: var(--red);
-  text-decoration: none;
-  &:hover {
-    color: var(--grey-100);
-  }
-`;
-
-const ArrowIcon = styled(UpRightArrow)`
-  path: {
-    transition: stroke 0.3s ease;
-  }
-`;
-
-const ArrowIconWrapper = styled.div`
-  position: relative;
-  left: 0;
-  margin-left: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--red);
-  border-radius: 8px;
-  transition: margin 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-
-  ${VoterAppLink}:hover & {
-    border-color: var(--grey-100);
-    background-color: var(--grey-100);
-    margin-left: 12px;
-
-    ${ArrowIcon} {
-      path {
-        stroke: var(--white);
-      }
-    }
   }
 `;
 
