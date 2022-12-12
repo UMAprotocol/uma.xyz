@@ -1,3 +1,4 @@
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import sceneOne from "public/assets/lottie/scene-1.json";
@@ -92,9 +93,8 @@ export function HowItWorks() {
   );
 }
 
-const OuterWrapper = styled.section`
+const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 100%);
-  padding-top: var(--header-blur-height);
 `;
 
 const InnerWrapper = styled.div`

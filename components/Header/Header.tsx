@@ -26,6 +26,7 @@ export function Header() {
 }
 
 const Wrapper = styled.header`
+  padding-top: 16px;
   display: grid;
   place-items: center;
   height: var(--header-height);

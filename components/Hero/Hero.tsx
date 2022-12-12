@@ -15,9 +15,6 @@ export function Hero() {
             loop: true,
             autoplay: true,
             animationData: heroAnimation,
-            rendererSettings: {
-              preserveAspectRatio: "xMidYMid slice",
-            },
           }}
         />
       </Background>
@@ -52,7 +49,6 @@ const Background = styled.div`
 const OuterWrapper = styled.section`
   height: calc(100% - var(--header-height) - var(--vote-ticker-height));
   position: relative;
-  scroll-margin-top: calc(var(--header-height) + var(--vote-ticker-height));
 `;
 
 const InnerWrapper = styled.div`
