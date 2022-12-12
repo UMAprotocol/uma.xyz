@@ -211,17 +211,17 @@ const ProjectName = styled.h4`
   bottom: -40px;
   opacity: var(--indicator-opacity);
   transform: translateY(var(--translate-y));
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity var(--animation-duration), transform var(--animation-duration);
 `;
 
 const IconWrapper = styled.div`
   width: 25%;
   transform: translateY(var(--translate-y));
-  transition: transform 0.2s;
+  transition: transform var(--animation-duration);
 
   path {
     fill: var(--icon-color);
-    transition: fill 0.2s;
+    transition: fill var(--animation-duration);
   }
 `;
 
@@ -276,7 +276,7 @@ const ArrowLink = styled(NextLink)`
   background: var(--red);
   border-radius: 6px;
   opacity: var(--indicator-opacity);
-  transition: opacity 0.2s;
+  transition: opacity var(--animation-duration);
 
   path {
     stroke: var(--white);

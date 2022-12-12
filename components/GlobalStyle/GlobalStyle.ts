@@ -1,4 +1,5 @@
 import {
+  animationDuration,
   black,
   bodyLg,
   bodyMd,
@@ -265,6 +266,8 @@ html {
     }
     --header-blur-height: ${headerBlurHeight}px;
     --vote-ticker-height: ${voteTickerHeight}px;
+    /* Animation */
+    --animation-duration: ${animationDuration};
 
     // Sandpack override
     --sp-layout-height: 347px !important;

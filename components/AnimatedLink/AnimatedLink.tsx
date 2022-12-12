@@ -28,7 +28,7 @@ const Link = styled(NextLink)`
 
 const ArrowIcon = styled(UpRightArrow)`
   path: {
-    transition: stroke 0.3s ease;
+    transition: stroke var(--animation-duration) ease;
   }
 `;
 
@@ -43,7 +43,8 @@ const ArrowIconWrapper = styled.div`
   height: 32px;
   border: 1px solid var(--red);
   border-radius: 8px;
-  transition: margin 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  transition: margin var(--animation-duration) ease, border-color var(--animation-duration) ease,
+    background-color var(--animation-duration) ease;
 
   ${Link}:hover & {
     border-color: var(--grey-100);

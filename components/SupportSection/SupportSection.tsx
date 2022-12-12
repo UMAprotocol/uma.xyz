@@ -145,7 +145,7 @@ const ButtonGroup = styled.div`
   span,
   a,
   path {
-    transition: all 0.3s ease-in-out;
+    transition: all var(--animation-duration) ease-in-out;
   }
   > div {
     display: inline-flex;

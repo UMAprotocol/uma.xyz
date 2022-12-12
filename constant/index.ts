@@ -1,6 +1,7 @@
 export * from "./env";
 export * from "./links";
 export * from "./queryKeys";
+export * from "./style/animation";
 export * from "./style/breakpoints";
 export * from "./style/colors";
 export * from "./style/containers";

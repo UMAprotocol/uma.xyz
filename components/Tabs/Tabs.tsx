@@ -1,8 +1,8 @@
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
-import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
 import { Divider } from "components";
+import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import Globe from "public/assets/globe.svg";
 import Scale from "public/assets/scale.svg";
@@ -222,7 +222,7 @@ const ActiveIndicator = styled.div`
   width: var(--width);
   background: var(--red);
   left: calc(var(--active-tab-index) * var(--width));
-  transition: left 0.2s;
+  transition: left var(--animation-duration);
 `;
 
 const TabsTriggerWrapper = styled.div`
@@ -236,7 +236,7 @@ const DesktopTabsTriggerTitle = styled.h3`
   font: var(--body-md);
   color: var(--color);
   transform: translateY(var(--translate-y));
-  transition: color 0.2s, transform 0.2s;
+  transition: color var(--animation-duration), transform var(--animation-duration);
   @media ${tabletAndUnder} {
     display: none;
   }
@@ -286,12 +286,12 @@ const TabsContent = styled(Content)`
   background: transparent;
   cursor: unset;
   &[data-state="active"] {
-    animation: ${fadeIn} 0.2s;
+    animation: ${fadeIn} var(--animation-duration);
   }
   &[data-state="inactive"] {
-    animation: ${fadeOut} 0.2s;
+    animation: ${fadeOut} var(--animation-duration);
   }
-  transition: opacity 0.2s;
+  transition: opacity var(--animation-duration);
 `;
 
 const TabsContentWrapper = styled.div``;
@@ -324,7 +324,7 @@ const iconStyle = css`
   path {
     fill: var(--color);
   }
-  transition: fill 0.2s, transform 0.3s;
+  transition: fill var(--animation-duration), transform var(--animation-duration);
 `;
 
 const GlobeIcon = styled(Globe)`
@@ -349,7 +349,7 @@ const ScaleIcon = styled(Scale)`
   path {
     stroke: var(--color);
   }
-  transition: stroke 0.2s, transform 0.3s;
+  transition: stroke var(--animation-duration), transform var(--animation-duration);
 `;
 
 const DividerWrapper = styled.div`

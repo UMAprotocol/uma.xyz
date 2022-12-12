@@ -35,7 +35,7 @@ const Wrapper = styled.header`
   background: var(--background);
   backdrop-filter: blur(6px);
   box-shadow: 0px 10px 20px 20px var(--background);
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background var(--animation-duration), box-shadow var(--animation-duration);
 `;
 
 const InnerWrapper = styled.div`
@@ -52,5 +52,5 @@ const BlurBackground = styled.div`
   background: var(--background);
   filter: blur(28px);
   z-index: -1;
-  transition: background 0.2s;
+  transition: background var(--animation-duration);
 `;

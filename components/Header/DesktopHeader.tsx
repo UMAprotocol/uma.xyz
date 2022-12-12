@@ -98,7 +98,7 @@ const Link = styled(NextLink)`
   text-decoration: none;
   color: var(--color);
   font: var(--body-md);
-  transition: opacity, background-color 0.2s ease-in-out;
+  transition: opacity, background-color var(--animation-duration) ease-in-out;
   ${Dot} {
     transition: all 0.1s ease-in-out;
   }
@@ -124,7 +124,7 @@ const LaunchButton = styled(NextLink)`
   color: var(--color);
   background: var(--background);
   text-decoration: none;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity var(--animation-duration) ease-in-out;
   &:hover {
     opacity: 0.75;
   }

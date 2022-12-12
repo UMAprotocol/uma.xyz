@@ -1,18 +1,50 @@
 import { VoteTicker } from "components";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import NextLink from "next/link";
 import BlackCircle from "public/assets/black-circle.svg";
 import Discord from "public/assets/discord.svg";
 import Discourse from "public/assets/discourse.svg";
 import Github from "public/assets/github.svg";
 import Twitter from "public/assets/twitter.svg";
-import Logo from "public/assets/uma-logo.svg";
+import UmaLogo from "public/assets/uma-logo.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { SyntheticEvent, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 import styled from "styled-components";
+import { isExternalLink } from "utils";
 
 export function Footer() {
   const [value, setValue] = useState("");
+
+  const internalLinks = [
+    {
+      label: "How it works",
+      href: "#how-it-works",
+    },
+    {
+      label: "For voters",
+      href: "#voter",
+    },
+    {
+      label: "For builders",
+      href: "#builder",
+    },
+  ];
+
+  const externalLinks = [
+    {
+      label: "Oracle",
+      href: "https://optimistic-oracle-dapp.vercel.app/",
+    },
+    {
+      label: "Docs",
+      href: "https://docs.umaproject.org/",
+    },
+    {
+      label: "Projects",
+      href: "https://projects.umaproject.org/",
+    },
+  ];
 
   const socialLinks = [
     {
@@ -37,223 +69,168 @@ export function Footer() {
     },
   ];
 
-  const middleLinks = [
-    {
-      label: "How it works",
-      href: "#how-it-works",
-    },
-    {
-      label: "For voters",
-      href: "#voter",
-    },
-    {
-      label: "For builders",
-      href: "#builder",
-    },
-  ];
-
-  const rightLinks = [
-    {
-      label: "Oracle",
-      href: "https://optimistic-oracle-dapp.vercel.app/",
-      Logo: UpRightArrowBlack,
-    },
-    {
-      label: "Docs",
-      href: "https://docs.umaproject.org/",
-      Logo: UpRightArrowBlack,
-    },
-    {
-      label: "Projects",
-      href: "https://projects.umaproject.org/",
-      Logo: UpRightArrowBlack,
-    },
-  ];
-
   return (
-    <>
-      <VoteTicker />
-      <Section>
-        <Wrapper>
-          <BottomRow>
-            <FooterLinks>
-              <LogoWrapper>
-                <StyledLogo />
-              </LogoWrapper>
-              <LinksFlex>
-                <Links>
-                  {middleLinks.map(({ label, href }, i) => (
-                    <Link key={i} href={href}>
-                      {label}
-                    </Link>
-                  ))}
-                </Links>
-                <Links>
-                  {rightLinks.map(({ label, href, Logo }, i) => (
-                    <Link key={i} href={href} target="_blank" rel="noreferrer">
-                      {label} {Logo && <Logo style={{ display: "inline-flex", marginLeft: "4px" }} />}
-                    </Link>
-                  ))}
-                </Links>
-              </LinksFlex>
-            </FooterLinks>
+    <OuterWrapper>
+      <VoteTicker isLightTheme />
+      <InnerWrapper>
+        <LinksWrapper>
+          <HomeLink href="#">
+            <UmaLogoIcon />
+          </HomeLink>
+          <LinksList links={internalLinks} />
+          <LinksList links={externalLinks} />
+        </LinksWrapper>
+        <FormWrapper>
+          <FormLogoWrapper href="#">
+            <UmaLogoIcon />
+          </FormLogoWrapper>
+          <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
+          <MailchimpSubscribe
+            url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
+            render={({ subscribe, status, message }) => (
+              <>
+                <Form
+                  onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                    evt.preventDefault();
+                    // @ts-expect-error Doesn't like the input being taken like this
+                    subscribe({ EMAIL: evt.target[0].value }); // eslint-disable-line
+                  }}
+                >
+                  <Input
+                    type="email"
+                    name="email"
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    placeholder="Your Email"
+                  />
 
-            <FormWrapper>
-              <FormLogoWrapper>
-                <StyledLogo />
-              </FormLogoWrapper>
-              <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
-              <MailchimpSubscribe
-                url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
-                render={({ subscribe, status, message }) => (
-                  <>
-                    <Form
-                      onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                        evt.preventDefault();
-                        // @ts-expect-error Doesn't like the input being taken like this
-                        subscribe({ EMAIL: evt.target[0].value }); // eslint-disable-line
-                      }}
-                    >
-                      <Input
-                        type="email"
-                        name="email"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        placeholder="Your Email"
-                      />
-
-                      <Button type="submit">Sign up</Button>
-                    </Form>
-                    {status === "sending" && <StatusMessage>Sending...</StatusMessage>}
-                    {status === "error" && (
-                      <StatusMessage
-                        style={{ color: "var(--red)" }}
-                        dangerouslySetInnerHTML={{ __html: message as string }}
-                      />
-                    )}
-                    {status === "success" && <StatusMessage style={{ color: "#20a93e" }}>Subscribed!</StatusMessage>}
-                  </>
+                  <SubmitButton type="submit">Sign up</SubmitButton>
+                </Form>
+                {status === "sending" && <StatusMessage>Sending...</StatusMessage>}
+                {status === "error" && (
+                  <StatusMessage
+                    style={{ color: "var(--red)" }}
+                    dangerouslySetInnerHTML={{ __html: message as string }}
+                  />
                 )}
-              />
-            </FormWrapper>
-          </BottomRow>
-          <CopyrightRow>
-            <AddressWrapper>
-              <div>© 2022 Risk Labs Foundation</div>
-            </AddressWrapper>
-            <SocialLinks>
-              {socialLinks.map(({ href, Icon }, i) => (
-                <SocialLink key={i} href={href} target="_blank">
-                  <Icon />
-                </SocialLink>
-              ))}
-            </SocialLinks>
-          </CopyrightRow>
-        </Wrapper>
-      </Section>
-    </>
+                {status === "success" && <StatusMessage style={{ color: "#20a93e" }}>Subscribed!</StatusMessage>}
+              </>
+            )}
+          />
+        </FormWrapper>
+      </InnerWrapper>
+      <SubFooter>
+        <Copyright>© 2022 Risk Labs Foundation</Copyright>
+        <SocialLinks>
+          {socialLinks.map(({ href, Icon }) => (
+            <SocialLink key={href} href={href} target="_blank">
+              <Icon />
+            </SocialLink>
+          ))}
+        </SocialLinks>
+      </SubFooter>
+    </OuterWrapper>
   );
 }
 
-const animationDuration = "0.3s";
+function LinksList({ links }: { links: { label: string; href: string }[] }) {
+  return (
+    <LinksListWrapper>
+      {links.map(({ label, href }) => (
+        <LinkListItem key={label}>
+          <Link href={href} target={isExternalLink(href) ? "_blank" : undefined}>
+            {label}
+            {isExternalLink(href) && <ExternalLinkIcon />}
+          </Link>
+        </LinkListItem>
+      ))}
+    </LinksListWrapper>
+  );
+}
 
-const Section = styled.div`
-  width: 100%;
+const ExternalLinkIcon = styled(UpRightArrowBlack)``;
+
+const OuterWrapper = styled.footer`
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-top: var(--header-blur-height);
   background: var(--grey-700);
   background-image: url("assets/footer-lines-grey.png");
   background-size: 100% auto;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-position: left top;
 `;
-const Wrapper = styled.div`
+
+const InnerWrapper = styled.div`
   width: 100%;
+  height: fit-content;
   max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 96px 0 66px;
+  margin-inline: auto;
+  margin-top: 96px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   @media ${tabletAndUnder} {
-    padding-top: 61px;
-    padding-bottom: 32px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 64px;
+    justify-content: start;
   }
-`;
 
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: initial;
-  padding: 8px 0;
-  gap: 16px;
-`;
-
-const FooterLinks = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 52%;
-  gap: 116px;
-  @media ${laptopAndUnder} {
-    flex-direction: column;
-    gap: 32px;
-    width: 30%;
-  }
-  @media ${tabletAndUnder} {
-    justify-content: center;
-    align-items: flex-start;
-    align-self: flex-start;
-  }
   @media ${mobileAndUnder} {
-    align-items: center;
-    align-self: center;
+    gap: 24px;
+    margin-top: 56px;
+    justify-content: center;
   }
 `;
 
-const LogoWrapper = styled.div`
-  width: 85px;
+const LinksWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: start;
+
+  @media ${laptopAndUnder} {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, auto);
+    gap: 16px;
+  }
+
+  @media ${mobileAndUnder} {
+    grid-row-start: 2;
+    justify-items: center;
+    margin-top: 80px;
+  }
+`;
+
+const HomeLink = styled(NextLink)`
+  margin-bottom: 32px;
   @media ${mobileAndUnder} {
     display: none;
   }
 `;
 
-const FormLogoWrapper = styled(LogoWrapper)`
+const FormLogoWrapper = styled(NextLink)`
   display: none;
   @media ${mobileAndUnder} {
     display: block;
   }
 `;
 
-const BottomRow = styled(Row)`
-  justify-content: space-between;
-  column-gap: 100px;
-  @media ${laptopAndUnder} {
-    width: calc(100% - 84px);
-    margin: 0 auto;
-  }
-  @media ${tabletAndUnder} {
-    width: 100%;
-    flex-direction: column;
-    column-gap: 32px;
-    padding-left: 36px;
-    padding-right: 36px;
-  }
-  @media ${mobileAndUnder} {
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
+const LinksListWrapper = styled.ul`
+  list-style: none;
+`;
+
+const LinkListItem = styled.li`
+  &:not(:last-child) {
+    margin-bottom: 16px;
   }
 `;
 
-const Links = styled.div`
+const Link = styled(NextLink)`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 16px;
-  max-height: 136px;
-  flex-basis: 50%;
-`;
-
-const Link = styled.a`
+  align-items: center;
+  gap: 8px;
   color: var(--grey-200);
   font: var(--body-sm);
   text-decoration: none;
@@ -263,43 +240,30 @@ const Link = styled.a`
 `;
 
 const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: baseline;
-  margin: 0 16px;
-  @media ${laptopAndUnder} {
-    max-width: 640px;
-    width: 100%;
-    margin: 0;
-  }
-  @media ${tabletAndUnder} {
-    justify-content: center;
-    align-items: flex-start;
-    align-self: flex-start;
-    margin-top: 64px;
-  }
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: end;
+
   @media ${mobileAndUnder} {
-    justify-content: center;
-    align-items: center;
-    align-self: center;
+    grid-row-start: 1;
+    justify-items: center;
   }
 `;
 
 const FormTitle = styled.h3`
   font: var(--body-lg);
   color: var(--grey-300);
+  width: 100%;
   max-width: 338px;
   margin-bottom: 32px;
   @media ${laptopAndUnder} {
-    width: 100%;
     max-width: 640px;
   }
   @media ${tabletAndUnder} {
-    width: 100%;
     text-align: left;
   }
   @media ${mobileAndUnder} {
-    width: 100%;
     text-align: center;
     margin-top: 24px;
     margin-bottom: 36px;
@@ -307,152 +271,102 @@ const FormTitle = styled.h3`
 `;
 
 const Form = styled.form`
-  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  @media ${laptopAndUnder} {
-    gap: 16px;
-  }
-  @media ${tabletAndUnder} {
-    padding: 0;
-    flex-direction: row;
-    max-width: 640px;
-    width: 100%;
-    margin-bottom: 24px;
-  }
+  width: 100%;
+  justify-content: flex-end;
+
   @media ${mobileAndUnder} {
     flex-direction: column;
-    width: 100%;
-    margin-bottom: 24px;
+    align-items: center;
   }
 `;
 
 const Input = styled.input`
-  width: 350px;
   height: 48px;
+  width: 100%;
+  max-width: 350px;
   background: var(--white);
   color: var(--grey-200);
-  padding: 8px 16px;
-  border-radius: 8px;
   outline: none;
-  cursor: initial;
   font: var(--body-md);
   caret-color: var(--grey-100);
   border: 2px solid transparent;
-  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  transition: border-color var(--animation-duration);
   &:hover {
     border: 2px solid var(--grey-500);
   }
   @media ${laptopAndUnder} {
-    width: 100%;
-    max-width: 525px;
+    max-width: 528px;
   }
   @media ${mobileAndUnder} {
-    width: 100%;
-    max-width: calc(100% - 32px);
+    max-width: 100%;
   }
 `;
 
-const Button = styled.button`
+const SubmitButton = styled.button`
+  height: 48px;
+  min-width: fit-content;
+  white-space: nowrap;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 8px 24px 12px;
   gap: 2px;
-  width: 103px;
-  height: 48px;
   background: var(--red);
   border-radius: 8px;
   color: var(--grey-800);
   font: var(--body-md);
-  transition: opacity ${animationDuration} ease-in-out;
+  transition: opacity var(--animation-duration);
   &:hover {
     opacity: 0.5;
   }
-  @media ${laptopAndUnder} {
-    width: 100%;
-    max-width: 103px;
-  }
   @media ${mobileAndUnder} {
     width: 100%;
-    max-width: calc(100% - 32px);
   }
 `;
 
-const LinksFlex = styled.div`
+const SubFooter = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-basis: 75%;
-  @media ${laptopAndUnder} {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-`;
-
-const CopyrightRow = styled(Row)`
-  margin-top: 365px;
-  display: flex;
+  align-items: center;
   justify-content: space-between;
-  @media ${laptopAndUnder} {
-    padding-left: 16px;
-    padding-right: 0px;
-    width: calc(100% - 48px);
-    margin-left: auto;
-    margin-right: auto;
-  }
-  @media ${tabletAndUnder} {
-    margin-top: 85px;
-    margin-left: 16px;
-    margin-right: 0;
-  }
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  margin-bottom: 64px;
+
   @media ${mobileAndUnder} {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
+    gap: 24px;
   }
 `;
 
-const AddressWrapper = styled.div`
-  display: flex;
-  > div {
-    font: var(--body-sm);
-    color: var(--grey-500);
-  }
+const Copyright = styled.p`
+  font: var(--body-sm);
+  color: var(--grey-500);
 `;
 
-const StyledLogo = styled(Logo)`
+const UmaLogoIcon = styled(UmaLogo)`
+  --fill: var(--red);
   path {
-    fill: var(--red);
+    fill: var(--fill);
+  }
+  @media ${mobileAndUnder} {
+    --fill: var(--grey-100);
   }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 24px;
-  flex-basis: 32%;
-  justify-content: flex-end;
   align-items: center;
-
-  @media ${tabletAndUnder} {
-    gap: 16px;
-    a {
-      height: 24px;
-      width: 24px;
-    }
-  }
+  gap: 26px;
 `;
 
-const SocialLink = styled.a`
+const SocialLink = styled(NextLink)`
   path {
     fill: var(--grey-200);
-    transition: fill ${animationDuration} ease-in-out;
+    transition: fill var(--animation-duration);
   }
   &:hover {
     path {
@@ -464,6 +378,4 @@ const SocialLink = styled.a`
 const StatusMessage = styled.div`
   font: var(--body-sm);
   color: var(--grey-300);
-  margin-top: 16px;
-  padding-left: 16px;
 `;

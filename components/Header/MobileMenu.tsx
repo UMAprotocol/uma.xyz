@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
   transform: var(--transform);
   opacity: var(--opacity);
   pointer-events: var(--pointer-events);
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transition: transform var(--animation-duration) ease-out, opacity var(--animation-duration) ease-out;
   z-index: 5;
   display: flex;
   flex-direction: column;

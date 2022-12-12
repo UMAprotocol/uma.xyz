@@ -20,12 +20,10 @@ import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { formatDateTimeFromUTC } from "./utils";
 
-export function VoteTicker() {
+export function VoteTicker({ isLightTheme = false }) {
   const {
     data: { activeRequests, phase },
   } = useVotingInfo();
-  const theme = "dark";
-  const isLightTheme = theme === "light";
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
 
   useInterval(() => {
@@ -37,8 +35,6 @@ export function VoteTicker() {
       style={
         {
           "--background": isLightTheme ? grey700 : "inherit",
-          "--padding-top": isLightTheme ? "48px" : "16px",
-          "--margin-bottom": isLightTheme ? "0px" : "4px",
         } as CSSProperties
       }
     >
@@ -115,8 +111,8 @@ const OuterWrapper = styled.div`
   place-items: center;
   height: var(--vote-ticker-height);
   background: var(--background);
-  padding-top: var(--padding-top);
-  padding-bottom: var(--margin-bottom);
+  padding-top: 16px;
+  padding-bottom: 4px;
   background-size: cover;
   background-repeat: no-repeat;
 `;
