@@ -6,23 +6,16 @@ import { isExternalLink } from "utils";
 
 export function AnimatedLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <VoterAppLinkWrapper>
-      <VoterAppLink href={href} target={isExternalLink(href) ? "_blank" : undefined}>
-        {children}
-        <ArrowIconWrapper>
-          <ArrowIcon />
-        </ArrowIconWrapper>
-      </VoterAppLink>
-    </VoterAppLinkWrapper>
+    <Link href={href} target={isExternalLink(href) ? "_blank" : undefined}>
+      {children}
+      <ArrowIconWrapper>
+        <ArrowIcon />
+      </ArrowIconWrapper>
+    </Link>
   );
 }
 
-const VoterAppLinkWrapper = styled.div`
-  display: grid;
-  place-items: center;
-`;
-
-const VoterAppLink = styled(NextLink)`
+const Link = styled(NextLink)`
   display: flex;
   align-items: baseline;
   font: var(--body-lg);
@@ -52,7 +45,7 @@ const ArrowIconWrapper = styled.div`
   border-radius: 8px;
   transition: margin 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 
-  ${VoterAppLink}:hover & {
+  ${Link}:hover & {
     border-color: var(--grey-100);
     background-color: var(--grey-100);
     margin-left: 12px;

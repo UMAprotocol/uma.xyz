@@ -1,4 +1,4 @@
-import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
+import { AnimatedLink, Divider } from "components";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
 import earn from "public/assets/lottie/earn.json";
@@ -72,7 +72,9 @@ export function VoteParticipation() {
             </Activity>
           ))}
         </ActivitiesWrapper>
-        <Divider />
+        <DividerWrapper>
+          <Divider />
+        </DividerWrapper>
         <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
       </InnerWrapper>
     </OuterWrapper>
@@ -171,10 +173,7 @@ const LottieWrapper = styled.div`
   }
 `;
 
-const Divider = styled.div`
-  height: 1px;
-  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
-  width: 100%;
+const DividerWrapper = styled.div`
   margin-top: 84px;
   margin-bottom: 24px;
 `;

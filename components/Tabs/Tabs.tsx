@@ -2,6 +2,7 @@ import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandb
 import { githubLight } from "@codesandbox/sandpack-themes";
 import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
 import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
+import { Divider } from "components";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import Globe from "public/assets/globe.svg";
 import Scale from "public/assets/scale.svg";
@@ -142,7 +143,9 @@ contract OO_GettingStarted {
             {content.split("\n").map((text, index) => (
               <TabsContentText key={index}>{text}</TabsContentText>
             ))}
-            <Divider />
+            <DividerWrapper>
+              <Divider />
+            </DividerWrapper>
             <UsedBy>Real contract used by {usedBy}</UsedBy>
             <Example>{example}</Example>
           </TabsContentWrapper>
@@ -349,9 +352,7 @@ const ScaleIcon = styled(Scale)`
   transition: stroke 0.2s, transform 0.3s;
 `;
 
-const Divider = styled.div`
-  height: 1px;
+const DividerWrapper = styled.div`
   margin-top: 48px;
   margin-bottom: 24px;
-  background: linear-gradient(90deg, var(--grey-700) 0%, rgba(0, 0, 0, 0) 100%);
 `;
