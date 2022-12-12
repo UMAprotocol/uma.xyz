@@ -83,7 +83,6 @@ export function VoteParticipation() {
 
 const OuterWrapper = styled.section`
   padding-top: var(--header-blur-height);
-  scroll-snap-align: start;
   background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
 `;
 

@@ -95,7 +95,6 @@ export function HowItWorks() {
 const OuterWrapper = styled.section`
   background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 100%);
   padding-top: var(--header-blur-height);
-  scroll-snap-align: start;
 `;
 
 const InnerWrapper = styled.div`

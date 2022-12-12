@@ -26,7 +26,6 @@ export function Builder() {
 const OuterWrapper = styled.section`
   background: var(--white);
   padding-top: var(--header-blur-height);
-  scroll-snap-align: start;
 `;
 
 const InnerWrapper = styled.div`
