@@ -140,7 +140,7 @@ const SherlockIcon = styled(SherlockLogo)``;
 
 const OuterWrapper = styled.section`
   background: var(--white);
-  padding-top: var(--header-blur-height);
+  padding-block: var(--header-blur-height);
 `;
 
 const InnerWrapper = styled.div`
