@@ -252,7 +252,7 @@ const MobileTabsTriggerTitle = styled(DesktopTabsTriggerTitle)`
 
 const TabsTrigger = styled(Trigger)`
   background: transparent;
-  --color: var(--grey-500);
+  --color: var(--grey-400);
   --gap: 12px;
   --translate-y: 0;
   &[data-state="active"] {
