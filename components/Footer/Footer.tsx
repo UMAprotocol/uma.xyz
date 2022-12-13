@@ -154,9 +154,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   grid-template-rows: auto 1fr auto;
   background: var(--grey-700);
   background-image: url("assets/footer-lines-grey.png");
-  background-size: 100% auto;
-  background-repeat: repeat;
-  background-position: left top;
 `;
 
 const InnerWrapper = styled.div`

@@ -26,6 +26,7 @@ export function VoteTicker({ isLightTheme = false }) {
     data: { activeRequests, phase },
   } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
+  const isActive = activeRequests > 0;
 
   useInterval(() => {
     setTimeRemaining(formatDateTimeFromUTC());
@@ -36,6 +37,7 @@ export function VoteTicker({ isLightTheme = false }) {
       style={
         {
           "--background": isLightTheme ? grey700 : "inherit",
+          "--color": isLightTheme ? grey100 : grey500,
         } as CSSProperties
       }
     >
@@ -43,11 +45,11 @@ export function VoteTicker({ isLightTheme = false }) {
         style={
           {
             "--background": isLightTheme ? grey800 : grey300,
-            "--url": isLightTheme ? "/assets/white-lines.png" : "/assets/black-lines.png",
+            "--url": isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
           } as CSSProperties
         }
       >
-        <VoteBlock>
+        <VoteDetails>
           <ClockWrapper
             style={
               {
@@ -58,36 +60,39 @@ export function VoteTicker({ isLightTheme = false }) {
           >
             <ClockIcon />
           </ClockWrapper>
-          <TimeRemainingWrapper
-            style={
-              {
-                "--color": isLightTheme ? grey100 : grey500,
-              } as CSSProperties
-            }
-          >
-            <DesktopTimeRemainingText>Time to ${phase} vote: </DesktopTimeRemainingText>
-            <MobileTimeRemainingText>{phase} vote: </MobileTimeRemainingText>
-            <TimeRemaining
-              style={
-                {
-                  "--color": isLightTheme ? red : white,
-                } as CSSProperties
-              }
-            >
-              {timeRemaining}
-            </TimeRemaining>
-          </TimeRemainingWrapper>
-          <NumVotes
-            style={
-              {
-                "--color": isLightTheme ? grey100 : grey500,
-                "--background": isLightTheme ? grey600 : grey100,
-              } as CSSProperties
-            }
-          >
-            {activeRequests === 1 ? "1 vote" : `${activeRequests} votes`}
-          </NumVotes>
-        </VoteBlock>
+          {isActive ? (
+            <>
+              <TextWrapper>
+                <DesktopText>Time to {phase} vote: </DesktopText>
+                <MobileText>{phase} vote: </MobileText>
+                <TimeRemaining
+                  style={
+                    {
+                      "--color": isLightTheme ? red : white,
+                    } as CSSProperties
+                  }
+                >
+                  {timeRemaining}
+                </TimeRemaining>
+              </TextWrapper>
+              <NumVotes
+                style={
+                  {
+                    "--color": isLightTheme ? grey100 : grey500,
+                    "--background": isLightTheme ? grey600 : grey100,
+                  } as CSSProperties
+                }
+              >
+                {activeRequests === 1 ? "1 vote" : `${activeRequests} votes`}
+              </NumVotes>
+            </>
+          ) : (
+            <TextWrapper>
+              <DesktopText>No active votes</DesktopText>
+              <MobileText>No votes</MobileText>
+            </TextWrapper>
+          )}
+        </VoteDetails>
         <MoreDetailsBlock
           style={
             {
@@ -128,13 +133,13 @@ const InnerWrapper = styled.div`
   gap: 16px;
   isolation: isolate;
   background: var(--background);
-  background-image: url(var(--url));
+  background-image: var(--url);
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 8px;
 `;
 
-const VoteBlock = styled.div`
+const VoteDetails = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -166,7 +171,7 @@ const ClockWrapper = styled.div`
   border-radius: var(--border-radius);
 `;
 
-const TimeRemainingWrapper = styled.div`
+const TextWrapper = styled.div`
   font: var(--body-sm);
   color: var(--color);
 `;
@@ -179,13 +184,13 @@ const TimeRemaining = styled.span`
   min-width: 96px; // 96px is the width of the clock to prevent spacing changing on numbers.
 `;
 
-const DesktopTimeRemainingText = styled.span`
+const DesktopText = styled.span`
   @media ${mobileAndUnder} {
     display: none;
   }
 `;
 
-const MobileTimeRemainingText = styled.span`
+const MobileText = styled.span`
   display: none;
   @media ${mobileAndUnder} {
     display: inline;
@@ -193,17 +198,12 @@ const MobileTimeRemainingText = styled.span`
 `;
 
 const NumVotes = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 8px 12px;
-  gap: 2px;
-  width: 63px;
-  height: 24px;
+  height: fit-content;
+  white-space: nowrap;
+  padding-inline: 8px;
+  padding-block: 4px;
   background: var(--background);
   border-radius: 12px;
-  margin-left: -8px;
   font: var(--body-sm);
   color: var(--color);
 
