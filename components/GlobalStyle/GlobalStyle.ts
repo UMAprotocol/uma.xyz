@@ -7,6 +7,7 @@ import {
   bodyXl,
   bodyXs,
   desktopHeaderHeight,
+  desktopPagePadding,
   desktopPageWidth,
   grey100,
   grey100Opacity20,
@@ -25,14 +26,15 @@ import {
   headerXs,
   mobileAndUnder,
   mobileHeaderHeight,
+  mobilePagePadding,
   mobilePageWidth,
-  pagePadding,
   red,
   red510Opacity15,
   red550,
   subHeader,
   subHeaderSm,
   tabletAndUnder,
+  tabletPagePadding,
   tabletPageWidth,
   voteTickerHeight,
   white,
@@ -266,7 +268,16 @@ html, body, #__next {
     }
     --header-blur-height: ${headerBlurHeight}px;
     --vote-ticker-height: ${voteTickerHeight}px;
-    --page-padding: ${pagePadding}px;
+    --desktop-page-padding: ${desktopPagePadding}px;
+    --tablet-page-padding: ${tabletPagePadding}px;
+    --mobile-page-padding: ${mobilePagePadding}px;
+    --page-padding: var(--desktop-page-padding);
+    @media ${tabletAndUnder} {
+      --page-padding: var(--tablet-page-padding);
+    }
+    @media ${mobileAndUnder} {
+      --page-padding: var(--mobile-page-padding);
+    }
     /* Animation */
     --animation-duration: ${animationDuration};
 

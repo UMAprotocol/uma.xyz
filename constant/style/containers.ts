@@ -8,4 +8,6 @@ export const headerBlurHeight = 120;
 
 export const voteTickerHeight = 68;
 
-export const pagePadding = 12;
+export const desktopPagePadding = 32;
+export const tabletPagePadding = 24;
+export const mobilePagePadding = 16;
