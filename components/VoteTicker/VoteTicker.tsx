@@ -93,7 +93,7 @@ export function VoteTicker({ isLightTheme = false }) {
             </TextWrapper>
           )}
         </VoteDetails>
-        <MoreDetailsBlock
+        <MoreDetailsWrapper
           style={
             {
               "--color": isLightTheme ? grey100 : grey500,
@@ -105,7 +105,7 @@ export function VoteTicker({ isLightTheme = false }) {
             <MoreDetailsText>More details</MoreDetailsText>
             <ArrowIcon />
           </Link>
-        </MoreDetailsBlock>
+        </MoreDetailsWrapper>
       </InnerWrapper>
     </OuterWrapper>
   );
@@ -212,7 +212,7 @@ const NumVotes = styled.div`
   }
 `;
 
-const MoreDetailsBlock = styled.div``;
+const MoreDetailsWrapper = styled.div``;
 
 const MoreDetailsText = styled.span`
   @media ${mobileAndUnder} {
@@ -229,6 +229,7 @@ const Link = styled(NextLink)`
   align-items: center;
   padding: 0px;
   gap: 8px;
+  transition: opacity var(--animation-duration);
   &:hover {
     opacity: 0.5;
   }

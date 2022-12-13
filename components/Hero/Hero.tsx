@@ -112,6 +112,12 @@ const ArrowButton = styled(NextLink)`
   width: 48px;
   height: 48px;
   opacity: 1;
+  transition: box-shadow var(--animation-duration), background-color var(--animation-duration);
+
+  &:hover {
+    background: var(--red-510-opacity-15);
+    box-shadow: 0px 0px 50px 0px var(--red);
+  }
 `;
 
 const OOIconWrapper = styled.span`

@@ -193,6 +193,7 @@ const Link = styled(NextLink)`
   color: var(--grey-200);
   font: var(--body-sm);
   text-decoration: none;
+  transition: opacity var(--animation-duration);
   &:hover {
     opacity: 0.5;
   }
