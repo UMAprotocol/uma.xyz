@@ -82,9 +82,6 @@ export function Footer() {
           <LinksList links={externalLinks} />
         </LinksWrapper>
         <FormWrapper>
-          <FormLogoWrapper href="#">
-            <UmaLogoIcon />
-          </FormLogoWrapper>
           <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
           <MailchimpSubscribe
             url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
@@ -207,13 +204,6 @@ const HomeLink = styled(NextLink)`
   margin-bottom: 32px;
   @media ${mobileAndUnder} {
     display: none;
-  }
-`;
-
-const FormLogoWrapper = styled(NextLink)`
-  display: none;
-  @media ${mobileAndUnder} {
-    display: block;
   }
 `;
 
@@ -348,12 +338,8 @@ const Copyright = styled.p`
 `;
 
 const UmaLogoIcon = styled(UmaLogo)`
-  --fill: var(--red);
   path {
-    fill: var(--fill);
-  }
-  @media ${mobileAndUnder} {
-    --fill: var(--grey-100);
+    fill: var(--red);
   }
 `;
 
