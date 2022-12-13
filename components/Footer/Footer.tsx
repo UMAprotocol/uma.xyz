@@ -245,6 +245,8 @@ const Input = styled.input`
   height: 48px;
   width: 100%;
   max-width: 350px;
+  padding-inline: 16px;
+  padding-block: 12px;
   background: var(--white);
   color: var(--grey-200);
   outline: none;
@@ -255,6 +257,9 @@ const Input = styled.input`
   transition: border-color var(--animation-duration);
   &:hover {
     border: 2px solid var(--grey-500);
+  }
+  &:focus {
+    border: 2px solid var(--grey-100);
   }
   @media ${laptopAndUnder} {
     max-width: 528px;
