@@ -273,4 +273,8 @@ html, body, #__next {
     // Sandpack override
     --sp-layout-height: 347px !important;
   }
+
+  body {
+    color: var(--grey-100);
+  }
 `;
