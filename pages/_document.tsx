@@ -39,6 +39,7 @@ export default class MyDocument extends Document {
           <meta property="og:image" content={image} />
           <meta property="og:description" content={description} />
           <meta property="og:url" content="https://umaproject.org" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
 
           <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
           <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
