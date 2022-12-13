@@ -5,13 +5,16 @@ import { isExternalLink } from "utils";
 
 interface Props {
   show: boolean;
+  hide: () => void;
   isLightTheme: boolean;
-  onClickLink: () => void;
 }
 
-export function MobileMenu({ show, onClickLink, isLightTheme }: Props) {
+export function MobileMenu({ show, hide, isLightTheme }: Props) {
   return (
     <Wrapper
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile Menu"
       style={
         {
           "--background": isLightTheme ? white : grey200,
@@ -22,14 +25,14 @@ export function MobileMenu({ show, onClickLink, isLightTheme }: Props) {
         } as CSSProperties
       }
     >
-      {links.map(({ href, label }, i) => (
-        <Link onClick={onClickLink} key={i} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
+      {links.map(({ href, label }) => (
+        <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
           {label}
         </Link>
       ))}
       <SocialLinks>
-        {socialLinks.map(({ href, Icon }, i) => (
-          <SocialLink key={i} href={href} target="_blank">
+        {socialLinks.map(({ href, Icon }) => (
+          <SocialLink onClick={hide} key={href} href={href} target="_blank">
             <Icon />
           </SocialLink>
         ))}
@@ -38,8 +41,9 @@ export function MobileMenu({ show, onClickLink, isLightTheme }: Props) {
   );
 }
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.nav`
   width: 100%;
+  min-height: 100vh;
   position: absolute;
   top: 56px;
   left: 0;
@@ -49,7 +53,6 @@ export const Wrapper = styled.div`
   opacity: var(--opacity);
   pointer-events: var(--pointer-events);
   transition: transform var(--animation-duration) ease-out, opacity var(--animation-duration) ease-out;
-  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -4,45 +4,51 @@ import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
+import { FocusOn } from "react-focus-on";
 import styled, { CSSProperties } from "styled-components";
 import { MobileMenu } from "./MobileMenu";
+
 interface Props {
   isLightTheme: boolean;
 }
 
 export function MobileHeader({ isLightTheme }: Props) {
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const transitionWhenShow = "background 200ms, top 200ms, opacity 200ms, transform 200ms 250ms";
   const transitionWhenHide = "top 200ms 250ms, opacity 200ms 250ms, transform 200ms";
 
-  function toggleMobileMenu() {
-    setShowMobileMenu(!showMobileMenu);
+  function toggleShowMenu() {
+    setShowMenu(!showMenu);
+  }
+
+  function hideMenu() {
+    setShowMenu(false);
   }
 
   return (
-    <Wrapper>
+    <Wrapper enabled={showMenu} onEscapeKey={hideMenu} onClickOutside={hideMenu} preventScrollOnFocus>
       <MenuToggleButton
-        onClick={toggleMobileMenu}
+        onClick={toggleShowMenu}
         style={
           {
             "--background": isLightTheme ? grey100 : white,
-            "--transition": showMobileMenu ? transitionWhenShow : transitionWhenHide,
+            "--transition": showMenu ? transitionWhenShow : transitionWhenHide,
           } as CSSProperties
         }
       >
         <ToggleButtonBar
           style={
             {
-              "--top": showMobileMenu ? "9px" : 0,
-              "--transform": showMobileMenu ? "rotate(45deg)" : "rotate(0)",
+              "--top": showMenu ? "9px" : 0,
+              "--transform": showMenu ? "rotate(45deg)" : "rotate(0)",
             } as CSSProperties
           }
         />
         <ToggleButtonBar
           style={
             {
-              "--top": showMobileMenu ? "9px" : "16px",
-              "--transform": showMobileMenu ? "rotate(-45deg)" : "rotate(0)",
+              "--top": showMenu ? "9px" : "16px",
+              "--transform": showMenu ? "rotate(-45deg)" : "rotate(0)",
             } as CSSProperties
           }
         />
@@ -62,16 +68,17 @@ export function MobileHeader({ isLightTheme }: Props) {
           <ArrowIcon />
         </Link>
       </VoteLinkWrapper>
-      <MobileMenu isLightTheme={isLightTheme} show={showMobileMenu} onClickLink={toggleMobileMenu} />
+      <MobileMenu isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(FocusOn)`
   display: none;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  pointer-events: all;
   @media ${tabletAndUnder} {
     display: flex;
   }

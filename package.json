@@ -22,6 +22,7 @@
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-focus-on": "^3.7.0",
     "react-lottie": "^1.2.3",
     "react-mailchimp-subscribe": "^2.1.3",
     "storybook-addon-next": "^1.7.1",

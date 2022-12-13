@@ -28,10 +28,10 @@ export function Header() {
 }
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  padding-top: 16px;
+  height: var(--header-height);
   display: grid;
   place-items: center;
-  height: var(--header-height);
+  padding-top: 16px;
   position: sticky;
   top: 0;
   z-index: 2;
