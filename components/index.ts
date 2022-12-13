@@ -9,7 +9,6 @@ export { HowItWorks } from "./HowItWorks/HowItWorks";
 export { Layout } from "./Layout/Layout";
 export { Home } from "./pages/Home/Home";
 export { Projects } from "./Projects/Projects";
-export { BaseOuterWrapper } from "./style/Wrappers";
 export { SupportSection } from "./SupportSection/SupportSection";
 export { Tabs } from "./Tabs/Tabs";
 export { VoteParticipation } from "./VoteParticipation/VoteParticipation";

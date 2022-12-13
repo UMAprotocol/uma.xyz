@@ -26,6 +26,7 @@ import {
   mobileAndUnder,
   mobileHeaderHeight,
   mobilePageWidth,
+  pagePadding,
   red,
   red510Opacity15,
   red550,
@@ -266,6 +267,7 @@ html {
     }
     --header-blur-height: ${headerBlurHeight}px;
     --vote-ticker-height: ${voteTickerHeight}px;
+    --page-padding: ${pagePadding}px;
     /* Animation */
     --animation-duration: ${animationDuration};
 

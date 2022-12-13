@@ -1,3 +1,4 @@
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { addOpacityToHsl, grey200, white } from "constant";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import styled, { CSSProperties } from "styled-components";
@@ -9,7 +10,8 @@ export function Header() {
   const whiteOpacity90 = addOpacityToHsl(white, 0.9);
   const grey200Opacity90 = addOpacityToHsl(grey200, 0.9);
   return (
-    <Wrapper
+    <OuterWrapper
+      as="header"
       style={
         {
           "--background": isLightTheme ? whiteOpacity90 : grey200Opacity90,
@@ -21,11 +23,11 @@ export function Header() {
         <MobileHeader isLightTheme={isLightTheme} />
       </InnerWrapper>
       <BlurBackground />
-    </Wrapper>
+    </OuterWrapper>
   );
 }
 
-const Wrapper = styled.header`
+const OuterWrapper = styled(BaseOuterWrapper)`
   padding-top: 16px;
   display: grid;
   place-items: center;

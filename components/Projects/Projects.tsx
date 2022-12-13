@@ -1,5 +1,6 @@
 import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
 import { Divider } from "components/Divider/Divider";
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder } from "constant";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
@@ -138,9 +139,8 @@ const ShapeshiftIcon = styled(ShapeshiftLogo)``;
 
 const SherlockIcon = styled(SherlockLogo)``;
 
-const OuterWrapper = styled.section`
+const OuterWrapper = styled(BaseOuterWrapper)`
   background: var(--white);
-  padding-block: var(--header-blur-height);
 `;
 
 const InnerWrapper = styled.div`

@@ -1,4 +1,5 @@
 import { AnimatedLink, Divider } from "components";
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
 import earn from "public/assets/lottie/earn.json";
@@ -42,7 +43,7 @@ export function VoteParticipation() {
   ];
 
   return (
-    <OuterWrapper id="voter">
+    <OuterWrapper>
       <InnerWrapper>
         <Title>
           Participate as a <RedEmphasis>Voter</RedEmphasis>
@@ -81,8 +82,7 @@ export function VoteParticipation() {
   );
 }
 
-const OuterWrapper = styled.section`
-  padding-top: var(--header-blur-height);
+const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
 `;
 

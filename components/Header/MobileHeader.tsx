@@ -48,7 +48,7 @@ export function MobileHeader({ isLightTheme }: Props) {
         />
       </MenuToggleButton>
       <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
-      <AppBlock>
+      <VoteLinkWrapper>
         <Link
           href="https://vote.umaproject.org/"
           target="_blank"
@@ -61,7 +61,7 @@ export function MobileHeader({ isLightTheme }: Props) {
           App
           <ArrowIcon />
         </Link>
-      </AppBlock>
+      </VoteLinkWrapper>
       <MobileMenu isLightTheme={isLightTheme} show={showMobileMenu} onClickLink={toggleMobileMenu} />
     </Wrapper>
   );
@@ -72,8 +72,6 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding-left: 8px;
-  padding-right: 16px;
   @media ${tabletAndUnder} {
     display: flex;
   }
@@ -98,12 +96,12 @@ export const MenuToggleButton = styled.button`
   background: var(--grey-900);
 `;
 
-const AppBlock = styled.div`
+const VoteLinkWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
   gap: 4px;
+  margin-right: 16px;
 `;
 
 const ArrowIcon = styled(UpRightArrow)`

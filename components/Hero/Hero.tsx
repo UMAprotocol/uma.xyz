@@ -1,3 +1,4 @@
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
@@ -44,9 +45,14 @@ const Background = styled.div`
   left: 0;
   right: 0;
   opacity: 0.15;
+
+  @media ${mobileAndUnder} {
+    top: 20%;
+  }
 `;
 
-const OuterWrapper = styled.section`
+const OuterWrapper = styled(BaseOuterWrapper)`
+  padding-top: 0;
   height: calc(100% - var(--header-height) - var(--vote-ticker-height));
   position: relative;
 `;

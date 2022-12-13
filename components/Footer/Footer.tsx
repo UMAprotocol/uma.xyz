@@ -1,4 +1,5 @@
 import { VoteTicker } from "components";
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import NextLink from "next/link";
 import BlackCircle from "public/assets/black-circle.svg";
@@ -70,7 +71,7 @@ export function Footer() {
   ];
 
   return (
-    <OuterWrapper>
+    <OuterWrapper as="footer">
       <VoteTicker isLightTheme />
       <InnerWrapper>
         <LinksWrapper>
@@ -150,11 +151,10 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
 
 const ExternalLinkIcon = styled(UpRightArrowBlack)``;
 
-const OuterWrapper = styled.footer`
+const OuterWrapper = styled(BaseOuterWrapper)`
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  padding-top: var(--header-blur-height);
   background: var(--grey-700);
   background-image: url("assets/footer-lines-grey.png");
   background-size: 100% auto;

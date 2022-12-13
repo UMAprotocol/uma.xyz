@@ -1,3 +1,4 @@
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import {
   grey100,
   grey300,
@@ -105,8 +106,7 @@ export function VoteTicker({ isLightTheme = false }) {
   );
 }
 
-const OuterWrapper = styled.div`
-  padding-inline: 8px;
+const OuterWrapper = styled(BaseOuterWrapper)`
   display: grid;
   place-items: center;
   height: var(--vote-ticker-height);

@@ -1,3 +1,4 @@
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import styled from "styled-components";
@@ -10,7 +11,7 @@ export function SupportSection() {
           <source src="/assets/uma.xyz.mp4" type="video/mp4" />
         </Video>
         <RearOverlay />
-        <BackOverlay />
+        <FrontOverlay />
       </Background>
       <InnerWrapper>
         <TextWrapper>
@@ -47,7 +48,7 @@ const Background = styled.div`
   isolation: isolate;
 `;
 
-const BackOverlay = styled.div`
+const FrontOverlay = styled.div`
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 1) 0%,
@@ -85,7 +86,7 @@ const Video = styled.video`
   object-fit: cover;
 `;
 
-const OuterWrapper = styled.section`
+const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
   background-size: cover;
   background-repeat: no-repeat;

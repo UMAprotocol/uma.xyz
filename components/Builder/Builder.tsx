@@ -2,10 +2,11 @@ import { Tabs } from "components";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import OO from "public/assets/oo-logo.svg";
 import styled from "styled-components";
+import { BaseOuterWrapper } from "components/style/Wrappers";
 
 export function Builder() {
   return (
-    <OuterWrapper id="builder">
+    <OuterWrapper>
       <InnerWrapper>
         <Title>
           Participate as a <RedEmphasis>Builder</RedEmphasis>
@@ -23,9 +24,8 @@ export function Builder() {
   );
 }
 
-const OuterWrapper = styled.section`
+const OuterWrapper = styled(BaseOuterWrapper)`
   background: var(--white);
-  padding-top: var(--header-blur-height);
 `;
 
 const InnerWrapper = styled.div`

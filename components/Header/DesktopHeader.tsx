@@ -61,7 +61,6 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding-inline: 8px;
   @media ${tabletAndUnder} {
     display: none;
   }
