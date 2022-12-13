@@ -6,6 +6,7 @@ import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
 import styled from "styled-components";
 import { isExternalLink } from "utils";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 
 interface Props {
   isLightTheme: boolean;
@@ -13,15 +14,15 @@ interface Props {
 
 export function DesktopHeader({ isLightTheme }: Props) {
   const router = useRouter();
-  const isActive = (href: string) => router.pathname === href;
+  const isActive = (href: string) => router.asPath === `/${href}`;
 
   return (
     <Wrapper>
       <HomeLink href="/">{isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}</HomeLink>
       <Links>
-        {links.map(({ label, href }, i) => (
+        {links.map(({ label, href }) => (
           <Link
-            key={i}
+            key={href}
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
             style={
@@ -30,9 +31,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
               } as CSSProperties
             }
           >
-            <LinkWrapper>
-              {isActive(href) ? <RedDot /> : i <= 2 ? <Dot /> : null} {label}
-            </LinkWrapper>
+            <Dot /> <LinkText>{label}</LinkText> {isExternalLink(href) ? <ExternalLinkIcon /> : null}
           </Link>
         ))}
       </Links>
@@ -51,13 +50,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
   );
 }
 
-const LinkWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-`;
-
 const Wrapper = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -72,42 +65,43 @@ const Links = styled.div`
   gap: 20px;
 `;
 
-const Dot = styled.span`
-  width: 6px;
-  height: 6px;
-  margin-right: 8px;
-  border-radius: 3px;
-  visibility: hidden;
-  background-color: var(--grey-400);
-  position: absolute;
-  left: -16px;
-  opacity: 0.8;
-`;
-
-const RedDot = styled(Dot)`
-  background: var(--red);
-  visibility: visible;
-  left: -12px;
-  opacity: 1;
-`;
-
 const Link = styled(NextLink)`
+  --text-opacity: 1;
+  --dot-opacity: 0;
+  --dot-translate-x: -4px;
   display: flex;
   align-items: center;
   text-decoration: none;
   color: var(--color);
   font: var(--body-md);
-  transition: opacity, background-color var(--animation-duration) ease-in-out;
-  ${Dot} {
-    transition: all 0.1s ease-in-out;
-  }
+  transition: color var(--animation-duration), background-color var(--animation-duration);
+
   &:hover {
-    opacity: 0.8;
-    ${Dot} {
-      visibility: visible;
-      left: -12px;
-    }
+    --text-opacity: 0.8;
+    --dot-opacity: 0.8;
+    --dot-translate-x: 0;
   }
+`;
+
+const LinkText = styled.span`
+  opacity: var(--text-opacity);
+`;
+
+const Dot = styled.span`
+  display: inline-block;
+  width: 8px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: var(--color);
+  opacity: var(--dot-opacity);
+  transform: translateX(var(--dot-translate-x));
+  transition: opacity var(--animation-duration), background-color var(--animation-duration),
+    transform var(--animation-duration);
+`;
+
+const ExternalLinkIcon = styled(SmUpRightArrow)`
+  margin-left: 8px;
 `;
 
 const HomeLink = styled(NextLink)``;

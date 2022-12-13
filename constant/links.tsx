@@ -1,8 +1,7 @@
-import BlackCircle from "public/assets/black-circle.svg";
 import Discord from "public/assets/discord.svg";
 import Discourse from "public/assets/discourse.svg";
+import Message from "public/assets/message.svg";
 import Github from "public/assets/github.svg";
-import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import Twitter from "public/assets/twitter.svg";
 
 export const links = [
@@ -19,28 +18,16 @@ export const links = [
     href: "#builder",
   },
   {
-    label: (
-      <>
-        Oracle <SmUpRightArrow style={{ marginLeft: "8px" }} />
-      </>
-    ),
-    href: "#",
+    label: "Oracle",
+    href: "https://oracle.umaproject.org/",
   },
   {
-    label: (
-      <>
-        Docs <SmUpRightArrow style={{ marginLeft: "8px" }} />
-      </>
-    ),
-    href: "#",
+    label: "Docs",
+    href: "https://docs.umaproject.org/",
   },
   {
-    label: (
-      <>
-        Projects <SmUpRightArrow style={{ marginLeft: "8px" }} />
-      </>
-    ),
-    href: "#",
+    label: "Projects",
+    href: "https://projects.umaproject.org/",
   },
 ];
 
@@ -50,8 +37,8 @@ export const socialLinks = [
     Icon: Discord,
   },
   {
-    href: "https://twitter.com/UMAprotocol",
-    Icon: BlackCircle,
+    href: "mailto:hello@umaproject.org",
+    Icon: Message,
   },
   {
     href: "https://twitter.com/UMAprotocol",

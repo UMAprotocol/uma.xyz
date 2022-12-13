@@ -1,12 +1,7 @@
 import { VoteTicker } from "components";
 import { BaseOuterWrapper } from "components/style/Wrappers";
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { laptopAndUnder, mobileAndUnder, socialLinks, tabletAndUnder } from "constant";
 import NextLink from "next/link";
-import BlackCircle from "public/assets/black-circle.svg";
-import Discord from "public/assets/discord.svg";
-import Discourse from "public/assets/discourse.svg";
-import Github from "public/assets/github.svg";
-import Twitter from "public/assets/twitter.svg";
 import UmaLogo from "public/assets/uma-logo.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { SyntheticEvent, useState } from "react";
@@ -44,29 +39,6 @@ export function Footer() {
     {
       label: "Projects",
       href: "https://projects.umaproject.org/",
-    },
-  ];
-
-  const socialLinks = [
-    {
-      href: "http://discord.umaproject.org",
-      Icon: Discord,
-    },
-    {
-      href: "https://twitter.com/UMAprotocol",
-      Icon: BlackCircle,
-    },
-    {
-      href: "https://twitter.com/UMAprotocol",
-      Icon: Twitter,
-    },
-    {
-      href: "https://discourse.umaproject.org/",
-      Icon: Discourse,
-    },
-    {
-      href: "https://github.com/UMAprotocol",
-      Icon: Github,
     },
   ];
 
