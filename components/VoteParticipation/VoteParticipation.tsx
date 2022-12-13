@@ -20,7 +20,7 @@ export function VoteParticipation() {
   const activities = [
     {
       title: "Stake",
-      text: "Stake your $UMA to help secure UMA’s Optimistic Oracle.",
+      text: "Stake your $UMA to help secure UMA's Optimistic Oracle.",
       animationData: stake,
       isPlaying: stakePlaying,
       setIsPlaying: setStakePlaying,
@@ -123,10 +123,25 @@ const ActivitiesWrapper = styled.div`
 `;
 
 const Activity = styled.div`
+  --color: var(--grey-100);
+  --background: transparent;
+  --border-color: transparent;
+  --translate-y: 0;
   display: grid;
   justify-content: start;
   align-items: start;
   padding: 40px;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  transform: translateY(var(--translate-y));
+  transition: background var(--animation-duration), border-color var(--animation-duration),
+    transform var(--animation-duration);
+  &:hover {
+    --color: var(--red);
+    --background: var(--white);
+    --border-color: var(--grey-600);
+    --translate-y: -8px;
+  }
   @media ${tabletAndUnder} {
     grid-template-columns: auto 1fr;
     gap: 32px;
@@ -139,15 +154,22 @@ const Activity = styled.div`
 const ActivityDescription = styled.div``;
 
 const ActivityTitle = styled.h3`
+  color: var(--color);
   font: var(--header-md);
+  margin-bottom: 16px;
+  transform: translateY(var(--translate-y));
+  transition: color var(--animation-duration), transform var(--animation-duration);
   @media ${mobileAndUnder} {
     font: var(--header-sm);
+    margin-bottom: 12px;
   }
 `;
 
 const ActivityText = styled.p`
   font: var(--body-lg);
   max-width: 288px;
+  transform: translateY(var(--translate-y));
+  transition: transform var(--animation-duration);
   @media ${tabletAndUnder} {
     max-width: 100%;
   }
@@ -163,12 +185,19 @@ const LottieWrapper = styled.div`
   --tablet-width: 92px;
   --mobile-width: 62px;
   --width: var(--desktop-width);
+  transform: translateY(var(--translate-y));
+  transition: transform var(--animation-duration);
   @media ${tabletAndUnder} {
     --width: var(--tablet-width);
     margin-left: 0;
   }
   @media ${mobileAndUnder} {
     --width: var(--mobile-width);
+  }
+
+  path {
+    stroke: var(--color);
+    transition: stroke var(--animation-duration);
   }
 `;
 
