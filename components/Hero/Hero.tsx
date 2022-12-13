@@ -55,6 +55,8 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   padding-top: 0;
   height: calc(100% - var(--header-height) - var(--vote-ticker-height));
   position: relative;
+  background: var(--grey-200);
+  background-image: url("assets/footer-lines-grey.png");
 `;
 
 const InnerWrapper = styled.div`
