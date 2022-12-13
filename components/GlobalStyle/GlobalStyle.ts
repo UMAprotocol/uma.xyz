@@ -77,7 +77,10 @@ html {
 /* Smooth scrolling for users that don't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
-    scroll-behavior: smooth;
+    // todo: for reasons I don't understand and can't track down, it seems that nextjs overwrites the scroll behavior to auto on load.
+    // This is a hacky fix to make sure that the scroll behavior is smooth.
+    // would be great if someone could figure out why and fix it at the source.
+    scroll-behavior: smooth !important;
   }
 }
 
@@ -205,10 +208,6 @@ a:not([class]) {
 /* Allow percentage-based full height */
 html, body, #__next {
   height: 100%;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 /* Global style definitions */

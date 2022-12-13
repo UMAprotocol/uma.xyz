@@ -6,7 +6,7 @@ import { BaseOuterWrapper } from "components/style/Wrappers";
 
 export function Builder() {
   return (
-    <OuterWrapper>
+    <OuterWrapper id="builder">
       <InnerWrapper>
         <Title>
           Participate as a <RedEmphasis>Builder</RedEmphasis>

@@ -43,7 +43,7 @@ export function VoteParticipation() {
   ];
 
   return (
-    <OuterWrapper>
+    <OuterWrapper id="voter">
       <InnerWrapper>
         <Title>
           Participate as a <RedEmphasis>Voter</RedEmphasis>
