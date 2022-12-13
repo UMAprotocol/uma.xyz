@@ -15,6 +15,7 @@ export function HowItWorks() {
 
   useEffect(() => {
     setColorChangeSectionRef(howItWorksRef);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [howItWorksRef.current]);
 
   const steps = [
