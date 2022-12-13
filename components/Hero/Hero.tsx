@@ -1,5 +1,6 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { motion } from "framer-motion";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
@@ -8,9 +9,43 @@ import Lottie from "react-lottie";
 import styled from "styled-components";
 
 export function Hero() {
+  const headerAnimation = {
+    initial: {
+      opacity: 0,
+      translateY: "20%",
+    },
+    animate: {
+      opacity: 1,
+      translateY: "0%",
+    },
+    transition: {
+      duration: 0.5,
+      delay: 0.3,
+    },
+  };
+
+  function makeHeaderRotateAnimation(degrees: number) {
+    return {
+      initial: {
+        rotate: `${degrees}deg`,
+      },
+      animate: {
+        rotate: "0deg",
+      },
+      transition: {
+        duration: 0.5,
+        delay: 0.5,
+      },
+    };
+  }
+
   return (
     <OuterWrapper>
-      <Background>
+      <Background
+        initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
+        animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
+        transition={{ duration: 0.5 }}
+      >
         <Lottie
           options={{
             loop: true,
@@ -20,25 +55,43 @@ export function Hero() {
         />
       </Background>
       <InnerWrapper>
-        <Title>
-          A decentralized <br /> truth
-          <OOIconWrapper>
-            <OOLogoIcon />
-          </OOIconWrapper>
-          machine
-        </Title>
-        <Subheader>
-          UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
-        </Subheader>
-        <ArrowButton href="#how-it-works">
-          <DownArrow />
-        </ArrowButton>
+        <HeaderWrapper {...headerAnimation}>
+          <Header>
+            <motion.div {...makeHeaderRotateAnimation(-3)}>A decentralized </motion.div>
+            <motion.span {...makeHeaderRotateAnimation(-6)}>truth</motion.span>
+            <OOIconWrapper {...makeHeaderRotateAnimation(8)}>
+              <OOLogoIcon />
+            </OOIconWrapper>
+            <motion.span {...makeHeaderRotateAnimation(4)}>machine</motion.span>
+          </Header>
+          <Subheader>
+            UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
+          </Subheader>
+        </HeaderWrapper>
+        <motion.div
+          initial={{
+            opacity: 0,
+            translateY: "50%",
+          }}
+          animate={{
+            opacity: 1,
+            translateY: "0%",
+          }}
+          transition={{
+            duration: 0.3,
+            delay: 1.5,
+          }}
+        >
+          <ArrowButton href="#how-it-works">
+            <DownArrow />
+          </ArrowButton>
+        </motion.div>
       </InnerWrapper>
     </OuterWrapper>
   );
 }
 
-const Background = styled.div`
+const Background = styled(motion.div)`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -66,14 +119,17 @@ const InnerWrapper = styled.div`
   align-items: center;
   max-width: var(--page-width);
   margin: 0 auto;
-  padding-top: 153px;
+  padding-top: 152px;
   padding-bottom: 96px;
 `;
 
-const Title = styled.div`
+const HeaderWrapper = styled(motion.div)``;
+
+const Header = styled(motion.h1)`
   z-index: 1;
   font: var(--header-lg);
   color: var(--white);
+  text-align: center;
   @media ${tabletAndUnder} {
     font-size: 8.5vw;
     line-height: 115%;
@@ -85,14 +141,16 @@ const Title = styled.div`
   }
 `;
 
-const Subheader = styled.div`
+const Subheader = styled(motion.h2)`
   z-index: 1;
-  margin: 32px 0 0;
+  margin-top: 32px;
+  margin-inline: auto;
+  max-width: 562px;
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
   @media ${mobileAndUnder} {
-    margin: 32px 16px 0;
+    margin-bottom: 16px;
   }
 `;
 
@@ -120,7 +178,7 @@ const ArrowButton = styled(NextLink)`
   }
 `;
 
-const OOIconWrapper = styled.span`
+const OOIconWrapper = styled(motion.span)`
   display: inline-block;
   vertical-align: middle;
   margin-inline: 16px;

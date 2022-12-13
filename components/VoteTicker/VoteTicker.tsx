@@ -1,4 +1,3 @@
-import { BaseOuterWrapper } from "components/style/Wrappers";
 import {
   grey100,
   grey300,
@@ -12,6 +11,7 @@ import {
   red550,
   white,
 } from "constant";
+import { motion } from "framer-motion";
 import { useVotingInfo } from "hooks";
 import useInterval from "hooks/helpers/useInterval";
 import NextLink from "next/link";
@@ -34,6 +34,9 @@ export function VoteTicker({ isLightTheme = false }) {
 
   return (
     <OuterWrapper
+      initial={{ opacity: 0, translateY: "-100%" }}
+      animate={{ opacity: 1, translateY: "0%" }}
+      transition={{ duration: 0.5, delay: 1 }}
       style={
         {
           "--background": isLightTheme ? grey700 : "inherit",
@@ -111,13 +114,14 @@ export function VoteTicker({ isLightTheme = false }) {
   );
 }
 
-const OuterWrapper = styled(BaseOuterWrapper)`
+const OuterWrapper = styled(motion.div)`
   display: grid;
   place-items: center;
   height: var(--vote-ticker-height);
   background: var(--background);
   padding-top: 16px;
   padding-bottom: 4px;
+  padding-inline: var(--page-padding);
   background-size: cover;
   background-repeat: no-repeat;
 `;
