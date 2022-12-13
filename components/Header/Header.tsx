@@ -1,161 +1,59 @@
-import { VoteTicker } from "components";
-import { grey200, mobileAndUnder, white } from "constant";
-import { HeaderContext } from "contexts";
-import { useIsMounted, useScrollPosition } from "hooks";
-import { useContext, useEffect, useRef, useState } from "react";
-import UnstyledHeadroom from "react-headroom";
-import styled, { CSSProperties, keyframes } from "styled-components";
+import { BaseOuterWrapper } from "components/style/Wrappers";
+import { addOpacityToHsl, grey200, white } from "constant";
+import { useHeaderContext } from "hooks/contexts/useHeaderContext";
+import styled, { CSSProperties } from "styled-components";
 import { DesktopHeader } from "./DesktopHeader";
 import { MobileHeader } from "./MobileHeader";
 
-interface Props {
-  activeLink: number;
-  phase: "Commit" | "Reveal" | null;
-  numVotes: number;
-}
-
-export function Header({ activeLink, phase, numVotes }: Props) {
-  const {
-    scrollPosition,
-    boundingHeight,
-    headerDelay,
-    headerRef,
-    showMobileMenu,
-    setShowMobileMenu,
-    showHeader,
-    addUnpinClass,
-    setAddUnpinClass,
-  } = useHeader();
-  const isLightTheme = scrollPosition >= boundingHeight;
-
+export function Header() {
+  const { isLightTheme } = useHeaderContext();
+  const whiteOpacity90 = addOpacityToHsl(white, 0.9);
+  const grey200Opacity90 = addOpacityToHsl(grey200, 0.9);
   return (
-    <Wrapper
-      ref={headerRef}
+    <OuterWrapper
+      as="header"
       style={
         {
-          "--visibility": showHeader ? "visible" : "hidden",
-          "--animation-delay": `${headerDelay}ms`,
+          "--background": isLightTheme ? whiteOpacity90 : grey200Opacity90,
         } as CSSProperties
       }
     >
-      {numVotes > 0 && <VoteTicker theme="dark" numVotes={numVotes} phase={phase} />}
-      <Headroom
-        onUnfix={() => {
-          setAddUnpinClass(true);
-        }}
-        onUnpin={() => {
-          setShowMobileMenu(false);
-        }}
-        calcHeightOnResize
-        className={addUnpinClass ? "unpinning" : ""}
-        style={
-          {
-            "--background": isLightTheme ? white : grey200,
-          } as CSSProperties
-        }
-      >
-        <DesktopHeader activeLink={activeLink} isLightTheme={isLightTheme} />
-        <MobileHeader
-          showMobileMenu={showMobileMenu}
-          onToggle={() => {
-            setShowMobileMenu((pv) => !pv);
-          }}
-          isLightTheme={isLightTheme}
-        />
-      </Headroom>
-    </Wrapper>
+      <InnerWrapper>
+        <DesktopHeader isLightTheme={isLightTheme} />
+        <MobileHeader isLightTheme={isLightTheme} />
+      </InnerWrapper>
+      <BlurBackground />
+    </OuterWrapper>
   );
 }
 
-function useHeader() {
-  const { boundingHeight, updateRef, lightRefs } = useContext(HeaderContext);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  useScrollPosition(({ currPos }) => {
-    setScrollPosition(Math.abs(currPos.y));
-  }, []);
-  const isMounted = useIsMounted();
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  const headerDelay = 3000;
-
-  useEffect(() => {
-    if (isMounted() && !lightRefs.header.current) {
-      updateRef(headerRef, "header");
-    }
-  }, [isMounted, updateRef, lightRefs.header]);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-  const [showHeader, setShowHeader] = useState(false);
-  // Run reveal animation on mount
-  useEffect(() => {
-    setTimeout(() => {
-      setShowHeader(true);
-    }, headerDelay);
-  }, []);
-
-  const [addUnpinClass, setAddUnpinClass] = useState(false);
-  useEffect(() => {
-    if (addUnpinClass) {
-      setTimeout(() => {
-        setAddUnpinClass(false);
-      }, 1000);
-    }
-  }, [addUnpinClass]);
-
-  return {
-    scrollPosition,
-    boundingHeight,
-    headerRef,
-    headerDelay,
-    showMobileMenu,
-    setShowMobileMenu,
-    showHeader,
-    addUnpinClass,
-    setAddUnpinClass,
-  };
-}
-
-const headerReveal = keyframes`
-  0% {opacity: 0; transform: translateY(-30px);}
-  100% {opacity: 1; transform: translateY(0px);}
+const OuterWrapper = styled(BaseOuterWrapper)`
+  height: var(--header-height);
+  display: grid;
+  place-items: center;
+  padding-top: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--background);
+  backdrop-filter: blur(6px);
+  box-shadow: 0px 10px 20px 20px var(--background);
+  transition: background var(--animation-duration), box-shadow var(--animation-duration);
 `;
 
-const Wrapper = styled.header`
-  visibility: var(--visibility);
-  animation: ${headerReveal} 1s ease-in-out;
-  animation-delay: var(--animation-delay);
-  opacity: 1;
+const InnerWrapper = styled.div`
+  width: 100%;
+  max-width: var(--page-width);
 `;
 
-const unpinning = keyframes`
-  0% {opacity: .5; transform: translateY(-60px);}
-  100% {opacity: 1; transform: translateY(0px);}
-`;
-
-const Headroom = styled(UnstyledHeadroom)`
-  &.unpinning {
-    > div {
-      animation: ${unpinning} 0.5s ease-in-out;
-    }
-  }
-  > div {
-    // lib overwrites it without important
-    z-index: 1000 !important;
-    margin: 0;
-    background: var(--background);
-    transition: all 0.2s ease-in-out;
-
-    @media ${mobileAndUnder} {
-      height: 60px;
-      width: 100%;
-    }
-    &.headroom--pinned.headroom--scrolled {
-      &:after {
-        content: "";
-        width: 100%;
-        height: 48px;
-        position: fixed;
-        backdrop-filter: blur(1px);
-      }
-    }
-  }
+const BlurBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-blur-height);
+  background: var(--background);
+  filter: blur(28px);
+  z-index: -1;
+  transition: background var(--animation-duration);
 `;

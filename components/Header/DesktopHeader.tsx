@@ -1,45 +1,37 @@
-import { grey100, grey200, grey400, grey800, laptopAndUnder, links, red, tabletAndUnder, white } from "constant";
+import { grey100, grey400, links, red, tabletAndUnder, white } from "constant";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
 import styled from "styled-components";
 import { isExternalLink } from "utils";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 
 interface Props {
-  activeLink: number;
   isLightTheme: boolean;
 }
 
-export function DesktopHeader({ isLightTheme, activeLink }: Props) {
-  function isActive(index: number, activeLink: number) {
-    return index === activeLink;
-  }
+export function DesktopHeader({ isLightTheme }: Props) {
+  const router = useRouter();
+  const isActive = (href: string) => router.asPath === `/${href}`;
 
   return (
-    <Wrapper
-      style={
-        {
-          "--background": isLightTheme ? grey800 : grey200,
-        } as CSSProperties
-      }
-    >
+    <Wrapper>
       <HomeLink href="/">{isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}</HomeLink>
       <Links>
-        {links.map(({ label, href }, i) => (
+        {links.map(({ label, href }) => (
           <Link
-            key={i}
+            key={href}
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
             style={
               {
-                "--color": isActive(i, activeLink) ? red : grey400,
+                "--color": isActive(href) ? red : grey400,
               } as CSSProperties
             }
           >
-            <LinkWrapper>
-              {activeLink === i ? <RedDot /> : i <= 2 ? <Dot /> : null} {label}
-            </LinkWrapper>
+            <Dot /> <LinkText>{label}</LinkText> {isExternalLink(href) ? <ExternalLinkIcon /> : null}
           </Link>
         ))}
       </Links>
@@ -58,88 +50,64 @@ export function DesktopHeader({ isLightTheme, activeLink }: Props) {
   );
 }
 
-const LinkWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-`;
-
 const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  height: 40px;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  z-index: 100;
-  border-radius: 12px;
-  padding: 32px 0;
-  backdrop-filter: blur(6px);
-  background: var(--background);
-  transition: all 0.2s ease-in-out;
   @media ${tabletAndUnder} {
     display: none;
-  }
-  @media ${laptopAndUnder} {
-    width: calc(100% - 64px);
   }
 `;
 
 const Links = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0px;
+  display: grid;
+  grid-auto-flow: column;
   gap: 20px;
 `;
 
-const Dot = styled.span`
-  width: 6px;
-  height: 6px;
-  margin-right: 8px;
-  border-radius: 3px;
-  visibility: hidden;
-  background-color: var(--grey-400);
-  position: absolute;
-  left: -16px;
-  opacity: 0.8;
-`;
-
-const RedDot = styled(Dot)`
-  background: var(--red);
-  visibility: visible;
-  left: -12px;
-  opacity: 1;
-`;
-
 const Link = styled(NextLink)`
+  --text-opacity: 1;
+  --dot-opacity: 0;
+  --dot-translate-x: -4px;
   display: flex;
   align-items: center;
   text-decoration: none;
-  position: relative;
-  left: 0;
-  text-decoration: none;
-  padding: 0;
   color: var(--color);
   font: var(--body-md);
-  transition: opacity, background-color 0.2s ease-in-out;
-  ${Dot} {
-    transition: all 0.1s ease-in-out;
-  }
+  transition: color var(--animation-duration), background-color var(--animation-duration);
+
   &:hover {
-    opacity: 0.8;
-    ${Dot} {
-      visibility: visible;
-      left: -12px;
-    }
+    --text-opacity: 0.8;
+    --dot-opacity: 0.8;
+    --dot-translate-x: 0;
   }
+`;
+
+const LinkText = styled.span`
+  opacity: var(--text-opacity);
+`;
+
+const Dot = styled.span`
+  display: inline-block;
+  width: 8px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: var(--color);
+  opacity: var(--dot-opacity);
+  transform: translateX(var(--dot-translate-x));
+  transition: opacity var(--animation-duration), background-color var(--animation-duration),
+    transform var(--animation-duration);
+`;
+
+const ExternalLinkIcon = styled(SmUpRightArrow)`
+  margin-left: 8px;
 `;
 
 const HomeLink = styled(NextLink)``;
 
 const LaunchButton = styled(NextLink)`
+  justify-self: end;
   padding: 8px 16px 12px;
   height: 40px;
   gap: 2px;
@@ -149,7 +117,7 @@ const LaunchButton = styled(NextLink)`
   color: var(--color);
   background: var(--background);
   text-decoration: none;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity var(--animation-duration) ease-in-out;
   &:hover {
     opacity: 0.75;
   }

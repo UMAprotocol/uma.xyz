@@ -7,9 +7,9 @@ export default {
   component: Tabs,
 } as ComponentMeta<typeof Tabs>;
 
-const Template: ComponentStory<typeof Tabs> = (args) => (
+const Template: ComponentStory<typeof Tabs> = () => (
   <div style={{ padding: "2rem", background: "var(--white)" }}>
-    <Tabs {...args} />
+    <Tabs />
   </div>
 );
 

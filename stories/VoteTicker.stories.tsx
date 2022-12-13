@@ -7,17 +7,17 @@ export default {
 } as ComponentMeta<typeof VoteTicker>;
 
 const Template: ComponentStory<typeof VoteTicker> = (args) => (
-  <div style={{ padding: "2rem", background: `${args.theme === "light" ? "var(--grey-100)" : "var(--black)"}` }}>
+  <div style={{ padding: "2rem", background: `${args.isLightTheme ? "var(--grey-100)" : "var(--black)"}` }}>
     <VoteTicker {...args} />
   </div>
 );
 
 export const Light = Template.bind({});
 Light.args = {
-  theme: "light",
+  isLightTheme: true,
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
-  theme: "dark",
+  isLightTheme: false,
 };

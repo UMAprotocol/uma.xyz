@@ -1,62 +1,60 @@
-import { useState, createContext, ReactNode, MutableRefObject, createRef, useEffect } from "react";
-
-// Once the app crosses below this certain element, assume it can go light mode so we only need to track 1 ref.
-type RefType = MutableRefObject<HTMLDivElement | null>;
-type RefKeys = "heroSection" | "header";
+import { headerBlurHeight } from "constant";
+import { useMounted } from "hooks";
+import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 
 export interface HeaderContextState {
-  lightRefs: { [key: string]: RefType };
-  updateRef: (ref: RefType, key: RefKeys) => void;
-  boundingHeight: number;
+  colorChangeSectionRef: RefObject<HTMLDivElement>;
+  isLightTheme: boolean;
+  setColorChangeSectionRef: (ref: RefObject<HTMLDivElement>) => void;
+  setIsLightTheme: (isLightTheme: boolean) => void;
 }
 
 export const HeaderContext = createContext<HeaderContextState>({
-  lightRefs: {
-    heroSection: createRef(),
-    header: createRef(),
-  },
-  boundingHeight: 0,
-  updateRef: () => null,
+  isLightTheme: true,
+  setIsLightTheme: () => null,
+  colorChangeSectionRef: { current: null },
+  setColorChangeSectionRef: () => null,
 });
 
-export const HeaderProvider = ({ children }: { children: ReactNode }) => {
-  const [refs, setRefs] = useState<{ [key in RefKeys]: RefType }>({
-    heroSection: createRef(),
-    header: createRef(),
-  });
-  const [boundingHeight, setBoundingHeight] = useState(0);
-
-  function updateRef(r: RefType, key: RefKeys) {
-    setRefs((pv) => {
-      return { ...pv, [key]: r };
-    });
-  }
+export function HeaderProvider({ children }: { children: ReactNode }) {
+  const [colorChangeSectionRef, setColorChangeSectionRef] = useState<RefObject<HTMLDivElement>>({ current: null });
+  const [isLightTheme, setIsLightTheme] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const mounted = useMounted();
 
   useEffect(() => {
-    updateHeight(refs);
-  }, [refs]);
+    if (!mounted) return;
 
-  function updateHeight(refs: { heroSection: RefType; header: RefType }) {
-    const initialValue = 0;
-    const heights = Object.values(refs).reduce((pv, cv) => {
-      if (cv.current) {
-        return cv.current.getBoundingClientRect().height + pv;
-      } else {
-        return pv;
-      }
-    }, initialValue);
-    setBoundingHeight(heights);
-  }
+    const handleScroll = () => {
+      setScrollY(window.pageYOffset);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (colorChangeSectionRef.current?.offsetTop === undefined) return;
+
+    if (scrollY > colorChangeSectionRef.current.offsetTop - headerBlurHeight) {
+      setIsLightTheme(true);
+    } else {
+      setIsLightTheme(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollY, colorChangeSectionRef.current]);
 
   return (
     <HeaderContext.Provider
       value={{
-        lightRefs: refs,
-        updateRef,
-        boundingHeight,
+        isLightTheme,
+        setIsLightTheme,
+        colorChangeSectionRef,
+        setColorChangeSectionRef,
       }}
     >
       {children}
     </HeaderContext.Provider>
   );
-};
+}

@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { VoteParticipation } from "components";
-import { defaultApy } from "constant";
 
 export default {
   title: "VoteParticipation",
@@ -9,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof VoteParticipation> = () => (
   <div style={{ padding: "2rem", background: "var(--black)" }}>
-    <VoteParticipation apy={defaultApy} />
+    <VoteParticipation />
   </div>
 );
 

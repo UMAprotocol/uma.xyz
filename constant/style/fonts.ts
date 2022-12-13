@@ -4,8 +4,9 @@ const family = "Halyard Display";
 
 // New fonts
 export const subHeader = `${regular} 16px/19px ${family}`;
+export const subHeaderSm = `${regular} 12px/16px ${family}`;
 export const headerLg = `${regular} 96px/112px ${family}`;
-export const headerMd = `${regular} 64px/74px ${family}`;
+export const headerMd = `${regular} 64px/72px ${family}`;
 export const headerSm = `${regular} 40px/55px ${family}`;
 export const headerXs = `${regular} 32px/45px ${family}`;
 

@@ -1,170 +1,130 @@
-import { laptopAndUnder, mobile, tablet } from "constant";
-import { useWindowSize } from "hooks";
+import { BaseOuterWrapper } from "components/style/Wrappers";
+import {
+  grey100,
+  grey300,
+  grey500,
+  grey600,
+  grey700,
+  grey800,
+  mobileAndUnder,
+  red,
+  red510Opacity15,
+  red550,
+  white,
+} from "constant";
+import { useVotingInfo } from "hooks";
 import useInterval from "hooks/helpers/useInterval";
+import NextLink from "next/link";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import { formatDateTimeFromUTC } from "./utils";
 
-type TickerThemes = "light" | "dark";
-
-interface Props {
-  theme: TickerThemes;
-  numVotes: number;
-  phase: "Commit" | "Reveal" | null;
-}
-
-interface Theme {
-  section: {
-    bg: string;
-    pt: string;
-    mb: string;
-  };
-  wrapper: {
-    bg: string;
-    url: string;
-  };
-  clock: {
-    br: string;
-    fill: string;
-  };
-  voteText: {
-    color: string;
-    spanColor: string;
-    borderRight: string;
-  };
-  numVotes: {
-    bg: string;
-    color: string;
-  };
-  moreDetails: {
-    color: string;
-    stroke: string;
-  };
-}
-
-interface TickerTheme {
-  light: Theme;
-  dark: Theme;
-}
-
-// styled theme
-const styledTheme: TickerTheme = {
-  light: {
-    section: {
-      bg: "var(--grey-700)",
-      pt: "48px",
-      mb: "0px",
-    },
-    wrapper: {
-      bg: "var(--grey-800)",
-      url: "/assets/white-lines.png",
-    },
-    clock: {
-      br: "4px",
-      fill: "var(--red-510-opacity-15)",
-    },
-    voteText: {
-      color: "var(--grey-100)",
-      spanColor: "var(--red)",
-      borderRight: "1px solid var(--grey-100-opacity-20)",
-    },
-    numVotes: {
-      bg: "var(--grey-600)",
-      color: "var(--grey-100)",
-    },
-    moreDetails: {
-      color: "var(--grey-100)",
-      stroke: "var(--grey-100)",
-    },
-  },
-  dark: {
-    section: {
-      bg: "inherit",
-      pt: "16px",
-      mb: "4px",
-    },
-    wrapper: {
-      bg: "var(--grey-300)",
-      url: "/assets/black-lines.png",
-    },
-    clock: {
-      br: "16px",
-      fill: "var(--red-550)",
-    },
-    voteText: {
-      color: "var(--grey-500)",
-      spanColor: "var(--white)",
-      borderRight: "1px solid var(--grey-400-opacity-20)",
-    },
-    numVotes: {
-      color: "var(--grey-500)",
-      bg: "var(--grey-100)",
-    },
-    moreDetails: {
-      color: "var(--grey-500)",
-      stroke: "var(--grey-500)",
-    },
-  },
-};
-
-export function VoteTicker({ theme, numVotes, phase }: Props) {
-  const { timeRemaining, width } = useVoteTicker();
-
-  return (
-    <ThemeProvider theme={styledTheme[theme]}>
-      <Section>
-        <Wrapper>
-          <VoteBlock>
-            <ClockBG>
-              <Clock />
-            </ClockBG>
-            <VoteText>
-              {width > mobile ? `Time to ${phase ? phase.toLowerCase() : ""} vote: ` : `${phase ? phase : ""} vote: `}
-              <span>{timeRemaining}</span>
-            </VoteText>
-            {width > mobile ? (
-              <NumVotes>
-                <div>{numVotes === 1 ? "1 vote" : `${numVotes} votes`}</div>{" "}
-              </NumVotes>
-            ) : null}
-          </VoteBlock>
-          <MoreDetailsBlock>
-            <a href="https://vote.umaproject.org/" target="_blank" rel="noreferrer">
-              {width > tablet ? <span>More details</span> : null}
-              <UpRightArrow />
-            </a>
-          </MoreDetailsBlock>
-        </Wrapper>
-      </Section>
-    </ThemeProvider>
-  );
-}
-
-function useVoteTicker() {
+export function VoteTicker({ isLightTheme = false }) {
+  const {
+    data: { activeRequests, phase },
+  } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
-  // Set time remaining depending if it's the Commit or Reveal
-  // Note: the requests are all slightly differently in there final vote time. I'll use the last
-  // Vote added.
+  const isActive = activeRequests > 0;
+
   useInterval(() => {
     setTimeRemaining(formatDateTimeFromUTC());
   }, 1000);
 
-  const { width } = useWindowSize();
-  return { timeRemaining, width };
+  return (
+    <OuterWrapper
+      style={
+        {
+          "--background": isLightTheme ? grey700 : "inherit",
+          "--color": isLightTheme ? grey100 : grey500,
+        } as CSSProperties
+      }
+    >
+      <InnerWrapper
+        style={
+          {
+            "--background": isLightTheme ? grey800 : grey300,
+            "--url": isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
+          } as CSSProperties
+        }
+      >
+        <VoteDetails>
+          <ClockWrapper
+            style={
+              {
+                "--border-radius": isLightTheme ? "4px" : "16px",
+                "--fill": isLightTheme ? red510Opacity15 : red550,
+              } as CSSProperties
+            }
+          >
+            <ClockIcon />
+          </ClockWrapper>
+          {isActive ? (
+            <>
+              <TextWrapper>
+                <DesktopText>Time to {phase} vote: </DesktopText>
+                <MobileText>{phase} vote: </MobileText>
+                <TimeRemaining
+                  style={
+                    {
+                      "--color": isLightTheme ? red : white,
+                    } as CSSProperties
+                  }
+                >
+                  {timeRemaining}
+                </TimeRemaining>
+              </TextWrapper>
+              <NumVotes
+                style={
+                  {
+                    "--color": isLightTheme ? grey100 : grey500,
+                    "--background": isLightTheme ? grey600 : grey100,
+                  } as CSSProperties
+                }
+              >
+                {activeRequests === 1 ? "1 vote" : `${activeRequests} votes`}
+              </NumVotes>
+            </>
+          ) : (
+            <TextWrapper>
+              <DesktopText>No active votes</DesktopText>
+              <MobileText>No votes</MobileText>
+            </TextWrapper>
+          )}
+        </VoteDetails>
+        <MoreDetailsBlock
+          style={
+            {
+              "--color": isLightTheme ? grey100 : grey500,
+              "--stroke": isLightTheme ? grey100 : grey500,
+            } as CSSProperties
+          }
+        >
+          <Link href="https://vote.umaproject.org/" target="_blank">
+            <MoreDetailsText>More details</MoreDetailsText>
+            <ArrowIcon />
+          </Link>
+        </MoreDetailsBlock>
+      </InnerWrapper>
+    </OuterWrapper>
+  );
 }
 
-const Section = styled.div`
-  width: 100%;
-  background: ${({ theme }: { theme: Theme }) => theme.section.bg};
-  padding-top: ${({ theme }: { theme: Theme }) => theme.section.pt};
-  margin-bottom: ${({ theme }: { theme: Theme }) => theme.section.mb};
+const OuterWrapper = styled(BaseOuterWrapper)`
+  display: grid;
+  place-items: center;
+  height: var(--vote-ticker-height);
+  background: var(--background);
+  padding-top: 16px;
+  padding-bottom: 4px;
   background-size: cover;
   background-repeat: no-repeat;
 `;
 
-const Wrapper = styled.div`
+const InnerWrapper = styled.div`
+  width: 100%;
+  max-width: var(--page-width);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -172,21 +132,14 @@ const Wrapper = styled.div`
   padding: 8px 16px 8px 8px;
   gap: 16px;
   isolation: isolate;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  height: 48px;
-  background: ${({ theme }: { theme: Theme }) => theme.wrapper.bg};
-  background-image: ${({ theme }: { theme: Theme }) => `url(${theme.wrapper.url})`};
+  background: var(--background);
+  background-image: var(--url);
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 8px;
-  width: calc(100% - 24px);
-  @media ${laptopAndUnder} {
-    width: calc(100% - 64px);
-  }
 `;
 
-const VoteBlock = styled.div`
+const VoteDetails = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -194,7 +147,19 @@ const VoteBlock = styled.div`
   gap: 16px;
 `;
 
-const ClockBG = styled.div`
+const ClockIcon = styled(Clock)`
+  g {
+    fill: var(--fill);
+  }
+`;
+
+const ArrowIcon = styled(UpRightArrow)`
+  path {
+    stroke: var(--stroke);
+  }
+`;
+
+const ClockWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -203,57 +168,68 @@ const ClockBG = styled.div`
   width: 32px;
   height: 32px;
   background: var(--red-510-opacity-15);
-  border-radius: ${({ theme }: { theme: Theme }) => theme.clock.br};
-  g {
-    fill: ${({ theme }: { theme: Theme }) => theme.clock.fill};
+  border-radius: var(--border-radius);
+`;
+
+const TextWrapper = styled.div`
+  font: var(--body-sm);
+  color: var(--color);
+`;
+
+const TimeRemaining = styled.span`
+  display: inline-block;
+  color: var(--color);
+  margin-left: 4px;
+  letter-spacing: 0.02em;
+  min-width: 96px; // 96px is the width of the clock to prevent spacing changing on numbers.
+`;
+
+const DesktopText = styled.span`
+  @media ${mobileAndUnder} {
+    display: none;
   }
 `;
 
-const VoteText = styled.div`
-  font: var(--body-sm);
-  color: ${({ theme }: { theme: Theme }) => theme.voteText.color};
-  span {
-    display: inline-block;
-    color: ${({ theme }: { theme: Theme }) => theme.voteText.spanColor};
-    margin-left: 4px;
-    letter-spacing: 0.02em;
-    min-width: 96px; // 96px is the width of the clock to prevent spacing changing on numbers.
+const MobileText = styled.span`
+  display: none;
+  @media ${mobileAndUnder} {
+    display: inline;
   }
 `;
 
 const NumVotes = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 8px 12px;
-  gap: 2px;
-  width: 63px;
-  height: 24px;
-  background: ${({ theme }: { theme: Theme }) => theme.numVotes.bg};
+  height: fit-content;
+  white-space: nowrap;
+  padding-inline: 8px;
+  padding-block: 4px;
+  background: var(--background);
   border-radius: 12px;
-  margin-left: -8px;
-  > div {
-    font: var(--body-sm);
-    color: ${({ theme }: { theme: Theme }) => theme.numVotes.color};
+  font: var(--body-sm);
+  color: var(--color);
+
+  @media ${mobileAndUnder} {
+    display: none;
   }
 `;
 
-const MoreDetailsBlock = styled.div`
-  a {
-    text-decoration: none;
-    font: var(--body-sm);
-    color: ${({ theme }: { theme: Theme }) => theme.moreDetails.color};
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 8px;
-    path {
-      stroke: ${({ theme }: { theme: Theme }) => theme.moreDetails.stroke};
-    }
-    &:hover {
-      opacity: 0.5;
-    }
+const MoreDetailsBlock = styled.div``;
+
+const MoreDetailsText = styled.span`
+  @media ${mobileAndUnder} {
+    display: none;
+  }
+`;
+
+const Link = styled(NextLink)`
+  text-decoration: none;
+  font: var(--body-sm);
+  color: var(--color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  &:hover {
+    opacity: 0.5;
   }
 `;

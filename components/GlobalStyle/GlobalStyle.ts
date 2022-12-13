@@ -1,10 +1,13 @@
 import {
+  animationDuration,
   black,
   bodyLg,
   bodyMd,
   bodySm,
   bodyXl,
   bodyXs,
+  desktopHeaderHeight,
+  desktopPagePadding,
   desktopPageWidth,
   grey100,
   grey100Opacity20,
@@ -16,18 +19,24 @@ import {
   grey600,
   grey700,
   grey800,
+  headerBlurHeight,
   headerLg,
   headerMd,
   headerSm,
   headerXs,
   mobileAndUnder,
+  mobileHeaderHeight,
+  mobilePagePadding,
   mobilePageWidth,
   red,
   red510Opacity15,
   red550,
   subHeader,
+  subHeaderSm,
   tabletAndUnder,
+  tabletPagePadding,
   tabletPageWidth,
+  voteTickerHeight,
   white,
   white200,
   whiteOpacity10,
@@ -70,7 +79,10 @@ html {
 /* Smooth scrolling for users that don't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
-    scroll-behavior: smooth;
+    // todo: for reasons I don't understand and can't track down, it seems that nextjs overwrites the scroll behavior to auto on load.
+    // This is a hacky fix to make sure that the scroll behavior is smooth.
+    // would be great if someone could figure out why and fix it at the source.
+    scroll-behavior: smooth !important;
   }
 }
 
@@ -195,12 +207,16 @@ a:not([class]) {
   cursor: not-allowed;
 }
 
+/* Allow percentage-based full height */
+html, body, #__next {
+  height: 100%;
+}
+
 /* Global style definitions */
 
   /*  All CSS custom properties that are intended to be global must be defined here */
 
   html {
-    scroll-behavior:smooth;
     /* Colors */
     --black: ${black};
     --white: ${white};
@@ -226,11 +242,14 @@ a:not([class]) {
     --header-sm: ${headerSm};
     --header-xs: ${headerXs};
     --sub-header: ${subHeader};
+    --sub-header-sm: ${subHeaderSm};
     --body-xl: ${bodyXl};
     --body-lg: ${bodyLg};
     --body-md: ${bodyMd};
     --body-sm: ${bodySm};
     --body-xs: ${bodyXs};
+
+    /* Containers */
     --desktop-page-width: ${desktopPageWidth}px;
     --tablet-page-width: ${tabletPageWidth}px;
     --mobile-page-width: ${mobilePageWidth}px;
@@ -241,8 +260,32 @@ a:not([class]) {
     @media ${mobileAndUnder} {
       --page-width: var(--mobile-page-width);
     }
+    --desktop-header-height: ${desktopHeaderHeight}px;
+    --mobile-header-height: ${mobileHeaderHeight}px;
+    --header-height: var(--desktop-header-height);
+    @media ${mobileAndUnder} {
+      --header-height: var(--mobile-header-height);
+    }
+    --header-blur-height: ${headerBlurHeight}px;
+    --vote-ticker-height: ${voteTickerHeight}px;
+    --desktop-page-padding: ${desktopPagePadding}px;
+    --tablet-page-padding: ${tabletPagePadding}px;
+    --mobile-page-padding: ${mobilePagePadding}px;
+    --page-padding: var(--desktop-page-padding);
+    @media ${tabletAndUnder} {
+      --page-padding: var(--tablet-page-padding);
+    }
+    @media ${mobileAndUnder} {
+      --page-padding: var(--mobile-page-padding);
+    }
+    /* Animation */
+    --animation-duration: ${animationDuration};
 
     // Sandpack override
-    --sp-layout-height: ${`347px`} !important;
+    --sp-layout-height: 347px !important;
+  }
+
+  body {
+    color: var(--grey-100);
   }
 `;

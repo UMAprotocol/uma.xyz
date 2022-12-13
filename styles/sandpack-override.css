@@ -35,6 +35,7 @@
 .sp-layout.custom-layout {
   border-color: var(--grey-500) !important;
   border-radius: 8px;
+
 }
 .sp-layout.custom-layout .sp-stack {
   height: 347px !important;

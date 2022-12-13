@@ -1,4 +1,6 @@
+export { AnimatedLink } from "./AnimatedLink/AnimatedLink";
 export { Builder } from "./Builder/Builder";
+export { Divider } from "./Divider/Divider";
 export { Footer } from "./Footer/Footer";
 export { GlobalStyle } from "./GlobalStyle/GlobalStyle";
 export { Header } from "./Header/Header";

@@ -1,480 +1,207 @@
-import { Header as BaseHeader, Title as BaseTitle } from "components/Widgets";
-import { defaultApy, laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { useIntersectionObserver } from "hooks";
-import NextLink from "next/link";
+import { AnimatedLink, Divider } from "components";
+import { BaseOuterWrapper } from "components/style/Wrappers";
+import { mobileAndUnder, tabletAndUnder } from "constant";
+import { useVotingInfo } from "hooks";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Lottie from "react-lottie";
-import styled, { css, CSSProperties } from "styled-components";
+import styled from "styled-components";
 
-interface Props {
-  apy: string;
-}
-
-export function VoteParticipation({ apy }: Props) {
+export function VoteParticipation() {
   const {
-    earnRef,
-    voteRef,
-    stakeRef,
-    sectionRef,
-    isIntersectingEarn,
-    isIntersectingStake,
-    isIntersectingVote,
-    isIntersectingSection,
-  } = useVoteParticipation();
-  const [playEarn, setPlayEarn] = useState(false);
-  const [playVote, setPlayVote] = useState(false);
-  const [playStake, setPlayStake] = useState(false);
+    data: { apy },
+  } = useVotingInfo();
+  const [stakePlaying, setStakePlaying] = useState(false);
+  const [votePlaying, setVotePlaying] = useState(false);
+  const [earnPlaying, setEarnPlaying] = useState(false);
+
+  const activities = [
+    {
+      title: "Stake",
+      text: "Stake your $UMA to help secure UMA's Optimistic Oracle.",
+      animationData: stake,
+      isPlaying: stakePlaying,
+      setIsPlaying: setStakePlaying,
+    },
+    {
+      title: "Vote",
+      text: "Token holders who vote correctly and consistently earn higher APYs.",
+      animationData: vote,
+      isPlaying: votePlaying,
+      setIsPlaying: setVotePlaying,
+    },
+    {
+      title: "Earn",
+      text: `Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
+      voters.`,
+      animationData: earn,
+      isPlaying: earnPlaying,
+      setIsPlaying: setEarnPlaying,
+    },
+  ];
 
   return (
-    <Section ref={sectionRef} id="voter">
-      <MobileVoterRow
-        style={
-          {
-            "--display": isIntersectingSection ? "flex" : "none",
-          } as CSSProperties
-        }
-      >
-        <MobileVoterAppLinkBlock>
-          <VoterAppLink href="https://vote.umaproject.org" target="_blank">
-            Link to voter app
-            <ArrowIconWrapper>
-              <ArrowIcon />
-            </ArrowIconWrapper>
-          </VoterAppLink>
-        </MobileVoterAppLinkBlock>
-      </MobileVoterRow>
-      <Wrapper>
+    <OuterWrapper id="voter">
+      <InnerWrapper>
         <Title>
-          Participate as <RedEmphasis>Voter</RedEmphasis>
+          Participate as a <RedEmphasis>Voter</RedEmphasis>
         </Title>
-        <HeaderWrapper>
-          <Header>Stake, vote &amp; earn up to {apy || defaultApy}% APY</Header>
-        </HeaderWrapper>
+        <Header>Stake, vote &amp; earn up to {apy}% APY</Header>
 
-        <ImageBlockRow>
-          <ImageBlockWrapper
-            onMouseEnter={() => setPlayStake(true)}
-            onMouseLeave={() => setPlayStake(false)}
-            ref={stakeRef}
-            isIntersecting={isIntersectingStake}
-          >
-            <ImageBlock>
-              <ImageWrapper>
+        <ActivitiesWrapper>
+          {activities.map(({ title, text, animationData, isPlaying, setIsPlaying }) => (
+            <Activity key={title} onMouseEnter={() => setIsPlaying(true)} onMouseLeave={() => setIsPlaying(false)}>
+              <LottieWrapper>
                 <Lottie
-                  isStopped={!playStake}
+                  isStopped={!isPlaying}
                   options={{
                     loop: false,
                     autoplay: false,
-                    animationData: stake,
+                    animationData,
                     rendererSettings: {
                       preserveAspectRatio: "xMidYMid slice",
                     },
                   }}
                 />
-              </ImageWrapper>
-              <ImageTextWrapper>
-                <ImageTitle isIntersecting={isIntersectingStake}>Stake</ImageTitle>
-                <ImageText>Stake your $UMA to help secure UMA&apos; s Optimistic Oracle.</ImageText>
-              </ImageTextWrapper>
-            </ImageBlock>
-          </ImageBlockWrapper>
-          <ImageBlockWrapper
-            onMouseEnter={() => setPlayVote(true)}
-            onMouseLeave={() => setPlayVote(false)}
-            ref={voteRef}
-            isIntersecting={isIntersectingVote}
-          >
-            <ImageBlock>
-              <ImageWrapper>
-                <Lottie
-                  isStopped={!playVote}
-                  options={{
-                    loop: false,
-                    autoplay: false,
-                    animationData: vote,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
-                  }}
-                />
-              </ImageWrapper>
-              <ImageTextWrapper>
-                <ImageTitle isIntersecting={isIntersectingVote}>Vote</ImageTitle>
-                <ImageText>Token holders who vote correctly and consistently earn higher APYs.</ImageText>
-              </ImageTextWrapper>
-            </ImageBlock>
-          </ImageBlockWrapper>
-          <ImageBlockWrapper
-            onMouseEnter={() => setPlayEarn(true)}
-            onMouseLeave={() => setPlayEarn(false)}
-            ref={earnRef}
-            isIntersecting={isIntersectingEarn}
-          >
-            <ImageBlock>
-              <ImageWrapper>
-                <Lottie
-                  isStopped={!playEarn}
-                  options={{
-                    loop: false,
-                    autoplay: false,
-                    animationData: earn,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
-                  }}
-                />
-              </ImageWrapper>
-              <ImageTextWrapper>
-                <ImageTitle isIntersecting={isIntersectingEarn}>Earn</ImageTitle>
-                <ImageText>
-                  Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
-                  voters.{" "}
-                </ImageText>
-              </ImageTextWrapper>
-            </ImageBlock>
-          </ImageBlockWrapper>
-        </ImageBlockRow>
-        <Divider />
-        <VoterAppLinkRow>
-          <VoterAppLinkBlock>
-            <VoterAppLink href="https://vote.umaproject.org" target="_blank">
-              Link to voter app
-              <ArrowIconWrapper>
-                <ArrowIcon />
-              </ArrowIconWrapper>
-            </VoterAppLink>
-          </VoterAppLinkBlock>
-        </VoterAppLinkRow>
-      </Wrapper>
-    </Section>
+              </LottieWrapper>
+              <ActivityDescription>
+                <ActivityTitle>{title}</ActivityTitle>
+                <ActivityText>{text}</ActivityText>
+              </ActivityDescription>
+            </Activity>
+          ))}
+        </ActivitiesWrapper>
+        <DividerWrapper>
+          <Divider />
+        </DividerWrapper>
+        <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
+      </InnerWrapper>
+    </OuterWrapper>
   );
 }
 
-function useVoteParticipation() {
-  const stakeRef = useRef<HTMLDivElement | null>(null);
-  const voteRef = useRef<HTMLDivElement | null>(null);
-  const earnRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const ioStake = useIntersectionObserver(stakeRef, {
-    threshold: 1,
-    rootMargin: "-400px 0px -100px 0px",
-  });
-  const ioVote = useIntersectionObserver(voteRef, {
-    threshold: 1,
-    rootMargin: "-400px 0px -100px 0px",
-  });
-  const ioEarn = useIntersectionObserver(earnRef, {
-    threshold: 1,
-    rootMargin: "-400px 0px -100px 0px",
-  });
-
-  const ioSection = useIntersectionObserver(sectionRef, {
-    threshold: 0.5,
-    rootMargin: "-200px 0px -25px 0px",
-  });
-
-  const isIntersectingStake = !!ioStake?.isIntersecting;
-  const isIntersectingVote = !!ioVote?.isIntersecting;
-  const isIntersectingEarn = !!ioEarn?.isIntersecting;
-  const isIntersectingSection = !!ioSection?.isIntersecting;
-
-  return {
-    earnRef,
-    voteRef,
-    stakeRef,
-    sectionRef,
-    isIntersectingStake,
-    isIntersectingVote,
-    isIntersectingEarn,
-    isIntersectingSection,
-  };
-}
-
-const Section = styled.section`
-  background: var(--grey-800);
+const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
-  width: 100%;
-  position: relative;
 `;
 
-const Wrapper = styled.div`
-  background-color: inherit;
-  width: 100%;
+const InnerWrapper = styled.div`
   max-width: var(--page-width);
-  margin: 0 auto;
-  padding-top: 85px;
-  padding-bottom: 130px;
-  @media ${laptopAndUnder} {
-    padding-bottom: 64px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
+  margin-inline: auto;
+`;
+
+const Title = styled.h1`
+  font: var(--header-sm);
+  color: var(--grey-100);
+
   @media ${mobileAndUnder} {
-    padding-left: 16px;
-    padding-right: 16px;
+    font: var(--body-lg);
   }
 `;
 
-const Header = styled(BaseHeader)`
-  margin-top: 65px;
-  max-width: 921px;
-  margin-bottom: 128px;
+const Header = styled.h2`
+  font: var(--header-lg);
+  color: var(--grey-100);
+  max-width: max(70%, 720px);
   @media ${mobileAndUnder} {
-    margin: 0 16px;
-    max-width: 100%;
     font: var(--header-sm);
   }
 `;
 
-const Title = styled(BaseTitle)`
-  @media ${laptopAndUnder} {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-`;
-
-const HeaderWrapper = styled.div`
-  position: relative;
-  @media ${laptopAndUnder} {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-`;
-
-const ImageBlockRow = styled.div`
+const ActivitiesWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 96px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 48px;
-  justify-content: stretch;
-  width: 100%;
-  height: 420px;
-  svg {
-    fill: var(--white);
-  }
   @media ${tabletAndUnder} {
-    flex-direction: column;
-    align-self: center;
-    width: 100%;
-    height: 100%;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(3, 1fr);
   }
   @media ${mobileAndUnder} {
-    flex-direction: column;
-    align-self: center;
-    width: 100%;
-    gap: 28px;
+    margin-top: 40px;
   }
 `;
 
-const notIntersectingStyle = css`
-  background: var(--grey-800);
-  border-color: transparent;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-`;
-
-const isIntersectingStyle = css`
+const Activity = styled.div`
+  --color: var(--grey-100);
+  --background: transparent;
+  --border-color: transparent;
+  --translate-y: 0;
+  display: grid;
+  justify-content: start;
+  align-items: start;
+  padding: 40px;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  transform: translateY(var(--translate-y));
+  transition: background var(--animation-duration), border-color var(--animation-duration),
+    transform var(--animation-duration);
+  &:hover {
+    --color: var(--red);
+    --background: var(--white);
+    --border-color: var(--grey-600);
+    --translate-y: -8px;
+  }
   @media ${tabletAndUnder} {
-    background: var(--white);
-    border-color: var(--grey-600);
-    border-top-color: var(--grey-600);
-    border-bottom-color: var(--grey-600);
-  }
-`;
-
-const ImageBlockWrapper = styled.div<{ isIntersecting: boolean }>`
-  flex-basis: 33%;
-  ${({ isIntersecting }) => (isIntersecting ? isIntersectingStyle : notIntersectingStyle)}
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  transition: all 0.2s ease-in-out;
-  @media ${tabletAndUnder} {
-    width: 100%;
-    padding: 40px;
-    margin: 0 auto;
-    max-height: 196px;
-    gap: 48px;
-  }
-  @media ${mobileAndUnder} {
-    width: 100%;
-    padding: 24px;
-    max-height: 196px;
-    gap: 48px;
-  }
-`;
-
-const ImageBlock = styled.div`
-  padding: 0 40px;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  top: 0;
-  align-self: stretch;
-
-  @media ${tabletAndUnder} {
-    display: inline-flex;
-    gap: 48px;
-    padding: 0;
-    width: 100%;
-  }
-  @media ${mobileAndUnder} {
-    border-right: 0;
-    border-left: 0;
+    grid-template-columns: auto 1fr;
     gap: 32px;
   }
-`;
-
-const ImageTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   @media ${mobileAndUnder} {
-    max-width: 400px;
-    width: 100%;
+    padding: 24px;
   }
 `;
 
-const ImageTitle = styled.h3<{ isIntersecting: boolean }>`
-  color: var(--grey-200);
+const ActivityDescription = styled.div``;
+
+const ActivityTitle = styled.h3`
+  color: var(--color);
   font: var(--header-md);
-  line-height: 115%;
-  margin-top: 40px;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  top: 0;
+  margin-bottom: 16px;
+  transform: translateY(var(--translate-y));
+  transition: color var(--animation-duration), transform var(--animation-duration);
   @media ${mobileAndUnder} {
     font: var(--header-sm);
-    margin-top: 24px;
-  }
-  @media ${tabletAndUnder} {
-    ${({ isIntersecting }) => isIntersecting && `color: var(--red);`}
+    margin-bottom: 12px;
   }
 `;
 
-const ImageText = styled.h4`
+const ActivityText = styled.p`
   font: var(--body-lg);
-  color: var(--grey-200);
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  top: 0;
+  max-width: 288px;
+  transform: translateY(var(--translate-y));
+  transition: transform var(--animation-duration);
   @media ${tabletAndUnder} {
-    font: var(--body-sm);
-    max-width: 675px;
-  }
-`;
-
-const ImageWrapper = styled.div`
-  max-width: 154px;
-  max-height: 160px;
-  @media ${tabletAndUnder} {
-    flex: 1 1 96px;
-    align-items: center;
-    align-self: center;
-    max-width: 92px;
-    max-height: 96px;
-  }
-  @media ${tabletAndUnder} {
-    align-items: center;
-    align-self: center;
-    max-width: 64px;
-    max-height: 64px;
-  }
-`;
-
-const VoterAppLinkRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  @media ${tabletAndUnder} {
-    display: none;
-  }
-  @media ${laptopAndUnder} {
-    justify-content: center;
+    max-width: 100%;
   }
   @media ${mobileAndUnder} {
-    margin-top: 24px;
+    font: var(--body-sm);
   }
 `;
 
-const VoterAppLinkBlock = styled.div`
-  color: var(--red);
-  font: var(--body-lg);
-  margin-left: 40px;
-  display: inline-block;
-`;
+const LottieWrapper = styled.div`
+  max-width: var(--width);
+  margin-left: -24px;
+  --desktop-width: 154px;
+  --tablet-width: 92px;
+  --mobile-width: 62px;
+  --width: var(--desktop-width);
+  transform: translateY(var(--translate-y));
+  transition: transform var(--animation-duration);
+  @media ${tabletAndUnder} {
+    --width: var(--tablet-width);
+    margin-left: 0;
+  }
+  @media ${mobileAndUnder} {
+    --width: var(--mobile-width);
+  }
 
-const VoterAppLink = styled(NextLink)`
-  display: flex;
-  align-items: baseline;
-  font: var(--body-lg);
-  color: var(--red);
-  text-decoration: none;
-  &:hover {
-    color: var(--grey-100);
+  path {
+    stroke: var(--color);
+    transition: stroke var(--animation-duration);
   }
 `;
 
-const ArrowIcon = styled(UpRightArrow)`
-  path: {
-    transition: stroke 0.3s ease;
-  }
-`;
-
-const ArrowIconWrapper = styled.div`
-  position: relative;
-  left: 0;
-  margin-left: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--red);
-  border-radius: 8px;
-  transition: margin 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-
-  ${VoterAppLink}:hover & {
-    border-color: var(--grey-100);
-    background-color: var(--grey-100);
-    margin-left: 12px;
-
-    ${ArrowIcon} {
-      path {
-        stroke: var(--white);
-      }
-    }
-  }
-`;
-
-const MobileVoterRow = styled(VoterAppLinkRow)`
-  position: fixed;
-  width: 100%;
-  margin-left: 0;
-  bottom: 0;
-  padding: 0 1.5rem;
-  display: var(--display);
-  backdrop-filter: blur(6px);
-  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
-`;
-
-const MobileVoterAppLinkBlock = styled(VoterAppLinkBlock)`
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-`;
-
-const Divider = styled.div`
-  height: 1px;
-  background: linear-gradient(90deg, #efefef 0%, rgba(239, 239, 239, 0) 100%);
-  width: 100%;
+const DividerWrapper = styled.div`
   margin-top: 84px;
   margin-bottom: 24px;
 `;
