@@ -205,6 +205,11 @@ const FormWrapper = styled.div`
   grid-template-rows: auto 1fr;
   justify-items: center;
 
+  @media ${tabletAndUnder} {
+    justify-items: start;
+    margin-bottom: 32px;
+  }
+
   @media ${mobileAndUnder} {
     grid-row-start: 1;
     justify-items: center;
@@ -235,6 +240,10 @@ const Form = styled.form`
   gap: 12px;
   width: 100%;
   justify-content: flex-end;
+
+  @media ${tabletAndUnder} {
+    justify-content: start;
+  }
 
   @media ${mobileAndUnder} {
     flex-direction: column;
