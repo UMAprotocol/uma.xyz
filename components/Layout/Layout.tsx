@@ -26,5 +26,4 @@ const Main = styled.main`
 
 const Wrapper = styled.div`
   background: var(--grey-200);
-  overflow-x: clip;
 `;
