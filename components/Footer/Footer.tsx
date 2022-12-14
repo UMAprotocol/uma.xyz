@@ -203,7 +203,7 @@ const FormWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
-  justify-items: end;
+  justify-items: center;
 
   @media ${mobileAndUnder} {
     grid-row-start: 1;
