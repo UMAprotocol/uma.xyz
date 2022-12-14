@@ -2,11 +2,11 @@ import { AnimatedLink, Divider } from "components";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
+import Lottie from "lottie-react";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
 import { useState } from "react";
-import Lottie from "react-lottie";
 import styled from "styled-components";
 
 export function VoteParticipation() {
@@ -51,18 +51,24 @@ export function VoteParticipation() {
         <Header>Stake, vote &amp; earn up to {apy}% APY</Header>
 
         <ActivitiesWrapper>
-          {activities.map(({ title, text, animationData, isPlaying, setIsPlaying }) => (
-            <Activity key={title} onMouseEnter={() => setIsPlaying(true)} onMouseLeave={() => setIsPlaying(false)}>
+          {activities.map(({ title, text, animationData }) => (
+            <Activity key={title}>
               <LottieWrapper>
                 <Lottie
-                  isStopped={!isPlaying}
-                  options={{
-                    loop: false,
-                    autoplay: false,
-                    animationData,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
+                  interactivity={{
+                    mode: "cursor",
+                    actions: [
+                      {
+                        type: "play",
+                        frames: [0, 45],
+                      },
+                    ],
+                  }}
+                  loop={false}
+                  autoplay={false}
+                  animationData={animationData}
+                  rendererSettings={{
+                    preserveAspectRatio: "xMidYMid slice",
                   }}
                 />
               </LottieWrapper>
