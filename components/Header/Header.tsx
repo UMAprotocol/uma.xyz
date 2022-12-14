@@ -31,6 +31,7 @@ const OuterWrapper = styled(motion.header)`
   display: grid;
   place-items: center;
   padding-inline: var(--page-padding);
+  padding-top: 16px;
   position: sticky;
   top: 0;
   z-index: 2;
