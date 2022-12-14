@@ -68,7 +68,7 @@ export function Hero() {
             UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
           </Subheader>
         </HeaderWrapper>
-        <motion.div
+        <ArrowButtonWrapper
           initial={{
             opacity: 0,
             translateY: "50%",
@@ -85,7 +85,7 @@ export function Hero() {
           <ArrowButton href="#how-it-works">
             <ArrowIcon />
           </ArrowButton>
-        </motion.div>
+        </ArrowButtonWrapper>
       </InnerWrapper>
     </OuterWrapper>
   );
@@ -98,59 +98,55 @@ const Background = styled(motion.div)`
   left: 0;
   right: 0;
   opacity: 0.15;
-
-  @media ${mobileAndUnder} {
-    top: 20%;
-  }
 `;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
   padding-top: 0;
-  height: calc(100% - var(--header-height) - var(--vote-ticker-height));
+  height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
   position: relative;
   background: var(--grey-200);
   background-image: url("assets/footer-lines-grey.png");
 `;
 
 const InnerWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
   align-items: center;
+  justify-items: center;
+  grid-template-rows: 1fr 20%;
   max-width: var(--page-width);
-  margin: 0 auto;
-  padding-top: 152px;
-  padding-bottom: 96px;
+  height: 100%;
+  margin-inline: auto;
 `;
 
 const HeaderWrapper = styled(motion.div)``;
 
 const Header = styled(motion.h1)`
-  z-index: 1;
   font: var(--header-lg);
   color: var(--white);
   text-align: center;
+  z-index: 1;
+  margin-bottom: 16px;
   @media ${tabletAndUnder} {
-    font-size: 8.5vw;
-    line-height: 115%;
-    margin: 0 17px;
+    font: var(--header-md);
   }
   @media ${mobileAndUnder} {
-    font-size: 8.5vw;
-    line-height: 115%;
+    font: var(--header-sm);
+    margin-bottom: 12px;
   }
 `;
 
 const Subheader = styled(motion.h2)`
   z-index: 1;
-  margin-top: 32px;
   margin-inline: auto;
-  max-width: 562px;
+  max-width: max(562px, 80%);
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
+  @media ${tabletAndUnder} {
+    font: var(--body-lg);
+  }
   @media ${mobileAndUnder} {
-    margin-bottom: 16px;
+    font: var(--body-md);
   }
 `;
 
@@ -174,8 +170,11 @@ const ArrowIcon = styled(DownArrow)`
   animation-delay: 3s;
 `;
 
+const ArrowButtonWrapper = styled(motion.div)`
+  align-self: start;
+`;
+
 const ArrowButton = styled(NextLink)`
-  margin-top: 179px;
   background-color: var(--grey-200);
   box-sizing: border-box;
   display: flex;

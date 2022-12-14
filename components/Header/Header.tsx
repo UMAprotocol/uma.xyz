@@ -1,4 +1,4 @@
-import { addOpacityToHsl, grey200, white } from "constant";
+import { grey200, white } from "constant";
 import { motion } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import styled, { CSSProperties } from "styled-components";
