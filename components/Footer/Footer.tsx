@@ -121,7 +121,7 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
 const ExternalLinkIcon = styled(UpRightArrowBlack)``;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: grid;
   grid-template-rows: auto 1fr auto;
   background: var(--grey-700);
@@ -130,7 +130,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 
 const InnerWrapper = styled.div`
   width: 100%;
-  height: fit-content;
   max-width: var(--page-width);
   margin-inline: auto;
   margin-top: 96px;
