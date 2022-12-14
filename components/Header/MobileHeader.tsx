@@ -53,7 +53,7 @@ export function MobileHeader({ isLightTheme }: Props) {
           }
         />
       </MenuToggleButton>
-      <Link href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</Link>
+      <NextLink href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</NextLink>
       <VoteLinkWrapper>
         <Link
           href="https://vote.umaproject.org/"
@@ -76,11 +76,12 @@ export function MobileHeader({ isLightTheme }: Props) {
 const Wrapper = styled(FocusOn)`
   display: none;
   width: 100%;
-  justify-content: space-between;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
+  justify-items: center;
   pointer-events: all;
   @media ${tabletAndUnder} {
-    display: flex;
+    display: grid;
   }
 `;
 
@@ -98,21 +99,17 @@ const ToggleButtonBar = styled.span`
 export const MenuToggleButton = styled.button`
   display: block;
   position: relative;
+  justify-self: start;
   height: 18px;
   width: 25px;
   background: var(--grey-900);
 `;
 
 const VoteLinkWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-  margin-right: 16px;
+  justify-self: end;
 `;
 
 const ArrowIcon = styled(UpRightArrow)`
-  margin-left: 8px;
   path {
     stroke: var(--grey-500);
   }
@@ -125,6 +122,7 @@ const Link = styled(NextLink)`
   display: inline-flex;
   justify-content: center;
   align-items: baseline;
+  gap: 4px;
   text-decoration: none;
   font: var(--body-sm);
   color: var(--color);

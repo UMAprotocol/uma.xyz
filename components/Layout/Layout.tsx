@@ -20,7 +20,9 @@ export function Layout({ children }: { children: ReactNode }) {
   );
 }
 
-const Main = styled.main``;
+const Main = styled.main`
+  overflow-x: hidden;
+`;
 
 const Wrapper = styled.div`
   background: var(--grey-200);

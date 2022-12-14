@@ -43,4 +43,6 @@ const OuterWrapper = styled(motion.header)`
 const InnerWrapper = styled.div`
   width: 100%;
   max-width: var(--page-width);
+  margin-inline: auto;
+  overflow: hidden;
 `;
