@@ -6,7 +6,7 @@ import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
 import Lottie from "react-lottie";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export function Hero() {
   const headerAnimation = {
@@ -83,7 +83,7 @@ export function Hero() {
           }}
         >
           <ArrowButton href="#how-it-works">
-            <DownArrow />
+            <ArrowIcon />
           </ArrowButton>
         </motion.div>
       </InnerWrapper>
@@ -152,6 +152,26 @@ const Subheader = styled(motion.h2)`
   @media ${mobileAndUnder} {
     margin-bottom: 16px;
   }
+`;
+
+const arrowAnimation = keyframes`
+  0%, 80%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  20% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  60% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+`;
+
+const ArrowIcon = styled(DownArrow)`
+  animation: ${arrowAnimation} 2s infinite ease-in-out;
+  animation-delay: 3s;
 `;
 
 const ArrowButton = styled(NextLink)`

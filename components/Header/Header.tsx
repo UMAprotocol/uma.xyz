@@ -7,8 +7,6 @@ import { MobileHeader } from "./MobileHeader";
 
 export function Header() {
   const { isLightTheme } = useHeaderContext();
-  const _white = addOpacityToHsl(white, 0.9);
-  const _grey = addOpacityToHsl(grey200, 0.9);
   return (
     <OuterWrapper
       initial={{ opacity: 0, translateY: "-100%" }}
