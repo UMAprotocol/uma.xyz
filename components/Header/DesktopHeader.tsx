@@ -37,6 +37,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
       </Links>
       <LaunchButton
         href="https://vote.umaproject.org"
+        target="_blank"
         style={
           {
             "--color": isLightTheme ? white : grey100,
