@@ -49,17 +49,18 @@ export function VoteParticipation() {
 
         <ActivitiesWrapper>
           {activities.map(({ title, text, animationData, ref }) => (
-            <Activity key={title}>
-              <LottieWrapper
-                onMouseOver={() => {
-                  ref.current?.setDirection(1);
-                  ref.current?.play();
-                }}
-                onMouseOut={() => {
-                  ref.current?.setDirection(-1);
-                  ref.current?.play();
-                }}
-              >
+            <Activity
+              key={title}
+              onMouseOver={() => {
+                ref.current?.setDirection(1);
+                ref.current?.play();
+              }}
+              onMouseOut={() => {
+                ref.current?.setDirection(-1);
+                ref.current?.play();
+              }}
+            >
+              <LottieWrapper>
                 <Lottie
                   lottieRef={ref}
                   loop={false}
