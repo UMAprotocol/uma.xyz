@@ -121,7 +121,7 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
 const ExternalLinkIcon = styled(UpRightArrowBlack)``;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  /* min-height: 100vh; */
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   background: var(--grey-700);
@@ -163,7 +163,7 @@ const LinksWrapper = styled.div`
 
   @media ${mobileAndUnder} {
     grid-row-start: 2;
-    justify-items: center;
+    justify-content: center;
     margin-top: 80px;
   }
 `;
@@ -177,6 +177,7 @@ const HomeLink = styled(NextLink)`
 
 const LinksListWrapper = styled.ul`
   list-style: none;
+  width: fit-content;
 `;
 
 const LinkListItem = styled.li`
