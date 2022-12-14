@@ -2,43 +2,40 @@ import { AnimatedLink, Divider } from "components";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
-import { useState } from "react";
-import Lottie from "react-lottie";
+import { useRef } from "react";
 import styled from "styled-components";
 
 export function VoteParticipation() {
   const {
     data: { apy },
   } = useVotingInfo();
-  const [stakePlaying, setStakePlaying] = useState(false);
-  const [votePlaying, setVotePlaying] = useState(false);
-  const [earnPlaying, setEarnPlaying] = useState(false);
+  const stakeRef = useRef<LottieRefCurrentProps>(null);
+  const voteRef = useRef<LottieRefCurrentProps>(null);
+  const earnRef = useRef<LottieRefCurrentProps>(null);
 
   const activities = [
     {
       title: "Stake",
       text: "Stake your $UMA to help secure UMA's Optimistic Oracle.",
       animationData: stake,
-      isPlaying: stakePlaying,
-      setIsPlaying: setStakePlaying,
+      ref: stakeRef,
     },
     {
       title: "Vote",
       text: "Token holders who vote correctly and consistently earn higher APYs.",
       animationData: vote,
-      isPlaying: votePlaying,
-      setIsPlaying: setVotePlaying,
+      ref: voteRef,
     },
     {
       title: "Earn",
       text: `Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
       voters.`,
       animationData: earn,
-      isPlaying: earnPlaying,
-      setIsPlaying: setEarnPlaying,
+      ref: earnRef,
     },
   ];
 
@@ -51,18 +48,26 @@ export function VoteParticipation() {
         <Header>Stake, vote &amp; earn up to {apy}% APY</Header>
 
         <ActivitiesWrapper>
-          {activities.map(({ title, text, animationData, isPlaying, setIsPlaying }) => (
-            <Activity key={title} onMouseEnter={() => setIsPlaying(true)} onMouseLeave={() => setIsPlaying(false)}>
+          {activities.map(({ title, text, animationData, ref }) => (
+            <Activity
+              key={title}
+              onMouseOver={() => {
+                ref.current?.setDirection(1);
+                ref.current?.play();
+              }}
+              onMouseOut={() => {
+                ref.current?.setDirection(-1);
+                ref.current?.play();
+              }}
+            >
               <LottieWrapper>
                 <Lottie
-                  isStopped={!isPlaying}
-                  options={{
-                    loop: false,
-                    autoplay: false,
-                    animationData,
-                    rendererSettings: {
-                      preserveAspectRatio: "xMidYMid slice",
-                    },
+                  lottieRef={ref}
+                  loop={false}
+                  autoplay={false}
+                  animationData={animationData}
+                  rendererSettings={{
+                    preserveAspectRatio: "xMidYMid slice",
                   }}
                 />
               </LottieWrapper>
@@ -94,6 +99,7 @@ const InnerWrapper = styled.div`
 const Title = styled.h1`
   font: var(--header-sm);
   color: var(--grey-100);
+  border-bottom: 1px solid var(--grey-600);
 
   @media ${mobileAndUnder} {
     font: var(--body-lg);

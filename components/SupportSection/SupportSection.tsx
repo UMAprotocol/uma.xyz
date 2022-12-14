@@ -7,7 +7,7 @@ export function SupportSection() {
   return (
     <OuterWrapper>
       <Background>
-        <Video autoPlay loop muted>
+        <Video autoPlay loop muted playsInline>
           <source src="/assets/uma.xyz.mp4" type="video/mp4" />
         </Video>
         <RearOverlay />
@@ -88,10 +88,8 @@ const Video = styled.video`
 
 const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left top;
   min-height: calc(100vh - var(--header-blur-height));
+  padding-bottom: 24px;
   position: relative;
 `;
 
@@ -129,10 +127,10 @@ const Subtitle = styled.h2`
 
 const LinksWrapper = styled.div`
   margin-top: 64px;
+  display: grid;
   gap: 24px;
   @media ${tabletAndUnder} {
     margin-top: 36px;
-    gap: 23px;
   }
 `;
 
@@ -141,7 +139,6 @@ const ButtonGroup = styled.div`
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  margin-bottom: 24px;
   div,
   span,
   a,

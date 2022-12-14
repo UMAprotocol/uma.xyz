@@ -1,12 +1,12 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
+import Lottie from "lottie-react";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
 import { useEffect, useRef } from "react";
-import Lottie from "react-lottie";
 import styled, { CSSProperties } from "styled-components";
 
 export function HowItWorks() {
@@ -77,13 +77,11 @@ export function HowItWorks() {
             </StepDescription>
             <LottieWrapper>
               <Lottie
-                options={{
-                  animationData,
-                  loop: true,
-                  autoplay: true,
-                  rendererSettings: {
-                    preserveAspectRatio: "xMidYMid slice",
-                  },
+                animationData={animationData}
+                loop={true}
+                autoplay={true}
+                rendererSettings={{
+                  preserveAspectRatio: "xMidYMid slice",
                 }}
               />
             </LottieWrapper>

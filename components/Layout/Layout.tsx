@@ -21,10 +21,9 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 const Main = styled.main`
-  height: 100%;
+  overflow: clip;
 `;
 
 const Wrapper = styled.div`
   background: var(--grey-200);
-  overflow-x: clip;
 `;

@@ -81,7 +81,7 @@ contract OO_GettingStarted {
     },
     {
       title: "Cross-Chain Communication",
-      shortTitle: "Cross-Chain",
+      shortTitle: "Bridge",
       content: `The OO can verify any statement, including statements about data on other networks.
       Chains can use the OO to “see” things on every other chain.`,
       usedBy: placeholderUsedBy,
@@ -102,7 +102,7 @@ contract OO_GettingStarted {
     },
     {
       title: "Long-Tail Data",
-      shortTitle: "Long-Tail",
+      shortTitle: "Learn",
       content: `If a piece of information is publicly provable, then UMA's OO can verify it and put it
       on-chain.
       The OO accepts natural language questions as an input, and does not require first

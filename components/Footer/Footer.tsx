@@ -130,7 +130,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 
 const InnerWrapper = styled.div`
   width: 100%;
-  height: fit-content;
   max-width: var(--page-width);
   margin-inline: auto;
   margin-top: 96px;
@@ -164,7 +163,7 @@ const LinksWrapper = styled.div`
 
   @media ${mobileAndUnder} {
     grid-row-start: 2;
-    justify-items: center;
+    justify-content: center;
     margin-top: 80px;
   }
 `;
@@ -178,6 +177,7 @@ const HomeLink = styled(NextLink)`
 
 const LinksListWrapper = styled.ul`
   list-style: none;
+  width: fit-content;
 `;
 
 const LinkListItem = styled.li`
@@ -203,7 +203,12 @@ const FormWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
-  justify-items: end;
+  justify-items: center;
+
+  @media ${tabletAndUnder} {
+    justify-items: start;
+    margin-bottom: 32px;
+  }
 
   @media ${mobileAndUnder} {
     grid-row-start: 1;
@@ -235,6 +240,10 @@ const Form = styled.form`
   gap: 12px;
   width: 100%;
   justify-content: flex-end;
+
+  @media ${tabletAndUnder} {
+    justify-content: start;
+  }
 
   @media ${mobileAndUnder} {
     flex-direction: column;
