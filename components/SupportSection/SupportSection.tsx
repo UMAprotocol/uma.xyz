@@ -7,7 +7,7 @@ export function SupportSection() {
   return (
     <OuterWrapper>
       <Background>
-        <Video autoPlay loop muted>
+        <Video autoPlay loop muted playsInline>
           <source src="/assets/uma.xyz.mp4" type="video/mp4" />
         </Video>
         <RearOverlay />
