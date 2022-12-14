@@ -51,6 +51,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
 }
 
 const Wrapper = styled.div`
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -62,6 +63,7 @@ const Wrapper = styled.div`
 const Links = styled.div`
   display: grid;
   grid-auto-flow: column;
+  align-items: center;
   gap: 20px;
 `;
 
