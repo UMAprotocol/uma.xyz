@@ -64,11 +64,11 @@ export function HowItWorks() {
           <Title>How it works</Title>
           <Header>The Optimistic Oracle verifies data in stages</Header>
         </HeaderWrapper>
-        {steps.map(({ header, text, subText, animationData }, index) => (
+        {steps.map(({ header, text, subText, animationData }, index, arr) => (
           <StepWrapper key={header}>
             <StepNumberWrapper>
-              <StepNumber>0{index + 1}</StepNumber>
-              <StepLine />
+              <StepNumber invert={index % 2 === 1}>0{index + 1}</StepNumber>
+              {index < arr.length - 1 && <StepLine invert={index % 2 === 1} />}
             </StepNumberWrapper>
             <StepDescription>
               <StepHeader>{header}</StepHeader>
@@ -247,21 +247,23 @@ const StepNumberWrapper = styled.div`
   }
 `;
 
-const StepNumber = styled.p`
+const StepNumber = styled.p<{ invert: boolean }>`
   display: grid;
   place-items: center;
   width: var(--step-number-size);
   height: var(--step-number-size);
-  background-color: var(--red);
+  background-color: var(${({ invert }) => (invert ? "--grey-800" : "--red")});
+  border-color: var(--grey-400);
+  border-width: ${({ invert }) => (invert ? "1px" : "0")};
   border-radius: 8px;
   font: var(--body-sm);
-  color: var(--white);
+  color: var(${({ invert }) => (invert ? "--grey-500" : "--white")});
   margin: 0;
   padding: 0;
 `;
 
-const StepLine = styled.div`
-  background: var(--red);
+const StepLine = styled.div<{ invert: boolean }>`
+  background: var(${({ invert }) => (invert ? "--grey-400" : "--red")});
   height: calc(100% + var(--step-padding-bottom));
   width: 1px;
   margin-left: calc(var(--step-number-size) / 2);
