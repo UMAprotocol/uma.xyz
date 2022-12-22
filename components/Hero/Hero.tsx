@@ -135,16 +135,12 @@ const Header = styled(motion.h1)`
   @media ${tabletAndUnder} {
     font: var(--header-md);
   }
-  @media ${mobileAndUnder} {
-    font: var(--header-sm);
-    margin-bottom: 12px;
-  }
 `;
 
 const Subheader = styled(motion.h2)`
   z-index: 1;
   margin-inline: auto;
-  max-width: max(562px, 80%);
+  max-width: min(562px, 80%);
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
