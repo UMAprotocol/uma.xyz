@@ -100,6 +100,7 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   position: relative;
   background: var(--grey-200);
   background-image: url("assets/footer-lines-grey.png");
+  overflow: clip;
 `;
 
 const InnerWrapper = styled.div`
