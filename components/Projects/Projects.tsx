@@ -101,8 +101,8 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
       }
     >
       {projects.map(({ name, link, Icon }) => (
-        <ProjectWrapper key={name}>
-          <ArrowLink href={link} target="_blank">
+        <ProjectWrapper key={name} href={link} target="_blank">
+          <ArrowLink>
             <ArrowIcon />
           </ArrowLink>
           <ProjectInnerWrapper>
@@ -177,7 +177,7 @@ const ProjectRowWrapper = styled.div`
   grid-template-rows: 1fr;
 `;
 
-const ProjectWrapper = styled.div`
+const ProjectWrapper = styled(NextLink)`
   --icon-color: var(--grey-100);
   --indicator-opacity: 0;
   --border-color: var(--grey-600);
@@ -265,7 +265,7 @@ const DividerWrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-const ArrowLink = styled(NextLink)`
+const ArrowLink = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
