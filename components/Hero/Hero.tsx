@@ -114,14 +114,24 @@ const InnerWrapper = styled.div`
   margin-inline: auto;
 `;
 
-const HeaderWrapper = styled(motion.div)``;
+const HeaderWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+
+  @media ${mobileAndUnder} {
+    font: var(--header-sm);
+    margin-bottom: 12px;
+  }
+`;
 
 const Header = styled(motion.h1)`
   font: var(--header-lg);
   color: var(--white);
   text-align: center;
   z-index: 1;
-  margin-bottom: 16px;
   @media ${tabletAndUnder} {
     font: var(--header-md);
   }
