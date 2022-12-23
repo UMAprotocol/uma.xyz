@@ -99,6 +99,9 @@ const InnerWrapper = styled.div`
 const Title = styled.h1`
   font: var(--header-sm);
   color: var(--grey-100);
+  padding-bottom: 16px;
+  margin-bottom: 48px;
+
   border-bottom: 1px solid var(--grey-600);
 
   @media ${mobileAndUnder} {

@@ -36,6 +36,7 @@ const InnerWrapper = styled.div`
 const Title = styled.h1`
   font: var(--header-sm);
   border-bottom: 1px solid var(--grey-600);
+  padding-bottom: 16px;
   @media ${mobileAndUnder} {
     font: var(--body-lg);
   }
