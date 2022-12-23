@@ -1,3 +1,4 @@
+import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
@@ -60,10 +61,7 @@ export function HowItWorks() {
   return (
     <OuterWrapper ref={howItWorksRef} id="how-it-works" style={style}>
       <InnerWrapper>
-        <HeaderWrapper>
-          <Title>How it works</Title>
-          <Header>The Optimistic Oracle verifies data in stages</Header>
-        </HeaderWrapper>
+        <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
         {steps.map(({ header, text, subText, animationData }, index, arr) => (
           <StepWrapper key={header}>
             <StepNumberWrapper>
@@ -99,40 +97,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 const InnerWrapper = styled.div`
   max-width: var(--page-width);
   margin-inline: auto;
-`;
-
-const HeaderWrapper = styled.div``;
-
-const Title = styled.h1`
-  font: var(--header-sm);
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--grey-600);
-  @media ${mobileAndUnder} {
-    padding-bottom: 12px;
-  }
-`;
-
-const Header = styled.h2`
-  --width-desktop-tablet: 1020px;
-  --width-laptop: 720px;
-  --width-mobile: 100%;
-  --width: var(--width-desktop-tablet);
-  max-width: var(--width);
-  margin-top: 48px;
-  margin-bottom: 128px;
-  font: var(--header-lg);
-  @media ${laptopAndUnder} {
-    --width: var(--width-laptop);
-  }
-  @media ${tabletAndUnder} {
-    --width: var(--width-desktop-tablet);
-  }
-  @media ${mobileAndUnder} {
-    --width: var(--width-mobile);
-    font: var(--header-sm);
-    margin-top: 24px;
-    margin-bottom: 40px;
-  }
 `;
 
 const StepWrapper = styled.div`

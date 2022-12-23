@@ -1,4 +1,5 @@
 import { AnimatedLink, Divider } from "components";
+import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
@@ -42,10 +43,11 @@ export function VoteParticipation() {
   return (
     <OuterWrapper id="voter">
       <InnerWrapper>
-        <Title>
-          Participate as a <RedEmphasis>Voter</RedEmphasis>
-        </Title>
-        <Header>Stake, vote &amp; earn up to {apy}% APY</Header>
+        <SectionHeader
+          title={{ text: "Participate as a", redSuffix: "Voter" }}
+          header={<>Stake, vote &amp; earn up to {apy}% APY</>}
+          constrainWidth
+        />
 
         <ActivitiesWrapper>
           {activities.map(({ title, text, animationData, ref }) => (
@@ -61,7 +63,7 @@ export function VoteParticipation() {
               }}
             >
               <LottieWrapper>
-                <Lottie
+                <LottieAnimation
                   lottieRef={ref}
                   loop={false}
                   autoplay={false}
@@ -82,7 +84,7 @@ export function VoteParticipation() {
           <Divider />
         </DividerWrapper>
         <AnimatedLinkWrapper>
-        <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
+          <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
         </AnimatedLinkWrapper>
       </InnerWrapper>
     </OuterWrapper>
@@ -96,28 +98,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 const InnerWrapper = styled.div`
   max-width: var(--page-width);
   margin-inline: auto;
-`;
-
-const Title = styled.h1`
-  font: var(--header-sm);
-  color: var(--grey-100);
-  padding-bottom: 16px;
-  margin-bottom: 48px;
-
-  border-bottom: 1px solid var(--grey-600);
-
-  @media ${mobileAndUnder} {
-    font: var(--body-lg);
-  }
-`;
-
-const Header = styled.h2`
-  font: var(--header-lg);
-  color: var(--grey-100);
-  max-width: max(70%, 720px);
-  @media ${mobileAndUnder} {
-    font: var(--header-sm);
-  }
 `;
 
 const ActivitiesWrapper = styled.div`
@@ -189,6 +169,10 @@ const ActivityText = styled.p`
   }
 `;
 
+const LottieAnimation = styled(Lottie)`
+  /* scale: 1.5; */
+`;
+
 const LottieWrapper = styled.div`
   max-width: var(--width);
   margin-left: -24px;
@@ -219,8 +203,4 @@ const DividerWrapper = styled.div`
 
 const AnimatedLinkWrapper = styled.div`
   padding-left: 40px;
-`;
-
-const RedEmphasis = styled.span`
-  color: var(--red);
 `;
