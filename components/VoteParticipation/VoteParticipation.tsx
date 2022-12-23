@@ -197,7 +197,7 @@ const LottieWrapper = styled.div`
 `;
 
 const DividerWrapper = styled.div`
-  margin-top: 84px;
+  margin-top: 72px;
   margin-bottom: 24px;
 `;
 
