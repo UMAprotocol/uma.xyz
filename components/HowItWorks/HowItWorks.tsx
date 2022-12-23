@@ -71,7 +71,7 @@ export function HowItWorks() {
               {index < arr.length - 1 && <StepLine invert={index % 2 === 1} />}
             </StepNumberWrapper>
             <StepDescription>
-              <StepHeader>{header}</StepHeader>
+              <StepHeader invert={index % 2 == 1}>{header}</StepHeader>
               <StepText>{text}</StepText>
               <StepSubText>{subText}</StepSubText>
             </StepDescription>
@@ -184,7 +184,7 @@ const LottieWrapper = styled.div`
 const StepDescription = styled.div`
   grid-area: description;
   max-width: var(--width);
-  margin-top: 8px;
+  margin-top: 16px;
   --width-desktop: 464px;
   --width-laptop: 640px;
   --width-tablet: 720px;
@@ -204,11 +204,11 @@ const StepDescription = styled.div`
   }
 `;
 
-const StepHeader = styled.h3`
+const StepHeader = styled.h3<{ invert: boolean }>`
   text-transform: uppercase;
   letter-spacing: 0.09rem;
   font: var(--sub-header);
-  color: var(--red);
+  color: ${({ invert }) => (invert ? "var(--grey-500)" : "var(--red)")};
 
   @media ${mobileAndUnder} {
     font: var(--sub-header-sm);
