@@ -81,7 +81,9 @@ export function VoteParticipation() {
         <DividerWrapper>
           <Divider />
         </DividerWrapper>
+        <AnimatedLinkWrapper>
         <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
+        </AnimatedLinkWrapper>
       </InnerWrapper>
     </OuterWrapper>
   );
@@ -213,6 +215,10 @@ const LottieWrapper = styled.div`
 const DividerWrapper = styled.div`
   margin-top: 84px;
   margin-bottom: 24px;
+`;
+
+const AnimatedLinkWrapper = styled.div`
+  padding-left: 40px;
 `;
 
 const RedEmphasis = styled.span`
