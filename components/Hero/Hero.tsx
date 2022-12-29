@@ -97,9 +97,10 @@ const Background = styled(motion.div)`
 const OuterWrapper = styled(BaseOuterWrapper)`
   padding-top: 0;
   height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
+  width: 100%;
   position: relative;
   background: var(--grey-200);
-  background-image: url("assets/footer-lines-grey.png");
+  background-image: url("assets/hero-bg-lines.svg");
   overflow: clip;
 `;
 
