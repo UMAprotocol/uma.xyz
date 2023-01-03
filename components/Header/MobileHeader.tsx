@@ -39,7 +39,7 @@ export function MobileHeader({ isLightTheme }: Props) {
         <ToggleButtonBar
           style={
             {
-              "--top": showMenu ? "9px" : 0,
+              "--top": showMenu ? "9px" : "7px",
               "--transform": showMenu ? "rotate(45deg)" : "rotate(0)",
             } as CSSProperties
           }
@@ -47,7 +47,7 @@ export function MobileHeader({ isLightTheme }: Props) {
         <ToggleButtonBar
           style={
             {
-              "--top": showMenu ? "9px" : "16px",
+              "--top": showMenu ? "9px" : "11px",
               "--transform": showMenu ? "rotate(-45deg)" : "rotate(0)",
             } as CSSProperties
           }
@@ -88,7 +88,7 @@ const Wrapper = styled(FocusOn)`
 const ToggleButtonBar = styled.span`
   position: absolute;
   display: block;
-  height: 2px;
+  height: 1.5px;
   width: 25px;
   background: var(--background);
   transition: var(--transition);
