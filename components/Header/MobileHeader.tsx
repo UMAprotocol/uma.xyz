@@ -1,4 +1,4 @@
-import { grey100, grey500, tabletAndUnder, white } from "constant";
+import { grey100, grey500, white } from "constant";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
@@ -80,7 +80,7 @@ const Wrapper = styled(FocusOn)`
   align-items: center;
   justify-items: center;
   pointer-events: all;
-  @media ${tabletAndUnder} {
+  @media (max-width: 880px) {
     display: grid;
   }
 `;

@@ -53,10 +53,10 @@ export function DesktopHeader({ isLightTheme }: Props) {
 
 const Wrapper = styled.div`
   height: 100%;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  @media ${tabletAndUnder} {
+  @media (max-width: 880px) {
     display: none;
   }
 `;
@@ -66,6 +66,10 @@ const Links = styled.div`
   grid-auto-flow: column;
   align-items: center;
   gap: 20px;
+
+  @media ${tabletAndUnder} {
+    gap: 16px;
+  }
 `;
 
 const Link = styled(NextLink)`
@@ -107,7 +111,9 @@ const ExternalLinkIcon = styled(SmUpRightArrow)`
   margin-left: 8px;
 `;
 
-const HomeLink = styled(NextLink)``;
+const HomeLink = styled(NextLink)`
+  flex-shrink: 0;
+`;
 
 const LaunchButton = styled(NextLink)`
   justify-self: end;
