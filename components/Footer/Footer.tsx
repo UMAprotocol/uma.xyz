@@ -10,7 +10,9 @@ import { isExternalLink } from "utils";
 export function Footer() {
   return (
     <OuterWrapper as="footer">
-      <VoteTicker isLightTheme />
+      <VoteTickerWrapper>
+        <VoteTicker isLightTheme />
+      </VoteTickerWrapper>
       <InnerWrapper>
         <LinksWrapper>
           <HomeLink href="#">
@@ -20,6 +22,9 @@ export function Footer() {
           <LinksList links={footerLinks.external} />
         </LinksWrapper>
         <FormWrapper>
+          <FormHomeLink href="#">
+            <FormUmaLogoIcon />
+          </FormHomeLink>
           <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
           <MailChimpForm />
         </FormWrapper>
@@ -61,6 +66,14 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   grid-template-rows: auto 1fr auto;
   background: var(--grey-700);
   background-image: url("assets/footer-lines-grey.png");
+
+  @media ${laptopAndUnder} {
+    padding-top: 64px;
+  }
+
+  @media ${mobileAndUnder} {
+    padding-top: 16px;
+  }
 `;
 
 const InnerWrapper = styled.div`
@@ -80,8 +93,15 @@ const InnerWrapper = styled.div`
 
   @media ${mobileAndUnder} {
     gap: 24px;
-    margin-top: 56px;
+    margin-top: 50px;
     justify-content: center;
+  }
+`;
+
+const VoteTickerWrapper = styled.div`
+  @media ${laptopAndUnder} {
+    margin-top: -16px;
+    margin-bottom: -4px;
   }
 `;
 
@@ -94,17 +114,22 @@ const LinksWrapper = styled.div`
     grid-template-columns: auto;
     grid-template-rows: repeat(3, auto);
     gap: 16px;
+    height: fit-content;
   }
 
   @media ${mobileAndUnder} {
     grid-row-start: 2;
     justify-content: center;
-    margin-top: 80px;
+    margin: calc(80px - 24px) 0;
   }
 `;
 
 const HomeLink = styled(NextLink)`
   margin-bottom: 32px;
+
+  @media ${laptopAndUnder} {
+    margin-bottom: 16px;
+  }
   @media ${mobileAndUnder} {
     display: none;
   }
@@ -113,6 +138,7 @@ const HomeLink = styled(NextLink)`
 const LinksListWrapper = styled.ul`
   list-style: none;
   width: fit-content;
+  height: fit-content;
 `;
 
 const LinkListItem = styled.li`
@@ -142,12 +168,13 @@ const FormWrapper = styled.div`
 
   @media ${tabletAndUnder} {
     justify-items: start;
-    margin-bottom: 32px;
+    margin-bottom: 96px;
   }
 
   @media ${mobileAndUnder} {
     grid-row-start: 1;
     justify-items: center;
+    margin-bottom: 0;
   }
 `;
 
@@ -167,6 +194,20 @@ const FormTitle = styled.h3`
     text-align: center;
     margin-top: 24px;
     margin-bottom: 36px;
+  }
+`;
+
+const FormHomeLink = styled(NextLink)`
+  display: none;
+
+  @media ${mobileAndUnder} {
+    display: block;
+  }
+`;
+
+const FormUmaLogoIcon = styled(UmaLogo)`
+  path {
+    fill: var(--black);
   }
 `;
 

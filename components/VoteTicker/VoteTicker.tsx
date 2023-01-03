@@ -5,6 +5,7 @@ import {
   grey600,
   grey700,
   grey800,
+  laptopAndUnder,
   mobileAndUnder,
   red,
   red510Opacity15,
@@ -124,6 +125,10 @@ const OuterWrapper = styled(motion.div)`
   padding-inline: var(--page-padding);
   background-size: cover;
   background-repeat: no-repeat;
+
+  @media ${laptopAndUnder} {
+    padding-inline: 0;
+  }
 `;
 
 const InnerWrapper = styled.div`

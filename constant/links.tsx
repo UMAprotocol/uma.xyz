@@ -37,16 +37,16 @@ export const socialLinks = [
     Icon: Discord,
   },
   {
-    href: "mailto:hello@umaproject.org",
-    Icon: Message,
+    href: "https://discourse.umaproject.org/",
+    Icon: Discourse,
   },
   {
     href: "https://twitter.com/UMAprotocol",
     Icon: Twitter,
   },
   {
-    href: "https://discourse.umaproject.org/",
-    Icon: Discourse,
+    href: "mailto:hello@umaproject.org",
+    Icon: Message,
   },
   {
     href: "https://github.com/UMAprotocol",
