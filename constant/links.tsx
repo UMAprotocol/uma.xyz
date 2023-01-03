@@ -53,3 +53,34 @@ export const socialLinks = [
     Icon: Github,
   },
 ];
+
+export const footerLinks = {
+  internal: [
+    {
+      label: "How it works",
+      href: "#how-it-works",
+    },
+    {
+      label: "For voters",
+      href: "#voter",
+    },
+    {
+      label: "For builders",
+      href: "#builder",
+    },
+  ],
+  external: [
+    {
+      label: "Oracle",
+      href: "https://optimistic-oracle-dapp.vercel.app/",
+    },
+    {
+      label: "Docs",
+      href: "https://docs.umaproject.org/",
+    },
+    {
+      label: "Projects",
+      href: "https://projects.umaproject.org/",
+    },
+  ],
+};
