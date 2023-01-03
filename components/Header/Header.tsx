@@ -1,4 +1,4 @@
-import { grey200, white } from "constant";
+import { grey200, laptopAndUnder, white } from "constant";
 import { motion } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import styled, { CSSProperties } from "styled-components";
@@ -39,6 +39,10 @@ const OuterWrapper = styled(motion.header)`
   backdrop-filter: blur(6px);
   box-shadow: 0px 24px 24px 24px var(--background);
   transition: background var(--animation-duration), box-shadow var(--animation-duration);
+
+  @media ${laptopAndUnder} {
+    padding-inline: 16px;
+  }
 `;
 
 const InnerWrapper = styled.div`

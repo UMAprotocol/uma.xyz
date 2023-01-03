@@ -1,7 +1,9 @@
-import { grey100, grey500, white } from "constant";
+import { grey500, white } from "constant";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
+import ToggleOpenHamburgerIcon from "public/assets/hamburger.svg";
+import ToggleCloseHamburgerIcon from "public/assets/hamburger-close.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import { FocusOn } from "react-focus-on";
@@ -14,8 +16,6 @@ interface Props {
 
 export function MobileHeader({ isLightTheme }: Props) {
   const [showMenu, setShowMenu] = useState(false);
-  const transitionWhenShow = "background 200ms, top 200ms, opacity 200ms, transform 200ms 250ms";
-  const transitionWhenHide = "top 200ms 250ms, opacity 200ms 250ms, transform 200ms";
 
   function toggleShowMenu() {
     setShowMenu(!showMenu);
@@ -27,31 +27,8 @@ export function MobileHeader({ isLightTheme }: Props) {
 
   return (
     <Wrapper enabled={showMenu} onEscapeKey={hideMenu} onClickOutside={hideMenu} preventScrollOnFocus>
-      <MenuToggleButton
-        onClick={toggleShowMenu}
-        style={
-          {
-            "--background": isLightTheme ? grey100 : white,
-            "--transition": showMenu ? transitionWhenShow : transitionWhenHide,
-          } as CSSProperties
-        }
-      >
-        <ToggleButtonBar
-          style={
-            {
-              "--top": showMenu ? "9px" : "7px",
-              "--transform": showMenu ? "rotate(45deg)" : "rotate(0)",
-            } as CSSProperties
-          }
-        />
-        <ToggleButtonBar
-          style={
-            {
-              "--top": showMenu ? "9px" : "11px",
-              "--transform": showMenu ? "rotate(-45deg)" : "rotate(0)",
-            } as CSSProperties
-          }
-        />
+      <MenuToggleButton onClick={toggleShowMenu}>
+        {showMenu ? <ToggleCloseHamburgerIconStyled /> : <ToggleOpenHamburgerIconStyled />}
       </MenuToggleButton>
       <NextLink href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</NextLink>
       <VoteLinkWrapper>
@@ -85,15 +62,12 @@ const Wrapper = styled(FocusOn)`
   }
 `;
 
-const ToggleButtonBar = styled.span`
-  position: absolute;
-  display: block;
-  height: 1.5px;
-  width: 25px;
-  background: var(--background);
-  transition: var(--transition);
-  top: var(--top);
-  transform: var(--transform);
+const ToggleOpenHamburgerIconStyled = styled(ToggleOpenHamburgerIcon)`
+  flex-shrink: 0;
+`;
+
+const ToggleCloseHamburgerIconStyled = styled(ToggleCloseHamburgerIcon)`
+  flex-shrink: 0;
 `;
 
 export const MenuToggleButton = styled.button`
@@ -101,7 +75,7 @@ export const MenuToggleButton = styled.button`
   position: relative;
   justify-self: start;
   height: 18px;
-  width: 25px;
+  width: 100%;
   background: var(--grey-900);
 `;
 

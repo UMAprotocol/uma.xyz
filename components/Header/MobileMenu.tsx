@@ -2,6 +2,7 @@ import { grey200, grey500, links, socialLinks, white } from "constant";
 import NextLink from "next/link";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
 
 interface Props {
   show: boolean;
@@ -25,11 +26,16 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
         } as CSSProperties
       }
     >
-      {links.map(({ href, label }) => (
-        <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
-          {label}
-        </Link>
-      ))}
+      <PaddingItem />
+      <LinkWrapper>
+        {links.map(({ href, label }) => (
+          <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
+            {label}
+            {isExternalLink(href) && <ArrowIcon />}
+          </Link>
+        ))}
+      </LinkWrapper>
+
       <SocialLinks>
         {socialLinks.map(({ href, Icon }) => (
           <SocialLink onClick={hide} key={href} href={href} target="_blank">
@@ -43,11 +49,10 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
 
 export const Wrapper = styled.nav`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 56px);
   position: absolute;
   top: 56px;
   left: 0;
-  padding: 120px 20px;
   background: var(--background);
   transform: var(--transform);
   opacity: var(--opacity);
@@ -56,13 +61,29 @@ export const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const LinkWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
 `;
 
 const Link = styled(NextLink)`
   position: relative;
-  display: inline-flex;
   align-items: center;
-  padding: 25px 0 4px;
+
+  display: inline-flex;
+  flex-direction: row;
+  gap: 8px;
+  width: fit-content;
+  align-items: center;
+  justify-content: flex-start;
+
   font: var(--body-sm);
   color: var(--link-color);
   text-decoration: none;
@@ -74,6 +95,10 @@ const Link = styled(NextLink)`
   }
 `;
 
+const ArrowIcon = styled(UpRightArrow)``;
+
+const PaddingItem = styled.div``;
+
 const SocialLinks = styled.div`
   display: flex;
   flex-direction: row;
@@ -81,7 +106,7 @@ const SocialLinks = styled.div`
   flex-basis: 32%;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 64px;
+  padding-bottom: 32px;
 `;
 
 const SocialLink = styled(NextLink)`
