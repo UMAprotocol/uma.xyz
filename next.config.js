@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   compiler: { styledComponents: true },
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
   eslint: {
     dirs: ["components", "constants", "hooks", "pages", "queries", "stories", "types"],
