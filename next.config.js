@@ -3,9 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   compiler: { styledComponents: true },
-  images: {
-    unoptimized: false,
-  },
   eslint: {
     dirs: ["components", "constants", "hooks", "pages", "queries", "stories", "types"],
   },
