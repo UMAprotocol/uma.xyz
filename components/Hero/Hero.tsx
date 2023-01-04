@@ -46,7 +46,7 @@ export function Hero() {
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <LottieHeroAnimation loop={true} autoplay={true} animationData={heroAnimation} />
+        <LottieAnimation loop={true} autoplay={true} animationData={heroAnimation} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
@@ -85,6 +85,21 @@ export function Hero() {
   );
 }
 
+const LottieAnimation = styled(Lottie)`
+  width: 960px;
+
+  @media ${tabletAndUnder} {
+    width: 1154px;
+    margin-bottom: -64px;
+    margin-right: -64px;
+  }
+
+  @media ${mobileAndUnder} {
+    width: 640px;
+    margin: 0;
+  }
+`;
+
 const Background = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -92,6 +107,18 @@ const Background = styled(motion.div)`
   left: 0;
   right: 0;
   opacity: 0.15;
+
+  height: 100%;
+  width: 100vw;
+
+  background-repeat: no-repeat;
+
+  overflow: clip;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
@@ -101,6 +128,8 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   position: relative;
   background: var(--grey-200);
   background-image: url("assets/hero-bg-lines.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: clip;
 `;
 
@@ -239,8 +268,4 @@ const OOLogoIcon = styled(OOLogo)`
     --width: var(--mobile-width);
     --height: var(--mobile-height);
   }
-`;
-
-const LottieHeroAnimation = styled(Lottie)`
-  scale: 0.8; /* scale the animation down by 20% */
 `;
