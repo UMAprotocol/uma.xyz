@@ -178,6 +178,9 @@ const SandpackWrapper = styled.div`
 
 const RemixLinkWrapper = styled.div`
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TabsRoot = styled(Root)`

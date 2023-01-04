@@ -141,6 +141,8 @@ const SherlockIcon = styled(SherlockLogo)``;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
   background: var(--white);
+  padding-top: 228px;
+  padding-bottom: 128px;
 `;
 
 const InnerWrapper = styled.div`

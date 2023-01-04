@@ -3,21 +3,25 @@ import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import OO from "public/assets/oo-logo.svg";
 import styled from "styled-components";
 import { BaseOuterWrapper } from "components/style/Wrappers";
+import { SectionHeader } from "components/SectionHeader/SectionHeader";
 
 export function Builder() {
   return (
     <OuterWrapper id="builder">
       <InnerWrapper>
-        <Title>
-          Participate as a <RedEmphasis>Builder</RedEmphasis>
-        </Title>
-        <Header>
-          <span>Launch products with the</span>
-          <OOIconWrapper>
-            <OOIcon />
-          </OOIconWrapper>
-          <span>as your backbone</span>
-        </Header>
+        <SectionHeader
+          title={{ text: "Participate as a", redSuffix: "Builder" }}
+          header={
+            <>
+              {" "}
+              <span>Launch products with the</span>
+              <OOIconWrapper>
+                <OOIcon />
+              </OOIconWrapper>
+              <span>as your backbone</span>
+            </>
+          }
+        />
         <Tabs />
       </InnerWrapper>
     </OuterWrapper>
@@ -31,28 +35,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 const InnerWrapper = styled.div`
   max-width: var(--page-width);
   margin-inline: auto;
-`;
-
-const Title = styled.h1`
-  font: var(--header-sm);
-  border-bottom: 1px solid var(--grey-600);
-  @media ${mobileAndUnder} {
-    font: var(--body-lg);
-  }
-`;
-
-const Header = styled.h2`
-  font: var(--header-lg);
-  margin-top: 48px;
-  margin-bottom: 128px;
-  @media ${laptopAndUnder} {
-    max-width: 720px;
-  }
-  @media ${mobileAndUnder} {
-    font: var(--header-sm);
-    margin-top: 24px;
-    margin-bottom: 32px;
-  }
 `;
 
 const OOIconWrapper = styled.span`
@@ -92,8 +74,4 @@ const OOIcon = styled(OO)`
     --width: var(--mobile-width);
     --height: var(--mobile-height);
   }
-`;
-
-const RedEmphasis = styled.span`
-  color: var(--red);
 `;

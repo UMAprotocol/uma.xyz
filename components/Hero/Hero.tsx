@@ -46,7 +46,7 @@ export function Hero() {
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <Lottie loop={true} autoplay={true} animationData={heroAnimation} />
+        <LottieHeroAnimation loop={true} autoplay={true} animationData={heroAnimation} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
@@ -114,27 +114,33 @@ const InnerWrapper = styled.div`
   margin-inline: auto;
 `;
 
-const HeaderWrapper = styled(motion.div)``;
+const HeaderWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
 
-const Header = styled(motion.h1)`
-  font: var(--header-lg);
-  color: var(--white);
-  text-align: center;
-  z-index: 1;
-  margin-bottom: 16px;
-  @media ${tabletAndUnder} {
-    font: var(--header-md);
-  }
   @media ${mobileAndUnder} {
     font: var(--header-sm);
     margin-bottom: 12px;
   }
 `;
 
+const Header = styled(motion.h1)`
+  font: var(--header-lg);
+  color: var(--white);
+  text-align: center;
+  z-index: 1;
+  @media ${tabletAndUnder} {
+    font: var(--header-md);
+  }
+`;
+
 const Subheader = styled(motion.h2)`
   z-index: 1;
   margin-inline: auto;
-  max-width: max(562px, 80%);
+  max-width: min(562px, 80%);
   font: var(--body-xl);
   color: var(--grey-500);
   text-align: center;
@@ -233,4 +239,8 @@ const OOLogoIcon = styled(OOLogo)`
     --width: var(--mobile-width);
     --height: var(--mobile-height);
   }
+`;
+
+const LottieHeroAnimation = styled(Lottie)`
+  scale: 0.8; /* scale the animation down by 20% */
 `;

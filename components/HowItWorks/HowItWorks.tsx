@@ -1,3 +1,4 @@
+import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
@@ -60,18 +61,15 @@ export function HowItWorks() {
   return (
     <OuterWrapper ref={howItWorksRef} id="how-it-works" style={style}>
       <InnerWrapper>
-        <HeaderWrapper>
-          <Title>How it works</Title>
-          <Header>The Optimistic Oracle verifies data in stages</Header>
-        </HeaderWrapper>
-        {steps.map(({ header, text, subText, animationData }, index) => (
+        <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
+        {steps.map(({ header, text, subText, animationData }, index, arr) => (
           <StepWrapper key={header}>
             <StepNumberWrapper>
-              <StepNumber>0{index + 1}</StepNumber>
-              <StepLine />
+              <StepNumber invert={index % 2 === 1}>0{index + 1}</StepNumber>
+              {index < arr.length - 1 && <StepLine invert={index % 2 === 1} />}
             </StepNumberWrapper>
             <StepDescription>
-              <StepHeader>{header}</StepHeader>
+              <StepHeader invert={index % 2 == 1}>{header}</StepHeader>
               <StepText>{text}</StepText>
               <StepSubText>{subText}</StepSubText>
             </StepDescription>
@@ -99,40 +97,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 const InnerWrapper = styled.div`
   max-width: var(--page-width);
   margin-inline: auto;
-`;
-
-const HeaderWrapper = styled.div``;
-
-const Title = styled.h1`
-  font: var(--header-sm);
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--grey-600);
-  @media ${mobileAndUnder} {
-    padding-bottom: 12px;
-  }
-`;
-
-const Header = styled.h2`
-  --width-desktop-tablet: 1020px;
-  --width-laptop: 720px;
-  --width-mobile: 100%;
-  --width: var(--width-desktop-tablet);
-  max-width: var(--width);
-  margin-top: 48px;
-  margin-bottom: 128px;
-  font: var(--header-lg);
-  @media ${laptopAndUnder} {
-    --width: var(--width-laptop);
-  }
-  @media ${tabletAndUnder} {
-    --width: var(--width-desktop-tablet);
-  }
-  @media ${mobileAndUnder} {
-    --width: var(--width-mobile);
-    font: var(--header-sm);
-    margin-top: 24px;
-    margin-bottom: 40px;
-  }
 `;
 
 const StepWrapper = styled.div`
@@ -184,7 +148,7 @@ const LottieWrapper = styled.div`
 const StepDescription = styled.div`
   grid-area: description;
   max-width: var(--width);
-  margin-top: 8px;
+  margin-top: 16px;
   --width-desktop: 464px;
   --width-laptop: 640px;
   --width-tablet: 720px;
@@ -204,9 +168,11 @@ const StepDescription = styled.div`
   }
 `;
 
-const StepHeader = styled.h3`
+const StepHeader = styled.h3<{ invert: boolean }>`
+  text-transform: uppercase;
+  letter-spacing: 0.09rem;
   font: var(--sub-header);
-  color: var(--red);
+  color: ${({ invert }) => (invert ? "var(--grey-500)" : "var(--red)")};
 
   @media ${mobileAndUnder} {
     font: var(--sub-header-sm);
@@ -247,21 +213,23 @@ const StepNumberWrapper = styled.div`
   }
 `;
 
-const StepNumber = styled.p`
+const StepNumber = styled.p<{ invert: boolean }>`
   display: grid;
   place-items: center;
   width: var(--step-number-size);
   height: var(--step-number-size);
-  background-color: var(--red);
+  background-color: var(${({ invert }) => (invert ? "--grey-800" : "--red")});
+  border-color: var(--grey-400);
+  border-width: ${({ invert }) => (invert ? "1px" : "0")};
   border-radius: 8px;
   font: var(--body-sm);
-  color: var(--white);
+  color: var(${({ invert }) => (invert ? "--grey-500" : "--white")});
   margin: 0;
   padding: 0;
 `;
 
-const StepLine = styled.div`
-  background: var(--red);
+const StepLine = styled.div<{ invert: boolean }>`
+  background: var(${({ invert }) => (invert ? "--grey-400" : "--red")});
   height: calc(100% + var(--step-padding-bottom));
   width: 1px;
   margin-left: calc(var(--step-number-size) / 2);
