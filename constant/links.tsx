@@ -37,19 +37,50 @@ export const socialLinks = [
     Icon: Discord,
   },
   {
-    href: "mailto:hello@umaproject.org",
-    Icon: Message,
+    href: "https://discourse.umaproject.org/",
+    Icon: Discourse,
   },
   {
     href: "https://twitter.com/UMAprotocol",
     Icon: Twitter,
   },
   {
-    href: "https://discourse.umaproject.org/",
-    Icon: Discourse,
+    href: "mailto:hello@umaproject.org",
+    Icon: Message,
   },
   {
     href: "https://github.com/UMAprotocol",
     Icon: Github,
   },
 ];
+
+export const footerLinks = {
+  internal: [
+    {
+      label: "How it works",
+      href: "#how-it-works",
+    },
+    {
+      label: "For voters",
+      href: "#voter",
+    },
+    {
+      label: "For builders",
+      href: "#builder",
+    },
+  ],
+  external: [
+    {
+      label: "Oracle",
+      href: "https://optimistic-oracle-dapp.vercel.app/",
+    },
+    {
+      label: "Docs",
+      href: "https://docs.umaproject.org/",
+    },
+    {
+      label: "Projects",
+      href: "https://projects.umaproject.org/",
+    },
+  ],
+};

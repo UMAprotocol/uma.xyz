@@ -13,3 +13,4 @@ export { SupportSection } from "./SupportSection/SupportSection";
 export { Tabs } from "./Tabs/Tabs";
 export { VoteParticipation } from "./VoteParticipation/VoteParticipation";
 export { VoteTicker } from "./VoteTicker/VoteTicker";
+export { MailChimpForm } from "./MailChimpForm/MailChimpForm";
