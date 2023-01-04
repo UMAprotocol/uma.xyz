@@ -169,9 +169,7 @@ const ActivityText = styled.p`
   }
 `;
 
-const LottieAnimation = styled(Lottie)`
-  /* scale: 1.5; */
-`;
+const LottieAnimation = styled(Lottie)``;
 
 const LottieWrapper = styled.div`
   max-width: var(--width);
