@@ -3,40 +3,56 @@ import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
-import { useRef } from "react";
+import { useState } from "react";
+import Lottie from "react-lottie-player";
 import styled from "styled-components";
 
 export function VoteParticipation() {
   const {
     data: { apy },
   } = useVotingInfo();
-  const stakeRef = useRef<LottieRefCurrentProps>(null);
-  const voteRef = useRef<LottieRefCurrentProps>(null);
-  const earnRef = useRef<LottieRefCurrentProps>(null);
+  const [playStake, setPlayStake] = useState(false);
+  const [playVote, setPlayVote] = useState(false);
+  const [playEarn, setPlayEarn] = useState(false);
+  // lottie uses 1 and -1 to indicate direction
+  const forward = 1;
+  const backward = -1;
+  type Direction = typeof forward | typeof backward;
+  const [stakeDirection, setStakeDirection] = useState<Direction>(forward);
+  const [voteDirection, setVoteDirection] = useState<Direction>(forward);
+  const [earnDirection, setEarnDirection] = useState<Direction>(forward);
 
   const activities = [
     {
       title: "Stake",
       text: "Stake your $UMA to help secure UMA's Optimistic Oracle.",
       animationData: stake,
-      ref: stakeRef,
+      play: playStake,
+      setPlay: setPlayStake,
+      direction: stakeDirection,
+      setDirection: setStakeDirection,
     },
     {
       title: "Vote",
       text: "Token holders who vote correctly and consistently earn higher APYs.",
       animationData: vote,
-      ref: voteRef,
+      play: playVote,
+      setPlay: setPlayVote,
+      direction: voteDirection,
+      setDirection: setVoteDirection,
     },
     {
       title: "Earn",
       text: `Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
       voters.`,
       animationData: earn,
-      ref: earnRef,
+      play: playEarn,
+      setPlay: setPlayEarn,
+      direction: earnDirection,
+      setDirection: setEarnDirection,
     },
   ];
 
@@ -50,23 +66,23 @@ export function VoteParticipation() {
         />
 
         <ActivitiesWrapper>
-          {activities.map(({ title, text, animationData, ref }) => (
+          {activities.map(({ title, text, animationData, play, setPlay, direction, setDirection }) => (
             <Activity
               key={title}
               onMouseOver={() => {
-                ref.current?.setDirection(1);
-                ref.current?.play();
+                setDirection(forward);
+                setPlay(true);
               }}
               onMouseOut={() => {
-                ref.current?.setDirection(-1);
-                ref.current?.play();
+                setDirection(backward);
+                setPlay(true);
               }}
             >
               <LottieWrapper>
                 <LottieAnimation
-                  lottieRef={ref}
                   loop={false}
-                  autoplay={false}
+                  play={play}
+                  direction={direction}
                   animationData={animationData}
                   rendererSettings={{
                     preserveAspectRatio: "xMidYMid slice",

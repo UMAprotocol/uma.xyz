@@ -1,14 +1,18 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { motion } from "framer-motion";
-import Lottie from "lottie-react";
+import { motion, useInView } from "framer-motion";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
+import { useRef } from "react";
+import Lottie from "react-lottie-player";
 import styled, { keyframes } from "styled-components";
 
 export function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref);
+
   const headerAnimation = {
     initial: {
       opacity: 0,
@@ -40,13 +44,13 @@ export function Hero() {
   }
 
   return (
-    <OuterWrapper>
+    <OuterWrapper ref={ref}>
       <Background
         initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <LottieHeroAnimation loop={true} autoplay={true} animationData={heroAnimation} />
+        <LottieHeroAnimation play={isInView} animationData={heroAnimation} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
