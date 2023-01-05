@@ -14,6 +14,14 @@ import styled from "styled-components";
 export function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();
   const howItWorksRef = useRef<HTMLDivElement>(null);
+  const step1Ref = useRef<HTMLDivElement>(null);
+  const step2Ref = useRef<HTMLDivElement>(null);
+  const step3Ref = useRef<HTMLDivElement>(null);
+  const step4Ref = useRef<HTMLDivElement>(null);
+  const step1IsInView = useInView(step1Ref);
+  const step2IsInView = useInView(step2Ref);
+  const step3IsInView = useInView(step3Ref);
+  const step4IsInView = useInView(step4Ref);
 
   useEffect(() => {
     setColorChangeSectionRef(howItWorksRef);
@@ -27,6 +35,8 @@ export function HowItWorks() {
       subText:
         "A natural-language statement is submitted along with a bond. The bond acts as a bounty for anyone to dispute it if they have evidence to the contrary.",
       animationData: sceneOne,
+      ref: step1Ref,
+      play: step1IsInView,
     },
     {
       header: "Challenge period",
@@ -34,6 +44,8 @@ export function HowItWorks() {
       subText:
         "Anyone can propose an answer to a data request, and it is accepted as true if it is not disputed during the challenge period.",
       animationData: sceneTwo,
+      ref: step2Ref,
+      play: step2IsInView,
     },
     {
       header: "Dispute",
@@ -42,6 +54,8 @@ export function HowItWorks() {
       successfully. As the game theory would predict, disputes are rare in practice because the incentives are
       always to be honest. That makes the OO “optimistic”.`,
       animationData: sceneThree,
+      ref: step3Ref,
+      play: step3IsInView,
     },
     {
       header: "Voting",
@@ -50,6 +64,8 @@ export function HowItWorks() {
       the human component, as voters, for the OO&apos;s final resolution on disputes or queries. Those who vote
       with the majority earn rewards.`,
       animationData: sceneFour,
+      ref: step4Ref,
+      play: step4IsInView,
     },
   ];
 
