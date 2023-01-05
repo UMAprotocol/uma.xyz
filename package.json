@@ -25,6 +25,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-focus-on": "^3.7.0",
+    "react-lottie-player": "^1.5.4",
     "react-mailchimp-subscribe": "^2.1.3",
     "styled-components": "^5.3.6"
   },
