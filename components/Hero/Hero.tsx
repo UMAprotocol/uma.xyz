@@ -1,7 +1,7 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
+import Lottie from "react-lottie-player";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
@@ -46,7 +46,7 @@ export function Hero() {
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <LottieHeroAnimation loop={true} autoplay={true} animationData={heroAnimation} />
+        <LottieHeroAnimation play animationData={heroAnimation} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>

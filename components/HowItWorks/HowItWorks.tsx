@@ -2,7 +2,7 @@ import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
-import Lottie from "lottie-react";
+import Lottie from "react-lottie-player";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
@@ -76,8 +76,7 @@ export function HowItWorks() {
             <LottieWrapper>
               <Lottie
                 animationData={animationData}
-                loop={true}
-                autoplay={true}
+                play
                 rendererSettings={{
                   preserveAspectRatio: "xMidYMid slice",
                 }}
