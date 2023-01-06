@@ -108,7 +108,7 @@ export function VoteParticipation() {
 }
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+  background: var(--white);
 `;
 
 const InnerWrapper = styled.div`
