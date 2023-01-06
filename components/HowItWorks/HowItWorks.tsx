@@ -1,7 +1,7 @@
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { useInView } from "framer-motion";
+import { grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
+import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
@@ -9,7 +9,7 @@ import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
 import { useEffect, useRef } from "react";
 import Lottie from "react-lottie-player";
-import styled, { CSSProperties } from "styled-components";
+import styled from "styled-components";
 
 export function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();
@@ -69,40 +69,82 @@ export function HowItWorks() {
     },
   ];
 
-  const style = {
-    "--lottie-width-desktop": "562px",
-    "--lottie-width-laptop-tablet": "754px",
-    "--lottie-width-mobile": "538px",
-  } as CSSProperties;
-
   return (
-    <OuterWrapper ref={howItWorksRef} id="how-it-works" style={style}>
+    <OuterWrapper ref={howItWorksRef} id="how-it-works">
       <InnerWrapper>
         <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
-        {steps.map(({ header, text, subText, animationData, ref, play }, index, arr) => (
-          <StepWrapper ref={ref} key={header}>
-            <StepNumberWrapper>
-              <StepNumber invert={index % 2 === 1}>0{index + 1}</StepNumber>
-              {index < arr.length - 1 && <StepLine invert={index % 2 === 1} />}
-            </StepNumberWrapper>
-            <StepDescription>
-              <StepHeader invert={index % 2 == 1}>{header}</StepHeader>
-              <StepText>{text}</StepText>
-              <StepSubText>{subText}</StepSubText>
-            </StepDescription>
-            <LottieWrapper>
-              <Lottie
-                animationData={animationData}
-                play={play}
-                rendererSettings={{
-                  preserveAspectRatio: "xMidYMid slice",
-                }}
-              />
-            </LottieWrapper>
-          </StepWrapper>
+        {steps.map(({ header, text, subText, animationData }, index) => (
+          <Step
+            key={header}
+            header={header}
+            text={text}
+            subText={subText}
+            animationData={animationData}
+            index={index}
+          />
         ))}
       </InnerWrapper>
     </OuterWrapper>
+  );
+}
+
+interface StepProps {
+  header: string;
+  text: string;
+  subText: string;
+  animationData: object;
+  index: number;
+}
+function Step({ header, text, subText, animationData, index }: StepProps) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const play = useInView(wrapperRef);
+  const { scrollYProgress } = useScroll({
+    target: lineRef,
+    offset: ["-100%", "start"],
+  });
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  return (
+    <StepWrapper ref={wrapperRef} key={header}>
+      <StepNumberWrapper>
+        <StepNumber
+          initial={{
+            backgroundColor: white,
+            color: grey500,
+            border: `1px solid ${grey500}`,
+          }}
+          whileInView={{
+            backgroundColor: red,
+            color: white,
+            border: `1px solid ${red}`,
+          }}
+        >
+          0{index + 1}
+        </StepNumber>
+        <StepLineOuter ref={lineRef}>
+          <StepLineInner style={{ scaleY }} />
+        </StepLineOuter>
+      </StepNumberWrapper>
+      <StepDescription>
+        <StepHeader>{header}</StepHeader>
+        <StepText>{text}</StepText>
+        <StepSubText>{subText}</StepSubText>
+      </StepDescription>
+      <LottieWrapper>
+        <Lottie
+          animationData={animationData}
+          play={play}
+          rendererSettings={{
+            preserveAspectRatio: "xMidYMid slice",
+          }}
+        />
+      </LottieWrapper>
+    </StepWrapper>
   );
 }
 
@@ -184,11 +226,11 @@ const StepDescription = styled.div`
   }
 `;
 
-const StepHeader = styled.h3<{ invert: boolean }>`
+const StepHeader = styled.h3`
   text-transform: uppercase;
   letter-spacing: 0.09rem;
   font: var(--sub-header);
-  color: ${({ invert }) => (invert ? "var(--grey-500)" : "var(--red)")};
+  color: var(--red);
 
   @media ${mobileAndUnder} {
     font: var(--sub-header-sm);
@@ -229,29 +271,37 @@ const StepNumberWrapper = styled.div`
   }
 `;
 
-const StepNumber = styled.p<{ invert: boolean }>`
+const StepNumber = styled(motion.p)`
   display: grid;
   place-items: center;
   width: var(--step-number-size);
   height: var(--step-number-size);
-  background-color: var(${({ invert }) => (invert ? "--grey-800" : "--red")});
-  border-color: var(--grey-400);
-  border-width: ${({ invert }) => (invert ? "1px" : "0")};
   border-radius: 8px;
   font: var(--body-sm);
-  color: var(${({ invert }) => (invert ? "--grey-500" : "--white")});
   margin: 0;
   padding: 0;
+  transition: background-color var(--animation-duration), color var(--animation-duration),
+    border-color var(--animation-duration);
 `;
 
-const StepLine = styled.div<{ invert: boolean }>`
-  background: var(${({ invert }) => (invert ? "--grey-400" : "--red")});
+const StepLineOuter = styled.div`
+  background: var(--grey-500);
   height: calc(100% + var(--step-padding-bottom));
   width: 1px;
   margin-left: calc(var(--step-number-size) / 2);
 
   @media ${laptopAndUnder} {
     height: 100%;
+    background: linear-gradient(180deg, var(--grey-500) 0%, rgba(176, 175, 179, 0) 100%);
+  }
+`;
+
+const StepLineInner = styled(motion.div)`
+  height: 100%;
+  width: 1px;
+  background: var(--red);
+  transform-origin: top;
+  @media ${laptopAndUnder} {
     background: linear-gradient(180deg, var(--red) 0%, rgba(176, 175, 179, 0) 100%);
   }
 `;
