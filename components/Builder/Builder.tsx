@@ -1,15 +1,16 @@
 import { Tabs } from "components";
+import { SectionHeader } from "components/SectionHeader/SectionHeader";
+import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import OO from "public/assets/oo-logo.svg";
 import styled from "styled-components";
-import { BaseOuterWrapper } from "components/style/Wrappers";
-import { SectionHeader } from "components/SectionHeader/SectionHeader";
 
 export function Builder() {
   return (
     <OuterWrapper id="builder">
       <InnerWrapper>
         <SectionHeader
+          hasCircleFilter={false}
           title={{ text: "Participate as a", redSuffix: "Builder" }}
           header={
             <>
@@ -29,7 +30,7 @@ export function Builder() {
 }
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  background: var(--white);
+  background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%);
 `;
 
 const InnerWrapper = styled.div`

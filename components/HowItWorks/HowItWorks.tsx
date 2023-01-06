@@ -134,7 +134,7 @@ function Step({ header, text, subText, animationData, index }: StepProps) {
 }
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 100%);
+  background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%);
 `;
 
 const InnerWrapper = styled.div`
