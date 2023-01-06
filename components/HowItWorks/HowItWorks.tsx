@@ -103,7 +103,7 @@ function Step({ header, text, subText, animationData, index }: StepProps) {
     target: lineRef,
     offset: ["-100%", "start"],
   });
-  const scaleY = useSpring(scrollYProgress, {
+  const spring = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
@@ -123,11 +123,12 @@ function Step({ header, text, subText, animationData, index }: StepProps) {
             color: white,
             border: `1px solid ${red}`,
           }}
+          transition={spring}
         >
           0{index + 1}
         </StepNumber>
         <StepLineOuter ref={lineRef}>
-          <StepLineInner style={{ scaleY }} />
+          <StepLineInner style={{ scaleY: spring }} />
         </StepLineOuter>
       </StepNumberWrapper>
       <StepDescription>
