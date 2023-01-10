@@ -99,6 +99,8 @@ const Background = styled(motion.div)`
 `;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
+  display: grid;
+  place-items: center;
   padding-top: 0;
   height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
   width: 100%;
