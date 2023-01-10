@@ -91,7 +91,6 @@ export function Hero() {
 
 const Background = styled(motion.div)`
   position: absolute;
-  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -248,5 +247,6 @@ const OOLogoIcon = styled(OOLogo)`
 `;
 
 const LottieHeroAnimation = styled(Lottie)`
-  scale: 0.8; /* scale the animation down by 20% */
+  width: 80%;
+  margin-inline: auto;
 `;
