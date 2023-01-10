@@ -212,8 +212,7 @@ const StepDescription = styled.div`
 `;
 
 const StepHeader = styled.h3`
-  text-transform: uppercase;
-  letter-spacing: 0.09rem;
+  text-transform: capitalize;
   font: var(--sub-header);
   color: var(--red);
 
