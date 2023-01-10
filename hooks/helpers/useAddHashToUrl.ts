@@ -1,13 +1,35 @@
-import { useInView } from "framer-motion";
-import { RefObject, useEffect } from "react";
+import { RefObject, useEffect, useState } from "react";
+import { useMounted } from "./useMounted";
 
-export function useAddHashToUrl(id: string, wrapperRef: RefObject<HTMLDivElement>, amount = 0.1) {
-  const isInView = useInView(wrapperRef, { amount });
+export function useAddHashToUrl(id: string, wrapperRef: RefObject<HTMLDivElement>) {
+  const [scrollY, setScrollY] = useState(0);
+  const mounted = useMounted();
 
   useEffect(() => {
-    if (isInView) {
+    if (typeof window === "undefined") return;
+
+    const handleScroll = () => {
+      setScrollY(window.pageYOffset);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mounted]);
+
+  useEffect(() => {
+    const middleOfScreenY = window.innerHeight / 2;
+
+    if (wrapperRef.current && isIntersecting(wrapperRef.current)) {
       window.history.pushState({}, "", `#${id}`);
     }
+
+    function isIntersecting(element: HTMLDivElement) {
+      if (typeof window === "undefined") return false;
+      const { top, bottom } = element.getBoundingClientRect();
+      return top < middleOfScreenY && bottom > middleOfScreenY;
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInView]);
+  }, [scrollY, wrapperRef.current]);
 }
