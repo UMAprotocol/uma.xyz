@@ -1,20 +1,21 @@
 import { grey100, grey400, links, red, tabletAndUnder, white } from "constant";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
 import styled from "styled-components";
 import { isExternalLink } from "utils";
-import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 
 interface Props {
   isLightTheme: boolean;
 }
 
 export function DesktopHeader({ isLightTheme }: Props) {
-  const router = useRouter();
-  const isActive = (href: string) => router.asPath === `/${href}`;
+  const isActive = (href: string) => {
+    if (typeof window === "undefined") return false;
+    return window.location.href.includes(href);
+  };
 
   return (
     <Wrapper>
