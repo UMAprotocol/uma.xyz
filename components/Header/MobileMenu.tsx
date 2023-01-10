@@ -46,19 +46,18 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
 
 export const Wrapper = styled.nav`
   width: 100%;
-  min-height: calc(100vh - 56px - 68px);
+  min-height: calc(100vh - 124px);
   position: absolute;
-  padding-top: 56px;
   top: 56px;
   left: 0;
   background: var(--background);
   transform: var(--transform);
   opacity: var(--opacity);
   pointer-events: var(--pointer-events);
-  transition: transform var(--animation-duration) ease-out, opacity var(--animation-duration) ease-out;
+  transition: transform var(--animation-duration), opacity var(--animation-duration);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -81,6 +80,8 @@ const Links = styled.div`
   display: grid;
   place-items: center;
   gap: 16px;
+  margin-top: 25%;
+  margin-block: auto;
 `;
 
 const SocialLinks = styled.div`
