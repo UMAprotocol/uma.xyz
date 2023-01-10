@@ -3,6 +3,7 @@ import { BaseOuterWrapper } from "components/style/Wrappers";
 import { grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import sceneOne from "public/assets/lottie/scene-1.json";
 import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
@@ -13,12 +14,15 @@ import styled from "styled-components";
 
 export function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();
-  const howItWorksRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const id = "how-it-works";
+
+  useAddHashToUrl(id, wrapperRef);
 
   useEffect(() => {
-    setColorChangeSectionRef(howItWorksRef);
+    setColorChangeSectionRef(wrapperRef);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [howItWorksRef.current]);
+  }, [wrapperRef.current]);
 
   const steps = [
     {
@@ -54,7 +58,7 @@ export function HowItWorks() {
   ];
 
   return (
-    <OuterWrapper ref={howItWorksRef} id="how-it-works">
+    <OuterWrapper ref={wrapperRef} id={id}>
       <InnerWrapper>
         <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
         {steps.map(({ header, text, subText, animationData }, index) => (

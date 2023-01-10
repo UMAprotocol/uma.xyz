@@ -1,11 +1,17 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
+import { useRef } from "react";
 import styled from "styled-components";
 
 export function SupportSection() {
+  const id = "support";
+  const ref = useRef<HTMLDivElement>(null);
+  useAddHashToUrl(id, ref);
+
   return (
-    <OuterWrapper>
+    <OuterWrapper id={id} ref={ref}>
       <Background>
         <Video autoPlay loop muted playsInline>
           <source src="/assets/uma.xyz.mp4" type="video/mp4" />
