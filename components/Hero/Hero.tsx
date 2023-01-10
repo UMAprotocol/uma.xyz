@@ -13,7 +13,7 @@ import styled, { keyframes } from "styled-components";
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
-  useAddHashToUrl("", ref, 0.7);
+  useAddHashToUrl("", ref);
 
   const headerAnimation = {
     initial: {
