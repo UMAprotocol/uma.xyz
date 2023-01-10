@@ -12,10 +12,10 @@ interface Props {
 }
 
 export function DesktopHeader({ isLightTheme }: Props) {
-  const isActive = (href: string) => {
+  function isActive(href: string) {
     if (typeof window === "undefined") return false;
     return window.location.href.includes(href);
-  };
+  }
 
   return (
     <Wrapper>
