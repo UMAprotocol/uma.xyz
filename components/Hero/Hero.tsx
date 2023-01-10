@@ -218,14 +218,14 @@ const OOLogoIcon = styled(OOLogo)`
   }
   width: var(--width);
   height: var(--height);
-  --desktop-width: 164px;
-  --desktop-height: 82px;
-  --laptop-width: 124px;
-  --laptop-height: 62px;
-  --tablet-width: 114px;
-  --tablet-height: 57px;
-  --mobile-width: 64px;
-  --mobile-height: 32px;
+  --desktop-width: 166px;
+  --desktop-height: 83px;
+  --laptop-width: 126px;
+  --laptop-height: 64px;
+  --tablet-width: 116px;
+  --tablet-height: 58px;
+  --mobile-width: 66px;
+  --mobile-height: 36px;
   --width: var(--desktop-width);
   --height: var(--desktop-height);
 
