@@ -196,13 +196,11 @@ const StepDescription = styled.div`
   grid-area: description;
   max-width: var(--width);
   margin-top: 16px;
-  --width-desktop: 464px;
-  --width-laptop: 640px;
+  --width-laptop-desktop: 464px;
   --width-tablet: 720px;
   --width-mobile: 100%;
-  --width: var(--width-desktop);
+  --width: var(--width-laptop-desktop);
   @media ${laptopAndUnder} {
-    --width: var(--width-laptop);
     margin-top: 0;
     margin-bottom: 96px;
   }
