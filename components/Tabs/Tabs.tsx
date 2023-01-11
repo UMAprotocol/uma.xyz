@@ -161,7 +161,12 @@ contract OO_GettingStarted {
           theme={githubLight}
         >
           <SandpackLayout>
-            <SandpackCodeViewer code={codeExamples[activeTabIndex]} showLineNumbers wrapContent initMode="lazy" />
+            <SandpackCodeViewer
+              code={codeExamples[activeTabIndex]}
+              showLineNumbers
+              wrapContent
+              initMode="user-visible"
+            />
           </SandpackLayout>
         </SandpackProvider>
         <RemixLinkWrapper>

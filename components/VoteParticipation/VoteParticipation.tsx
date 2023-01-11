@@ -1,4 +1,5 @@
 import { AnimatedLink, Divider } from "components";
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
@@ -8,7 +9,6 @@ import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
 import { useRef, useState } from "react";
-import Lottie from "react-lottie-player";
 import styled from "styled-components";
 
 export function VoteParticipation() {
@@ -83,15 +83,7 @@ export function VoteParticipation() {
               }}
             >
               <LottieWrapper>
-                <LottieAnimation
-                  loop={false}
-                  play={play}
-                  direction={direction}
-                  animationData={animationData}
-                  rendererSettings={{
-                    preserveAspectRatio: "xMidYMid slice",
-                  }}
-                />
+                <LottieAnimation loop={false} play={play} direction={direction} animationData={animationData} />
               </LottieWrapper>
               <ActivityDescription>
                 <ActivityTitle>{title}</ActivityTitle>
@@ -188,8 +180,6 @@ const ActivityText = styled.p`
     font: var(--body-sm);
   }
 `;
-
-const LottieAnimation = styled(Lottie)``;
 
 const LottieWrapper = styled.div`
   max-width: var(--width);

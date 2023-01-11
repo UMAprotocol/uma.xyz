@@ -1,3 +1,4 @@
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
@@ -9,7 +10,6 @@ import sceneTwo from "public/assets/lottie/scene-2.json";
 import sceneThree from "public/assets/lottie/scene-3.json";
 import sceneFour from "public/assets/lottie/scene-4.json";
 import { useEffect, useRef } from "react";
-import Lottie from "react-lottie-player";
 import styled from "styled-components";
 
 export function HowItWorks() {
@@ -129,13 +129,7 @@ function Step({ header, text, subText, animationData, index, isLast }: StepProps
         <StepSubText>{subText}</StepSubText>
       </StepDescription>
       <LottieWrapper>
-        <Lottie
-          animationData={animationData}
-          play={play}
-          rendererSettings={{
-            preserveAspectRatio: "xMidYMid slice",
-          }}
-        />
+        <LottieAnimation animationData={animationData} play={play} />
       </LottieWrapper>
     </StepWrapper>
   );

@@ -7,7 +7,7 @@ import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
-import Lottie from "react-lottie-player";
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import styled, { keyframes } from "styled-components";
 
 export function Hero() {
@@ -248,7 +248,7 @@ const OOLogoIcon = styled(OOLogo)`
   }
 `;
 
-const LottieHeroAnimation = styled(Lottie)`
+const LottieHeroAnimation = styled(LottieAnimation)`
   width: 80%;
   margin-inline: auto;
 `;

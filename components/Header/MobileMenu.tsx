@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { useRef } from "react";
-import Lottie from "react-lottie-player";
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
 
@@ -126,6 +126,6 @@ const ExternalLinkIcon = styled(SmUpRightArrow)`
   margin-left: 8px;
 `;
 
-const LottieHeroAnimation = styled(Lottie)`
+const LottieHeroAnimation = styled(LottieAnimation)`
   margin-inline: auto;
 `;
