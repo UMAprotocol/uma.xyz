@@ -2,6 +2,7 @@ import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
 import { Divider } from "components/Divider/Divider";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder } from "constant";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
 import BobaLogo from "public/assets/boba.svg";
@@ -12,6 +13,7 @@ import PolymarketLogo from "public/assets/polymarket.svg";
 import ShapeshiftLogo from "public/assets/shapeshift.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
+import { useRef } from "react";
 import styled, { CSSProperties } from "styled-components";
 
 type Project = {
@@ -21,6 +23,10 @@ type Project = {
 };
 
 export function Projects() {
+  const id = "projects";
+  const ref = useRef<HTMLDivElement>(null);
+  useAddHashToUrl(id, ref);
+
   const topRow = [
     {
       name: "Across",
@@ -71,7 +77,7 @@ export function Projects() {
   ];
 
   return (
-    <OuterWrapper>
+    <OuterWrapper id={id} ref={ref}>
       <InnerWrapper>
         <TextWrapper>
           <Header>Projects built with the OO</Header>

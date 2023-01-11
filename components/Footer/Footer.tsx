@@ -1,15 +1,21 @@
 import { MailChimpForm, VoteTicker } from "components";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { footerLinks, laptopAndUnder, mobileAndUnder, socialLinks, tabletAndUnder } from "constant";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import UmaLogo from "public/assets/uma-logo.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
+import { useRef } from "react";
 import styled from "styled-components";
 import { isExternalLink } from "utils";
 
 export function Footer() {
+  const id = "contact";
+  const ref = useRef<HTMLDivElement>(null);
+  useAddHashToUrl(id, ref);
+
   return (
-    <OuterWrapper as="footer">
+    <OuterWrapper id={id} ref={ref} as="footer">
       <VoteTickerWrapper>
         <VoteTicker isLightTheme />
       </VoteTickerWrapper>

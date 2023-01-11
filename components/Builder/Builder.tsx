@@ -2,12 +2,18 @@ import { Tabs } from "components";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import OO from "public/assets/oo-logo.svg";
+import { useRef } from "react";
 import styled from "styled-components";
 
 export function Builder() {
+  const id = "builder";
+  const ref = useRef<HTMLDivElement>(null);
+  useAddHashToUrl(id, ref);
+
   return (
-    <OuterWrapper id="builder">
+    <OuterWrapper ref={ref} id={id}>
       <InnerWrapper>
         <SectionHeader
           hasCircleFilter={false}
