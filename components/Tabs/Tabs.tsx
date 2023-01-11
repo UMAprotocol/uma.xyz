@@ -212,6 +212,7 @@ const TabsList = styled(List)`
   gap: 12px;
   align-items: center;
   margin-bottom: 56px;
+  border-bottom: 1px solid var(--grey-600);
   @media ${tabletAndUnder} {
     margin-bottom: 0;
   }
@@ -220,7 +221,7 @@ const TabsList = styled(List)`
 const ActiveIndicator = styled.div`
   --width: calc(100% / 5);
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   height: 3px;
   width: var(--width);
