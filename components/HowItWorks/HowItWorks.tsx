@@ -182,7 +182,7 @@ const LottieWrapper = styled.div`
   grid-area: lottie;
   --width-desktop: 562px;
   --width-laptop-tablet: 754px;
-  --width-mobile: 538px;
+  --width-mobile: 100%;
   --width: var(--width-desktop);
   @media ${laptopAndUnder} {
     --width: var(--width-laptop-tablet);
