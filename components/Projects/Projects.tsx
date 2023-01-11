@@ -78,7 +78,7 @@ export function Projects() {
           <DividerWrapper>
             <Divider />
           </DividerWrapper>
-          <AnimatedLink href="https://projects.umaproject.org/">All Projects</AnimatedLink>
+          <AnimatedLink href="https://projects.umaproject.org/">All projects</AnimatedLink>
         </TextWrapper>
         <ProjectsWrapper>
           <ProjectRow projects={topRow} line="top" />
@@ -153,6 +153,7 @@ const InnerWrapper = styled.div`
   gap: min(6vw, 18px);
 
   @media ${mobileAndUnder} {
+    gap: 44px;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
   }
@@ -247,18 +248,6 @@ const Header = styled.h2`
   @media ${mobileAndUnder} {
     margin-bottom: 12px;
     font: var(--header-sm);
-  }
-`;
-
-const SubHeader = styled.h3`
-  font: var(--body-lg);
-  margin-top: 24px;
-  margin-bottom: 48px;
-
-  @media ${mobileAndUnder} {
-    margin-top: 12px;
-    margin-bottom: 32px;
-    font: var(--body-md);
   }
 `;
 
