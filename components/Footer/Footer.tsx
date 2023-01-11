@@ -81,6 +81,7 @@ const InnerWrapper = styled.div`
   margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding-top: 48px;
 
   @media ${tabletAndUnder} {
     display: flex;
@@ -88,7 +89,6 @@ const InnerWrapper = styled.div`
   }
 
   @media ${mobileAndUnder} {
-    padding-top: 48px;
     flex-direction: column-reverse;
   }
 `;
