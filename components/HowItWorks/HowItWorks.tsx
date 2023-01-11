@@ -65,6 +65,7 @@ export function HowItWorks() {
             subText={subText}
             animationData={animationData}
             index={index}
+            isLast={index === steps.length - 1}
           />
         ))}
       </InnerWrapper>
@@ -78,8 +79,9 @@ interface StepProps {
   subText: string;
   animationData: object;
   index: number;
+  isLast: boolean;
 }
-function Step({ header, text, subText, animationData, index }: StepProps) {
+function Step({ header, text, subText, animationData, index, isLast }: StepProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const play = useInView(wrapperRef);
@@ -111,9 +113,11 @@ function Step({ header, text, subText, animationData, index }: StepProps) {
         >
           0{index + 1}
         </StepNumber>
-        <StepLineOuter ref={lineRef}>
-          <StepLineInner style={{ scaleY: spring }} />
-        </StepLineOuter>
+        {!isLast && (
+          <StepLineOuter ref={lineRef}>
+            <StepLineInner style={{ scaleY: spring }} />
+          </StepLineOuter>
+        )}
       </StepNumberWrapper>
       <StepDescription>
         <StepHeader>{header}</StepHeader>
