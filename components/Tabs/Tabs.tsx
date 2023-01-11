@@ -182,6 +182,10 @@ const RemixLinkWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${tabletAndUnder} {
+    justify-content: start;
+  }
 `;
 
 const TabsRoot = styled(Root)`
@@ -249,9 +253,12 @@ const DesktopTabsTriggerTitle = styled.h3`
 
 const MobileTabsTriggerTitle = styled(DesktopTabsTriggerTitle)`
   display: none;
-  font: var(--body-xs);
+  font: var(--body-md);
   @media ${tabletAndUnder} {
     display: block;
+  }
+  @media ${mobileAndUnder} {
+    font: var(--body-xs);
   }
 `;
 
