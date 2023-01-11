@@ -1,6 +1,6 @@
 import Discord from "public/assets/discord.svg";
+import Medium from "public/assets/medium.svg";
 import Discourse from "public/assets/discourse.svg";
-import Message from "public/assets/message.svg";
 import Github from "public/assets/github.svg";
 import Twitter from "public/assets/twitter.svg";
 
@@ -37,16 +37,16 @@ export const socialLinks = [
     Icon: Discord,
   },
   {
-    href: "https://discourse.umaproject.org/",
-    Icon: Discourse,
+    href: "https://medium.com/uma-project",
+    Icon: Medium,
   },
   {
     href: "https://twitter.com/UMAprotocol",
     Icon: Twitter,
   },
   {
-    href: "mailto:hello@umaproject.org",
-    Icon: Message,
+    href: "http://discourse.umaproject.org",
+    Icon: Discourse,
   },
   {
     href: "https://github.com/UMAprotocol",
