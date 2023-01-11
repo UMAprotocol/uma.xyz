@@ -1,19 +1,23 @@
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion, useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
-import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
-import { useRef } from "react";
-import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
+import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
   useAddHashToUrl("", ref);
+  const [animationData, setAnimationData] = useState<object>();
+
+  useEffect(() => {
+    void import("public/assets/lottie/hero.json").then(setAnimationData);
+  }, []);
 
   const headerAnimation = {
     initial: {
@@ -52,7 +56,7 @@ export function Hero() {
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <LottieHeroAnimation play={isInView} animationData={heroAnimation} />
+        <LottieHeroAnimation play={isInView} animationData={animationData} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
