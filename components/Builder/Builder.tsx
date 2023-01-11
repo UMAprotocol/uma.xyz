@@ -15,7 +15,10 @@ export function Builder() {
           header={
             <>
               {" "}
-              <span>Launch products with the</span>
+              <span>
+                Launch products with
+                <br /> the
+              </span>
               <OOIconWrapper>
                 <OOIcon />
               </OOIconWrapper>
