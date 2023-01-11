@@ -1,12 +1,13 @@
-import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { grey200, grey500, links, socialLinks, white } from "constant";
 import { useInView } from "framer-motion";
+import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { useEffect, useRef, useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
 
+const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
 interface Props {
   show: boolean;
   hide: () => void;

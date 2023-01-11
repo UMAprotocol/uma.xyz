@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { GlobalStyle } from "components";
 import { HeaderProvider } from "contexts";
 import type { AppProps } from "next/app";
@@ -19,7 +18,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Head>
         <Component {...pageProps} />
       </HeaderProvider>
-      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }

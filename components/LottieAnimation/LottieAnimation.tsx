@@ -6,7 +6,7 @@ interface Props {
   direction?: 1 | -1;
   loop?: boolean;
 }
-export function LottieAnimation({ animationData, play, direction = 1, loop = true }: Props) {
+export default function LottieAnimation({ animationData, play, direction = 1, loop = true }: Props) {
   if (!animationData) return null;
 
   return (

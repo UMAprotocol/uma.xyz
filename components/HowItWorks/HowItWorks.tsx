@@ -1,12 +1,14 @@
-import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+
+const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
 
 export function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();

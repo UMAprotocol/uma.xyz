@@ -1,12 +1,14 @@
 import { AnimatedLink, Divider } from "components";
-import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+
+const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
 
 export function VoteParticipation() {
   const id = "voter";

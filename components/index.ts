@@ -10,7 +10,7 @@ export { Layout } from "./Layout/Layout";
 export { Home } from "./pages/Home/Home";
 export { Projects } from "./Projects/Projects";
 export { SupportSection } from "./SupportSection/SupportSection";
-export { Tabs } from "./Tabs/Tabs";
+export { default as Tabs } from "./Tabs/Tabs";
 export { VoteParticipation } from "./VoteParticipation/VoteParticipation";
 export { VoteTicker } from "./VoteTicker/VoteTicker";
 export { MailChimpForm } from "./MailChimpForm/MailChimpForm";

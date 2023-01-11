@@ -1,9 +1,9 @@
-import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
 import { Divider } from "components";
 import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
 import { mobileAndUnder, tabletAndUnder } from "constant";
+import dynamic from "next/dynamic";
 import Globe from "public/assets/globe.svg";
 import Scale from "public/assets/scale.svg";
 import Telescope from "public/assets/telescope.svg";
@@ -12,7 +12,11 @@ import Wand from "public/assets/wand.svg";
 import { useState } from "react";
 import styled, { css, CSSProperties, keyframes } from "styled-components";
 
-export function Tabs() {
+const SandpackCodeViewer = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackCodeViewer));
+const SandpackLayout = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackLayout));
+const SandpackProvider = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackProvider));
+
+export default function Tabs() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const polymarketCode = `pragma solidity ^0.8.14;

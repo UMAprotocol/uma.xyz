@@ -1,11 +1,13 @@
-import { Tabs } from "components";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import dynamic from "next/dynamic";
 import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled from "styled-components";
+
+const Tabs = dynamic(() => import("components/Tabs/Tabs"));
 
 export function Builder() {
   const id = "builder";

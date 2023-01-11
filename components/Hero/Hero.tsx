@@ -1,13 +1,15 @@
-import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion, useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
+
+const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
