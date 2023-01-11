@@ -88,7 +88,7 @@ const Video = styled.video`
 
 const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
-  min-height: calc(100vh - var(--header-blur-height));
+  padding-top: 0;
   padding-bottom: 24px;
   position: relative;
 `;

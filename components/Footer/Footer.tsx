@@ -61,7 +61,7 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
 const ExternalLinkIcon = styled(UpRightArrowBlack)``;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  min-height: 100vh;
+  min-height: min(100vh, 1000px);
   display: grid;
   grid-template-rows: auto 1fr auto;
   background: var(--grey-700);
@@ -164,7 +164,7 @@ const FormWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
-  justify-items: center;
+  justify-items: end;
 
   @media ${tabletAndUnder} {
     justify-items: start;
