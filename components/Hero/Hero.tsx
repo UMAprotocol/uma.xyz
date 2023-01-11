@@ -1,6 +1,7 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion, useInView } from "framer-motion";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import heroAnimation from "public/assets/lottie/hero_animation.json";
@@ -12,6 +13,7 @@ import styled, { keyframes } from "styled-components";
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
+  useAddHashToUrl("", ref);
 
   const headerAnimation = {
     initial: {

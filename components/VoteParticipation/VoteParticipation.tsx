@@ -3,14 +3,18 @@ import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import earn from "public/assets/lottie/earn.json";
 import stake from "public/assets/lottie/stake.json";
 import vote from "public/assets/lottie/vote.json";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Lottie from "react-lottie-player";
 import styled from "styled-components";
 
 export function VoteParticipation() {
+  const id = "voter";
+  const ref = useRef<HTMLDivElement>(null);
+  useAddHashToUrl(id, ref);
   const {
     data: { apy },
   } = useVotingInfo();
@@ -57,7 +61,7 @@ export function VoteParticipation() {
   ];
 
   return (
-    <OuterWrapper id="voter">
+    <OuterWrapper ref={ref} id={id}>
       <InnerWrapper>
         <SectionHeader
           title={{ text: "Participate as a", redSuffix: "Voter" }}
