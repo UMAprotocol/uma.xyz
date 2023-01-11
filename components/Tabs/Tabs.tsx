@@ -177,7 +177,8 @@ const SandpackWrapper = styled.div`
 `;
 
 const RemixLinkWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 26px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
