@@ -61,7 +61,6 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
 const ExternalLinkIcon = styled(UpRightArrowBlack)``;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
-  min-height: min(100vh, 1000px);
   display: grid;
   grid-template-rows: auto 1fr auto;
   background: var(--grey-700);
@@ -80,21 +79,17 @@ const InnerWrapper = styled.div`
   width: 100%;
   max-width: var(--page-width);
   margin-inline: auto;
-  margin-top: 96px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 
   @media ${tabletAndUnder} {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    gap: 64px;
-    justify-content: start;
+    display: flex;
+    flex-direction: column;
   }
 
   @media ${mobileAndUnder} {
-    gap: 24px;
-    margin-top: 50px;
-    justify-content: center;
+    padding-top: 48px;
+    flex-direction: column-reverse;
   }
 `;
 
@@ -109,6 +104,7 @@ const LinksWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: start;
+  margin-block: 56px;
 
   @media ${laptopAndUnder} {
     grid-template-columns: auto;
@@ -120,7 +116,6 @@ const LinksWrapper = styled.div`
   @media ${mobileAndUnder} {
     grid-row-start: 2;
     justify-content: center;
-    margin: calc(80px - 24px) 0;
   }
 `;
 
@@ -162,18 +157,18 @@ const Link = styled(NextLink)`
 
 const FormWrapper = styled.div`
   width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  justify-items: end;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 
   @media ${tabletAndUnder} {
-    justify-items: start;
+    align-items: start;
     margin-bottom: 96px;
   }
 
   @media ${mobileAndUnder} {
-    grid-row-start: 1;
-    justify-items: center;
+    gap: 24px;
+    align-items: center;
     margin-bottom: 0;
   }
 `;
@@ -192,8 +187,7 @@ const FormTitle = styled.h3`
   }
   @media ${mobileAndUnder} {
     text-align: center;
-    margin-top: 24px;
-    margin-bottom: 36px;
+    margin: 0;
   }
 `;
 
@@ -221,7 +215,7 @@ const SubFooter = styled.div`
   margin-bottom: 64px;
 
   @media ${mobileAndUnder} {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 24px;
   }
 `;
