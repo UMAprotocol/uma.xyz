@@ -1,6 +1,10 @@
 import { grey200, grey500, links, socialLinks, white } from "constant";
+import { useInView } from "framer-motion";
 import NextLink from "next/link";
+import heroAnimation from "public/assets/lottie/hero_animation.json";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
+import { useRef } from "react";
+import Lottie from "react-lottie-player";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
 
@@ -11,8 +15,12 @@ interface Props {
 }
 
 export function MobileMenu({ show, hide, isLightTheme }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref);
+
   return (
     <Wrapper
+      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Menu"
@@ -26,6 +34,9 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
         } as CSSProperties
       }
     >
+      <Background>
+        <LottieHeroAnimation play={isInView} animationData={heroAnimation} />
+      </Background>
       <Links>
         {links.map(({ href, label }) => (
           <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
@@ -59,6 +70,14 @@ export const Wrapper = styled.nav`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const Background = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.15;
 `;
 
 const Link = styled(NextLink)`
@@ -105,4 +124,8 @@ const SocialLink = styled(NextLink)`
 
 const ExternalLinkIcon = styled(SmUpRightArrow)`
   margin-left: 8px;
+`;
+
+const LottieHeroAnimation = styled(Lottie)`
+  margin-inline: auto;
 `;
