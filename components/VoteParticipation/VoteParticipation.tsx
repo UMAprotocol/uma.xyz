@@ -189,10 +189,10 @@ const LottieAnimation = styled(Lottie)``;
 
 const LottieWrapper = styled.div`
   max-width: var(--width);
-  margin-left: -24px;
-  --desktop-width: 154px;
-  --tablet-width: 92px;
-  --mobile-width: 62px;
+  margin-left: -32px;
+  --desktop-width: 228px;
+  --tablet-width: 128px;
+  --mobile-width: 92px;
   --width: var(--desktop-width);
   transform: translateY(var(--translate-y));
   transition: transform var(--animation-duration);
@@ -211,7 +211,7 @@ const LottieWrapper = styled.div`
 `;
 
 const DividerWrapper = styled.div`
-  margin-top: 72px;
+  margin-top: 24px;
   margin-bottom: 24px;
 `;
 
