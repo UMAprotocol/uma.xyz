@@ -75,7 +75,6 @@ export function Projects() {
       <InnerWrapper>
         <TextWrapper>
           <Header>Projects built with the OO</Header>
-          <SubHeader>UMA&apos;s oracle serves diverse use cases</SubHeader>
           <DividerWrapper>
             <Divider />
           </DividerWrapper>
