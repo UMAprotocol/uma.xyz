@@ -161,7 +161,12 @@ contract OO_GettingStarted {
           theme={githubLight}
         >
           <SandpackLayout>
-            <SandpackCodeViewer code={codeExamples[activeTabIndex]} showLineNumbers wrapContent initMode="lazy" />
+            <SandpackCodeViewer
+              code={codeExamples[activeTabIndex]}
+              showLineNumbers
+              wrapContent
+              initMode="user-visible"
+            />
           </SandpackLayout>
         </SandpackProvider>
         <RemixLinkWrapper>
@@ -177,10 +182,15 @@ const SandpackWrapper = styled.div`
 `;
 
 const RemixLinkWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 26px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${tabletAndUnder} {
+    justify-content: start;
+  }
 `;
 
 const TabsRoot = styled(Root)`
@@ -211,6 +221,7 @@ const TabsList = styled(List)`
   gap: 12px;
   align-items: center;
   margin-bottom: 56px;
+  border-bottom: 1px solid var(--grey-600);
   @media ${tabletAndUnder} {
     margin-bottom: 0;
   }
@@ -219,7 +230,7 @@ const TabsList = styled(List)`
 const ActiveIndicator = styled.div`
   --width: calc(100% / 5);
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   height: 3px;
   width: var(--width);
@@ -247,9 +258,12 @@ const DesktopTabsTriggerTitle = styled.h3`
 
 const MobileTabsTriggerTitle = styled(DesktopTabsTriggerTitle)`
   display: none;
-  font: var(--body-xs);
+  font: var(--body-md);
   @media ${tabletAndUnder} {
     display: block;
+  }
+  @media ${mobileAndUnder} {
+    font: var(--body-xs);
   }
 `;
 

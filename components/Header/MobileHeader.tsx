@@ -1,4 +1,4 @@
-import { grey100, grey500, tabletAndUnder, white } from "constant";
+import { animationDuration, grey100, grey500, tabletAndUnder, white } from "constant";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
@@ -14,8 +14,18 @@ interface Props {
 
 export function MobileHeader({ isLightTheme }: Props) {
   const [showMenu, setShowMenu] = useState(false);
-  const transitionWhenShow = "background 200ms, top 200ms, opacity 200ms, transform 200ms 250ms";
-  const transitionWhenHide = "top 200ms 250ms, opacity 200ms 250ms, transform 200ms";
+
+  const closeMenuBarTransition = `
+  top ${animationDuration}, 
+  bottom ${animationDuration}, 
+  transform ${animationDuration} ${animationDuration}`;
+
+  const openMenuBarTransition = `
+  top ${animationDuration} ${animationDuration}, 
+  bottom ${animationDuration} ${animationDuration}, 
+  transform ${animationDuration}`;
+
+  const buttonBarTransition = showMenu ? closeMenuBarTransition : openMenuBarTransition;
 
   function toggleShowMenu() {
     setShowMenu(!showMenu);
@@ -31,24 +41,26 @@ export function MobileHeader({ isLightTheme }: Props) {
         onClick={toggleShowMenu}
         style={
           {
-            "--background": isLightTheme ? grey100 : white,
-            "--transition": showMenu ? transitionWhenShow : transitionWhenHide,
+            "--background": isLightTheme ? grey100 : grey500,
+            "--animation-delay": showMenu ? "1s" : "0s",
           } as CSSProperties
         }
       >
         <ToggleButtonBar
           style={
             {
-              "--top": showMenu ? "9px" : 0,
+              "--top": showMenu ? "calc(50% - 0.5px)" : 0,
               "--transform": showMenu ? "rotate(45deg)" : "rotate(0)",
+              "--transition": buttonBarTransition,
             } as CSSProperties
           }
         />
         <ToggleButtonBar
           style={
             {
-              "--top": showMenu ? "9px" : "16px",
+              "--bottom": showMenu ? "calc(50% - 0.5px)" : 0,
               "--transform": showMenu ? "rotate(-45deg)" : "rotate(0)",
+              "--transition": buttonBarTransition,
             } as CSSProperties
           }
         />
@@ -85,24 +97,25 @@ const Wrapper = styled(FocusOn)`
   }
 `;
 
-const ToggleButtonBar = styled.span`
-  position: absolute;
-  display: block;
-  height: 2px;
-  width: 25px;
-  background: var(--background);
-  transition: var(--transition);
-  top: var(--top);
-  transform: var(--transform);
-`;
-
 export const MenuToggleButton = styled.button`
   display: block;
   position: relative;
   justify-self: start;
-  height: 18px;
-  width: 25px;
+  height: 9px;
+  width: 24px;
   background: var(--grey-900);
+`;
+
+const ToggleButtonBar = styled.span`
+  position: absolute;
+  display: block;
+  height: 1.5px;
+  width: 24px;
+  background: var(--background);
+  top: var(--top);
+  bottom: var(--bottom);
+  transform: var(--transform);
+  transition: var(--transition);
 `;
 
 const VoteLinkWrapper = styled.div`

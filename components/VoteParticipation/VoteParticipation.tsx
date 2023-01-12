@@ -1,14 +1,11 @@
 import { AnimatedLink, Divider } from "components";
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useVotingInfo } from "hooks";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
-import earn from "public/assets/lottie/earn.json";
-import stake from "public/assets/lottie/stake.json";
-import vote from "public/assets/lottie/vote.json";
-import { useRef, useState } from "react";
-import Lottie from "react-lottie-player";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 export function VoteParticipation() {
@@ -18,6 +15,9 @@ export function VoteParticipation() {
   const {
     data: { apy },
   } = useVotingInfo();
+  const [stakeData, setStakeData] = useState<object>();
+  const [voteData, setVoteData] = useState<object>();
+  const [earnData, setEarnData] = useState<object>();
   const [playStake, setPlayStake] = useState(false);
   const [playVote, setPlayVote] = useState(false);
   const [playEarn, setPlayEarn] = useState(false);
@@ -29,11 +29,17 @@ export function VoteParticipation() {
   const [voteDirection, setVoteDirection] = useState<Direction>(forward);
   const [earnDirection, setEarnDirection] = useState<Direction>(forward);
 
+  useEffect(() => {
+    void import("public/assets/lottie/stake.json").then(setStakeData);
+    void import("public/assets/lottie/vote.json").then(setVoteData);
+    void import("public/assets/lottie/earn.json").then(setEarnData);
+  }, []);
+
   const activities = [
     {
       title: "Stake",
       text: "Stake your $UMA to help secure UMA's Optimistic Oracle.",
-      animationData: stake,
+      animationData: stakeData,
       play: playStake,
       setPlay: setPlayStake,
       direction: stakeDirection,
@@ -42,7 +48,7 @@ export function VoteParticipation() {
     {
       title: "Vote",
       text: "Token holders who vote correctly and consistently earn higher APYs.",
-      animationData: vote,
+      animationData: voteData,
       play: playVote,
       setPlay: setPlayVote,
       direction: voteDirection,
@@ -52,7 +58,7 @@ export function VoteParticipation() {
       title: "Earn",
       text: `Successful voters will gradually own a higher percentage of the protocol than unsuccessful or inactive
       voters.`,
-      animationData: earn,
+      animationData: earnData,
       play: playEarn,
       setPlay: setPlayEarn,
       direction: earnDirection,
@@ -83,15 +89,7 @@ export function VoteParticipation() {
               }}
             >
               <LottieWrapper>
-                <LottieAnimation
-                  loop={false}
-                  play={play}
-                  direction={direction}
-                  animationData={animationData}
-                  rendererSettings={{
-                    preserveAspectRatio: "xMidYMid slice",
-                  }}
-                />
+                <LottieAnimation loop={false} play={play} direction={direction} animationData={animationData} />
               </LottieWrapper>
               <ActivityDescription>
                 <ActivityTitle>{title}</ActivityTitle>
@@ -189,14 +187,12 @@ const ActivityText = styled.p`
   }
 `;
 
-const LottieAnimation = styled(Lottie)``;
-
 const LottieWrapper = styled.div`
   max-width: var(--width);
-  margin-left: -24px;
-  --desktop-width: 154px;
-  --tablet-width: 92px;
-  --mobile-width: 62px;
+  margin-left: -32px;
+  --desktop-width: 228px;
+  --tablet-width: 128px;
+  --mobile-width: 92px;
   --width: var(--desktop-width);
   transform: translateY(var(--translate-y));
   transition: transform var(--animation-duration);
@@ -215,7 +211,7 @@ const LottieWrapper = styled.div`
 `;
 
 const DividerWrapper = styled.div`
-  margin-top: 72px;
+  margin-top: 24px;
   margin-bottom: 24px;
 `;
 

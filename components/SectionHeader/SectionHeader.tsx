@@ -13,6 +13,7 @@ const Title = styled(motion.h1)`
   border-bottom: 1px solid var(--grey-600);
   @media ${mobileAndUnder} {
     padding-bottom: 12px;
+    font: var(--body-lg);
   }
 `;
 

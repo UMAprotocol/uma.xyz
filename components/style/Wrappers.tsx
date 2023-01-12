@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const BaseOuterWrapper = styled.section`
-  padding-top: var(--header-blur-height);
+  padding-top: calc(var(--header-blur-height) * 0.8);
   padding-inline: var(--page-padding);
 `;

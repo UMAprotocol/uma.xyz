@@ -1,21 +1,28 @@
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
-import sceneOne from "public/assets/lottie/scene-1.json";
-import sceneTwo from "public/assets/lottie/scene-2.json";
-import sceneThree from "public/assets/lottie/scene-3.json";
-import sceneFour from "public/assets/lottie/scene-4.json";
-import { useEffect, useRef } from "react";
-import Lottie from "react-lottie-player";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 export function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const id = "how-it-works";
+  const [step1Data, setStep1Data] = useState<object>();
+  const [step2Data, setStep2Data] = useState<object>();
+  const [step3Data, setStep3Data] = useState<object>();
+  const [step4Data, setStep4Data] = useState<object>();
+
+  useEffect(() => {
+    void import("public/assets/lottie/step-1.json").then(setStep1Data);
+    void import("public/assets/lottie/step-2.json").then(setStep2Data);
+    void import("public/assets/lottie/step-3.json").then(setStep3Data);
+    void import("public/assets/lottie/step-4.json").then(setStep4Data);
+  }, []);
 
   useAddHashToUrl(id, wrapperRef);
 
@@ -30,14 +37,14 @@ export function HowItWorks() {
       text: "A statement is proposed as true",
       subText:
         "A natural-language statement is submitted along with a bond. The bond acts as a bounty for anyone to dispute it if they have evidence to the contrary.",
-      animationData: sceneOne,
+      animationData: step1Data,
     },
     {
       header: "Challenge period",
       text: "Most statements go undisputed",
       subText:
         "Anyone can propose an answer to a data request, and it is accepted as true if it is not disputed during the challenge period.",
-      animationData: sceneTwo,
+      animationData: step2Data,
     },
     {
       header: "Dispute",
@@ -45,15 +52,15 @@ export function HowItWorks() {
       subText: `Each statement submitted for validation is an opportunity for anyone to earn a reward by disputing it
       successfully. As the game theory would predict, disputes are rare in practice because the incentives are
       always to be honest. That makes the OO “optimistic”.`,
-      animationData: sceneThree,
+      animationData: step3Data,
     },
     {
       header: "Voting",
       text: "Tokenholders vote on disputes and earn rewards",
-      subText: `              The UMA token provides economic guarantees to the Optimistic Oracle. The community of tokenholders provide
-      the human component, as voters, for the OO&apos;s final resolution on disputes or queries. Those who vote
+      subText: `The UMA token provides economic guarantees to the Optimistic Oracle. The community of tokenholders provide
+      the human component, as voters, for the OO's final resolution on disputes or queries. Those who vote
       with the majority earn rewards.`,
-      animationData: sceneFour,
+      animationData: step4Data,
     },
   ];
 
@@ -69,6 +76,7 @@ export function HowItWorks() {
             subText={subText}
             animationData={animationData}
             index={index}
+            isLast={index === steps.length - 1}
           />
         ))}
       </InnerWrapper>
@@ -80,10 +88,11 @@ interface StepProps {
   header: string;
   text: string;
   subText: string;
-  animationData: object;
+  animationData: object | undefined;
   index: number;
+  isLast: boolean;
 }
-function Step({ header, text, subText, animationData, index }: StepProps) {
+function Step({ header, text, subText, animationData, index, isLast }: StepProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const play = useInView(wrapperRef);
@@ -115,9 +124,11 @@ function Step({ header, text, subText, animationData, index }: StepProps) {
         >
           0{index + 1}
         </StepNumber>
-        <StepLineOuter ref={lineRef}>
-          <StepLineInner style={{ scaleY: spring }} />
-        </StepLineOuter>
+        {!isLast && (
+          <StepLineOuter ref={lineRef}>
+            <StepLineInner style={{ scaleY: spring }} />
+          </StepLineOuter>
+        )}
       </StepNumberWrapper>
       <StepDescription>
         <StepHeader>{header}</StepHeader>
@@ -125,13 +136,7 @@ function Step({ header, text, subText, animationData, index }: StepProps) {
         <StepSubText>{subText}</StepSubText>
       </StepDescription>
       <LottieWrapper>
-        <Lottie
-          animationData={animationData}
-          play={play}
-          rendererSettings={{
-            preserveAspectRatio: "xMidYMid slice",
-          }}
-        />
+        <LottieAnimation animationData={animationData} play={play} />
       </LottieWrapper>
     </StepWrapper>
   );
@@ -182,7 +187,7 @@ const LottieWrapper = styled.div`
   grid-area: lottie;
   --width-desktop: 562px;
   --width-laptop-tablet: 754px;
-  --width-mobile: 538px;
+  --width-mobile: 100%;
   --width: var(--width-desktop);
   @media ${laptopAndUnder} {
     --width: var(--width-laptop-tablet);
@@ -196,13 +201,11 @@ const StepDescription = styled.div`
   grid-area: description;
   max-width: var(--width);
   margin-top: 16px;
-  --width-desktop: 464px;
-  --width-laptop: 640px;
+  --width-laptop-desktop: 464px;
   --width-tablet: 720px;
   --width-mobile: 100%;
-  --width: var(--width-desktop);
+  --width: var(--width-laptop-desktop);
   @media ${laptopAndUnder} {
-    --width: var(--width-laptop);
     margin-top: 0;
     margin-bottom: 96px;
   }
@@ -216,8 +219,7 @@ const StepDescription = styled.div`
 `;
 
 const StepHeader = styled.h3`
-  text-transform: uppercase;
-  letter-spacing: 0.09rem;
+  text-transform: capitalize;
   font: var(--sub-header);
   color: var(--red);
 

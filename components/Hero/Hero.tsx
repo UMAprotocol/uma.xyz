@@ -1,19 +1,23 @@
+import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion, useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
-import heroAnimation from "public/assets/lottie/hero_animation.json";
 import OOLogo from "public/assets/oo-logo.svg";
-import { useRef } from "react";
-import Lottie from "react-lottie-player";
+import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
   useAddHashToUrl("", ref);
+  const [animationData, setAnimationData] = useState<object>();
+
+  useEffect(() => {
+    void import("public/assets/lottie/hero.json").then(setAnimationData);
+  }, []);
 
   const headerAnimation = {
     initial: {
@@ -52,7 +56,7 @@ export function Hero() {
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <LottieHeroAnimation play={isInView} animationData={heroAnimation} />
+        <LottieHeroAnimation play={isInView} animationData={animationData} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
@@ -93,7 +97,6 @@ export function Hero() {
 
 const Background = styled(motion.div)`
   position: absolute;
-  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -101,6 +104,8 @@ const Background = styled(motion.div)`
 `;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
+  display: grid;
+  place-items: center;
   padding-top: 0;
   height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
   width: 100%;
@@ -220,14 +225,14 @@ const OOLogoIcon = styled(OOLogo)`
   }
   width: var(--width);
   height: var(--height);
-  --desktop-width: 164px;
-  --desktop-height: 82px;
-  --laptop-width: 124px;
-  --laptop-height: 62px;
-  --tablet-width: 114px;
-  --tablet-height: 57px;
-  --mobile-width: 64px;
-  --mobile-height: 32px;
+  --desktop-width: 166px;
+  --desktop-height: 83px;
+  --laptop-width: 126px;
+  --laptop-height: 64px;
+  --tablet-width: 116px;
+  --tablet-height: 58px;
+  --mobile-width: 66px;
+  --mobile-height: 36px;
   --width: var(--desktop-width);
   --height: var(--desktop-height);
 
@@ -247,6 +252,7 @@ const OOLogoIcon = styled(OOLogo)`
   }
 `;
 
-const LottieHeroAnimation = styled(Lottie)`
-  scale: 0.8; /* scale the animation down by 20% */
+const LottieHeroAnimation = styled(LottieAnimation)`
+  width: 80%;
+  margin-inline: auto;
 `;
