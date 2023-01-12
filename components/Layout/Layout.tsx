@@ -1,4 +1,4 @@
-import { Footer, Header } from "components";
+import { Header } from "components";
 import { VoteTicker } from "components/VoteTicker/VoteTicker";
 import { ReactNode } from "react";
 import styled from "styled-components";
@@ -12,10 +12,7 @@ export function Layout({ children }: { children: ReactNode }) {
     <Wrapper>
       <VoteTicker />
       <Header />
-      <Main>
-        {children}
-        <Footer />
-      </Main>
+      <Main>{children}</Main>
     </Wrapper>
   );
 }

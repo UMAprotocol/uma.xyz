@@ -1,6 +1,7 @@
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
 import OO from "public/assets/oo-logo.svg";
@@ -12,11 +13,12 @@ const Tabs = dynamic(() => import("components/Tabs/Tabs"));
 export function Builder() {
   const id = "builder";
   const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: "some" });
   useAddHashToUrl(id, ref);
 
   return (
-    <OuterWrapper ref={ref} id={id}>
-      <InnerWrapper>
+    <OuterWrapper id={id}>
+      <InnerWrapper ref={ref}>
         <SectionHeader
           hasCircleFilter={false}
           title={{ text: "Participate as a", redSuffix: "Builder" }}
@@ -34,7 +36,7 @@ export function Builder() {
             </>
           }
         />
-        <Tabs />
+        {inView && <Tabs />}
       </InnerWrapper>
     </OuterWrapper>
   );
