@@ -1,6 +1,6 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
@@ -13,7 +13,6 @@ const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieA
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref);
   useAddHashToUrl("", ref);
   const [animationData, setAnimationData] = useState<object>();
 
@@ -58,7 +57,7 @@ export function Hero() {
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
       >
-        <LottieHeroAnimation play={isInView} animationData={animationData} />
+        <LottieHeroAnimation play={true} animationData={animationData} />
       </Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>

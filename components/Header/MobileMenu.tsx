@@ -1,5 +1,4 @@
 import { grey200, grey500, links, socialLinks, white } from "constant";
-import { useInView } from "framer-motion";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
@@ -16,12 +15,13 @@ interface Props {
 
 export function MobileMenu({ show, hide, isLightTheme }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref);
   const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {
-    void import("public/assets/lottie/hero.json").then(setAnimationData);
-  }, []);
+    if (show) {
+      void import("public/assets/lottie/hero.json").then(setAnimationData);
+    }
+  }, [show]);
 
   return (
     <Wrapper
@@ -39,9 +39,7 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
         } as CSSProperties
       }
     >
-      <Background>
-        <LottieHeroAnimation play={isInView} animationData={animationData} />
-      </Background>
+      <Background>{show && <LottieHeroAnimation play={show} animationData={animationData} />}</Background>
       <Links>
         {links.map(({ href, label }) => (
           <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>

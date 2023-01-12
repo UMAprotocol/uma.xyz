@@ -2,6 +2,7 @@ import { AnimatedLink, Divider } from "components";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
+import { useInView } from "framer-motion";
 import { useVotingInfo } from "hooks";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
@@ -13,6 +14,7 @@ const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieA
 export function VoteParticipation() {
   const id = "voter";
   const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: "some" });
   useAddHashToUrl(id, ref);
   const {
     data: { apy },
@@ -32,10 +34,12 @@ export function VoteParticipation() {
   const [earnDirection, setEarnDirection] = useState<Direction>(forward);
 
   useEffect(() => {
-    void import("public/assets/lottie/stake.json").then(setStakeData);
-    void import("public/assets/lottie/vote.json").then(setVoteData);
-    void import("public/assets/lottie/earn.json").then(setEarnData);
-  }, []);
+    if (inView) {
+      void import("public/assets/lottie/stake.json").then(setStakeData);
+      void import("public/assets/lottie/vote.json").then(setVoteData);
+      void import("public/assets/lottie/earn.json").then(setEarnData);
+    }
+  }, [inView]);
 
   const activities = [
     {
@@ -91,7 +95,9 @@ export function VoteParticipation() {
               }}
             >
               <LottieWrapper>
-                <LottieAnimation loop={false} play={play} direction={direction} animationData={animationData} />
+                {inView && (
+                  <LottieAnimation loop={false} play={play} direction={direction} animationData={animationData} />
+                )}
               </LottieWrapper>
               <ActivityDescription>
                 <ActivityTitle>{title}</ActivityTitle>

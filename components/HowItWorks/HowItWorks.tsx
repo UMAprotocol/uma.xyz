@@ -13,6 +13,7 @@ const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieA
 export function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrapperRef, { amount: "some" });
   const id = "how-it-works";
   const [step1Data, setStep1Data] = useState<object>();
   const [step2Data, setStep2Data] = useState<object>();
@@ -20,11 +21,13 @@ export function HowItWorks() {
   const [step4Data, setStep4Data] = useState<object>();
 
   useEffect(() => {
-    void import("public/assets/lottie/step-1.json").then(setStep1Data);
-    void import("public/assets/lottie/step-2.json").then(setStep2Data);
-    void import("public/assets/lottie/step-3.json").then(setStep3Data);
-    void import("public/assets/lottie/step-4.json").then(setStep4Data);
-  }, []);
+    if (inView) {
+      void import("public/assets/lottie/step-1.json").then(setStep1Data);
+      void import("public/assets/lottie/step-2.json").then(setStep2Data);
+      void import("public/assets/lottie/step-3.json").then(setStep3Data);
+      void import("public/assets/lottie/step-4.json").then(setStep4Data);
+    }
+  }, [inView]);
 
   useAddHashToUrl(id, wrapperRef);
 
@@ -67,8 +70,8 @@ export function HowItWorks() {
   ];
 
   return (
-    <OuterWrapper ref={wrapperRef} id={id}>
-      <InnerWrapper>
+    <OuterWrapper id={id}>
+      <InnerWrapper ref={wrapperRef}>
         <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
         {steps.map(({ header, text, subText, animationData }, index) => (
           <Step
@@ -97,7 +100,7 @@ interface StepProps {
 function Step({ header, text, subText, animationData, index, isLast }: StepProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const play = useInView(wrapperRef);
+  const inView = useInView(wrapperRef);
   const { scrollYProgress } = useScroll({
     target: lineRef,
     offset: ["-100%", "start"],
@@ -137,9 +140,7 @@ function Step({ header, text, subText, animationData, index, isLast }: StepProps
         <StepText>{text}</StepText>
         <StepSubText>{subText}</StepSubText>
       </StepDescription>
-      <LottieWrapper>
-        <LottieAnimation animationData={animationData} play={play} />
-      </LottieWrapper>
+      <LottieWrapper>{inView && <LottieAnimation animationData={animationData} play={inView} />}</LottieWrapper>
     </StepWrapper>
   );
 }
