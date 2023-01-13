@@ -75,7 +75,7 @@ export function Hero() {
             delay: 1.5,
           }}
         >
-          <ArrowButton href="#how-it-works">
+          <ArrowButton href="#how-it-works" aria-label="Go to next section">
             <ArrowIcon />
           </ArrowButton>
         </ArrowButtonWrapper>

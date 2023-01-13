@@ -38,6 +38,7 @@ export function MobileHeader({ isLightTheme }: Props) {
   return (
     <Wrapper enabled={showMenu} onEscapeKey={hideMenu} onClickOutside={hideMenu} preventScrollOnFocus>
       <MenuToggleButton
+        aria-label="Open navigation menu"
         onClick={toggleShowMenu}
         style={
           {
@@ -65,9 +66,12 @@ export function MobileHeader({ isLightTheme }: Props) {
           }
         />
       </MenuToggleButton>
-      <NextLink href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</NextLink>
+      <NextLink href="/" aria-label="Back to page top">
+        {isLightTheme ? <BlackLogo /> : <Logo />}
+      </NextLink>
       <VoteLinkWrapper>
         <Link
+          aria-label="Link to voter dapp"
           href="https://vote.uma.xyz/"
           target="_blank"
           style={

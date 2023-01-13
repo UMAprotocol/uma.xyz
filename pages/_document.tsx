@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
     const description = "An optimistic oracle built for web3";
     const image = "/uma_square_red_logo.png";
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <meta name="description" content={description} />
           <meta name="twitter:card" content="summary" />

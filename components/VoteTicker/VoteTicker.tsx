@@ -103,7 +103,7 @@ export function VoteTicker({ isLightTheme = false }) {
             } as CSSProperties
           }
         >
-          <Link href="https://vote.uma.xyz/" target="_blank">
+          <Link href="https://vote.uma.xyz/" target="_blank" aria-label="Link to voter dapp">
             <MoreDetailsText>More details</MoreDetailsText>
             <ArrowIcon />
           </Link>

@@ -38,8 +38,8 @@ export function Footer() {
       <SubFooter>
         <Copyright>© {new Date().getFullYear()} Risk Labs Foundation</Copyright>
         <SocialLinks>
-          {socialLinks.map(({ href, Icon }) => (
-            <SocialLink key={href} href={href} target="_blank">
+          {socialLinks.map(({ href, Icon, label }) => (
+            <SocialLink key={href} href={href} target="_blank" aria-label={label}>
               <Icon />
             </SocialLink>
           ))}

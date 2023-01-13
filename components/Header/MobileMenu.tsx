@@ -48,8 +48,8 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
         ))}
       </Links>
       <SocialLinks>
-        {socialLinks.map(({ href, Icon }) => (
-          <SocialLink onClick={hide} key={href} href={href} target="_blank">
+        {socialLinks.map(({ href, Icon, label }) => (
+          <SocialLink onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
             <Icon />
           </SocialLink>
         ))}

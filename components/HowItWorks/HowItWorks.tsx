@@ -1,6 +1,6 @@
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
-import { grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
+import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
@@ -117,7 +117,7 @@ function Step({ header, text, subText, animationData, index, isLast }: StepProps
         <StepNumber
           initial={{
             backgroundColor: white,
-            color: grey500,
+            color: grey300,
             border: `1px solid ${grey500}`,
           }}
           whileInView={{
