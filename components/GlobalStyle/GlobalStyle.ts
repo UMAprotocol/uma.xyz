@@ -70,6 +70,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 html {
+  font-family: "Halyard Display", sans-serif;
   /* Allow percentage-based heights in the application */
   block-size: 100%;
   /* Making sure text size is only controlled by font-size */
