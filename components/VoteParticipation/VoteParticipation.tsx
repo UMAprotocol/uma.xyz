@@ -1,7 +1,7 @@
 import { AnimatedLink, Divider } from "components";
 import { SectionHeader } from "components/SectionHeader/SectionHeader";
 import { BaseOuterWrapper } from "components/style/Wrappers";
-import { mobileAndUnder, tabletAndUnder } from "constant";
+import { defaultApy, mobileAndUnder, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useVotingInfo } from "hooks";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
@@ -16,9 +16,7 @@ export function VoteParticipation() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: "some" });
   useAddHashToUrl(id, ref);
-  const {
-    data: { apy },
-  } = useVotingInfo();
+  const { data } = useVotingInfo();
   const [stakeData, setStakeData] = useState<object>();
   const [voteData, setVoteData] = useState<object>();
   const [earnData, setEarnData] = useState<object>();
@@ -77,7 +75,7 @@ export function VoteParticipation() {
       <InnerWrapper>
         <SectionHeader
           title={{ text: "Participate as a", redSuffix: "Voter" }}
-          header={<>Stake, vote &amp; earn up to {apy}% APY</>}
+          header={<>Stake, vote &amp; earn up to {data?.apy ?? defaultApy}% APY</>}
           constrainWidth
         />
 

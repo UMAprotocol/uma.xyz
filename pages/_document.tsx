@@ -50,7 +50,7 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link href="/fonts/HalyardDisplay-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-          <link rel="preload" as="image" href="/assets/hero-bg-lines.svg" type="image/svg" />
+          <link rel="preload" as="image" href="/assets/hero-bg-lines.svg" type="image/svg+xml" />
         </Head>
         <body>
           <Main />

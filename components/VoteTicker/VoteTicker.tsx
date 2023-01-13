@@ -23,11 +23,9 @@ import { useInterval } from "usehooks-ts";
 import { formatMillisecondsUntilMidnight } from "./utils";
 
 export function VoteTicker({ isLightTheme = false }) {
-  const {
-    data: { activeRequests, phase },
-  } = useVotingInfo();
+  const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
-  const isActive = activeRequests > 0;
+  const isActive = !!data && data.activeRequests > 0;
 
   useInterval(() => {
     setTimeRemaining(formatMillisecondsUntilMidnight());
@@ -67,8 +65,8 @@ export function VoteTicker({ isLightTheme = false }) {
           {isActive ? (
             <>
               <TextWrapper>
-                <DesktopText>Time to {phase} vote: </DesktopText>
-                <MobileText>{phase} vote: </MobileText>
+                <DesktopText>Time to {data.phase} vote: </DesktopText>
+                <MobileText>{data.phase} vote: </MobileText>
                 <TimeRemaining
                   style={
                     {
@@ -87,7 +85,7 @@ export function VoteTicker({ isLightTheme = false }) {
                   } as CSSProperties
                 }
               >
-                {activeRequests === 1 ? "1 vote" : `${activeRequests} votes`}
+                {data.activeRequests === 1 ? "1 vote" : `${data.activeRequests} votes`}
               </NumVotes>
             </>
           ) : (
