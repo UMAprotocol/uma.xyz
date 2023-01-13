@@ -58,7 +58,7 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
   );
 }
 
-export const Wrapper = styled.nav`
+const Wrapper = styled.nav`
   width: 100%;
   min-height: calc(100vh - 124px);
   position: absolute;

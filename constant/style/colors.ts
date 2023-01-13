@@ -1,6 +1,5 @@
 // Reds
 export const red = "hsla(0, 100%, 65%, 1)";
-export const redOpacity5 = "hsla(0, 100%, 65%, 0.05)";
 export const red510Opacity15 = "rgba(255, 74, 74, 0.15)";
 export const red550 = "hsla(352, 23%, 25%, 1)";
 
@@ -22,9 +21,3 @@ export const grey700 = "hsla(0, 0%, 94%,1)"; // #F0F0F0
 export const grey800 = "hsla(0, 0%, 99%,1)"; // #FDFDFD
 
 export const black = "hsla(0, 0%, 12%, 1)";
-// Helper function for adding opacity.
-export function addOpacityToHsl(hsl: string, opacity: number) {
-  const betweenParens = hsl.match(/\(([^)]+)\)/)?.[1];
-  const [h, s, l] = betweenParens?.split(",") ?? [];
-  return `hsla(${h}, ${s}, ${l}, ${opacity})`;
-}
