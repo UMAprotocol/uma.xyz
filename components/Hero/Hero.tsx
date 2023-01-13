@@ -1,24 +1,14 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
-
-const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  useAddHashToUrl("", ref);
-  const [animationData, setAnimationData] = useState<object>();
-
-  useEffect(() => {
-    void import("public/assets/lottie/hero.json").then(setAnimationData);
-  }, []);
 
   const headerAnimation = {
     initial: {
@@ -56,9 +46,7 @@ export function Hero() {
         initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.5 }}
-      >
-        <LottieHeroAnimation play={true} animationData={animationData} />
-      </Background>
+      ></Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
           <Header>
@@ -251,9 +239,4 @@ const OOLogoIcon = styled(OOLogo)`
     --width: var(--mobile-width);
     --height: var(--mobile-height);
   }
-`;
-
-const LottieHeroAnimation = styled(LottieAnimation)`
-  width: 80%;
-  margin-inline: auto;
 `;
