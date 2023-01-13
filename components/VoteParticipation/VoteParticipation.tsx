@@ -108,7 +108,7 @@ export function VoteParticipation() {
           <Divider />
         </DividerWrapper>
         <AnimatedLinkWrapper>
-          <AnimatedLink href="https://vote.umaproject.org">Link to voter app</AnimatedLink>
+          <AnimatedLink href="https://vote.uma.xyz">Link to voter app</AnimatedLink>
         </AnimatedLinkWrapper>
       </InnerWrapper>
     </OuterWrapper>

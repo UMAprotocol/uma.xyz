@@ -37,7 +37,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
         ))}
       </Links>
       <LaunchButton
-        href="https://vote.umaproject.org"
+        href="https://vote.uma.xyz"
         target="_blank"
         style={
           {

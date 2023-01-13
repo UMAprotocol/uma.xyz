@@ -43,7 +43,7 @@ export function SupportSection() {
           </ButtonGroup>
           <ButtonGroup>
             <div>
-              <ButtonLink href="https://docs.umaproject.org/" target="_blank" rel="noreferrer">
+              <ButtonLink href="https://docs.uma.xyz/" target="_blank" rel="noreferrer">
                 <UpRightArrowLg />
               </ButtonLink>
               <ButtonText>About</ButtonText>

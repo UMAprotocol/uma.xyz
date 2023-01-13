@@ -68,7 +68,7 @@ export function MobileHeader({ isLightTheme }: Props) {
       <NextLink href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</NextLink>
       <VoteLinkWrapper>
         <Link
-          href="https://vote.umaproject.org/"
+          href="https://vote.uma.xyz/"
           target="_blank"
           style={
             {

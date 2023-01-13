@@ -84,7 +84,7 @@ export function Projects() {
           <DividerWrapper>
             <Divider />
           </DividerWrapper>
-          <AnimatedLink href="https://projects.umaproject.org/">All projects</AnimatedLink>
+          <AnimatedLink href="https://projects.uma.xyz/">All projects</AnimatedLink>
         </TextWrapper>
         <ProjectsWrapper>
           <ProjectRow projects={topRow} line="top" />

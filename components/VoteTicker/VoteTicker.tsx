@@ -103,7 +103,7 @@ export function VoteTicker({ isLightTheme = false }) {
             } as CSSProperties
           }
         >
-          <Link href="https://vote.umaproject.org/" target="_blank">
+          <Link href="https://vote.uma.xyz/" target="_blank">
             <MoreDetailsText>More details</MoreDetailsText>
             <ArrowIcon />
           </Link>
