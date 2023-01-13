@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <HeaderProvider>
       <Head>
+        <title>UMA - Universal Market Access</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <GlobalStyle />
