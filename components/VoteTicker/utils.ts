@@ -1,20 +1,13 @@
-import { DateTime, Duration } from "luxon";
-
-// For Timer feature.
-// Countdown from UTC 00:00:00.
-
-export function calculateDifferenceFromUTCMidnight() {
-  const utc = DateTime.local().toUTC().endOf("day").toMillis();
-  const difference = utc - DateTime.local().toMillis();
-
-  return difference;
+function getMillisecondsUntilMidnight() {
+  const now = new Date();
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  return midnight.getTime() - now.getTime();
 }
-export function formatDateTimeFromUTC() {
-  const difference = calculateDifferenceFromUTCMidnight();
 
-  let text = "00:00";
-  // format difference
-  if (difference > 0) text = Duration.fromMillis(difference).toFormat("hh'h' mm'm' ss's'");
-
-  return text;
+export function formatMillisecondsUntilMidnight() {
+  const milliseconds = getMillisecondsUntilMidnight();
+  const seconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  return `${hours}:${minutes % 60}:${seconds % 60}`;
 }

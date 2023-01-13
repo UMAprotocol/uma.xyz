@@ -20,7 +20,7 @@ import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { useInterval } from "usehooks-ts";
-import { formatDateTimeFromUTC } from "./utils";
+import { formatMillisecondsUntilMidnight } from "./utils";
 
 export function VoteTicker({ isLightTheme = false }) {
   const {
@@ -30,7 +30,7 @@ export function VoteTicker({ isLightTheme = false }) {
   const isActive = activeRequests > 0;
 
   useInterval(() => {
-    setTimeRemaining(formatDateTimeFromUTC());
+    setTimeRemaining(formatMillisecondsUntilMidnight());
   }, 1000);
 
   return (
