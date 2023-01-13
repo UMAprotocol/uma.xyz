@@ -14,12 +14,12 @@ import {
 } from "constant";
 import { motion } from "framer-motion";
 import { useVotingInfo } from "hooks";
-import useInterval from "hooks/helpers/useInterval";
 import NextLink from "next/link";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
+import { useInterval } from "usehooks-ts";
 import { formatDateTimeFromUTC } from "./utils";
 
 export function VoteTicker({ isLightTheme = false }) {
