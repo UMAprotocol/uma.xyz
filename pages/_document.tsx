@@ -42,14 +42,14 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
           <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
           <link rel="mask-icon" href="safari-pinned-tab.svg" color="#FF4A4A" />
-          <link href="/fonts/HalyardDisplayLight.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-          <link href="/fonts/HalyardDisplay-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-          <link href="/fonts/HalyardDisplaySemiBold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-          <link href="/fonts/HalyardDisplay-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-          <link href="/fonts/HalyardDisplayLight.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+          <link
+            rel="preload"
+            href="/fonts/HalyardDisplay-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <link href="/fonts/HalyardDisplay-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-          <link href="/fonts/HalyardDisplaySemiBold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-          <link href="/fonts/HalyardDisplay-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
           <link rel="preload" as="image" href="/assets/hero-bg-lines.svg" type="image/svg" />
         </Head>
         <body>
