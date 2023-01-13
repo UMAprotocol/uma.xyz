@@ -22,8 +22,8 @@ export function Hero() {
       translateY: "0%",
     },
     transition: {
-      duration: 0.5,
-      delay: 0.3,
+      duration: 0.3,
+      delay: 0.1,
     },
   };
 
@@ -36,8 +36,8 @@ export function Hero() {
         rotate: "0deg",
       },
       transition: {
-        duration: 0.5,
-        delay: 0.5,
+        duration: 0.3,
+        delay: 0.3,
       },
     };
   }
@@ -47,7 +47,7 @@ export function Hero() {
       <Background
         initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
         animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       ></Background>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
@@ -73,8 +73,8 @@ export function Hero() {
             translateY: "0%",
           }}
           transition={{
-            duration: 0.3,
-            delay: 1.5,
+            duration: 0.1,
+            delay: 1.3,
           }}
         >
           <ArrowButton href="#how-it-works" aria-label="Go to next section">
