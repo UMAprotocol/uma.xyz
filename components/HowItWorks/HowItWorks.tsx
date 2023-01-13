@@ -81,6 +81,7 @@ export function HowItWorks() {
             subText={subText}
             animationData={animationData}
             index={index}
+            inView={inView}
             isLast={index === steps.length - 1}
           />
         ))}
@@ -95,12 +96,11 @@ interface StepProps {
   subText: string;
   animationData: object | undefined;
   index: number;
+  inView: boolean;
   isLast: boolean;
 }
-function Step({ header, text, subText, animationData, index, isLast }: StepProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
+function Step({ header, text, subText, animationData, index, inView, isLast }: StepProps) {
   const lineRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(wrapperRef);
   const { scrollYProgress } = useScroll({
     target: lineRef,
     offset: ["-100%", "start"],
@@ -112,7 +112,7 @@ function Step({ header, text, subText, animationData, index, isLast }: StepProps
   });
 
   return (
-    <StepWrapper ref={wrapperRef} key={header}>
+    <StepWrapper key={header}>
       <StepNumberWrapper>
         <StepNumber
           initial={{
