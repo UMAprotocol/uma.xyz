@@ -2,6 +2,7 @@ import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import NextLink from "next/link";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import { useRef } from "react";
 import styled from "styled-components";
@@ -33,22 +34,18 @@ export function SupportSection() {
           </Subtitle>
         </TextWrapper>
         <LinksWrapper>
-          <ButtonGroup>
-            <div>
-              <ButtonLink href="https://jobs.lever.co/umaproject" target="_blank">
-                <UpRightArrowLg />
-                <ButtonText>Careers</ButtonText>
-              </ButtonLink>
-            </div>
-          </ButtonGroup>
-          <ButtonGroup>
-            <div>
-              <ButtonLink href="https://risklabs.foundation/" target="_blank">
-                <UpRightArrowLg />
-                <ButtonText>About</ButtonText>
-              </ButtonLink>
-            </div>
-          </ButtonGroup>
+          <AnimatedLink href="https://jobs.lever.co/umaproject" target="_blank">
+            <ArrowIconWrapper>
+              <ArrowIcon />
+            </ArrowIconWrapper>
+            <LinkText>Careers</LinkText>
+          </AnimatedLink>
+          <AnimatedLink href="https://risklabs.foundation" target="_blank">
+            <ArrowIconWrapper>
+              <ArrowIcon />
+            </ArrowIconWrapper>
+            <LinkText>About</LinkText>
+          </AnimatedLink>
         </LinksWrapper>
       </InnerWrapper>
     </OuterWrapper>
@@ -145,61 +142,52 @@ const LinksWrapper = styled.div`
   }
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  div,
-  span,
-  a,
-  path {
-    transition: all var(--animation-duration) ease-in-out;
-  }
-  > div {
-    display: inline-flex;
-    gap: 20px;
-    align-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    &:hover {
-      gap: 16px;
-      span {
-        color: var(--red);
-      }
-      a {
-        background: var(--red);
-        border-color: var(--red);
-      }
-      path {
-        stroke: var(--white);
-      }
-    }
-  }
-`;
-
-const ButtonLink = styled.a`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
+const ArrowIconWrapper = styled.div`
+  display: grid;
+  place-items: center;
   width: 40px;
   height: 40px;
   border: 1.5px solid var(--grey-200);
   border-radius: 10px;
+  transition: border-color var(--animation-duration), background-color var(--animation-duration);
+`;
+
+const ArrowIcon = styled(UpRightArrowLg)`
   path {
-    stroke: var(--grey-200);
+    transition: stroke var(--animation-duration);
   }
 `;
 
-const ButtonText = styled.span`
+const LinkText = styled.span`
   font: var(--header-sm);
   color: var(--grey-200);
   line-height: 115%;
+  transition: color var(--animation-duration);
   @media ${mobileAndUnder} {
     font-size: 32px;
+  }
+`;
+
+const AnimatedLink = styled(NextLink)`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  text-decoration: none;
+  transition: gap var(--animation-duration);
+
+  &:hover {
+    gap: 16px;
+    ${LinkText} {
+      color: var(--red);
+    }
+    ${ArrowIconWrapper} {
+      border-color: var(--red);
+      background-color: var(--red);
+    }
+    ${ArrowIcon} {
+      path {
+        stroke: var(--white);
+      }
+    }
   }
 `;
