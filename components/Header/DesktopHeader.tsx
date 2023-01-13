@@ -19,7 +19,9 @@ export function DesktopHeader({ isLightTheme }: Props) {
 
   return (
     <Wrapper>
-      <HomeLink href="/">{isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}</HomeLink>
+      <HomeLink href="/" aria-label="Back to top">
+        {isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}
+      </HomeLink>
       <Links>
         {links.map(({ label, href }) => (
           <Link
