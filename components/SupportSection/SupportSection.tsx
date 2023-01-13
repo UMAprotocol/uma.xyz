@@ -35,18 +35,18 @@ export function SupportSection() {
         <LinksWrapper>
           <ButtonGroup>
             <div>
-              <ButtonLink href="https://jobs.lever.co/umaproject" target="_blank" rel="noreferrer">
+              <ButtonLink href="https://jobs.lever.co/umaproject" target="_blank">
                 <UpRightArrowLg />
+                <ButtonText>Careers</ButtonText>
               </ButtonLink>
-              <ButtonText>Careers</ButtonText>
             </div>
           </ButtonGroup>
           <ButtonGroup>
             <div>
-              <ButtonLink href="https://docs.uma.xyz/" target="_blank" rel="noreferrer">
+              <ButtonLink href="https://risklabs.foundation/" target="_blank">
                 <UpRightArrowLg />
+                <ButtonText>About</ButtonText>
               </ButtonLink>
-              <ButtonText>About</ButtonText>
             </div>
           </ButtonGroup>
         </LinksWrapper>

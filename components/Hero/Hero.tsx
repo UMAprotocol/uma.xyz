@@ -1,6 +1,7 @@
 import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
+import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
@@ -9,6 +10,7 @@ import styled, { keyframes } from "styled-components";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  useAddHashToUrl("", ref);
 
   const headerAnimation = {
     initial: {
