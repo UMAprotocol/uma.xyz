@@ -8,7 +8,7 @@ import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { BaseOuterWrapper } from "./Wrappers";
 
-export function Hero() {
+export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   useAddHashToUrl("", ref);
 
