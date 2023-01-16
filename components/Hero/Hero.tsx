@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
-import Lines from "public/assets/hero-bg-lines.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
@@ -55,9 +54,7 @@ export function Hero() {
           <source src="/assets/hero.webm" type="video/webm" />
         </Video>
       </Background>
-      <BackgroundLinesWrapper>
-        <BackgroundLines />
-      </BackgroundLinesWrapper>
+      <BackgroundLines />
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
           <Header>
@@ -102,17 +99,13 @@ const Background = styled(motion.div)`
   right: 0;
 `;
 
-const BackgroundLines = styled(Lines)`
-  width: 100%;
-  height: 100%;
-`;
-
-const BackgroundLinesWrapper = styled.div`
+const BackgroundLines = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
+  background-image: url("/assets/hero-bg-lines.svg");
 `;
 
 const Video = styled.video`

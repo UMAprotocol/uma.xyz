@@ -51,6 +51,8 @@ export default class MyDocument extends Document {
           />
           <link href="/fonts/HalyardDisplay-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
           <link rel="preload" as="image" href="/assets/hero-bg-lines.svg" type="image/svg+xml" />
+          <link rel="preload" as="video" href="/assets/hero.mp4" type="video/mp4" />
+          <link rel="preload" as="video" href="/assets/hero.webm" type="video/webm" />
         </Head>
         <body>
           <Main />
