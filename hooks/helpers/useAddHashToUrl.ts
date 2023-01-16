@@ -1,8 +1,10 @@
 import { RefObject, useEffect, useState } from "react";
+import { useDebounce } from "usehooks-ts";
 import { useMounted } from "./useMounted";
 
 export function useAddHashToUrl(id: string, wrapperRef: RefObject<HTMLDivElement>) {
   const [scrollY, setScrollY] = useState(0);
+  const debouncedScrollY = useDebounce(scrollY, 500);
   const mounted = useMounted();
 
   useEffect(() => {
@@ -31,5 +33,5 @@ export function useAddHashToUrl(id: string, wrapperRef: RefObject<HTMLDivElement
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrollY, wrapperRef.current]);
+  }, [debouncedScrollY, wrapperRef.current]);
 }
