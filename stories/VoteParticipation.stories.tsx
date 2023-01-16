@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { VoteParticipation } from "components";
+import VoteParticipation from "components/VoteParticipation";
 
 export default {
   title: "VoteParticipation",

@@ -1,7 +1,7 @@
-import { Header } from "components";
-import { VoteTicker } from "components/VoteTicker/VoteTicker";
 import { ReactNode } from "react";
 import styled from "styled-components";
+import { Header } from "./Header";
+import { VoteTicker } from "./VoteTicker";
 /** Used to wrap pages.
  *
  * Add headers, footers, and other common elements here.

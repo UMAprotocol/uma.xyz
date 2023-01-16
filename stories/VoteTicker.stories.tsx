@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { VoteTicker } from "components";
+import { VoteTicker } from "components/VoteTicker";
 
 export default {
   title: "VoteTicker",

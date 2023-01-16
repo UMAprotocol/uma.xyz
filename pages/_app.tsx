@@ -1,4 +1,4 @@
-import { GlobalStyle } from "components";
+import { GlobalStyle } from "components/GlobalStyle";
 import { HeaderProvider } from "contexts";
 import type { AppProps } from "next/app";
 import Head from "next/head";

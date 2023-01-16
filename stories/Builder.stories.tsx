@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Builder } from "components";
+import Builder from "components/Builder";
 import "../styles/sandpack-override.css";
 
 export default {

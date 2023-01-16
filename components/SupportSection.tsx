@@ -1,4 +1,3 @@
-import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
@@ -6,8 +5,9 @@ import NextLink from "next/link";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import { useRef } from "react";
 import styled from "styled-components";
+import { BaseOuterWrapper } from "./Wrappers";
 
-export function SupportSection() {
+export default function SupportSection() {
   const id = "support";
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref);

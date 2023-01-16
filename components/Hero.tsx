@@ -1,4 +1,3 @@
-import { BaseOuterWrapper } from "components/style/Wrappers";
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
@@ -7,6 +6,7 @@ import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
+import { BaseOuterWrapper } from "./Wrappers";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);

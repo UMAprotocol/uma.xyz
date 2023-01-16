@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
 
-const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
+const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
 interface Props {
   show: boolean;

@@ -1,6 +1,3 @@
-import { AnimatedLink, Divider } from "components";
-import { SectionHeader } from "components/SectionHeader/SectionHeader";
-import { BaseOuterWrapper } from "components/style/Wrappers";
 import { defaultApy, mobileAndUnder, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useVotingInfo } from "hooks";
@@ -8,10 +5,14 @@ import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { AnimatedLink } from "./AnimatedLink";
+import { Divider } from "./Divider";
+import { SectionHeader } from "./SectionHeader";
+import { BaseOuterWrapper } from "./Wrappers";
 
-const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
+const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
-export function VoteParticipation() {
+export default function VoteParticipation() {
   const id = "voter";
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: "some" });

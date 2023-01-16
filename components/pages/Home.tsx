@@ -1,6 +1,15 @@
-import { Builder, Footer, Hero, HowItWorks, Layout, Projects, SupportSection, VoteParticipation } from "components";
+import { Hero } from "components/Hero";
+import { Layout } from "components/Layout";
 import { useInView } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+
+const HowItWorks = dynamic(() => import("components/HowItWorks"));
+const VoteParticipation = dynamic(() => import("components/VoteParticipation"));
+const Builder = dynamic(() => import("components/Builder"));
+const Projects = dynamic(() => import("components/Projects"));
+const SupportSection = dynamic(() => import("components/SupportSection"));
+const Footer = dynamic(() => import("components/Footer"));
 
 export function Home() {
   const howItWorksWrapperRef = useRef<HTMLDivElement>(null);

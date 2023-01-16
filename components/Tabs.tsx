@@ -1,7 +1,7 @@
 import { githubLight } from "@codesandbox/sandpack-themes";
 import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
-import { Divider } from "components";
-import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
+import { Divider } from "components/Divider";
+import { AnimatedLink } from "components/AnimatedLink";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import dynamic from "next/dynamic";
 import Globe from "public/assets/globe.svg";

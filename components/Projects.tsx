@@ -1,6 +1,3 @@
-import { AnimatedLink } from "components/AnimatedLink/AnimatedLink";
-import { Divider } from "components/Divider/Divider";
-import { BaseOuterWrapper } from "components/style/Wrappers";
 import { mobileAndUnder } from "constant";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
@@ -15,6 +12,9 @@ import SherlockLogo from "public/assets/sherlock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useRef } from "react";
 import styled, { CSSProperties } from "styled-components";
+import { AnimatedLink } from "./AnimatedLink";
+import { Divider } from "./Divider";
+import { BaseOuterWrapper } from "./Wrappers";
 
 type Project = {
   name: string;
@@ -22,7 +22,7 @@ type Project = {
   link: string;
 };
 
-export function Projects() {
+export default function Projects() {
   const id = "projects";
   const ref = useRef<HTMLDivElement>(null);
   useAddHashToUrl(id, ref);

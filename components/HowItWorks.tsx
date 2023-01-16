@@ -1,5 +1,3 @@
-import { SectionHeader } from "components/SectionHeader/SectionHeader";
-import { BaseOuterWrapper } from "components/style/Wrappers";
 import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
@@ -7,10 +5,12 @@ import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { SectionHeader } from "./SectionHeader";
+import { BaseOuterWrapper } from "./Wrappers";
 
-const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
+const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
-export function HowItWorks() {
+export default function HowItWorks() {
   const { setColorChangeSectionRef } = useHeaderContext();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inView = useInView(wrapperRef, { amount: "some" });
