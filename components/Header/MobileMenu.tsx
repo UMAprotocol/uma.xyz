@@ -18,9 +18,10 @@ export default function MobileMenu({ show, hide, isLightTheme }: Props) {
   const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {
-    if (show) {
+    if (show && !animationData) {
       void import("public/assets/lottie/hero.json").then(setAnimationData);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
 
   return (
@@ -38,7 +39,7 @@ export default function MobileMenu({ show, hide, isLightTheme }: Props) {
         } as CSSProperties
       }
     >
-      <Background>{show && <LottieHeroAnimation play={show} animationData={animationData} />}</Background>
+      <Background>{animationData && <LottieHeroAnimation play={show} animationData={animationData} />}</Background>
       <Links>
         {links.map(({ href, label }) => (
           <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>

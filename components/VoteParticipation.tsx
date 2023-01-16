@@ -33,11 +33,12 @@ export default function VoteParticipation() {
   const [earnDirection, setEarnDirection] = useState<Direction>(forward);
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !stakeData) {
       void import("public/assets/lottie/stake.json").then(setStakeData);
       void import("public/assets/lottie/vote.json").then(setVoteData);
       void import("public/assets/lottie/earn.json").then(setEarnData);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
   const activities = [
@@ -94,7 +95,7 @@ export default function VoteParticipation() {
               }}
             >
               <LottieWrapper>
-                {inView && (
+                {animationData && (
                   <LottieAnimation loop={false} play={play} direction={direction} animationData={animationData} />
                 )}
               </LottieWrapper>

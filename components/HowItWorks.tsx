@@ -21,12 +21,13 @@ export default function HowItWorks() {
   const [step4Data, setStep4Data] = useState<object>();
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !step1Data) {
       void import("public/assets/lottie/step-1.json").then(setStep1Data);
       void import("public/assets/lottie/step-2.json").then(setStep2Data);
       void import("public/assets/lottie/step-3.json").then(setStep3Data);
       void import("public/assets/lottie/step-4.json").then(setStep4Data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
   useAddHashToUrl(id, wrapperRef);
@@ -140,7 +141,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
         <StepText>{text}</StepText>
         <StepSubText>{subText}</StepSubText>
       </StepDescription>
-      <LottieWrapper>{inView && <LottieAnimation animationData={animationData} play={inView} />}</LottieWrapper>
+      <LottieWrapper>{animationData && <LottieAnimation animationData={animationData} play={inView} />}</LottieWrapper>
     </StepWrapper>
   );
 }
