@@ -2,11 +2,12 @@ import { grey200, grey500, links, socialLinks, white } from "constant";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
 
 const LottieAnimation = dynamic(() => import("components/LottieAnimation/LottieAnimation"));
+
 interface Props {
   show: boolean;
   hide: () => void;
@@ -14,7 +15,6 @@ interface Props {
 }
 
 export function MobileMenu({ show, hide, isLightTheme }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
   const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {
@@ -25,7 +25,6 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
 
   return (
     <Wrapper
-      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Menu"

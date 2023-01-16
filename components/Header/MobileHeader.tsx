@@ -101,7 +101,7 @@ const Wrapper = styled(FocusOn)`
   }
 `;
 
-const MenuToggleButton = styled.button`
+export const MenuToggleButton = styled.button`
   display: block;
   position: relative;
   justify-self: start;
