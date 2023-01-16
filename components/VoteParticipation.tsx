@@ -5,11 +5,11 @@ import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { AnimatedLink } from "./AnimatedLink";
 import { Divider } from "./Divider";
 import { SectionHeader } from "./SectionHeader";
 import { BaseOuterWrapper } from "./Wrappers";
 
+const AnimatedLink = dynamic(() => import("components/AnimatedLink"));
 const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
 export default function VoteParticipation() {

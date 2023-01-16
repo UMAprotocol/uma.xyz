@@ -11,7 +11,7 @@ interface Props {
   isLightTheme: boolean;
 }
 
-export function DesktopHeader({ isLightTheme }: Props) {
+export default function DesktopHeader({ isLightTheme }: Props) {
   function isActive(href: string) {
     if (typeof window === "undefined") return false;
     return window.location.href.includes(href);

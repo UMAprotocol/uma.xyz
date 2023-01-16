@@ -1,9 +1,11 @@
-import { tabletAndUnder, mobileAndUnder, laptopAndUnder } from "constant";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import dynamic from "next/dynamic";
 import { SyntheticEvent, useState } from "react";
-import MailchimpSubscribe from "react-mailchimp-subscribe";
 import styled from "styled-components";
 
-export function MailChimpForm() {
+const MailchimpSubscribe = dynamic(() => import("react-mailchimp-subscribe"));
+
+export default function MailChimpForm() {
   const [value, setValue] = useState("");
   return (
     <MailchimpSubscribe

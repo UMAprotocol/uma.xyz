@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 import { isExternalLink } from "utils";
 
-export function AnimatedLink({ href, children }: { href: string; children: ReactNode }) {
+export default function AnimatedLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link href={href} target={isExternalLink(href) ? "_blank" : undefined}>
       {children}

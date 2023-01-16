@@ -14,7 +14,7 @@ interface Props {
   isLightTheme: boolean;
 }
 
-export function MobileMenu({ show, hide, isLightTheme }: Props) {
+export default function MobileMenu({ show, hide, isLightTheme }: Props) {
   const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {

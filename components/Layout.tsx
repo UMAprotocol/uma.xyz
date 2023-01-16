@@ -1,11 +1,13 @@
+import dynamic from "next/dynamic";
 import { ReactNode } from "react";
 import styled from "styled-components";
-import { Header } from "./Header";
-import { VoteTicker } from "./VoteTicker";
 /** Used to wrap pages.
  *
  * Add headers, footers, and other common elements here.
  */
+
+const VoteTicker = dynamic(() => import("./VoteTicker"));
+const Header = dynamic(() => import("./Header"));
 
 export function Layout({ children }: { children: ReactNode }) {
   return (

@@ -1,11 +1,13 @@
 import { grey200, white } from "constant";
 import { motion } from "framer-motion";
 import { useHeaderContext } from "hooks/contexts/useHeaderContext";
+import dynamic from "next/dynamic";
 import styled, { CSSProperties } from "styled-components";
-import { DesktopHeader } from "./DesktopHeader";
-import { MobileHeader } from "./MobileHeader";
 
-export function Header() {
+const MobileHeader = dynamic(() => import("./MobileHeader"));
+const DesktopHeader = dynamic(() => import("./DesktopHeader"));
+
+export default function Header() {
   const { isLightTheme } = useHeaderContext();
   return (
     <OuterWrapper

@@ -21,7 +21,7 @@ import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { useInterval } from "usehooks-ts";
 
-export function VoteTicker({ isLightTheme = false }) {
+export default function VoteTicker({ isLightTheme = false }) {
   const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = !!data && data.activeRequests > 0;

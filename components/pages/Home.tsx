@@ -1,9 +1,9 @@
-import { Hero } from "components/Hero";
 import { Layout } from "components/Layout";
 import { useInView } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 
+const Hero = dynamic(() => import("components/Hero"));
 const HowItWorks = dynamic(() => import("components/HowItWorks"));
 const VoteParticipation = dynamic(() => import("components/VoteParticipation"));
 const Builder = dynamic(() => import("components/Builder"));
