@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
+import Lines from "public/assets/hero-bg-lines.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
@@ -46,9 +47,17 @@ export function Hero() {
     <OuterWrapper ref={ref}>
       <Background
         initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
-        animate={{ opacity: 0.15, translateX: "0%", translateY: "0%" }}
+        animate={{ opacity: 1, translateX: "0%", translateY: "0%" }}
         transition={{ duration: 0.3 }}
-      ></Background>
+      >
+        <Video autoPlay loop muted playsInline>
+          <source src="/assets/hero.mp4" type="video/mp4" />
+          <source src="/assets/hero.webm" type="video/webm" />
+        </Video>
+      </Background>
+      <BackgroundLinesWrapper>
+        <BackgroundLines />
+      </BackgroundLinesWrapper>
       <InnerWrapper>
         <HeaderWrapper {...headerAnimation}>
           <Header>
@@ -91,10 +100,34 @@ const Background = styled(motion.div)`
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.15;
+`;
+
+const BackgroundLines = styled(Lines)`
+  width: 100%;
+  height: 100%;
+`;
+
+const BackgroundLinesWrapper = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+`;
+
+const Video = styled.video`
+  width: 80%;
+  margin-inline: auto;
+  object-fit: cover;
+  mix-blend-mode: luminosity;
+
+  @media ${mobileAndUnder} {
+    width: 100%;
+  }
 `;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
+  position: relative;
   display: grid;
   place-items: center;
   padding-top: 0;
@@ -102,7 +135,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   width: 100%;
   position: relative;
   background: var(--grey-200);
-  background-image: url("assets/hero-bg-lines.svg");
   overflow: clip;
 `;
 
