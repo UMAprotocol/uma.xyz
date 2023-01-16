@@ -1,5 +1,4 @@
 import { mobileAndUnder, tabletAndUnder } from "constant";
-import { useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import NextLink from "next/link";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
@@ -10,18 +9,15 @@ import { BaseOuterWrapper } from "./Wrappers";
 export default function SupportSection() {
   const id = "support";
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref);
   useAddHashToUrl(id, ref);
 
   return (
     <OuterWrapper id={id} ref={ref}>
       <Background>
-        {inView && (
-          <Video autoPlay loop muted playsInline>
-            <source src="/assets/uma.xyz.mp4" type="video/mp4" />
-            <source src="/assets/uma.xyz.webm" type="video/webm" />
-          </Video>
-        )}
+        <Video autoPlay loop muted playsInline>
+          <source src="/assets/uma.xyz.mp4" type="video/mp4" />
+          <source src="/assets/uma.xyz.webm" type="video/webm" />
+        </Video>
         <RearOverlay />
         <FrontOverlay />
       </Background>

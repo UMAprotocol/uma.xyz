@@ -1,5 +1,4 @@
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { useInView } from "framer-motion";
 import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
 import dynamic from "next/dynamic";
 import OO from "public/assets/oo-logo.svg";
@@ -13,7 +12,6 @@ const Tabs = dynamic(() => import("components/Tabs"));
 export default function Builder() {
   const id = "builder";
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: "some" });
   useAddHashToUrl(id, ref);
 
   return (
@@ -36,7 +34,7 @@ export default function Builder() {
             </>
           }
         />
-        {inView && <Tabs />}
+        <Tabs />
       </InnerWrapper>
     </OuterWrapper>
   );
