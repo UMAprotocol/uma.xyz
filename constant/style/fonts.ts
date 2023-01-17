@@ -1,6 +1,6 @@
 const regular = 400;
 
-const family = "Halyard Display";
+const family = "'Halyard Display', sans-serif";
 
 // New fonts
 export const subHeader = `${regular} 16px/19px ${family}`;

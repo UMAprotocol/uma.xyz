@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Tabs } from "components";
-import WandIcon from "public/assets/wand.svg";
+import Tabs from "components/Tabs";
 import TubeIcon from "public/assets/tube.svg";
+import WandIcon from "public/assets/wand.svg";
 export default {
   title: "Tabs",
   component: Tabs,

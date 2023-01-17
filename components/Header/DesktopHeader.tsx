@@ -11,7 +11,7 @@ interface Props {
   isLightTheme: boolean;
 }
 
-export function DesktopHeader({ isLightTheme }: Props) {
+export default function DesktopHeader({ isLightTheme }: Props) {
   function isActive(href: string) {
     if (typeof window === "undefined") return false;
     return window.location.href.includes(href);
@@ -19,7 +19,9 @@ export function DesktopHeader({ isLightTheme }: Props) {
 
   return (
     <Wrapper>
-      <HomeLink href="/">{isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}</HomeLink>
+      <HomeLink href="/" aria-label="Back to top">
+        {isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}
+      </HomeLink>
       <Links>
         {links.map(({ label, href }) => (
           <Link
@@ -37,7 +39,7 @@ export function DesktopHeader({ isLightTheme }: Props) {
         ))}
       </Links>
       <LaunchButton
-        href="https://vote.umaproject.org"
+        href="https://vote.uma.xyz"
         target="_blank"
         style={
           {

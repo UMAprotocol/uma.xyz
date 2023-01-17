@@ -1,4 +1,5 @@
 import { animationDuration, grey100, grey500, tabletAndUnder, white } from "constant";
+import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
@@ -6,13 +7,14 @@ import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import { FocusOn } from "react-focus-on";
 import styled, { CSSProperties } from "styled-components";
-import { MobileMenu } from "./MobileMenu";
 
 interface Props {
   isLightTheme: boolean;
 }
 
-export function MobileHeader({ isLightTheme }: Props) {
+const MobileMenu = dynamic(() => import("./MobileMenu"));
+
+export default function MobileHeader({ isLightTheme }: Props) {
   const [showMenu, setShowMenu] = useState(false);
 
   const closeMenuBarTransition = `
@@ -38,6 +40,7 @@ export function MobileHeader({ isLightTheme }: Props) {
   return (
     <Wrapper enabled={showMenu} onEscapeKey={hideMenu} onClickOutside={hideMenu} preventScrollOnFocus>
       <MenuToggleButton
+        aria-label="Open navigation menu"
         onClick={toggleShowMenu}
         style={
           {
@@ -65,10 +68,13 @@ export function MobileHeader({ isLightTheme }: Props) {
           }
         />
       </MenuToggleButton>
-      <NextLink href="/">{isLightTheme ? <BlackLogo /> : <Logo />}</NextLink>
+      <NextLink href="/" aria-label="Back to page top">
+        {isLightTheme ? <BlackLogo /> : <Logo />}
+      </NextLink>
       <VoteLinkWrapper>
         <Link
-          href="https://vote.umaproject.org/"
+          aria-label="Link to voter dapp"
+          href="https://vote.uma.xyz/"
           target="_blank"
           style={
             {

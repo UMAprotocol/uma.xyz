@@ -1,7 +1,7 @@
 import Discord from "public/assets/discord.svg";
-import Medium from "public/assets/medium.svg";
 import Discourse from "public/assets/discourse.svg";
 import Github from "public/assets/github.svg";
+import Medium from "public/assets/medium.svg";
 import Twitter from "public/assets/twitter.svg";
 
 export const links = [
@@ -19,38 +19,43 @@ export const links = [
   },
   {
     label: "Oracle",
-    href: "https://oracle.umaproject.org/",
+    href: "https://oracle.uma.xyz/",
   },
   {
     label: "Docs",
-    href: "https://docs.umaproject.org/",
+    href: "https://docs.uma.xyz/",
   },
   {
     label: "Projects",
-    href: "https://projects.umaproject.org/",
+    href: "https://projects.uma.xyz/",
   },
 ];
 
 export const socialLinks = [
   {
-    href: "http://discord.umaproject.org",
+    href: "http://discord.uma.xyz",
     Icon: Discord,
+    label: "Discord",
   },
   {
     href: "https://medium.com/uma-project",
     Icon: Medium,
+    label: "Medium",
   },
   {
     href: "https://twitter.com/UMAprotocol",
     Icon: Twitter,
+    label: "Twitter",
   },
   {
-    href: "http://discourse.umaproject.org",
+    href: "http://discourse.uma.xyz",
     Icon: Discourse,
+    label: "Discourse",
   },
   {
     href: "https://github.com/UMAprotocol",
     Icon: Github,
+    label: "Github",
   },
 ];
 
@@ -76,11 +81,11 @@ export const footerLinks = {
     },
     {
       label: "Docs",
-      href: "https://docs.umaproject.org/",
+      href: "https://docs.uma.xyz/",
     },
     {
       label: "Projects",
-      href: "https://projects.umaproject.org/",
+      href: "https://projects.uma.xyz/",
     },
   ],
 };

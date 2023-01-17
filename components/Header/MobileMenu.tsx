@@ -1,11 +1,12 @@
-import { LottieAnimation } from "components/LottieAnimation/LottieAnimation";
 import { grey200, grey500, links, socialLinks, white } from "constant";
-import { useInView } from "framer-motion";
+import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { isExternalLink } from "utils";
+
+const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
 interface Props {
   show: boolean;
@@ -13,18 +14,18 @@ interface Props {
   isLightTheme: boolean;
 }
 
-export function MobileMenu({ show, hide, isLightTheme }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref);
+export default function MobileMenu({ show, hide, isLightTheme }: Props) {
   const [animationData, setAnimationData] = useState<object>();
 
   useEffect(() => {
-    void import("public/assets/lottie/hero.json").then(setAnimationData);
-  }, []);
+    if (show && !animationData) {
+      void import("public/assets/lottie/hero.json").then(setAnimationData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
 
   return (
     <Wrapper
-      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Menu"
@@ -38,9 +39,7 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
         } as CSSProperties
       }
     >
-      <Background>
-        <LottieHeroAnimation play={isInView} animationData={animationData} />
-      </Background>
+      <Background>{animationData && <LottieHeroAnimation play={show} animationData={animationData} />}</Background>
       <Links>
         {links.map(({ href, label }) => (
           <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
@@ -49,8 +48,8 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
         ))}
       </Links>
       <SocialLinks>
-        {socialLinks.map(({ href, Icon }) => (
-          <SocialLink onClick={hide} key={href} href={href} target="_blank">
+        {socialLinks.map(({ href, Icon, label }) => (
+          <SocialLink onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
             <Icon />
           </SocialLink>
         ))}
@@ -59,7 +58,7 @@ export function MobileMenu({ show, hide, isLightTheme }: Props) {
   );
 }
 
-export const Wrapper = styled.nav`
+const Wrapper = styled.nav`
   width: 100%;
   min-height: calc(100vh - 124px);
   position: absolute;

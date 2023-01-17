@@ -1,6 +1,7 @@
-import { laptop, mobile, tablet } from "./breakpoints";
+const mobile = 640;
+const tablet = 1024;
+const laptop = 1300;
 
 export const mobileAndUnder = `(max-width: ${mobile}px)`;
 export const tabletAndUnder = `(max-width: ${tablet}px)`;
 export const laptopAndUnder = `(max-width: ${laptop}px)`;
-export const onlyTablet = `(min-width: ${mobile + 1}px) and (max-width: ${tablet}px)`;
