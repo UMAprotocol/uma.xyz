@@ -1,5 +1,5 @@
 import { mobileAndUnder } from "constant";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
@@ -27,7 +27,7 @@ type Project = {
 export default function Projects() {
   const id = "projects";
   const ref = useRef<HTMLDivElement>(null);
-  useAddHashToUrl(id, ref);
+  useLoadSectionRefAndId(ref, id);
 
   const topRow = [
     {

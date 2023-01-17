@@ -1,1 +1,1 @@
-export { HeaderContext, HeaderProvider } from "./HeaderContext";
+export { ScrollContext, ScrollProvider } from "./ScrollContext";

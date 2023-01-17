@@ -1,6 +1,6 @@
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
@@ -10,7 +10,7 @@ import { BaseOuterWrapper } from "./Wrappers";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  useAddHashToUrl("", ref);
+  useLoadSectionRefAndId(ref, "");
 
   const headerAnimation = {
     initial: {

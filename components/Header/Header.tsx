@@ -1,6 +1,6 @@
 import { grey200, white } from "constant";
 import { motion } from "framer-motion";
-import { useHeaderContext } from "hooks/contexts/useHeaderContext";
+import { useScrollContext } from "hooks/contexts/useScrollContext";
 import dynamic from "next/dynamic";
 import styled, { CSSProperties } from "styled-components";
 
@@ -8,7 +8,7 @@ const MobileHeader = dynamic(() => import("./MobileHeader"));
 const DesktopHeader = dynamic(() => import("./DesktopHeader"));
 
 export default function Header() {
-  const { isLightTheme } = useHeaderContext();
+  const { isLightTheme } = useScrollContext();
   return (
     <OuterWrapper
       initial={{ opacity: 0, translateY: "-100%" }}

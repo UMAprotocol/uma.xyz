@@ -1,7 +1,7 @@
 import { defaultApy, mobileAndUnder, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useVotingInfo } from "hooks";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
@@ -16,7 +16,6 @@ export default function VoteParticipation() {
   const id = "voter";
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: "some" });
-  useAddHashToUrl(id, ref);
   const { data } = useVotingInfo();
   const [stakeData, setStakeData] = useState<object>();
   const [voteData, setVoteData] = useState<object>();
@@ -31,6 +30,8 @@ export default function VoteParticipation() {
   const [stakeDirection, setStakeDirection] = useState<Direction>(forward);
   const [voteDirection, setVoteDirection] = useState<Direction>(forward);
   const [earnDirection, setEarnDirection] = useState<Direction>(forward);
+
+  useLoadSectionRefAndId(ref, id);
 
   useEffect(() => {
     if (inView && !stakeData) {

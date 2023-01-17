@@ -1,5 +1,5 @@
 import { footerLinks, laptopAndUnder, mobileAndUnder, socialLinks, tabletAndUnder } from "constant";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import UmaLogo from "public/assets/uma-logo.svg";
@@ -15,7 +15,7 @@ const MailChimpForm = dynamic(() => import("./MailChimpForm"));
 export default function Footer() {
   const id = "contact";
   const ref = useRef<HTMLDivElement>(null);
-  useAddHashToUrl(id, ref);
+  useLoadSectionRefAndId(ref, id);
 
   return (
     <OuterWrapper id={id} ref={ref} as="footer">

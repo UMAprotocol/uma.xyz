@@ -1,5 +1,5 @@
 import { mobileAndUnder, tabletAndUnder } from "constant";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import { useRef } from "react";
@@ -9,7 +9,7 @@ import { BaseOuterWrapper } from "./Wrappers";
 export default function SupportSection() {
   const id = "support";
   const ref = useRef<HTMLDivElement>(null);
-  useAddHashToUrl(id, ref);
+  useLoadSectionRefAndId(ref, id);
 
   return (
     <OuterWrapper id={id} ref={ref}>

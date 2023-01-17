@@ -1,5 +1,5 @@
 import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
@@ -12,7 +12,7 @@ const Tabs = dynamic(() => import("components/Tabs"));
 export default function Builder() {
   const id = "builder";
   const ref = useRef<HTMLDivElement>(null);
-  useAddHashToUrl(id, ref);
+  useLoadSectionRefAndId(ref, id);
 
   return (
     <OuterWrapper id={id}>

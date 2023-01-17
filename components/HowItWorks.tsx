@@ -1,7 +1,7 @@
 import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
-import { useHeaderContext } from "hooks/contexts/useHeaderContext";
-import { useAddHashToUrl } from "hooks/helpers/useAddHashToUrl";
+import { useScrollContext } from "hooks/contexts/useScrollContext";
+import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
@@ -11,14 +11,16 @@ import { BaseOuterWrapper } from "./Wrappers";
 const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
 export default function HowItWorks() {
-  const { setColorChangeSectionRef } = useHeaderContext();
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(wrapperRef, { amount: "some" });
+  const { setColorChangeSectionRef } = useScrollContext();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: "some" });
   const id = "how-it-works";
   const [step1Data, setStep1Data] = useState<object>();
   const [step2Data, setStep2Data] = useState<object>();
   const [step3Data, setStep3Data] = useState<object>();
   const [step4Data, setStep4Data] = useState<object>();
+
+  useLoadSectionRefAndId(ref, id);
 
   useEffect(() => {
     if (inView && !step1Data) {
@@ -30,12 +32,10 @@ export default function HowItWorks() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
-  useAddHashToUrl(id, wrapperRef);
-
   useEffect(() => {
-    setColorChangeSectionRef(wrapperRef);
+    setColorChangeSectionRef(ref);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wrapperRef.current]);
+  }, [ref.current]);
 
   const steps = [
     {
@@ -72,7 +72,7 @@ export default function HowItWorks() {
 
   return (
     <OuterWrapper id={id}>
-      <InnerWrapper ref={wrapperRef}>
+      <InnerWrapper ref={ref}>
         <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
         {steps.map(({ header, text, subText, animationData }, index) => (
           <Step
