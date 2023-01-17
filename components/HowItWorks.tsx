@@ -73,7 +73,7 @@ export default function HowItWorks() {
   return (
     <OuterWrapper id={id}>
       <InnerWrapper ref={ref}>
-        <SectionHeader title="How it works" header="The Optimistic Oracle verifies data in stages" />
+        <SectionHeader title="How UMA works" header="The Optimistic Oracle verifies data in stages" />
         {steps.map(({ header, text, subText, animationData }, index) => (
           <Step
             key={header}
