@@ -1,4 +1,4 @@
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { headerLgFluid, headerMdFluid, headerSmFluid, laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
@@ -26,17 +26,19 @@ const Header = styled(motion.h2)`
   margin-top: 48px;
   margin-bottom: 128px;
   font: var(--header-lg);
+  ${headerLgFluid}
   @media ${laptopAndUnder} {
     --width: var(--width-laptop);
   }
   @media ${tabletAndUnder} {
     --width: var(--width-desktop-tablet);
+    ${headerMdFluid}
     margin-bottom: 64px;
   }
   @media ${mobileAndUnder} {
     --width: var(--width-mobile);
     font: var(--header-sm);
-
+    ${headerSmFluid}
     margin-top: 24px;
     margin-bottom: 40px;
   }

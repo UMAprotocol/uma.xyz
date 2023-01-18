@@ -11,6 +11,19 @@ export const headerMd = `${weight} ${64 / 16}rem/72px ${family}`;
 export const headerSm = `${weight} ${40 / 16}rem/55px ${family}`;
 export const headerXs = `${weight} ${32 / 16}rem/45px ${family}`;
 
+export const headerLgFluidFontSize = `
+  clamp(${64 / 16}rem, 6vw + 2rem, ${96 / 16}rem)
+`;
+
+export const headerLgFluidLineHeight = `
+  clamp(72px, 6vw + 2rem, 112px)
+`;
+
+export const headerLgFluid = css`
+  font-size: ${headerLgFluidFontSize};
+  line-height: ${headerLgFluidLineHeight};
+`;
+
 export const headerMdFluidFontSize = `
   clamp(${64 / 16}rem, 6vw + 2rem, ${96 / 16}rem)
 `;
