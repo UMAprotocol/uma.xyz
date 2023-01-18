@@ -1,4 +1,4 @@
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
@@ -159,8 +159,44 @@ const Header = styled(motion.h1)`
   color: var(--white);
   text-align: center;
   z-index: 1;
+  line-height: 115%;
   @media ${tabletAndUnder} {
     font: var(--header-md);
+    line-height: 115%;
+  }
+  @media ${mobileAndUnder} {
+    /* 
+      the formula for this fluid typography is as follows:
+
+      x — current viewport width value (px).
+      y — resulting fluid font size for a current viewport width value x (px).
+      v — viewport width value that affects fluid value change rate (vw).
+      r — relative size equal to browser font size. Default value is 16px.
+
+      to find v:
+
+      v = 100 * (y2-y1) / (x2-x1)
+
+      to find r:
+
+      r = (x1y2 - x2y1) / (x1 - x2)
+
+      and these values are used like so:
+
+      font-size: clamp([min]rem, [v]vw + [r]rem, [max]rem);
+
+      NOTE: the max and min font size values are used in px in the formula, but should be converted to rem when used
+
+      see https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/ for reference
+
+      in this case the values used were:
+
+      x1 = 300px
+      x2 = 620px
+      y1 = 40px
+      y2 = 64px
+    */
+    font-size: clamp(2.5rem, 7vw + 1.18rem, 4rem);
   }
 `;
 
@@ -242,25 +278,11 @@ const OOLogoIcon = styled(OOLogo)`
   width: var(--width);
   height: var(--height);
   --desktop-width: 166px;
-  --desktop-height: 83px;
-  --laptop-width: 126px;
-  --laptop-height: 64px;
-  --tablet-width: 116px;
-  --tablet-height: 58px;
-  --mobile-width: 66px;
-  --mobile-height: 36px;
+  --desktop-height: 82px;
+  --mobile-height: clamp(2.5rem, 7vw + 1.18rem, 4rem);
+  --mobile-width: calc(var(--mobile-height * 2));
   --width: var(--desktop-width);
   --height: var(--desktop-height);
-
-  @media ${laptopAndUnder} {
-    --width: var(--laptop-width);
-    --height: var(--laptop-height);
-  }
-
-  @media ${tabletAndUnder} {
-    --width: var(--tablet-width);
-    --height: var(--tablet-height);
-  }
 
   @media ${mobileAndUnder} {
     --width: var(--mobile-width);
