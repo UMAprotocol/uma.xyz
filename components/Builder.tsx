@@ -1,4 +1,10 @@
-import { mobileAndUnder } from "constant";
+import {
+  headerLgFluidFontSize,
+  headerMdFluidFontSize,
+  headerSmFluidFontSize,
+  mobileAndUnder,
+  tabletAndUnder,
+} from "constant";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import OO from "public/assets/oo-logo.svg";
@@ -60,10 +66,14 @@ const OOIcon = styled(OO)`
   width: calc(var(--height) * 2);
 
   height: var(--height);
-  --desktop-height: 5rem;
-  /* scales with the fluid typography on mobile by using the same clamp values */
-  --mobile-height: clamp(2.5rem, 7vw + 1.18rem, 4rem);
+  --desktop-height: ${headerLgFluidFontSize};
+  --tablet-height: ${headerMdFluidFontSize};
+  --mobile-height: ${headerSmFluidFontSize};
   --height: var(--desktop-height);
+
+  @media ${tabletAndUnder} {
+    --height: var(--tablet-height);
+  }
 
   @media ${mobileAndUnder} {
     --height: var(--mobile-height);
