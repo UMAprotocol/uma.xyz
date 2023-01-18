@@ -279,6 +279,7 @@ const OOLogoIcon = styled(OOLogo)`
   height: var(--height);
   --desktop-width: 166px;
   --desktop-height: 82px;
+  /* scales with the fluid typography on mobile by using the same clamp values */
   --mobile-height: clamp(2.5rem, 7vw + 1.18rem, 4rem);
   --mobile-width: calc(var(--mobile-height * 2));
   --width: var(--desktop-width);
