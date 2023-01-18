@@ -1,4 +1,6 @@
 import {
+  headerLgFluid,
+  headerLgFluidFontSize,
   headerMdFluid,
   headerMdFluidFontSize,
   headerSmFluid,
@@ -163,6 +165,7 @@ const HeaderWrapper = styled(motion.div)`
 
 const Header = styled(motion.h1)`
   font: var(--header-lg);
+  ${headerLgFluid}
   color: var(--white);
   text-align: center;
   z-index: 1;
@@ -251,7 +254,7 @@ const OOLogoIcon = styled(OOLogo)`
   }
   width: calc(var(--height) * 2);
   height: var(--height);
-  --desktop-height: 6rem;
+  --desktop-height: ${headerLgFluidFontSize};
   --tablet-height: ${headerMdFluidFontSize};
   --mobile-height: ${headerSmFluidFontSize};
   --height: var(--desktop-height);
