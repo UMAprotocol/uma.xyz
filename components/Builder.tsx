@@ -1,4 +1,4 @@
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { mobileAndUnder } from "constant";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import OO from "public/assets/oo-logo.svg";
@@ -23,10 +23,7 @@ export default function Builder() {
           header={
             <>
               {" "}
-              <span>
-                Launch products with
-                <br /> the
-              </span>
+              <span>Launch products with the</span>
               <OOIconWrapper>
                 <OOIcon />
               </OOIconWrapper>
@@ -59,31 +56,16 @@ const OOIconWrapper = styled.span`
 `;
 
 const OOIcon = styled(OO)`
-  width: var(--width);
   height: var(--height);
-  --desktop-width: 164px;
-  --desktop-height: 82px;
-  --laptop-width: 124px;
-  --laptop-height: 62px;
-  --tablet-width: 114px;
-  --tablet-height: 57px;
-  --mobile-width: 64px;
-  --mobile-height: 32px;
-  --width: var(--desktop-width);
+  width: calc(var(--height) * 2);
+
+  height: var(--height);
+  --desktop-height: 5rem;
+  /* scales with the fluid typography on mobile by using the same clamp values */
+  --mobile-height: clamp(2.5rem, 7vw + 1.18rem, 4rem);
   --height: var(--desktop-height);
 
-  @media ${laptopAndUnder} {
-    --width: var(--laptop-width);
-    --height: var(--laptop-height);
-  }
-
-  @media ${tabletAndUnder} {
-    --width: var(--tablet-width);
-    --height: var(--tablet-height);
-  }
-
   @media ${mobileAndUnder} {
-    --width: var(--mobile-width);
     --height: var(--mobile-height);
   }
 `;

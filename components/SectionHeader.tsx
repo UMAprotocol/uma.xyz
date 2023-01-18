@@ -31,10 +31,12 @@ const Header = styled(motion.h2)`
   }
   @media ${tabletAndUnder} {
     --width: var(--width-desktop-tablet);
+    margin-bottom: 64px;
   }
   @media ${mobileAndUnder} {
     --width: var(--width-mobile);
     font: var(--header-sm);
+
     margin-top: 24px;
     margin-bottom: 40px;
   }
