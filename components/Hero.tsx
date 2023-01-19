@@ -81,14 +81,14 @@ export default function Hero() {
         <ArrowButtonWrapper
           initial={{
             opacity: 0,
-            translateY: "50%",
+            translateY: "50px",
           }}
           animate={{
             opacity: 1,
-            translateY: "0%",
+            translateY: "0px",
           }}
           transition={{
-            duration: 0.1,
+            duration: 0.3,
             delay: 1.3,
           }}
         >
