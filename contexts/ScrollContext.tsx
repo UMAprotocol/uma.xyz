@@ -66,6 +66,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
 
       return top < middleOfScreen && bottom > middleOfScreen;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollY]);
 
   useEffect(() => {
@@ -82,7 +83,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     function hasEnteredColorChangeSection() {
       if (colorChangeSectionRef.current?.offsetTop === undefined) return false;
 
-      return scrollY > colorChangeSectionRef.current.offsetTop - headerBlurHeight;
+      return scrollY > colorChangeSectionRef.current.offsetTop - headerBlurHeight * 1.8;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollY]);

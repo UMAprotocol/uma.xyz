@@ -8,5 +8,6 @@ export function useLoadSectionRefAndId(ref: RefObject<HTMLDivElement>, id: strin
     if (ref.current) {
       loadSectionRefAndId(id, ref);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref.current]);
 }

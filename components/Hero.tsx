@@ -1,4 +1,13 @@
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import {
+  headerLgFluid,
+  headerLgFluidFontSize,
+  headerMdFluid,
+  headerMdFluidFontSize,
+  headerSmFluid,
+  headerSmFluidFontSize,
+  mobileAndUnder,
+  tabletAndUnder,
+} from "constant";
 import { motion } from "framer-motion";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
@@ -72,14 +81,14 @@ export default function Hero() {
         <ArrowButtonWrapper
           initial={{
             opacity: 0,
-            translateY: "50%",
+            translateY: "50px",
           }}
           animate={{
             opacity: 1,
-            translateY: "0%",
+            translateY: "0px",
           }}
           transition={{
-            duration: 0.1,
+            duration: 0.3,
             delay: 1.3,
           }}
         >
@@ -156,11 +165,15 @@ const HeaderWrapper = styled(motion.div)`
 
 const Header = styled(motion.h1)`
   font: var(--header-lg);
+  ${headerLgFluid}
   color: var(--white);
   text-align: center;
   z-index: 1;
   @media ${tabletAndUnder} {
-    font: var(--header-md);
+    ${headerMdFluid}
+  }
+  @media ${mobileAndUnder} {
+    ${headerSmFluid}
   }
 `;
 
@@ -239,31 +252,18 @@ const OOLogoIcon = styled(OOLogo)`
   path {
     fill: var(--white);
   }
-  width: var(--width);
+  width: calc(var(--height) * 2);
   height: var(--height);
-  --desktop-width: 166px;
-  --desktop-height: 83px;
-  --laptop-width: 126px;
-  --laptop-height: 64px;
-  --tablet-width: 116px;
-  --tablet-height: 58px;
-  --mobile-width: 66px;
-  --mobile-height: 36px;
-  --width: var(--desktop-width);
+  --desktop-height: ${headerLgFluidFontSize};
+  --tablet-height: ${headerMdFluidFontSize};
+  --mobile-height: ${headerSmFluidFontSize};
   --height: var(--desktop-height);
 
-  @media ${laptopAndUnder} {
-    --width: var(--laptop-width);
-    --height: var(--laptop-height);
-  }
-
   @media ${tabletAndUnder} {
-    --width: var(--tablet-width);
     --height: var(--tablet-height);
   }
 
   @media ${mobileAndUnder} {
-    --width: var(--mobile-width);
     --height: var(--mobile-height);
   }
 `;
