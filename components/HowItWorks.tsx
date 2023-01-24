@@ -114,9 +114,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
     offset: ["-100%", "start"],
   });
   const spring = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
+    duration: 0.2,
   });
 
   return (
@@ -133,7 +131,8 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
             color: white,
             border: `1px solid ${red}`,
           }}
-          transition={spring}
+          viewport={{ amount: "all", margin: "-48px" }}
+          transition={{ duration: 0.3 }}
         >
           0{index + 1}
         </StepNumber>
