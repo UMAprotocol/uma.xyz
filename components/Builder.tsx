@@ -25,7 +25,11 @@ export default function Builder() {
       <InnerWrapper ref={ref}>
         <SectionHeader
           hasCircleFilter={false}
-          title={{ text: "Participate as a", redSuffix: "Builder" }}
+          title={
+            <>
+              Participate as a <strong>Builder</strong>
+            </>
+          }
           header={
             <>
               {" "}

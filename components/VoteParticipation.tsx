@@ -77,7 +77,11 @@ export default function VoteParticipation() {
     <OuterWrapper ref={ref} id={id}>
       <InnerWrapper>
         <SectionHeader
-          title={{ text: "Participate as a", redSuffix: "Voter" }}
+          title={
+            <>
+              Participate as a <strong>Voter</strong>
+            </>
+          }
           header={<>Stake, vote &amp; earn up to {data?.apy ?? defaultApy}% APY</>}
           constrainWidth
         />
