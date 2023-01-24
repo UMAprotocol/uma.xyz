@@ -161,12 +161,10 @@ const StepWrapper = styled.div`
   grid-template-rows: auto;
   grid-template-areas: "number description lottie";
   padding-bottom: var(--step-padding-bottom);
-  --step-padding-bottom-desktop: 148px;
-  --step-padding-bottom-laptop-tablet: 96px;
+  --step-padding-bottom-desktop: 96px;
   --step-padding-bottom-mobile: 22px;
   --step-padding-bottom: var(--step-padding-bottom-desktop);
   @media ${laptopAndUnder} {
-    --step-padding-bottom: var(--step-padding-bottom-laptop-tablet);
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -182,6 +180,9 @@ const StepWrapper = styled.div`
       "description"
       "lottie";
     grid-column-gap: unset;
+  }
+  &:is(:last-child) {
+    padding-bottom: 0;
   }
 `;
 
