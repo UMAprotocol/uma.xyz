@@ -224,6 +224,4 @@ const DividerWrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-const AnimatedLinkWrapper = styled.div`
-  padding-left: 40px;
-`;
+const AnimatedLinkWrapper = styled.div``;
