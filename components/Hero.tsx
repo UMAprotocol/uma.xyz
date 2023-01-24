@@ -115,6 +115,8 @@ const BackgroundLines = styled.div`
   top: 0;
   left: 0;
   background-image: url("/assets/hero-bg-lines.svg");
+  background-size: cover;
+  background-repeat: repeat;
 `;
 
 const Video = styled.video`
