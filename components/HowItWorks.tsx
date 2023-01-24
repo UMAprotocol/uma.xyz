@@ -287,6 +287,7 @@ const StepNumber = styled(motion.p)`
 `;
 
 const StepLineOuter = styled.div`
+  z-index: -1;
   background: var(--grey-500);
   height: calc(100% + var(--step-padding-bottom));
   width: 1px;
