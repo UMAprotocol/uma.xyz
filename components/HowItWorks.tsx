@@ -5,6 +5,7 @@ import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { useWindowSize } from "usehooks-ts";
 import { SectionHeader } from "./SectionHeader";
 import { BaseOuterWrapper } from "./Wrappers";
 
@@ -116,6 +117,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
   const spring = useSpring(scrollYProgress, {
     duration: 0.2,
   });
+  const { width } = useWindowSize();
 
   return (
     <StepWrapper key={header}>
@@ -131,7 +133,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
             color: white,
             border: `1px solid ${red}`,
           }}
-          viewport={{ amount: "all", margin: "-48px" }}
+          viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           transition={{ duration: 0.3 }}
         >
           0{index + 1}
