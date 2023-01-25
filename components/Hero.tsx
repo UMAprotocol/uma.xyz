@@ -142,7 +142,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
   width: 100%;
   position: relative;
-  background: var(--grey-200);
   overflow: clip;
 `;
 
