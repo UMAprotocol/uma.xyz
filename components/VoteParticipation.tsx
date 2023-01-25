@@ -77,7 +77,11 @@ export default function VoteParticipation() {
     <OuterWrapper ref={ref} id={id}>
       <InnerWrapper>
         <SectionHeader
-          title={{ text: "Participate as a", redSuffix: "Voter" }}
+          title={
+            <>
+              Participate as a <strong>Voter</strong>
+            </>
+          }
           header={<>Stake, vote &amp; earn up to {data?.apy ?? defaultApy}% APY</>}
           constrainWidth
         />
@@ -224,6 +228,4 @@ const DividerWrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-const AnimatedLinkWrapper = styled.div`
-  padding-left: 40px;
-`;
+const AnimatedLinkWrapper = styled.div``;

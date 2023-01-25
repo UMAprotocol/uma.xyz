@@ -8,7 +8,7 @@ import {
   mobileAndUnder,
   tabletAndUnder,
 } from "constant";
-import { motion } from "framer-motion";
+import { LazyMotion, m } from "framer-motion";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
@@ -16,6 +16,8 @@ import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { BaseOuterWrapper } from "./Wrappers";
+
+const loadFeatures = () => import("../utils/features").then((res) => res.default);
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,56 +54,58 @@ export default function Hero() {
   }
 
   return (
-    <OuterWrapper ref={ref}>
-      <Background
-        initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
-        animate={{ opacity: 1, translateX: "0%", translateY: "0%" }}
-        transition={{ duration: 0.3 }}
-      >
-        <Video autoPlay loop muted playsInline>
-          <source src="/assets/hero.mp4" type="video/mp4" />
-          <source src="/assets/hero.webm" type="video/webm" />
-        </Video>
-      </Background>
-      <BackgroundLines />
-      <InnerWrapper>
-        <HeaderWrapper {...headerAnimation}>
-          <Header>
-            <motion.div {...makeHeaderRotateAnimation(-3)}>A decentralized </motion.div>
-            <motion.span {...makeHeaderRotateAnimation(-6)}>truth</motion.span>
-            <OOIconWrapper {...makeHeaderRotateAnimation(8)}>
-              <OOLogoIcon />
-            </OOIconWrapper>
-            <motion.span {...makeHeaderRotateAnimation(4)}>machine</motion.span>
-          </Header>
-          <Subheader>
-            UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
-          </Subheader>
-        </HeaderWrapper>
-        <ArrowButtonWrapper
-          initial={{
-            opacity: 0,
-            translateY: "50px",
-          }}
-          animate={{
-            opacity: 1,
-            translateY: "0px",
-          }}
-          transition={{
-            duration: 0.3,
-            delay: 1.3,
-          }}
+    <LazyMotion features={loadFeatures}>
+      <OuterWrapper ref={ref}>
+        <Background
+          initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
+          animate={{ opacity: 1, translateX: "0%", translateY: "0%" }}
+          transition={{ duration: 0.3 }}
         >
-          <ArrowButton href="#how-it-works" aria-label="Go to next section">
-            <ArrowIcon />
-          </ArrowButton>
-        </ArrowButtonWrapper>
-      </InnerWrapper>
-    </OuterWrapper>
+          <Video autoPlay loop muted playsInline>
+            <source src="/assets/hero.mp4" type="video/mp4" />
+            <source src="/assets/hero.webm" type="video/webm" />
+          </Video>
+        </Background>
+        <BackgroundLines />
+        <InnerWrapper>
+          <HeaderWrapper {...headerAnimation}>
+            <Header>
+              <m.div {...makeHeaderRotateAnimation(-3)}>A decentralized </m.div>
+              <m.span {...makeHeaderRotateAnimation(-6)}>truth</m.span>
+              <OOIconWrapper {...makeHeaderRotateAnimation(8)}>
+                <OOLogoIcon />
+              </OOIconWrapper>
+              <m.span {...makeHeaderRotateAnimation(4)}>machine</m.span>
+            </Header>
+            <Subheader>
+              UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
+            </Subheader>
+          </HeaderWrapper>
+          <ArrowButtonWrapper
+            initial={{
+              opacity: 0,
+              translateY: "50px",
+            }}
+            animate={{
+              opacity: 1,
+              translateY: "0px",
+            }}
+            transition={{
+              duration: 0.3,
+              delay: 1.3,
+            }}
+          >
+            <ArrowButton href="#how-it-works" aria-label="Go to next section">
+              <ArrowIcon />
+            </ArrowButton>
+          </ArrowButtonWrapper>
+        </InnerWrapper>
+      </OuterWrapper>
+    </LazyMotion>
   );
 }
 
-const Background = styled(motion.div)`
+const Background = styled(m.div)`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -115,6 +119,8 @@ const BackgroundLines = styled.div`
   top: 0;
   left: 0;
   background-image: url("/assets/hero-bg-lines.svg");
+  background-size: cover;
+  background-repeat: repeat;
 `;
 
 const Video = styled.video`
@@ -136,7 +142,6 @@ const OuterWrapper = styled(BaseOuterWrapper)`
   height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
   width: 100%;
   position: relative;
-  background: var(--grey-200);
   overflow: clip;
 `;
 
@@ -150,7 +155,7 @@ const InnerWrapper = styled.div`
   margin-inline: auto;
 `;
 
-const HeaderWrapper = styled(motion.div)`
+const HeaderWrapper = styled(m.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,7 +168,7 @@ const HeaderWrapper = styled(motion.div)`
   }
 `;
 
-const Header = styled(motion.h1)`
+const Header = styled(m.h1)`
   font: var(--header-lg);
   ${headerLgFluid}
   color: var(--white);
@@ -177,7 +182,7 @@ const Header = styled(motion.h1)`
   }
 `;
 
-const Subheader = styled(motion.h2)`
+const Subheader = styled(m.h2)`
   z-index: 1;
   margin-inline: auto;
   max-width: min(562px, 80%);
@@ -212,7 +217,7 @@ const ArrowIcon = styled(DownArrow)`
   animation-delay: 3s;
 `;
 
-const ArrowButtonWrapper = styled(motion.div)`
+const ArrowButtonWrapper = styled(m.div)`
   align-self: start;
 `;
 
@@ -239,7 +244,7 @@ const ArrowButton = styled(NextLink)`
   }
 `;
 
-const OOIconWrapper = styled(motion.span)`
+const OOIconWrapper = styled(m.span)`
   display: inline-block;
   vertical-align: middle;
   margin-inline: 16px;

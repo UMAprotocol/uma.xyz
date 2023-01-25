@@ -22,27 +22,29 @@ export default function SupportSection() {
         <FrontOverlay />
       </Background>
       <InnerWrapper>
-        <TextWrapper>
-          <Title>Supported by the Risk Labs Foundation</Title>
-          <Subtitle>
-            Risk Labs is the foundation and team behind UMA. Risk Labs&apos; mission is to make global markets
-            universally fair, accessible, secure and decentralized.
-          </Subtitle>
-        </TextWrapper>
-        <LinksWrapper>
-          <AnimatedLink href="https://jobs.lever.co/umaproject" target="_blank">
-            <ArrowIconWrapper>
-              <ArrowIcon />
-            </ArrowIconWrapper>
-            <LinkText>Careers</LinkText>
-          </AnimatedLink>
-          <AnimatedLink href="https://risklabs.foundation" target="_blank">
-            <ArrowIconWrapper>
-              <ArrowIcon />
-            </ArrowIconWrapper>
-            <LinkText>About</LinkText>
-          </AnimatedLink>
-        </LinksWrapper>
+        <div>
+          <TextWrapper>
+            <Title>Supported by the Risk Labs Foundation</Title>
+            <Subtitle>
+              Risk Labs is the foundation and team behind UMA. Risk Labs&apos; mission is to make global markets
+              universally fair, accessible, secure and decentralized.
+            </Subtitle>
+          </TextWrapper>
+          <LinksWrapper>
+            <AnimatedLink href="https://jobs.lever.co/umaproject" target="_blank">
+              <ArrowIconWrapper>
+                <ArrowIcon />
+              </ArrowIconWrapper>
+              <LinkText>Careers</LinkText>
+            </AnimatedLink>
+            <AnimatedLink href="https://risklabs.foundation" target="_blank">
+              <ArrowIconWrapper>
+                <ArrowIcon />
+              </ArrowIconWrapper>
+              <LinkText>About</LinkText>
+            </AnimatedLink>
+          </LinksWrapper>
+        </div>
       </InnerWrapper>
     </OuterWrapper>
   );
@@ -98,8 +100,11 @@ const OuterWrapper = styled(BaseOuterWrapper)`
 `;
 
 const InnerWrapper = styled.div`
+  display: grid;
+  align-items: center;
   position: relative;
   pointer-events: all;
+  min-height: min(1024px, 80vh);
   max-width: var(--page-width);
   margin-inline: auto;
   z-index: 1;

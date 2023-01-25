@@ -73,7 +73,14 @@ export default function HowItWorks() {
   return (
     <OuterWrapper id={id}>
       <InnerWrapper ref={ref}>
-        <SectionHeader title="How UMA works" header="The Optimistic Oracle verifies data in stages" />
+        <SectionHeader
+          title={
+            <>
+              How <strong>UMA</strong> works
+            </>
+          }
+          header="The Optimistic Oracle verifies data in stages"
+        />
         {steps.map(({ header, text, subText, animationData }, index) => (
           <Step
             key={header}
@@ -107,9 +114,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
     offset: ["-100%", "start"],
   });
   const spring = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
+    duration: 0.2,
   });
 
   return (
@@ -126,7 +131,8 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
             color: white,
             border: `1px solid ${red}`,
           }}
-          transition={spring}
+          viewport={{ amount: "all", margin: "-48px" }}
+          transition={{ duration: 0.3 }}
         >
           0{index + 1}
         </StepNumber>
@@ -161,12 +167,10 @@ const StepWrapper = styled.div`
   grid-template-rows: auto;
   grid-template-areas: "number description lottie";
   padding-bottom: var(--step-padding-bottom);
-  --step-padding-bottom-desktop: 148px;
-  --step-padding-bottom-laptop-tablet: 96px;
+  --step-padding-bottom-desktop: 96px;
   --step-padding-bottom-mobile: 22px;
   --step-padding-bottom: var(--step-padding-bottom-desktop);
   @media ${laptopAndUnder} {
-    --step-padding-bottom: var(--step-padding-bottom-laptop-tablet);
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     grid-template-areas:
@@ -182,6 +186,9 @@ const StepWrapper = styled.div`
       "description"
       "lottie";
     grid-column-gap: unset;
+  }
+  &:is(:last-child) {
+    padding-bottom: 0;
   }
 `;
 
@@ -280,6 +287,7 @@ const StepNumber = styled(motion.p)`
 `;
 
 const StepLineOuter = styled.div`
+  z-index: -1;
   background: var(--grey-500);
   height: calc(100% + var(--step-padding-bottom));
   width: 1px;

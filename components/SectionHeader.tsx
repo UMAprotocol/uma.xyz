@@ -1,64 +1,18 @@
 import { headerLgFluid, headerMdFluid, headerSmFluid, laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 
-const HeaderWrapper = styled.div`
-  position: relative;
-`;
-
-const Title = styled(motion.h1)`
-  font: var(--header-sm);
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--grey-600);
-  @media ${mobileAndUnder} {
-    padding-bottom: 12px;
-    font: var(--body-lg);
-  }
-`;
-
-const Header = styled(motion.h2)`
-  --width-desktop-tablet: 1020px;
-  --width-laptop: 720px;
-  --width-mobile: 100%;
-  --width: var(--width-desktop-tablet);
-  max-width: var(--max-width);
-  margin-top: 48px;
-  margin-bottom: 128px;
-  font: var(--header-lg);
-  ${headerLgFluid}
-  @media ${laptopAndUnder} {
-    --width: var(--width-laptop);
-  }
-  @media ${tabletAndUnder} {
-    --width: var(--width-desktop-tablet);
-    ${headerMdFluid}
-    margin-bottom: 64px;
-  }
-  @media ${mobileAndUnder} {
-    --width: var(--width-mobile);
-    font: var(--header-sm);
-    ${headerSmFluid}
-    margin-top: 24px;
-    margin-bottom: 40px;
-  }
-`;
-const RedEmphasis = styled.span`
-  color: var(--red);
-`;
-
 type SectionHeaderProps = {
-  title:
-    | string
-    | {
-        text: string;
-        redSuffix?: string;
-      };
-  header: string | JSX.Element;
+  title: ReactNode;
+  header: ReactNode;
   constrainWidth?: boolean;
   hasCircleFilter?: boolean;
 };
 
+/**
+ * Use a `<strong>` tag to add red emphasis to text in the title
+ */
 export function SectionHeader({ title, header, constrainWidth, hasCircleFilter = true }: SectionHeaderProps) {
   return (
     <HeaderWrapper>
@@ -68,13 +22,7 @@ export function SectionHeader({ title, header, constrainWidth, hasCircleFilter =
         viewport={{ once: true, amount: "all" }}
         transition={{ duration: 0.6 }}
       >
-        {typeof title === "string" ? (
-          title
-        ) : (
-          <>
-            {title.text} {title.redSuffix && <RedEmphasis>{title.redSuffix}</RedEmphasis>}
-          </>
-        )}
+        {title}
       </Title>
       <Header
         initial={{ opacity: 0.1, rotate: "1deg" }}
@@ -123,6 +71,51 @@ function CircleFilter() {
     </CircleFilterWrapper>
   );
 }
+
+const HeaderWrapper = styled.div`
+  position: relative;
+`;
+
+const Title = styled(motion.h1)`
+  font: var(--header-sm);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--grey-600);
+  @media ${mobileAndUnder} {
+    padding-bottom: 12px;
+    font: var(--body-lg);
+  }
+  strong {
+    font-weight: inherit;
+    color: var(--red);
+  }
+`;
+
+const Header = styled(motion.h2)`
+  --width-desktop-tablet: 1020px;
+  --width-laptop: 720px;
+  --width-mobile: 100%;
+  --width: var(--width-desktop-tablet);
+  max-width: var(--max-width);
+  margin-top: 48px;
+  margin-bottom: 128px;
+  font: var(--header-lg);
+  ${headerLgFluid}
+  @media ${laptopAndUnder} {
+    --width: var(--width-laptop);
+  }
+  @media ${tabletAndUnder} {
+    --width: var(--width-desktop-tablet);
+    ${headerMdFluid}
+    margin-bottom: 64px;
+  }
+  @media ${mobileAndUnder} {
+    --width: var(--width-mobile);
+    font: var(--header-sm);
+    ${headerSmFluid}
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+`;
 
 const CircleFilterWrapper = styled.div`
   position: absolute;

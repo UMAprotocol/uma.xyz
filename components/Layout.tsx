@@ -24,5 +24,10 @@ const Main = styled.main`
 `;
 
 const Wrapper = styled.div`
-  background: var(--grey-200);
+  /* 
+    background color slightly adjusted to match video.
+    color-correcting the video is super hard and this is much simpler.
+    you'd need to be a color genius to see the difference.
+  */
+  background: #2a252a;
 `;
