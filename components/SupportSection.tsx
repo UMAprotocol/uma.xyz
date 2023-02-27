@@ -31,7 +31,7 @@ export default function SupportSection() {
             </Subtitle>
           </TextWrapper>
           <LinksWrapper>
-            <AnimatedLink href="https://jobs.lever.co/umaproject" target="_blank">
+            <AnimatedLink href="https://jobs.lever.co/risklabs" target="_blank">
               <ArrowIconWrapper>
                 <ArrowIcon />
               </ArrowIconWrapper>
