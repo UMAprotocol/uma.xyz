@@ -37,11 +37,6 @@ contract OO_GettingStarted {
     uint256 reward = 0;
 `;
 
-  const placeholderUsedBy = "xxxxxxxxxxxxxxxxxxxx";
-
-  const placeholderExample =
-    "If we could get a real example here it would be cool text text text text text, maybe Sean knows?";
-
   const placeholderCode = `pragma solidity ^0.8.13;
 
   // https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.0.0/contracts/token/ERC20/IERC20.sol
@@ -67,6 +62,16 @@ contract OO_GettingStarted {
 
   const tabs = [
     {
+      title: "oSnap",
+      shortTitle: "Govern",
+      content: `The OO also enables optimistic governance, a new coordination pattern that uses a
+      “pass unless disputed” flow.`,
+      usedBy: "oSnap",
+      example: "Does this on-chain transaction match an approved Snapshot vote?",
+      code: placeholderCode,
+      Icon: ScaleIcon,
+    },
+    {
       title: "Prediction Markets",
       shortTitle: "Predict",
       content: `The OO can validate natural-language statements and answer questions about real-world events.
@@ -81,8 +86,8 @@ contract OO_GettingStarted {
       shortTitle: "Insure",
       content: `The OO can insure any type of outcome whether they are smart contracts or real-world events, while
       defending against exploits with human-powered dispute resolution.`,
-      usedBy: placeholderUsedBy,
-      example: placeholderExample,
+      usedBy: "Sherlock",
+      example: "Is this insurance claim about a smart contract hack valid?",
       code: placeholderCode,
       Icon: TubeIcon,
     },
@@ -90,32 +95,19 @@ contract OO_GettingStarted {
       title: "Cross-Chain Communication",
       shortTitle: "Bridge",
       content: `The OO can verify any statement, including statements about data on other networks.
-      Chains can use the OO to “see” things on every other chain.`,
-      usedBy: placeholderUsedBy,
-      example: placeholderExample,
+      The OO can be used in this way for cross chain messaging. It is used by the bridge Across Protocol today to enable cross-chain asset bridging.`,
+      usedBy: "Across",
+      example: "Did this deposit event on a different chain happen?",
       code: placeholderCode,
       Icon: TelescopeIcon,
     },
     {
-      title: "Governance",
-      shortTitle: "Govern",
-      content: `DAOs have used KPI Options to motivate community members to work toward shared goals.
-      The OO also enables optimistic governance, a new coordination pattern that uses a
-      “pass unless disputed” flow.`,
-      usedBy: placeholderUsedBy,
-      example: placeholderExample,
-      code: placeholderCode,
-      Icon: ScaleIcon,
-    },
-    {
-      title: "Long-Tail Data",
-      shortTitle: "Learn",
-      content: `If a piece of information is publicly provable, then UMA's OO can verify it and put it
-      on-chain.
-      The OO accepts natural language questions as an input, and does not require first
-      building pricefeeds.`,
-      usedBy: placeholderUsedBy,
-      example: placeholderExample,
+      title: "Real World Assets",
+      shortTitle: "RWA",
+      content: `UMA's OO can be used If a piece of information is publicly provable, then UMA's OO can verify it and put it
+      on-chain.`,
+      usedBy: "Jarvis",
+      example: "What is the EUR/USD exchange rate?",
       code: placeholderCode,
       Icon: GlobeIcon,
     },
@@ -153,7 +145,7 @@ contract OO_GettingStarted {
             <DividerWrapper>
               <Divider />
             </DividerWrapper>
-            <UsedBy>Real contract used by {usedBy}</UsedBy>
+            <UsedBy>Real question used by {usedBy}</UsedBy>
             <Example>{example}</Example>
           </TabsContentWrapper>
         </TabsContent>
