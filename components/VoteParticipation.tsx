@@ -1,4 +1,4 @@
-import { defaultApy, mobileAndUnder, tabletAndUnder } from "constant";
+import { defaultApr, overrideApr, mobileAndUnder, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useVotingInfo } from "hooks";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
@@ -82,7 +82,7 @@ export default function VoteParticipation() {
               Participate as a <strong>Voter</strong>
             </>
           }
-          header={<>Stake, vote &amp; earn up to {data?.apy ?? defaultApy}% APY</>}
+          header={<>Stake, vote &amp; earn up to {overrideApr ?? data?.apy ?? defaultApr}% APR</>}
           constrainWidth
         />
 
