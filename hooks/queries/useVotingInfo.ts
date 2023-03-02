@@ -1,10 +1,10 @@
-import { defaultApy } from "constant";
+import { defaultApr, overrideApr } from "constant";
 import { getVotingInfo } from "queries";
 import useSWR from "swr";
 
 export function useVotingInfo() {
   const fallbackData = {
-    apy: defaultApy,
+    apy: overrideApr ?? defaultApr,
     activeRequests: 0,
     phase: "commit",
   };
