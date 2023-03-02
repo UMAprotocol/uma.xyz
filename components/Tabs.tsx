@@ -331,7 +331,7 @@ contract LongShortPair {
         </SandpackProvider>
         <RemixLinkWrapper>
           <AnimatedLink href="https://docs.uma.xyz/developers/optimistic-oracle">
-            Build your first UMA based contract
+            Build your first smart contract with UMA
           </AnimatedLink>
         </RemixLinkWrapper>
       </SandpackWrapper>
