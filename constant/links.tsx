@@ -77,7 +77,7 @@ export const footerLinks = {
   external: [
     {
       label: "Oracle",
-      href: "https://optimistic-oracle-dapp.vercel.app/",
+      href: "https://oracle.uma.xyz/",
     },
     {
       label: "Docs",
