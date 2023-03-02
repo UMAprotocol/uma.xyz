@@ -28,7 +28,7 @@ contract OO_GettingStarted {
   bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
   bytes ancillaryData =
 
-    bytes("Q: Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c? A:1 for yes. 0 for no.");
+    bytes("Q: Did the Chiefs beat the Eagles in the 2022-2023? A:1 for yes. 0 for no.");
 
   uint256 requestTime = 0;
   function requestPrice() public {
@@ -37,58 +37,220 @@ contract OO_GettingStarted {
     uint256 reward = 0;
 `;
 
-  const placeholderCode = `pragma solidity ^0.8.13;
+  const governanceCode = `pragma solidity ^0.8.14;
+/**
+ * @title Optimistic Governor
+ * @notice A contract that allows optimistic governance of a set of transactions. The contract can be used to propose
+ * transactions that can be challenged by anyone. If the challenge is not resolved within a certain liveness period, the
+ * transactions can be executed.
+ */
+contract OptimisticGovernor {
+    function proposeTransactions(Transaction[] memory _transactions, bytes memory _explanation) external nonReentrant {
+        // note: Optional explanation explains the intent of the transactions to make comprehension easier.
+        uint256 time = getCurrentTime();
+        address proposer = msg.sender;
 
-  // https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v3.0.0/contracts/token/ERC20/IERC20.sol
-  interface IERC20 {
-      function totalSupply() external view returns (uint);
-  
-      function balanceOf(address account) external view returns (uint);
-  
-      function transfer(address recipient, uint amount) external returns (bool);
-  
-      function allowance(address owner, address spender) external view returns (uint);
-  
-      function approve(address spender, uint amount) external returns (bool);
-  
-      function transferFrom(
-          address sender,
-          address recipient,
-          uint amount
-      ) external returns (bool);
-  
-      event Transfer(address indexed from, address indexed to, uint value);
-      event Approval(address indexed owner, address indexed spender, uint value);`;
+        // Create proposal in memory to emit in an event.
+        Proposal memory proposal;
+        proposal.requestTime = time;
+
+        // Add transactions to proposal in memory.
+        for (uint256 i = 0; i < _transactions.length; i++) {
+            // If the transaction has any data with it the recipient must be a contract, not an EOA.
+            if (_transactions[i].data.length > 0) {
+                require(_isContract(_transactions[i].to), "EOA can't accept tx with data");
+            }
+        }
+        proposal.transactions = _transactions;
+
+        // Create the proposal hash.
+        bytes32 proposalHash = keccak256(abi.encode(_transactions));
+
+        // Add the proposal hash, explanation and rules to ancillary data.
+        bytes memory claim = _constructClaim(proposalHash, _explanation);
+
+        // Check that the proposal is not already mapped to an assertionId, i.e., is not a duplicate.
+        require(proposalHashes[proposalHash] == bytes32(0), "Duplicate proposals not allowed");
+
+        // Get the bond from the proposer and approve the required bond to be used by the Optimistic Oracle V3.
+        // This will fail if the proposer has not granted the Optimistic Governor contract an allowance
+        // of the collateral token equal to or greater than the totalBond.
+        uint256 totalBond = getProposalBond();
+        collateral.safeTransferFrom(msg.sender, address(this), totalBond);
+        collateral.safeIncreaseAllowance(address(optimisticOracleV3), totalBond);
+
+        // Assert that the proposal is correct at the Optimistic Oracle V3.
+        bytes32 assertionId =
+            optimisticOracleV3.assertTruth(
+                claim, // claim containing proposalHash, explanation and rules.
+                proposer, // asserter will receive back bond if the assertion is correct.
+                address(this), // callbackRecipient is set to this contract for automated proposal deletion on disputes.
+                escalationManager, // escalationManager (if set) used for whitelisting proposers / disputers.
+                liveness, // liveness in seconds.
+                collateral, // currency in which the bond is denominated.
+                totalBond, // bond amount used to assert proposal.
+                identifier, // identifier used to determine if the claim is correct at DVM.
+                bytes32(0) // domainId is not set.
+            );
+
+        // Maps the proposal hash to the returned assertionId and vice versa.
+        proposalHashes[proposalHash] = assertionId;
+        assertionIds[assertionId] = proposalHash;
+
+        emit TransactionsProposed(
+            proposer,
+            time,
+            assertionId,
+            proposal,
+            proposalHash,
+            _explanation,
+            rules,
+            time + liveness
+        );
+`;
+
+  const insuranceCode = `pragma solidity ^0.8.14;
+
+/**
+ * @title Insurance Arbitrator Contract
+ * @notice This example implementation allows insurer to issue insurance policy by depositing insured amount,
+ * designating the insured beneficiary and describing insured event.
+ */
+contract InsuranceArbitrator is Testable {
+
+    function submitClaim(bytes32 policyId) external {
+        InsurancePolicy storage claimedPolicy = insurancePolicies[policyId];
+        require(claimedPolicy.insuredAddress != address(0), "Insurance not issued");
+        require(!claimedPolicy.claimInitiated, "Claim already initiated");
+
+        claimedPolicy.claimInitiated = true;
+        uint256 timestamp = getCurrentTime();
+        bytes memory ancillaryData = abi.encodePacked(ancillaryDataHead, claimedPolicy.insuredEvent, ancillaryDataTail);
+        bytes32 claimId = _getClaimId(timestamp, ancillaryData);
+        insuranceClaims[claimId] = policyId;
+
+        // Initiate price request at Optimistic Oracle.
+        oo.requestPrice(priceIdentifier, timestamp, ancillaryData, currency, 0);
+
+        // Configure price request parameters.
+        uint256 proposerBond = (claimedPolicy.insuredAmount * oracleBondPercentage) / 1e18;
+        uint256 totalBond = oo.setBond(priceIdentifier, timestamp, ancillaryData, proposerBond);
+        oo.setCustomLiveness(priceIdentifier, timestamp, ancillaryData, optimisticOracleLivenessTime);
+        oo.setCallbacks(priceIdentifier, timestamp, ancillaryData, false, false, true);
+
+        // Propose canonical value representing "True"; i.e. the insurance claim is valid.
+        currency.safeTransferFrom(msg.sender, address(this), totalBond);
+        currency.safeApprove(address(oo), totalBond);
+        oo.proposePriceFor(msg.sender, address(this), priceIdentifier, timestamp, ancillaryData, int256(1e18));
+
+        emit ClaimSubmitted(timestamp, claimId, policyId);
+    }
+  }
+`;
+
+  const bridgeExampleCode = `pragma solidity ^0.8.14;
+
+/**
+ * @notice Contract deployed on Ethereum that houses L1 token liquidity for all SpokePools. A dataworker can interact
+ * with merkle roots stored in this contract via inclusion proofs to instruct this contract to send tokens to L2
+ * SpokePools via "pool rebalances" that can be used to pay out relayers on those networks.
+ */
+contract HubPool {
+
+  function disputeRootBundle() public nonReentrant zeroOptimisticOracleApproval {
+      uint32 currentTime = uint32(getCurrentTime());
+      require(currentTime <= rootBundleProposal.challengePeriodEndTimestamp, "Request passed liveness");
+
+      // Request price from OO and dispute it.
+      uint256 finalFee = _getBondTokenFinalFee();
+
+    if (finalFee >= bondAmount) {
+        _cancelBundle();
+        return;
+    }
+
+    SkinnyOptimisticOracleInterface optimisticOracle = _getOptimisticOracle();
+}
+`;
+
+  const rwaCode = `pragma solidity ^0.8.14;
+
+/**
+ * @title Long Short Pair.
+ * @notice Uses a combination of long and short tokens to tokenize the bounded price exposure to a given identifier.
+ */
+contract LongShortPair {
+  function settle(uint256 longTokensToRedeem, uint256 shortTokensToRedeem)
+  public
+  nonReentrant()
+  returns (uint256 collateralReturned)
+{
+  // Either early expiration is enabled and it's before the expiration time or it's after the expiration time.
+  require(
+      (enableEarlyExpiration && getCurrentTime() < expirationTimestamp) ||
+          getCurrentTime() >= expirationTimestamp,
+      "Cannot settle"
+  );
+
+  // Get the settlement price and store it. Also sets expiryPercentLong to inform settlement. Reverts if either:
+  // a) the price request has not resolved (either a normal expiration call or early expiration call) or b) If the
+  // the contract was attempted to be settled early but the price returned is the ignore oracle price.
+  // Note that we use the bool receivedSettlementPrice over checking for price != 0 as 0 is a valid price.
+  if (!receivedSettlementPrice) getExpirationPrice();
+
+  require(longToken.burnFrom(msg.sender, longTokensToRedeem));
+  require(shortToken.burnFrom(msg.sender, shortTokensToRedeem));
+
+  // expiryPercentLong is a number between 0 and 1e18. 0 means all collateral goes to short tokens and 1e18 means
+  // all collateral goes to the long token. Total collateral returned is the sum of payouts.
+  uint256 longCollateralRedeemed =
+      FixedPoint
+          .Unsigned(longTokensToRedeem)
+          .mul(FixedPoint.Unsigned(collateralPerPair))
+          .mul(FixedPoint.Unsigned(expiryPercentLong))
+          .rawValue;
+  uint256 shortCollateralRedeemed =
+      FixedPoint
+          .Unsigned(shortTokensToRedeem)
+          .mul(FixedPoint.Unsigned(collateralPerPair))
+          .mul(FixedPoint.fromUnscaledUint(1).sub(FixedPoint.Unsigned(expiryPercentLong)))
+          .rawValue;
+
+  collateralReturned = longCollateralRedeemed + shortCollateralRedeemed;
+  collateralToken.safeTransfer(msg.sender, collateralReturned);
+
+  emit PositionSettled(msg.sender, collateralReturned, longTokensToRedeem, shortTokensToRedeem);
+}
+}
+`;
 
   const tabs = [
     {
-      title: "oSnap",
+      title: "Governance",
       shortTitle: "Govern",
-      content: `The OO also enables optimistic governance, a new coordination pattern that uses a
-      “pass unless disputed” flow.`,
+      content: `The OO can be used to enable more trustless forms of DAO governance. The first product using this is oSnap, which is a trustless method to execute the results of a Snapshot vote on chain.`,
       usedBy: "oSnap",
       example: "Does this on-chain transaction match an approved Snapshot vote?",
-      code: placeholderCode,
+      code: governanceCode,
       Icon: ScaleIcon,
     },
     {
       title: "Prediction Markets",
       shortTitle: "Predict",
       content: `The OO can validate natural-language statements and answer questions about real-world events.
-      There is a dispute resolution process if something unexpected happens.`,
+      This includes arbitrary questions about weather, sports, elections, markets or anything universally verifiable.`,
       usedBy: "Polymarket",
-      example: "“Did the temperature on the 25th of July 2022 in Manhattan NY exceed 35c?”",
+      example: "“Did the Chiefs beat the Eagles in the 2022-2023?”",
       code: polymarketCode,
       Icon: WandIcon,
     },
     {
       title: "Insurance",
       shortTitle: "Insure",
-      content: `The OO can insure any type of outcome whether they are smart contracts or real-world events, while
-      defending against exploits with human-powered dispute resolution.`,
+      content: `The OO is uniquely positioned to help decide if insurance claims should be paid out. It be used as a trustless keeper service to trigger insurance payment once an insured event has occurred.`,
       usedBy: "Sherlock",
       example: "Is this insurance claim about a smart contract hack valid?",
-      code: placeholderCode,
+      code: insuranceCode,
       Icon: TubeIcon,
     },
     {
@@ -98,17 +260,16 @@ contract OO_GettingStarted {
       The OO can be used in this way for cross chain messaging. It is used by the bridge Across Protocol today to enable cross-chain asset bridging.`,
       usedBy: "Across",
       example: "Did this deposit event on a different chain happen?",
-      code: placeholderCode,
+      code: bridgeExampleCode,
       Icon: TelescopeIcon,
     },
     {
       title: "Real World Assets",
       shortTitle: "RWA",
-      content: `UMA's OO can be used If a piece of information is publicly provable, then UMA's OO can verify it and put it
-      on-chain.`,
+      content: `UMA's OO can be used to bring any piece of widely verifiable real world data on chain. This can include data about real world assets, allowing for the creation of many things such as as synthetic assets.`,
       usedBy: "Jarvis",
       example: "What is the EUR/USD exchange rate?",
-      code: placeholderCode,
+      code: rwaCode,
       Icon: GlobeIcon,
     },
   ];
@@ -169,7 +330,9 @@ contract OO_GettingStarted {
           </SandpackLayout>
         </SandpackProvider>
         <RemixLinkWrapper>
-          <AnimatedLink href="https://remix.ethereum.org/">Remix code in Sandbox</AnimatedLink>
+          <AnimatedLink href="https://docs.uma.xyz/developers/optimistic-oracle">
+            Build your first UMA based contract
+          </AnimatedLink>
         </RemixLinkWrapper>
       </SandpackWrapper>
     </TabsRoot>
