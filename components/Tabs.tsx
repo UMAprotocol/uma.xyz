@@ -28,7 +28,7 @@ contract OO_GettingStarted {
   bytes32 identifier = bytes32 ("YES_OR_NO_QUERY");
   bytes ancillaryData =
 
-    bytes("Q: Did the Chiefs beat the Eagles in the 2022-2023? A:1 for yes. 0 for no.");
+    bytes("Q: Did the Chiefs beat the Eagles in the 2022-2023 NFL Superbowl? A:1 for yes. 0 for no.");
 
   uint256 requestTime = 0;
   function requestPrice() public {
@@ -240,7 +240,7 @@ contract LongShortPair {
       content: `The OO can validate natural-language statements and answer questions about real-world events.
       This includes arbitrary questions about weather, sports, elections, markets or anything universally verifiable.`,
       usedBy: "Polymarket",
-      example: "“Did the Chiefs beat the Eagles in the 2022-2023?”",
+      example: "“Did the Chiefs beat the Eagles in the 2022-2023 NFL Superbowl?”",
       code: polymarketCode,
       Icon: WandIcon,
     },
