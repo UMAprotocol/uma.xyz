@@ -1,4 +1,5 @@
 import { mobileAndUnder, tabletAndUnder } from "constant";
+import { useInView } from "framer-motion";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
@@ -9,14 +10,19 @@ import { BaseOuterWrapper } from "./Wrappers";
 export default function SupportSection() {
   const id = "support";
   const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { amount: "some" });
   useLoadSectionRefAndId(ref, id);
 
   return (
     <OuterWrapper id={id} ref={ref}>
       <Background>
         <Video autoPlay loop muted playsInline>
-          <source src="/assets/uma.xyz.mp4" type="video/mp4" />
-          <source src="/assets/uma.xyz.webm" type="video/webm" />
+          {inView && (
+            <>
+              <source src="/assets/uma.xyz.mp4" type="video/mp4" />
+              <source src="/assets/uma.xyz.webm" type="video/webm" />
+            </>
+          )}
         </Video>
         <RearOverlay />
         <FrontOverlay />
