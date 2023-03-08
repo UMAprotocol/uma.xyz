@@ -1,10 +1,9 @@
-import { VotingV2Ethers } from "@uma/contracts-node";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { constructContract } from "./_common";
+import { constructVotingContract } from "./_common";
 
 async function getVotingInfo() {
-  const voting = (await constructContract("VotingV2")) as VotingV2Ethers;
+  const voting = await constructVotingContract();
 
   const [activeRequests, cumulativeStake, emissionRate, phase] = await Promise.all([
     voting.getPendingRequests(),

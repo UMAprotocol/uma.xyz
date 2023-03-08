@@ -5,8 +5,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getAbi, getAddress, VotingV2Ethers } from "@uma/contracts-node";
 import { Contract, ethers } from "ethers";
-import { getAbi, getAddress } from "@uma/contracts-node";
 
 export function getProvider(chainId: number) {
   return new ethers.providers.JsonRpcBatchProvider(getNodeUrls()[chainId]);
@@ -17,12 +17,12 @@ export function getNodeUrls(): { [key: string]: string } {
   return JSON.parse(process.env.NODE_URLS);
 }
 
-export async function constructContract(contractName: any) {
-  if (!process.env.CHAIN_ID) throw Error("CHAIN_ID env variable not set!");
-  const chainId = Number(process.env.CHAIN_ID);
+export async function constructVotingContract() {
+  const contractName = "VotingV2";
+  const chainId = 1;
+  const contractAddress = await getAddress(contractName, chainId);
 
-  // The latest release on goerli is not up to date. This is a temp work around so this will work on the testnet.
-  const contractAddress =
-    chainId == 5 ? "0xb3AED6A86B43De70dfe814C5ac549e722CF635D2" : await getAddress(contractName, chainId);
-  return new Contract(contractAddress, getAbi(contractName), getProvider(chainId));
+  if (!contractAddress) throw Error("VOTING_CONTRACT_ADDRESS env variable not set!");
+
+  return new Contract(contractAddress, getAbi(contractName), getProvider(chainId)) as VotingV2Ethers;
 }
