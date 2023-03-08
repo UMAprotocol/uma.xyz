@@ -233,6 +233,8 @@ contract LongShortPair {
       example: "Does this on-chain transaction match an approved Snapshot vote?",
       code: governanceCode,
       Icon: ScaleIcon,
+      docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
+      docText: "Build your first smart contract with UMA",
     },
     {
       title: "Prediction Markets",
@@ -243,6 +245,8 @@ contract LongShortPair {
       example: "“Did the Chiefs beat the Eagles in the 2022-2023 NFL Superbowl?”",
       code: polymarketCode,
       Icon: WandIcon,
+      docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
+      docText: "Build your first smart contract with UMA",
     },
     {
       title: "Insurance",
@@ -252,6 +256,8 @@ contract LongShortPair {
       example: "Is this insurance claim about a smart contract hack valid?",
       code: insuranceCode,
       Icon: TubeIcon,
+      docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
+      docText: "Build your first smart contract with UMA",
     },
     {
       title: "Cross-Chain Communication",
@@ -262,6 +268,8 @@ contract LongShortPair {
       example: "Did this deposit event on a different chain happen?",
       code: bridgeExampleCode,
       Icon: TelescopeIcon,
+      docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
+      docText: "Build your first smart contract with UMA",
     },
     {
       title: "Real World Assets",
@@ -271,10 +279,13 @@ contract LongShortPair {
       example: "What is the EUR/USD exchange rate?",
       code: rwaCode,
       Icon: GlobeIcon,
+      docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
+      docText: "Build your first smart contract with UMA",
     },
   ];
 
   const codeExamples = tabs.map(({ code }) => code);
+  const docLink = tabs.map(({ docHref, docText }) => ({ href: docHref, text: docText }));
 
   return (
     <TabsRoot defaultValue="0" onValueChange={(value) => setActiveTabIndex(Number(value))}>
@@ -330,9 +341,7 @@ contract LongShortPair {
           </SandpackLayout>
         </SandpackProvider>
         <RemixLinkWrapper>
-          <AnimatedLink href="https://docs.uma.xyz/developers/optimistic-oracle">
-            Build your first smart contract with UMA
-          </AnimatedLink>
+          <AnimatedLink href={docLink[activeTabIndex].href}>{docLink[activeTabIndex].text}</AnimatedLink>
         </RemixLinkWrapper>
       </SandpackWrapper>
     </TabsRoot>
