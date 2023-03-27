@@ -3,13 +3,13 @@ import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
-import BobaLogo from "public/assets/boba.svg";
 import CozyLogo from "public/assets/cozy.svg";
-import JarvisLogo from "public/assets/jarvis.svg";
 import OutcomeLogo from "public/assets/outcome.svg";
 import PolymarketLogo from "public/assets/polymarket.svg";
+import RatedLogo from "public/assets/rated.svg";
 import ShapeshiftLogo from "public/assets/shapeshift.svg";
 import SherlockLogo from "public/assets/sherlock.svg";
+import SnapshotLogo from "public/assets/snapshot.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useRef } from "react";
 import styled, { CSSProperties } from "styled-components";
@@ -36,22 +36,22 @@ export default function Projects() {
       link: "https://across.to",
     },
     {
-      name: "Outcome",
-      Icon: OutcomeIcon,
-      link: "https://outcome.finance",
+      name: "Polymarket",
+      Icon: PolymarketIcon,
+      link: "https://polymarket.com",
     },
   ];
 
   const middleRow = [
     {
-      name: "Polymarket",
-      Icon: PolymarketIcon,
-      link: "https://polymarket.com",
+      name: "Outcome",
+      Icon: OutcomeIcon,
+      link: "https://outcome.finance",
     },
     {
-      name: "Boba",
-      Icon: BobaIcon,
-      link: "https://boba.network",
+      name: "Rated",
+      Icon: RatedIcon,
+      link: "https://www.rated.network",
     },
     {
       name: "Shapeshift",
@@ -67,9 +67,9 @@ export default function Projects() {
       link: "https://www.cozy.finance",
     },
     {
-      name: "Jarvis",
-      Icon: JarvisIcon,
-      link: "https://jarvis.network",
+      name: "Snapshot",
+      Icon: SnapshotIcon,
+      link: "https://snapshot.org",
     },
     {
       name: "Sherlock",
@@ -130,21 +130,17 @@ const AcrossIcon = styled(AcrossLogo)``;
 
 const OutcomeIcon = styled(OutcomeLogo)``;
 
-const BobaIcon = styled(BobaLogo)`
-  margin-top: -20px;
-`;
-
 const CozyIcon = styled(CozyLogo)``;
-
-const JarvisIcon = styled(JarvisLogo)`
-  margin-top: -18px;
-`;
 
 const PolymarketIcon = styled(PolymarketLogo)``;
 
 const ShapeshiftIcon = styled(ShapeshiftLogo)``;
 
 const SherlockIcon = styled(SherlockLogo)``;
+
+const RatedIcon = styled(RatedLogo)``;
+
+const SnapshotIcon = styled(SnapshotLogo)``;
 
 const OuterWrapper = styled(BaseOuterWrapper)`
   background: var(--white);
