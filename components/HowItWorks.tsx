@@ -2,36 +2,19 @@ import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, 
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useScrollContext } from "hooks/contexts/useScrollContext";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useWindowSize } from "usehooks-ts";
 import { SectionHeader } from "./SectionHeader";
 import { BaseOuterWrapper } from "./Wrappers";
-
-const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
 
 export default function HowItWorks() {
   const { setColorChangeSectionRef } = useScrollContext();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: "some" });
   const id = "how-it-works";
-  const [step1Data, setStep1Data] = useState<object>();
-  const [step2Data, setStep2Data] = useState<object>();
-  const [step3Data, setStep3Data] = useState<object>();
-  const [step4Data, setStep4Data] = useState<object>();
 
   useLoadSectionRefAndId(ref, id);
-
-  useEffect(() => {
-    if (inView && !step1Data) {
-      void import("public/assets/lottie/step-1.json").then(setStep1Data);
-      void import("public/assets/lottie/step-2.json").then(setStep2Data);
-      void import("public/assets/lottie/step-3.json").then(setStep3Data);
-      void import("public/assets/lottie/step-4.json").then(setStep4Data);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView]);
 
   useEffect(() => {
     setColorChangeSectionRef(ref);
@@ -44,14 +27,12 @@ export default function HowItWorks() {
       text: "A statement is proposed as true",
       subText:
         "A natural-language statement is submitted along with a bond. The bond acts as a bounty for anyone to dispute it if they have evidence to the contrary.",
-      animationData: step1Data,
     },
     {
       header: "Challenge period",
       text: "Most statements go undisputed",
       subText:
         "Anyone can propose an answer to a data request, and it is accepted as true if it is not disputed during the challenge period.",
-      animationData: step2Data,
     },
     {
       header: "Dispute",
@@ -59,7 +40,6 @@ export default function HowItWorks() {
       subText: `Each statement submitted for validation is an opportunity for anyone to earn a reward by disputing it
       successfully. As the game theory would predict, disputes are rare in practice because the incentives are
       always to be honest. That makes the OO “optimistic”.`,
-      animationData: step3Data,
     },
     {
       header: "Voting",
@@ -67,7 +47,6 @@ export default function HowItWorks() {
       subText: `The UMA token provides economic guarantees to the Optimistic Oracle. The community of tokenholders provide
       the human component, as voters, for the OO's final resolution on disputes or queries. Those who vote
       with the majority earn rewards.`,
-      animationData: step4Data,
     },
   ];
 
@@ -82,13 +61,12 @@ export default function HowItWorks() {
           }
           header="The Optimistic Oracle verifies data in stages"
         />
-        {steps.map(({ header, text, subText, animationData }, index) => (
+        {steps.map(({ header, text, subText }, index) => (
           <Step
             key={header}
             header={header}
             text={text}
             subText={subText}
-            animationData={animationData}
             index={index}
             inView={inView}
             isLast={index === steps.length - 1}
@@ -103,12 +81,11 @@ interface StepProps {
   header: string;
   text: string;
   subText: string;
-  animationData: object | undefined;
   index: number;
   inView: boolean;
   isLast: boolean;
 }
-function Step({ header, text, subText, animationData, index, inView, isLast }: StepProps) {
+function Step({ header, text, subText, index, inView, isLast }: StepProps) {
   const lineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: lineRef,
@@ -118,6 +95,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
     duration: 0.2,
   });
   const { width } = useWindowSize();
+  const stepNumber = index + 1;
 
   return (
     <StepWrapper key={header}>
@@ -136,7 +114,7 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
           viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           transition={{ duration: 0.3 }}
         >
-          0{index + 1}
+          0{stepNumber}
         </StepNumber>
         {!isLast && (
           <StepLineOuter ref={lineRef}>
@@ -149,7 +127,16 @@ function Step({ header, text, subText, animationData, index, inView, isLast }: S
         <StepText>{text}</StepText>
         <StepSubText>{subText}</StepSubText>
       </StepDescription>
-      <LottieWrapper>{animationData && <LottieAnimation animationData={animationData} play={inView} />}</LottieWrapper>
+      <LottieWrapper>
+        <Video autoPlay loop muted playsInline>
+          {inView && (
+            <>
+              <source src={`/assets/step-${stepNumber}.mp4`} type="video/mp4" />
+              <source src={`/assets/step-${stepNumber}.webm`} type="video/webm" />
+            </>
+          )}
+        </Video>
+      </LottieWrapper>
     </StepWrapper>
   );
 }
@@ -192,6 +179,12 @@ const StepWrapper = styled.div`
   &:is(:last-child) {
     padding-bottom: 0;
   }
+`;
+
+const Video = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const LottieWrapper = styled.div`
