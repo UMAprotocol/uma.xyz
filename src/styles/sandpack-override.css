@@ -17,7 +17,7 @@
 .sp-tab-button:after {
   position: absolute;
   visibility: visible;
-  content: url("../public/assets/dots.png");
+  content: url("/public/assets/dots.png");
   width: 30px;
   font: var(--body-sm);
   color: var(--grey-910);
@@ -26,7 +26,6 @@
   display: block;
   border-radius: 8px;
   width: 100%;
-  background-image: url("../public/assets/lines-editor.svg");
   display: inline-flex;
   content: ' ';
   background-size: 20px auto;

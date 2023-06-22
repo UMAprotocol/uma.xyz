@@ -1,9 +1,9 @@
 import { animationDuration, grey100, grey500, tabletAndUnder, white } from "@/constant";
-import BlackLogo from "@/public/assets/uma-black-logo.svg";
-import Logo from "@/public/assets/uma-logo.svg";
-import UpRightArrow from "@/public/assets/up-right-arrow.svg";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
+import BlackLogo from "public/assets/uma-black-logo.svg";
+import Logo from "public/assets/uma-logo.svg";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import { FocusOn } from "react-focus-on";
 import styled, { CSSProperties } from "styled-components";
