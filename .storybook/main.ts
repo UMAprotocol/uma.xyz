@@ -1,17 +1,23 @@
-import type { StorybookConfig } from "@storybook/react/types";
+import { StorybookConfig } from "@storybook/nextjs";
+
 const config: StorybookConfig = {
   stories: ["../stories/**/*.stories.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)"],
   staticDirs: ["../public"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions", "storybook-addon-pseudo-states"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "storybook-addon-pseudo-states",
+  ],
   framework: {
     name: "@storybook/nextjs",
-    options: {}
+    options: {},
   },
   core: {},
-  webpackFinal: async config => {
+  webpackFinal: async (config) => {
     // this modifies the existing image rule to exclude .svg files
     // since we want to handle those files with @svgr/webpack
-    const imageRule = config?.module?.rules?.find(rule => {
+    const imageRule = config?.module?.rules?.find((rule) => {
       if (!rule || rule === "...") return;
       if (rule.test instanceof RegExp) return rule.test.test(".svg");
     });
@@ -22,9 +28,9 @@ const config: StorybookConfig = {
     // configure .svg files to be loaded with @svgr/webpack
     config?.module?.rules?.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"]
+      use: ["@svgr/webpack"],
     });
     return config;
-  }
+  },
 };
 module.exports = config;
