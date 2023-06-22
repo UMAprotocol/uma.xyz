@@ -1,17 +1,19 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import SupportSection from "components/SupportSection";
 import "../styles/sandpack-override.css";
 
 export default {
   title: "SupportSection",
   component: SupportSection,
-} as ComponentMeta<typeof SupportSection>;
+} as Meta<typeof SupportSection>;
 
-const Template: ComponentStory<typeof SupportSection> = () => (
+const Template: StoryFn<typeof SupportSection> = () => (
   <div style={{ padding: "2rem", background: "var(--black)" }}>
     <SupportSection />
   </div>
 );
 
-export const Main = Template.bind({});
-Main.args = {};
+export const Main = {
+  render: Template,
+  args: {},
+};
