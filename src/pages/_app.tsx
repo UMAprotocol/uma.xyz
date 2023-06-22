@@ -2,8 +2,8 @@ import { GlobalStyle } from "@/components/GlobalStyle";
 import { ScrollProvider } from "@/contexts";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import "styles/fonts.css";
-import "styles/sandpack-override.css";
+import "@/styles/fonts.css";
+import "@/styles/sandpack-override.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
