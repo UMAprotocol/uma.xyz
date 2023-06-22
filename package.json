@@ -62,6 +62,7 @@
     "ethers": "^5.7.2",
     "postcss": "^8.4.24",
     "prettier": "^2.8.0",
+    "prettier-plugin-tailwindcss": "^0.3.0",
     "storybook": "^7.0.23",
     "storybook-addon-pseudo-states": "^2.0.1",
     "storybook-mock-date-decorator": "^1.0.0",
