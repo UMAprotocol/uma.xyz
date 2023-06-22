@@ -1,5 +1,5 @@
+import Tabs from "@/components/Tabs";
 import { Meta, StoryFn } from "@storybook/react";
-import Tabs from "components/Tabs";
 import TubeIcon from "public/assets/tube.svg";
 import WandIcon from "public/assets/wand.svg";
 export default {

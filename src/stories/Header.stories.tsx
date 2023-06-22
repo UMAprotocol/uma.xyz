@@ -1,14 +1,14 @@
+import Header from "@/components/Header";
 import { Meta, StoryFn } from "@storybook/react";
-import Footer from "components/Footer";
 
 export default {
-  title: "Footer",
-  component: Footer,
-} as Meta<typeof Footer>;
+  title: "Header",
+  component: Header,
+} as Meta<typeof Header>;
 
-const Template: StoryFn<typeof Footer> = () => (
+const Template: StoryFn<typeof Header> = () => (
   <div style={{ padding: "1rem 2rem", background: "var(--black)" }}>
-    <Footer />
+    <Header />
   </div>
 );
 

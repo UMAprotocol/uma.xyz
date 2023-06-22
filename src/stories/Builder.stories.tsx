@@ -1,5 +1,5 @@
+import Builder from "@/components/Builder";
 import { Meta, StoryFn } from "@storybook/react";
-import Builder from "components/Builder";
 import "../styles/sandpack-override.css";
 
 export default {

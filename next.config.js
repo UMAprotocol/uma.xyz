@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   compiler: { styledComponents: true },
   eslint: {
-    dirs: ["components", "constants", "hooks", "pages", "queries", "stories", "types"],
+    dirs: ["src"],
   },
   webpack(config) {
     config.module.rules.push({

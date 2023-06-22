@@ -1,4 +1,4 @@
-import { GlobalStyle } from "components/GlobalStyle";
+import { GlobalStyle } from "@/components/GlobalStyle";
 import { ScrollProvider } from "contexts";
 import type { AppProps } from "next/app";
 import Head from "next/head";

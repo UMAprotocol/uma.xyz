@@ -1,5 +1,5 @@
+import { Divider } from "@/components/Divider";
 import { githubLight } from "@codesandbox/sandpack-themes";
-import { Divider } from "components/Divider";
 import { mobileAndUnder, tabletAndUnder } from "constant";
 import dynamic from "next/dynamic";
 import Globe from "public/assets/globe.svg";
@@ -8,13 +8,13 @@ import Telescope from "public/assets/telescope.svg";
 import Tube from "public/assets/tube.svg";
 import Wand from "public/assets/wand.svg";
 import { useState } from "react";
-import styled, { css, CSSProperties, keyframes } from "styled-components";
+import styled, { CSSProperties, css, keyframes } from "styled-components";
 
 const Content = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.Content));
 const List = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.List));
 const Root = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.Root));
 const Trigger = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.Trigger));
-const AnimatedLink = dynamic(() => import("components/AnimatedLink"));
+const AnimatedLink = dynamic(() => import("@/components/AnimatedLink"));
 const SandpackCodeViewer = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackCodeViewer));
 const SandpackLayout = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackLayout));
 const SandpackProvider = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackProvider));

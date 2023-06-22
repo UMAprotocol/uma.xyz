@@ -1,4 +1,4 @@
-import { defaultApr, overrideApr, mobileAndUnder, tabletAndUnder } from "constant";
+import { defaultApr, mobileAndUnder, overrideApr, tabletAndUnder } from "constant";
 import { useInView } from "framer-motion";
 import { useVotingInfo } from "hooks";
 import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
@@ -9,8 +9,8 @@ import { Divider } from "./Divider";
 import { SectionHeader } from "./SectionHeader";
 import { BaseOuterWrapper } from "./Wrappers";
 
-const AnimatedLink = dynamic(() => import("components/AnimatedLink"));
-const LottieAnimation = dynamic(() => import("components/LottieAnimation"));
+const AnimatedLink = dynamic(() => import("@/components/AnimatedLink"));
+const LottieAnimation = dynamic(() => import("@/components/LottieAnimation"));
 
 export default function VoteParticipation() {
   const id = "voter";

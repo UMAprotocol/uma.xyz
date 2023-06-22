@@ -1,5 +1,5 @@
+import Hero from "@/components/Hero";
 import { Meta, StoryFn } from "@storybook/react";
-import Hero from "components/Hero";
 
 export default {
   title: "Hero",
