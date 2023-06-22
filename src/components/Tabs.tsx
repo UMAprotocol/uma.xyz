@@ -1,12 +1,12 @@
 import { Divider } from "@/components/Divider";
+import { mobileAndUnder, tabletAndUnder } from "@/constant";
+import Globe from "@/public/assets/globe.svg";
+import Scale from "@/public/assets/scale.svg";
+import Telescope from "@/public/assets/telescope.svg";
+import Tube from "@/public/assets/tube.svg";
+import Wand from "@/public/assets/wand.svg";
 import { githubLight } from "@codesandbox/sandpack-themes";
-import { mobileAndUnder, tabletAndUnder } from "constant";
 import dynamic from "next/dynamic";
-import Globe from "public/assets/globe.svg";
-import Scale from "public/assets/scale.svg";
-import Telescope from "public/assets/telescope.svg";
-import Tube from "public/assets/tube.svg";
-import Wand from "public/assets/wand.svg";
 import { useState } from "react";
 import styled, { CSSProperties, css, keyframes } from "styled-components";
 

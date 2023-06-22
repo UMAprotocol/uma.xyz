@@ -1,4 +1,4 @@
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "@/constant";
 import dynamic from "next/dynamic";
 import { SyntheticEvent, useState } from "react";
 import styled from "styled-components";

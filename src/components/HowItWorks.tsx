@@ -1,7 +1,7 @@
-import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "constant";
+import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "@/constant";
+import { useScrollContext } from "@/hooks/contexts/useScrollContext";
+import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
-import { useScrollContext } from "hooks/contexts/useScrollContext";
-import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useWindowSize } from "usehooks-ts";

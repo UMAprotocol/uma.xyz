@@ -1,4 +1,4 @@
-import { useScrollContext } from "hooks/contexts/useScrollContext";
+import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { RefObject, useEffect } from "react";
 
 export function useLoadSectionRefAndId(ref: RefObject<HTMLDivElement>, id: string) {

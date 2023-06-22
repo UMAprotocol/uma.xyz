@@ -1,4 +1,11 @@
-import { headerLgFluid, headerMdFluid, headerSmFluid, laptopAndUnder, mobileAndUnder, tabletAndUnder } from "constant";
+import {
+  headerLgFluid,
+  headerMdFluid,
+  headerSmFluid,
+  laptopAndUnder,
+  mobileAndUnder,
+  tabletAndUnder,
+} from "@/constant";
 import { motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 import styled, { CSSProperties } from "styled-components";

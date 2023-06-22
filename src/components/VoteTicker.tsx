@@ -11,12 +11,12 @@ import {
   red510Opacity15,
   red550,
   white,
-} from "constant";
+} from "@/constant";
+import { useVotingInfo } from "@/hooks";
+import Clock from "@/public/assets/clock.svg";
+import UpRightArrow from "@/public/assets/up-right-arrow.svg";
 import { motion } from "framer-motion";
-import { useVotingInfo } from "hooks";
 import NextLink from "next/link";
-import Clock from "public/assets/clock.svg";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useState } from "react";
 import styled, { CSSProperties } from "styled-components";
 import { useInterval } from "usehooks-ts";

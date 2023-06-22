@@ -4,10 +4,10 @@ import {
   headerSmFluidFontSize,
   mobileAndUnder,
   tabletAndUnder,
-} from "constant";
-import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
+} from "@/constant";
+import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
+import OO from "@/public/assets/oo-logo.svg";
 import dynamic from "next/dynamic";
-import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled from "styled-components";
 import { SectionHeader } from "./SectionHeader";

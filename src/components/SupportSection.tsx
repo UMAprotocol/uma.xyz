@@ -1,8 +1,8 @@
-import { mobileAndUnder, tabletAndUnder } from "constant";
+import { mobileAndUnder, tabletAndUnder } from "@/constant";
+import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
+import UpRightArrowLg from "@/public/assets/up-right-arrow-lg.svg";
 import { useInView } from "framer-motion";
-import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
-import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import { useRef } from "react";
 import styled from "styled-components";
 import { BaseOuterWrapper } from "./Wrappers";

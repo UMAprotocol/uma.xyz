@@ -1,10 +1,10 @@
-import { grey200, grey500, links, socialLinks, white } from "constant";
+import { grey200, grey500, links, socialLinks, white } from "@/constant";
+import SmUpRightArrow from "@/public/assets/sm-up-right-arrow.svg";
+import { isExternalLink } from "@/utils";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
-import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { useEffect, useState } from "react";
 import styled, { CSSProperties } from "styled-components";
-import { isExternalLink } from "utils";
 
 const LottieAnimation = dynamic(() => import("@/components/LottieAnimation"));
 
@@ -19,7 +19,7 @@ export default function MobileMenu({ show, hide, isLightTheme }: Props) {
 
   useEffect(() => {
     if (show && !animationData) {
-      void import("public/assets/lottie/hero.json").then(setAnimationData);
+      void import("@/public/assets/lottie/hero.json").then(setAnimationData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);

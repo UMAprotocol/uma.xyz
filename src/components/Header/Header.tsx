@@ -1,6 +1,6 @@
-import { grey200, white } from "constant";
+import { grey200, white } from "@/constant";
+import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
-import { useScrollContext } from "hooks/contexts/useScrollContext";
 import dynamic from "next/dynamic";
 import styled, { CSSProperties } from "styled-components";
 

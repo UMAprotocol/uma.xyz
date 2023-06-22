@@ -40,7 +40,7 @@ import {
   white,
   white200,
   whiteOpacity10,
-} from "constant";
+} from "@/constant";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`

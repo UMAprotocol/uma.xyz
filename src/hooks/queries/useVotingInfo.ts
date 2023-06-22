@@ -1,5 +1,5 @@
-import { defaultApr, overrideApr } from "constant";
-import { getVotingInfo } from "queries";
+import { defaultApr, overrideApr } from "@/constant";
+import { getVotingInfo } from "@/queries";
 import useSWR from "swr";
 
 export function useVotingInfo() {

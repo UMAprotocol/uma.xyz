@@ -1,12 +1,12 @@
-import { footerLinks, laptopAndUnder, mobileAndUnder, socialLinks, tabletAndUnder } from "constant";
-import { useLoadSectionRefAndId } from "hooks/helpers/useLoadSectionRefAndId";
+import { footerLinks, laptopAndUnder, mobileAndUnder, socialLinks, tabletAndUnder } from "@/constant";
+import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
+import UmaLogo from "@/public/assets/uma-logo.svg";
+import UpRightArrowBlack from "@/public/assets/up-right-arrow-black.svg";
+import { isExternalLink } from "@/utils";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
-import UmaLogo from "public/assets/uma-logo.svg";
-import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { useRef } from "react";
 import styled from "styled-components";
-import { isExternalLink } from "utils";
 import { BaseOuterWrapper } from "./Wrappers";
 
 const VoteTicker = dynamic(() => import("./VoteTicker"));
