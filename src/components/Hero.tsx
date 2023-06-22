@@ -9,10 +9,10 @@ import {
   tabletAndUnder,
 } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
-import DownArrow from "@/public/assets/down-arrow.svg";
-import OOLogo from "@/public/assets/oo-logo.svg";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
+import DownArrow from "public/assets/down-arrow.svg";
+import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { BaseOuterWrapper } from "./Wrappers";

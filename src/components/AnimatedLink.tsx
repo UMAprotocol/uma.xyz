@@ -1,6 +1,6 @@
-import UpRightArrow from "@/public/assets/up-right-arrow.svg";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
+import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { ReactNode } from "react";
 import styled from "styled-components";
 

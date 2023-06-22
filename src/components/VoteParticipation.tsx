@@ -35,9 +35,9 @@ export default function VoteParticipation() {
 
   useEffect(() => {
     if (inView && !stakeData) {
-      void import("@/public/assets/lottie/stake.json").then(setStakeData);
-      void import("@/public/assets/lottie/vote.json").then(setVoteData);
-      void import("@/public/assets/lottie/earn.json").then(setEarnData);
+      void import("public/assets/lottie/stake.json").then(setStakeData);
+      void import("public/assets/lottie/vote.json").then(setVoteData);
+      void import("public/assets/lottie/earn.json").then(setEarnData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);

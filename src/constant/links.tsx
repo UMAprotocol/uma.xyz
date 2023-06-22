@@ -1,8 +1,8 @@
-import Discord from "@/public/assets/discord.svg";
-import Discourse from "@/public/assets/discourse.svg";
-import Github from "@/public/assets/github.svg";
-import Medium from "@/public/assets/medium.svg";
-import Twitter from "@/public/assets/twitter.svg";
+import Discord from "public/assets/discord.svg";
+import Discourse from "public/assets/discourse.svg";
+import Github from "public/assets/github.svg";
+import Medium from "public/assets/medium.svg";
+import Twitter from "public/assets/twitter.svg";
 
 export const links = [
   {

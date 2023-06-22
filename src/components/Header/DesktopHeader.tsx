@@ -1,9 +1,9 @@
 import { grey100, grey400, links, red, tabletAndUnder, white } from "@/constant";
-import SmUpRightArrow from "@/public/assets/sm-up-right-arrow.svg";
-import BlackLogo from "@/public/assets/uma-black-logo.svg";
-import Logo from "@/public/assets/uma-white-logo.svg";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
+import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
+import BlackLogo from "public/assets/uma-black-logo.svg";
+import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
 import styled from "styled-components";
 
