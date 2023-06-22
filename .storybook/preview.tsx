@@ -1,6 +1,7 @@
 import { Decorator } from "@storybook/react";
 import React from "react";
 import "styles/fonts.css";
+import "styles/sandpack-override.css";
 import { GlobalStyle } from "../components/GlobalStyle";
 
 export const parameters = {
