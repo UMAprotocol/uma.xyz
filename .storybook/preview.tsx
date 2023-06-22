@@ -1,8 +1,7 @@
-import { addDecorator } from "@storybook/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { GlobalStyle } from "../components";
+import { Decorator } from "@storybook/react";
 import React from "react";
 import "styles/fonts.css";
+import { GlobalStyle } from "../components/GlobalStyle";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,11 +13,11 @@ export const parameters = {
   },
 };
 
-const queryClient = new QueryClient();
-
-addDecorator((Story) => (
-  <QueryClientProvider client={queryClient}>
-    <GlobalStyle />
-    <Story />
-  </QueryClientProvider>
-));
+export const decorators: Decorator[] = [
+  (Story) => (
+    <>
+      <GlobalStyle />
+      <Story />
+    </>
+  ),
+];
