@@ -1,12 +1,10 @@
 import { grey200, grey500, links, socialLinks, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { CSSProperties, useEffect, useState } from "react";
-
-const LottieAnimation = dynamic(() => import("@/components/LottieAnimation"));
+import LottieAnimation from "../LottieAnimation";
 
 interface Props {
   show: boolean;

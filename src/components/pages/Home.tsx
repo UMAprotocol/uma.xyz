@@ -1,19 +1,16 @@
 "use client";
 
-import { Layout } from "@/components/Layout";
-import dynamic from "next/dynamic";
-
-const Hero = dynamic(() => import("@/components/Hero"));
-const HowItWorks = dynamic(() => import("@/components/HowItWorks"));
-const VoteParticipation = dynamic(() => import("@/components/VoteParticipation"));
-const Builder = dynamic(() => import("@/components/Builder"));
-const Projects = dynamic(() => import("@/components/Projects"));
-const SupportSection = dynamic(() => import("@/components/SupportSection"));
-const Footer = dynamic(() => import("@/components/Footer"));
+import Builder from "../Builder";
+import Footer from "../Footer";
+import Hero from "../Hero";
+import HowItWorks from "../HowItWorks";
+import Projects from "../Projects";
+import SupportSection from "../SupportSection";
+import VoteParticipation from "../VoteParticipation";
 
 export function Home() {
   return (
-    <Layout>
+    <>
       <Hero />
       <HowItWorks />
       <VoteParticipation />
@@ -21,6 +18,6 @@ export function Home() {
       <Projects />
       <SupportSection />
       <Footer />
-    </Layout>
+    </>
   );
 }

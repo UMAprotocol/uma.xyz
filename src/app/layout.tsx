@@ -1,4 +1,4 @@
-import { GlobalStyle } from "@/components/GlobalStyle";
+import { Layout } from "@/components/Layout";
 import StyledComponentsRegistry from "@/components/style-registry";
 import { ScrollProvider } from "@/contexts";
 import { Metadata } from "next";
@@ -27,10 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        {/* @ts-expect-error todo: investigate why this type is erroring */}
-        <GlobalStyle />
         <StyledComponentsRegistry>
-          <ScrollProvider>{children}</ScrollProvider>
+          <ScrollProvider>
+            <Layout>{children}</Layout>
+          </ScrollProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
