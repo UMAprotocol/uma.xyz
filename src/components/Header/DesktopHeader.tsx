@@ -41,7 +41,7 @@ export default function DesktopHeader({ isLightTheme }: Props) {
         ))}
       </div>
       <NextLink
-        className="h-[40px] w-[118px] gap-0.5 justify-self-end rounded-lg bg-[--background] p-[8px_16px_12px] text-lg text-[--color] no-underline transition hover:opacity-75"
+        className="grid h-[40px] w-[118px] place-items-center gap-0.5 justify-self-end rounded-lg bg-[--background] text-lg text-[--color] no-underline transition hover:opacity-75"
         href="https://vote.uma.xyz"
         target="_blank"
         style={

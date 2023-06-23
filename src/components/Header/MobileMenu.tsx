@@ -26,7 +26,7 @@ export default function MobileMenu({ show, hide, isLightTheme }: Props) {
 
   return (
     <nav
-      className="pointer-events-[--pointer-events] absolute left-0 top-[56px] flex h-[--height] w-full flex-col content-center items-center bg-[--background] opacity-[--opacity] transition"
+      className="absolute left-0 top-[56px] flex h-[--height] w-full flex-col content-center items-center bg-[--background] opacity-[--opacity] transition"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Menu"
@@ -35,8 +35,8 @@ export default function MobileMenu({ show, hide, isLightTheme }: Props) {
           "--height": `calc(100dvh - ${scrollY === 0 ? "124px" : "44px"})`,
           "--background": isLightTheme ? white : grey200,
           "--opacity": show ? 1 : 0,
-          "--pointer-events": show ? "auto" : "none",
           "--link-color": isLightTheme ? grey500 : white,
+          pointerEvents: show ? "auto" : "none",
           transform: show ? "translateY(0)" : "translateY(-20px)",
         } as CSSProperties
       }

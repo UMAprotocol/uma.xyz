@@ -1,4 +1,4 @@
-import { footerLinks, laptopAndUnder, mobileAndUnder, socialLinks, tabletAndUnder } from "@/constant";
+import { footerLinks, socialLinks } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { isExternalLink } from "@/utils";
 import dynamic from "next/dynamic";
@@ -6,8 +6,6 @@ import NextLink from "next/link";
 import UmaLogo from "public/assets/uma-logo.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { useRef } from "react";
-import styled from "styled-components";
-import { BaseOuterWrapper } from "./Wrappers";
 
 const VoteTicker = dynamic(() => import("./VoteTicker"));
 const MailChimpForm = dynamic(() => import("./MailChimpForm"));
@@ -18,242 +16,58 @@ export default function Footer() {
   useLoadSectionRefAndId(ref, id);
 
   return (
-    <OuterWrapper id={id} ref={ref} as="footer">
-      <VoteTickerWrapper>
+    <footer
+      className="grid grid-rows-[auto_1fr_auto] bg-grey-700 px-[--page-padding] pt-4 lg:pt-16 xl:pt-[--header-blur-height]"
+      style={{ backgroundImage: "url('assets/footer-lines-grey.png')" }}
+      id={id}
+      ref={ref}
+    >
+      <div className="-mb-1 -mt-4 lg:m-0">
         <VoteTicker isLightTheme />
-      </VoteTickerWrapper>
-      <InnerWrapper>
-        <LinksWrapper>
-          <HomeLink href="#">
-            <UmaLogoIcon />
-          </HomeLink>
+      </div>
+      <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 lg:grid lg:grid-cols-[1fr_1fr]">
+        <div className="row-start-2 my-14 grid h-fit grid-rows-3 justify-center justify-items-start lg:row-start-auto lg:h-auto lg:grid-rows-none lg:justify-normal xl:grid-cols-3 xl:grid-rows-none">
+          <NextLink className="hidden lg:mb-4 lg:block xl:mb-8" href="#">
+            <UmaLogo className="[&>*]:fill-red" />
+          </NextLink>
           <LinksList links={footerLinks.internal} />
           <LinksList links={footerLinks.external} />
-        </LinksWrapper>
-        <FormWrapper>
-          <FormHomeLink href="#">
-            <FormUmaLogoIcon />
-          </FormHomeLink>
-          <FormTitle>Receive the latest UMA and OO news, straight to your inbox.</FormTitle>
+        </div>
+        <div className="flex w-full flex-col items-center gap-6 lg:mb-[96px] lg:items-start lg:gap-0 xl:mb-0 xl:items-end">
+          <NextLink className="lg:hidden" href="#">
+            <UmaLogo className="[&>*]:fill-black" />
+          </NextLink>
+          <h3 className="w-full text-center text-xl text-grey-300 lg:mb-8 lg:max-w-[640px] lg:text-left xl:max-w-[338px]">
+            Receive the latest UMA and OO news, straight to your inbox.
+          </h3>
           <MailChimpForm />
-        </FormWrapper>
-      </InnerWrapper>
-      <SubFooter>
-        <Copyright>© {new Date().getFullYear()} Risk Labs Foundation</Copyright>
-        <SocialLinks>
+        </div>
+      </div>
+      <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">
+        <p className="text-grey-500">© {new Date().getFullYear()} Risk Labs Foundation</p>
+        <div className="flex items-center gap-6">
           {socialLinks.map(({ href, Icon, label }) => (
-            <SocialLink key={href} href={href} target="_blank" aria-label={label}>
-              <Icon />
-            </SocialLink>
+            <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>
+              <Icon className="transition [&>path]:fill-grey-200 [&>path]:transition group-hover:[&>path]:fill-red" />
+            </NextLink>
           ))}
-        </SocialLinks>
-      </SubFooter>
-    </OuterWrapper>
+        </div>
+      </div>
+    </footer>
   );
 }
 
 function LinksList({ links }: { links: { label: string; href: string }[] }) {
   return (
-    <LinksListWrapper>
+    <ul className="mb-4 h-fit w-fit list-none">
       {links.map(({ label, href }) => (
-        <LinkListItem key={label}>
-          <Link href={href} target={isExternalLink(href) ? "_blank" : undefined}>
+        <li className="mb-4 last:mb-0" key={label}>
+          <NextLink href={href} target={isExternalLink(href) ? "_blank" : undefined}>
             {label}
-            {isExternalLink(href) && <ExternalLinkIcon />}
-          </Link>
-        </LinkListItem>
+            {isExternalLink(href) && <UpRightArrowBlack className="ml-1 inline-block" />}
+          </NextLink>
+        </li>
       ))}
-    </LinksListWrapper>
+    </ul>
   );
 }
-
-const ExternalLinkIcon = styled(UpRightArrowBlack)``;
-
-const OuterWrapper = styled(BaseOuterWrapper)`
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  background: var(--grey-700);
-  background-image: url("assets/footer-lines-grey.png");
-
-  @media ${laptopAndUnder} {
-    padding-top: 64px;
-  }
-
-  @media ${mobileAndUnder} {
-    padding-top: 16px;
-  }
-`;
-
-const InnerWrapper = styled.div`
-  width: 100%;
-  max-width: var(--page-width);
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 48px;
-
-  @media ${tabletAndUnder} {
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media ${mobileAndUnder} {
-    flex-direction: column-reverse;
-  }
-`;
-
-const VoteTickerWrapper = styled.div`
-  @media ${laptopAndUnder} {
-    margin-top: -16px;
-    margin-bottom: -4px;
-  }
-`;
-
-const LinksWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: start;
-  margin-block: 56px;
-
-  @media ${laptopAndUnder} {
-    grid-template-columns: auto;
-    grid-template-rows: repeat(3, auto);
-    gap: 16px;
-    height: fit-content;
-  }
-
-  @media ${mobileAndUnder} {
-    grid-row-start: 2;
-    justify-content: center;
-  }
-`;
-
-const HomeLink = styled(NextLink)`
-  margin-bottom: 32px;
-
-  @media ${laptopAndUnder} {
-    margin-bottom: 16px;
-  }
-  @media ${mobileAndUnder} {
-    display: none;
-  }
-`;
-
-const LinksListWrapper = styled.ul`
-  list-style: none;
-  width: fit-content;
-  height: fit-content;
-`;
-
-const LinkListItem = styled.li`
-  &:not(:last-child) {
-    margin-bottom: 16px;
-  }
-`;
-
-const Link = styled(NextLink)`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--grey-200);
-  font: var(--body-sm);
-  text-decoration: none;
-  transition: opacity var(--animation-duration);
-  &:hover {
-    opacity: 0.5;
-  }
-`;
-
-const FormWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-
-  @media ${tabletAndUnder} {
-    align-items: start;
-    margin-bottom: 96px;
-  }
-
-  @media ${mobileAndUnder} {
-    gap: 24px;
-    align-items: center;
-    margin-bottom: 0;
-  }
-`;
-
-const FormTitle = styled.h3`
-  font: var(--body-lg);
-  color: var(--grey-300);
-  width: 100%;
-  max-width: 338px;
-  margin-bottom: 32px;
-  @media ${laptopAndUnder} {
-    max-width: 640px;
-  }
-  @media ${tabletAndUnder} {
-    text-align: left;
-  }
-  @media ${mobileAndUnder} {
-    text-align: center;
-    margin: 0;
-  }
-`;
-
-const FormHomeLink = styled(NextLink)`
-  display: none;
-
-  @media ${mobileAndUnder} {
-    display: block;
-  }
-`;
-
-const FormUmaLogoIcon = styled(UmaLogo)`
-  path {
-    fill: var(--black);
-  }
-`;
-
-const SubFooter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: var(--page-width);
-  margin-inline: auto;
-  margin-bottom: 64px;
-
-  @media ${mobileAndUnder} {
-    flex-direction: column-reverse;
-    gap: 24px;
-  }
-`;
-
-const Copyright = styled.p`
-  font: var(--body-sm);
-  color: var(--grey-500);
-`;
-
-const UmaLogoIcon = styled(UmaLogo)`
-  path {
-    fill: var(--red);
-  }
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 26px;
-`;
-
-const SocialLink = styled(NextLink)`
-  path {
-    fill: var(--grey-200);
-    transition: fill var(--animation-duration);
-  }
-  &:hover {
-    path {
-      fill: var(--red);
-    }
-  }
-`;
