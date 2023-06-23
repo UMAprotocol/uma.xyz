@@ -1,3 +1,5 @@
+"use client";
+
 import { headerBlurHeight } from "@/constant";
 import { useMounted } from "@/hooks";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
