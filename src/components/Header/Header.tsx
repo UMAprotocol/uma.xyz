@@ -2,7 +2,7 @@ import { grey200, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import styled, { CSSProperties } from "styled-components";
+import { CSSProperties } from "react";
 
 const MobileHeader = dynamic(() => import("./MobileHeader"));
 const DesktopHeader = dynamic(() => import("./DesktopHeader"));
@@ -10,7 +10,7 @@ const DesktopHeader = dynamic(() => import("./DesktopHeader"));
 export default function Header() {
   const { isLightTheme } = useScrollContext();
   return (
-    <OuterWrapper
+    <motion.header
       initial={{ opacity: 0, translateY: "-100%" }}
       animate={{ opacity: 1, translateY: "0%" }}
       transition={{ duration: 0.3, delay: 0.8 }}
@@ -19,33 +19,12 @@ export default function Header() {
           "--background": isLightTheme ? white : grey200,
         } as CSSProperties
       }
+      className="sticky top-0 z-[2] grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm transition"
     >
-      <InnerWrapper>
+      <div className="mx-auto w-full max-w-[--page-width] overflow-hidden">
         <DesktopHeader isLightTheme={isLightTheme} />
         <MobileHeader isLightTheme={isLightTheme} />
-      </InnerWrapper>
-    </OuterWrapper>
+      </div>
+    </motion.header>
   );
 }
-
-const OuterWrapper = styled(motion.header)`
-  height: var(--header-height);
-  display: grid;
-  place-items: center;
-  padding-inline: var(--page-padding);
-  padding-top: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: var(--background);
-  backdrop-filter: blur(6px);
-  box-shadow: 0px 24px 24px 24px var(--background);
-  transition: background var(--animation-duration), box-shadow var(--animation-duration);
-`;
-
-const InnerWrapper = styled.div`
-  width: 100%;
-  max-width: var(--page-width);
-  margin-inline: auto;
-  overflow: hidden;
-`;

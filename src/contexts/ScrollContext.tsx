@@ -3,6 +3,7 @@ import { useMounted } from "@/hooks";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 
 interface ScrollContextState {
+  scrollY: number;
   loadSectionRefAndId: (id: string, ref: RefObject<HTMLDivElement>) => void;
   colorChangeSectionRef: RefObject<HTMLDivElement>;
   setColorChangeSectionRef: (ref: RefObject<HTMLDivElement>) => void;
@@ -11,6 +12,7 @@ interface ScrollContextState {
 }
 
 export const ScrollContext = createContext<ScrollContextState>({
+  scrollY: 0,
   loadSectionRefAndId: () => null,
   isLightTheme: false,
   setIsLightTheme: () => null,
@@ -91,6 +93,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
   return (
     <ScrollContext.Provider
       value={{
+        scrollY,
         loadSectionRefAndId,
         isLightTheme,
         setIsLightTheme,

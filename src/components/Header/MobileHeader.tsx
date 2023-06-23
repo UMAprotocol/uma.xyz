@@ -1,13 +1,11 @@
-import { animationDuration, grey100, grey500, tabletAndUnder, white } from "@/constant";
+import { animationDuration, grey100, grey500, white } from "@/constant";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import { FocusOn } from "react-focus-on";
-import styled, { CSSProperties } from "styled-components";
-
 interface Props {
   isLightTheme: boolean;
 }
@@ -38,8 +36,15 @@ export default function MobileHeader({ isLightTheme }: Props) {
   }
 
   return (
-    <Wrapper enabled={showMenu} onEscapeKey={hideMenu} onClickOutside={hideMenu} preventScrollOnFocus>
-      <MenuToggleButton
+    <FocusOn
+      className="pointer-events-auto grid w-full grid-cols-3 items-center justify-items-center lg:hidden"
+      enabled={showMenu}
+      onEscapeKey={hideMenu}
+      onClickOutside={hideMenu}
+      preventScrollOnFocus
+    >
+      <button
+        className="bg-grey-900 relative h-3 w-6 justify-self-start"
         aria-label="Open navigation menu"
         onClick={toggleShowMenu}
         style={
@@ -49,30 +54,29 @@ export default function MobileHeader({ isLightTheme }: Props) {
           } as CSSProperties
         }
       >
-        <ToggleButtonBar
-          style={
-            {
-              "--top": showMenu ? "calc(50% - 0.5px)" : 0,
-              "--transform": showMenu ? "rotate(45deg)" : "rotate(0)",
-              "--transition": buttonBarTransition,
-            } as CSSProperties
-          }
+        <span
+          className="absolute block h-[1.5px] w-6 bg-[--background]"
+          style={{
+            top: showMenu ? "calc(50% - 0.5px)" : 0,
+            transform: showMenu ? "rotate(45deg)" : "rotate(0)",
+            transition: buttonBarTransition,
+          }}
         />
-        <ToggleButtonBar
-          style={
-            {
-              "--bottom": showMenu ? "calc(50% - 0.5px)" : 0,
-              "--transform": showMenu ? "rotate(-45deg)" : "rotate(0)",
-              "--transition": buttonBarTransition,
-            } as CSSProperties
-          }
+        <span
+          className="absolute block h-[1.5px] w-6 bg-[--background]"
+          style={{
+            bottom: showMenu ? "calc(50% - 0.5px)" : 0,
+            transform: showMenu ? "rotate(-45deg)" : "rotate(0)",
+            transition: buttonBarTransition,
+          }}
         />
-      </MenuToggleButton>
+      </button>
       <NextLink href="/" aria-label="Back to page top">
         {isLightTheme ? <BlackLogo /> : <Logo />}
       </NextLink>
-      <VoteLinkWrapper>
-        <Link
+      <div className="justify-self-end">
+        <NextLink
+          className="inline-flex items-baseline justify-center gap-1 text-sm text-[--color] no-underline transition hover:opacity-50"
           aria-label="Link to voter dapp"
           href="https://vote.uma.xyz/"
           target="_blank"
@@ -83,66 +87,10 @@ export default function MobileHeader({ isLightTheme }: Props) {
           }
         >
           App
-          <ArrowIcon />
-        </Link>
-      </VoteLinkWrapper>
+          <UpRightArrow className="[&>path]:stroke-grey-500" />
+        </NextLink>
+      </div>
       <MobileMenu isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
-    </Wrapper>
+    </FocusOn>
   );
 }
-
-const Wrapper = styled(FocusOn)`
-  display: none;
-  width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  pointer-events: all;
-  @media ${tabletAndUnder} {
-    display: grid;
-  }
-`;
-
-export const MenuToggleButton = styled.button`
-  display: block;
-  position: relative;
-  justify-self: start;
-  height: 9px;
-  width: 24px;
-  background: var(--grey-900);
-`;
-
-const ToggleButtonBar = styled.span`
-  position: absolute;
-  display: block;
-  height: 1.5px;
-  width: 24px;
-  background: var(--background);
-  top: var(--top);
-  bottom: var(--bottom);
-  transform: var(--transform);
-  transition: var(--transition);
-`;
-
-const VoteLinkWrapper = styled.div`
-  justify-self: end;
-`;
-
-const ArrowIcon = styled(UpRightArrow)`
-  path {
-    stroke: var(--grey-500);
-  }
-  &:hover {
-    opacity: 0.5;
-  }
-`;
-
-const Link = styled(NextLink)`
-  display: inline-flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: 4px;
-  text-decoration: none;
-  font: var(--body-sm);
-  color: var(--color);
-`;
