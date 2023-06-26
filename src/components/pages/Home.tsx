@@ -1,6 +1,5 @@
 "use client";
 
-import Footer from "../Footer";
 import Builder from "../Home/Builder";
 import Hero from "../Home/Hero";
 import HowItWorks from "../Home/HowItWorks";
@@ -17,7 +16,6 @@ export function Home() {
       <Builder />
       <Projects />
       <SupportSection />
-      <Footer />
     </>
   );
 }

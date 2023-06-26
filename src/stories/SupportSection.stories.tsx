@@ -1,4 +1,4 @@
-import SupportSection from "@/components/SupportSection";
+import SupportSection from "@/components/Home/SupportSection";
 import { Meta, StoryFn } from "@storybook/react";
 import "../styles/sandpack-override.css";
 
