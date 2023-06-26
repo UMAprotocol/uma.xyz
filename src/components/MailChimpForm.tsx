@@ -9,7 +9,7 @@ export default function MailChimpForm() {
       render={({ subscribe, status, message }) => (
         <>
           <form
-            className="flex w-full flex-col items-center justify-center gap-3 lg:flex-row"
+            className="flex w-full flex-col items-center justify-end gap-3 lg:flex-row"
             onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
               evt.preventDefault();
               // @ts-expect-error Doesn't like the input being taken like this
