@@ -13,8 +13,8 @@
     "chromatic": "chromatic --project-token=ebd597792be4"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^1.17.1",
-    "@codesandbox/sandpack-themes": "^1.17.0",
+    "@codesandbox/sandpack-react": "^2.6.9",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "@next/bundle-analyzer": "^13.1.1",
     "@radix-ui/react-tabs": "^1.0.1",
     "framer-motion": "^7.8.0",

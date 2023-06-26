@@ -1,3 +1,5 @@
+"use client";
+
 import { Divider } from "@/components/Divider";
 import { mobileAndUnder, tabletAndUnder } from "@/constant";
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
@@ -281,7 +283,7 @@ contract LongShortPair {
   const docLink = tabs.map(({ docHref, docText }) => ({ href: docHref, text: docText }));
 
   return (
-    <TabsRoot defaultValue="0" onValueChange={(value) => setActiveTabIndex(Number(value))}>
+    <TabsRoot defaultValue="0" onValueChange={(value: string) => setActiveTabIndex(Number(value))}>
       <TabsList>
         {tabs.map(({ title, shortTitle, Icon }, tabIndex) => (
           <TabsTrigger key={title} value={tabIndex.toString()}>

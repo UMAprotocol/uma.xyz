@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { SandPackCSS } from "@/components/sandpack-styles";
 import StyledComponentsRegistry from "@/components/style-registry";
 import { ScrollProvider } from "@/contexts";
 import { Metadata } from "next";
@@ -26,6 +27,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <SandPackCSS />
+      </head>
       <body>
         <StyledComponentsRegistry>
           <ScrollProvider>
