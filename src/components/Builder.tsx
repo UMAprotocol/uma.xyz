@@ -1,7 +1,6 @@
+import Tabs from "@/components/Tabs";
 import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
-
-import { Tabs } from "@radix-ui/react-tabs";
 import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled from "styled-components";

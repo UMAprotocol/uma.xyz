@@ -1,3 +1,5 @@
+"use client";
+
 import { Divider } from "@/components/Divider";
 import { mobileAndUnder, tabletAndUnder } from "@/constant";
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
