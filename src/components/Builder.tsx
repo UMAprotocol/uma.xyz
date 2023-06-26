@@ -1,8 +1,8 @@
 import {
-  headerLgFluidFontSize,
-  headerMdFluidFontSize,
-  headerSmFluidFontSize,
+  lgFluidFontSize,
+  mdFluidFontSize,
   mobileAndUnder,
+  smFluidFontSize,
   tabletAndUnder,
 } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
@@ -68,9 +68,9 @@ const OOIcon = styled(OO)`
   width: calc(var(--height) * 2);
 
   height: var(--height);
-  --desktop-height: ${headerLgFluidFontSize};
-  --tablet-height: ${headerMdFluidFontSize};
-  --mobile-height: ${headerSmFluidFontSize};
+  --desktop-height: ${lgFluidFontSize};
+  --tablet-height: ${mdFluidFontSize};
+  --mobile-height: ${smFluidFontSize};
   --height: var(--desktop-height);
 
   @media ${tabletAndUnder} {
