@@ -3,12 +3,19 @@
 import { grey200, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { CSSProperties } from "react";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 
 export default function Header() {
-  const { isLightTheme } = useScrollContext();
+  const { isLightTheme: isLightThemeFromScroll } = useScrollContext();
+  const pathname = usePathname();
+  // we only change the color when on the home page
+  // the osnap page is all light theme
+  const isNotHomePage = pathname?.split("#")[0] !== "/";
+  const isLightTheme = isNotHomePage || isLightThemeFromScroll;
+
   return (
     <motion.header
       initial={{ opacity: 0, translateY: "-100%" }}
