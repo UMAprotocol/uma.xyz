@@ -281,7 +281,7 @@ contract LongShortPair {
   const docLink = tabs.map(({ docHref, docText }) => ({ href: docHref, text: docText }));
 
   return (
-    <TabsRoot defaultValue="0" onValueChange={(value) => setActiveTabIndex(Number(value))}>
+    <TabsRoot defaultValue="0" onValueChange={(value: string) => setActiveTabIndex(Number(value))}>
       <TabsList>
         {tabs.map(({ title, shortTitle, Icon }, tabIndex) => (
           <TabsTrigger key={title} value={tabIndex.toString()}>
