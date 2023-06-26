@@ -5,7 +5,7 @@ import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 
-const loadFeatures = () => import("../utils/features").then((res) => res.default);
+const loadFeatures = () => import("../../utils/features").then((res) => res.default);
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);

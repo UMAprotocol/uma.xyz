@@ -4,11 +4,11 @@ import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import AnimatedLink from "./AnimatedLink";
-import { Divider } from "./Divider";
-import LottieAnimation from "./LottieAnimation";
-import { SectionHeader } from "./SectionHeader";
-import { BaseOuterWrapper } from "./Wrappers";
+import AnimatedLink from "../AnimatedLink";
+import { Divider } from "../Divider";
+import LottieAnimation from "../LottieAnimation";
+import { SectionHeader } from "../SectionHeader";
+import { BaseOuterWrapper } from "../Wrappers";
 
 export default function VoteParticipation() {
   const id = "voter";

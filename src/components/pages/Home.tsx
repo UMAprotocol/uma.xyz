@@ -1,12 +1,12 @@
 "use client";
 
-import Builder from "../Builder";
 import Footer from "../Footer";
-import Hero from "../Hero";
-import HowItWorks from "../HowItWorks";
-import Projects from "../Projects";
-import SupportSection from "../SupportSection";
-import VoteParticipation from "../VoteParticipation";
+import Builder from "../Home/Builder";
+import Hero from "../Home/Hero";
+import HowItWorks from "../Home/HowItWorks";
+import Projects from "../Home/Projects";
+import SupportSection from "../Home/SupportSection";
+import VoteParticipation from "../Home/VoteParticipation";
 
 export function Home() {
   return (

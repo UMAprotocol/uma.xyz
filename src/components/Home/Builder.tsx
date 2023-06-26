@@ -5,8 +5,8 @@ import { Tabs } from "@radix-ui/react-tabs";
 import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 import styled from "styled-components";
-import { SectionHeader } from "./SectionHeader";
-import { BaseOuterWrapper } from "./Wrappers";
+import { SectionHeader } from "../SectionHeader";
+import { BaseOuterWrapper } from "../Wrappers";
 
 export default function Builder() {
   const id = "builder";

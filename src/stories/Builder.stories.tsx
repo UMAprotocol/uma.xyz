@@ -1,4 +1,4 @@
-import Builder from "@/components/Builder";
+import Builder from "@/components/Home/Builder";
 import { Meta, StoryFn } from "@storybook/react";
 import "../styles/sandpack-override.css";
 
