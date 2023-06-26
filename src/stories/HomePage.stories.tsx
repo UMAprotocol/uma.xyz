@@ -1,21 +1,21 @@
-import { ScrollProvider } from "@/contexts";
-import HomePage from "@/pages";
+import RootLayout from "@/app/layout";
+import Home from "@/app/page";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta = {
-  component: HomePage,
+  component: Home,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof HomePage>;
+type Story = StoryObj<typeof Home>;
 
 export const Default: Story = {
   render: function Wrapper() {
     return (
-      <ScrollProvider>
-        <HomePage />
-      </ScrollProvider>
+      <RootLayout>
+        <Home />
+      </RootLayout>
     );
   },
 };
