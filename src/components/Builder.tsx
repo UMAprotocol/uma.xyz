@@ -1,10 +1,4 @@
-import {
-  lgFluidFontSize,
-  mdFluidFontSize,
-  mobileAndUnder,
-  smFluidFontSize,
-  tabletAndUnder,
-} from "@/constant";
+import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 
 import { Tabs } from "@radix-ui/react-tabs";
