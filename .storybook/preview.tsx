@@ -1,8 +1,8 @@
 import { Decorator } from "@storybook/react";
 import React from "react";
-import "styles/fonts.css";
-import "styles/sandpack-override.css";
-import { GlobalStyle } from "../components/GlobalStyle";
+import "../src/styles/fonts.css";
+import "../src/styles/sandpack-override.css";
+import { GlobalStyle } from "../src/components/GlobalStyle";
 import { mockDateDecorator } from "storybook-mock-date-decorator";
 
 export const parameters = {
