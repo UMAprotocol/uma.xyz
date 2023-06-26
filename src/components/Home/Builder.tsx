@@ -1,4 +1,4 @@
-import Tabs from "@/components/Tabs";
+import Tabs from "@/components/Home/Tabs";
 import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import OO from "public/assets/oo-logo.svg";
