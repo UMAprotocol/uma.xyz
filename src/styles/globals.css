@@ -205,6 +205,9 @@ body {
   --body-md: 400 1.125rem/24px "Halyard Display", sans-serif;
   --body-sm: 400 1rem/22px "Halyard Display", sans-serif;
   --body-xs: 400 0.75rem/17px "Halyard Display", sans-serif;
+  --lg-fluid-font-size: clamp(4rem, 6vw + 2rem, 6rem);
+  --md-fluid-font-size: clamp(2.5rem, 6vw + 2rem, 4rem);
+  --sm-fluid-font-size: clamp(2rem, 7vw + 1.18rem, 2.5rem);
   /* animation */
   --animation-duration: 0.3s;
   /* containers */
