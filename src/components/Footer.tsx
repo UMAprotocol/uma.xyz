@@ -25,19 +25,19 @@ export default function Footer() {
       <div className="-mb-1 -mt-4 lg:m-0">
         <VoteTicker isLightTheme />
       </div>
-      <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 lg:grid lg:grid-cols-[1fr_1fr]">
-        <div className="row-start-2 my-14 grid h-fit grid-rows-3 justify-center justify-items-start lg:row-start-auto lg:h-auto lg:grid-rows-none lg:justify-normal xl:grid-cols-3 xl:grid-rows-none">
-          <NextLink className="hidden lg:mb-4 lg:block xl:mb-8" href="#">
+      <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 md:grid md:grid-cols-[1fr_1fr]">
+        <div className="row-start-2 my-14 grid h-fit grid-rows-3 justify-center justify-items-start md:row-start-auto md:h-auto md:grid-rows-none md:justify-normal xl:grid-cols-3 xl:grid-rows-none">
+          <NextLink className="hidden md:mb-4 md:block" href="#">
             <UmaLogo className="[&>*]:fill-red" />
           </NextLink>
           <LinksList links={footerLinks.internal} />
           <LinksList links={footerLinks.external} />
         </div>
-        <div className="flex w-full flex-col items-center gap-6 lg:mb-[96px] lg:items-start lg:gap-0 xl:mb-0 xl:items-end">
-          <NextLink className="lg:hidden" href="#">
+        <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
+          <NextLink className="md:hidden" href="#">
             <UmaLogo className="[&>*]:fill-black" />
           </NextLink>
-          <h3 className="w-full text-center text-xl text-grey-300 lg:mb-8 lg:max-w-[640px] lg:text-left xl:max-w-[338px]">
+          <h3 className="w-fit text-center text-xl text-grey-300 md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA and OO news, straight to your inbox.
           </h3>
           <MailChimpForm />
