@@ -1,10 +1,4 @@
-import {
-  lgFluidFontSize,
-  mdFluidFontSize,
-  mobileAndUnder,
-  smFluidFontSize,
-  tabletAndUnder,
-} from "@/constant";
+import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
