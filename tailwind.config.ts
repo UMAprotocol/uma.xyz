@@ -1,3 +1,4 @@
+import type { Config } from "tailwindcss";
 import {
   black,
   grey100,
@@ -17,7 +18,14 @@ import {
   white200,
   whiteOpacity10,
 } from "./src/constant/style/colors";
-import type { Config } from "tailwindcss";
+import {
+  lgFluidFontSize,
+  lgFluidLineHeight,
+  mdFluidFontSize,
+  mdFluidLineHeight,
+  smFluidFontSize,
+  smFluidLineHeight,
+} from "./src/constant/style/fonts";
 module.exports = {
   content: ["./src/**/*.{ts,tsx}", "./public/**/*.{css,svg}"],
   theme: {
@@ -43,7 +51,38 @@ module.exports = {
       "white-200": white200,
       "white-opacity-10": whiteOpacity10,
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        "sm-fluid-size": smFluidFontSize,
+        "sm-fluid-line-height": smFluidLineHeight,
+        "md-fluid-size": mdFluidFontSize,
+        "md-fluid-line-height": mdFluidLineHeight,
+        "lg-fluid-size": lgFluidFontSize,
+        "lg-fluid-line-height": lgFluidLineHeight,
+        "sm-fluid": [smFluidFontSize, smFluidLineHeight],
+        "md-fluid": [mdFluidFontSize, mdFluidLineHeight],
+        "lg-fluid": [lgFluidFontSize, lgFluidLineHeight],
+      },
+      animation: {
+        arrow: "arrow-enter 2s infinite ease-in-out 3s",
+      },
+      keyframes: {
+        "arrow-enter": {
+          "0%, 80%, 100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+          "20%": {
+            opacity: "0",
+            transform: "translateY(100%)",
+          },
+          "60%": {
+            opacity: "0",
+            transform: "translateY(-100%)",
+          },
+        },
+      },
+    },
   },
   plugins: [],
 } satisfies Config;
