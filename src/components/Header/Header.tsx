@@ -1,11 +1,9 @@
 import { grey200, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import { CSSProperties } from "react";
-
-const MobileHeader = dynamic(() => import("./MobileHeader"));
-const DesktopHeader = dynamic(() => import("./DesktopHeader"));
+import DesktopHeader from "./DesktopHeader";
+import MobileHeader from "./MobileHeader";
 
 export default function Header() {
   const { isLightTheme } = useScrollContext();

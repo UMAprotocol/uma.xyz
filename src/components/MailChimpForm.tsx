@@ -1,7 +1,5 @@
-import dynamic from "next/dynamic";
 import { SyntheticEvent, useState } from "react";
-
-const MailchimpSubscribe = dynamic(() => import("react-mailchimp-subscribe"));
+import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 export default function MailChimpForm() {
   const [value, setValue] = useState("");

@@ -1,16 +1,14 @@
 import { animationDuration, grey100, grey500, white } from "@/constant";
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
 import { FocusOn } from "react-focus-on";
+import MobileMenu from "./MobileMenu";
 interface Props {
   isLightTheme: boolean;
 }
-
-const MobileMenu = dynamic(() => import("./MobileMenu"));
 
 export default function MobileHeader({ isLightTheme }: Props) {
   const [showMenu, setShowMenu] = useState(false);

@@ -1,14 +1,12 @@
 import { footerLinks, socialLinks } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { isExternalLink } from "@/utils";
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import UmaLogo from "public/assets/uma-logo.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { useRef } from "react";
-
-const VoteTicker = dynamic(() => import("./VoteTicker"));
-const MailChimpForm = dynamic(() => import("./MailChimpForm"));
+import MailChimpForm from "./MailChimpForm";
+import VoteTicker from "./VoteTicker";
 
 export default function Footer() {
   const id = "contact";

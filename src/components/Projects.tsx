@@ -1,6 +1,5 @@
 import { mobileAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import AcrossLogo from "public/assets/across.svg";
 import CozyLogo from "public/assets/cozy.svg";
@@ -13,10 +12,9 @@ import SnapshotLogo from "public/assets/snapshot.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { useRef } from "react";
 import styled, { CSSProperties } from "styled-components";
+import AnimatedLink from "./AnimatedLink";
 import { Divider } from "./Divider";
 import { BaseOuterWrapper } from "./Wrappers";
-
-const AnimatedLink = dynamic(() => import("./AnimatedLink"));
 
 type Project = {
   name: string;
