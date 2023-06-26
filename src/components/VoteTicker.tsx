@@ -17,6 +17,7 @@ import {
 import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
@@ -27,6 +28,9 @@ export default function VoteTicker({ isLightTheme = false }) {
   const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = !!data && data.activeRequests > 0;
+  const pathname = usePathname();
+  // we only show the vote ticker on the home page
+  const isNotHomePage = pathname?.split("#")[0] !== "/";
 
   function getMillisecondsUntilMidnight() {
     const now = new Date();
@@ -47,6 +51,8 @@ export default function VoteTicker({ isLightTheme = false }) {
   useInterval(() => {
     setTimeRemaining(formatMillisecondsUntilMidnight());
   }, 1000);
+
+  if (isNotHomePage) return null;
 
   return (
     <OuterWrapper
