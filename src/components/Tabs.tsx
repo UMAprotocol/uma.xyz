@@ -1,3 +1,5 @@
+"use client";
+
 import { Divider } from "@/components/Divider";
 import { mobileAndUnder, tabletAndUnder } from "@/constant";
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
@@ -8,8 +10,8 @@ import Scale from "public/assets/scale.svg";
 import Telescope from "public/assets/telescope.svg";
 import Tube from "public/assets/tube.svg";
 import Wand from "public/assets/wand.svg";
-import { useState } from "react";
-import styled, { CSSProperties, css, keyframes } from "styled-components";
+import { CSSProperties, useState } from "react";
+import styled, { css, keyframes } from "styled-components";
 import AnimatedLink from "./AnimatedLink";
 
 export default function Tabs() {

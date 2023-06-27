@@ -1,3 +1,5 @@
+"use client";
+
 import {
   grey100,
   grey300,
@@ -17,8 +19,8 @@ import { motion } from "framer-motion";
 import NextLink from "next/link";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
-import { useState } from "react";
-import styled, { CSSProperties } from "styled-components";
+import { CSSProperties, useState } from "react";
+import styled from "styled-components";
 import { useInterval } from "usehooks-ts";
 
 export default function VoteTicker({ isLightTheme = false }) {

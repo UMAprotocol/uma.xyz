@@ -1,3 +1,5 @@
+"use client";
+
 import { grey200, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
@@ -11,7 +13,7 @@ export default function Header() {
     <motion.header
       initial={{ opacity: 0, translateY: "-100%" }}
       animate={{ opacity: 1, translateY: "0%" }}
-      transition={{ duration: 0.3, delay: 0.8 }}
+      transition={{ duration: 0.2, delay: 0.7 }}
       style={
         {
           "--background": isLightTheme ? white : grey200,

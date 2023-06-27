@@ -1,4 +1,5 @@
-import { Layout } from "@/components/Layout";
+"use client";
+
 import Builder from "../Builder";
 import Footer from "../Footer";
 import Hero from "../Hero";
@@ -9,7 +10,7 @@ import VoteParticipation from "../VoteParticipation";
 
 export function Home() {
   return (
-    <Layout>
+    <>
       <Hero />
       <HowItWorks />
       <VoteParticipation />
@@ -17,6 +18,6 @@ export function Home() {
       <Projects />
       <SupportSection />
       <Footer />
-    </Layout>
+    </>
   );
 }

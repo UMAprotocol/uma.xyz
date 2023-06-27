@@ -1,3 +1,5 @@
+"use client";
+
 import { animationDuration, grey100, grey500, white } from "@/constant";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";

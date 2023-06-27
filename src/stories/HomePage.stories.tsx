@@ -1,5 +1,5 @@
 import { ScrollProvider } from "@/contexts";
-import HomePage from "@/pages";
+import HomePage from "@/app/page";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta = {
