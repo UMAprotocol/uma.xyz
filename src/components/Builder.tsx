@@ -1,11 +1,5 @@
 import Tabs from "@/components/Tabs";
-import {
-  headerLgFluidFontSize,
-  headerMdFluidFontSize,
-  headerSmFluidFontSize,
-  mobileAndUnder,
-  tabletAndUnder,
-} from "@/constant";
+import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import OO from "public/assets/oo-logo.svg";
 import { useRef } from "react";
@@ -68,9 +62,9 @@ const OOIcon = styled(OO)`
   width: calc(var(--height) * 2);
 
   height: var(--height);
-  --desktop-height: ${headerLgFluidFontSize};
-  --tablet-height: ${headerMdFluidFontSize};
-  --mobile-height: ${headerSmFluidFontSize};
+  --desktop-height: ${lgFluidFontSize};
+  --tablet-height: ${mdFluidFontSize};
+  --mobile-height: ${smFluidFontSize};
   --height: var(--desktop-height);
 
   @media ${tabletAndUnder} {

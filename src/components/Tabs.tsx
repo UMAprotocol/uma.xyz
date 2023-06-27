@@ -4,7 +4,7 @@ import { Divider } from "@/components/Divider";
 import { mobileAndUnder, tabletAndUnder } from "@/constant";
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
-import { Content, List, Trigger, Root } from "@radix-ui/react-tabs";
+import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
 import Globe from "public/assets/globe.svg";
 import Scale from "public/assets/scale.svg";
 import Telescope from "public/assets/telescope.svg";
