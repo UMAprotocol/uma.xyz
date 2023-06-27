@@ -4,7 +4,7 @@ import placeholderImage from "public/assets/placeholder-image.jpg";
 import PlaceholderLogo from "public/assets/placeholder-logo.svg";
 export function Hero() {
   return (
-    <section className="h-[100dvh] overflow-hidden px-6 pt-[--header-blur-height]">
+    <section className="mx-auto h-[100dvh] max-w-[480px] px-6 pt-[--header-blur-height]">
       <div className="relative isolate mb-8">
         <div className="absolute -right-[30px] -top-[7px] -z-10 w-[109px] -rotate-[27deg] rounded-2xl">
           <Image src={placeholderImage} alt="placeholder" className=" rounded-xl" />
@@ -28,8 +28,8 @@ export function Hero() {
           <p className="text-lg text-grey-600">Embrace Next-Gen Governance.</p>
         </div>
       </div>
-      <p className="text center text-grey-600">Join the suite of companies already using oSnap</p>
-      <div className="my-8 grid max-w-[340px] grid-cols-2 grid-rows-2 gap-y-[3vh]">
+      <p className="text-center text-grey-600">Join the suite of companies already using oSnap</p>
+      <div className="mx-auto my-8 grid max-w-[380px] grid-cols-2 grid-rows-2 justify-items-center gap-y-[3vh]">
         <PlaceholderLogo />
         <PlaceholderLogo />
         <PlaceholderLogo />
