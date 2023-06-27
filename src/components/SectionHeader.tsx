@@ -106,7 +106,6 @@ const Header = styled(motion.h2)`
   }
   @media ${tabletAndUnder} {
     --width: var(--width-desktop-tablet);
-    ${mdFluid}
     margin-bottom: 64px;
   }
   @media ${mobileAndUnder} {
