@@ -1,4 +1,3 @@
-import Tabs from "@/components/Tabs";
 import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import OO from "public/assets/oo-logo.svg";
@@ -6,6 +5,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 import { SectionHeader } from "./SectionHeader";
 import { BaseOuterWrapper } from "./Wrappers";
+import Tabs from "./Tabs";
 
 export default function Builder() {
   const id = "builder";
