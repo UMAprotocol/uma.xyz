@@ -1,4 +1,4 @@
-import RootLayout from "@/app/layout";
+import { Layout } from "@/components/Layout";
 import { Osnap } from "@/components/pages/Osnap";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -13,9 +13,9 @@ type Story = StoryObj<typeof Osnap>;
 export const Default: Story = {
   render: function Wrapper() {
     return (
-      <RootLayout>
+      <Layout>
         <Osnap />
-      </RootLayout>
+      </Layout>
     );
   },
   parameters: {

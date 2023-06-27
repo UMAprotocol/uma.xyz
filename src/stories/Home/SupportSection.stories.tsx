@@ -1,6 +1,6 @@
 import SupportSection from "@/components/Home/SupportSection";
 import { Meta, StoryFn } from "@storybook/react";
-import "../styles/sandpack-override.css";
+import "@/styles/sandpack-override.css";
 
 export default {
   title: "SupportSection",
