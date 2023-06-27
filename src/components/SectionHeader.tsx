@@ -1,4 +1,4 @@
-import { laptopAndUnder, lgFluid, mdFluid, mobileAndUnder, smFluid, tabletAndUnder } from "@/constant";
+import { laptopAndUnder, lgFluid, mobileAndUnder, smFluid, tabletAndUnder } from "@/constant";
 import { motion } from "framer-motion";
 import { CSSProperties, ReactNode, useState } from "react";
 import styled from "styled-components";
