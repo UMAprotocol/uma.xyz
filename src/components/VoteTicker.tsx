@@ -61,7 +61,7 @@ export default function VoteTicker({ isLightTheme = false }) {
       transition={{ duration: 0.3, delay: 0.8 }}
       style={
         {
-          "--background": isLightTheme ? grey700 : "inherit",
+          "--background": isLightTheme ? grey700 : "#2a252a",
           "--color": isLightTheme ? grey100 : grey500,
         } as CSSProperties
       }
