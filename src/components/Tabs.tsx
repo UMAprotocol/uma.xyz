@@ -1,7 +1,8 @@
 import { Divider } from "@/components/Divider";
 import { mobileAndUnder, tabletAndUnder } from "@/constant";
+import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
-import dynamic from "next/dynamic";
+import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
 import Globe from "public/assets/globe.svg";
 import Scale from "public/assets/scale.svg";
 import Telescope from "public/assets/telescope.svg";
@@ -9,15 +10,7 @@ import Tube from "public/assets/tube.svg";
 import Wand from "public/assets/wand.svg";
 import { useState } from "react";
 import styled, { CSSProperties, css, keyframes } from "styled-components";
-
-const Content = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.Content));
-const List = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.List));
-const Root = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.Root));
-const Trigger = dynamic(() => import("@radix-ui/react-tabs").then((mod) => mod.Trigger));
-const AnimatedLink = dynamic(() => import("@/components/AnimatedLink"));
-const SandpackCodeViewer = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackCodeViewer));
-const SandpackLayout = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackLayout));
-const SandpackProvider = dynamic(() => import("@codesandbox/sandpack-react").then((mod) => mod.SandpackProvider));
+import AnimatedLink from "./AnimatedLink";
 
 export default function Tabs() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -288,7 +281,7 @@ contract LongShortPair {
   const docLink = tabs.map(({ docHref, docText }) => ({ href: docHref, text: docText }));
 
   return (
-    <TabsRoot defaultValue="0" onValueChange={(value) => setActiveTabIndex(Number(value))}>
+    <TabsRoot defaultValue="0" onValueChange={(value: string) => setActiveTabIndex(Number(value))}>
       <TabsList>
         {tabs.map(({ title, shortTitle, Icon }, tabIndex) => (
           <TabsTrigger key={title} value={tabIndex.toString()}>

@@ -1,9 +1,8 @@
 import { Decorator } from "@storybook/react";
-import React from "react";
-import "../src/styles/fonts.css";
-import "../src/styles/sandpack-override.css";
-import { GlobalStyle } from "../src/components/GlobalStyle";
 import { mockDateDecorator } from "storybook-mock-date-decorator";
+import "../src/styles/fonts.css";
+import "../src/styles/globals.css";
+import "../src/styles/sandpack-override.css";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -65,12 +64,4 @@ export const parameters = {
   date: new Date("2023-05-01"),
 };
 
-export const decorators: Decorator[] = [
-  mockDateDecorator,
-  (Story) => (
-    <>
-      <GlobalStyle />
-      <Story />
-    </>
-  ),
-];
+export const decorators: Decorator[] = [mockDateDecorator];

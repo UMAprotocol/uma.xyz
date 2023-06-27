@@ -1,12 +1,10 @@
 import { grey200, grey500, links, socialLinks, white } from "@/constant";
+import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
-import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import { useEffect, useState } from "react";
-import styled, { CSSProperties } from "styled-components";
-
-const LottieAnimation = dynamic(() => import("@/components/LottieAnimation"));
+import { CSSProperties, useEffect, useState } from "react";
+import LottieAnimation from "../LottieAnimation";
 
 interface Props {
   show: boolean;
@@ -16,119 +14,54 @@ interface Props {
 
 export default function MobileMenu({ show, hide, isLightTheme }: Props) {
   const [animationData, setAnimationData] = useState<object>();
+  const { scrollY } = useScrollContext();
 
   useEffect(() => {
     if (show && !animationData) {
       void import("public/assets/lottie/hero.json").then(setAnimationData);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [show]);
+  }, [show, animationData]);
 
   return (
-    <Wrapper
+    <nav
+      className="absolute left-0 top-[56px] flex h-[--height] w-full flex-col content-center items-center bg-[--background] opacity-[--opacity] transition"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile Menu"
       style={
         {
+          "--height": `calc(100dvh - ${scrollY === 0 ? "124px" : "44px"})`,
           "--background": isLightTheme ? white : grey200,
-          "--transform": show ? "translateY(0)" : "translateY(-20px)",
           "--opacity": show ? 1 : 0,
-          "--pointer-events": show ? "all" : "none",
           "--link-color": isLightTheme ? grey500 : white,
+          pointerEvents: show ? "auto" : "none",
+          transform: show ? "translateY(0)" : "translateY(-20px)",
         } as CSSProperties
       }
     >
-      <Background>{animationData && <LottieHeroAnimation play={show} animationData={animationData} />}</Background>
-      <Links>
+      <div className="absolute bottom-0 left-0 right-0 opacity-[0.15]">
+        {animationData && <LottieAnimation play={show} animationData={animationData} />}
+      </div>
+      <div className="mb-auto mt-[25%] grid place-items-center gap-4">
         {links.map(({ href, label }) => (
-          <Link onClick={hide} key={href} href={href} target={isExternalLink(href) ? "_blank" : undefined}>
-            {label} {isExternalLink(href) ? <ExternalLinkIcon /> : null}
-          </Link>
+          <NextLink
+            className="relative inline-flex items-center text-sm text-[--link-color] no-underline hover:opacity-80"
+            onClick={hide}
+            key={href}
+            href={href}
+            target={isExternalLink(href) ? "_blank" : undefined}
+          >
+            {label} {isExternalLink(href) ? <SmUpRightArrow className="ml-2 [&>path]:stroke-[--link-color]" /> : null}
+          </NextLink>
         ))}
-      </Links>
-      <SocialLinks>
+      </div>
+      <div className="flex h-fit items-center gap-[22px] pb-[22px]">
         {socialLinks.map(({ href, Icon, label }) => (
-          <SocialLink onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
-            <Icon />
-          </SocialLink>
+          <NextLink className="group z-10" onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
+            <Icon className="[&>path]:fill-[--link-color]" />
+          </NextLink>
         ))}
-      </SocialLinks>
-    </Wrapper>
+      </div>
+    </nav>
   );
 }
-
-const Wrapper = styled.nav`
-  width: 100%;
-  min-height: calc(100vh - 124px);
-  position: absolute;
-  top: 56px;
-  left: 0;
-  background: var(--background);
-  transform: var(--transform);
-  opacity: var(--opacity);
-  pointer-events: var(--pointer-events);
-  transition: transform var(--animation-duration), opacity var(--animation-duration);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Background = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.15;
-`;
-
-const Link = styled(NextLink)`
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  font: var(--body-sm);
-  color: var(--link-color);
-  text-decoration: none;
-  path {
-    stroke: var(--link-color);
-  }
-  &:hover {
-    opacity: 0.75;
-  }
-`;
-
-const Links = styled.div`
-  display: grid;
-  place-items: center;
-  gap: 16px;
-  margin-top: 25%;
-  margin-block: auto;
-`;
-
-const SocialLinks = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  padding-bottom: 22px;
-  height: fit-content;
-`;
-
-const SocialLink = styled(NextLink)`
-  path {
-    fill: var(--link-color);
-  }
-  &:hover {
-    path {
-      fill: var(--red);
-    }
-  }
-`;
-
-const ExternalLinkIcon = styled(SmUpRightArrow)`
-  margin-left: 8px;
-`;
-
-const LottieHeroAnimation = styled(LottieAnimation)`
-  margin-inline: auto;
-`;

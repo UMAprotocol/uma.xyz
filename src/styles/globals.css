@@ -1,51 +1,9 @@
-import {
-  animationDuration,
-  black,
-  bodyLg,
-  bodyMd,
-  bodySm,
-  bodyXl,
-  bodyXs,
-  desktopHeaderHeight,
-  desktopPagePadding,
-  desktopPageWidth,
-  grey100,
-  grey100Opacity20,
-  grey200,
-  grey300,
-  grey400,
-  grey400Opacity20,
-  grey500,
-  grey600,
-  grey700,
-  grey800,
-  headerBlurHeight,
-  headerLg,
-  headerMd,
-  headerSm,
-  headerXs,
-  mobileAndUnder,
-  mobileHeaderHeight,
-  mobilePagePadding,
-  mobilePageWidth,
-  red,
-  red510Opacity15,
-  red550,
-  subHeader,
-  subHeaderSm,
-  tabletAndUnder,
-  tabletPagePadding,
-  tabletPageWidth,
-  voteTickerHeight,
-  white,
-  white200,
-  whiteOpacity10,
-} from "@/constant";
-import { createGlobalStyle } from "styled-components";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-export const GlobalStyle = createGlobalStyle`
- /* CSS Reset */
- * {
+/* CSS Reset */
+* {
   /* Remove default margin on everything */
   margin: 0;
   /* Remove default padding on everything */
@@ -79,9 +37,6 @@ html {
 /* Smooth scrolling for users that don't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
-    // todo: for reasons I don't understand and can't track down, it seems that nextjs overwrites the scroll behavior to auto on load.
-    // This is a hacky fix to make sure that the scroll behavior is smooth.
-    // would be great if someone could figure out why and fix it at the source.
     scroll-behavior: smooth !important;
   }
 }
@@ -208,84 +163,82 @@ a:not([class]) {
 }
 
 /* Allow percentage-based full height */
-html, body, #__next {
+html,
+body,
+#__next {
   height: 100%;
 }
 
-/* Global style definitions */
+body {
+  background: hsla(0, 0%, 12%, 1);
+  color: var(--grey-100);
+}
 
-  /*  All CSS custom properties that are intended to be global must be defined here */
-
-  html {
-    /* Colors */
-    --black: ${black};
-    --white: ${white};
-    --white-opacity-10: ${whiteOpacity10};
-    --white-200: ${white200};
-    --red: ${red};
-    --red-510-opacity-15: ${red510Opacity15};
-    --red-550: ${red550};
-    --grey-100: ${grey100};
-    --grey-100-opacity-20: ${grey100Opacity20};
-    --grey-200: ${grey200};
-    --grey-300: ${grey300};
-    --grey-400: ${grey400};
-    --grey-400-opacity-20: ${grey400Opacity20};
-    --grey-500: ${grey500};
-    --grey-600: ${grey600};
-    --grey-700: ${grey700};
-    --grey-800: ${grey800};
-
-    /* Fonts */
-    --header-lg: ${headerLg};
-    --header-md: ${headerMd};
-    --header-sm: ${headerSm};
-    --header-xs: ${headerXs};
-    --sub-header: ${subHeader};
-    --sub-header-sm: ${subHeaderSm};
-    --body-xl: ${bodyXl};
-    --body-lg: ${bodyLg};
-    --body-md: ${bodyMd};
-    --body-sm: ${bodySm};
-    --body-xs: ${bodyXs};
-
-    /* Containers */
-    --desktop-page-width: ${desktopPageWidth}px;
-    --tablet-page-width: ${tabletPageWidth}px;
-    --mobile-page-width: ${mobilePageWidth}px;
-    --page-width: var(--desktop-page-width);
-    @media ${tabletAndUnder} {
-      --page-width: var(--tablet-page-width);
-    }
-    @media ${mobileAndUnder} {
-      --page-width: var(--mobile-page-width);
-    }
-    --desktop-header-height: ${desktopHeaderHeight}px;
-    --mobile-header-height: ${mobileHeaderHeight}px;
-    --header-height: var(--desktop-header-height);
-    @media ${mobileAndUnder} {
-      --header-height: var(--mobile-header-height);
-    }
-    --header-blur-height: ${headerBlurHeight}px;
-    --vote-ticker-height: ${voteTickerHeight}px;
-    --desktop-page-padding: ${desktopPagePadding}px;
-    --tablet-page-padding: ${tabletPagePadding}px;
-    --mobile-page-padding: ${mobilePagePadding}px;
-    --page-padding: var(--desktop-page-padding);
-    @media ${tabletAndUnder} {
-      --page-padding: var(--tablet-page-padding);
-    }
-    @media ${mobileAndUnder} {
-      --page-padding: var(--mobile-page-padding);
-    }
-    /* Animation */
-    --animation-duration: ${animationDuration};
-
-    // Sandpack override
-    --sp-layout-height: 347px !important;
+:root {
+  /* colors */
+  --black: hsla(0, 0%, 12%, 1);
+  --white: hsla(0, 0%, 100%, 1);
+  --white-opacity-10: hsla(0, 0%, 100%, 0.1);
+  --white-200: hsl(0, 0%, 98%, 1);
+  --red: hsla(0, 100%, 65%, 1);
+  --red-510-opacity-15: rgba(255, 74, 74, 0.15);
+  --red-550: hsla(352, 23%, 25%, 1);
+  --grey-100: hsla(288, 4%, 25%, 1);
+  --grey-100-opacity-20: hsla(288, 4%, 25%, 0.2);
+  --grey-200: hsla(280, 4%, 15%, 1);
+  --grey-300: hsla(285, 4%, 19%, 1);
+  --grey-400: hsl(255, 2%, 64%, 1);
+  --grey-400-opacity-20: hsla(255, 2%, 64%, 0.2);
+  --grey-500: hsla(255, 3%, 69%, 1);
+  --grey-600: hsla(0, 0%, 91%, 1);
+  --grey-700: hsla(0, 0%, 94%, 1);
+  --grey-800: hsla(0, 0%, 99%, 1);
+  /* fonts */
+  --header-lg: 400 6rem/112px "Halyard Display", sans-serif;
+  --header-md: 400 4rem/72px "Halyard Display", sans-serif;
+  --header-sm: 400 2.5rem/55px "Halyard Display", sans-serif;
+  --header-xs: 400 2rem/45px "Halyard Display", sans-serif;
+  --sub-header: 400 1rem/19px "Halyard Display", sans-serif;
+  --sub-header-sm: 400 0.75rem/16px "Halyard Display", sans-serif;
+  --body-xl: 400 1.625rem/32px "Halyard Display", sans-serif;
+  --body-lg: 400 1.25rem/28px "Halyard Display", sans-serif;
+  --body-md: 400 1.125rem/24px "Halyard Display", sans-serif;
+  --body-sm: 400 1rem/22px "Halyard Display", sans-serif;
+  --body-xs: 400 0.75rem/17px "Halyard Display", sans-serif;
+  --lg-fluid-font-size: clamp(4rem, 6vw + 2rem, 6rem);
+  --md-fluid-font-size: clamp(2.5rem, 6vw + 2rem, 4rem);
+  --sm-fluid-font-size: clamp(2rem, 7vw + 1.18rem, 2.5rem);
+  /* animation */
+  --animation-duration: 0.3s;
+  /* containers */
+  --desktop-page-padding: 32px;
+  --tablet-page-padding: 24px;
+  --mobile-page-padding: 16px;
+  --page-padding: var(--desktop-page-padding);
+  @media (max-width: 1024px) {
+    --page-padding: var(--tablet-page-padding);
   }
-
-  body {
-    color: var(--grey-100);
+  @media (max-width: 768px) {
+    --page-padding: var(--mobile-page-padding);
   }
-`;
+  --desktop-page-width: 1144px;
+  --tablet-page-width: 896px;
+  --mobile-page-width: 608px;
+  --page-width: var(--desktop-page-width);
+  @media (max-width: 1024px) {
+    --page-width: var(--tablet-page-width);
+  }
+  @media (max-width: 768px) {
+    --page-width: var(--mobile-page-width);
+  }
+  --desktop-header-height: 48px;
+  --mobile-header-height: 32px;
+  --header-height: var(--desktop-header-height);
+  @media (max-width: 768px) {
+    --header-height: var(--mobile-header-height);
+  }
+  --header-blur-height: 92px;
+  --vote-ticker-height: 68px;
+
+  --sp-layout-height: 347px !important;
+}

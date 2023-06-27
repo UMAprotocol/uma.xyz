@@ -1,21 +1,9 @@
-import {
-  headerLgFluid,
-  headerLgFluidFontSize,
-  headerMdFluid,
-  headerMdFluidFontSize,
-  headerSmFluid,
-  headerSmFluidFontSize,
-  mobileAndUnder,
-  tabletAndUnder,
-} from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
-import styled, { keyframes } from "styled-components";
-import { BaseOuterWrapper } from "./Wrappers";
 
 const loadFeatures = () => import("../utils/features").then((res) => res.default);
 
@@ -55,33 +43,56 @@ export default function Hero() {
 
   return (
     <LazyMotion features={loadFeatures}>
-      <OuterWrapper ref={ref}>
-        <Background
+      <section
+        className="relative grid w-full place-items-center overflow-clip px-[--page-padding]"
+        style={{
+          height: "calc(100dvh - var(--header-height) - var(--vote-ticker-height))",
+        }}
+        ref={ref}
+      >
+        <m.div
+          className="absolute bottom-0 left-0 right-0"
           initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
           animate={{ opacity: 1, translateX: "0%", translateY: "0%" }}
           transition={{ duration: 0.3 }}
         >
-          <Video autoPlay loop muted playsInline>
+          <video
+            className="mx-auto w-full object-cover mix-blend-luminosity lg:w-[80%]"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
             <source src="/assets/hero.mp4" type="video/mp4" />
             <source src="/assets/hero.webm" type="video/webm" />
-          </Video>
-        </Background>
-        <BackgroundLines />
-        <InnerWrapper>
-          <HeaderWrapper {...headerAnimation}>
-            <Header>
+          </video>
+        </m.div>
+        <div
+          className="absolute left-0 top-0 h-full w-full bg-cover bg-repeat"
+          style={{ backgroundImage: "url('/assets/hero-bg-lines.svg')" }}
+        />
+        <div className="mx-auto grid h-full max-w-[--page-width] grid-rows-[1fr_20%] items-center justify-items-center">
+          <m.div className="justify- mb-3 flex flex-col items-center gap-8 lg:mb-0" {...headerAnimation}>
+            <m.h1 className="z-10 text-center text-sm-fluid text-white md:text-lg-fluid">
               <m.div {...makeHeaderRotateAnimation(-3)}>A decentralized </m.div>
               <m.span {...makeHeaderRotateAnimation(-6)}>truth</m.span>
-              <OOIconWrapper {...makeHeaderRotateAnimation(8)}>
-                <OOLogoIcon />
-              </OOIconWrapper>
+              <m.span className="mx-2 inline-block align-middle md:mx-4" {...makeHeaderRotateAnimation(8)}>
+                <OOLogo
+                  className="h-[--sm-fluid-font-size] 
+                  w-[calc(var(--sm-fluid-font-size)_*_2)]
+                  md:h-[--lg-fluid-font-size] 
+                  md:w-[calc(var(--lg-fluid-font-size)_*_2)] 
+                  [&>path]:fill-white"
+                />
+              </m.span>
               <m.span {...makeHeaderRotateAnimation(4)}>machine</m.span>
-            </Header>
-            <Subheader>
+            </m.h1>
+            <m.h2 className="text-md z-10 mx-auto max-w-[min(562px,80%)] text-center text-grey-500 md:text-lg xl:text-xl">
               UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
-            </Subheader>
-          </HeaderWrapper>
-          <ArrowButtonWrapper
+            </m.h2>
+          </m.div>
+          <m.div
+            className="self-start"
             initial={{
               opacity: 0,
               translateY: "50px",
@@ -95,180 +106,16 @@ export default function Hero() {
               delay: 1.3,
             }}
           >
-            <ArrowButton href="#how-it-works" aria-label="Go to next section">
-              <ArrowIcon />
-            </ArrowButton>
-          </ArrowButtonWrapper>
-        </InnerWrapper>
-      </OuterWrapper>
+            <NextLink
+              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-grey-200 p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              href="#how-it-works"
+              aria-label="Go to next section"
+            >
+              <DownArrow className="animate-arrow" />
+            </NextLink>
+          </m.div>
+        </div>
+      </section>
     </LazyMotion>
   );
 }
-
-const Background = styled(m.div)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`;
-
-const BackgroundLines = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-image: url("/assets/hero-bg-lines.svg");
-  background-size: cover;
-  background-repeat: repeat;
-`;
-
-const Video = styled.video`
-  width: 80%;
-  margin-inline: auto;
-  object-fit: cover;
-  mix-blend-mode: luminosity;
-
-  @media ${mobileAndUnder} {
-    width: 100%;
-  }
-`;
-
-const OuterWrapper = styled(BaseOuterWrapper)`
-  position: relative;
-  display: grid;
-  place-items: center;
-  padding-top: 0;
-  height: calc(100vh - var(--header-height) - var(--vote-ticker-height));
-  width: 100%;
-  position: relative;
-  overflow: clip;
-`;
-
-const InnerWrapper = styled.div`
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-rows: 1fr 20%;
-  max-width: var(--page-width);
-  height: 100%;
-  margin-inline: auto;
-`;
-
-const HeaderWrapper = styled(m.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-
-  @media ${mobileAndUnder} {
-    font: var(--header-sm);
-    margin-bottom: 12px;
-  }
-`;
-
-const Header = styled(m.h1)`
-  font: var(--header-lg);
-  ${headerLgFluid}
-  color: var(--white);
-  text-align: center;
-  z-index: 1;
-  @media ${tabletAndUnder} {
-    ${headerMdFluid}
-  }
-  @media ${mobileAndUnder} {
-    ${headerSmFluid}
-  }
-`;
-
-const Subheader = styled(m.h2)`
-  z-index: 1;
-  margin-inline: auto;
-  max-width: min(562px, 80%);
-  font: var(--body-xl);
-  color: var(--grey-500);
-  text-align: center;
-  @media ${tabletAndUnder} {
-    font: var(--body-lg);
-  }
-  @media ${mobileAndUnder} {
-    font: var(--body-md);
-  }
-`;
-
-const arrowAnimation = keyframes`
-  0%, 80%, 100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  20% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  60% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-`;
-
-const ArrowIcon = styled(DownArrow)`
-  animation: ${arrowAnimation} 2s infinite ease-in-out;
-  animation-delay: 3s;
-`;
-
-const ArrowButtonWrapper = styled(m.div)`
-  align-self: start;
-`;
-
-const ArrowButton = styled(NextLink)`
-  background-color: var(--grey-200);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  gap: 8px;
-  isolation: isolate;
-  border: 1px solid var(--red);
-  border-radius: 8px;
-  width: 48px;
-  height: 48px;
-  opacity: 1;
-  transition: box-shadow var(--animation-duration), background-color var(--animation-duration);
-
-  &:hover {
-    background: var(--red-510-opacity-15);
-    box-shadow: 0px 0px 50px 0px var(--red);
-  }
-`;
-
-const OOIconWrapper = styled(m.span)`
-  display: inline-block;
-  vertical-align: middle;
-  margin-inline: 16px;
-  @media ${mobileAndUnder} {
-    margin-inline: 8px;
-  }
-`;
-
-const OOLogoIcon = styled(OOLogo)`
-  path {
-    fill: var(--white);
-  }
-  width: calc(var(--height) * 2);
-  height: var(--height);
-  --desktop-height: ${headerLgFluidFontSize};
-  --tablet-height: ${headerMdFluidFontSize};
-  --mobile-height: ${headerSmFluidFontSize};
-  --height: var(--desktop-height);
-
-  @media ${tabletAndUnder} {
-    --height: var(--tablet-height);
-  }
-
-  @media ${mobileAndUnder} {
-    --height: var(--mobile-height);
-  }
-`;

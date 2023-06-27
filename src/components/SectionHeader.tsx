@@ -1,14 +1,7 @@
-import {
-  headerLgFluid,
-  headerMdFluid,
-  headerSmFluid,
-  laptopAndUnder,
-  mobileAndUnder,
-  tabletAndUnder,
-} from "@/constant";
+import { laptopAndUnder, lgFluid, mobileAndUnder, smFluid, tabletAndUnder } from "@/constant";
 import { motion } from "framer-motion";
-import { ReactNode, useState } from "react";
-import styled, { CSSProperties } from "styled-components";
+import { CSSProperties, ReactNode, useState } from "react";
+import styled from "styled-components";
 
 type SectionHeaderProps = {
   title: ReactNode;
@@ -54,7 +47,8 @@ function CircleFilter() {
   const [{ x, y }, setMousePosition] = useState({ x: 0, y: 0 });
 
   return (
-    <CircleFilterWrapper
+    <div
+      className="absolute left-0 top-0 h-full w-full overflow-hidden"
       onMouseEnter={() => {
         setShowCircle(true);
       }}
@@ -75,7 +69,7 @@ function CircleFilter() {
           } as CSSProperties
         }
       />
-    </CircleFilterWrapper>
+    </div>
   );
 }
 
@@ -106,31 +100,21 @@ const Header = styled(motion.h2)`
   margin-top: 48px;
   margin-bottom: 128px;
   font: var(--header-lg);
-  ${headerLgFluid}
+  ${lgFluid}
   @media ${laptopAndUnder} {
     --width: var(--width-laptop);
   }
   @media ${tabletAndUnder} {
     --width: var(--width-desktop-tablet);
-    ${headerMdFluid}
     margin-bottom: 64px;
   }
   @media ${mobileAndUnder} {
     --width: var(--width-mobile);
     font: var(--header-sm);
-    ${headerSmFluid}
+    ${smFluid}
     margin-top: 24px;
     margin-bottom: 40px;
   }
-`;
-
-const CircleFilterWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 `;
 
 const Circle = styled.div`

@@ -1,11 +1,10 @@
-import { grey100, grey400, links, red, tabletAndUnder, white } from "@/constant";
+import { grey100, grey400, links, red, white } from "@/constant";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
-import styled from "styled-components";
 
 interface Props {
   isLightTheme: boolean;
@@ -18,13 +17,14 @@ export default function DesktopHeader({ isLightTheme }: Props) {
   }
 
   return (
-    <Wrapper>
-      <HomeLink href="/" aria-label="Back to top">
-        {isLightTheme ? <StyledLogoBlack /> : <StyledLogo />}
-      </HomeLink>
-      <Links>
+    <div className="hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid">
+      <NextLink href="/" aria-label="Back to top" className="cursor-pointer">
+        {isLightTheme ? <BlackLogo /> : <Logo />}
+      </NextLink>
+      <div className="grid grid-flow-col items-center gap-5">
         {links.map(({ label, href }) => (
-          <Link
+          <NextLink
+            className="group flex items-center no-underline transition"
             key={href}
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
@@ -34,11 +34,14 @@ export default function DesktopHeader({ isLightTheme }: Props) {
               } as CSSProperties
             }
           >
-            <Dot /> <LinkText>{label}</LinkText> {isExternalLink(href) ? <ExternalLinkIcon /> : null}
-          </Link>
+            <span className="mr-2 inline-block aspect-square w-2 -translate-x-4 rounded-full bg-[--color] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-80" />{" "}
+            <span className="text-lg text-[--color] group-hover:opacity-80">{label}</span>{" "}
+            {isExternalLink(href) ? <SmUpRightArrow className="ml-2" /> : null}
+          </NextLink>
         ))}
-      </Links>
-      <LaunchButton
+      </div>
+      <NextLink
+        className="grid h-[40px] w-[118px] place-items-center gap-0.5 justify-self-end rounded-lg bg-[--background] text-lg text-[--color] no-underline transition hover:opacity-75"
         href="https://vote.uma.xyz"
         target="_blank"
         style={
@@ -49,90 +52,7 @@ export default function DesktopHeader({ isLightTheme }: Props) {
         }
       >
         Launch app
-      </LaunchButton>
-    </Wrapper>
+      </NextLink>
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  @media ${tabletAndUnder} {
-    display: none;
-  }
-`;
-
-const Links = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Link = styled(NextLink)`
-  --text-opacity: 1;
-  --dot-opacity: 0;
-  --dot-translate-x: -4px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: var(--color);
-  font: var(--body-md);
-  transition: color var(--animation-duration), background-color var(--animation-duration);
-
-  &:hover {
-    --text-opacity: 0.8;
-    --dot-opacity: 0.8;
-    --dot-translate-x: 0;
-  }
-`;
-
-const LinkText = styled.span`
-  opacity: var(--text-opacity);
-`;
-
-const Dot = styled.span`
-  display: inline-block;
-  width: 8px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  margin-right: 8px;
-  background: var(--color);
-  opacity: var(--dot-opacity);
-  transform: translateX(var(--dot-translate-x));
-  transition: opacity var(--animation-duration), background-color var(--animation-duration),
-    transform var(--animation-duration);
-`;
-
-const ExternalLinkIcon = styled(SmUpRightArrow)`
-  margin-left: 8px;
-`;
-
-const HomeLink = styled(NextLink)``;
-
-const LaunchButton = styled(NextLink)`
-  justify-self: end;
-  padding: 8px 16px 12px;
-  height: 40px;
-  gap: 2px;
-  width: 118px;
-  border-radius: 8px;
-  font: var(--body-md);
-  color: var(--color);
-  background: var(--background);
-  text-decoration: none;
-  transition: opacity var(--animation-duration) ease-in-out;
-  &:hover {
-    opacity: 0.75;
-  }
-`;
-
-const StyledLogoBlack = styled(BlackLogo)`
-  cursor: pointer;
-`;
-
-const StyledLogo = styled(Logo)`
-  cursor: pointer;
-`;

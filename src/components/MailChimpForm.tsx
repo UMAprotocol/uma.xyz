@@ -1,9 +1,5 @@
-import { laptopAndUnder, mobileAndUnder, tabletAndUnder } from "@/constant";
-import dynamic from "next/dynamic";
 import { SyntheticEvent, useState } from "react";
-import styled from "styled-components";
-
-const MailchimpSubscribe = dynamic(() => import("react-mailchimp-subscribe"));
+import MailchimpSubscribe from "react-mailchimp-subscribe";
 
 export default function MailChimpForm() {
   const [value, setValue] = useState("");
@@ -12,14 +8,16 @@ export default function MailChimpForm() {
       url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
       render={({ subscribe, status, message }) => (
         <>
-          <Form
+          <form
+            className="flex w-full flex-col items-center justify-end gap-3 lg:flex-row"
             onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
               evt.preventDefault();
               // @ts-expect-error Doesn't like the input being taken like this
               subscribe({ EMAIL: evt.target[0].value }); // eslint-disable-line
             }}
           >
-            <Input
+            <input
+              className="h-12 w-full max-w-[528px] rounded-lg border-2 border-[transparent] bg-white px-4 py-3 text-lg text-grey-200 caret-grey-100 outline-none transition hover:border-grey-500 focus:border-grey-100 xl:max-w-[350px]"
               type="email"
               name="email"
               value={value}
@@ -27,86 +25,20 @@ export default function MailChimpForm() {
               placeholder="Your Email"
             />
 
-            <SubmitButton type="submit">Sign up</SubmitButton>
-          </Form>
-          {status === "sending" && <StatusMessage>Sending...</StatusMessage>}
+            <button
+              className="flex h-12 w-full min-w-fit max-w-[528px] items-center justify-center gap-0.5 whitespace-nowrap rounded-lg bg-red px-[24px] py-2 text-lg text-grey-800 transition hover:opacity-50 lg:w-fit"
+              type="submit"
+            >
+              Sign up
+            </button>
+          </form>
+          {status === "sending" && <div className="text-grey-300">Sending...</div>}
           {status === "error" && (
-            <StatusMessage style={{ color: "var(--red)" }} dangerouslySetInnerHTML={{ __html: message as string }} />
+            <div style={{ color: "var(--red)" }} dangerouslySetInnerHTML={{ __html: message as string }} />
           )}
-          {status === "success" && <StatusMessage style={{ color: "#20a93e" }}>Subscribed!</StatusMessage>}
+          {status === "success" && <div style={{ color: "#20a93e" }}>Subscribed!</div>}
         </>
       )}
     />
   );
 }
-
-const Form = styled.form`
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  justify-content: flex-end;
-
-  @media ${tabletAndUnder} {
-    justify-content: start;
-  }
-
-  @media ${mobileAndUnder} {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const Input = styled.input`
-  height: 48px;
-  width: 100%;
-  max-width: 350px;
-  padding-inline: 16px;
-  padding-block: 12px;
-  background: var(--white);
-  color: var(--grey-200);
-  outline: none;
-  font: var(--body-md);
-  caret-color: var(--grey-100);
-  border: 2px solid transparent;
-  border-radius: 8px;
-  transition: border-color var(--animation-duration);
-  &:hover {
-    border: 2px solid var(--grey-500);
-  }
-  &:focus {
-    border: 2px solid var(--grey-100);
-  }
-  @media ${laptopAndUnder} {
-    max-width: 528px;
-  }
-  @media ${mobileAndUnder} {
-    max-width: 100%;
-  }
-`;
-
-const SubmitButton = styled.button`
-  height: 48px;
-  min-width: fit-content;
-  white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 24px 12px;
-  gap: 2px;
-  background: var(--red);
-  border-radius: 8px;
-  color: var(--grey-800);
-  font: var(--body-md);
-  transition: opacity var(--animation-duration);
-  &:hover {
-    opacity: 0.5;
-  }
-  @media ${mobileAndUnder} {
-    width: 100%;
-  }
-`;
-
-const StatusMessage = styled.div`
-  font: var(--body-sm);
-  color: var(--grey-300);
-`;
