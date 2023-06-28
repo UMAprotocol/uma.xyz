@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import OsnapLogo from "public/assets/osnap-logo.svg";
 import placeholderImage from "public/assets/placeholder-image.jpg";
 import PlaceholderLogo from "public/assets/placeholder-logo.svg";
+
 export function Hero() {
   return (
-    <section className="mx-auto h-[100dvh] max-w-[480px] px-6 pt-[--header-blur-height]">
+    <section className="mx-auto min-h-[100dvh] max-w-[480px] px-6 pt-[--header-blur-height]">
       <div className="relative isolate mb-8">
         <div className="absolute -right-[30px] -top-[7px] -z-10 w-[109px] -rotate-[27deg] rounded-2xl">
           <Image src={placeholderImage} alt="placeholder" className=" rounded-xl" />
@@ -25,7 +27,13 @@ export function Hero() {
         <div className="z-10">
           <p className="text-lg text-grey-600">Propel your DAO into the future.</p>
           <p className="text-lg text-grey-600">Instant, secure, trustless execution.</p>
-          <p className="text-lg text-grey-600">Embrace Next-Gen Governance.</p>
+          <p className="text- lg text-grey-600">Embrace Next-Gen Governance.</p>
+          <Link
+            className="mb-12 mt-6 block h-[40px] w-[118px] rounded-xl bg-black p-[8px_16px_12px_16px] text-white"
+            href="/todo"
+          >
+            Try oSnap
+          </Link>
         </div>
       </div>
       <p className="text-center text-grey-600">Join the suite of companies already using oSnap</p>
