@@ -154,7 +154,7 @@ const ArrowIconWrapper = styled.div`
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1.5px solid var(--grey-200);
+  border: 1.5px solid var(--grey-800);
   border-radius: 10px;
   transition: border-color var(--animation-duration), background-color var(--animation-duration);
 `;
@@ -167,7 +167,7 @@ const ArrowIcon = styled(UpRightArrowLg)`
 
 const LinkText = styled.span`
   font: var(--header-sm);
-  color: var(--grey-200);
+  color: var(--grey-800);
   line-height: 115%;
   transition: color var(--animation-duration);
   @media ${mobileAndUnder} {

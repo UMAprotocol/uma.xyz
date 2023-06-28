@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="grid grid-rows-[auto_1fr_auto] bg-grey-700 px-[--page-padding] pt-4 lg:pt-16 xl:pt-[--header-blur-height]"
+      className="grid grid-rows-[auto_1fr_auto] bg-grey-300 px-[--page-padding] pt-4 lg:pt-16 xl:pt-[--header-blur-height]"
       style={{ backgroundImage: "url('assets/footer-lines-grey.png')" }}
       id={id}
       ref={ref}
@@ -37,7 +37,7 @@ export default function Footer() {
           <NextLink className="md:hidden" href="#">
             <UmaLogo className="[&>*]:fill-black" />
           </NextLink>
-          <h3 className="w-fit text-center text-xl text-grey-300 md:mb-8 lg:max-w-[640px] lg:text-left">
+          <h3 className="w-fit text-center text-xl text-grey-700 md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA and OO news, straight to your inbox.
           </h3>
           <MailChimpForm />
@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="flex items-center gap-6">
           {socialLinks.map(({ href, Icon, label }) => (
             <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>
-              <Icon className="transition [&>path]:fill-grey-200 [&>path]:transition group-hover:[&>path]:fill-red" />
+              <Icon className="transition [&>path]:fill-grey-800 [&>path]:transition group-hover:[&>path]:fill-red" />
             </NextLink>
           ))}
         </div>
