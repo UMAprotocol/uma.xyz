@@ -1,11 +1,11 @@
 "use client";
 
 import {
+  grey100,
   grey200,
   grey400,
   grey500,
   grey700,
-  grey800,
   grey900,
   laptopAndUnder,
   mobileAndUnder,
