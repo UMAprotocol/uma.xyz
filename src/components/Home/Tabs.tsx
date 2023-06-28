@@ -387,7 +387,7 @@ const TabsList = styled(List)`
   gap: 12px;
   align-items: center;
   margin-bottom: 56px;
-  border-bottom: 1px solid var(--grey-600);
+  border-bottom: 1px solid var(--grey-400);
   @media ${tabletAndUnder} {
     margin-bottom: 0;
   }
