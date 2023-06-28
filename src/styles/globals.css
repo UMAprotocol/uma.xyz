@@ -183,8 +183,7 @@ body {
   --red: hsla(0, 100%, 65%, 1);
   --red-510-opacity-15: rgba(255, 74, 74, 0.15);
   --red-550: hsla(352, 23%, 25%, 1);
-  --grey-950: hsla(0, 0%, 8%, 1);
-  --grey-900: hsla(280, 4%, 15%, 1);
+  --grey-50: hsla(0, 0%, 98%, 1);
   --grey-100: hsla(0, 0%, 96%, 1);
   --grey-100-opacity-20: hsla(0, 0%, 96%, 0.2);
   --grey-200: hsla(0, 0%, 93%, 1);
@@ -195,6 +194,8 @@ body {
   --grey-600: hsla(288, 2%, 35%, 1);
   --grey-700: hsla(288, 4%, 25%, 1);
   --grey-800: hsla(285, 4%, 19%, 1);
+  --grey-900: hsla(280, 4%, 15%, 1);
+  --grey-950: hsla(0, 0%, 8%, 1);
   /* fonts */
   --header-lg: 400 6rem/112px "Halyard Display", sans-serif;
   --header-md: 400 4rem/72px "Halyard Display", sans-serif;

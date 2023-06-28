@@ -9,6 +9,7 @@ export const whiteOpacity10 = "hsla(0, 0%, 100%, 0.1)";
 export const white200 = "	hsl(0, 0%, 98%, 1)"; // #FAFAFA
 
 // Greys
+export const grey50 = "hsla(0, 0%, 98%, 1)";
 export const grey100 = "hsla(0, 0%, 96%, 1)"; // #272528
 export const grey100Opacity20 = "hsla(0, 0%, 96%, 0.2)";
 export const grey200 = "hsla(0, 0%, 93%, 1)"; // #322f33
@@ -20,7 +21,6 @@ export const grey600 = "hsla(288, 2%, 35%, 1)"; // #E9E9E9
 export const grey700 = "hsla(288, 4%, 25%, 1)"; // #F0F0F0
 export const grey800 = "hsla(285, 4%, 19%, 1)"; // #FDFDFD
 
-export const black = "hsla(0, 0%, 12%, 1)";
-
-export const grey950 = "hsla(0, 0%, 8%, 1)";
 export const grey900 = "hsla(280, 4%, 15%, 1)";
+export const grey950 = "hsla(0, 0%, 8%, 1)";
+export const black = "hsla(0, 0%, 12%, 1)";
