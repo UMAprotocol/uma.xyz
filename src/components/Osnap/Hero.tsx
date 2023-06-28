@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import OsnapLogo from "public/assets/osnap-logo.svg";
-import placeholderImage from "public/assets/placeholder-image.jpg";
+import placeholderImage from "public/assets/placeholder-image.png";
 import PlaceholderLogo from "public/assets/placeholder-logo.svg";
 
 export function Hero() {
