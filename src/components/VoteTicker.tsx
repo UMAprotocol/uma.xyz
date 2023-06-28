@@ -2,8 +2,8 @@
 
 import {
   grey200,
+  grey400,
   grey500,
-  grey600,
   grey700,
   grey900,
   laptopAndUnder,
@@ -97,7 +97,7 @@ export default function VoteTicker({ isLightTheme = false }) {
                 style={
                   {
                     "--color": isLightTheme ? grey900 : grey500,
-                    "--background": isLightTheme ? grey600 : grey900,
+                    "--background": isLightTheme ? grey400 : grey900,
                   } as CSSProperties
                 }
               >

@@ -166,7 +166,7 @@ const ProjectsWrapper = styled.div`
   grid-template-columns: 1fr;
   grid-row-start: 1;
   grid-column-start: 1;
-  border: 0.5px solid var(--grey-600);
+  border: 0.5px solid var(--grey-400);
 
   @media ${mobileAndUnder} {
     grid-column-start: unset;
@@ -183,7 +183,7 @@ const ProjectRowWrapper = styled.div`
 const ProjectWrapper = styled(NextLink)`
   --icon-color: var(--grey-900);
   --indicator-opacity: 0;
-  --border-color: var(--grey-600);
+  --border-color: var(--grey-400);
   --translate-y: 0;
   position: relative;
   display: grid;

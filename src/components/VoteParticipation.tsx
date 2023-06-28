@@ -159,7 +159,7 @@ const Activity = styled.div`
   &:hover {
     --color: var(--red);
     --background: var(--white);
-    --border-color: var(--grey-600);
+    --border-color: var(--grey-400);
     --translate-y: -8px;
   }
   @media ${tabletAndUnder} {

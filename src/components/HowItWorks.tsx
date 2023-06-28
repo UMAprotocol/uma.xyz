@@ -189,7 +189,7 @@ const Video = styled.video`
 
 const LottieWrapper = styled.div`
   max-width: var(--width);
-  border: 1px solid var(--grey-600);
+  border: 1px solid var(--grey-400);
   grid-area: lottie;
   --width-desktop: 562px;
   --width-laptop-tablet: 754px;
