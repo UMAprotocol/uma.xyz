@@ -12,15 +12,9 @@ import SnapshotLogo from "public/assets/snapshot.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useRef } from "react";
 import styled from "styled-components";
-<<<<<<< HEAD:src/components/Home/Projects.tsx
 import AnimatedLink from "../AnimatedLink";
 import { Divider } from "../Divider";
 import { BaseOuterWrapper } from "../Wrappers";
-=======
-import AnimatedLink from "./AnimatedLink";
-import { Divider } from "./Divider";
-import { BaseOuterWrapper } from "./Wrappers";
->>>>>>> main:src/components/Projects.tsx
 
 type Project = {
   name: string;
