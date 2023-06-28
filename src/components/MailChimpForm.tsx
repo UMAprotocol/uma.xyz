@@ -32,7 +32,7 @@ export default function MailChimpForm() {
               Sign up
             </button>
           </form>
-          {status === "sending" && <div className="text-grey-300">Sending...</div>}
+          {status === "sending" && <div className="text-grey-700">Sending...</div>}
           {status === "error" && (
             <div style={{ color: "var(--red)" }} dangerouslySetInnerHTML={{ __html: message as string }} />
           )}

@@ -1,11 +1,10 @@
 "use client";
 
 import {
-  grey300,
+  grey200,
   grey500,
   grey600,
   grey700,
-  grey200,
   grey900,
   laptopAndUnder,
   mobileAndUnder,
@@ -63,7 +62,7 @@ export default function VoteTicker({ isLightTheme = false }) {
       <InnerWrapper
         style={
           {
-            "--background": isLightTheme ? grey200 : grey300,
+            "--background": isLightTheme ? grey200 : grey700,
             "--url": isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
           } as CSSProperties
         }

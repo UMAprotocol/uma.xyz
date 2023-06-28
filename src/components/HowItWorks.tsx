@@ -1,4 +1,4 @@
-import { grey300, grey500, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "@/constant";
+import { grey500, grey700, laptopAndUnder, mobileAndUnder, red, tabletAndUnder, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { motion, useInView, useScroll, useSpring } from "framer-motion";
@@ -103,7 +103,7 @@ function Step({ header, text, subText, index, inView, isLast }: StepProps) {
         <StepNumber
           initial={{
             backgroundColor: white,
-            color: grey300,
+            color: grey700,
             border: `1px solid ${grey500}`,
           }}
           whileInView={{
