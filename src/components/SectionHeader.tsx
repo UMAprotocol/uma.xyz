@@ -80,7 +80,7 @@ const HeaderWrapper = styled.div`
 const Title = styled(motion.h1)`
   font: var(--header-sm);
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--grey-600);
+  border-bottom: 1px solid var(--grey-400);
   @media ${mobileAndUnder} {
     padding-bottom: 12px;
     font: var(--body-lg);
