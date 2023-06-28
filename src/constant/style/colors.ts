@@ -21,3 +21,5 @@ export const grey700 = "hsla(0, 0%, 94%,1)"; // #F0F0F0
 export const grey800 = "hsla(0, 0%, 99%,1)"; // #FDFDFD
 
 export const black = "hsla(0, 0%, 12%, 1)";
+
+export const grey950 = "hsla(0, 0%, 8%, 1)";

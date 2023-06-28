@@ -11,6 +11,7 @@ import {
   grey600,
   grey700,
   grey800,
+  grey950,
   red,
   red510Opacity15,
   red550,
@@ -34,6 +35,7 @@ module.exports = {
     },
     colors: {
       black: black,
+      "grey-950": grey950,
       "grey-100": grey100,
       "grey-100-opacity-20": grey100Opacity20,
       "grey-200": grey200,
