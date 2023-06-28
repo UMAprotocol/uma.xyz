@@ -171,6 +171,7 @@ body,
 
 body {
   color: var(--grey-900);
+  background: var(--grey-800);
 }
 
 :root {
