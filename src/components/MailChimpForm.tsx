@@ -26,7 +26,7 @@ export default function MailChimpForm() {
             />
 
             <button
-              className="flex h-12 w-full min-w-fit max-w-[528px] items-center justify-center gap-0.5 whitespace-nowrap rounded-lg bg-red px-[24px] py-2 text-lg text-grey-800 transition hover:opacity-50 lg:w-fit"
+              className="flex h-12 w-full min-w-fit max-w-[528px] items-center justify-center gap-0.5 whitespace-nowrap rounded-lg bg-red px-[24px] py-2 text-lg text-grey-200 transition hover:opacity-50 lg:w-fit"
               type="submit"
             >
               Sign up

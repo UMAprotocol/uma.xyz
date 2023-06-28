@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="flex items-center gap-6">
           {socialLinks.map(({ href, Icon, label }) => (
             <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>
-              <Icon className="transition [&>path]:fill-grey-200 [&>path]:transition group-hover:[&>path]:fill-red" />
+              <Icon className="transition [&>path]:fill-grey-800 [&>path]:transition group-hover:[&>path]:fill-red" />
             </NextLink>
           ))}
         </div>
