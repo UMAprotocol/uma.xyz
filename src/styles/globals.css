@@ -176,7 +176,7 @@ body {
 
 :root {
   /* colors */
-  --black: hsla(0, 0%, 12%, 1);
+  --black: hsla(0, 0%, 0%, 1);
   --white: hsla(0, 0%, 100%, 1);
   --white-opacity-10: hsla(0, 0%, 100%, 0.1);
   --white-200: hsl(0, 0%, 98%, 1);
