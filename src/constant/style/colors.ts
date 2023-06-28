@@ -9,6 +9,7 @@ export const whiteOpacity10 = "hsla(0, 0%, 100%, 0.1)";
 export const white200 = "	hsl(0, 0%, 98%, 1)"; // #FAFAFA
 
 // Greys
+export const grey25 = "hsla(0, 0%, 99%, 1)";
 export const grey50 = "hsla(0, 0%, 98%, 1)";
 export const grey100 = "hsla(0, 0%, 96%, 1)"; // #272528
 export const grey100Opacity20 = "hsla(0, 0%, 96%, 0.2)";

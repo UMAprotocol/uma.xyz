@@ -4,6 +4,7 @@ import {
   grey100,
   grey100Opacity20,
   grey200,
+  grey25,
   grey300,
   grey400,
   grey400Opacity20,
@@ -37,6 +38,7 @@ module.exports = {
     },
     colors: {
       black: black,
+      "grey-25": grey25,
       "grey-50": grey50,
       "grey-100": grey100,
       "grey-100-opacity-20": grey100Opacity20,
