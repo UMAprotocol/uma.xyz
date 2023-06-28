@@ -87,7 +87,7 @@ export default function MobileHeader({ isLightTheme }: Props) {
           }
         >
           App
-          <UpRightArrow className="[&>path]:stroke-grey-500" />
+          <UpRightArrow className="[&>path]:stroke-[--color]" />
         </NextLink>
       </div>
       <MobileMenu isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
