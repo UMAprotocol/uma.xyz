@@ -5,6 +5,7 @@ import {
   grey400,
   grey500,
   grey700,
+  grey800,
   grey900,
   laptopAndUnder,
   mobileAndUnder,
@@ -54,7 +55,7 @@ export default function VoteTicker({ isLightTheme = false }) {
       transition={{ duration: 0.3, delay: 0.8 }}
       style={
         {
-          "--background": isLightTheme ? grey700 : "inherit",
+          "--background": isLightTheme ? "transparent" : grey800,
           "--color": isLightTheme ? grey900 : grey500,
         } as CSSProperties
       }
