@@ -7,7 +7,7 @@ export default {
 } as Meta<typeof VoteTicker>;
 
 const Template: StoryFn<typeof VoteTicker> = (args) => (
-  <div style={{ padding: "2rem", background: `${args.isLightTheme ? "var(--grey-100)" : "var(--black)"}` }}>
+  <div style={{ padding: "2rem", background: `${args.isLightTheme ? "var(--grey-900)" : "var(--black)"}` }}>
     <VoteTicker {...args} />
   </div>
 );

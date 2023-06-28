@@ -1,6 +1,6 @@
 "use client";
 
-import { animationDuration, grey100, grey500, white } from "@/constant";
+import { animationDuration, grey500, grey900, white } from "@/constant";
 import NextLink from "next/link";
 import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-logo.svg";
@@ -44,12 +44,12 @@ export default function MobileHeader({ isLightTheme }: Props) {
       preventScrollOnFocus
     >
       <button
-        className="bg-grey-900 relative h-3 w-6 justify-self-start"
+        className="relative h-3 w-6 justify-self-start bg-grey-900"
         aria-label="Open navigation menu"
         onClick={toggleShowMenu}
         style={
           {
-            "--background": isLightTheme ? grey100 : grey500,
+            "--background": isLightTheme ? grey900 : grey500,
             "--animation-delay": showMenu ? "1s" : "0s",
           } as CSSProperties
         }

@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  grey100,
   grey300,
   grey500,
   grey600,
   grey700,
   grey800,
+  grey900,
   laptopAndUnder,
   mobileAndUnder,
   red,
@@ -56,7 +56,7 @@ export default function VoteTicker({ isLightTheme = false }) {
       style={
         {
           "--background": isLightTheme ? grey700 : "inherit",
-          "--color": isLightTheme ? grey100 : grey500,
+          "--color": isLightTheme ? grey900 : grey500,
         } as CSSProperties
       }
     >
@@ -97,8 +97,8 @@ export default function VoteTicker({ isLightTheme = false }) {
               <NumVotes
                 style={
                   {
-                    "--color": isLightTheme ? grey100 : grey500,
-                    "--background": isLightTheme ? grey600 : grey100,
+                    "--color": isLightTheme ? grey900 : grey500,
+                    "--background": isLightTheme ? grey600 : grey900,
                   } as CSSProperties
                 }
               >
@@ -115,8 +115,8 @@ export default function VoteTicker({ isLightTheme = false }) {
         <MoreDetailsWrapper
           style={
             {
-              "--color": isLightTheme ? grey100 : grey500,
-              "--stroke": isLightTheme ? grey100 : grey500,
+              "--color": isLightTheme ? grey900 : grey500,
+              "--stroke": isLightTheme ? grey900 : grey500,
             } as CSSProperties
           }
         >

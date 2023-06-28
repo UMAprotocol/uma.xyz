@@ -181,7 +181,7 @@ const ProjectRowWrapper = styled.div`
 `;
 
 const ProjectWrapper = styled(NextLink)`
-  --icon-color: var(--grey-100);
+  --icon-color: var(--grey-900);
   --indicator-opacity: 0;
   --border-color: var(--grey-600);
   --translate-y: 0;

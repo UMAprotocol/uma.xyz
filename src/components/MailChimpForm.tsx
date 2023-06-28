@@ -17,7 +17,7 @@ export default function MailChimpForm() {
             }}
           >
             <input
-              className="h-12 w-full max-w-[528px] rounded-lg border-2 border-[transparent] bg-white px-4 py-3 text-lg text-grey-200 caret-grey-100 outline-none transition hover:border-grey-500 focus:border-grey-100 xl:max-w-[350px]"
+              className="h-12 w-full max-w-[528px] rounded-lg border-2 border-[transparent] bg-white px-4 py-3 text-lg text-grey-200 caret-grey-900 outline-none transition hover:border-grey-500 focus:border-grey-900 xl:max-w-[350px]"
               type="email"
               name="email"
               value={value}

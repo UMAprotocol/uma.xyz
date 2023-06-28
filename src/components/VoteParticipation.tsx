@@ -143,7 +143,7 @@ const ActivitiesWrapper = styled.div`
 `;
 
 const Activity = styled.div`
-  --color: var(--grey-100);
+  --color: var(--grey-900);
   --background: transparent;
   --border-color: transparent;
   --translate-y: 0;
