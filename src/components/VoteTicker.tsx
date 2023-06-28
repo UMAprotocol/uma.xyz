@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  grey100,
-  grey300,
+  grey200,
+  grey400,
   grey500,
-  grey600,
   grey700,
   grey800,
+  grey900,
   laptopAndUnder,
   mobileAndUnder,
   red,
@@ -55,15 +55,15 @@ export default function VoteTicker({ isLightTheme = false }) {
       transition={{ duration: 0.3, delay: 0.8 }}
       style={
         {
-          "--background": isLightTheme ? grey700 : "inherit",
-          "--color": isLightTheme ? grey100 : grey500,
+          "--background": isLightTheme ? "transparent" : grey800,
+          "--color": isLightTheme ? grey900 : grey500,
         } as CSSProperties
       }
     >
       <InnerWrapper
         style={
           {
-            "--background": isLightTheme ? grey800 : grey300,
+            "--background": isLightTheme ? grey200 : grey700,
             "--url": isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
           } as CSSProperties
         }
@@ -97,8 +97,8 @@ export default function VoteTicker({ isLightTheme = false }) {
               <NumVotes
                 style={
                   {
-                    "--color": isLightTheme ? grey100 : grey500,
-                    "--background": isLightTheme ? grey600 : grey100,
+                    "--color": isLightTheme ? grey900 : grey500,
+                    "--background": isLightTheme ? grey400 : grey900,
                   } as CSSProperties
                 }
               >
@@ -115,8 +115,8 @@ export default function VoteTicker({ isLightTheme = false }) {
         <MoreDetailsWrapper
           style={
             {
-              "--color": isLightTheme ? grey100 : grey500,
-              "--stroke": isLightTheme ? grey100 : grey500,
+              "--color": isLightTheme ? grey900 : grey500,
+              "--stroke": isLightTheme ? grey900 : grey500,
             } as CSSProperties
           }
         >

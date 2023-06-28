@@ -1,4 +1,4 @@
-import { grey100, grey400, links, red, white } from "@/constant";
+import { grey400, grey900, links, red, white } from "@/constant";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
@@ -46,8 +46,8 @@ export default function DesktopHeader({ isLightTheme }: Props) {
         target="_blank"
         style={
           {
-            "--color": isLightTheme ? white : grey100,
-            "--background": isLightTheme ? grey100 : white,
+            "--color": isLightTheme ? white : grey900,
+            "--background": isLightTheme ? grey900 : white,
           } as CSSProperties
         }
       >

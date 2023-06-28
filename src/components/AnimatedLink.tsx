@@ -22,7 +22,7 @@ const Link = styled(NextLink)`
   color: var(--red);
   text-decoration: none;
   &:hover {
-    color: var(--grey-100);
+    color: var(--grey-900);
   }
 `;
 
@@ -47,8 +47,8 @@ const ArrowIconWrapper = styled.div`
     background-color var(--animation-duration) ease;
 
   ${Link}:hover & {
-    border-color: var(--grey-100);
-    background-color: var(--grey-100);
+    border-color: var(--grey-900);
+    background-color: var(--grey-900);
     margin-left: 12px;
 
     ${ArrowIcon} {
