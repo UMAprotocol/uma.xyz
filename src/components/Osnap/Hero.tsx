@@ -29,7 +29,7 @@ export function Hero() {
             <p className="text- lg text-grey-600">Embrace Next-Gen Governance.</p>
             <Link
               className="mb-12 mt-6 block h-[40px] w-[118px] rounded-xl bg-black p-[8px_16px_12px_16px] text-white"
-              href="/todo"
+              href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
             >
               Try oSnap
             </Link>
