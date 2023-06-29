@@ -44,7 +44,7 @@ export default function MobileHeader({ isLightTheme }: Props) {
       preventScrollOnFocus
     >
       <button
-        className="relative h-3 w-6 justify-self-start bg-grey-900"
+        className="relative h-3 w-6 justify-self-start"
         aria-label="Open navigation menu"
         onClick={toggleShowMenu}
         style={

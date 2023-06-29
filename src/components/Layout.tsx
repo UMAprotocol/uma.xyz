@@ -5,11 +5,11 @@ import VoteTicker from "./VoteTicker";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="">
+    <>
       <VoteTicker />
       <Header />
       <main className="overflow-clip">{children}</main>
       <Footer />
-    </div>
+    </>
   );
 }
