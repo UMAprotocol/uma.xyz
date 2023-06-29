@@ -6,7 +6,7 @@ import Zap from "public/assets/zap.svg";
 
 export function Scaling() {
   return (
-    <section className="bg-white-200 px-6 py-12">
+    <section className="bg-grey-50 px-6 py-12">
       <div className="mx-auto grid max-w-[1200px] md:grid-cols-2 md:gap-12">
         <Image
           src={placeholderImage}
