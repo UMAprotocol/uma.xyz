@@ -14,7 +14,7 @@ export function Scaling() {
           className="mb-10 aspect-[13/10] w-full rounded-3xl md:my-5 md:aspect-square md:max-w-[500px]"
         />
         <div className="max-w-[540px]">
-          <h2 className="mb-10 text-3xl text-grey-100 md:text-6xl">DAO scaling without compromise</h2>
+          <h2 className="mb-10 text-3xl text-grey-900 md:text-6xl">DAO scaling without compromise</h2>
           <div className="mb-8 grid grid-rows-[auto,auto] gap-3 md:grid-cols-[auto,auto] md:grid-rows-none">
             <Chat />
             <div>
