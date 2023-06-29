@@ -5,7 +5,7 @@ export function Faq() {
     <section className="bg-grey-25 px-4 py-8 md:px-6 lg:px-8">
       <div className="mx-auto max-w-[400px] md:max-w-[1216px]">
         <h2 className="mb-12 text-3xl text-grey-900 md:text-6xl">FAQs</h2>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-x-8 gap-y-10 lg:gap-y-16">
+        <div className="mb-12 grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-x-8 gap-y-10 lg:gap-y-16">
           <div className="max-w-[min(400px,100%)]">
             <h3 className="mb-2 text-lg text-grey-900">How does UMA secure the governance process?</h3>
             <p className=" text-grey-600">
@@ -44,6 +44,21 @@ export function Faq() {
               </Link>
             </p>
           </div>
+        </div>
+        <div className="flex flex-col gap-6 rounded-2xl bg-grey-100 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
+          <div>
+            <h3 className="mb-2 text-lg text-grey-900">Still have questions?</h3>
+            <p className="text-grey-600">
+              Can&apos;t find the answer you&apos;re looking for? Please chat to our friendly team.
+            </p>
+          </div>
+          <Link
+            href="https://airtable.com/shrW1iJRbU4tEI9go"
+            target="_blank"
+            className="h-fit w-fit rounded-lg bg-red px-5 py-3 text-white transition hover:brightness-125"
+          >
+            Get in touch
+          </Link>
         </div>
       </div>
     </section>
