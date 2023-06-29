@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="grid grid-rows-[auto_1fr_auto] bg-grey-300 px-[--page-padding] pt-4 lg:pt-16 xl:pt-[--header-blur-height]"
+      className="grid grid-rows-[auto_1fr_auto] bg-grey-300 px-[--page-padding] pt-16 xl:pt-[--header-blur-height]"
       style={{ backgroundImage: "url('assets/footer-lines-grey.png')" }}
       id={id}
       ref={ref}

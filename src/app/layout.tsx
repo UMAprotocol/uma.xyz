@@ -3,6 +3,9 @@ import { SandPackCSS } from "@/components/sandpack-styles";
 import StyledComponentsRegistry from "@/components/style-registry";
 import { ScrollProvider } from "@/contexts";
 import { Metadata } from "next";
+import "@/styles/fonts.css";
+import "@/styles/globals.css";
+import "@/styles/sandpack-override.css";
 
 export const metadata: Metadata = {
   title: "UMA - Universal Market Access",
