@@ -1,4 +1,4 @@
-import Tabs from "@/components/Tabs";
+import Tabs from "@/components/Home/Tabs";
 import { Meta, StoryFn } from "@storybook/react";
 import TubeIcon from "public/assets/tube.svg";
 import WandIcon from "public/assets/wand.svg";

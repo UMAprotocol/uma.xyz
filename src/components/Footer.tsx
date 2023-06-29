@@ -1,3 +1,5 @@
+"use client";
+
 import { footerLinks, socialLinks } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { isExternalLink } from "@/utils";

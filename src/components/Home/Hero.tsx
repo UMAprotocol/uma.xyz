@@ -5,7 +5,7 @@ import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
 
-const loadFeatures = () => import("../utils/features").then((res) => res.default);
+const loadFeatures = () => import("../../utils/features").then((res) => res.default);
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,7 +44,7 @@ export default function Hero() {
   return (
     <LazyMotion features={loadFeatures}>
       <section
-        className="relative grid w-full place-items-center overflow-clip px-[--page-padding]"
+        className="relative grid w-full place-items-center overflow-clip bg-hero-video-background px-[--page-padding]"
         style={{
           height: "calc(100dvh - var(--header-height) - var(--vote-ticker-height))",
         }}
@@ -73,15 +73,17 @@ export default function Hero() {
         />
         <div className="mx-auto grid h-full max-w-[--page-width] grid-rows-[1fr_20%] items-center justify-items-center">
           <m.div className="justify- mb-3 flex flex-col items-center gap-8 lg:mb-0" {...headerAnimation}>
-            <m.h1 className="z-10 text-center text-sm-fluid text-white md:text-lg-fluid">
+            <m.h1 className="z-10 text-center text-sm-fluid text-white md:text-md-fluid lg:text-lg-fluid">
               <m.div {...makeHeaderRotateAnimation(-3)}>A decentralized </m.div>
               <m.span {...makeHeaderRotateAnimation(-6)}>truth</m.span>
               <m.span className="mx-2 inline-block align-middle md:mx-4" {...makeHeaderRotateAnimation(8)}>
                 <OOLogo
                   className="h-[--sm-fluid-font-size] 
                   w-[calc(var(--sm-fluid-font-size)_*_2)]
-                  md:h-[--lg-fluid-font-size] 
-                  md:w-[calc(var(--lg-fluid-font-size)_*_2)] 
+                  md:h-[--md-fluid-font-size]
+                  md:w-[calc(var(--md-fluid-font-size)_*_2)] 
+                  lg:h-[--lg-fluid-font-size] 
+                  lg:w-[calc(var(--lg-fluid-font-size)_*_2)] 
                   [&>path]:fill-white"
                 />
               </m.span>
@@ -107,7 +109,7 @@ export default function Hero() {
             }}
           >
             <NextLink
-              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-grey-800 p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-hero-video-background p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
               href="#how-it-works"
               aria-label="Go to next section"
             >

@@ -62,6 +62,9 @@ export const parameters = {
     },
   },
   date: new Date("2023-05-01"),
+  nextjs: {
+    appDirectory: true,
+  },
 };
 
 export const decorators: Decorator[] = [mockDateDecorator];

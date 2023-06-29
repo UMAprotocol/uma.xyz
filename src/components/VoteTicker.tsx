@@ -5,8 +5,8 @@ import {
   grey400,
   grey500,
   grey700,
-  grey800,
   grey900,
+  heroVideoBackground,
   laptopAndUnder,
   mobileAndUnder,
   red,
@@ -17,6 +17,7 @@ import {
 import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
@@ -27,6 +28,14 @@ export default function VoteTicker({ isLightTheme = false }) {
   const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = !!data && data.activeRequests > 0;
+  const pathname = usePathname();
+  const isHomePage = pathname?.split("#")[0] === "/";
+
+  useInterval(() => {
+    setTimeRemaining(formatMillisecondsUntilMidnight());
+  }, 1000);
+
+  if (!isHomePage && !isLightTheme) return null;
 
   function getMillisecondsUntilMidnight() {
     const now = new Date();
@@ -44,10 +53,6 @@ export default function VoteTicker({ isLightTheme = false }) {
       .padStart(2, "0")}`;
   }
 
-  useInterval(() => {
-    setTimeRemaining(formatMillisecondsUntilMidnight());
-  }, 1000);
-
   return (
     <OuterWrapper
       initial={{ opacity: 0, translateY: "-20px" }}
@@ -55,7 +60,7 @@ export default function VoteTicker({ isLightTheme = false }) {
       transition={{ duration: 0.3, delay: 0.8 }}
       style={
         {
-          "--background": isLightTheme ? "transparent" : grey800,
+          "--background": isLightTheme ? "transparent" : heroVideoBackground,
           "--color": isLightTheme ? grey900 : grey500,
         } as CSSProperties
       }

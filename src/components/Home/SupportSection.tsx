@@ -5,7 +5,7 @@ import NextLink from "next/link";
 import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import { useRef } from "react";
 import styled from "styled-components";
-import { BaseOuterWrapper } from "./Wrappers";
+import { BaseOuterWrapper } from "../Wrappers";
 
 export default function SupportSection() {
   const id = "support";

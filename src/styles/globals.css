@@ -162,16 +162,9 @@ a:not([class]) {
   cursor: not-allowed;
 }
 
-/* Allow percentage-based full height */
-html,
-body,
-#__next {
-  height: 100%;
-}
-
 body {
-  background: hsla(0, 0%, 12%, 1);
   color: var(--grey-900);
+  background: var(--hero-video-background);
 }
 
 :root {
@@ -197,6 +190,7 @@ body {
   --grey-800: hsla(285, 4%, 19%, 1);
   --grey-900: hsla(280, 4%, 15%, 1);
   --grey-950: hsla(0, 0%, 8%, 1);
+  --hero-video-background: hsl(300,6%,15%);
   /* fonts */
   --header-lg: 400 6rem/112px "Halyard Display", sans-serif;
   --header-md: 400 4rem/72px "Halyard Display", sans-serif;

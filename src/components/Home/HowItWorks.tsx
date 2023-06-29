@@ -5,8 +5,8 @@ import { motion, useInView, useScroll, useSpring } from "framer-motion";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useWindowSize } from "usehooks-ts";
-import { SectionHeader } from "./SectionHeader";
-import { BaseOuterWrapper } from "./Wrappers";
+import { SectionHeader } from "../SectionHeader";
+import { BaseOuterWrapper } from "../Wrappers";
 
 export default function HowItWorks() {
   const { setColorChangeSectionRef } = useScrollContext();

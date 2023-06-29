@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import Hero from "@/components/Home/Hero";
 import { Meta, StoryFn } from "@storybook/react";
 
 export default {

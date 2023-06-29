@@ -1,7 +1,8 @@
-import { grey800, grey500, links, socialLinks, white } from "@/constant";
+import { grey500, links, socialLinks, white, heroVideoBackground } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { CSSProperties, useEffect, useState } from "react";
 import LottieAnimation from "../LottieAnimation";
@@ -15,6 +16,8 @@ interface Props {
 export default function MobileMenu({ show, hide, isLightTheme }: Props) {
   const [animationData, setAnimationData] = useState<object>();
   const { scrollY } = useScrollContext();
+  const pathname = usePathname();
+  const isHomePage = pathname?.split("#")[0] === "/";
 
   useEffect(() => {
     if (show && !animationData) {
@@ -30,8 +33,8 @@ export default function MobileMenu({ show, hide, isLightTheme }: Props) {
       aria-label="Mobile Menu"
       style={
         {
-          "--height": `calc(100dvh - ${scrollY === 0 ? "124px" : "44px"})`,
-          "--background": isLightTheme ? white : grey800,
+          "--height": `calc(100dvh - ${scrollY === 0 && isHomePage ? "124px" : "44px"})`,
+          "--background": isLightTheme ? white : heroVideoBackground,
           "--opacity": show ? 1 : 0,
           "--link-color": isLightTheme ? grey500 : white,
           pointerEvents: show ? "auto" : "none",

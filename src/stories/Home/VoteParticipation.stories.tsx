@@ -1,4 +1,4 @@
-import VoteParticipation from "@/components/VoteParticipation";
+import VoteParticipation from "@/components/Home/VoteParticipation";
 import { Meta, StoryFn } from "@storybook/react";
 
 export default {

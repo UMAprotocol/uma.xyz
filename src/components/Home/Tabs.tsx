@@ -12,7 +12,7 @@ import Tube from "public/assets/tube.svg";
 import Wand from "public/assets/wand.svg";
 import { CSSProperties, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
-import AnimatedLink from "./AnimatedLink";
+import AnimatedLink from "../AnimatedLink";
 
 export default function Tabs() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
