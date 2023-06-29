@@ -3,8 +3,8 @@ import umaPlusSnapshot from "public/assets/uma-plus-snapshot.png";
 
 export function Description() {
   return (
-    <section className="bg-white-200 p-8 md:p-[144px]">
-      <div className="mx-auto mb-10 h-[50px] w-[278px] md:h-[64px] md:w-[356px]">
+    <section className="bg-white-200 p-8 sm:p-[144px]">
+      <div className="mx-auto mb-10 h-[50px] w-[278px] sm:w-[356px] md:h-[64px]">
         <Image src={umaPlusSnapshot} alt="UMA + Snapshot = oSnap" />
       </div>
       <div className="mx-auto max-w-[790px]">

@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  grey100,
   grey200,
   grey400,
   grey500,
   grey700,
   grey900,
+  heroVideoBackground,
   laptopAndUnder,
   mobileAndUnder,
   red,
@@ -29,8 +29,13 @@ export default function VoteTicker({ isLightTheme = false }) {
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = !!data && data.activeRequests > 0;
   const pathname = usePathname();
-  // we only show the vote ticker on the home page
-  const isNotHomePage = pathname?.split("#")[0] !== "/";
+  const isHomePage = pathname?.split("#")[0] === "/";
+
+  useInterval(() => {
+    setTimeRemaining(formatMillisecondsUntilMidnight());
+  }, 1000);
+
+  if (!isHomePage && !isLightTheme) return null;
 
   function getMillisecondsUntilMidnight() {
     const now = new Date();
@@ -48,12 +53,6 @@ export default function VoteTicker({ isLightTheme = false }) {
       .padStart(2, "0")}`;
   }
 
-  useInterval(() => {
-    setTimeRemaining(formatMillisecondsUntilMidnight());
-  }, 1000);
-
-  if (isNotHomePage) return null;
-
   return (
     <OuterWrapper
       initial={{ opacity: 0, translateY: "-20px" }}
@@ -61,8 +60,8 @@ export default function VoteTicker({ isLightTheme = false }) {
       transition={{ duration: 0.3, delay: 0.8 }}
       style={
         {
-          "--background": isLightTheme ? grey700 : "#2a252a",
-          "--color": isLightTheme ? grey100 : grey500,
+          "--background": isLightTheme ? "transparent" : heroVideoBackground,
+          "--color": isLightTheme ? grey900 : grey500,
         } as CSSProperties
       }
     >

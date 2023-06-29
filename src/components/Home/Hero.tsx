@@ -44,7 +44,7 @@ export default function Hero() {
   return (
     <LazyMotion features={loadFeatures}>
       <section
-        className="relative grid w-full place-items-center overflow-clip bg-[#2a252a] px-[--page-padding]"
+        className="relative grid w-full place-items-center overflow-clip bg-hero-video-background px-[--page-padding]"
         style={{
           height: "calc(100dvh - var(--header-height) - var(--vote-ticker-height))",
         }}
@@ -109,7 +109,7 @@ export default function Hero() {
             }}
           >
             <NextLink
-              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-grey-800 p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-hero-video-background p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
               href="#how-it-works"
               aria-label="Go to next section"
             >
