@@ -1,13 +1,13 @@
-import { Hero } from "@/components/Osnap/Hero";
+import { HowItWorks } from "@/components/Osnap/HowItWorks";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta = {
-  component: Hero,
+  component: HowItWorks,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Hero>;
+type Story = StoryObj<typeof HowItWorks>;
 
 const Template: Story = {};
 
