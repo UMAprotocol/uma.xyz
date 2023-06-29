@@ -1,6 +1,6 @@
 "use client";
 
-import { grey800, white } from "@/constant";
+import { heroVideoBackground, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -23,7 +23,7 @@ export default function Header() {
       transition={{ duration: 0.2, delay: 0.7 }}
       style={
         {
-          "--background": isLightTheme ? white : grey800,
+          "--background": isLightTheme ? white : heroVideoBackground,
         } as CSSProperties
       }
       className="sticky top-0 z-[2] grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm transition"

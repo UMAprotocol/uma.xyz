@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import OsnapLogo from "public/assets/osnap-logo.svg";
 import placeholderImage from "public/assets/placeholder-image.jpg";
-import PlaceholderLogo from "public/assets/placeholder-logo.svg";
 
 export function Hero() {
   return (
-    <section className="mx-auto min-h-[100dvh] max-w-[480px] px-6 pt-[--header-blur-height] md:max-w-[1216px]">
+    <section className="mx-auto -mt-[--header-height] min-h-[calc(100dvh_+_var(--header-height))] max-w-[480px] bg-white px-6 pt-[--header-blur-height] md:max-w-[1216px]">
       <div className="relative isolate mb-8 md:grid md:grid-cols-[1.4fr,1fr] md:gap-4">
         <div className="absolute -right-[30px] -top-[7px] -z-10 w-[109px] -rotate-[27deg] rounded-2xl md:hidden">
           <Image src={placeholderImage} alt="placeholder" className=" rounded-xl" />
@@ -36,16 +35,9 @@ export function Hero() {
             </Link>
           </div>
         </div>
-        <div className="-mt-[48px] hidden aspect-square max-w-[498px] rounded-[56px] md:block">
+        <div className="hidden aspect-square max-w-[498px] rounded-[56px] md:block">
           <Image src={placeholderImage} alt="placeholder" className="rounded-[56px]" />
         </div>
-      </div>
-      <p className="text-center text-grey-600">Join the suite of companies already using oSnap</p>
-      <div className="mx-auto my-8 grid max-w-[380px] grid-cols-2 grid-rows-2 justify-items-center gap-y-[3vh] md:max-w-fit md:grid-cols-4 md:grid-rows-1 md:gap-x-12">
-        <PlaceholderLogo />
-        <PlaceholderLogo />
-        <PlaceholderLogo />
-        <PlaceholderLogo />
       </div>
     </section>
   );
