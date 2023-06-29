@@ -1,4 +1,5 @@
 import { Description } from "../Osnap/Description";
+import { Faq } from "../Osnap/Faq";
 import { Hero } from "../Osnap/Hero";
 import { HowItWorks } from "../Osnap/HowItWorks";
 import { Scaling } from "../Osnap/Scaling";
@@ -10,6 +11,7 @@ export function Osnap() {
       <Description />
       <Scaling />
       <HowItWorks />
+      <Faq />
     </div>
   );
 }
