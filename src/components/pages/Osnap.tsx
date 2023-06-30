@@ -3,6 +3,7 @@ import { Faq } from "../Osnap/Faq";
 import { Hero } from "../Osnap/Hero";
 import { HowItWorks } from "../Osnap/HowItWorks";
 import { Scaling } from "../Osnap/Scaling";
+import { Video } from "../Osnap/Video";
 
 export function Osnap() {
   return (
@@ -11,6 +12,7 @@ export function Osnap() {
       <Description />
       <Scaling />
       <HowItWorks />
+      <Video />
       <Faq />
     </div>
   );
