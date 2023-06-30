@@ -1,18 +1,23 @@
+import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import Image from "next/image";
 import Chart from "public/assets/chart.svg";
 import Chat from "public/assets/chat.svg";
+import handshake from "public/assets/handshake.png";
 import OsnapLogo from "public/assets/osnap-logo.svg";
-import placeholderImage from "public/assets/placeholder-image.png";
 import Zap from "public/assets/zap.svg";
+import { useRef } from "react";
 import AnimatedLink from "../AnimatedLink";
 
 export function Osnap() {
+  const id = "osnap";
+  const ref = useRef<HTMLDivElement>(null);
+  useLoadSectionRefAndId(ref, id);
   return (
-    <section className="bg-grey-50 px-6 py-12">
+    <section className="bg-grey-50 px-6 pb-12 pt-[--header-blur-height]" ref={ref} id={id}>
       <div className="mx-auto grid max-w-[1200px] md:grid-cols-2 md:gap-12">
         <Image
-          src={placeholderImage}
-          alt="placeholder"
+          src={handshake}
+          alt="handshake"
           className="mb-10 aspect-[13/10] w-full rounded-3xl object-cover md:col-start-2 md:row-start-1 md:my-5 md:aspect-square md:max-w-[500px]"
         />
         <div className="max-w-[540px]">

@@ -6,6 +6,7 @@ import HowItWorks from "../Home/HowItWorks";
 import Projects from "../Home/Projects";
 import SupportSection from "../Home/SupportSection";
 import VoteParticipation from "../Home/VoteParticipation";
+import { Osnap } from "../Home/Osnap";
 
 export function Home() {
   return (
@@ -14,6 +15,7 @@ export function Home() {
       <HowItWorks />
       <VoteParticipation />
       <Builder />
+      <Osnap />
       <Projects />
       <SupportSection />
     </>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Chart from "public/assets/chart.svg";
 import Chat from "public/assets/chat.svg";
-import placeholderImage from "public/assets/placeholder-image.png";
+import thinker from "public/assets/thinker.png";
 import Zap from "public/assets/zap.svg";
 
 export function Scaling() {
@@ -9,8 +9,8 @@ export function Scaling() {
     <section className="bg-grey-50 px-6 py-12">
       <div className="mx-auto grid max-w-[1200px] md:grid-cols-2 md:gap-12">
         <Image
-          src={placeholderImage}
-          alt="placeholder"
+          src={thinker}
+          alt="thinker"
           className="mb-10 aspect-[13/10] w-full rounded-3xl object-cover md:my-5 md:aspect-square md:max-w-[500px]"
         />
         <div className="max-w-[540px]">
