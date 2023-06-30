@@ -18,16 +18,12 @@ export const links = [
     href: "#builder",
   },
   {
-    label: "Oracle",
-    href: "https://oracle.uma.xyz/",
+    label: "oSnap",
+    href: "#osnap",
   },
   {
     label: "Docs",
     href: "https://docs.uma.xyz/",
-  },
-  {
-    label: "Projects",
-    href: "https://projects.uma.xyz/",
   },
 ];
 

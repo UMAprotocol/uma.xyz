@@ -41,6 +41,7 @@ export default function Builder() {
 
 const OuterWrapper = styled(BaseOuterWrapper)`
   background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%);
+  padding-bottom: 64px;
 `;
 
 const InnerWrapper = styled.div`
