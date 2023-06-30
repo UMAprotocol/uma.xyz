@@ -27,7 +27,7 @@ export function Video() {
           Visit the quick start guide and start using oSnap in minutes.
         </p>
         <Link
-          className="mb-12 mt-6 grid h-[40px] w-[148px] place-items-center rounded-xl bg-black text-white md:mx-auto"
+          className="mt-6 grid h-[40px] w-[148px] place-items-center rounded-xl bg-black text-white md:mx-auto"
           href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
         >
           Integrate oSnap
