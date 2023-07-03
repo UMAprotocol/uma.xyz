@@ -28,7 +28,7 @@ export function Hero() {
             <p className="text-lg text-grey-600">Instant, secure, trustless execution.</p>
             <p className="text- lg text-grey-600">Embrace Next-Gen Governance.</p>
             <Link
-              className="mb-12 mt-6 block grid h-[40px] w-[118px] place-items-center rounded-xl bg-black text-white"
+              className="mb-12 mt-6 grid h-[40px] w-[118px] place-items-center rounded-xl bg-black text-white"
               href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
             >
               Try oSnap

@@ -7,19 +7,19 @@ import Twitter from "public/assets/twitter.svg";
 export const links = [
   {
     label: "How it works",
-    href: "#how-it-works",
+    href: "/#how-it-works",
   },
   {
     label: "For Voters",
-    href: "#voter",
+    href: "/#voter",
   },
   {
     label: "For Builders",
-    href: "#builder",
+    href: "/#builder",
   },
   {
     label: "oSnap",
-    href: "#osnap",
+    href: "/#osnap",
   },
   {
     label: "Docs",
