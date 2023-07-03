@@ -6,7 +6,6 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useWindowSize } from "usehooks-ts";
 import { SectionHeader } from "../SectionHeader";
-import { BaseOuterWrapper } from "../Wrappers";
 
 export default function HowItWorks() {
   const { setColorChangeSectionRef } = useScrollContext();
@@ -51,8 +50,14 @@ export default function HowItWorks() {
   ];
 
   return (
-    <OuterWrapper id={id}>
-      <InnerWrapper ref={ref}>
+    <section
+      className="px-[--page-padding] pt-[--header-blur-height]"
+      id={id}
+      style={{
+        background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-[--page-width]" ref={ref}>
         <SectionHeader
           title={
             <>
@@ -72,8 +77,8 @@ export default function HowItWorks() {
             isLast={index === steps.length - 1}
           />
         ))}
-      </InnerWrapper>
-    </OuterWrapper>
+      </div>
+    </section>
   );
 }
 
@@ -98,9 +103,13 @@ function Step({ header, text, subText, index, inView, isLast }: StepProps) {
   const stepNumber = index + 1;
 
   return (
-    <StepWrapper key={header}>
-      <StepNumberWrapper>
-        <StepNumber
+    <div
+      className="mb-[96px] grid gap-x-[52px] last:mb-0 sm:grid-cols-[1fr,auto] lg:grid-cols-[auto,1fr,auto] lg:grid-rows-[auto]"
+      key={header}
+    >
+      <div className="col-span-1 col-start-1 row-start-2 hidden sm:block lg:row-start-1 xl:-ml-12">
+        <motion.p
+          className="grid h-[48px] w-[48px] place-items-center rounded-lg transition duration-300"
           initial={{
             backgroundColor: white,
             color: grey700,
@@ -115,33 +124,41 @@ function Step({ header, text, subText, index, inView, isLast }: StepProps) {
           transition={{ duration: 0.3 }}
         >
           0{stepNumber}
-        </StepNumber>
+        </motion.p>
         {!isLast && (
-          <StepLineOuter ref={lineRef}>
-            <StepLineInner style={{ scaleY: spring }} />
-          </StepLineOuter>
+          <div
+            className="-z-10 ml-6 h-full w-[1px] bg-[linear-gradient(180deg,var(--grey-500)_0%,rgba(176,175,179,0)_100%)] lg:h-[calc(100%+96px)]"
+            ref={lineRef}
+          >
+            <motion.div
+              className="h-full w-[1px] origin-top bg-[linear-gradient(180deg,var(--red)_0%,rgba(176,175,179,0)_100%)] lg:bg-red"
+              style={{ scaleY: spring }}
+            />
+          </div>
         )}
-      </StepNumberWrapper>
-      <StepDescription>
-        <StepHeader>{header}</StepHeader>
-        <StepText>{text}</StepText>
-        <StepSubText>{subText}</StepSubText>
-      </StepDescription>
-      <LottieWrapper>
-        <Video autoPlay loop muted playsInline>
+      </div>
+      <div className="row-span-1 row-start-1 mb-11 w-full max-w-[720px] sm:col-span-2 sm:mb-[96px] lg:col-span-1 lg:col-start-2 lg:mb-0 lg:mt-4 lg:max-w-[464px]">
+        <h3 className="text-xs capitalize text-red sm:text-base">{header}</h3>
+        <p className="mb-4 mt-2 text-3xl sm:my-6 sm:text-6xl">{text}</p>
+        <p className="sm: text-xl">{subText}</p>
+      </div>
+      <div className="border border-grey-400 md:max-w-[754px] lg:col-start-3 lg:row-start-1 lg:max-w-[562px]">
+        <video className="h-full w-full object-cover" autoPlay loop muted playsInline>
           {inView && (
             <>
               <source src={`/assets/step-${stepNumber}.mp4`} type="video/mp4" />
               <source src={`/assets/step-${stepNumber}.webm`} type="video/webm" />
             </>
           )}
-        </Video>
-      </LottieWrapper>
-    </StepWrapper>
+        </video>
+      </div>
+    </div>
   );
 }
 
-const OuterWrapper = styled(BaseOuterWrapper)`
+const OuterWrapper = styled.section`
+  padding-top: var(--header-blur-height);
+  padding-inline: var(--page-padding);
   background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%);
 `;
 
