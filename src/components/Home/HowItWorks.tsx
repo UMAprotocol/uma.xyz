@@ -47,7 +47,7 @@ export default function HowItWorks() {
 
   return (
     <section
-      className="px-[--page-padding] pt-[--header-blur-height]"
+      className="px-[--page-padding] pt-[--header-blur-height] md:pb-[96px]"
       id={id}
       style={{
         background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
@@ -136,7 +136,7 @@ function Step({ header, text, subText, index, isLast }: StepProps) {
         <p className="mb-4 mt-2 text-3xl sm:my-6 sm:text-6xl">{text}</p>
         <p className="sm: text-xl">{subText}</p>
       </div>
-      <div className="min-h-[400px] border border-grey-400 md:max-w-[754px] lg:col-start-3 lg:row-start-1 lg:max-w-[562px]">
+      <div className="min-h-[400px] border border-grey-400 md:max-w-[754px] lg:col-start-3 lg:row-start-1 lg:max-w-[520px]">
         <video className="h-full w-full object-cover" autoPlay loop muted playsInline>
           <source src={`/assets/step-${stepNumber}.mp4`} type="video/mp4" />
           <source src={`/assets/step-${stepNumber}.webm`} type="video/webm" />
