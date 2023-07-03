@@ -32,6 +32,7 @@ html {
   block-size: 100%;
   /* Making sure text size is only controlled by font-size */
   -webkit-text-size-adjust: none;
+  scroll-behavior: smooth !important;
 }
 
 /* Smooth scrolling for users that don't prefer reduced motion */
