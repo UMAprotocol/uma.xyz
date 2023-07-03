@@ -1,7 +1,5 @@
-import { laptopAndUnder, lgFluid, mobileAndUnder, smFluid, tabletAndUnder } from "@/constant";
 import { motion } from "framer-motion";
-import { CSSProperties, ReactNode, useState } from "react";
-import styled from "styled-components";
+import { ReactNode, useState } from "react";
 
 type SectionHeaderProps = {
   title: ReactNode;
@@ -15,36 +13,38 @@ type SectionHeaderProps = {
  */
 export function SectionHeader({ title, header, constrainWidth, hasCircleFilter = true }: SectionHeaderProps) {
   return (
-    <HeaderWrapper>
-      <Title
+    <div className="relative">
+      <motion.h1
+        className="border-b border-grey-400 pb-3 text-lg md:pb-4 md:text-4xl [&>strong]:text-red"
         initial={{ opacity: 0.1, rotate: "-2deg" }}
         whileInView={{ opacity: 1, rotate: "0deg" }}
         viewport={{ once: true, amount: "all" }}
         transition={{ duration: 0.6 }}
       >
         {title}
-      </Title>
-      <Header
+      </motion.h1>
+      <motion.h2
+        className="mb-10 mt-6 w-full text-sm-fluid md:w-[720px] md:text-md-fluid lg:mb-16 lg:w-[1020px] lg:text-lg-fluid xl:mb-[128px] xl:mt-12"
         initial={{ opacity: 0.1, rotate: "1deg" }}
         whileInView={{ opacity: 1, rotate: "0deg" }}
         viewport={{ once: true, amount: "all" }}
         transition={{ duration: 0.6 }}
-        style={
-          {
-            "--max-width": constrainWidth ? "max(70%, 720px)" : "var(--width)",
-          } as CSSProperties
-        }
+        style={{
+          maxWidth: constrainWidth ? "max(70%, 720px)" : "unset",
+        }}
       >
         {header}
         {hasCircleFilter && <CircleFilter />}
-      </Header>
-    </HeaderWrapper>
+      </motion.h2>
+    </div>
   );
 }
 
 function CircleFilter() {
   const [showCircle, setShowCircle] = useState(false);
   const [{ x, y }, setMousePosition] = useState({ x: 0, y: 0 });
+  const radius = 100;
+  const diameter = radius * 2;
 
   return (
     <div
@@ -60,73 +60,16 @@ function CircleFilter() {
         setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
       }}
     >
-      <Circle
-        style={
-          {
-            opacity: showCircle ? 1 : 0,
-            "--x-pos": x.toFixed() + "px",
-            "--y-pos": y.toFixed() + "px",
-          } as CSSProperties
-        }
+      <div
+        className="pointer-events-none absolute aspect-square rounded-full transition-opacity duration-300"
+        style={{
+          height: `${diameter}px`,
+          opacity: showCircle ? 1 : 0,
+          top: (y - radius).toFixed() + "px",
+          left: (x - radius).toFixed() + "px",
+          backdropFilter: "saturate(2500%) brightness(433%) hue-rotate(-296deg)",
+        }}
       />
     </div>
   );
 }
-
-const HeaderWrapper = styled.div`
-  position: relative;
-`;
-
-const Title = styled(motion.h1)`
-  font: var(--header-sm);
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--grey-400);
-  @media ${mobileAndUnder} {
-    padding-bottom: 12px;
-    font: var(--body-lg);
-  }
-  strong {
-    font-weight: inherit;
-    color: var(--red);
-  }
-`;
-
-const Header = styled(motion.h2)`
-  --width-desktop-tablet: 1020px;
-  --width-laptop: 720px;
-  --width-mobile: 100%;
-  --width: var(--width-desktop-tablet);
-  max-width: var(--max-width);
-  margin-top: 48px;
-  margin-bottom: 128px;
-  font: var(--header-lg);
-  ${lgFluid}
-  @media ${laptopAndUnder} {
-    --width: var(--width-laptop);
-  }
-  @media ${tabletAndUnder} {
-    --width: var(--width-desktop-tablet);
-    margin-bottom: 64px;
-  }
-  @media ${mobileAndUnder} {
-    --width: var(--width-mobile);
-    font: var(--header-sm);
-    ${smFluid}
-    margin-top: 24px;
-    margin-bottom: 40px;
-  }
-`;
-
-const Circle = styled.div`
-  position: absolute;
-  --height: 200px;
-  --half-height: calc(var(--height) / 2);
-  height: var(--height);
-  top: calc(var(--y-pos) - var(--half-height));
-  left: calc(var(--x-pos) - var(--half-height));
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  backdrop-filter: brightness(2) saturate(20) hue-rotate(76.5deg);
-  transition: opacity var(--animation-duration);
-  pointer-events: none;
-`;
