@@ -14,11 +14,11 @@ export default function Hero() {
   const headerAnimation = {
     initial: {
       opacity: 0,
-      translateY: "20%",
+      y: "20%",
     },
     animate: {
       opacity: 1,
-      translateY: "0%",
+      y: "0%",
     },
     transition: {
       duration: 0.3,
@@ -52,8 +52,8 @@ export default function Hero() {
       >
         <m.div
           className="absolute bottom-0 left-0 right-0"
-          initial={{ opacity: 0, translateX: "-10%", translateY: "10%" }}
-          animate={{ opacity: 1, translateX: "0%", translateY: "0%" }}
+          initial={{ opacity: 0, x: "-10%", y: "10%" }}
+          animate={{ opacity: 1, x: "0%", y: "0%" }}
           transition={{ duration: 0.3 }}
         >
           <video
@@ -97,11 +97,11 @@ export default function Hero() {
             className="self-start"
             initial={{
               opacity: 0,
-              translateY: "50px",
+              y: "50px",
             }}
             animate={{
               opacity: 1,
-              translateY: "0px",
+              y: "0px",
             }}
             transition={{
               duration: 0.3,
