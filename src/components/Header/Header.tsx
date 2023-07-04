@@ -1,6 +1,6 @@
 "use client";
 
-import { heroVideoBackground, white } from "@/constant";
+import { heroVideoBackground, homePageLinks, osnapPageLinks, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -13,8 +13,10 @@ export default function Header() {
   const pathname = usePathname();
   // we only change the color when on the home page
   // the osnap page is all light theme
-  const isNotHomePage = pathname?.split("#")[0] !== "/";
-  const isLightTheme = isNotHomePage || isLightThemeFromScroll;
+  const isHomePage = pathname?.split("#")[0] === "/";
+  const isLightTheme = !isHomePage || isLightThemeFromScroll;
+
+  const links = isHomePage ? homePageLinks : osnapPageLinks;
 
   return (
     <motion.header
@@ -29,8 +31,8 @@ export default function Header() {
       className="sticky top-0 z-[2] grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm transition"
     >
       <div className="mx-auto w-full max-w-[--page-width] overflow-hidden">
-        <DesktopHeader isLightTheme={isLightTheme} />
-        <MobileHeader isLightTheme={isLightTheme} />
+        <DesktopHeader isLightTheme={isLightTheme} links={links} />
+        <MobileHeader isLightTheme={isLightTheme} links={links} />
       </div>
     </motion.header>
   );

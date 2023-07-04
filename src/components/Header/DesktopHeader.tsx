@@ -1,4 +1,4 @@
-import { grey400, grey900, links, red, white } from "@/constant";
+import { grey400, grey900, red, white } from "@/constant";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
 import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
@@ -6,13 +6,15 @@ import BlackLogo from "public/assets/uma-black-logo.svg";
 import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
 
-interface Props {
+type Props = {
   isLightTheme: boolean;
-}
+  links: { label: string; href: string }[];
+};
 
-export default function DesktopHeader({ isLightTheme }: Props) {
+export default function DesktopHeader({ isLightTheme, links }: Props) {
   function isActive(href: string) {
     if (typeof window === "undefined") return false;
+    if (href === "/") return window.location.pathname === "/";
     return window.location.href.includes(href);
   }
 
@@ -36,7 +38,7 @@ export default function DesktopHeader({ isLightTheme }: Props) {
           >
             <span className="mr-2 inline-block aspect-square w-2 -translate-x-4 rounded-full bg-[--color] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-80" />{" "}
             <span className="text-lg text-[--color] group-hover:opacity-80">{label}</span>{" "}
-            {isExternalLink(href) ? <SmUpRightArrow className="ml-2" /> : null}
+            {isExternalLink(href) ? <SmUpRightArrow className="ml-2 transition group-hover:opacity-80" /> : null}
           </NextLink>
         ))}
       </div>

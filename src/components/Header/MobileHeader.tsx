@@ -8,11 +8,13 @@ import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import MobileMenu from "./MobileMenu";
-interface Props {
-  isLightTheme: boolean;
-}
 
-export default function MobileHeader({ isLightTheme }: Props) {
+type Props = {
+  isLightTheme: boolean;
+  links: { label: string; href: string }[];
+};
+
+export default function MobileHeader({ isLightTheme, links }: Props) {
   const [showMenu, setShowMenu] = useState(false);
 
   const closeMenuBarTransition = `
@@ -90,7 +92,7 @@ export default function MobileHeader({ isLightTheme }: Props) {
           <UpRightArrow className="[&>path]:stroke-[--color]" />
         </NextLink>
       </div>
-      <MobileMenu isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
+      <MobileMenu links={links} isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
     </FocusOn>
   );
 }

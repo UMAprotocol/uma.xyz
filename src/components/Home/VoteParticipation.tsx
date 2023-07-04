@@ -27,10 +27,6 @@ export default function VoteParticipation() {
 
   useLoadSectionRefAndId(ref, id);
 
-  const height = ref.current?.getBoundingClientRect().height;
-
-  console.log("height", height);
-
   useEffect(() => {
     if (!stakeData) {
       void import("public/assets/lottie/stake.json").then(setStakeData);
