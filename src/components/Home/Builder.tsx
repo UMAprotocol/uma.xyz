@@ -11,13 +11,14 @@ export default function Builder() {
 
   return (
     <div
+      ref={ref}
       className="px-[--page-padding] py-16 pt-[--header-blur-height]"
       id={id}
       style={{
         background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
       }}
     >
-      <div ref={ref} className="mx-auto max-w-[--page-width]">
+      <div className="mx-auto max-w-[--page-width]">
         <SectionHeader
           hasCircleFilter={false}
           title={
