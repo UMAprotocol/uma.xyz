@@ -106,18 +106,22 @@ function Step({ header, text, subText, index, isLast }: StepProps) {
           className="grid h-[48px] w-[48px] place-items-center rounded-lg transition duration-300"
           initial={{
             backgroundColor: white,
-            color: grey700,
             border: `1px solid ${grey500}`,
           }}
           whileInView={{
             backgroundColor: red,
-            color: white,
             border: `1px solid ${red}`,
           }}
           viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           transition={{ duration: 0.3 }}
         >
-          0{stepNumber}
+          <motion.span
+            initial={{ color: grey700 }}
+            whileInView={{ color: white }}
+            viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
+          >
+            0{stepNumber}
+          </motion.span>
         </motion.p>
         {!isLast && (
           <div

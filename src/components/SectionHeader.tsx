@@ -15,7 +15,7 @@ export function SectionHeader({ title, header, constrainWidth, hasCircleFilter =
   return (
     <div className="relative">
       <motion.h1
-        className="border-b border-grey-400 pb-3 text-lg md:pb-4 md:text-4xl [&>strong]:text-red"
+        className="border-b border-grey-400 pb-3 text-lg md:pb-4 md:text-4xl [&>strong]:font-normal [&>strong]:text-red"
         initial={{ opacity: 0.1, rotate: "-2deg" }}
         whileInView={{ opacity: 1, rotate: "0deg" }}
         viewport={{ once: true, amount: "all" }}
