@@ -1,11 +1,10 @@
 import { Layout } from "@/components/Layout";
 import { SandPackCSS } from "@/components/sandpack-styles";
-import StyledComponentsRegistry from "@/components/style-registry";
 import { ScrollProvider } from "@/contexts";
-import { Metadata } from "next";
 import "@/styles/fonts.css";
 import "@/styles/globals.css";
 import "@/styles/sandpack-override.css";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "UMA - Universal Market Access",
@@ -34,11 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SandPackCSS />
       </head>
       <body>
-        <StyledComponentsRegistry>
-          <ScrollProvider>
-            <Layout>{children}</Layout>
-          </ScrollProvider>
-        </StyledComponentsRegistry>
+        <ScrollProvider>
+          <Layout>{children}</Layout>
+        </ScrollProvider>
       </body>
     </html>
   );
