@@ -75,6 +75,8 @@ module.exports = {
       },
       animation: {
         arrow: "arrow-enter 2s infinite ease-in-out 3s",
+        "fade-in": "fade-in 300ms",
+        "fade-out": "fade-out 300ms",
       },
       keyframes: {
         "arrow-enter": {
@@ -89,6 +91,24 @@ module.exports = {
           "60%": {
             opacity: "0",
             transform: "translateY(-100%)",
+          },
+        },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
+        "fade-out": {
+          "0%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateY(-20px)",
           },
         },
       },
