@@ -14,7 +14,9 @@ export default function Header() {
   // we only change the color when on the home page
   // the osnap page is all light theme
   const isHomePage = pathname?.split("#")[0] === "/";
-  const isLightTheme = !isHomePage || isLightThemeFromScroll;
+  const hasScrolledPastHero = scrollY > window.innerHeight;
+
+  const isLightTheme = !isHomePage || hasScrolledPastHero || isLightThemeFromScroll;
 
   const links = isHomePage ? homePageLinks : osnapPageLinks;
 
