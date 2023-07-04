@@ -2,6 +2,7 @@
 
 import { headerBlurHeight } from "@/constant";
 import { useMounted } from "@/hooks";
+import { usePathname } from "next/navigation";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 
 interface ScrollContextState {
@@ -31,6 +32,8 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
   const [isLightTheme, setIsLightTheme] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const mounted = useMounted();
+  const pathname = usePathname();
+  const isHomePage = pathname?.split("#")[0] === "/";
 
   function loadSectionRefAndId(id: string, ref: RefObject<HTMLDivElement>) {
     setSectionRefsById((prev) => ({ ...prev, [id]: ref }));
@@ -59,6 +62,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     });
 
     function addHashToUrl(id: string) {
+      if (!isHomePage) return;
       window.history.pushState({}, "", `#${id}`);
     }
 

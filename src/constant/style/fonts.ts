@@ -1,5 +1,3 @@
-import { css } from "styled-components";
-
 const weight = 400;
 
 const fontFamily = "'Halyard Display', sans-serif";
@@ -19,11 +17,6 @@ export const lgFluidLineHeight = `
   clamp(72px, 6vw + 2rem, 112px)
 `;
 
-export const lgFluid = css`
-  font-size: ${lgFluidFontSize};
-  line-height: ${lgFluidLineHeight};
-`;
-
 export const mdFluidFontSize = `
   clamp(2.5rem, 6vw + 2rem, 4rem)
 `;
@@ -32,22 +25,12 @@ export const mdFluidLineHeight = `
   clamp(55px, 6vw + 2rem, 72px)
 `;
 
-export const mdFluid = css`
-  font-size: ${mdFluidFontSize};
-  line-height: ${mdFluidLineHeight};
-`;
-
 export const smFluidFontSize = `
   clamp(2rem, 7vw + 1.18rem, 2.5rem)
 `;
 
 export const smFluidLineHeight = `
   clamp(45px, 5vw + 2.5rem, 55px)
-`;
-
-export const smFluid = css`
-  font-size: ${smFluidFontSize};
-  line-height: ${smFluidLineHeight};
 `;
 
 export const bodyXl = `${weight} ${26 / 16}rem/32px ${fontFamily}`;
