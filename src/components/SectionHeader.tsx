@@ -24,7 +24,7 @@ export function SectionHeader({ title, header, constrainWidth, hasCircleFilter =
         {title}
       </motion.h1>
       <motion.h2
-        className="mb-10 mt-6 w-full text-sm-fluid md:w-[720px] md:text-md-fluid lg:mb-16 lg:w-[1020px] lg:text-lg-fluid xl:mb-[128px] xl:mt-12"
+        className="mb-10 mt-6 w-full text-sm-fluid md:mb-16 md:w-[720px] md:text-md-fluid lg:mb-[128px] lg:mt-12 lg:w-[1020px] lg:text-lg-fluid xl:mb-[128px] xl:mt-12"
         initial={{ opacity: 0.1, rotate: "1deg" }}
         whileInView={{ opacity: 1, rotate: "0deg" }}
         viewport={{ once: true, amount: "all" }}

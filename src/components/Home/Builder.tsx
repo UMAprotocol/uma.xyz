@@ -11,7 +11,7 @@ export default function Builder() {
 
   return (
     <div
-      className="px-[--page-padding] pb-16 pt-[--header-blur-height]"
+      className="px-[--page-padding] py-16 pt-[--header-blur-height]"
       id={id}
       style={{
         background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
