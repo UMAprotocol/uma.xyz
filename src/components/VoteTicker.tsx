@@ -1,19 +1,6 @@
 "use client";
 
-import {
-  grey200,
-  grey400,
-  grey500,
-  grey700,
-  grey900,
-  heroVideoBackground,
-  laptopAndUnder,
-  mobileAndUnder,
-  red,
-  red510Opacity15,
-  red550,
-  white,
-} from "@/constant";
+import { grey200, grey400, grey500, grey700, grey900, heroVideoBackground, red, white } from "@/constant";
 import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
@@ -21,7 +8,6 @@ import { usePathname } from "next/navigation";
 import Clock from "public/assets/clock.svg";
 import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
-import styled from "styled-components";
 import { useInterval } from "usehooks-ts";
 
 export default function VoteTicker({ isLightTheme = false }) {
@@ -54,7 +40,8 @@ export default function VoteTicker({ isLightTheme = false }) {
   }
 
   return (
-    <OuterWrapper
+    <motion.div
+      className="grid h-[--vote-ticker-height] place-items-center bg-[--background] bg-cover bg-no-repeat pb-1 pt-4 lg:px-[--page-padding]"
       initial={{ opacity: 0, y: "-20px" }}
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.3, delay: 0.8 }}
@@ -65,31 +52,24 @@ export default function VoteTicker({ isLightTheme = false }) {
         } as CSSProperties
       }
     >
-      <InnerWrapper
-        style={
-          {
-            "--background": isLightTheme ? grey200 : grey700,
-            "--url": isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
-          } as CSSProperties
-        }
+      <div
+        className="isolate flex w-full max-w-[--page-width] items-center justify-between gap-4 rounded-lg bg-cover bg-no-repeat p-2 pr-4"
+        style={{
+          backgroundColor: isLightTheme ? grey200 : grey700,
+          backgroundImage: isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
+        }}
       >
-        <VoteDetails>
-          <ClockWrapper
-            style={
-              {
-                "--border-radius": isLightTheme ? "4px" : "16px",
-                "--fill": isLightTheme ? red510Opacity15 : red550,
-              } as CSSProperties
-            }
-          >
-            <ClockIcon />
-          </ClockWrapper>
+        <div className="flex items-center gap-4">
+          <div className="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-red/10">
+            <Clock />
+          </div>
           {isActive ? (
             <>
-              <TextWrapper>
-                <DesktopText>Time to {data.phase} vote: </DesktopText>
-                <MobileText>{data.phase} vote: </MobileText>
-                <TimeRemaining
+              <div className="text-[--color]">
+                <span className="hidden sm:inline">Time to {data.phase} vote: </span>
+                <span className="sm:hidden">{data.phase} vote: </span>
+                <span
+                  className="ml-1 inline-block min-w-[96px] text-[--color]"
                   style={
                     {
                       "--color": isLightTheme ? red : white,
@@ -97,9 +77,10 @@ export default function VoteTicker({ isLightTheme = false }) {
                   }
                 >
                   {timeRemaining}
-                </TimeRemaining>
-              </TextWrapper>
-              <NumVotes
+                </span>
+              </div>
+              <div
+                className="hidden h-fit whitespace-nowrap rounded-xl bg-[--background] px-2 py-1 text-[--color] sm:block"
                 style={
                   {
                     "--color": isLightTheme ? grey900 : grey500,
@@ -108,16 +89,16 @@ export default function VoteTicker({ isLightTheme = false }) {
                 }
               >
                 {data.activeRequests === 1 ? "1 vote" : `${data.activeRequests} votes`}
-              </NumVotes>
+              </div>
             </>
           ) : (
-            <TextWrapper>
-              <DesktopText>No active votes</DesktopText>
-              <MobileText>No votes</MobileText>
-            </TextWrapper>
+            <div className="text-[--color]">
+              <span className="hidden sm:inline">No active votes</span>
+              <span className="sm:hidden">No votes</span>
+            </div>
           )}
-        </VoteDetails>
-        <MoreDetailsWrapper
+        </div>
+        <div
           style={
             {
               "--color": isLightTheme ? grey900 : grey500,
@@ -125,141 +106,17 @@ export default function VoteTicker({ isLightTheme = false }) {
             } as CSSProperties
           }
         >
-          <Link href="https://vote.uma.xyz/" target="_blank" aria-label="Link to voter dapp">
-            <MoreDetailsText>More details</MoreDetailsText>
-            <ArrowIcon />
-          </Link>
-        </MoreDetailsWrapper>
-      </InnerWrapper>
-    </OuterWrapper>
+          <NextLink
+            className="flex items-center gap-2 text-[--color] transition duration-300 hover:brightness-150 [&_path]:stroke-[--stroke]"
+            href="https://vote.uma.xyz/"
+            target="_blank"
+            aria-label="Link to voter dapp"
+          >
+            <span className="hidden sm:inline">More details</span>
+            <UpRightArrow />
+          </NextLink>
+        </div>
+      </div>
+    </motion.div>
   );
 }
-
-const OuterWrapper = styled(motion.div)`
-  display: grid;
-  place-items: center;
-  height: var(--vote-ticker-height);
-  background: var(--background);
-  padding-top: 16px;
-  padding-bottom: 4px;
-  padding-inline: var(--page-padding);
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  @media ${laptopAndUnder} {
-    padding-inline: 0;
-  }
-`;
-
-const InnerWrapper = styled.div`
-  width: 100%;
-  max-width: var(--page-width);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px 8px 8px;
-  gap: 16px;
-  isolation: isolate;
-  background: var(--background);
-  background-image: var(--url);
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-`;
-
-const VoteDetails = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 16px;
-`;
-
-const ClockIcon = styled(Clock)`
-  g {
-    fill: var(--fill);
-  }
-`;
-
-const ArrowIcon = styled(UpRightArrow)`
-  path {
-    stroke: var(--stroke);
-  }
-`;
-
-const ClockWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 32px;
-  height: 32px;
-  background: var(--red-510-opacity-15);
-  border-radius: var(--border-radius);
-`;
-
-const TextWrapper = styled.div`
-  font: var(--body-sm);
-  color: var(--color);
-`;
-
-const TimeRemaining = styled.span`
-  display: inline-block;
-  color: var(--color);
-  margin-left: 4px;
-  letter-spacing: 0.02em;
-  min-width: 96px; // 96px is the width of the clock to prevent spacing changing on numbers.
-`;
-
-const DesktopText = styled.span`
-  @media ${mobileAndUnder} {
-    display: none;
-  }
-`;
-
-const MobileText = styled.span`
-  display: none;
-  @media ${mobileAndUnder} {
-    display: inline;
-  }
-`;
-
-const NumVotes = styled.div`
-  height: fit-content;
-  white-space: nowrap;
-  padding-inline: 8px;
-  padding-block: 4px;
-  background: var(--background);
-  border-radius: 12px;
-  font: var(--body-sm);
-  color: var(--color);
-
-  @media ${mobileAndUnder} {
-    display: none;
-  }
-`;
-
-const MoreDetailsWrapper = styled.div``;
-
-const MoreDetailsText = styled.span`
-  @media ${mobileAndUnder} {
-    display: none;
-  }
-`;
-
-const Link = styled(NextLink)`
-  text-decoration: none;
-  font: var(--body-sm);
-  color: var(--color);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px;
-  gap: 8px;
-  transition: opacity var(--animation-duration);
-  &:hover {
-    opacity: 0.5;
-  }
-`;
