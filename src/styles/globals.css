@@ -57,10 +57,6 @@ body {
 :where(img, svg, video, canvas, audio, iframe, embed, object) {
   display: block;
 }
-:where(img, svg, video) {
-  block-size: auto;
-  max-inline-size: 100%;
-}
 
 /* SVG's without a fill attribute */
 :where(svg):where(:not([fill])) {
@@ -70,11 +66,6 @@ body {
   /* Rounded stroke */
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-/* Set a size for SVG's without a width attribute */
-:where(svg):where(:not([width])) {
-  inline-size: 5rem;
 }
 
 /* Remove built-in form typography styles */

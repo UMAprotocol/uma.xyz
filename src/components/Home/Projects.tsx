@@ -77,28 +77,29 @@ export default function Projects() {
   ];
 
   return (
-    <OuterWrapper id={id} ref={ref}>
-      <InnerWrapper>
-        <TextWrapper>
-          <Header>Projects built with the OO</Header>
-          <DividerWrapper>
+    <section className="bg-white px-[--page-padding] pb-[128px] pt-[--header-blur-height]" id={id} ref={ref}>
+      <div className="mx-auto grid max-w-[--page-width] grid-cols-[1fr] grid-rows-[auto,auto] gap-12 lg:grid-cols-[1fr,1fr] lg:grid-rows-[1fr]">
+        <div className="row-start-1 lg:col-start-2 lg:max-w-[366px] lg:justify-self-end">
+          <h2 className="mb-3 text-4xl md:text-6xl lg:mb-6">Projects built with the OO</h2>
+          <div className="mb-6">
             <Divider />
-          </DividerWrapper>
+          </div>
           <AnimatedLink href="https://projects.uma.xyz/">All projects</AnimatedLink>
-        </TextWrapper>
-        <ProjectsWrapper>
+        </div>
+        <div className="row-start-2 grid grid-cols-[1fr] grid-rows-[auto,auto,auto] border-[0.5px] border-grey-400 lg:col-start-1 lg:row-start-1">
           <ProjectRow projects={topRow} line="top" />
           <ProjectRow projects={middleRow} line="middle" />
           <ProjectRow projects={bottomRow} line="bottom" />
-        </ProjectsWrapper>
-      </InnerWrapper>
-    </OuterWrapper>
+        </div>
+      </div>
+    </section>
   );
 }
 
 function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "middle" | "bottom" }) {
   return (
-    <ProjectRowWrapper
+    <div
+      className="grid grid-cols-[repeat(var(--num-columns),1fr)] grid-rows-[1fr]"
       style={
         {
           "--num-columns": line === "top" ? 2 : 3,
@@ -106,19 +107,26 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
       }
     >
       {projects.map(({ name, link, Icon }) => (
-        <ProjectWrapper key={name} href={link} target="_blank">
-          <ArrowLink>
+        <NextLink
+          className="group relative grid aspect-square place-items-center border-[0.5px] border-grey-400 transition duration-300 hover:border-red"
+          key={name}
+          href={link}
+          target="_blank"
+        >
+          <div className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-md opacity-0 transition duration-300 group-hover:opacity-100 lg:right-4 lg:top-4 lg:bg-red [&_path]:stroke-red lg:[&_path]:stroke-white">
             <ArrowIcon />
-          </ArrowLink>
-          <ProjectInnerWrapper>
-            <IconWrapper>
+          </div>
+          <div className="relative grid w-full place-items-center gap-4">
+            <div className="w-[25%] transition duration-300 group-hover:-translate-y-3 [&_path]:fill-grey-900 [&_path]:transition [&_path]:duration-300 [&_path]:group-hover:fill-red">
               <Icon />
-            </IconWrapper>
-            <ProjectName>{name}</ProjectName>
-          </ProjectInnerWrapper>
-        </ProjectWrapper>
+            </div>
+            <h4 className="absolute -bottom-[40px] mx-auto uppercase text-red opacity-0 transition duration-300 group-hover:-translate-y-3 group-hover:opacity-100">
+              {name}
+            </h4>
+          </div>
+        </NextLink>
       ))}
-    </ProjectRowWrapper>
+    </div>
   );
 }
 
