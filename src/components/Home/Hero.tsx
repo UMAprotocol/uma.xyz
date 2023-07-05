@@ -1,4 +1,4 @@
-import { heroVideoBackgroundIphone } from "@/constant";
+import { heroVideoBackgroundIphone, heroVideoBackgroundWindows } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
@@ -15,9 +15,12 @@ export default function Hero() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const platform = window.navigator.platform;
+    const root = document.documentElement;
     if (platform === "iPhone" || platform === "iPad") {
-      const root = document.documentElement;
       root.style.setProperty("--hero-video-background", heroVideoBackgroundIphone);
+    }
+    if (platform === "Win32") {
+      root.style.setProperty("--hero-video-background", heroVideoBackgroundWindows);
     }
   }, []);
 
