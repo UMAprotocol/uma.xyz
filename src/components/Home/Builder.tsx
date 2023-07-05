@@ -1,11 +1,8 @@
 import Tabs from "@/components/Home/Tabs";
-import { lgFluidFontSize, mdFluidFontSize, mobileAndUnder, smFluidFontSize, tabletAndUnder } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
-import OO from "public/assets/oo-logo.svg";
+import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
-import styled from "styled-components";
 import { SectionHeader } from "../SectionHeader";
-import { BaseOuterWrapper } from "../Wrappers";
 
 export default function Builder() {
   const id = "builder";
@@ -13,8 +10,15 @@ export default function Builder() {
   useLoadSectionRefAndId(ref, id);
 
   return (
-    <OuterWrapper id={id}>
-      <InnerWrapper ref={ref}>
+    <div
+      ref={ref}
+      className="px-[--page-padding] py-16 pt-[--header-blur-height]"
+      id={id}
+      style={{
+        background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-[--page-width]">
         <SectionHeader
           hasCircleFilter={false}
           title={
@@ -26,53 +30,22 @@ export default function Builder() {
             <>
               {" "}
               <span>Launch products with the</span>
-              <OOIconWrapper>
-                <OOIcon />
-              </OOIconWrapper>
+              <span className="mx-2 inline-block align-middle sm:mx-4">
+                <OOLogo
+                  className="h-[--sm-fluid-font-size] 
+                  w-[calc(var(--sm-fluid-font-size)_*_2)]
+                  md:h-[--md-fluid-font-size]
+                  md:w-[calc(var(--md-fluid-font-size)_*_2)] 
+                  lg:h-[--lg-fluid-font-size] 
+                  lg:w-[calc(var(--lg-fluid-font-size)_*_2)]"
+                />
+              </span>
               <span>as your backbone</span>
             </>
           }
         />
         <Tabs />
-      </InnerWrapper>
-    </OuterWrapper>
+      </div>
+    </div>
   );
 }
-
-const OuterWrapper = styled(BaseOuterWrapper)`
-  background: linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%);
-  padding-bottom: 64px;
-`;
-
-const InnerWrapper = styled.div`
-  max-width: var(--page-width);
-  margin-inline: auto;
-`;
-
-const OOIconWrapper = styled.span`
-  display: inline-block;
-  vertical-align: middle;
-  margin-inline: 16px;
-  @media ${mobileAndUnder} {
-    margin-inline: 8px;
-  }
-`;
-
-const OOIcon = styled(OO)`
-  height: var(--height);
-  width: calc(var(--height) * 2);
-
-  height: var(--height);
-  --desktop-height: ${lgFluidFontSize};
-  --tablet-height: ${mdFluidFontSize};
-  --mobile-height: ${smFluidFontSize};
-  --height: var(--desktop-height);
-
-  @media ${tabletAndUnder} {
-    --height: var(--tablet-height);
-  }
-
-  @media ${mobileAndUnder} {
-    --height: var(--mobile-height);
-  }
-`;

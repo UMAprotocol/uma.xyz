@@ -13,7 +13,7 @@ export function Osnap() {
   const ref = useRef<HTMLDivElement>(null);
   useLoadSectionRefAndId(ref, id);
   return (
-    <section className="bg-grey-50 px-6 pb-12 pt-[--header-blur-height]" ref={ref} id={id}>
+    <section className="min-h-[100dvh] bg-grey-50 px-6 pb-12 pt-[--header-blur-height]" ref={ref} id={id}>
       <div className="mx-auto grid max-w-[1200px] md:grid-cols-2 md:gap-12">
         <Image
           src={handshake}

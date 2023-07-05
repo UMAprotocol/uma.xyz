@@ -3,8 +3,8 @@ import Link from "next/link";
 export function Video() {
   return (
     <section className="bg-white px-6 py-8">
-      <div className="mx-auto w-fit">
-        <div className="relative mb-6 aspect-video max-w-[858px] before:absolute before:-inset-1 before:-z-10 before:bg-black before:opacity-75 before:blur-md">
+      <div className="mx-auto max-w-[858px]">
+        <div className="relative mb-6 aspect-video before:absolute before:-inset-1 before:-z-10 before:bg-black before:opacity-75 before:blur-md">
           <iframe
             width="100%"
             height="100%"

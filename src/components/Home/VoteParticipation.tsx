@@ -1,19 +1,15 @@
-import { defaultApr, mobileAndUnder, overrideApr, tabletAndUnder } from "@/constant";
+import { defaultApr, overrideApr } from "@/constant";
 import { useVotingInfo } from "@/hooks";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
-import { useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
 import AnimatedLink from "../AnimatedLink";
 import { Divider } from "../Divider";
 import LottieAnimation from "../LottieAnimation";
 import { SectionHeader } from "../SectionHeader";
-import { BaseOuterWrapper } from "../Wrappers";
 
 export default function VoteParticipation() {
   const id = "voter";
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: "some" });
   const { data } = useVotingInfo();
   const [stakeData, setStakeData] = useState<object>();
   const [voteData, setVoteData] = useState<object>();
@@ -32,13 +28,12 @@ export default function VoteParticipation() {
   useLoadSectionRefAndId(ref, id);
 
   useEffect(() => {
-    if (inView && !stakeData) {
+    if (!stakeData) {
       void import("public/assets/lottie/stake.json").then(setStakeData);
       void import("public/assets/lottie/vote.json").then(setVoteData);
       void import("public/assets/lottie/earn.json").then(setEarnData);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView]);
+  }, [stakeData]);
 
   const activities = [
     {
@@ -72,8 +67,8 @@ export default function VoteParticipation() {
   ];
 
   return (
-    <OuterWrapper ref={ref} id={id}>
-      <InnerWrapper>
+    <section className="bg-white px-[--page-padding] py-[--header-blur-height]" ref={ref} id={id}>
+      <div className="mx-auto max-w-[--page-width]">
         <SectionHeader
           title={
             <>
@@ -84,9 +79,10 @@ export default function VoteParticipation() {
           constrainWidth
         />
 
-        <ActivitiesWrapper>
+        <div className="mt-10 grid grid-cols-1 grid-rows-3 lg:mt-[96px] lg:grid-cols-3 lg:grid-rows-1">
           {activities.map(({ title, text, animationData, play, setPlay, direction, setDirection }) => (
-            <Activity
+            <div
+              className="group grid grid-rows-[auto,1fr] items-start justify-start gap-2 border border-white p-6 text-grey-900 transition duration-300 hover:-translate-y-2 hover:border-grey-400 hover:text-red sm:grid-cols-[auto,1fr] sm:gap-8 sm:p-10 lg:grid-cols-1"
               key={title}
               onMouseOver={() => {
                 setDirection(forward);
@@ -97,133 +93,29 @@ export default function VoteParticipation() {
                 setPlay(true);
               }}
             >
-              <LottieWrapper>
+              <div className="md:max-w[128px] aspect-square max-w-[92px] transition group-hover:-translate-y-2 lg:-ml-8 xl:max-w-[228px] [&_path]:transition [&_path]:group-hover:stroke-red">
                 {animationData && (
                   <LottieAnimation loop={false} play={play} direction={direction} animationData={animationData} />
                 )}
-              </LottieWrapper>
-              <ActivityDescription>
-                <ActivityTitle>{title}</ActivityTitle>
-                <ActivityText>{text}</ActivityText>
-              </ActivityDescription>
-            </Activity>
+              </div>
+              <div>
+                <h3 className="mb-3 text-4xl transition duration-300 group-hover:-translate-y-2 group-hover:text-red sm:mb-4 sm:text-6xl">
+                  {title}
+                </h3>
+                <p className="text-grey-900 transition duration-300 group-hover:-translate-y-2 sm:text-xl lg:max-w-[288px]">
+                  {text}
+                </p>
+              </div>
+            </div>
           ))}
-        </ActivitiesWrapper>
-        <DividerWrapper>
+        </div>
+        <div className="my-6">
           <Divider />
-        </DividerWrapper>
-        <AnimatedLinkWrapper>
+        </div>
+        <div>
           <AnimatedLink href="https://vote.uma.xyz">Link to voter app</AnimatedLink>
-        </AnimatedLinkWrapper>
-      </InnerWrapper>
-    </OuterWrapper>
+        </div>
+      </div>
+    </section>
   );
 }
-
-const OuterWrapper = styled(BaseOuterWrapper)`
-  background: var(--white);
-`;
-
-const InnerWrapper = styled.div`
-  max-width: var(--page-width);
-  margin-inline: auto;
-`;
-
-const ActivitiesWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 96px;
-  @media ${tabletAndUnder} {
-    grid-template-columns: auto;
-    grid-template-rows: repeat(3, 1fr);
-  }
-  @media ${mobileAndUnder} {
-    margin-top: 40px;
-  }
-`;
-
-const Activity = styled.div`
-  --color: var(--grey-900);
-  --background: transparent;
-  --border-color: transparent;
-  --translate-y: 0;
-  display: grid;
-  justify-content: start;
-  align-items: start;
-  padding: 40px;
-  background: var(--background);
-  border: 1px solid var(--border-color);
-  transform: translateY(var(--translate-y));
-  transition: background var(--animation-duration), border-color var(--animation-duration),
-    transform var(--animation-duration);
-  &:hover {
-    --color: var(--red);
-    --background: var(--white);
-    --border-color: var(--grey-400);
-    --translate-y: -8px;
-  }
-  @media ${tabletAndUnder} {
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-  }
-  @media ${mobileAndUnder} {
-    padding: 24px;
-  }
-`;
-
-const ActivityDescription = styled.div``;
-
-const ActivityTitle = styled.h3`
-  color: var(--color);
-  font: var(--header-md);
-  margin-bottom: 16px;
-  transform: translateY(var(--translate-y));
-  transition: color var(--animation-duration), transform var(--animation-duration);
-  @media ${mobileAndUnder} {
-    font: var(--header-sm);
-    margin-bottom: 12px;
-  }
-`;
-
-const ActivityText = styled.p`
-  font: var(--body-lg);
-  max-width: 288px;
-  transform: translateY(var(--translate-y));
-  transition: transform var(--animation-duration);
-  @media ${tabletAndUnder} {
-    max-width: 100%;
-  }
-  @media ${mobileAndUnder} {
-    font: var(--body-sm);
-  }
-`;
-
-const LottieWrapper = styled.div`
-  max-width: var(--width);
-  margin-left: -32px;
-  --desktop-width: 228px;
-  --tablet-width: 128px;
-  --mobile-width: 92px;
-  --width: var(--desktop-width);
-  transform: translateY(var(--translate-y));
-  transition: transform var(--animation-duration);
-  @media ${tabletAndUnder} {
-    --width: var(--tablet-width);
-    margin-left: 0;
-  }
-  @media ${mobileAndUnder} {
-    --width: var(--mobile-width);
-  }
-
-  path {
-    stroke: var(--color);
-    transition: stroke var(--animation-duration);
-  }
-`;
-
-const DividerWrapper = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-`;
-
-const AnimatedLinkWrapper = styled.div``;

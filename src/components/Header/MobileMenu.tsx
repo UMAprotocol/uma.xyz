@@ -1,4 +1,4 @@
-import { grey500, links, socialLinks, white, heroVideoBackground } from "@/constant";
+import { grey500, heroVideoBackground, socialLinks, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
@@ -7,13 +7,14 @@ import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { CSSProperties, useEffect, useState } from "react";
 import LottieAnimation from "../LottieAnimation";
 
-interface Props {
+type Props = {
   show: boolean;
   hide: () => void;
   isLightTheme: boolean;
-}
+  links: { label: string; href: string }[];
+};
 
-export default function MobileMenu({ show, hide, isLightTheme }: Props) {
+export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
   const [animationData, setAnimationData] = useState<object>();
   const { scrollY } = useScrollContext();
   const pathname = usePathname();

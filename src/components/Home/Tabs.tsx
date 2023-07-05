@@ -1,7 +1,6 @@
 "use client";
 
 import { Divider } from "@/components/Divider";
-import { mobileAndUnder, tabletAndUnder } from "@/constant";
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
@@ -10,8 +9,7 @@ import Scale from "public/assets/scale.svg";
 import Telescope from "public/assets/telescope.svg";
 import Tube from "public/assets/tube.svg";
 import Wand from "public/assets/wand.svg";
-import { CSSProperties, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import { useState } from "react";
 import AnimatedLink from "../AnimatedLink";
 
 export default function Tabs() {
@@ -227,7 +225,9 @@ contract LongShortPair {
       usedBy: "oSnap",
       example: "Does this on-chain transaction match an approved Snapshot vote?",
       code: governanceCode,
-      Icon: ScaleIcon,
+      icon: (
+        <Scale className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:stroke-red" />
+      ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
     },
@@ -239,7 +239,9 @@ contract LongShortPair {
       usedBy: "Polymarket",
       example: "“Did the Chiefs beat the Eagles in the 2022-2023 NFL Superbowl?”",
       code: polymarketCode,
-      Icon: WandIcon,
+      icon: (
+        <Wand className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+      ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
     },
@@ -250,7 +252,9 @@ contract LongShortPair {
       usedBy: "Sherlock",
       example: "Is this insurance claim about a smart contract hack valid?",
       code: insuranceCode,
-      Icon: TubeIcon,
+      icon: (
+        <Tube className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+      ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
     },
@@ -262,7 +266,9 @@ contract LongShortPair {
       usedBy: "Across",
       example: "Did this deposit event on a different chain happen?",
       code: bridgeExampleCode,
-      Icon: TelescopeIcon,
+      icon: (
+        <Telescope className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+      ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
     },
@@ -273,7 +279,9 @@ contract LongShortPair {
       usedBy: "Jarvis",
       example: "What is the EUR/USD exchange rate?",
       code: rwaCode,
-      Icon: GlobeIcon,
+      icon: (
+        <Globe className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+      ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
     },
@@ -283,41 +291,59 @@ contract LongShortPair {
   const docLink = tabs.map(({ docHref, docText }) => ({ href: docHref, text: docText }));
 
   return (
-    <TabsRoot defaultValue="0" onValueChange={(value: string) => setActiveTabIndex(Number(value))}>
-      <TabsList>
-        {tabs.map(({ title, shortTitle, Icon }, tabIndex) => (
-          <TabsTrigger key={title} value={tabIndex.toString()}>
-            <TabsTriggerWrapper>
-              <Icon />
-              <DesktopTabsTriggerTitle>{title}</DesktopTabsTriggerTitle>
-              <MobileTabsTriggerTitle>{shortTitle}</MobileTabsTriggerTitle>
-            </TabsTriggerWrapper>
-          </TabsTrigger>
+    <Root
+      className="grid grid-cols-[100%] grid-rows-[auto,auto,auto] gap-y-11 lg:grid-cols-[1fr,1fr] lg:grid-rows-[auto,auto] lg:gap-x-14 lg:gap-y-0"
+      defaultValue="0"
+      onValueChange={(value: string) => setActiveTabIndex(Number(value))}
+    >
+      <List className="relative row-start-1 grid grid-cols-5 items-center gap-3 border-b border-grey-400 lg:col-span-2 lg:col-start-1 lg:mb-14">
+        {tabs.map(({ title, shortTitle, icon }, tabIndex) => (
+          <Trigger
+            className="group text-grey-400 transition duration-300 hover:opacity-80 data-[state=active]:-translate-y-3 data-[state=active]:text-red"
+            key={title}
+            value={tabIndex.toString()}
+          >
+            <div className="grid justify-items-center gap-3 pb-5 transition-[padding] group-data-[state=active]:pb-0">
+              {icon}
+              <h3 className="text-xs text-grey-400 transition group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red lg:text-lg">
+                <>
+                  <span className="hidden lg:inline">{title}</span>
+                  <span className="lg:hidden">{shortTitle}</span>
+                </>
+              </h3>
+            </div>
+          </Trigger>
         ))}
-        <ActiveIndicator
-          style={
-            {
-              "--active-tab-index": activeTabIndex,
-            } as CSSProperties
-          }
+        <div
+          className="absolute -bottom-[1px] h-[3px] bg-red transition-[left] duration-300"
+          style={{
+            width: "calc(100% / 5)",
+            left: `calc(100% / 5 * ${activeTabIndex})`,
+          }}
         />
-      </TabsList>
+      </List>
       {tabs.map(({ content, title, usedBy, example }, tabIndex) => (
-        <TabsContent value={tabIndex.toString()} key={title}>
-          <TabsContentWrapper>
-            <TabsContentTitle>{title}</TabsContentTitle>
+        <Content
+          className="row-start-3 transition data-[state=active]:animate-fade-in data-[state=inactive]:animate-fade-out lg:col-span-1 lg:col-start-1 lg:row-start-2"
+          value={tabIndex.toString()}
+          key={title}
+        >
+          <div>
+            <h2 className="mb-3 text-3xl sm:text-6xl">{title}</h2>
             {content.split("\n").map((text, index) => (
-              <TabsContentText key={index}>{text}</TabsContentText>
+              <p className="mb-3 text-xl" key={index}>
+                {text}
+              </p>
             ))}
-            <DividerWrapper>
+            <div className="mb-6 mt-12">
               <Divider />
-            </DividerWrapper>
-            <UsedBy>Real question used by {usedBy}</UsedBy>
-            <Example>{example}</Example>
-          </TabsContentWrapper>
-        </TabsContent>
+            </div>
+            <p className="mb-2 text-lg text-grey-500">Real question used by {usedBy}</p>
+            <p className="text-lg text-red">{example}</p>
+          </div>
+        </Content>
       ))}
-      <SandpackWrapper>
+      <div className="row-start-2 lg:col-start-2">
         <SandpackProvider
           options={{
             classes: {
@@ -335,211 +361,10 @@ contract LongShortPair {
             />
           </SandpackLayout>
         </SandpackProvider>
-        <RemixLinkWrapper>
+        <div className="mt-6 flex w-full items-center justify-start lg:justify-center">
           <AnimatedLink href={docLink[activeTabIndex].href}>{docLink[activeTabIndex].text}</AnimatedLink>
-        </RemixLinkWrapper>
-      </SandpackWrapper>
-    </TabsRoot>
+        </div>
+      </div>
+    </Root>
   );
 }
-
-const SandpackWrapper = styled.div`
-  grid-area: code;
-`;
-
-const RemixLinkWrapper = styled.div`
-  margin-top: 26px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media ${tabletAndUnder} {
-    justify-content: start;
-  }
-`;
-
-const TabsRoot = styled(Root)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 56px;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "list list"
-    "content code";
-
-  @media ${tabletAndUnder} {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    grid-template-areas:
-      "list"
-      "code"
-      "content";
-    grid-row-gap: 42px;
-  }
-`;
-
-const TabsList = styled(List)`
-  grid-area: list;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 56px;
-  border-bottom: 1px solid var(--grey-400);
-  @media ${tabletAndUnder} {
-    margin-bottom: 0;
-  }
-`;
-
-const ActiveIndicator = styled.div`
-  --width: calc(100% / 5);
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  height: 3px;
-  width: var(--width);
-  background: var(--red);
-  left: calc(var(--active-tab-index) * var(--width));
-  transition: left var(--animation-duration);
-`;
-
-const TabsTriggerWrapper = styled.div`
-  display: grid;
-  justify-items: center;
-  padding-bottom: 22px;
-  gap: 12px;
-`;
-
-const DesktopTabsTriggerTitle = styled.h3`
-  font: var(--body-md);
-  color: var(--color);
-  transform: translateY(var(--translate-y));
-  transition: color var(--animation-duration), transform var(--animation-duration);
-  @media ${tabletAndUnder} {
-    display: none;
-  }
-`;
-
-const MobileTabsTriggerTitle = styled(DesktopTabsTriggerTitle)`
-  display: none;
-  font: var(--body-md);
-  @media ${tabletAndUnder} {
-    display: block;
-  }
-  @media ${mobileAndUnder} {
-    font: var(--body-xs);
-  }
-`;
-
-const TabsTrigger = styled(Trigger)`
-  background: transparent;
-  transition: opacity var(--animation-duration);
-  --color: var(--grey-400);
-  --gap: 12px;
-  --translate-y: 0;
-  &[data-state="active"] {
-    --color: var(--red);
-    --translate-y: -12px;
-  }
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-`;
-
-const TabsContent = styled(Content)`
-  grid-area: content;
-  background: transparent;
-  cursor: unset;
-  &[data-state="active"] {
-    animation: ${fadeIn} var(--animation-duration);
-  }
-  &[data-state="inactive"] {
-    animation: ${fadeOut} var(--animation-duration);
-  }
-  transition: opacity var(--animation-duration);
-`;
-
-const TabsContentWrapper = styled.div``;
-
-const TabsContentTitle = styled.h2`
-  font: var(--header-sm);
-  @media ${mobileAndUnder} {
-    font: var(--header-xs);
-  }
-`;
-
-const TabsContentText = styled.p`
-  font: var(--body-lg);
-  margin-bottom: 12px;
-`;
-
-const UsedBy = styled.p`
-  font: var(--body-md);
-  color: var(--grey-500);
-  margin-bottom: 8px;
-`;
-
-const Example = styled.p`
-  font: var(--body-md);
-  color: var(--red);
-`;
-
-const iconStyle = css`
-  transform: translateY(var(--translate-y));
-  path {
-    fill: var(--color);
-  }
-  transition: fill var(--animation-duration), transform var(--animation-duration);
-`;
-
-const GlobeIcon = styled(Globe)`
-  ${iconStyle}
-`;
-
-const TelescopeIcon = styled(Telescope)`
-  ${iconStyle}
-`;
-
-const TubeIcon = styled(Tube)`
-  ${iconStyle}
-`;
-
-const WandIcon = styled(Wand)`
-  ${iconStyle}
-`;
-
-// this one uses stroke instead of fill
-const ScaleIcon = styled(Scale)`
-  transform: translateY(var(--translate-y));
-  path {
-    stroke: var(--color);
-  }
-  transition: stroke var(--animation-duration), transform var(--animation-duration);
-`;
-
-const DividerWrapper = styled.div`
-  margin-top: 48px;
-  margin-bottom: 24px;
-`;

@@ -4,22 +4,37 @@ import Github from "public/assets/github.svg";
 import Medium from "public/assets/medium.svg";
 import Twitter from "public/assets/twitter.svg";
 
-export const links = [
+export const homePageLinks = [
   {
     label: "How it works",
-    href: "#how-it-works",
+    href: "/#how-it-works",
   },
   {
     label: "For Voters",
-    href: "#voter",
+    href: "/#voter",
   },
   {
     label: "For Builders",
-    href: "#builder",
+    href: "/#builder",
   },
   {
     label: "oSnap",
-    href: "#osnap",
+    href: "/#osnap",
+  },
+  {
+    label: "Docs",
+    href: "https://docs.uma.xyz/",
+  },
+];
+
+export const osnapPageLinks = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Try oSnap",
+    href: "https://docs.uma.xyz/developers/osnap/osnap-quick-start",
   },
   {
     label: "Docs",
