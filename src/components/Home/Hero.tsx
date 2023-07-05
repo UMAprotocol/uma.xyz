@@ -16,7 +16,7 @@ export default function Hero() {
     if (typeof window === "undefined") return;
     const platform = window.navigator.platform;
     const root = document.documentElement;
-    if (platform === "iPhone" || platform === "iPad") {
+    if (platform === "iPhone" || platform === "iPad" || platform === "Android") {
       root.style.setProperty("--hero-video-background", heroVideoBackgroundIphone);
     }
     if (platform === "Win32") {
