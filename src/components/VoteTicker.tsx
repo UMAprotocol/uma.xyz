@@ -10,18 +10,16 @@ import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
 import { useInterval } from "usehooks-ts";
 
-export default function VoteTicker({ isLightTheme = false }) {
+export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
   const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = !!data && data.activeRequests > 0;
   const pathname = usePathname();
   const isHomePage = pathname?.split("#")[0] === "/";
-
+  const isLightTheme = !isHomePage || isLightTheme_;
   useInterval(() => {
     setTimeRemaining(formatMillisecondsUntilMidnight());
   }, 1000);
-
-  if (!isHomePage && !isLightTheme) return null;
 
   function getMillisecondsUntilMidnight() {
     const now = new Date();
