@@ -1,4 +1,4 @@
-import { grey500, heroVideoBackground, socialLinks, white } from "@/constant";
+import { grey500, socialLinks, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
@@ -35,7 +35,7 @@ export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
       style={
         {
           "--height": `calc(100dvh - ${scrollY === 0 && isHomePage ? "124px" : "44px"})`,
-          "--background": isLightTheme ? white : heroVideoBackground,
+          "--background": isLightTheme ? white : "var(--hero-video-background)",
           "--opacity": show ? 1 : 0,
           "--link-color": isLightTheme ? grey500 : white,
           pointerEvents: show ? "auto" : "none",

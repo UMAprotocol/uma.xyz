@@ -1,15 +1,25 @@
+import { heroVideoBackgroundIphone } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
 import DownArrow from "public/assets/down-arrow.svg";
 import OOLogo from "public/assets/oo-logo.svg";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   useLoadSectionRefAndId(ref, "");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const platform = window.navigator.platform;
+    if (platform === "iPhone" || platform === "iPad") {
+      const root = document.documentElement;
+      root.style.setProperty("--hero-video-background", heroVideoBackgroundIphone);
+    }
+  }, []);
 
   const headerAnimation = {
     initial: {
@@ -44,7 +54,7 @@ export default function Hero() {
   return (
     <LazyMotion features={loadFeatures}>
       <section
-        className="relative grid w-full place-items-center overflow-clip bg-hero-video-background px-[--page-padding]"
+        className="relative grid w-full place-items-center overflow-clip bg-[--hero-video-background] px-[--page-padding]"
         style={{
           height: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
         }}
@@ -62,6 +72,11 @@ export default function Hero() {
             loop
             muted
             playsInline
+            style={{
+              WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+              WebkitBackfaceVisibility: "hidden",
+              MozBackfaceVisibility: "hidden",
+            }}
           >
             <source src="/assets/hero.mp4" type="video/mp4" />
             <source src="/assets/hero.webm" type="video/webm" />
@@ -109,7 +124,7 @@ export default function Hero() {
             }}
           >
             <NextLink
-              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-hero-video-background p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
               href="#how-it-works"
               aria-label="Go to next section"
             >
