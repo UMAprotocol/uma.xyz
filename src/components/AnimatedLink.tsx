@@ -17,7 +17,6 @@ export default function AnimatedLink({
     <Link
       className="group flex items-baseline text-xl text-red transition duration-300 hover:text-grey-900"
       href={href}
-      scroll={false}
       target={isExternalLink(href) ? "_blank" : undefined}
     >
       {children}
