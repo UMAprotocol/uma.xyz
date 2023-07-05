@@ -67,7 +67,11 @@ export default function VoteParticipation() {
   ];
 
   return (
-    <section className="bg-white px-[--page-padding] py-[--header-blur-height]" ref={ref} id={id}>
+    <section
+      className="bg-white px-[--page-padding] pb-8 pt-[--header-blur-height] md:pb-12 lg:pb-16"
+      ref={ref}
+      id={id}
+    >
       <div className="mx-auto max-w-[--page-width]">
         <SectionHeader
           title={
