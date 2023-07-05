@@ -53,7 +53,9 @@ export function Osnap() {
             </div>
           </div>
           <div className="mx-auto w-fit">
-            <AnimatedLink href="/osnap">Learn more about oSnap</AnimatedLink>
+            <AnimatedLink href="/osnap" asATag>
+              Learn more about oSnap
+            </AnimatedLink>
           </div>
         </div>
       </div>
