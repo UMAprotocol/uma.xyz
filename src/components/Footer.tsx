@@ -26,7 +26,7 @@ export default function Footer() {
         <VoteTicker isLightTheme />
       </div>
       <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 md:grid md:grid-cols-[1fr_1fr]">
-        <div className="row-start-2 my-14 grid h-fit grid-rows-3 justify-center justify-items-start md:row-start-auto md:h-auto md:grid-rows-none md:justify-normal xl:grid-cols-3 xl:grid-rows-none">
+        <div className="row-start-2 my-14 grid h-fit grid-rows-2 justify-center justify-items-start md:row-start-auto md:h-auto md:grid-rows-none md:justify-normal xl:grid-cols-3 xl:grid-rows-none">
           <NextLink className="hidden md:mb-4 md:block" href="#">
             <UmaLogo className="[&>*]:fill-red" />
           </NextLink>
