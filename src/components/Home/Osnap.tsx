@@ -52,7 +52,7 @@ export function Osnap() {
               </p>
             </div>
           </div>
-          <div className="mx-auto w-fit">
+          <div className="mr-auto w-fit sm:mx-auto">
             <AnimatedLink href="/osnap" asATag>
               Learn more about oSnap
             </AnimatedLink>
