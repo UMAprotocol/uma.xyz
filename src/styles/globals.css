@@ -176,7 +176,7 @@ body {
   --grey-800: hsla(285, 4%, 19%, 1);
   --grey-900: hsla(280, 4%, 15%, 1);
   --grey-950: hsla(0, 0%, 8%, 1);
-  --hero-video-background: hsl(300,6%,15%);
+  --hero-video-background: #292429;
   /* fonts */
   --header-lg: 400 6rem/112px "Halyard Display", sans-serif;
   --header-md: 400 4rem/72px "Halyard Display", sans-serif;

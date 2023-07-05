@@ -1,6 +1,6 @@
 "use client";
 
-import { heroVideoBackground, homePageLinks, osnapPageLinks, white } from "@/constant";
+import { homePageLinks, osnapPageLinks, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -26,7 +26,7 @@ export default function Header() {
       transition={{ duration: 0.2, delay: 0.7 }}
       style={
         {
-          "--background": isLightTheme ? white : heroVideoBackground,
+          "--background": isLightTheme ? white : "var(--hero-video-background)",
         } as CSSProperties
       }
       className="sticky top-0 z-[2] grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm"

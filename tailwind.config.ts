@@ -15,7 +15,6 @@ import {
   grey800,
   grey900,
   grey950,
-  heroVideoBackground,
   red,
   red510Opacity15,
   red550,
@@ -59,7 +58,6 @@ module.exports = {
       white: white,
       "white-200": white200,
       "white-opacity-10": whiteOpacity10,
-      "hero-video-background": heroVideoBackground,
     },
     extend: {
       fontSize: {

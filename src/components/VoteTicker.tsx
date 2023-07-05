@@ -1,6 +1,6 @@
 "use client";
 
-import { grey200, grey400, grey500, grey700, grey900, heroVideoBackground, red, white } from "@/constant";
+import { grey200, grey400, grey500, grey700, grey900, red, white } from "@/constant";
 import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
@@ -45,7 +45,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       transition={{ duration: 0.3, delay: 0.8 }}
       style={
         {
-          "--background": isLightTheme ? "transparent" : heroVideoBackground,
+          "--background": isLightTheme ? "transparent" : "var(--hero-video-background)",
           "--color": isLightTheme ? grey900 : grey500,
         } as CSSProperties
       }
