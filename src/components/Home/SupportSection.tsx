@@ -8,11 +8,11 @@ export default function SupportSection() {
 
   return (
     <section
-      className="relative bg-[linear-gradient(180deg,#ffffff_0%,#f9f9f9_100%)] px-[--page-padding] pb-6"
+      className="relative isolate bg-[linear-gradient(180deg,#ffffff_0%,#f9f9f9_100%)] px-[--page-padding] pb-6"
       id={id}
       ref={ref}
     >
-      <div className="isolate">
+      <div>
         <video
           className="pointer-events-none absolute right-0 top-0 h-full w-full object-cover mix-blend-luminosity"
           autoPlay

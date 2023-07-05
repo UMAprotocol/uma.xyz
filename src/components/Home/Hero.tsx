@@ -46,7 +46,7 @@ export default function Hero() {
       <section
         className="relative grid w-full place-items-center overflow-clip bg-hero-video-background px-[--page-padding]"
         style={{
-          height: "calc(100dvh - var(--header-height) - var(--vote-ticker-height))",
+          height: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
         }}
         ref={ref}
       >
