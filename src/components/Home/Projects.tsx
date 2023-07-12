@@ -117,9 +117,9 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
             <div className="w-[25%] transition duration-300 group-hover:-translate-y-3 [&_path]:fill-grey-900 [&_path]:transition [&_path]:duration-300 [&_path]:group-hover:fill-red">
               <Icon />
             </div>
-            <h4 className="absolute -bottom-[40px] uppercase text-red opacity-0 transition duration-300 group-hover:-translate-y-3 group-hover:opacity-100">
+            <span className="absolute -bottom-[40px] uppercase text-red opacity-0 transition duration-300 group-hover:-translate-y-3 group-hover:opacity-100">
               {name}
-            </h4>
+            </span>
           </div>
         </NextLink>
       ))}

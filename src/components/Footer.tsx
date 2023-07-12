@@ -3,7 +3,9 @@
 import { footerLinks, socialLinks } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { isExternalLink } from "@/utils";
+import Image from "next/image";
 import NextLink from "next/link";
+import footerLines from "public/assets/footer-lines-grey.png";
 import UmaLogo from "public/assets/uma-logo.svg";
 import UpRightArrowBlack from "public/assets/up-right-arrow-black.svg";
 import { useRef } from "react";
@@ -17,24 +19,32 @@ export default function Footer() {
 
   return (
     <footer
-      className="grid grid-rows-[auto_1fr_auto] bg-grey-300 px-[--page-padding] pt-16 xl:pt-[--header-blur-height]"
-      style={{ backgroundImage: "url('assets/footer-lines-grey.png')" }}
+      className="relative grid grid-rows-[auto_1fr_auto] bg-grey-300 px-[--page-padding] pt-16 xl:pt-[--header-blur-height]"
       id={id}
       ref={ref}
     >
+      <Image
+        alt="background image (decorative)"
+        src={footerLines}
+        placeholder="blur"
+        quality={100}
+        fill
+        sizes="100vw"
+        className="pointer-events-none absolute object-cover"
+      />
       <div className="-mb-1 -mt-4 lg:m-0">
         <VoteTicker isLightTheme />
       </div>
       <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 md:grid md:grid-cols-[1fr_1fr]">
         <div className="row-start-2 my-14 grid h-fit grid-rows-2 justify-center justify-items-start md:row-start-auto md:h-auto md:grid-rows-none md:justify-normal xl:grid-cols-3 xl:grid-rows-none">
-          <NextLink className="hidden md:mb-4 md:block" href="#">
+          <NextLink className="hidden md:mb-4 md:block" href="#" aria-label="Home">
             <UmaLogo className="[&>*]:fill-red" />
           </NextLink>
           <LinksList links={footerLinks.internal} />
           <LinksList links={footerLinks.external} />
         </div>
         <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
-          <NextLink className="md:hidden" href="#">
+          <NextLink className="md:hidden" href="#" aria-label="Home">
             <UmaLogo className="[&>*]:fill-black" />
           </NextLink>
           <h3 className="w-fit text-center text-xl text-grey-700 md:mb-8 lg:max-w-[640px] lg:text-left">
