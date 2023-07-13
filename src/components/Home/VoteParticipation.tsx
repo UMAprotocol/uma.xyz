@@ -79,7 +79,7 @@ export default function VoteParticipation() {
               Participate as a <strong>Voter</strong>
             </>
           }
-          header={<>Stake, vote &amp; earn up to {overrideApr ?? data?.apy ?? defaultApr}% APR</>}
+          header={<>Stake, vote &amp; earn up to {overrideApr ?? data?.apr ?? defaultApr}% APR</>}
           constrainWidth
         />
 

@@ -1,5 +1,5 @@
 export interface VotingInfo {
-  apy: string;
+  apr: string;
   activeRequests: number;
   phase: "commit" | "reveal";
 }
