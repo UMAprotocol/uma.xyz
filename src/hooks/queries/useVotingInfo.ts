@@ -5,7 +5,7 @@ import useSWR from "swr";
 
 export function useVotingInfo() {
   const fallbackData = {
-    apy: overrideApr ?? defaultApr,
+    apr: overrideApr ?? defaultApr,
     activeRequests: 0,
     phase: "commit",
   } as VotingInfo;
