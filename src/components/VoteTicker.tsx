@@ -1,6 +1,6 @@
 "use client";
 
-import { grey200, grey400, grey500, grey700, grey900, red, white } from "@/constant";
+import { grey100, grey200, grey300, grey600, grey700, grey800, grey900, red, white } from "@/constant";
 import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
@@ -46,7 +46,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       style={
         {
           "--background": isLightTheme ? "transparent" : "var(--hero-video-background)",
-          "--color": isLightTheme ? grey900 : grey500,
+          "--color": isLightTheme ? grey900 : grey300,
         } as CSSProperties
       }
     >
@@ -81,8 +81,8 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
                 className="hidden h-fit whitespace-nowrap rounded-xl bg-[--background] px-2 py-1 text-[--color] sm:block"
                 style={
                   {
-                    "--color": isLightTheme ? grey900 : grey500,
-                    "--background": isLightTheme ? grey400 : grey900,
+                    "--background": isLightTheme ? grey600 : grey800,
+                    "--color": isLightTheme ? grey100 : grey300,
                   } as CSSProperties
                 }
               >
@@ -96,21 +96,14 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
             </div>
           )}
         </div>
-        <div
-          style={
-            {
-              "--color": isLightTheme ? grey900 : grey500,
-              "--stroke": isLightTheme ? grey900 : grey500,
-            } as CSSProperties
-          }
-        >
+        <div>
           <NextLink
-            className="flex items-center gap-2 text-[--color] transition duration-300 hover:brightness-150 [&_path]:stroke-[--stroke]"
+            className="flex items-center gap-2 transition duration-300 hover:brightness-150 [&_path]:stroke-[--color]"
             href="https://vote.uma.xyz/"
             target="_blank"
             aria-label="Link to voter dapp"
           >
-            <span className="hidden sm:inline">More details</span>
+            <span className="hidden text-[--color] sm:inline">More details</span>
             <UpRightArrow />
           </NextLink>
         </div>
