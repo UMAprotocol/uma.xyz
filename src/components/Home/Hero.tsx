@@ -57,7 +57,7 @@ export default function Hero() {
   return (
     <LazyMotion features={loadFeatures}>
       <section
-        className="relative grid w-full place-items-center overflow-clip bg-[--hero-video-background] px-[--page-padding]"
+        className="max-h-[1200px] relative grid w-full place-items-center overflow-clip bg-[--hero-video-background] px-[--page-padding]"
         style={{
           height: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
         }}

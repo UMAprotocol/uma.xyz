@@ -19,7 +19,7 @@ export const homePageLinks = [
   },
   {
     label: "oSnap",
-    href: "/#osnap",
+    href: "/osnap",
   },
   {
     label: "Docs",
