@@ -12,12 +12,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@UMAprotocol",
     title,
-    images: "https://uma.xyz/assets/handshake.png",
+    images: "/assets/test.png",
   },
   openGraph: {
     title,
     description,
-    images: "https://uma.xyz/assets/handshake.png",
+    images: "/assets/test.png",
     url: "https://uma.xyz",
   },
 };
