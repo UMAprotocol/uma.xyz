@@ -12,12 +12,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@UMAprotocol",
     title,
-    images: "/assets/test.png",
+    images: "/assets/osnap-twitter-card.png",
   },
   openGraph: {
     title,
     description,
-    images: "/assets/test.png",
+    images: "/assets/osnap-twitter-card.png",
     url: "https://uma.xyz",
   },
 };
