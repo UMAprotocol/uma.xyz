@@ -41,7 +41,7 @@ export function Faq() {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-6 rounded-2xl bg-grey-100 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="max-w-[--page-width] mx-auto flex flex-col gap-6 rounded-2xl bg-grey-100 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
           <div>
             <h3 className="mb-2 text-lg text-grey-900">Want to know more?</h3>
             <p className="text-grey-600">Let&apos;s book a call and talk about what oSnap can do for you.</p>
