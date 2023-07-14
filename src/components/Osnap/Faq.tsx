@@ -31,7 +31,7 @@ export function Faq() {
   ];
   return (
     <section className="bg-grey-25 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="md:max-w-[1216px]">
+      <div className="md:max-w-[1216px] md:mx-auto">
         <h2 className="mb-12 text-3xl text-grey-900 md:text-6xl">FAQs</h2>
         <div className="mb-12 grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-x-8 gap-y-10 lg:gap-y-16">
           {faqs.map(({ question, answer }) => (
