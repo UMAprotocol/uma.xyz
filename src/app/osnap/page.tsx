@@ -9,15 +9,15 @@ export const metadata: Metadata = {
   title,
   description,
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     site: "@UMAprotocol",
     title,
-    images: "/assets/handshake.png",
+    images: "https://uma.xyz/assets/handshake.png",
   },
   openGraph: {
     title,
     description,
-    images: "/assets/handshake.png",
+    images: "https://uma.xyz/assets/handshake.png",
     url: "https://uma.xyz",
   },
 };

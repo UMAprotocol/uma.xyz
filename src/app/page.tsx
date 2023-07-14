@@ -11,15 +11,15 @@ export const metadata: Metadata = {
     icon: ["/favicon-32x32.png", "/favicon-16x16.png"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     site: "@UMAprotocol",
     title,
-    images: "/uma_square_red_logo.png",
+    images: "https://uma.xyz/uma_square_red_logo.png",
   },
   openGraph: {
     title,
     description,
-    images: "/uma_square_red_logo.png",
+    images: "https://uma.xyz/uma_square_red_logo.png",
     url: "https://uma.xyz",
   },
 };
