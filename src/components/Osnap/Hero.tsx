@@ -5,7 +5,7 @@ import OsnapLogo from "public/assets/osnap-logo.svg";
 
 export function Hero() {
   return (
-    <section className="mx-auto -mt-[calc(var(--header-height)+var(--vote-ticker-height))] max-w-[480px] bg-white px-6 pt-[200px] md:max-w-[1216px] lg:min-h-[100svh]">
+    <section className="mx-auto -mt-[calc(var(--header-height)+var(--vote-ticker-height))] max-w-[480px] bg-white px-6 pt-[200px] md:max-w-[1216px] lg:min-h-[min(100svh,1080px)]">
       <div className="relative isolate mb-8 md:grid md:grid-cols-[1.4fr,1fr] md:gap-4">
         <div className="absolute -right-[30px] -top-[7px] -z-10 w-[109px] -rotate-[27deg] rounded-2xl md:hidden">
           <Image src={handshake} alt="handshake" className=" rounded-xl" priority />

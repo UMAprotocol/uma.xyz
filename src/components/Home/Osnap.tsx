@@ -14,7 +14,7 @@ export function Osnap() {
   useLoadSectionRefAndId(ref, id);
   return (
     <section
-      className="min-h-[100dvh] max-h-[1200px] bg-grey-50 px-6 pb-12 pt-[--header-blur-height]"
+      className="min-h-[min(100dvh,1080px)] bg-grey-50 px-6 pb-12 pt-[--header-blur-height]"
       ref={ref}
       id={id}
     >
