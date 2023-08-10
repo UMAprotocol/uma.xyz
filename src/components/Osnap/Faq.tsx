@@ -35,7 +35,7 @@ export function Faq() {
         <h2 className="mb-12 text-3xl text-grey-900 md:text-6xl">FAQs</h2>
         <div className="mb-12 grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-x-8 gap-y-10 lg:gap-y-16">
           {faqs.map(({ question, answer }) => (
-            <div>
+            <div key={question}>
               <h3 className="mb-2 text-lg text-grey-900">{question}</h3>
               <p className=" text-grey-600">{answer}</p>
             </div>

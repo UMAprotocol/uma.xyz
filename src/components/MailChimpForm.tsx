@@ -5,7 +5,7 @@ export default function MailChimpForm() {
   const [value, setValue] = useState("");
   return (
     <MailchimpSubscribe
-      url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
+      url={process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? ""}
       render={({ subscribe, status, message }) => (
         <>
           <form
