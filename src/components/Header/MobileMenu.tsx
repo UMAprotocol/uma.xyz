@@ -18,7 +18,7 @@ export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
   const [animationData, setAnimationData] = useState<object>();
   const { scrollY } = useScrollContext();
   const pathname = usePathname();
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const isHomePage = pathname.split("#")[0] === "/";
 
   useEffect(() => {
     if (show && !animationData) {

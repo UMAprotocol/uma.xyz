@@ -21,7 +21,9 @@ export default function MailChimpForm() {
               type="email"
               name="email"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
               placeholder="Your Email"
             />
 

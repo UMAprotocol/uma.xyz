@@ -15,7 +15,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = !!data && data.activeRequests > 0;
   const pathname = usePathname();
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const isHomePage = pathname.split("#")[0] === "/";
   const isLightTheme = !isHomePage || isLightTheme_;
   useInterval(() => {
     setTimeRemaining(formatMillisecondsUntilMidnight());

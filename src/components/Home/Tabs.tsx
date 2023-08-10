@@ -294,7 +294,9 @@ contract LongShortPair {
     <Root
       className="grid grid-cols-[100%] grid-rows-[auto,auto,auto] gap-y-11 lg:grid-cols-[1fr,1fr] lg:grid-rows-[auto,auto] lg:gap-x-14 lg:gap-y-0"
       defaultValue="0"
-      onValueChange={(value: string) => setActiveTabIndex(Number(value))}
+      onValueChange={(value: string) => {
+        setActiveTabIndex(Number(value));
+      }}
     >
       <List className="relative row-start-1 grid grid-cols-5 items-center gap-3 border-b border-grey-400 lg:col-span-2 lg:col-start-1 lg:mb-14">
         {tabs.map(({ title, shortTitle, icon }, tabIndex) => (
