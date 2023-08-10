@@ -1,11 +1,11 @@
 import LottiePlayer from "react-lottie-player/dist/LottiePlayerLight";
 
-interface Props {
+type Props = {
   animationData: object | undefined;
   play: boolean;
   direction?: 1 | -1;
   loop?: boolean;
-}
+};
 export default function LottieAnimation({ animationData, play, direction = 1, loop = true }: Props) {
   if (!animationData) return null;
 

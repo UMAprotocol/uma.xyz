@@ -13,7 +13,7 @@ export default function Header() {
   const pathname = usePathname();
   // we only change the color when on the home page
   // the osnap page is all light theme
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const isHomePage = pathname.split("#")[0] === "/";
 
   const isLightTheme = !isHomePage || isLightThemeFromScroll;
 

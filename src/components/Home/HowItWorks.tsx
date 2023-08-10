@@ -77,13 +77,13 @@ export default function HowItWorks() {
   );
 }
 
-interface StepProps {
+type StepProps = {
   header: string;
   text: string;
   subText: string;
   index: number;
   isLast: boolean;
-}
+};
 function Step({ header, text, subText, index, isLast }: StepProps) {
   const lineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({

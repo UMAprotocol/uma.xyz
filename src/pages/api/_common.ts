@@ -12,7 +12,7 @@ export function getProvider(chainId: number) {
   return new ethers.providers.JsonRpcBatchProvider(getNodeUrls()[chainId]);
 }
 
-export function getNodeUrls(): { [key: string]: string } {
+export function getNodeUrls(): Record<string, string> {
   if (!process.env.NODE_URLS) throw Error("NODE_URLS env variable not set!");
   return JSON.parse(process.env.NODE_URLS);
 }

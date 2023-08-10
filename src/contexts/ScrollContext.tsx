@@ -5,14 +5,14 @@ import { useMounted } from "@/hooks";
 import { usePathname } from "next/navigation";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
 
-interface ScrollContextState {
+type ScrollContextState = {
   scrollY: number;
   loadSectionRefAndId: (id: string, ref: RefObject<HTMLDivElement>) => void;
   colorChangeSectionRef: RefObject<HTMLDivElement>;
   setColorChangeSectionRef: (ref: RefObject<HTMLDivElement>) => void;
   isLightTheme: boolean;
   setIsLightTheme: (isLightTheme: boolean) => void;
-}
+};
 
 export const ScrollContext = createContext<ScrollContextState>({
   scrollY: 0,
@@ -33,7 +33,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
   const [scrollY, setScrollY] = useState(0);
   const mounted = useMounted();
   const pathname = usePathname();
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const isHomePage = pathname.split("#")[0] === "/";
 
   function loadSectionRefAndId(id: string, ref: RefObject<HTMLDivElement>) {
     setSectionRefsById((prev) => ({ ...prev, [id]: ref }));
@@ -48,7 +48,9 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [mounted]);
 
   useEffect(() => {

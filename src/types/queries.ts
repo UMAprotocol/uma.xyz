@@ -1,5 +1,5 @@
-export interface VotingInfo {
+export type VotingInfo = {
   apr: string;
   activeRequests: number;
   phase: "commit" | "reveal";
-}
+};

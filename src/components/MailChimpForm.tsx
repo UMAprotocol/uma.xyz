@@ -5,7 +5,7 @@ export default function MailChimpForm() {
   const [value, setValue] = useState("");
   return (
     <MailchimpSubscribe
-      url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ""}
+      url={process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? ""}
       render={({ subscribe, status, message }) => (
         <>
           <form
@@ -21,7 +21,9 @@ export default function MailChimpForm() {
               type="email"
               name="email"
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
               placeholder="Your Email"
             />
 
