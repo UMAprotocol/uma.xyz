@@ -75,8 +75,7 @@ module.exports = {
       "success-800": "hsl(var(--color-success-800) / <alpha-value>)",
       "success-900": "hsl(var(--color-success-900) / <alpha-value>)",
       // legacy 'red' color -- replaced by 'primary'
-      red: "hsl(var(--color-red) / <alpha-value>)",
-      "red-550": "hsl(var(--color-red-550) / <alpha-value>)",
+      red: "hsl(var(--color-primary-500) / <alpha-value>)",
     },
     extend: {
       spacing: {

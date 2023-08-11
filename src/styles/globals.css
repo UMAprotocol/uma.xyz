@@ -276,10 +276,7 @@ body {
   --success-800: hsl(var(--color-success-800));
   --success-900: hsl(var(--color-success-900));
   /* legacy 'red' color -- renamed to 'primary' */
-  --color-red: 0 100% 65%;
-  --color-red-550: 32 23% 25%;
-  --red: hsl(var(--color-red));
-  --red-550: hsl(var(--color-red-550));
+  --red: hsl(var(--color-primary-500));
   /* special hero video background var */
   --hero-video-background: #292429;
   /* fonts */
