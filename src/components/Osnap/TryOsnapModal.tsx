@@ -9,6 +9,12 @@ export function useTryOsnapModal() {
 type Props = ReturnType<typeof useTryOsnapModal>;
 
 export function TryOsnapModal(props: Props) {
+  const communicationMethods = {
+    discord: true,
+    email: false,
+    telegram: false,
+    other: false,
+  };
   return (
     <Modal {...props}>
       <div className="p-6 bg-white">stuff</div>
