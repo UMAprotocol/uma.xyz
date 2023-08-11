@@ -1,4 +1,3 @@
-import { heroVideoBackgroundIphone, heroVideoBackgroundWindows } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
@@ -7,6 +6,9 @@ import OOLogo from "public/assets/oo-logo.svg";
 import { useEffect, useRef } from "react";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
+
+const heroVideoBackgroundIphone = "#232124";
+const heroVideoBackgroundWindows = "#252125";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);

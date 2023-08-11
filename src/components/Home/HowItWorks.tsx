@@ -1,4 +1,3 @@
-import { grey500, grey700, red, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { motion, useScroll, useSpring } from "framer-motion";
@@ -105,19 +104,19 @@ function Step({ header, text, subText, index, isLast }: StepProps) {
         <motion.p
           className="grid h-[48px] w-[48px] place-items-center rounded-lg transition duration-300"
           initial={{
-            backgroundColor: white,
-            border: `1px solid ${grey500}`,
+            backgroundColor: "var(--white)",
+            border: `1px solid var(--grey-500)`,
           }}
           whileInView={{
-            backgroundColor: red,
-            border: `1px solid ${red}`,
+            backgroundColor: "var(--primary-500)",
+            border: `1px solid var(--primary-500)`,
           }}
           viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           transition={{ duration: 0.3 }}
         >
           <motion.span
-            initial={{ color: grey700 }}
-            whileInView={{ color: white }}
+            initial={{ color: "var(--grey-700)" }}
+            whileInView={{ color: "var(--white)" }}
             viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           >
             0{stepNumber}
