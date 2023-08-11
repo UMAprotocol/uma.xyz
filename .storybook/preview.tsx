@@ -51,7 +51,6 @@ export const parameters = {
       },
     },
   },
-  layout: "fullscreen",
   chromatic: {
     viewports: [320, 640, 1024, 1300, 1920],
   },
