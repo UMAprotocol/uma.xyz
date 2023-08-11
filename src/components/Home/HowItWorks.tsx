@@ -50,7 +50,7 @@ export default function HowItWorks() {
       className="px-[--page-padding] pt-[--header-blur-height] md:pb-[96px]"
       id={id}
       style={{
-        background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
+        background: "linear-gradient(180deg, var(--white) 0%, var(--grey-50) 50%, var(--white) 100%)",
       }}
     >
       <div className="mx-auto max-w-[--page-width]" ref={ref}>
