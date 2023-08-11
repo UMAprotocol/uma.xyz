@@ -44,10 +44,10 @@ export function Modal({ children, modalRef, showModal, closeModal, ...dialogProp
   }
 
   return (
-    <dialog ref={modalRef} onClick={onClick} {...dialogProps} className="relative rounded-2xl p-6 shadow-xs">
+    <dialog ref={modalRef} onClick={onClick} {...dialogProps} className="relative rounded-2xl shadow-xs">
       <button
         onClick={closeModal}
-        className="absolute right-1 top-1 p-1 transition hover:opacity-50"
+        className="absolute right-0 top-0 p-2 transition hover:opacity-50"
         aria-label="Close modal"
       >
         <X />
