@@ -2,11 +2,13 @@ import { Draft } from "immer";
 import { ChangeEventHandler, ReactNode, useId } from "react";
 import { Updater } from "use-immer";
 
-type GroupProps<TValues extends Record<string, boolean>> = {
+type CheckedValues = Record<string, boolean>;
+
+type GroupProps<TValues extends CheckedValues> = {
   values: TValues;
   setValues: Updater<TValues>;
 };
-export function RadioGroup<TValues extends Record<string, boolean>>(props: GroupProps<TValues>) {
+export function RadioGroup<TValues extends CheckedValues>(props: GroupProps<TValues>) {
   function onChange<TValue extends keyof Draft<TValues>>(value: TValue) {
     props.setValues((draft) => {
       return Object.fromEntries(

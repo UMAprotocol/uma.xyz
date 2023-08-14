@@ -14,6 +14,8 @@ type Props = {
 };
 
 export function useTextInput(props: Props) {
+  console.log(props)
+
   const [value, setValue] = useState(props.initialValue ?? "");
   const [dirty, setDirty] = useState(false);
 
@@ -35,7 +37,9 @@ export function useTextInput(props: Props) {
   );
 
   function isValid() {
-    if (props.required && dirty && value === "") {
+    if (!dirty) return true;
+
+    if (props.required && value === "") {
       return false;
     }
     if (props.validate && !props.validate(value)) {
@@ -64,7 +68,7 @@ export function TextInput(props: TextInputProps) {
   const validLabelStyle = "text-black";
   const invalidLabelStyle = "text-error-900";
   const labelStyle = props.valid ? validLabelStyle : invalidLabelStyle;
-  const validStyleInputStyle = "border-gray-300 bg-white text-gray-900 placeholder:text-gray-500";
+  const validStyleInputStyle = "border-grey-300 bg-white text-grey-900 placeholder:text-grey-500";
   const invalidInputStyle = "border-error-200 bg-error-50 text-error-700 placeholder:text-error-500";
   const inputStyle = props.valid ? validStyleInputStyle : invalidInputStyle;
   return (
