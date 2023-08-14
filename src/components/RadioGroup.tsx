@@ -1,33 +1,33 @@
-import { Draft } from "immer";
-import { ChangeEventHandler, ReactNode, useId } from "react";
-import { Updater } from "use-immer";
+import { ChangeEventHandler, ReactNode, useId, useMemo, useState } from "react";
 
-type CheckedValues = Record<string, boolean>;
+export function useRadioGroup<TValue extends string>(title: string, values: TValue[]) {
+  const [checkedValue, setCheckedValue] = useState<TValue>(values[0]);
 
-type GroupProps<TValues extends CheckedValues> = {
-  values: TValues;
-  setValues: Updater<TValues>;
-};
-export function RadioGroup<TValues extends CheckedValues>(props: GroupProps<TValues>) {
-  function onChange<TValue extends keyof Draft<TValues>>(value: TValue) {
-    props.setValues((draft) => {
-      return Object.fromEntries(
-        Object.entries(draft).map(([k]) => (k === value ? [k, true] : [k, false])),
-      ) as Draft<TValues>;
-    });
-  }
+  return useMemo(
+    () => ({
+      title,
+      values,
+      checkedValue,
+      setCheckedValue,
+    }),
+    [title, values, checkedValue, setCheckedValue],
+  );
+}
 
+type RadioGroupProps = ReturnType<typeof useRadioGroup>;
+
+export function RadioGroup(props: RadioGroupProps) {
   return (
     <fieldset>
-      <legend className="font-medium mb-1">Preferred communication channel</legend>
+      <legend className="font-medium mb-1">{props.title}</legend>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-1">
-        {Object.entries(props.values).map(([value, checked]) => (
+        {props.values.map((value) => (
           <RadioInput
             key={value}
-            name="contact method"
-            checked={checked}
+            name={props.title}
+            checked={props.checkedValue === value}
             onChange={() => {
-              onChange(value);
+              props.setCheckedValue(value);
             }}
             label={value}
           />
