@@ -1,12 +1,9 @@
 import { useCallback, useMemo } from "react";
+import { CommunicationChannel } from "./Osnap/TryOsnapModal";
 import { TextInput, useTextInput } from "./TextInput";
 
-export type Props = {
-  channel: "discord" | "email" | "telegram" | "other";
-};
-
-export function useContactDetailsInput(props: Props) {
-  const getPlaceholderForChannel = useCallback((channel: Props["channel"]) => {
+export function useContactDetailsInput(channel: CommunicationChannel) {
+  const getPlaceholderForChannel = useCallback((channel: CommunicationChannel) => {
     switch (channel) {
       case "discord":
         return "OracleWizard#1234";
@@ -44,7 +41,7 @@ export function useContactDetailsInput(props: Props) {
   }
 
   const getValidateFunctionForChannel = useCallback(
-    (channel: Props["channel"]) => {
+    (channel: CommunicationChannel) => {
       switch (channel) {
         case "discord":
           return validateDiscordInput;
@@ -61,10 +58,10 @@ export function useContactDetailsInput(props: Props) {
 
   const inputProps = useTextInput({
     label: "Contact details",
-    isEmail: props.channel === "email",
+    isEmail: channel === "email",
     required: true,
-    validate: getValidateFunctionForChannel(props.channel),
-    placeholder: getPlaceholderForChannel(props.channel),
+    validate: getValidateFunctionForChannel(channel),
+    placeholder: getPlaceholderForChannel(channel),
   });
 
   return useMemo(

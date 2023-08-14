@@ -14,7 +14,6 @@ type Props = {
 };
 
 export function useTextInput(props: Props) {
-  console.log(props)
 
   const [value, setValue] = useState(props.initialValue ?? "");
   const [dirty, setDirty] = useState(false);
