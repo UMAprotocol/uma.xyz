@@ -72,7 +72,7 @@ export function TextInput(props: TextInputProps) {
   const inputStyle = props.valid ? validStyleInputStyle : invalidInputStyle;
   return (
     <div>
-      <label htmlFor={props.id} className={`mb-1 block font-semibold ${labelStyle}`}>
+      <label htmlFor={props.id} className={`mb-1 block font-medium ${labelStyle}`}>
         {props.label}
       </label>
       <input

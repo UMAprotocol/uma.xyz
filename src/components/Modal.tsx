@@ -1,7 +1,7 @@
 "use client";
 
-import X from "public/assets/x.svg";
 import { useRef, type MouseEvent, type ReactNode } from "react";
+import { Icon } from "./Icon";
 
 export function useModal() {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -47,10 +47,10 @@ export function Modal({ children, modalRef, showModal, closeModal, ...dialogProp
     <dialog ref={modalRef} onClick={onClick} {...dialogProps} className="relative rounded-2xl shadow-xs">
       <button
         onClick={closeModal}
-        className="absolute right-0 top-0 p-2 transition hover:opacity-50"
+        className="absolute right-0 top-0 p-2 transition hover:opacity-50 z-50"
         aria-label="Close modal"
       >
-        <X />
+        <Icon name="x" className="w-6 h-6" />
       </button>
       {children}
     </dialog>

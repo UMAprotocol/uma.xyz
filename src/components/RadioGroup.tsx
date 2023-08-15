@@ -19,8 +19,8 @@ type RadioGroupProps = ReturnType<typeof useRadioGroup>;
 export function RadioGroup(props: RadioGroupProps) {
   return (
     <fieldset>
-      <legend className="font-medium mb-1">{props.title}</legend>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-1">
+      <legend className="font-medium mb-1 text-grey-900">{props.title}</legend>
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
         {props.values.map((value) => (
           <RadioInput
             key={value}
