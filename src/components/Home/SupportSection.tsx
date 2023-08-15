@@ -1,6 +1,6 @@
 import NextLink from "next/link";
-import UpRightArrowLg from "public/assets/up-right-arrow-lg.svg";
 import { useRef } from "react";
+import { Icon } from "../Icon";
 
 export default function SupportSection() {
   const id = "support";
@@ -41,8 +41,8 @@ export default function SupportSection() {
               href="https://jobs.lever.co/risklabs"
               target="_blank"
             >
-              <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition duration-300 group-hover:border-red group-hover:bg-red">
-                <UpRightArrowLg className="[&_path]:transition [&_path]:duration-300 [&_path]:group-hover:stroke-white" />
+              <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition group-hover:border-red group-hover:bg-red">
+                <Icon name="arrow" className="-rotate-45 w-6 h-6 transition text-grey-800 group-hover:text-white" />
               </div>
               <span className="text-3xl transition sm:text-5xl">Careers</span>
             </NextLink>
@@ -51,8 +51,8 @@ export default function SupportSection() {
               href="https://risklabs.foundation"
               target="_blank"
             >
-              <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition duration-300 group-hover:border-red group-hover:bg-red">
-                <UpRightArrowLg className="[&_path]:transition [&_path]:duration-300 [&_path]:group-hover:stroke-white" />
+              <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition group-hover:border-red group-hover:bg-red">
+                <Icon name="arrow" className="-rotate-45 w-6 h-6 transition text-grey-800 group-hover:text-white" />
               </div>
               <span className="text-3xl transition sm:text-5xl">About</span>
             </NextLink>

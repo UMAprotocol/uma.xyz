@@ -1,7 +1,7 @@
 import Tabs from "@/components/Home/Tabs";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
-import OOLogo from "public/assets/oo-logo.svg";
 import { useRef } from "react";
+import { Icon } from "../Icon";
 import { SectionHeader } from "../SectionHeader";
 
 export default function Builder() {
@@ -31,8 +31,11 @@ export default function Builder() {
               {" "}
               <span>Launch products with the</span>
               <span className="mx-2 inline-block align-middle sm:mx-4">
-                <OOLogo
-                  className="h-[--sm-fluid-font-size] 
+                <Icon
+                  name="oo-logo"
+                  className="
+                  text-red
+                  h-[--sm-fluid-font-size] 
                   w-[calc(var(--sm-fluid-font-size)_*_2)]
                   md:h-[--md-fluid-font-size]
                   md:w-[calc(var(--md-fluid-font-size)_*_2)] 

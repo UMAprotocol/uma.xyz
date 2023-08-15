@@ -2,19 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Reset */
-
-
 body {
+  color: var(--grey-900);
+  background: var(--hero-video-background);
+}
+
+html {
+  /* Making sure text size is only controlled by font-size */
+  -webkit-text-size-adjust: none;
   /* Improve text rendering */
   -webkit-font-smoothing: antialiased;
   /* https://marco.org/2012/11/15/text-rendering-optimize-legibility */
   text-rendering: optimizeSpeed;
-}
-
-body {
-  color: var(--grey-900);
-  background: var(--hero-video-background);
 }
 
 :root {

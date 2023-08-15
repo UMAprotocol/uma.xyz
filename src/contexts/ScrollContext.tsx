@@ -32,7 +32,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
   const [scrollY, setScrollY] = useState(0);
   const mounted = useMounted();
   const pathname = usePathname();
-  const isHomePage = pathname.split("#")[0] === "/";
+  const isHomePage = pathname?.split("#")[0] === "/";
 
   function loadSectionRefAndId(id: string, ref: RefObject<HTMLDivElement>) {
     setSectionRefsById((prev) => ({ ...prev, [id]: ref }));

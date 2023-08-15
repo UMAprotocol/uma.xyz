@@ -34,13 +34,11 @@
     ]
   },
   "include": [
-    "custom-next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "next-env.d.ts",
     "node_modules"
   ],
   "ts-node": {

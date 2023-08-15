@@ -1,7 +1,6 @@
 import Tabs from "@/components/Home/Tabs";
 import { Meta, StoryFn } from "@storybook/react";
-import TubeIcon from "public/assets/tube.svg";
-import WandIcon from "public/assets/wand.svg";
+
 export default {
   title: "Tabs",
   component: Tabs,
@@ -21,12 +20,12 @@ export const Main = {
       {
         title: "Tab One",
         content: <div>This is the Tab One content</div>,
-        Icon: WandIcon,
+        icon: "wand",
       },
       {
         title: "Tab Two",
         content: <div>This is the Tab Two content</div>,
-        Icon: TubeIcon,
+        icon: "tube",
       },
     ],
   },
