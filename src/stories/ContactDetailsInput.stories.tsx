@@ -1,4 +1,5 @@
-import { ContactDetailsInput, Props, useContactDetailsInput } from "@/components/ContactDetailsInput";
+import { ContactDetailsInput, useContactDetailsInput } from "@/components/ContactDetailsInput";
+import { CommunicationChannel } from "@/components/Osnap/TryOsnapModal";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
@@ -7,14 +8,14 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<Props>;
+type Story = StoryObj<{ channel: CommunicationChannel }>;
 
 const Template: Story = {
   args: {
     channel: "discord",
   },
   render: function Wrapper(args) {
-    const contactDetailsInputProps = useContactDetailsInput(args);
+    const contactDetailsInputProps = useContactDetailsInput(args.channel);
     return (
       <div className="w-screen h-screen grid place-items-center bg-white">
         <ContactDetailsInput {...contactDetailsInputProps} />
