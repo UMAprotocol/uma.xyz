@@ -2,11 +2,9 @@
 
 import { animationDuration, grey500, grey900, white } from "@/constant";
 import NextLink from "next/link";
-import BlackLogo from "public/assets/uma-black-logo.svg";
-import Logo from "public/assets/uma-logo.svg";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
 import { FocusOn } from "react-focus-on";
+import { Icon } from "../Icon";
 import MobileMenu from "./MobileMenu";
 
 type Props = {
@@ -74,11 +72,11 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
         />
       </button>
       <NextLink href="/" aria-label="Back to page top">
-        {isLightTheme ? <BlackLogo /> : <Logo />}
+        <Icon name="uma-logo" className={`w-[63px] h-[16px] ${isLightTheme ? "text-black" : "text-white"}`} />
       </NextLink>
       <div className="justify-self-end">
         <NextLink
-          className="inline-flex items-baseline justify-center gap-1 text-sm text-[--color] no-underline transition hover:opacity-50"
+          className="inline-flex items-center justify-center gap-1 text-sm text-[--color] no-underline transition hover:opacity-50"
           aria-label="Link to voter dapp"
           href="https://vote.uma.xyz/"
           target="_blank"
@@ -89,7 +87,7 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
           }
         >
           App
-          <UpRightArrow className="[&>path]:stroke-[--color]" />
+          <Icon name="arrow" className="text-[--color] -rotate-45 w-5 h-5" />
         </NextLink>
       </div>
       <MobileMenu links={links} isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />

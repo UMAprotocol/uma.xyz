@@ -3,8 +3,8 @@ import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
 import { CSSProperties, useEffect, useState } from "react";
+import { Icon } from "../Icon";
 import LottieAnimation from "../LottieAnimation";
 
 type Props = {
@@ -55,14 +55,17 @@ export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
           >
-            {label} {isExternalLink(href) ? <SmUpRightArrow className="ml-2 [&>path]:stroke-[--link-color]" /> : null}
+            {label}{" "}
+            {isExternalLink(href) ? (
+              <Icon name="arrow" className="ml-1 text-[--link-color] -rotate-45 w-5 h-5" />
+            ) : null}
           </NextLink>
         ))}
       </div>
       <div className="flex h-fit items-center gap-[22px] pb-[22px]">
-        {socialLinks.map(({ href, Icon, label }) => (
+        {socialLinks.map(({ href, icon, label }) => (
           <NextLink className="group z-10" onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
-            <Icon className="[&>path]:fill-[--link-color]" />
+            <Icon name={icon} className="text-[--link-color] w-6 h-6" />
           </NextLink>
         ))}
       </div>

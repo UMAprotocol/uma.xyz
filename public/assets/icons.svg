@@ -5,6 +5,10 @@
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12H19M19 12L12 5M19 12L12 19" />
         </symbol>
+        <symbol id="arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentcolor">
+            <path d="M12 4V20M12 20L18 14M12 20L6 14" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
         <symbol id="across" viewBox="0 0 57 57" fill="currentcolor" stroke="currentcolor">
             <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M50.3639 0.991211L56.0039 6.53226L37.1558 25.0497C36.1624 22.5077 34.1032 20.4847 31.5158 19.5086L50.3639 0.991211ZM24.492 19.5086L5.64391 0.991211L0.00390625 6.53226L18.852 25.0497C19.8455 22.5077 21.9046 20.4847 24.492 19.5086ZM18.852 31.9503L0.00390625 50.4677L5.64391 56.0088L24.492 37.4914C21.9046 36.5153 19.8455 34.4923 18.852 31.9503ZM31.5158 37.4914L50.3639 56.0088L56.0039 50.4677L37.1558 31.9503C36.1624 34.4923 34.1032 36.5153 31.5158 37.4914Z"

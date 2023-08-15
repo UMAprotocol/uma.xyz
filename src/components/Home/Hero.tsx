@@ -2,9 +2,8 @@ import { heroVideoBackgroundIphone, heroVideoBackgroundWindows } from "@/constan
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
-import DownArrow from "public/assets/down-arrow.svg";
-import OOLogo from "public/assets/oo-logo.svg";
 import { useEffect, useRef } from "react";
+import { Icon } from "../Icon";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
 
@@ -95,7 +94,8 @@ export default function Hero() {
               <m.div {...makeHeaderRotateAnimation(-3)}>A decentralized </m.div>
               <m.span {...makeHeaderRotateAnimation(-6)}>truth</m.span>
               <m.span className="mx-2 inline-block align-middle md:mx-4" {...makeHeaderRotateAnimation(8)}>
-                <OOLogo
+                <Icon
+                  name="oo-logo"
                   className="h-[--sm-fluid-font-size] 
                   w-[calc(var(--sm-fluid-font-size)_*_2)]
                   md:h-[--md-fluid-font-size]
@@ -127,11 +127,11 @@ export default function Hero() {
             }}
           >
             <NextLink
-              className="opacity-1 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition duration-300 hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              className="isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
               href="#how-it-works"
               aria-label="Go to next section"
             >
-              <DownArrow className="animate-arrow" />
+              <Icon name="arrow-down" className="animate-arrow text-red w-5 h-5" />
             </NextLink>
           </m.div>
         </div>

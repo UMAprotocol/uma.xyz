@@ -5,17 +5,16 @@ import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import Clock from "public/assets/clock.svg";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useState } from "react";
 import { useInterval } from "usehooks-ts";
+import { Icon } from "./Icon";
 
 export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
   const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = data.activeRequests > 0;
   const pathname = usePathname();
-  const isHomePage = pathname.split("#")[0] === "/";
+  const isHomePage = pathname?.split("#")[0] === "/";
   const isLightTheme = !isHomePage || isLightTheme_;
   useInterval(() => {
     setTimeRemaining(formatMillisecondsUntilMidnight());
@@ -59,7 +58,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       >
         <div className="flex items-center gap-4">
           <div className="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-red/10">
-            <Clock />
+            <Icon name="clock" className="text-red w-4 h-4" />
           </div>
           {isActive ? (
             <>
@@ -98,13 +97,13 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
         </div>
         <div>
           <NextLink
-            className="flex items-center gap-2 transition duration-300 hover:brightness-150 [&_path]:stroke-[--color]"
+            className="flex items-center gap-1 transition hover:opacity-50 text-[--color]"
             href="https://vote.uma.xyz/"
             target="_blank"
             aria-label="Link to voter dapp"
           >
             <span className="hidden text-[--color] sm:inline">More details</span>
-            <UpRightArrow />
+            <Icon name="arrow" className="-rotate-45 w-5 h-5" />
           </NextLink>
         </div>
       </div>

@@ -1,12 +1,9 @@
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import Image from "next/image";
-import Chart from "public/assets/chart.svg";
-import Chat from "public/assets/chat.svg";
 import handshake from "public/assets/handshake.png";
-import OsnapLogo from "public/assets/osnap-logo.svg";
-import Zap from "public/assets/zap.svg";
 import { useRef } from "react";
 import AnimatedLink from "../AnimatedLink";
+import { Icon } from "../Icon";
 
 export function Osnap() {
   const id = "osnap";
@@ -22,20 +19,20 @@ export function Osnap() {
         />
         <div className="max-w-[540px]">
           <h1 className="mb-4 flex items-center gap-2 text-xl text-grey-600 md:text-2xl">
-            Introducing <OsnapLogo className="w-[61px] md:w-[77px]" />
+            Introducing <Icon name="osnap-logo" className="w-[61px] md:w-[77px] text-red" />
           </h1>
           <h2 className="mb-6 text-3xl text-black md:mb-16 md:text-6xl">
             DAO Governance made <span className="text-red">simple.</span>
           </h2>
           <div className="mb-8 grid grid-rows-[auto,auto] gap-3 md:grid-cols-[auto,auto] md:grid-rows-none">
-            <Chat />
+            <Icon name="chat" className="w-14 h-14" />
             <div>
               <h3 className="mb-2 text-lg">Reduces delays</h3>
               <p className="text-grey-600">oSnap enables immediate decision implementation, ending waiting periods.</p>
             </div>
           </div>
           <div className="mb-8 grid grid-rows-[auto,auto] gap-3 md:grid-cols-[auto,auto] md:grid-rows-none">
-            <Zap />
+            <Icon name="zap" className="w-14 h-14" />
             <div>
               <h3 className="mb-2 text-lg">Enhances security</h3>
               <p className="text-grey-600">
@@ -44,7 +41,7 @@ export function Osnap() {
             </div>
           </div>
           <div className="mb-10 grid grid-rows-[auto,auto] gap-3 md:mb-16 md:grid-cols-[auto,auto] md:grid-rows-none">
-            <Chart />
+            <Icon name="chart" className="w-14 h-14" />
             <div>
               <h3 className="mb-2 text-lg">Boosts transparency</h3>
               <p className="text-grey-600">

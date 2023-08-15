@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import handshake from "public/assets/handshake.png";
-import OsnapLogo from "public/assets/osnap-logo.svg";
+import { Icon } from "../Icon";
 
 export function Hero() {
   return (
@@ -15,7 +15,7 @@ export function Hero() {
         </div>
         <div>
           <h1 className="mb-4 flex items-center gap-2 text-xl text-grey-600 md:text-2xl">
-            Introducing <OsnapLogo className="w-[61px] md:w-[77px]" />
+            Introducing <Icon name="osnap-logo" className="w-[61px] md:w-[77px]" />
           </h1>
           <h2 className="mb-6 text-5xl text-black md:text-6xl lg:text-8xl">
             DAO <br className="md:hidden" />

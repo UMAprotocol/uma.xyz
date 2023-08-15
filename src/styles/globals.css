@@ -7,6 +7,15 @@ body {
   background: var(--hero-video-background);
 }
 
+html {
+  /* Making sure text size is only controlled by font-size */
+  -webkit-text-size-adjust: none;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  /* https://marco.org/2012/11/15/text-rendering-optimize-legibility */
+  text-rendering: optimizeSpeed;
+}
+
 :root {
   /* colors */
   --black: hsla(0, 0%, 0%, 1);
