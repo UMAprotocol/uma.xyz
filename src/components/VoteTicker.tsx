@@ -1,6 +1,5 @@
 "use client";
 
-import { grey100, grey200, grey300, grey600, grey700, grey800, grey900, red, white } from "@/constant";
 import { useVotingInfo } from "@/hooks";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
@@ -46,14 +45,14 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       style={
         {
           "--background": isLightTheme ? "transparent" : "var(--hero-video-background)",
-          "--color": isLightTheme ? grey900 : grey300,
+          "--color": isLightTheme ? "var(--grey-900)" : "var(--grey-300)",
         } as CSSProperties
       }
     >
       <div
         className="isolate flex w-full max-w-[--page-width] items-center justify-between gap-4 rounded-lg bg-cover bg-no-repeat p-2 pr-4"
         style={{
-          backgroundColor: isLightTheme ? grey200 : grey700,
+          backgroundColor: isLightTheme ? "var(--grey-200)" : "var(--grey-700)",
           backgroundImage: isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
         }}
       >
@@ -70,7 +69,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
                   className="ml-1 inline-block min-w-[96px] text-[--color]"
                   style={
                     {
-                      "--color": isLightTheme ? red : white,
+                      "--color": isLightTheme ? "var(--primary-500)" : "var(--white)",
                     } as CSSProperties
                   }
                 >
@@ -81,8 +80,8 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
                 className="hidden h-fit whitespace-nowrap rounded-xl bg-[--background] px-2 py-1 text-[--color] sm:block"
                 style={
                   {
-                    "--background": isLightTheme ? grey600 : grey800,
-                    "--color": isLightTheme ? grey100 : grey300,
+                    "--background": isLightTheme ? "var(--grey-600)" : "var(--grey-800)",
+                    "--color": isLightTheme ? "var(--grey-100)" : "var(--grey-300)",
                   } as CSSProperties
                 }
               >
