@@ -4,13 +4,9 @@ import { Divider } from "@/components/Divider";
 import { SandpackCodeViewer, SandpackLayout, SandpackProvider } from "@codesandbox/sandpack-react";
 import { githubLight } from "@codesandbox/sandpack-themes";
 import { Content, List, Root, Trigger } from "@radix-ui/react-tabs";
-import Globe from "public/assets/globe.svg";
-import Scale from "public/assets/scale.svg";
-import Telescope from "public/assets/telescope.svg";
-import Tube from "public/assets/tube.svg";
-import Wand from "public/assets/wand.svg";
 import { useState } from "react";
 import AnimatedLink from "../AnimatedLink";
+import { Icon } from "../Icon";
 
 export default function Tabs() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -226,7 +222,10 @@ contract LongShortPair {
       example: "Does this on-chain transaction match an approved Snapshot vote?",
       code: governanceCode,
       icon: (
-        <Scale className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:stroke-red" />
+        <Icon
+          name="scale"
+          className="w-8 h-8 transition-transform group-data-[state=active]:-translate-y-3 [&_path]:group-data-[state=active]:stroke-red"
+        />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
@@ -240,7 +239,10 @@ contract LongShortPair {
       example: "“Did the Chiefs beat the Eagles in the 2022-2023 NFL Superbowl?”",
       code: polymarketCode,
       icon: (
-        <Wand className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+        <Icon
+          name="wand"
+          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+        />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
@@ -253,7 +255,10 @@ contract LongShortPair {
       example: "Is this insurance claim about a smart contract hack valid?",
       code: insuranceCode,
       icon: (
-        <Tube className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+        <Icon
+          name="tube"
+          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+        />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
@@ -267,7 +272,10 @@ contract LongShortPair {
       example: "Did this deposit event on a different chain happen?",
       code: bridgeExampleCode,
       icon: (
-        <Telescope className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+        <Icon
+          name="telescope"
+          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+        />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",
@@ -280,7 +288,10 @@ contract LongShortPair {
       example: "What is the EUR/USD exchange rate?",
       code: rwaCode,
       icon: (
-        <Globe className="transition duration-300 group-data-[state=active]:-translate-y-3 [&_path]:transition [&_path]:duration-300 [&_path]:group-data-[state=active]:fill-red" />
+        <Icon
+          name="globe"
+          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+        />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
       docText: "Build your first smart contract with UMA",

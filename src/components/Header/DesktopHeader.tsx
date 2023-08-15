@@ -1,9 +1,7 @@
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
-import SmUpRightArrow from "public/assets/sm-up-right-arrow.svg";
-import BlackLogo from "public/assets/uma-black-logo.svg";
-import Logo from "public/assets/uma-white-logo.svg";
 import { CSSProperties } from "react";
+import { Icon } from "../Icon";
 
 type Props = {
   isLightTheme: boolean;
@@ -20,7 +18,7 @@ export default function DesktopHeader({ isLightTheme, links }: Props) {
   return (
     <div className="hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid">
       <NextLink href="/" aria-label="Back to top" className="cursor-pointer">
-        {isLightTheme ? <BlackLogo /> : <Logo />}
+        <Icon name="uma-logo" className={`w-[63px] h-[16px] ${isLightTheme ? "text-black" : "text-white"}`} />
       </NextLink>
       <div className="grid grid-flow-col items-center gap-5">
         {links.map(({ label, href }) => (
@@ -37,7 +35,9 @@ export default function DesktopHeader({ isLightTheme, links }: Props) {
           >
             <span className="mr-2 inline-block aspect-square w-2 -translate-x-4 rounded-full bg-[--color] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-80" />{" "}
             <span className="text-lg text-[--color] group-hover:opacity-80">{label}</span>{" "}
-            {isExternalLink(href) ? <SmUpRightArrow className="ml-2 transition group-hover:opacity-80" /> : null}
+            {isExternalLink(href) ? (
+              <Icon name="arrow" className="ml-1 transition -rotate-45 w-5 h-5 group-hover:opacity-80 text-[--color]" />
+            ) : null}
           </NextLink>
         ))}
       </div>

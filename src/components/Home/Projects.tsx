@@ -1,21 +1,13 @@
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import NextLink from "next/link";
-import AcrossLogo from "public/assets/across.svg";
-import CozyLogo from "public/assets/cozy.svg";
-import OutcomeLogo from "public/assets/outcome.svg";
-import PolymarketLogo from "public/assets/polymarket.svg";
-import RatedLogo from "public/assets/rated.svg";
-import ShapeshiftLogo from "public/assets/shapeshift.svg";
-import SherlockLogo from "public/assets/sherlock.svg";
-import SnapshotLogo from "public/assets/snapshot.svg";
-import UpRightArrow from "public/assets/up-right-arrow.svg";
 import { CSSProperties, useRef } from "react";
 import AnimatedLink from "../AnimatedLink";
 import { Divider } from "../Divider";
+import { Icon } from "../Icon";
 
 type Project = {
   name: string;
-  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  icon: string;
   link: string;
 };
 
@@ -27,12 +19,12 @@ export default function Projects() {
   const topRow = [
     {
       name: "Across",
-      Icon: AcrossLogo,
+      icon: "across",
       link: "https://across.to",
     },
     {
       name: "Polymarket",
-      Icon: PolymarketLogo,
+      icon: "polymarket",
       link: "https://polymarket.com",
     },
   ];
@@ -40,17 +32,17 @@ export default function Projects() {
   const middleRow = [
     {
       name: "Outcome",
-      Icon: OutcomeLogo,
+      icon: "outcome",
       link: "https://outcome.finance",
     },
     {
       name: "Rated",
-      Icon: RatedLogo,
+      icon: "rated",
       link: "https://www.rated.network",
     },
     {
       name: "Shapeshift",
-      Icon: ShapeshiftLogo,
+      icon: "shapeshift",
       link: "https://shapeshift.com",
     },
   ];
@@ -58,17 +50,17 @@ export default function Projects() {
   const bottomRow = [
     {
       name: "Cozy",
-      Icon: CozyLogo,
+      icon: "cozy",
       link: "https://www.cozy.finance",
     },
     {
       name: "Snapshot",
-      Icon: SnapshotLogo,
+      icon: "snapshot",
       link: "https://snapshot.org",
     },
     {
       name: "Sherlock",
-      Icon: SherlockLogo,
+      icon: "sherlock",
       link: "https://www.sherlock.xyz",
     },
   ];
@@ -83,7 +75,7 @@ export default function Projects() {
           </div>
           <AnimatedLink href="https://projects.uma.xyz/">All projects</AnimatedLink>
         </div>
-        <div className="row-start-2 grid grid-cols-[1fr] grid-rows-[auto,auto,auto] border-[0.5px] border-grey-400 lg:col-start-1 lg:row-start-1">
+        <div className="row-start-2 grid grid-cols-[1fr] grid-rows-[auto,auto,auto] lg:col-start-1 lg:row-start-1">
           <ProjectRow projects={topRow} line="top" />
           <ProjectRow projects={middleRow} line="middle" />
           <ProjectRow projects={bottomRow} line="bottom" />
@@ -103,21 +95,22 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
         } as CSSProperties
       }
     >
-      {projects.map(({ name, link, Icon }) => (
+      {projects.map(({ name, link, icon }) => (
         <NextLink
-          className="group relative grid aspect-square place-items-center border-[0.5px] border-grey-400 transition duration-300 hover:border-red"
+          className="group relative grid aspect-square place-items-center border-[0.5px] border-grey-400 transition hover:border-red"
           key={name}
           href={link}
           target="_blank"
         >
-          <div className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-md opacity-0 transition duration-300 group-hover:opacity-100 lg:right-4 lg:top-4 lg:bg-red [&_path]:stroke-red lg:[&_path]:stroke-white">
-            <UpRightArrow />
+          <div className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-md opacity-0 transition group-hover:opacity-100 lg:right-4 lg:top-4 lg:bg-red text-red lg:text-white">
+            <Icon name="arrow" className="-rotate-45 w-5 h-5" />
           </div>
           <div className="relative grid w-full place-items-center gap-4">
-            <div className="w-[25%] transition duration-300 group-hover:-translate-y-3 [&_path]:fill-grey-900 [&_path]:transition [&_path]:duration-300 [&_path]:group-hover:fill-red">
-              <Icon />
-            </div>
-            <span className="absolute -bottom-[40px] uppercase text-red opacity-0 transition duration-300 group-hover:-translate-y-3 group-hover:opacity-100">
+            <Icon
+              name={icon}
+              className="w-[25%] group-hover:-translate-y-3 text-grey-900 transition [&_path] group-hover:text-red"
+            />
+            <span className="absolute -bottom-[40px] uppercase text-red opacity-0 transition group-hover:-translate-y-3 group-hover:opacity-100">
               {name}
             </span>
           </div>

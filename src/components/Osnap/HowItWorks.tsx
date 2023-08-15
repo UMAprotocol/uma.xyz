@@ -1,42 +1,37 @@
-import Arrows from "public/assets/arrows.svg";
-import Cube from "public/assets/cube.svg";
-import Flash from "public/assets/flash.svg";
-import MessageHeart from "public/assets/message-heart.svg";
-import Rocket from "public/assets/rocket.svg";
-import Settings from "public/assets/settings.svg";
+import { Icon } from "../Icon";
 
 export function HowItWorks() {
   const steps = [
     {
       title: "Deploy oSnap model",
       description: "Integrate oSnap with your Snapshot Space and Safe smart wallet in minutes",
-      icon: Rocket,
+      icon: "rocket",
     },
     {
       title: "Set parameters",
       description:
         "Customize your integration by setting the bond currency and size, challenge period duration, voting period duration and required quorum.",
-      icon: Settings,
+      icon: "settings",
     },
     {
       title: "Snapshot proposal submitted",
       description: "Community members submit proposals. The DAO votes gas free in Snapshot.",
-      icon: Flash,
+      icon: "flash",
     },
     {
       title: "Outcome validated",
       description: "The outcome is sent to UMA, where for a limited time anyone can dispute it.",
-      icon: Arrows,
+      icon: "arrows",
     },
     {
       title: "Dispute & voting",
       description: "If disputed, UMA token holders will vote on whether the outcome passed to the oracle is true.",
-      icon: Cube,
+      icon: "cube",
     },
     {
       title: "Transactions execute",
       description: "If the vote passes, the transaction is approved and can be executed by anyone.",
-      icon: MessageHeart,
+      icon: "message-heart",
     },
   ];
   return (
@@ -47,13 +42,13 @@ export function HowItWorks() {
           Explore oSnap&apos;s process and harness Optimistic Execution
         </p>
         <div className="grid lg:grid-cols-3 lg:grid-rows-2">
-          {steps.map(({ title, description, icon: Icon }) => (
+          {steps.map(({ title, description, icon }) => (
             <div
               key={title}
               className="relative border-l border-dashed border-red/40 p-7 pl-10 pt-2 last:border-none lg:border-none"
             >
               <div className="absolute -left-[24px] top-0 w-[48px]">
-                <Icon />
+                <Icon name={icon} className="w-10 h-10" />
               </div>
               <div>
                 <h3 className="text-lg text-grey-900">{title}</h3>

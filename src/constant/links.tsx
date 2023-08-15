@@ -1,9 +1,3 @@
-import Discord from "public/assets/discord.svg";
-import Discourse from "public/assets/discourse.svg";
-import Github from "public/assets/github.svg";
-import Medium from "public/assets/medium.svg";
-import Twitter from "public/assets/twitter.svg";
-
 export const homePageLinks = [
   {
     label: "How it works",
@@ -45,27 +39,27 @@ export const osnapPageLinks = [
 export const socialLinks = [
   {
     href: "http://discord.uma.xyz",
-    Icon: Discord,
+    icon: "discord",
     label: "Discord",
   },
   {
     href: "https://medium.com/uma-project",
-    Icon: Medium,
+    icon: "medium",
     label: "Medium",
   },
   {
     href: "https://twitter.com/UMAprotocol",
-    Icon: Twitter,
+    icon: "twitter",
     label: "Twitter",
   },
   {
     href: "http://discourse.uma.xyz",
-    Icon: Discourse,
+    icon: "discourse",
     label: "Discourse",
   },
   {
     href: "https://github.com/UMAprotocol",
-    Icon: Github,
+    icon: "github",
     label: "Github",
   },
 ];
