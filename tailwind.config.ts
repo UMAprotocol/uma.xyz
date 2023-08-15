@@ -60,6 +60,9 @@ module.exports = {
       "white-opacity-10": whiteOpacity10,
     },
     extend: {
+      transitionDuration: {
+        DEFAULT: "300ms",
+      },
       fontSize: {
         "sm-fluid-size": smFluidFontSize,
         "sm-fluid-line-height": smFluidLineHeight,
