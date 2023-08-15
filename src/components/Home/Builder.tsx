@@ -15,7 +15,7 @@ export default function Builder() {
       className="px-[--page-padding] py-16 pt-[--header-blur-height]"
       id={id}
       style={{
-        background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
+        background: "linear-gradient(180deg, var(--white) 0%, var(--grey-50) 50%, var(--white) 100%)",
       }}
     >
       <div className="mx-auto max-w-[--page-width]">

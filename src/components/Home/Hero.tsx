@@ -1,4 +1,3 @@
-import { heroVideoBackgroundIphone, heroVideoBackgroundWindows } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
@@ -6,6 +5,9 @@ import { useEffect, useRef } from "react";
 import { Icon } from "../Icon";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
+
+const heroVideoBackgroundIphone = "#232124";
+const heroVideoBackgroundWindows = "#252125";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -127,7 +129,7 @@ export default function Hero() {
             }}
           >
             <NextLink
-              className="isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition hover:bg-red-510-opacity-15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              className="isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition hover:bg-red-510/15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
               href="#how-it-works"
               aria-label="Go to next section"
             >

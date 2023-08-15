@@ -1,4 +1,3 @@
-import { grey400, grey900, red, white } from "@/constant";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
 import { CSSProperties } from "react";
@@ -30,7 +29,7 @@ export default function DesktopHeader({ isLightTheme, links }: Props) {
             target={isExternalLink(href) ? "_blank" : undefined}
             style={
               {
-                "--color": isActive(href) ? red : grey400,
+                "--color": isActive(href) ? "var(--primary-500)" : "var(--grey-400)",
               } as CSSProperties
             }
           >
@@ -48,8 +47,8 @@ export default function DesktopHeader({ isLightTheme, links }: Props) {
         target="_blank"
         style={
           {
-            "--color": isLightTheme ? white : grey900,
-            "--background": isLightTheme ? grey900 : white,
+            "--color": isLightTheme ? "var(--white)" : "var(--grey-900)",
+            "--background": isLightTheme ? "var(--grey-900)" : "var(--white)",
           } as CSSProperties
         }
       >

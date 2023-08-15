@@ -1,4 +1,3 @@
-import { grey500, grey700, red, white } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { motion, useScroll, useSpring } from "framer-motion";
@@ -50,7 +49,7 @@ export default function HowItWorks() {
       className="px-[--page-padding] pt-[--header-blur-height] md:pb-[96px]"
       id={id}
       style={{
-        background: "linear-gradient(180deg, var(--white) 0%, var(--white-200) 50%, var(--white) 100%)",
+        background: "linear-gradient(180deg, var(--white) 0%, var(--grey-50) 50%, var(--white) 100%)",
       }}
     >
       <div className="mx-auto max-w-[--page-width]" ref={ref}>
@@ -105,19 +104,19 @@ function Step({ header, text, subText, index, isLast }: StepProps) {
         <motion.p
           className="grid h-[48px] w-[48px] place-items-center rounded-lg transition duration-300"
           initial={{
-            backgroundColor: white,
-            border: `1px solid ${grey500}`,
+            backgroundColor: "var(--white)",
+            border: `1px solid var(--grey-500)`,
           }}
           whileInView={{
-            backgroundColor: red,
-            border: `1px solid ${red}`,
+            backgroundColor: "var(--primary-500)",
+            border: `1px solid var(--primary-500)`,
           }}
           viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           transition={{ duration: 0.3 }}
         >
           <motion.span
-            initial={{ color: grey700 }}
-            whileInView={{ color: white }}
+            initial={{ color: "var(--grey-700)" }}
+            whileInView={{ color: "var(--white)" }}
             viewport={{ amount: "all", margin: width > 1024 ? "-48px" : "0px" }}
           >
             0{stepNumber}

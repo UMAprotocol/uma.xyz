@@ -1,6 +1,5 @@
 "use client";
 
-import { animationDuration, grey500, grey900, white } from "@/constant";
 import NextLink from "next/link";
 import { CSSProperties, useState } from "react";
 import { FocusOn } from "react-focus-on";
@@ -16,14 +15,14 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
   const [showMenu, setShowMenu] = useState(false);
 
   const closeMenuBarTransition = `
-  top ${animationDuration}, 
-  bottom ${animationDuration}, 
-  transform ${animationDuration} ${animationDuration}`;
+  top 300ms, 
+  bottom 300ms, 
+  transform 300ms 300ms`;
 
   const openMenuBarTransition = `
-  top ${animationDuration} ${animationDuration}, 
-  bottom ${animationDuration} ${animationDuration}, 
-  transform ${animationDuration}`;
+  top 300ms 300ms, 
+  bottom 300ms 300ms, 
+  transform 300ms`;
 
   const buttonBarTransition = showMenu ? closeMenuBarTransition : openMenuBarTransition;
 
@@ -49,7 +48,7 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
         onClick={toggleShowMenu}
         style={
           {
-            "--background": isLightTheme ? grey900 : grey500,
+            "--background": isLightTheme ? "var(--grey-900)" : "var(--grey-500)",
             "--animation-delay": showMenu ? "1s" : "0s",
           } as CSSProperties
         }
@@ -82,7 +81,7 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
           target="_blank"
           style={
             {
-              "--color": isLightTheme ? grey500 : white,
+              "--color": isLightTheme ? "var(--grey-500)" : "var(--white)",
             } as CSSProperties
           }
         >

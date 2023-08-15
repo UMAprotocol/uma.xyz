@@ -1,6 +1,5 @@
 "use client";
 
-import { headerBlurHeight } from "@/constant";
 import { useMounted } from "@/hooks";
 import { usePathname } from "next/navigation";
 import { createContext, ReactNode, RefObject, useEffect, useState } from "react";
@@ -93,7 +92,7 @@ export function ScrollProvider({ children }: { children: ReactNode }) {
     function hasEnteredColorChangeSection() {
       if (colorChangeSectionRef.current?.offsetTop === undefined) return false;
 
-      return scrollY > colorChangeSectionRef.current.offsetTop - headerBlurHeight * 1.8;
+      return scrollY > colorChangeSectionRef.current.offsetTop - 164;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollY]);
