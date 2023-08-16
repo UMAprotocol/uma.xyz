@@ -69,44 +69,44 @@ export function TryOsnapModal(props: Props) {
   const idleSubmitButtonContent = "Submit";
 
   const busyButtonContent = (
-    <span className="flex gap-1 items-center">
+    <span className="flex items-center gap-1">
       Submitting... <LoadingSpinner variant="white" width={12} height={12} />
     </span>
   );
 
   const successSubmitButtonContent = (
-    <span className="flex gap-1 items-center">
-      Submitted! <Icon name="check" className="w-3 h-3" />
+    <span className="flex items-center gap-1">
+      Submitted! <Icon name="check" className="h-3 w-3" />
     </span>
   );
 
   const errorSubmitButtonContent = (
-    <span className="flex gap-1 items-center">
-      Failed <Icon name="info" className="w-3 h-3" />
+    <span className="flex items-center gap-1">
+      Failed <Icon name="info" className="h-3 w-3" />
     </span>
   );
 
   return (
     <Modal {...props}>
       <div
-        className="h-16 relative"
+        className="relative h-16"
         style={{
           backgroundImage: "url(/assets/handshake.png)",
           backgroundSize: "120%",
           backgroundPosition: "60% 50%",
         }}
       >
-        <div className="isolate absolute w-full h-full bg-gradient-to-b from-white to-grey-50 opacity-60"></div>
+        <div className="absolute isolate h-full w-full bg-gradient-to-b from-white to-grey-50 opacity-60"></div>
         <Image
           src={fancyOsnapLogo}
           alt="Fancy Osnap Logo"
           objectFit="contain"
-          className="absolute w-14 h-14 left-[50%] translate-x-[-50%] -bottom-[30%]"
+          className="absolute -bottom-[30%] left-[50%] h-14 w-14 translate-x-[-50%]"
         />
       </div>
-      <div className="p-6 bg-white w-[min(80vw,540px)]">
-        <h1 className="text-center text-grey-950 font-medium text-4xl mb-4">We’ll get you set up</h1>
-        <p className="text-center text-grey-700 mb-6">
+      <div className="w-[min(80vw,540px)] bg-white p-6">
+        <h1 className="mb-4 text-center text-4xl font-medium text-grey-950">We’ll get you set up</h1>
+        <p className="mb-6 text-center text-grey-700">
           Let us introduce oSnap to you personally and see if it&apos;s a fit for you and your organization. Just fill
           in the details below and we&apos;ll be in touch.
         </p>
@@ -117,7 +117,7 @@ export function TryOsnapModal(props: Props) {
             onSubmit();
           }}
         >
-          <div className="grid gap-x-2 gap-y-3 mb-6 sm:grid-cols-2">
+          <div className="mb-6 grid gap-x-2 gap-y-3 sm:grid-cols-2">
             <TextInput {...nameInputProps} />
             <TextInput {...organizationInputProps} />
           </div>
@@ -128,7 +128,7 @@ export function TryOsnapModal(props: Props) {
           <button
             disabled={!isFormValid}
             type="submit"
-            className="bg-grey-900 grid place-items-center w-full h-11 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="grid h-11 w-full place-items-center rounded-lg bg-grey-900 text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {formState === "idle" && idleSubmitButtonContent}
             {formState === "busy" && busyButtonContent}

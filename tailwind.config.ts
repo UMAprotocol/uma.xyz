@@ -16,6 +16,7 @@ module.exports = {
     colors: {
       black: "hsl(var(--color-black) / <alpha-value>)",
       white: "hsl(var(--color-white) / <alpha-value>)",
+      transparent: "transparent",
       "grey-25": "hsl(var(--color-grey-25) / <alpha-value>)",
       "grey-50": "hsl(var(--color-grey-50) / <alpha-value>)",
       "grey-100": "hsl(var(--color-grey-100) / <alpha-value>)",
@@ -84,6 +85,7 @@ module.exports = {
         "header-height": "var(--header-height)",
         "header-blur-height": "var(--header-blur-height)",
         "vote-ticker-height": "var(--vote-ticker-height)",
+        "header-and-vote-ticker-height": "calc(var(--header-height)+var(--vote-ticker-height))",
       },
       maxWidth: {
         "page-width": "var(--page-width)",

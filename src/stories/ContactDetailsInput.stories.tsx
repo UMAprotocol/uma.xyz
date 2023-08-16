@@ -17,7 +17,7 @@ const Template: Story = {
   render: function Wrapper(args) {
     const contactDetailsInputProps = useContactDetailsInput(args.channel);
     return (
-      <div className="w-screen h-screen grid place-items-center bg-white">
+      <div className="grid h-screen w-screen place-items-center bg-white">
         <ContactDetailsInput {...contactDetailsInputProps} />
       </div>
     );

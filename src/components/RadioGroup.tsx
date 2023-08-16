@@ -19,8 +19,8 @@ type RadioGroupProps = ReturnType<typeof useRadioGroup>;
 export function RadioGroup(props: RadioGroupProps) {
   return (
     <fieldset>
-      <legend className="font-medium mb-1 text-grey-900">{props.title}</legend>
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
+      <legend className="mb-1 font-medium text-grey-900">{props.title}</legend>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-4">
         {props.values.map((value) => (
           <RadioInput
             key={value}
@@ -57,16 +57,16 @@ function RadioInput(props: InputProps) {
   return (
     <label
       htmlFor={id}
-      className={`rounded-xl p-4 transition-all flex items-center gap-2 capitalize cursor-pointer ${labelStyle}`}
+      className={`flex cursor-pointer items-center gap-2 rounded-xl p-4 capitalize transition-all ${labelStyle}`}
     >
-      <span className={`rounded-full border w-4 h-4 grid place-items-center ${inputBorderStyle}`}>
+      <span className={`grid h-4 w-4 place-items-center rounded-full border ${inputBorderStyle}`}>
         <input
           type="radio"
           id={id}
           name={props.name}
           checked={props.checked}
           onChange={props.onChange}
-          className={`appearance-none rounded-full  transition-all w-full h-full ${inputStyle}`}
+          className={`h-full w-full  appearance-none rounded-full transition-all ${inputStyle}`}
         />
       </span>
       {props.label}
