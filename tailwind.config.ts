@@ -144,6 +144,9 @@ module.exports = {
           },
         },
       },
+      boxShadow: {
+        xs: "0px 1px 2px 0px rgba(50, 50, 50, 0.05)",
+      },
     },
   },
   plugins: [],

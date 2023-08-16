@@ -1,4 +1,4 @@
-import { Hero } from "@/components/Osnap/Hero";
+import Hero from "@/components/Home/Hero";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta = {
