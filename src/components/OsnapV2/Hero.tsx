@@ -2,7 +2,7 @@ import Image from "next/image";
 import introducingOsnap from "public/assets/introducing-osnap.png";
 export function Hero() {
   return (
-    <section className="-mt-header-and-vote-ticker-height bg-white px-page-padding py-8 md:py-12 lg:py-[72px]">
+    <section className="-mt-[calc(var(--header-height)+var(--vote-ticker-height))] bg-white px-page-padding pb-8 pt-[150px] md:pb-12 lg:pb-[72px] lg:pt-[200px]">
       <Image
         src={introducingOsnap}
         alt="introducing oSnap"
