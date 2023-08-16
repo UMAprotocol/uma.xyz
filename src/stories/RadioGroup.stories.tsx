@@ -15,7 +15,7 @@ const Template: Story = {
     const title = "test title 123";
     const radioGroupProps = useRadioGroup(title, values);
     return (
-      <div className="w-screen h-screen grid place-items-center bg-white">
+      <div className="grid h-screen w-screen place-items-center bg-white">
         <RadioGroup {...radioGroupProps} />
       </div>
     );

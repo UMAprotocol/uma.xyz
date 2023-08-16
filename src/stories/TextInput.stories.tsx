@@ -25,7 +25,7 @@ const Template: Story = {
     const textInputProps = useTextInput(args);
 
     return (
-      <div className="p-4 bg-white">
+      <div className="bg-white p-4">
         <p>value = {textInputProps.value}</p>
         <p
           style={{
