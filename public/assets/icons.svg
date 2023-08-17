@@ -250,10 +250,22 @@
                 d="M11 15V11M11 7H11.01M21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </symbol>
-        <symbol id="check" viewBox="0 0 24 24" fill="none" stroke="currentcolor">
+        <symbol id="check-circle" viewBox="0 0 24 24" fill="none" stroke="currentcolor">
             <path
                 d="M7.5 12L10.5 15L16.5 9M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="check" viewBox="0 0 24 24" fill="none" stroke="currentcolor">
+            <path d="M20 6L9 17L4 12" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </symbol>
+        <symbol id="lines" viewBox="0 0 20 21" fill="none" stroke="currentcolor">
+            <path d="M14.1667 5.95117H2.5" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M17.5 10.9512H2.5" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M12.5833 15.8679H2.5" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
         </symbol>
     </defs>
 </svg>
