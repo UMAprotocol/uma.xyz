@@ -76,7 +76,7 @@ export function TryOsnapModal(props: Props) {
 
   const successSubmitButtonContent = (
     <span className="flex items-center gap-1">
-      Submitted! <Icon name="check" className="h-3 w-3" />
+      Submitted! <Icon name="check-circle" className="h-3 w-3" />
     </span>
   );
 
