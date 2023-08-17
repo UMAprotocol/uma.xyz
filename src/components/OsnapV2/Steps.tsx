@@ -63,9 +63,21 @@ export function Steps() {
   return (
     <section className="bg-white px-page-padding py-8">
       {stepText.map((step, index) => (
-        <div key={index} className="mb-8 grid grid-rows-[auto,auto] gap-6">
-          <StepDescription {...step} index={index} key={index} />
-          {stepImages[index]}
+        <div
+          key={index}
+          className="mx-auto mb-8 grid grid-rows-[auto,auto] gap-6 sm:mb-12 sm:gap-10 lg:my-[192px] lg:max-w-[896px] lg:grid-cols-[1fr,1fr] lg:grid-rows-1 lg:gap-16 xl:max-w-[1024px]"
+        >
+          {index === 1 ? (
+            <>
+              {stepImages[index]}
+              <StepDescription {...step} index={index} key={index} />
+            </>
+          ) : (
+            <>
+              <StepDescription {...step} index={index} key={index} />
+              {stepImages[index]}
+            </>
+          )}
         </div>
       ))}
     </section>
@@ -89,9 +101,9 @@ function StepIcon(props: { color: "green" | "grey" }) {
   );
 }
 
-function StepImage(props: { children: ReactNode }) {
+function StepImage(props: { children: ReactNode; reverse?: boolean }) {
   return (
-    <div className="relative grid place-items-center items-center rounded-[24px] bg-grey-100 py-8">
+    <div className="relative grid place-items-center items-center rounded-[24px] bg-grey-100 py-8 sm:py-[100px] lg:aspect-square lg:w-[500px] lg:py-0">
       <div className="z-10 grid gap-6">{props.children}</div>
       <div className="absolute left-[50%] h-full w-[1px] bg-grey-950/10"></div>
     </div>
@@ -101,7 +113,7 @@ function StepImage(props: { children: ReactNode }) {
 function StepDescription(props: { index: number; title: ReactNode; description: ReactNode }) {
   const numberIcon = numberIconsByNumber[props.index];
   return (
-    <div>
+    <div className="lg:max-w-[332px] lg:justify-self-start xl:max-w-[428px]">
       <Image src={numberIcon} alt={`step ${props.index + 1} icon`} width={50} height={50} className="mb-6" />
       <h2 className="mb-3 text-3xl font-medium text-grey-500 sm:text-4xl md:text-5xl lg:text-6xl">{props.title}</h2>
       <p className="text-lg text-grey-600 sm:text-2xl">{props.description}</p>
