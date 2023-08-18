@@ -1,3 +1,4 @@
+import { Video } from "../Osnap/Video";
 import { Description } from "../OsnapV2/Description";
 import { Features } from "../OsnapV2/Features";
 import { Hero } from "../OsnapV2/Hero";
@@ -10,6 +11,7 @@ export function OsnapV2() {
       <Steps />
       <Description />
       <Features />
+      <Video />
     </div>
   );
 }
