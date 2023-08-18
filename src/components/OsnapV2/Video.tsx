@@ -16,15 +16,15 @@ export function Video() {
   };
 
   return (
-    <section className="bg-grey-50 px-4 py-6">
-      <h1 className="mb-6 text-center text-4xl font-medium text-grey-500">
+    <section className="bg-grey-50 px-4 py-6 sm:p-8 md:p-16 lg:p-[88px]">
+      <h1 className="mx-auto mb-6 max-w-[1024px] text-center text-4xl font-medium text-grey-500 sm:mb-8 sm:text-5xl md:text-6xl lg:mb-12 lg:text-7xl xl:mb-16 xl:text-8xl">
         Achieve decentralized governance in <span className="text-primary-500">71 seconds.</span>
       </h1>
-      <div className="mx-auto rounded-2xl bg-white p-4 shadow-xl">
+      <div className="mx-auto mb-6 max-w-[848px] rounded-2xl bg-white p-4 shadow-xl">
         <div className="relative mb-4">
           {showThumbnail && (
             <div
-              className="group absolute left-0 top-0 z-10 aspect-video w-full cursor-pointer rounded-2xl"
+              className="group absolute left-0 top-0 z-10 aspect-video w-full cursor-pointer rounded-2xl border-2 border-white"
               onClick={onClick}
             >
               <Image src={handshake} alt="handshake" layout="fill" objectFit="cover" className="rounded-2xl" />
@@ -52,17 +52,19 @@ export function Video() {
             ></iframe>
           </div>
         </div>
-        <button className="mx-auto mb-3 block w-full rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white transition-all hover:brightness-200">
-          Try oSnap
-        </button>
-        <Link
-          href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
-          className="bg-grey-white group mx-auto grid w-full place-items-center rounded-xl border border-grey-200 px-4 py-3 text-lg font-medium text-grey-600"
-        >
-          <span className="flex items-center gap-1 transition-all group-hover:gap-[1.5px] group-hover:brightness-150">
-            Read Docs <Icon name="external-link" className="inline h-5 w-5" />
-          </span>
-        </Link>
+        <div className="grid gap-2 sm:gap-3 md:grid-cols-2 md:gap-4">
+          <button className="mx-auto mb-3 block h-16 w-full rounded-xl bg-grey-900 px-4 text-lg font-medium text-white transition-all hover:brightness-200">
+            Try oSnap
+          </button>
+          <Link
+            href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
+            className="bg-grey-white group mx-auto grid h-16 w-full place-items-center rounded-xl border border-grey-200 px-4 text-lg font-medium text-grey-600"
+          >
+            <span className="flex items-center gap-1 transition-all group-hover:gap-[1.5px] group-hover:brightness-150">
+              Read Docs <Icon name="external-link" className="inline h-5 w-5" />
+            </span>
+          </Link>
+        </div>
       </div>
     </section>
   );
