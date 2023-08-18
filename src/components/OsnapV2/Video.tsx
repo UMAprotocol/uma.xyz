@@ -24,7 +24,7 @@ export function Video() {
         <div className="relative mb-4">
           {showThumbnail && (
             <div
-              className="group absolute left-0 top-0 z-10 aspect-video w-full cursor-pointer rounded-2xl border-2 border-white"
+              className="group absolute left-0 top-0 z-10 aspect-video w-full cursor-pointer rounded-2xl"
               onClick={onClick}
             >
               <Image src={handshake} alt="handshake" layout="fill" objectFit="cover" className="rounded-2xl" />
