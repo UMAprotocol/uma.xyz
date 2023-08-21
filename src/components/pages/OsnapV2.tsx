@@ -1,4 +1,4 @@
-import { Faq } from "../Osnap/Faq";
+import { Faq } from "../OsnapV2/Faq";
 import { Description } from "../OsnapV2/Description";
 import { Features } from "../OsnapV2/Features";
 import { Hero } from "../OsnapV2/Hero";
