@@ -108,6 +108,8 @@ module.exports = {
         arrow: "arrow-enter 2s infinite ease-in-out 3s",
         "fade-in": "fade-in 300ms",
         "fade-out": "fade-out 300ms",
+        "accordion-slide-down": "accordion-slide-down 300ms",
+        "accordion-slide-up": "accordion-slide-up 300ms",
       },
       transitionDuration: {
         DEFAULT: "300ms",
@@ -143,6 +145,22 @@ module.exports = {
           "100%": {
             opacity: "0",
             transform: "translateY(-20px)",
+          },
+        },
+        "accordion-slide-down": {
+          from: {
+            height: "0px",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-slide-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0px",
           },
         },
       },
