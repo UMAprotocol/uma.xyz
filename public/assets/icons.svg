@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- https://sprite-your-svgs.vercel.app/ -->
 <svg xmlns="http://www.w3.org/2000/svg">
     <defs>
         <symbol id="arrow" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2"
@@ -266,6 +267,10 @@
                 stroke-linejoin="round" />
             <path d="M12.5833 15.8679H2.5" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
+        </symbol>
+        <symbol id="external-link" fill="none" viewBox="0 0 21 21" stroke="currentcolor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.5 10.99v5a1.666 1.666 0 0 1-1.667 1.667H4.667A1.667 1.667 0 0 1 3 15.99V6.824a1.667 1.667 0 0 1 1.667-1.667h5M13 2.657h5v5M8.833 11.824 18 2.657" />
         </symbol>
     </defs>
 </svg>
