@@ -149,6 +149,7 @@ module.exports = {
       boxShadow: {
         xs: "0px 1px 2px 0px rgba(50, 50, 50, 0.05)",
         sm: "0px 12px 28px 0px rgba(0, 0, 0, 0.05)",
+        xl: "0px 8px 8px -4px rgba(50, 50, 50, 0.03), 0px 20px 24px -4px rgba(50, 50, 50, 0.08)",
       },
     },
   },
