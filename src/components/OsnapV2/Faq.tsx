@@ -32,37 +32,39 @@ export function Faq() {
     },
   ];
   return (
-    <section className="bg-white px-4 py-8 sm:px-8 sm:py-12 md:p-16">
-      <h1 className="mb-8 text-center text-3xl font-medium text-grey-500 sm:mb-12 sm:text-4xl md:py-16 md:text-5xl">
-        Frequently asked questions
-      </h1>
-      <Accordion.Root type="single" defaultValue="0">
-        {faqs.map((faq, index) => (
-          <Accordion.Item
-            key={faq.question}
-            value={index.toString()}
-            className="border-b border-grey-200 py-6 first:pt-0 last:border-none data-[state=closed]:cursor-pointer sm:py-8"
-          >
-            <Accordion.Header asChild>
-              <Accordion.Trigger
-                asChild
-                className="group mb-2 flex w-full items-start justify-between gap-3 text-start text-lg font-medium text-grey-900 sm:text-2xl"
-              >
-                <h2>
-                  {faq.question}
-                  <PlusMinus color="var(--grey-400)" />
-                </h2>
-              </Accordion.Trigger>
-            </Accordion.Header>
-            <Accordion.Content
-              className="data-[state=open]:animate-accordion-slide-down data-[state=closed]:animate-accordion-slide-up overflow-hidden text-grey-600 sm:text-lg"
-              asChild
+    <section className="bg-white px-4 py-8 sm:px-8 sm:py-12 md:p-16 lg:py-[96px]">
+      <div className="mx-auto max-w-[768px]">
+        <h1 className="mb-8 text-center text-3xl font-medium text-grey-500 sm:mb-12 sm:text-4xl md:py-16 md:text-5xl lg:text-6xl xl:text-start">
+          Frequently asked questions
+        </h1>
+        <Accordion.Root type="single" defaultValue="0">
+          {faqs.map((faq, index) => (
+            <Accordion.Item
+              key={faq.question}
+              value={index.toString()}
+              className="border-b border-grey-200 py-6 first:pt-0 last:border-none data-[state=closed]:cursor-pointer sm:py-8"
             >
-              <p>{faq.answer}</p>
-            </Accordion.Content>
-          </Accordion.Item>
-        ))}
-      </Accordion.Root>
+              <Accordion.Header asChild>
+                <Accordion.Trigger
+                  asChild
+                  className="group mb-2 flex w-full items-start justify-between gap-3 text-start text-lg font-medium text-grey-900 sm:text-2xl"
+                >
+                  <h2>
+                    {faq.question}
+                    <PlusMinus color="var(--grey-400)" />
+                  </h2>
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content
+                className="data-[state=open]:animate-accordion-slide-down data-[state=closed]:animate-accordion-slide-up overflow-hidden text-grey-600 sm:text-lg"
+                asChild
+              >
+                <p>{faq.answer}</p>
+              </Accordion.Content>
+            </Accordion.Item>
+          ))}
+        </Accordion.Root>
+      </div>
     </section>
   );
 }
