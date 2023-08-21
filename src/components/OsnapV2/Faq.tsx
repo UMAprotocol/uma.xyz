@@ -32,8 +32,8 @@ export function Faq() {
     },
   ];
   return (
-    <section className="bg-white px-4 py-8 sm:px-8 sm:py-12">
-      <h1 className="mb-8 text-center text-3xl font-medium text-grey-500 sm:mb-12 sm:text-4xl">
+    <section className="bg-white px-4 py-8 sm:px-8 sm:py-12 md:p-16">
+      <h1 className="mb-8 text-center text-3xl font-medium text-grey-500 sm:mb-12 sm:text-4xl md:py-16 md:text-5xl">
         Frequently asked questions
       </h1>
       <Accordion.Root type="single" defaultValue="0">
