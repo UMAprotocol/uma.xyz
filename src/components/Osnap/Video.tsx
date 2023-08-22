@@ -1,8 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
+import bgImage from "public/assets/bg-image.png";
 
 export function Video() {
   return (
-    <section className="bg-white px-6 py-8">
+    <section className="relative bg-white px-6 py-8">
+      <Image src={bgImage} alt="bg image" className="absolute inset-0 h-full w-full" layout="fill" />
       <div className="mx-auto max-w-[858px]">
         <div className="relative mb-6 aspect-video before:absolute before:-inset-1 before:-z-10 before:bg-black before:opacity-75 before:blur-md">
           <iframe
