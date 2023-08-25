@@ -14,10 +14,6 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
     "@codesandbox/sandpack-react": "^2.6.9",
     "@codesandbox/sandpack-themes": "^2.0.21",
     "@next/bundle-analyzer": "^13.4.16",
@@ -40,8 +36,6 @@
     "@uma/contracts-node": "^0.4.17",
     "airtable": "^0.12.2",
     "autoprefixer": "^10.4.15",
-    "babel-loader": "^9.1.3",
-    "babel-plugin-react-require": "^4.0.1",
     "chromatic": "^6.22.0",
     "eslint": "8.47.0",
     "eslint-config-next": "^13.4.16",
