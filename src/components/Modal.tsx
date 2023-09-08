@@ -10,13 +10,19 @@ export function useModal() {
   function showModal() {
     if (!modalRef.current) return;
     setScrollPosition(window.scrollY);
-    document.body.style.overflowY = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.height = "100svh";
+    document.body.style.height = "100svh";
     modalRef.current.showModal();
   }
 
   function closeModal() {
     if (!modalRef.current) return;
-    document.body.style.overflowY = "initial";
+    document.documentElement.style.overflow = "initial";
+    document.body.style.overflow = "initial";
+    document.documentElement.style.height = "initial";
+    document.body.style.height = "initial";
     window.scrollTo(0, scrollPosition);
     modalRef.current.close();
   }
