@@ -3,9 +3,9 @@
 import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
 
 type Props = {
-  isFullWidth?: boolean;
+  className?: string;
 };
-export function TryOsnapButton({ isFullWidth = false }: Props) {
+export function TryOsnapButton({ className = "" }: Props) {
   const modalProps = useTryOsnapModal();
 
   return (
@@ -14,9 +14,7 @@ export function TryOsnapButton({ isFullWidth = false }: Props) {
         onClick={() => {
           modalProps.showModal();
         }}
-        className={`mx-auto block rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white ${
-          isFullWidth ? "w-full" : ""
-        }`}
+        className={`mx-auto block rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white ${className}`}
       >
         Try oSnap
       </button>

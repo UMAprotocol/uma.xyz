@@ -56,7 +56,7 @@ export function Video() {
           </div>
         </div>
         <div className="grid gap-2 sm:gap-3 md:grid-cols-2 md:gap-4">
-          <TryOsnapButton isFullWidth />
+          <TryOsnapButton className="h-16 w-full" />
           <Link
             href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
             className="bg-grey-white group mx-auto grid h-16 w-full place-items-center rounded-xl border border-grey-200 px-4 text-lg font-medium text-grey-600"
