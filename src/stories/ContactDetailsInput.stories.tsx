@@ -1,5 +1,5 @@
 import { ContactDetailsInput, useContactDetailsInput } from "@/components/ContactDetailsInput";
-import { CommunicationChannel } from "@/components/Osnap/TryOsnapModal";
+import { CommunicationChannel } from "@/constant";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
