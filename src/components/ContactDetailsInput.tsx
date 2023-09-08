@@ -1,5 +1,5 @@
+import { CommunicationChannel } from "@/constant";
 import { useCallback, useMemo } from "react";
-import { CommunicationChannel } from "./Osnap/TryOsnapModal";
 import { TextInput, useTextInput } from "./TextInput";
 
 export function useContactDetailsInput(channel: CommunicationChannel) {
