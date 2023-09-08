@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import handshake from "public/assets/handshake.png";
 import play from "public/assets/play.png";
 import { MouseEventHandler, useState } from "react";
 import { Icon } from "../Icon";
+import { TryOsnapButton } from "./TryOsnapButton";
 
 export function Video() {
   const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/R97GIW5M_r0?controls=0");
@@ -53,9 +56,7 @@ export function Video() {
           </div>
         </div>
         <div className="grid gap-2 sm:gap-3 md:grid-cols-2 md:gap-4">
-          <button className="mx-auto mb-3 block h-16 w-full rounded-xl bg-grey-900 px-4 text-lg font-medium text-white transition-all hover:brightness-200">
-            Try oSnap
-          </button>
+          <TryOsnapButton className="h-16 w-full" />
           <Link
             href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
             className="bg-grey-white group mx-auto grid h-16 w-full place-items-center rounded-xl border border-grey-200 px-4 text-lg font-medium text-grey-600"

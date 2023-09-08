@@ -1,20 +1,29 @@
 "use client";
 
-import { useRef, type MouseEvent, type ReactNode } from "react";
+import { useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { Icon } from "./Icon";
 
 export function useModal() {
   const modalRef = useRef<HTMLDialogElement>(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   function showModal() {
     if (!modalRef.current) return;
-    document.body.classList.add("overflow-hidden");
+    setScrollPosition(window.scrollY);
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.height = "100svh";
+    document.body.style.height = "100svh";
     modalRef.current.showModal();
   }
 
   function closeModal() {
     if (!modalRef.current) return;
-    document.body.classList.remove("overflow-hidden");
+    document.documentElement.style.overflow = "initial";
+    document.body.style.overflow = "initial";
+    document.documentElement.style.height = "initial";
+    document.body.style.height = "initial";
+    window.scrollTo(0, scrollPosition);
     modalRef.current.close();
   }
 

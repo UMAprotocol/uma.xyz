@@ -50,13 +50,16 @@ export function useTextInput(props: Props) {
     () => ({
       ...props,
       value,
+      setValue,
+      dirty,
+      setDirty,
       onChange,
       valid,
       id,
       placeholder,
       type,
     }),
-    [props, value, onChange, valid, id, placeholder, type],
+    [props, value, dirty, onChange, valid, id, placeholder, type],
   );
 }
 

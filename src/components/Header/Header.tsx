@@ -29,7 +29,7 @@ export default function Header() {
           "--background": isLightTheme ? "var(--white)" : "var(--hero-video-background)",
         } as CSSProperties
       }
-      className="sticky top-0 z-[2] grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm"
+      className="sticky top-0 z-20 grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm"
     >
       <div className="mx-auto w-full max-w-[--page-width] overflow-hidden">
         <DesktopHeader isLightTheme={isLightTheme} links={links} />

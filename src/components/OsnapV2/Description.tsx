@@ -1,5 +1,6 @@
 import Image from "next/image";
 import snapshotScreenshot from "public/assets/snapshot-screenshot.png";
+import { TryOsnapButton } from "./TryOsnapButton";
 
 export function Description() {
   return (
@@ -17,9 +18,7 @@ export function Description() {
         Combine the advanced strategies and gasless experience of offchain voting with the speed and security of
         trustless execution.
       </p>
-      <button className="mx-auto block rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white">
-        Try oSnap
-      </button>
+      <TryOsnapButton />
     </section>
   );
 }

@@ -1,6 +1,7 @@
+import { communicationChannels } from "@/constant";
 import Image from "next/image";
 import fancyOsnapLogo from "public/assets/fancy-osnap-logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactDetailsInput, useContactDetailsInput } from "../ContactDetailsInput";
 import { Icon } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
@@ -15,12 +16,6 @@ export function useTryOsnapModal() {
 }
 
 type Props = ReturnType<typeof useTryOsnapModal>;
-
-const communicationChannels = ["discord", "email", "telegram", "other"];
-
-export type CommunicationChannels = typeof communicationChannels;
-
-export type CommunicationChannel = CommunicationChannels[number];
 
 export function TryOsnapModal(props: Props) {
   const [formState, setFormState] = useState<"idle" | "busy" | "success" | "error">("idle");
@@ -37,6 +32,12 @@ export function TryOsnapModal(props: Props) {
   });
   const contactDetailsInputProps = useContactDetailsInput(radioGroupProps.checkedValue);
 
+  useEffect(() => {
+    contactDetailsInputProps.setValue("");
+    contactDetailsInputProps.setDirty(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [radioGroupProps.checkedValue]);
+
   const fields = {
     name: nameInputProps.value,
     organization: organizationInputProps.value,
@@ -50,20 +51,28 @@ export function TryOsnapModal(props: Props) {
     organizationInputProps.valid &&
     contactDetailsInputProps.valid;
 
-  function onSubmit() {
-    console.log("submit");
+  async function onSubmit() {
     if (!isFormValid) return;
-
-    console.log(fields);
 
     setFormState("busy");
 
-    setTimeout(() => {
-      setFormState("success");
+    const response = await fetch("/api/airtable", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fields),
+    });
+
+    if (!response.ok) {
+      setFormState("error");
       setTimeout(() => {
-        props.closeModal();
-      }, 1000);
-    }, 1000);
+        setFormState("idle");
+      }, 3000);
+      return;
+    }
+
+    setFormState("success");
   }
 
   const idleSubmitButtonContent = "Submit";
@@ -114,7 +123,7 @@ export function TryOsnapModal(props: Props) {
           action=""
           onSubmit={(e) => {
             e.preventDefault();
-            onSubmit();
+            void onSubmit();
           }}
         >
           <div className="mb-6 grid gap-x-2 gap-y-3 sm:grid-cols-2">
