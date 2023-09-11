@@ -30,7 +30,7 @@ export function Video() {
               className="group absolute left-0 top-0 z-10 aspect-video w-full cursor-pointer rounded-2xl"
               onClick={onClick}
             >
-              <Image src={handshake} alt="handshake" layout="fill" objectFit="cover" className="rounded-2xl" />
+              <Image src={handshake} alt="handshake" className="h-full w-full rounded-2xl object-cover" />
               <Image
                 src={play}
                 alt="play video"

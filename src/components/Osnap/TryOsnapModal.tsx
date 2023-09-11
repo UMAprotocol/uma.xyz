@@ -109,8 +109,7 @@ export function TryOsnapModal(props: Props) {
         <Image
           src={fancyOsnapLogo}
           alt="Fancy Osnap Logo"
-          objectFit="contain"
-          className="absolute -bottom-[30%] left-[50%] h-14 w-14 translate-x-[-50%]"
+          className="absolute -bottom-[30%] left-[50%] h-14 w-14 translate-x-[-50%] object-contain"
         />
       </div>
       <div className="w-[min(80vw,540px)] bg-white p-6">
