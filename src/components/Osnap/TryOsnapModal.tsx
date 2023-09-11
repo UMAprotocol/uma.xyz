@@ -19,7 +19,7 @@ export function useTryOsnapModal() {
   function showModal() {
     const newSearchParams = new URLSearchParams(searchParams ?? "");
     newSearchParams.set("modal", "try-osnap");
-    router.push(`${pathname}/?${newSearchParams.toString()}`);
+    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
     modalProps.showModal();
   }
 
@@ -27,7 +27,7 @@ export function useTryOsnapModal() {
     const newSearchParams = new URLSearchParams(searchParams ?? "");
     newSearchParams.delete("modal");
     modalProps.closeModal();
-    router.push(`${pathname}/?${newSearchParams.toString()}`);
+    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
   }
   return { ...modalProps, showModal, closeModal };
 }
