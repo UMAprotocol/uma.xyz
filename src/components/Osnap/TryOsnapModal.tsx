@@ -131,10 +131,10 @@ export function TryOsnapModal(props: Props) {
         />
       </div>
       <div className="w-[min(80vw,540px)] bg-white p-6">
-        <h1 className="mb-4 text-center text-4xl font-medium text-grey-950">We’ll get you set up</h1>
+        <h1 className="mb-4 text-center text-4xl font-medium text-grey-950">Dedicated DAO support</h1>
         <p className="mb-6 text-center text-grey-700">
-          Let us introduce oSnap to you personally and see if it&apos;s a fit for you and your organization. Just fill
-          in the details below and we&apos;ll be in touch.
+          Our DevRel team offers dedicated support to every DAO that integrates oSnap. Complete the form below and
+          we&apos;ll reach out ASAP
         </p>
         <form
           action=""
