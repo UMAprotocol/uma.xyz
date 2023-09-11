@@ -9,7 +9,7 @@ import { Icon } from "../Icon";
 import { TryOsnapButton } from "./TryOsnapButton";
 
 export function Video() {
-  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/R97GIW5M_r0?controls=0");
+  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/F7HcuI-oYsY?controls=0");
   const [showThumbnail, setShowThumbnail] = useState(true);
 
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -30,7 +30,7 @@ export function Video() {
               className="group absolute left-0 top-0 z-10 aspect-video w-full cursor-pointer rounded-2xl"
               onClick={onClick}
             >
-              <Image src={handshake} alt="handshake" layout="fill" objectFit="cover" className="rounded-2xl" />
+              <Image src={handshake} alt="handshake" className="h-full w-full rounded-2xl object-cover" />
               <Image
                 src={play}
                 alt="play video"

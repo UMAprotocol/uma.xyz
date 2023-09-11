@@ -1,10 +1,12 @@
 "use client";
 
 import * as Accordion from "@radix-ui/react-accordion";
-import Link from "next/link";
+import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
 import { PlusMinus } from "./PlusMinus";
 
 export function Faq() {
+  const modalProps = useTryOsnapModal();
+
   const faqs = [
     {
       question: "How does UMA secure the governance process?",
@@ -25,10 +27,16 @@ export function Faq() {
       question: "What chains does oSnap support?",
       answer: (
         <>
-          Since oSnap uses UMA as its oracle, it supports the same chains as UMA. See them all{" "}
-          <Link className="text-red underline" href="https://docs.uma.xyz/resources/network-addresses" target="_blank">
-            here.
-          </Link>
+          oSnap is live on Arbitrum, Ethereum, Optimism and Polygon. If you want oSnap support on other EVM chains,
+          speak to our{" "}
+          <span
+            className="cursor-pointer text-red underline"
+            onClick={() => {
+              modalProps.showModal();
+            }}
+          >
+            integrations team.
+          </span>
         </>
       ),
     },
@@ -58,7 +66,7 @@ export function Faq() {
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content
-                className="data-[state=open]:animate-accordion-slide-down data-[state=closed]:animate-accordion-slide-up overflow-hidden text-grey-600 sm:text-lg"
+                className="overflow-hidden text-grey-600 data-[state=closed]:animate-accordion-slide-up data-[state=open]:animate-accordion-slide-down sm:text-lg"
                 asChild
               >
                 <p>{faq.answer}</p>
@@ -67,6 +75,7 @@ export function Faq() {
           ))}
         </Accordion.Root>
       </div>
+      <TryOsnapModal {...modalProps} />
     </section>
   );
 }

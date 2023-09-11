@@ -27,7 +27,7 @@ export const osnapPageLinks = [
     href: "/",
   },
   {
-    label: "Try oSnap",
+    label: "Quick Start Guide",
     href: "https://docs.uma.xyz/developers/osnap/osnap-quick-start",
   },
   {

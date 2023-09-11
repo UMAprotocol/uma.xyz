@@ -1,5 +1,6 @@
 import { communicationChannels } from "@/constant";
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import fancyOsnapLogo from "public/assets/fancy-osnap-logo.png";
 import { useEffect, useState } from "react";
 import { ContactDetailsInput, useContactDetailsInput } from "../ContactDetailsInput";
@@ -11,8 +12,24 @@ import { TextInput, useTextInput } from "../TextInput";
 
 export function useTryOsnapModal() {
   const modalProps = useModal();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  return modalProps;
+  function showModal() {
+    const newSearchParams = new URLSearchParams(searchParams ?? "");
+    newSearchParams.set("modal", "try-osnap");
+    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+    modalProps.showModal();
+  }
+
+  function closeModal() {
+    const newSearchParams = new URLSearchParams(searchParams ?? "");
+    newSearchParams.delete("modal");
+    modalProps.closeModal();
+    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+  }
+  return { ...modalProps, showModal, closeModal };
 }
 
 type Props = ReturnType<typeof useTryOsnapModal>;
@@ -98,6 +115,7 @@ export function TryOsnapModal(props: Props) {
   return (
     <Modal {...props}>
       <div
+        id="try-osnap-modal"
         className="relative h-16"
         style={{
           backgroundImage: "url(/assets/handshake.png)",
@@ -109,15 +127,14 @@ export function TryOsnapModal(props: Props) {
         <Image
           src={fancyOsnapLogo}
           alt="Fancy Osnap Logo"
-          objectFit="contain"
-          className="absolute -bottom-[30%] left-[50%] h-14 w-14 translate-x-[-50%]"
+          className="absolute -bottom-[30%] left-[50%] h-14 w-14 translate-x-[-50%] object-contain"
         />
       </div>
       <div className="w-[min(80vw,540px)] bg-white p-6">
-        <h1 className="mb-4 text-center text-4xl font-medium text-grey-950">We’ll get you set up</h1>
+        <h1 className="mb-4 text-center text-4xl font-medium text-grey-950">Dedicated DAO support</h1>
         <p className="mb-6 text-center text-grey-700">
-          Let us introduce oSnap to you personally and see if it&apos;s a fit for you and your organization. Just fill
-          in the details below and we&apos;ll be in touch.
+          Our DevRel team offers dedicated support to every DAO that integrates oSnap. Complete the form below and
+          we&apos;ll reach out ASAP
         </p>
         <form
           action=""

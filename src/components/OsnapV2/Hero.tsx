@@ -1,11 +1,12 @@
 import Image from "next/image";
 import bgImage from "public/assets/bg-image.png";
 import introducingOsnap from "public/assets/introducing-osnap.png";
+import { InitialLoadTryOsnapModal } from "./InitialLoadTryOsnapModal";
 import { TryOsnapButton } from "./TryOsnapButton";
 export function Hero() {
   return (
     <section className="-mt-[calc(var(--header-height)+var(--vote-ticker-height))] bg-white px-page-padding pb-8 pt-[150px] md:pb-12 lg:pb-[72px] lg:pt-[200px]">
-      <Image src={bgImage} alt="bg image" className="absolute inset-0 h-full w-full -z-10 isolate" layout="fill" />
+      <Image src={bgImage} alt="bg image" className="absolute inset-0 isolate -z-10 h-full w-full" layout="fill" />
       <Image
         src={introducingOsnap}
         alt="introducing oSnap"
@@ -20,6 +21,7 @@ export function Hero() {
         Optimistically execute governance transactions onchain where your community can approve them.
       </p>
       <TryOsnapButton />
+      <InitialLoadTryOsnapModal />
     </section>
   );
 }

@@ -12,7 +12,7 @@ export function Description() {
         <span className="text-primary-500">More inclusive.</span>
       </h1>
       <p className="mx-auto mb-5 max-w-[724px] text-center text-lg text-grey-600 sm:text-2xl">
-        Add oSnap to your existing Snapshot Space and Safe&#123;wallet&#125; in minutes.
+        Add oSnap to your existing Snapshot Space and Safe&#123;Wallet&#125; in minutes.
       </p>
       <p className="mx-auto mb-7 max-w-[724px] text-center text-lg text-grey-600 sm:text-2xl lg:mb-6">
         Combine the advanced strategies and gasless experience of offchain voting with the speed and security of

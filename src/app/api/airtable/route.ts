@@ -11,6 +11,7 @@ const integrationFieldId = "fldafGL8jvE3toWk8";
 const nameFieldId = "fldX9QMw47XvzSW86";
 const communicationChannelFieldId = "fldjxMaR5DEtF29GC";
 const contactDetailsFieldId = "fldRByHAhU5Wbg9pF";
+const referralFieldId = "fldTzAA92VXb6OiBO";
 const airtableBase = new Airtable({ apiKey }).base(baseId);
 export async function POST(request: Request) {
   const body = (await request.json()) as {
@@ -25,6 +26,7 @@ export async function POST(request: Request) {
     [communicationChannelFieldId]: getAirtableCommunicationChannelName(body.communicationChannel),
     [contactDetailsFieldId]: body.contactDetails,
     [integrationFieldId]: "oSnap",
+    [referralFieldId]: "oSnap Landing Page",
   };
 
   try {
