@@ -1,5 +1,6 @@
 import { communicationChannels } from "@/constant";
 import Image from "next/image";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import fancyOsnapLogo from "public/assets/fancy-osnap-logo.png";
 import { useEffect, useState } from "react";
 import { ContactDetailsInput, useContactDetailsInput } from "../ContactDetailsInput";
@@ -11,8 +12,24 @@ import { TextInput, useTextInput } from "../TextInput";
 
 export function useTryOsnapModal() {
   const modalProps = useModal();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  return modalProps;
+  function showModal() {
+    const newSearchParams = new URLSearchParams(searchParams ?? "");
+    newSearchParams.set("modal", "try-osnap");
+    router.push(`${pathname}/?${newSearchParams.toString()}`);
+    modalProps.showModal();
+  }
+
+  function closeModal() {
+    const newSearchParams = new URLSearchParams(searchParams ?? "");
+    newSearchParams.delete("modal");
+    modalProps.closeModal();
+    router.push(`${pathname}/?${newSearchParams.toString()}`);
+  }
+  return { ...modalProps, showModal, closeModal };
 }
 
 type Props = ReturnType<typeof useTryOsnapModal>;
@@ -98,6 +115,7 @@ export function TryOsnapModal(props: Props) {
   return (
     <Modal {...props}>
       <div
+        id="try-osnap-modal"
         className="relative h-16"
         style={{
           backgroundImage: "url(/assets/handshake.png)",
