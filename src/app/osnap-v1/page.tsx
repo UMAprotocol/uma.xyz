@@ -1,4 +1,4 @@
-import { OsnapV2 } from "@/components/pages/OsnapV2";
+import { Osnap } from "@/components/pages/Osnap";
 import { Metadata } from "next";
 
 const title = "oSnap | Secured by UMA";
@@ -23,5 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <OsnapV2 />;
+  return <Osnap />;
 }
