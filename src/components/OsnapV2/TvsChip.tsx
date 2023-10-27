@@ -1,4 +1,4 @@
-import { GradientBorder, GradientBorderProps } from "../GradientBorder";
+import { GradientBorder, GradientBorderProps } from "@/components/GradientBorder";
 
 type TvsChipProps = GradientBorderProps & {
   amount: number; // eg. 83_000_000

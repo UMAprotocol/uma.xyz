@@ -2,7 +2,7 @@ import Image from "next/image";
 import bgImage from "public/assets/bg-image.png";
 import { InitialLoadTryOsnapModal } from "./InitialLoadTryOsnapModal";
 import { TryOsnapButton } from "./TryOsnapButton";
-import { TvsChip } from "./TvsChip";
+import { TvsChip } from "@/components/OsnapV2/TvsChip";
 import { totalValueSecured } from "@/constant";
 
 export function Hero() {
