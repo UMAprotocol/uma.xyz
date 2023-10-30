@@ -34,7 +34,8 @@ Storybook is deployed to [Chromatic](https://chromatic.com) via `yarn chromatic`
 
 ## Environment variables
 
-CHAIN_ID = 1 // (or 5 for goerli)
-NODE_URLS ={"1":"https://mainnet.infura.io/v3/xxx","5":"https://goerli.infura.io/v3/xxx"}
-NEXT_PUBLIC_MAILCHIMP_URL="https://umaproject.us19.list-manage.com/subscribe/post?u={user}&id={id}&f_id={f_id}"
-NEXT_PUBLIC_DEFAULT_APY=30.5
+- CHAIN_ID = 1 // (or 5 for goerli)
+- NODE_URLS ={"1":"<https://mainnet.infura.io/v3/xxx","5":"https://goerli.infura.io/v3/xxx"}>
+- NEXT_PUBLIC_MAILCHIMP_URL="<https://umaproject.us19.list-manage.com/subscribe/post?u={user}&id={id}&f_id={f_id}>"
+- NEXT_PUBLIC_DEFAULT_APY=30.5
+- NEXT_PUBLIC_TVS=83M
