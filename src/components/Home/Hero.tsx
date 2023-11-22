@@ -3,6 +3,7 @@ import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
 import { useEffect, useRef } from "react";
 import { Icon } from "../Icon";
+import Image from "next/image";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
 
@@ -58,12 +59,13 @@ export default function Hero() {
   return (
     <LazyMotion features={loadFeatures}>
       <section
-        className="max-h-[1200px] relative grid w-full place-items-center overflow-clip bg-[--hero-video-background] px-[--page-padding]"
+        className="relative grid max-h-[1200px] w-full place-items-center overflow-clip bg-[--hero-video-background] px-[--page-padding]"
         style={{
           height: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
         }}
         ref={ref}
       >
+        <Image fill alt="hero background image lines" src="/assets/hero-bg-lines.svg" />
         <m.div
           className="absolute bottom-0 left-0 right-0"
           initial={{ opacity: 0, x: "-10%", y: "10%" }}
@@ -86,10 +88,7 @@ export default function Hero() {
             <source src="/assets/hero.webm" type="video/webm" />
           </video>
         </m.div>
-        <div
-          className="absolute left-0 top-0 h-full w-full bg-cover bg-repeat"
-          style={{ backgroundImage: "url('/assets/hero-bg-lines.svg')" }}
-        />
+
         <div className="mx-auto grid h-full max-w-[--page-width] grid-rows-[1fr_20%] items-center justify-items-center">
           <m.div className="justify- mb-3 flex flex-col items-center gap-8 lg:mb-0" {...headerAnimation}>
             <m.h1 className="z-10 text-center text-sm-fluid text-white md:text-md-fluid lg:text-lg-fluid">
@@ -129,11 +128,11 @@ export default function Hero() {
             }}
           >
             <NextLink
-              className="isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition hover:bg-red-510/15 hover:shadow-[0px_0px_50px_0px_var(--red)]"
+              className="hover:bg-red-510/15 isolate flex h-12 w-12 items-center justify-center gap-2 rounded-lg border border-solid border-red bg-[--hero-video-background] p-2 transition hover:shadow-[0px_0px_50px_0px_var(--red)]"
               href="#how-it-works"
               aria-label="Go to next section"
             >
-              <Icon name="arrow-down" className="animate-arrow text-red w-5 h-5" />
+              <Icon name="arrow-down" className="h-5 w-5 animate-arrow text-red" />
             </NextLink>
           </m.div>
         </div>
