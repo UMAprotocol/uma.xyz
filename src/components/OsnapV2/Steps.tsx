@@ -61,7 +61,7 @@ export function Steps() {
   );
   const stepImages = [step1Image, step2Image, step3Image];
   return (
-    <section className="bg-white px-page-padding py-8">
+    <section className="bg-white px-page-padding py-8 xl:py-12">
       {stepText.map((step, index) => (
         <div
           key={index}

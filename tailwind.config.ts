@@ -81,6 +81,7 @@ module.exports = {
     extend: {
       spacing: {
         "page-padding": "var(--page-padding)",
+        "page-padding-2": "calc(2 * var(--page-padding))",
         "page-width": "var(--page-width)",
         "header-height": "var(--header-height)",
         "header-blur-height": "var(--header-blur-height)",
