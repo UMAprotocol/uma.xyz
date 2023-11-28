@@ -3,25 +3,74 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
 import { PlusMinus } from "./PlusMinus";
+import NextLink from "next/link";
 
 export function Faq() {
   const modalProps = useTryOsnapModal();
 
   const faqs = [
     {
-      question: "How does UMA secure the governance process?",
+      question: "What is the relationship between oSnap and UMA?",
       answer:
-        "oSnap proposes successful governance votes to UMA, along with a bond. Anyone can dispute statements submitted to UMA by posting their own bond. This will trigger a vote, and if the dispute is successful, they will claim half the proposer's bond.",
+        "oSnap is built by UMA and secured by UMA's Optimistic Oracle. oSnap submits transactions from successful proposals to the Optimistic Oracle to be validated onchain where they will automatically execute from your Safe.",
     },
     {
-      question: "What's the difference between the voting period and the challenge period?",
-      answer:
-        "During the voting period members of your community are able to vote on the proposal in Snapshot. During the challenge period UMA token holders are able to dispute false proposals in exchange for claiming their bonds.",
+      question: "How secure is oSnap?",
+      answer: (
+        <>
+          For a transaction to be executed by oSnap it first has to be validated by UMA&apos;s Optimistic Oracle.
+          Assertions made to the OO are monitored by UMA&apos;s decentralized validator network along with a network of
+          open-source monitoring bots. Your community can get involved by running their own bots and monitoring oSnap
+          directly through the{" "}
+          <NextLink
+            className="items-center text-red transition hover:opacity-50"
+            href="https://vote.uma.xyz/"
+            target="_blank"
+            aria-label="Link to voter dapp"
+          >
+            UMA Voter dapp
+          </NextLink>
+          .
+        </>
+      ),
     },
     {
-      question: "What happens if Snapshot is compromised?",
+      question: "How is offchain voting in Snapshot better than onchain voting?",
+      answer: (
+        <>
+          Voting offchain in Snapshot is gasless, making it free to use and much easier for your community to
+          participate. Offchain proposals get approximately{" "}
+          <NextLink
+            className="items-center text-red transition hover:opacity-50"
+            href="https://dune.com/risk_labs/onchain-vs-offchain-voting"
+            target="_blank"
+            aria-label="Link to dune analytics dashboard"
+          >
+            4x more voters
+          </NextLink>{" "}
+          than onchain proposals.
+        </>
+      ),
+    },
+    {
+      question: "Do we still need a multisig if we use oSnap?",
       answer:
-        "UMA's oracle design ensures that false or malicious proposals not based on successful governance votes will be disputed and will not execute.",
+        "Approval from the multisig is necessary to integrate oSnap and grant it access to the treasury. After that point governance is fully automated and decentralized. Community members submit proposals and if they pass oSnap initiates the transactions automatically.",
+    },
+    {
+      question: "How are transactions from oSnap executed onchain?",
+      answer:
+        "oSnap uses bot infrastructure to take transaction data approved by Snapshot votes and submit them to UMA's Optimistic Oracle. The oracle then verifies that the vote is a perfect match for the results published independently by Snapshot. Once verified by UMA, the transaction is passed onchain and another oSnap bot initiates the transaction.",
+    },
+    {
+      question: "What if someone tries to submit a proposal that wasn't approved by Snapshot?",
+      answer:
+        "These proposals will be identified by either UMA's validator network or one of the many security bots that monitor the oracle. Once identified the proposal will immediately be disputed, at which point the oracle automatically deletes it.",
+    },
+    {
+      question: "What happens if the oSnap automations fail?",
+      answer:
+        "oSnap still functions even if the bot infrastructure fails. The oSnap bot infrastructure is open source, so you or anyone in your community can deploy your own. If no bots are active when a Snapshot vote succeeds, any user can perform the functions of the bots by submitting the proposal to UMA, disputing malicious proposals and executing transactions onchain.",
     },
     {
       question: "What chains does oSnap support?",
@@ -29,14 +78,18 @@ export function Faq() {
         <>
           oSnap is live on Arbitrum, Ethereum, Optimism and Polygon. If you want oSnap support on other EVM chains,
           speak to our{" "}
-          <span
-            className="cursor-pointer text-red underline"
-            onClick={() => {
-              modalProps.showModal();
+          <NextLink
+            className="items-center text-red transition hover:opacity-50"
+            href={{
+              pathname: "/osnap",
+              query: { modal: "try-osnap" },
             }}
+            onClick={modalProps.showModal}
+            aria-label="Link to open DAO support modal."
           >
-            integrations team.
-          </span>
+            integrations team
+          </NextLink>
+          .
         </>
       ),
     },
