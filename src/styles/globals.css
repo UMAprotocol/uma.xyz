@@ -4,17 +4,20 @@
 
 body[data-color-scheme="home"] {
   color: var(--grey-900);
-  background: var(--hero-video-background);
+  --background: var(--hero-video-background);
+  background: var(--background);
 }
 
 body[data-color-scheme="oval"] {
   color: var(--white);
-  background: hsl(0, 0%, 12%, 1);
+  --background: 0 0% 12%;
+  background: hsl(var(--background));
 }
 
-body[data-color-scheme="home"] {
+body[data-color-scheme="osnap"] {
   color: var(--grey-900);
-  background: var(--hero-video-background);
+  --background: var(--color-white);
+  background: hsl(var(--background));
 }
 
 html {

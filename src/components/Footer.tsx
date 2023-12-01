@@ -10,11 +10,18 @@ import { useRef } from "react";
 import { Icon } from "./Icon";
 import MailChimpForm from "./MailChimpForm";
 import VoteTicker from "./VoteTicker";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const id = "contact";
   const ref = useRef<HTMLDivElement>(null);
   useLoadSectionRefAndId(ref, id);
+  const pathname = usePathname();
+
+  // no footer on oval page?
+  if (pathname?.split("#")[0] === "/oval") {
+    return <></>;
+  }
 
   return (
     <footer
