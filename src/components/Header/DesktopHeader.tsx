@@ -6,19 +6,18 @@ import { Icon } from "../Icon";
 type Props = {
   isLightTheme: boolean;
   links: { label: string; href: string }[];
+  activePath: string | undefined;
 };
 
-export default function DesktopHeader({ isLightTheme, links }: Props) {
+export default function DesktopHeader({ isLightTheme, links, activePath }: Props) {
   function isActive(href: string) {
-    if (typeof window === "undefined") return false;
-    if (href === "/") return window.location.pathname === "/";
-    return window.location.href.includes(href);
+    return href === activePath;
   }
 
   return (
     <div className="hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid">
       <NextLink href="/" aria-label="Back to top" className="cursor-pointer">
-        <Icon name="uma-logo" className={`w-[63px] h-[16px] ${isLightTheme ? "text-black" : "text-white"}`} />
+        <Icon name="uma-logo" className={`h-[16px] w-[63px] ${isLightTheme ? "text-black" : "text-white"}`} />
       </NextLink>
       <div className="grid grid-flow-col items-center gap-5">
         {links.map(({ label, href }) => (
@@ -36,7 +35,7 @@ export default function DesktopHeader({ isLightTheme, links }: Props) {
             <span className="mr-2 inline-block aspect-square w-2 -translate-x-4 rounded-full bg-[--color] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-80" />{" "}
             <span className="text-lg text-[--color] group-hover:opacity-80">{label}</span>{" "}
             {isExternalLink(href) ? (
-              <Icon name="arrow" className="ml-1 transition -rotate-45 w-5 h-5 group-hover:opacity-80 text-[--color]" />
+              <Icon name="arrow" className="ml-1 h-5 w-5 -rotate-45 text-[--color] transition group-hover:opacity-80" />
             ) : null}
           </NextLink>
         ))}
