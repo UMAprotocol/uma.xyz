@@ -71,7 +71,7 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
         />
       </button>
       <NextLink href="/" aria-label="Back to page top">
-        <Icon name="uma-logo" className={`w-[63px] h-[16px] ${isLightTheme ? "text-black" : "text-white"}`} />
+        <Icon name="uma-logo" className={`h-[16px] w-[63px] ${isLightTheme ? "text-black" : "text-white"}`} />
       </NextLink>
       <div className="justify-self-end">
         <NextLink
@@ -86,7 +86,7 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
           }
         >
           App
-          <Icon name="arrow" className="text-[--color] -rotate-45 w-5 h-5" />
+          <Icon name="arrow" className="h-5 w-5 -rotate-45 text-[--color]" />
         </NextLink>
       </div>
       <MobileMenu links={links} isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />

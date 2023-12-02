@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body[data-color-scheme="home"] {
   color: var(--grey-900);
-  background: var(--hero-video-background);
+  --background: var(--hero-video-background);
+  background: var(--background);
+}
+
+body[data-color-scheme="oval"] {
+  color: var(--white);
+  --background: 0 0% 12%;
+  background: hsl(var(--background));
+}
+
+body[data-color-scheme="osnap"] {
+  color: var(--grey-900);
+  --background: var(--color-white);
+  background: hsl(var(--background));
 }
 
 html {
@@ -139,6 +152,9 @@ html {
   --success-700: hsl(var(--color-success-700));
   --success-800: hsl(var(--color-success-800));
   --success-900: hsl(var(--color-success-900));
+  /* oval colors */
+  --oval-black: 0 0% 12%;
+
   /* legacy 'red' color -- renamed to 'primary' */
   --red: hsl(var(--color-primary-500));
   /* special hero video background var */

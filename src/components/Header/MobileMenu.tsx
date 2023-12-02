@@ -57,7 +57,7 @@ export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
           >
             {label}{" "}
             {isExternalLink(href) ? (
-              <Icon name="arrow" className="ml-1 text-[--link-color] -rotate-45 w-5 h-5" />
+              <Icon name="arrow" className="ml-1 h-5 w-5 -rotate-45 text-[--link-color]" />
             ) : null}
           </NextLink>
         ))}
@@ -65,7 +65,7 @@ export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
       <div className="flex h-fit items-center gap-[22px] pb-[22px]">
         {socialLinks.map(({ href, icon, label }) => (
           <NextLink className="group z-10" onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
-            <Icon name={icon} className="text-[--link-color] w-6 h-6" />
+            <Icon name={icon} className="h-6 w-6 text-[--link-color]" />
           </NextLink>
         ))}
       </div>
