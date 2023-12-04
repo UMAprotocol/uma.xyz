@@ -37,7 +37,7 @@ export const OevLost = () => {
   }, [isVisible]);
 
   return (
-    <section className="relative mx-auto flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center">
+    <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">
       <div
         style={{
           perspective: "500px",
