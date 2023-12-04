@@ -8,7 +8,7 @@ export function Layout({ children }: { children: ReactNode }) {
     <>
       <VoteTicker />
       <Header />
-      <main className="overflow-clip">{children}</main>
+      <main className="overflow-clip pb-20">{children}</main>
       <Footer />
     </>
   );

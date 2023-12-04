@@ -11,7 +11,6 @@ export const Hero = () => {
       }}
     >
       <Image className="w-[80%]" src={heroImage} alt="decorative hero image" />
-
       <h1 className="bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text px-[20%] text-center text-sm-fluid text-transparent md:text-md-fluid lg:text-lg-fluid">
         Get paid to use oracles
       </h1>
@@ -19,9 +18,8 @@ export const Hero = () => {
         <h3 className="px-[20%] text-xl text-[#B3B5B4] xl:px-0">
           Your protocol creates value when it consumes price updates. Capture this value with Oval.
         </h3>
-
         <Link
-          className="text-background w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg no-underline transition hover:opacity-75 xl:w-fit"
+          className="w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
           href="https://demo.oval.uma.xyz/"
           target="_blank"
         >
