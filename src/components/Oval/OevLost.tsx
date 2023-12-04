@@ -37,9 +37,7 @@ export const OevLost = () => {
   }, [isVisible]);
 
   return (
-    <section
-      className={`relative mx-auto flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center ${roboto.className}`}
-    >
+    <section className="relative mx-auto flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center">
       <div
         style={{
           perspective: "500px",
@@ -48,7 +46,7 @@ export const OevLost = () => {
         <h3 className="text-md uppercase leading-6 text-white opacity-50">total oev lost in 2023</h3>
         <div
           ref={ref}
-          className="bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-md-fluid text-transparent lg:text-lg-fluid"
+          className={`bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-md-fluid text-transparent lg:text-lg-fluid ${roboto.className}`}
         >
           ${value}
         </div>
@@ -57,7 +55,7 @@ export const OevLost = () => {
             transform: "rotate3d(1, 0, 0, 40deg) translateY(1.1em) rotateX(180deg)",
             transformOrigin: "center top",
           }}
-          className="select-none text-md-fluid text-white opacity-5 lg:text-lg-fluid"
+          className={`select-none text-md-fluid text-white opacity-5 lg:text-lg-fluid ${roboto.className}`}
         >
           ${value}
         </div>
