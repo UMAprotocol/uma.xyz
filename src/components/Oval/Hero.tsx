@@ -10,8 +10,8 @@ export const Hero = () => {
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}
     >
-      <Image className="w-[80%]" src={heroImage} alt="decorative hero image" />
-      <h1 className="bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text px-[20%] text-center text-sm-fluid text-transparent md:text-md-fluid lg:text-lg-fluid">
+      <Image priority className="w-[80%]" src={heroImage} alt="decorative hero image" />
+      <h1 className="text-gradient-oval px-[20%] text-center text-sm-fluid  md:text-md-fluid lg:text-lg-fluid">
         Get paid to use oracles
       </h1>
       <div className="flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">

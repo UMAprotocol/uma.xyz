@@ -8,13 +8,13 @@ const content = [
 
 export const CaptureOev = () => {
   return (
-    <section className="relative mx-auto mt-12 flex max-h-[1200px] max-w-[1200px] flex-col items-center gap-4 px-[--page-padding] text-center align-top">
-      <h1 className="bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text px-[20%] text-center text-sm-fluid text-transparent md:text-md-fluid lg:text-lg-fluid">
+    <section className="relative mx-auto mt-12 flex max-w-[1200px] flex-col items-center gap-4 px-[--page-padding] text-center align-top">
+      <h2 className="text-gradient-oval px-[20%] text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid">
         Capture OEV with Oval
-      </h1>
-      <h2 className="bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-center text-xl text-transparent">
-        Oracle Value Aggregation Layer
       </h2>
+      <h3 className="bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-center text-xl text-transparent">
+        Oracle Value Aggregation Layer
+      </h3>
       <div className="mt-8 flex flex-col gap-2 lg:gap-3 xl:flex-row xl:items-center xl:gap-0">
         {content.map((item, i) => (
           <>

@@ -216,3 +216,9 @@ dialog::backdrop {
     background-color 0.3s,
     backdrop-filter 0.3s;
 }
+
+.text-gradient-oval {
+  background: linear-gradient(to right, white, hsla(0, 0%, 72%, 1));
+  color: transparent;
+  background-clip: text;
+}
