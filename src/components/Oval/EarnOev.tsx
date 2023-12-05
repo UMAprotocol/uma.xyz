@@ -15,8 +15,8 @@ export const EarnOev = ({ className }: EarnOevProps) => {
         className,
       )}
     >
-      <div className="flex flex-col items-center xl:flex-row xl:justify-center xl:gap-24">
-        <div className="max-w-[400px] flex-1">
+      <div className="flex flex-col items-center gap-8 xl:flex-row xl:justify-center xl:gap-24">
+        <div className="max-w-[500px] flex-1">
           <Image src={earnOevIMage} alt="decorative section image" />
         </div>
 
