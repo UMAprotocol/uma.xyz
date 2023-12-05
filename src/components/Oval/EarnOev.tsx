@@ -16,7 +16,10 @@ export const EarnOev = ({ className }: EarnOevProps) => {
       )}
     >
       <div className="flex flex-col items-center xl:flex-row xl:justify-center xl:gap-24">
-        <Image className="w-auto max-w-[400px]" src={earnOevIMage} alt="decorative section image" />
+        <div className="max-w-[400px] flex-1">
+          <Image src={earnOevIMage} alt="decorative section image" />
+        </div>
+
         <div className="flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
             Earn OEV
