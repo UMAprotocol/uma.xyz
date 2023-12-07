@@ -1,3 +1,4 @@
+import { Layout } from "@/components/Layout";
 import { OsnapV2 } from "@/components/pages/OsnapV2";
 import { Metadata } from "next";
 
@@ -23,5 +24,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <OsnapV2 />;
+  return (
+    <Layout colorScheme="OSNAP">
+      <OsnapV2 />
+    </Layout>
+  );
 }

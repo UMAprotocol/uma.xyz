@@ -39,6 +39,7 @@ export const useHeaderProps = () => {
       activePath: page,
     } as const;
   }
+  // default to homepage props
   return {
     bg: "transparent",
     isLightTheme: false,

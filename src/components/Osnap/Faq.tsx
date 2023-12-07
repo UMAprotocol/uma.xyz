@@ -31,7 +31,7 @@ export function Faq() {
   ];
   return (
     <section className="bg-grey-25 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="md:max-w-[1216px] md:mx-auto">
+      <div className="md:mx-auto md:max-w-[1216px]">
         <h2 className="mb-12 text-3xl text-grey-900 md:text-6xl">FAQs</h2>
         <div className="mb-12 grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-x-8 gap-y-10 lg:gap-y-16">
           {faqs.map(({ question, answer }) => (
@@ -41,7 +41,7 @@ export function Faq() {
             </div>
           ))}
         </div>
-        <div className="max-w-[--page-width] mx-auto flex flex-col gap-6 rounded-2xl bg-grey-100 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex max-w-[--page-width] flex-col gap-6 rounded-2xl bg-grey-100 px-5 py-8 md:flex-row md:items-center md:justify-between md:px-8">
           <div>
             <h3 className="mb-2 text-lg text-grey-900">Want to know more?</h3>
             <p className="text-grey-600">Let&apos;s book a call and talk about what oSnap can do for you.</p>

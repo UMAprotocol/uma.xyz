@@ -48,7 +48,7 @@ export function HowItWorks() {
               className="relative border-l border-dashed border-red/40 p-7 pl-10 pt-2 last:border-none lg:border-none"
             >
               <div className="absolute -left-[24px] top-0 w-[48px]">
-                <Icon name={icon} className="w-10 h-10" />
+                <Icon name={icon} className="h-10 w-10" />
               </div>
               <div>
                 <h3 className="text-lg text-grey-900">{title}</h3>

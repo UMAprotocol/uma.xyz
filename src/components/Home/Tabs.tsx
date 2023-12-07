@@ -224,7 +224,7 @@ contract LongShortPair {
       icon: (
         <Icon
           name="scale"
-          className="w-8 h-8 transition-transform group-data-[state=active]:-translate-y-3 [&_path]:group-data-[state=active]:stroke-red"
+          className="h-8 w-8 transition-transform group-data-[state=active]:-translate-y-3 [&_path]:group-data-[state=active]:stroke-red"
         />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
@@ -241,7 +241,7 @@ contract LongShortPair {
       icon: (
         <Icon
           name="wand"
-          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+          className="h-8 w-8 text-grey-400 transition group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
         />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
@@ -257,7 +257,7 @@ contract LongShortPair {
       icon: (
         <Icon
           name="tube"
-          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+          className="h-8 w-8 text-grey-400 transition group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
         />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
@@ -274,7 +274,7 @@ contract LongShortPair {
       icon: (
         <Icon
           name="telescope"
-          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+          className="h-8 w-8 text-grey-400 transition group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
         />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
@@ -290,7 +290,7 @@ contract LongShortPair {
       icon: (
         <Icon
           name="globe"
-          className="w-8 h-8 transition text-grey-400 group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
+          className="h-8 w-8 text-grey-400 transition group-data-[state=active]:-translate-y-3 group-data-[state=active]:text-red"
         />
       ),
       docHref: "https://docs.uma.xyz/developers/optimistic-oracle",

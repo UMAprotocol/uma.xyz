@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { CaptureOev, Hero, OevLost, EarnOev } from "@/components/Oval";
+import { Layout } from "@/components/Layout";
 
 const title = "Oval";
 const description = "TODO: get copy for description";
@@ -24,11 +25,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <>
+    <Layout showTicker={false} colorScheme="OVAL">
       <Hero />
       <OevLost />
       <CaptureOev />
       <EarnOev />
-    </>
+    </Layout>
   );
 }

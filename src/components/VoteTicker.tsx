@@ -44,7 +44,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       style={
         {
           "--background": isLightTheme ? "transparent" : "var(--hero-video-background)",
-          "--color": isLightTheme ? "var(--grey-900)" : "var(--grey-300)",
+          "--color-ticker": isLightTheme ? "var(--grey-900)" : "var(--grey-300)",
         } as CSSProperties
       }
     >
@@ -57,18 +57,18 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       >
         <div className="flex items-center gap-4">
           <div className="flex h-8 w-8 items-center justify-center gap-2 rounded-full bg-red/10">
-            <Icon name="clock" className="text-red w-4 h-4" />
+            <Icon name="clock" className="h-4 w-4 text-red" />
           </div>
           {isActive ? (
             <>
-              <div className="text-[--color]">
+              <div className="text-[--color-ticker]">
                 <span className="hidden sm:inline">Time to {data.phase} vote: </span>
                 <span className="sm:hidden">{data.phase} vote: </span>
                 <span
-                  className="ml-1 inline-block min-w-[96px] text-[--color]"
+                  className="ml-1 inline-block min-w-[96px]"
                   style={
                     {
-                      "--color": isLightTheme ? "var(--primary-500)" : "var(--white)",
+                      color: isLightTheme ? "var(--primary-500)" : "var(--white)",
                     } as CSSProperties
                   }
                 >
@@ -88,7 +88,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
               </div>
             </>
           ) : (
-            <div className="text-[--color]">
+            <div className="text-[--color-ticker]">
               <span className="hidden sm:inline">No active votes</span>
               <span className="sm:hidden">No votes</span>
             </div>
@@ -96,13 +96,13 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
         </div>
         <div>
           <NextLink
-            className="flex items-center gap-1 transition hover:opacity-50 text-[--color]"
+            className="text-[--color-ticker]] flex items-center gap-1 transition hover:opacity-50"
             href="https://vote.uma.xyz/"
             target="_blank"
             aria-label="Link to voter dapp"
           >
-            <span className="hidden text-[--color] sm:inline">More details</span>
-            <Icon name="arrow" className="-rotate-45 w-5 h-5" />
+            <span className="hidden text-[--color-ticker] sm:inline">More details</span>
+            <Icon name="arrow" className="h-5 w-5 -rotate-45 text-[--color-ticker]" />
           </NextLink>
         </div>
       </div>

@@ -31,7 +31,7 @@ const partners = [
 
 export const Partners = () => {
   return (
-    <section className="px-page-padding-2 mx-auto flex w-full max-w-page-width flex-col items-center gap-6 bg-white py-8">
+    <section className="mx-auto flex w-full max-w-page-width flex-col items-center gap-6 bg-white px-page-padding-2 py-8">
       <h2 className="text-gray-600 text-md xl:text-lg">Securing Crypto&apos;s Finest</h2>
       <div className="flex w-full flex-row flex-wrap gap-6">
         {partners.map((partner) => (

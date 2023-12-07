@@ -42,7 +42,7 @@ export default function SupportSection() {
               target="_blank"
             >
               <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition group-hover:border-red group-hover:bg-red">
-                <Icon name="arrow" className="-rotate-45 w-6 h-6 transition text-grey-800 group-hover:text-white" />
+                <Icon name="arrow" className="h-6 w-6 -rotate-45 text-grey-800 transition group-hover:text-white" />
               </div>
               <span className="text-3xl transition sm:text-5xl">Careers</span>
             </NextLink>
@@ -52,7 +52,7 @@ export default function SupportSection() {
               target="_blank"
             >
               <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition group-hover:border-red group-hover:bg-red">
-                <Icon name="arrow" className="-rotate-45 w-6 h-6 transition text-grey-800 group-hover:text-white" />
+                <Icon name="arrow" className="h-6 w-6 -rotate-45 text-grey-800 transition group-hover:text-white" />
               </div>
               <span className="text-3xl transition sm:text-5xl">About</span>
             </NextLink>
