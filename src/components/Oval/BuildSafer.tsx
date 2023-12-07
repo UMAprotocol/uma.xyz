@@ -1,13 +1,13 @@
 import { cn } from "@/utils/styleUtils";
 import Image from "next/image";
-import earnOevIMage from "public/assets/oval-earn-oev.webp";
+import buildSaferImage from "public/assets/oval-build-safer.webp";
 import { ExternalLink } from "./ExternalLink";
 
-export type EarnOevProps = {
+export type BuildSaferProps = {
   className?: string;
 };
 
-export const EarnOev = ({ className }: EarnOevProps) => {
+export const BuildSafer = ({ className }: BuildSaferProps) => {
   return (
     <section
       className={cn(
@@ -15,22 +15,21 @@ export const EarnOev = ({ className }: EarnOevProps) => {
         className,
       )}
     >
-      <div className="flex flex-col items-center gap-8 xl:flex-row xl:justify-center xl:gap-24">
-        <div className="max-w-[500px] flex-1">
-          <Image src={earnOevIMage} alt="decorative section image" />
+      <div className="flex flex-col items-center gap-8 xl:flex-row-reverse xl:justify-center xl:gap-24">
+        <div className="flex-4 max-w-[600px]">
+          <Image src={buildSaferImage} alt="decorative section image" />
         </div>
 
-        <div className="flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
+        <div className="flex-3 flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
-            Earn OEV
+            Build safer
           </h2>
           <p className="text-center text-xl text-[#B3B5B4] xl:text-left">
-            Legacy oracles leave you vulnerable to MEV searchers. Oval wraps your existing oracle and shields you from
-            searchers.
+            Oval is not an oracle - it wraps existing oracles.
           </p>
           <p className="text-center  text-xl text-[#B3B5B4] xl:text-left">
-            Oval integrates with Flashbots&apos; MEV-Share to auction your OEV, so that you capture the value you
-            create.
+            Get prices from the oracle you trust most, add others as fallbacks, or take the latest prices from any
+            source.
           </p>
           <ExternalLink href="https://docs.uma.xyz/">learn more in docs</ExternalLink>
         </div>
