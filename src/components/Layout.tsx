@@ -1,3 +1,4 @@
+import { cn } from "@/utils/styleUtils";
 import Footer from "./Footer";
 import Header from "./Header";
 import VoteTicker from "./VoteTicker";
@@ -11,10 +12,11 @@ const ColorSchemes = {
 type ColorScheme = keyof typeof ColorSchemes;
 
 export type LayoutProps = {
+  children: React.ReactNode;
   colorScheme?: ColorScheme;
   showTicker?: boolean;
   showFooter?: boolean;
-  children: React.ReactNode;
+  className?: string
 };
 
 export function Layout({
@@ -22,9 +24,10 @@ export function Layout({
   showTicker = true,
   showFooter = true,
   colorScheme = ColorSchemes.HOME,
+  className
 }: LayoutProps) {
   return (
-    <main data-color-scheme={colorScheme.toLowerCase()} className="overflow-clip">
+    <main data-color-scheme={colorScheme.toLowerCase()} className={cn("overflow-clip h-[100%]", className)}>
       {showTicker ? <VoteTicker /> : null}
       <Header />
       {children}

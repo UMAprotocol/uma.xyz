@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <SandPackCSS />
       </head>
-      <body>
+      <body className="h-full">
         <ScrollProvider>{children}</ScrollProvider>
       </body>
     </html>

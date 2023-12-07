@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  padding-bottom: 0;
+}
+
 main[data-color-scheme="home"] {
   color: var(--grey-900);
   --background: var(--hero-video-background);

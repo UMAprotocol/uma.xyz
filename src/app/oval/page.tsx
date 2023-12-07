@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Layout showTicker={false} colorScheme="OVAL">
+    <Layout showTicker={false} colorScheme="OVAL" className="pb-[96px]">
       <Hero />
       <OevLost />
       <CaptureOev />
