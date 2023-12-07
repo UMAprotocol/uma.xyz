@@ -11,7 +11,7 @@ export const EarnOev = ({ className }: EarnOevProps) => {
   return (
     <section
       className={cn(
-        "relative mx-auto my-[128px] max-w-[1200px] flex-col items-center overflow-clip px-[--page-padding] xl:pb-[128px]",
+        "relative mx-auto mt-[128px] max-w-[1200px] flex-col items-center overflow-clip px-[--page-padding] xl:pb-[128px]",
         className,
       )}
     >
