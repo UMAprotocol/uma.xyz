@@ -1,3 +1,4 @@
+import { cn } from "@/utils/styleUtils";
 import { Divider } from "./Divider";
 
 const content = [
@@ -36,12 +37,15 @@ type CardProps = {
 const Card = ({ number, text, className }: CardProps) => {
   return (
     <div
-      className={`flex flex-1 flex-row items-start gap-4 rounded-[20px] border border-white/5 bg-white/5 p-6 text-lg text-white shadow-sm backdrop-blur-sm ${className}`}
+      className={cn(
+        "flex flex-1 flex-row items-start gap-4 rounded-[20px] border border-white/5 bg-white/5 p-6 text-lg text-white shadow-sm backdrop-blur-sm",
+        className,
+      )}
     >
       <div className="text-md aspect-square h-[2em] w-[2em] rounded-[10px] border border-white/5 text-center text-white/50 shadow-md">
         {number}
       </div>
-      <span className="text-left">{text}</span>
+      <span className="text-left opacity-75">{text}</span>
     </div>
   );
 };

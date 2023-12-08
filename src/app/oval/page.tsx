@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { CaptureOev, Hero, OevLost, EarnOev, BuildSafer } from "@/components/Oval";
+import { CaptureOev, Hero, OevLost, EarnOev, BuildSafer, OevCreation } from "@/components/Oval";
 
 const title = "Oval";
 const description = "TODO: get copy for description";
@@ -30,6 +30,7 @@ export default function Page() {
       <CaptureOev />
       <EarnOev />
       <BuildSafer />
+      <OevCreation />
     </>
   );
 }
