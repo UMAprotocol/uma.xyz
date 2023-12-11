@@ -48,7 +48,7 @@ export const OevCreation = () => {
         href="https://demo.oval.uma.xyz/"
         target="_blank"
       >
-        Try Oval today
+        Try OVAL today
       </Link>
     </section>
   );

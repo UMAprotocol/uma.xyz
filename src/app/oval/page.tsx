@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { CaptureOev, Hero, OevLost, EarnOev, BuildSafer, OevCreation } from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 
-const title = "Oval";
+const title = "OVAL";
 const description = "TODO: get copy for description";
 
 // TODO: assets for OG metadata
