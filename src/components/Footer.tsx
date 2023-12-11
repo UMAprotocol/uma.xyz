@@ -37,14 +37,14 @@ export default function Footer() {
       <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 md:grid md:grid-cols-[1fr_1fr]">
         <div className="row-start-2 my-14 grid h-fit grid-rows-2 justify-center justify-items-start md:row-start-auto md:h-auto md:grid-rows-none md:justify-normal xl:grid-cols-3 xl:grid-rows-none">
           <NextLink className="hidden md:mb-4 md:block" href="#" aria-label="Home">
-            <Icon name="uma-logo" className="text-red w-16 h-4" />
+            <Icon name="uma-logo" className="h-4 w-16 text-red" />
           </NextLink>
           <LinksList links={footerLinks.internal} />
           <LinksList links={footerLinks.external} />
         </div>
         <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
           <NextLink className="md:hidden" href="#" aria-label="Home">
-            <Icon name="uma-logo" className="text-black w-16 h-4" />
+            <Icon name="uma-logo" className="h-4 w-16 text-black" />
           </NextLink>
           <h3 className="w-fit text-center text-xl text-grey-700 md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA and OO news, straight to your inbox.
@@ -57,7 +57,7 @@ export default function Footer() {
         <div className="flex items-center gap-6">
           {socialLinks.map(({ href, icon, label }) => (
             <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>
-              <Icon name={icon} className="transition text-grey-800 group-hover:text-red w-6 h-6" />
+              <Icon name={icon} className="h-6 w-6 text-grey-800 transition group-hover:text-red" />
             </NextLink>
           ))}
         </div>
@@ -74,10 +74,10 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
           <NextLink
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
-            className="flex items-center gap-1 transition-all hover:brightness-200 hover:gap-[2px]"
+            className="flex items-center gap-1 transition-all hover:gap-[2px] hover:brightness-200"
           >
             {label}
-            {isExternalLink(href) && <Icon name="arrow" className=" -rotate-45 w-4 h-4" />}
+            {isExternalLink(href) && <Icon name="arrow" className=" h-4 w-4 -rotate-45" />}
           </NextLink>
         </li>
       ))}

@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/utils/styleUtils";
 import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
 
 type Props = {
@@ -14,7 +15,7 @@ export function TryOsnapButton({ className = "" }: Props) {
         onClick={() => {
           modalProps.showModal();
         }}
-        className={`mx-auto block rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white ${className}`}
+        className={cn("mx-auto block rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white", className)}
       >
         Try oSnap
       </button>
