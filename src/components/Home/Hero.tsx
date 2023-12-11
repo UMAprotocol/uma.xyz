@@ -84,8 +84,8 @@ export default function Hero() {
               MozBackfaceVisibility: "hidden",
             }}
           >
-            <source src="/assets/hero.mp4" type="video/mp4" />
             <source src="/assets/hero.webm" type="video/webm" />
+            <source src="/assets/hero.mp4" type="video/mp4" />
           </video>
         </m.div>
 
