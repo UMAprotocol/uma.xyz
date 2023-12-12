@@ -9,7 +9,7 @@ import { Icon } from "../Icon";
 import { TryOsnapButton } from "./TryOsnapButton";
 
 export function Video() {
-  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/F7HcuI-oYsY?controls=0");
+  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/tj_m6XMoPO4?controls=0");
   const [showThumbnail, setShowThumbnail] = useState(true);
 
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -21,7 +21,7 @@ export function Video() {
   return (
     <section className="bg-grey-50 px-4 py-6 sm:p-8 md:p-16 lg:p-[88px]">
       <h1 className="mx-auto mb-6 max-w-[1024px] text-center text-4xl font-medium text-grey-500 sm:mb-8 sm:text-5xl md:text-6xl lg:mb-12 lg:text-7xl xl:mb-16 xl:text-8xl">
-        Achieve decentralized governance in <span className="text-primary-500">71 seconds.</span>
+        Achieve decentralized governance in <span className="text-primary-500">under two minutes.</span>
       </h1>
       <div className="mx-auto mb-6 max-w-[848px] rounded-2xl bg-white p-4 shadow-xl">
         <div className="relative mb-4">
