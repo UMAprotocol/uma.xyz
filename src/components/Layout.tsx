@@ -2,6 +2,7 @@ import { cn } from "@/utils/styleUtils";
 import Footer from "./Footer";
 import Header from "./Header";
 import VoteTicker from "./VoteTicker";
+import { PortalContainer } from "./Portal";
 
 const ColorSchemes = {
   HOME: "HOME",
@@ -16,7 +17,7 @@ export type LayoutProps = {
   colorScheme?: ColorScheme;
   showTicker?: boolean;
   showFooter?: boolean;
-  className?: string
+  className?: string;
 };
 
 export function Layout({
@@ -24,14 +25,15 @@ export function Layout({
   showTicker = true,
   showFooter = true,
   colorScheme = ColorSchemes.HOME,
-  className
+  className,
 }: LayoutProps) {
   return (
-    <main data-color-scheme={colorScheme.toLowerCase()} className={cn("overflow-clip h-[100%]", className)}>
-      {showTicker ? <VoteTicker /> : null}
+    <main data-color-scheme={colorScheme.toLowerCase()} className={cn("relative h-[100%] overflow-clip", className)}>
+      {showTicker && <VoteTicker className="z-20" />}
       <Header />
       {children}
       {showFooter && <Footer />}
+      <PortalContainer />
     </main>
   );
 }

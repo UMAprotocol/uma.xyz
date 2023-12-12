@@ -5,7 +5,7 @@ import heroImage from "public/assets/oval_hero.jpg";
 export const Hero = () => {
   return (
     <section
-      className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 overflow-clip px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]"
+      className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]"
       style={{
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}

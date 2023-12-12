@@ -14,10 +14,10 @@ export default function Header() {
     <header
       style={
         {
-          "--background": bg,
+          "--background-header": bg,
         } as CSSProperties
       }
-      className="sticky top-0 z-20 grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm"
+      className="sticky top-0 z-20 grid items-center bg-[--background-header] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background-header)] backdrop-blur-sm"
     >
       <motion.div
         key={headerProps.activePath}

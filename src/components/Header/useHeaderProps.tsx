@@ -16,6 +16,7 @@ export const useHeaderProps = () => {
   if (isHomePage) {
     return {
       bg: isLightThemeFromScroll ? "var(--white)" : "var(--hero-video-background)",
+      menuBg: isLightThemeFromScroll ? "var(--white)" : "var(--hero-video-background)",
       isLightTheme: isLightThemeFromScroll,
       links: homePageLinks,
       activePath: page,
@@ -25,6 +26,7 @@ export const useHeaderProps = () => {
   if (isOsnapPage) {
     return {
       bg: "transparent",
+      menuBg: "var(--background-page)",
       isLightTheme: true,
       links: osnapPageLinks,
       activePath: page,
@@ -34,6 +36,7 @@ export const useHeaderProps = () => {
   if (isOvalPage) {
     return {
       bg: "transparent",
+      menuBg: "var(--background-page)",
       isLightTheme: false,
       links: ovalPageLinks,
       activePath: page,
@@ -42,6 +45,7 @@ export const useHeaderProps = () => {
   // default to homepage props
   return {
     bg: "transparent",
+    menuBg: "var(--background-page)",
     isLightTheme: false,
     links: homePageLinks,
     activePath: page,

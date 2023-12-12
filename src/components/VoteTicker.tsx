@@ -7,8 +7,14 @@ import { usePathname } from "next/navigation";
 import { CSSProperties, useState } from "react";
 import { useInterval } from "usehooks-ts";
 import { Icon } from "./Icon";
+import { cn } from "@/utils/styleUtils";
 
-export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
+type VoteTickerProps = {
+  className?: string;
+  isLightTheme?: boolean;
+};
+
+export default function VoteTicker({ isLightTheme: isLightTheme_ = false, className }: VoteTickerProps) {
   const { data } = useVotingInfo();
   const [timeRemaining, setTimeRemaining] = useState("--:--:--");
   const isActive = data.activeRequests > 0;
@@ -37,7 +43,10 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
 
   return (
     <motion.div
-      className="grid h-[--vote-ticker-height] place-items-center bg-[--background] bg-cover bg-no-repeat pb-1 pt-4 lg:px-[--page-padding]"
+      className={cn(
+        "grid h-[--vote-ticker-height] place-items-center bg-[--background] bg-cover bg-no-repeat pb-1 pt-4 lg:px-[--page-padding]",
+        className,
+      )}
       initial={{ opacity: 0, y: "-20px" }}
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.3, delay: 0.8 }}
@@ -49,7 +58,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false }) {
       }
     >
       <div
-        className="isolate flex w-full max-w-[--page-width] items-center justify-between gap-4 rounded-lg bg-cover bg-no-repeat p-2 pr-4"
+        className="isolate  flex w-full max-w-[--page-width] items-center justify-between gap-4 rounded-lg bg-cover bg-no-repeat p-2 pr-4"
         style={{
           backgroundColor: isLightTheme ? "var(--grey-200)" : "var(--grey-700)",
           backgroundImage: isLightTheme ? `url("/assets/white-lines.png")` : `url("/assets/black-lines.png")`,
