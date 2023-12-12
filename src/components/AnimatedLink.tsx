@@ -21,7 +21,7 @@ export default function AnimatedLink({
     >
       {children}
       <div className="relative left-0 ml-4 inline-flex h-8 w-8 items-center justify-center rounded-lg border border-red transition-all group-hover:ml-3 group-hover:border-grey-900 group-hover:bg-grey-900">
-        <Icon name="arrow" className="transition text-red group-hover:text-white -rotate-45 w-6 h-6" />
+        <Icon name="arrow" className="h-6 w-6 -rotate-45 text-red transition group-hover:text-white" />
       </div>
     </Link>
   );

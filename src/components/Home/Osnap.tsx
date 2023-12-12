@@ -19,20 +19,20 @@ export function Osnap() {
         />
         <div className="max-w-[540px]">
           <h1 className="mb-4 flex items-center gap-2 text-xl text-grey-600 md:text-2xl">
-            Introducing <Icon name="osnap-logo" className="w-[60px] h-[22px] md:w-[78px] md:h-[30px] text-red" />
+            Introducing <Icon name="osnap-logo" className="h-[22px] w-[60px] text-red md:h-[30px] md:w-[78px]" />
           </h1>
           <h2 className="mb-6 text-3xl text-black md:mb-16 md:text-6xl">
             DAO Governance made <span className="text-red">simple.</span>
           </h2>
           <div className="mb-8 grid grid-rows-[auto,auto] gap-3 md:grid-cols-[auto,auto] md:grid-rows-none">
-            <Icon name="chat" className="w-14 h-14" />
+            <Icon name="chat" className="h-14 w-14" />
             <div>
               <h3 className="mb-2 text-lg">Reduces delays</h3>
               <p className="text-grey-600">oSnap enables immediate decision implementation, ending waiting periods.</p>
             </div>
           </div>
           <div className="mb-8 grid grid-rows-[auto,auto] gap-3 md:grid-cols-[auto,auto] md:grid-rows-none">
-            <Icon name="zap" className="w-14 h-14" />
+            <Icon name="zap" className="h-14 w-14" />
             <div>
               <h3 className="mb-2 text-lg">Enhances security</h3>
               <p className="text-grey-600">
@@ -41,7 +41,7 @@ export function Osnap() {
             </div>
           </div>
           <div className="mb-10 grid grid-rows-[auto,auto] gap-3 md:mb-16 md:grid-cols-[auto,auto] md:grid-rows-none">
-            <Icon name="chart" className="w-14 h-14" />
+            <Icon name="chart" className="h-14 w-14" />
             <div>
               <h3 className="mb-2 text-lg">Boosts transparency</h3>
               <p className="text-grey-600">

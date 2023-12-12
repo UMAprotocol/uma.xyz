@@ -8,7 +8,7 @@ import { Partners } from "../OsnapV2/Partners";
 
 export function OsnapV2() {
   return (
-    <div className="bg-white">
+    <>
       <Hero />
       <Partners />
       <Steps />
@@ -16,6 +16,6 @@ export function OsnapV2() {
       <Features />
       <Video />
       <Faq />
-    </div>
+    </>
   );
 }

@@ -102,13 +102,13 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
           href={link}
           target="_blank"
         >
-          <div className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-md opacity-0 transition group-hover:opacity-100 lg:right-4 lg:top-4 lg:bg-red text-red lg:text-white">
-            <Icon name="arrow" className="-rotate-45 w-5 h-5" />
+          <div className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-md text-red opacity-0 transition group-hover:opacity-100 lg:right-4 lg:top-4 lg:bg-red lg:text-white">
+            <Icon name="arrow" className="h-5 w-5 -rotate-45" />
           </div>
           <div className="relative grid w-full place-items-center gap-4">
             <Icon
               name={icon}
-              className="w-[25%] group-hover:-translate-y-3 text-grey-900 transition [&_path] group-hover:text-red"
+              className="[&_path] w-[25%] text-grey-900 transition group-hover:-translate-y-3 group-hover:text-red"
             />
             <span className="absolute -bottom-[40px] uppercase text-red opacity-0 transition group-hover:-translate-y-3 group-hover:opacity-100">
               {name}

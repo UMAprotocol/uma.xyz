@@ -16,7 +16,7 @@ export const homePageLinks = [
     href: "/osnap",
   },
   {
-    label: "Oval",
+    label: "OVAL",
     href: "/oval",
   },
   {
@@ -42,7 +42,7 @@ export const osnapPageLinks = [
 
 export const ovalPageLinks = [
   {
-    label: "Oval",
+    label: "OVAL",
     href: "/oval",
   },
   {

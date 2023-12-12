@@ -48,7 +48,7 @@ export const AllTheIcons = {
     return (
       <div className="m-6 bg-white">
         {iconIds.map((id) => (
-          <div key={id} className="inline-block m-2">
+          <div key={id} className="m-2 inline-block">
             <Icon name={id} />
           </div>
         ))}

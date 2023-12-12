@@ -15,7 +15,7 @@ export function Hero() {
         </div>
         <div>
           <h1 className="mb-4 flex items-center gap-2 text-xl text-grey-600 md:text-2xl">
-            Introducing <Icon name="osnap-logo" className="w-[60px] h-[22px] md:w-[78px] md:h-[30px] text-red" />
+            Introducing <Icon name="osnap-logo" className="h-[22px] w-[60px] text-red md:h-[30px] md:w-[78px]" />
           </h1>
           <h2 className="mb-6 text-5xl text-black md:text-6xl lg:text-8xl">
             DAO <br className="md:hidden" />

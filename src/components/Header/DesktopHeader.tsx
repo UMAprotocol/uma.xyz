@@ -33,7 +33,7 @@ export default function DesktopHeader({ isLightTheme, links, activePath }: Props
             }
           >
             <span className="mr-2 inline-block aspect-square w-2 -translate-x-4 rounded-full bg-[--color] opacity-0 transition group-hover:translate-x-0 group-hover:opacity-80" />{" "}
-            <span className="text-lg text-[--color] group-hover:opacity-80">{label}</span>{" "}
+            <span className="text-lg text-[--color] opacity-100 group-hover:opacity-80">{label}</span>{" "}
             {isExternalLink(href) ? (
               <Icon name="arrow" className="ml-1 h-5 w-5 -rotate-45 text-[--color] transition group-hover:opacity-80" />
             ) : null}
@@ -46,8 +46,8 @@ export default function DesktopHeader({ isLightTheme, links, activePath }: Props
         target="_blank"
         style={
           {
-            "--color": isLightTheme ? "var(--white)" : "var(--grey-900)",
-            "--background": isLightTheme ? "var(--grey-900)" : "var(--white)",
+            color: isLightTheme ? "var(--white)" : "var(--grey-900)",
+            background: isLightTheme ? "var(--grey-900)" : "var(--white)",
           } as CSSProperties
         }
       >

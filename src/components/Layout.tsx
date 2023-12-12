@@ -1,15 +1,39 @@
-import { ReactNode } from "react";
+import { cn } from "@/utils/styleUtils";
 import Footer from "./Footer";
 import Header from "./Header";
 import VoteTicker from "./VoteTicker";
+import { PortalContainer } from "./Portal";
 
-export function Layout({ children }: { children: ReactNode }) {
+const ColorSchemes = {
+  HOME: "HOME",
+  OSNAP: "OSNAP",
+  OVAL: "OVAL",
+} as const;
+
+type ColorScheme = keyof typeof ColorSchemes;
+
+export type LayoutProps = {
+  children: React.ReactNode;
+  colorScheme?: ColorScheme;
+  showTicker?: boolean;
+  showFooter?: boolean;
+  className?: string;
+};
+
+export function Layout({
+  children,
+  showTicker = true,
+  showFooter = true,
+  colorScheme = ColorSchemes.HOME,
+  className,
+}: LayoutProps) {
   return (
-    <>
-      <VoteTicker />
+    <main data-color-scheme={colorScheme.toLowerCase()} className={cn("relative h-[100%] overflow-clip", className)}>
+      {showTicker && <VoteTicker className="z-20" />}
       <Header />
-      <main className="overflow-clip pb-20">{children}</main>
-      <Footer />
-    </>
+      {children}
+      {showFooter && <Footer />}
+      <PortalContainer />
+    </main>
   );
 }

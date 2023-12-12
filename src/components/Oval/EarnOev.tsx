@@ -11,7 +11,7 @@ export const EarnOev = ({ className }: EarnOevProps) => {
   return (
     <section
       className={cn(
-        "relative mx-auto my-[128px] max-w-[1200px] flex-col items-center overflow-clip px-[--page-padding]",
+        "relative mx-auto mt-[128px] max-w-[1200px] flex-col items-center overflow-clip px-[--page-padding] xl:pb-[128px]",
         className,
       )}
     >
@@ -25,11 +25,11 @@ export const EarnOev = ({ className }: EarnOevProps) => {
             Earn OEV
           </h2>
           <p className="text-center text-xl text-[#B3B5B4] xl:text-left">
-            Legacy oracles leave you vulnerable to MEV searchers. Oval wraps your existing oracle and shields you from
+            Legacy oracles leave you vulnerable to MEV searchers. OVAL wraps your existing oracle and shields you from
             searchers.
           </p>
           <p className="text-center  text-xl text-[#B3B5B4] xl:text-left">
-            Oval integrates with Flashbots&apos; MEV-Share to auction your OEV, so that you capture the value you
+            OVAL integrates with Flashbots&apos; MEV-Share to auction your OEV, so that you capture the value you
             create.
           </p>
           <ExternalLink href="https://docs.uma.xyz/">learn more in docs</ExternalLink>

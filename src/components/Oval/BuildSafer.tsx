@@ -25,7 +25,7 @@ export const BuildSafer = ({ className }: BuildSaferProps) => {
             Build safer
           </h2>
           <p className="text-center text-xl text-[#B3B5B4] xl:text-left">
-            Oval is not an oracle - it wraps existing oracles.
+            OVAL is not an oracle - it wraps existing oracles.
           </p>
           <p className="text-center  text-xl text-[#B3B5B4] xl:text-left">
             Get prices from the oracle you trust most, add others as fallbacks, or take the latest prices from any

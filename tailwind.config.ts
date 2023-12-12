@@ -14,7 +14,7 @@ module.exports = {
       sans: ["Halyard Display", "sans-serif"],
     },
     colors: {
-      background: "hsl(var(--background) / <alpha-value>)",
+      background: "hsl(var(--background-base) / <alpha-value>)",
       black: "hsl(var(--color-black) / <alpha-value>)",
       white: "hsl(var(--color-white) / <alpha-value>)",
       transparent: "transparent",

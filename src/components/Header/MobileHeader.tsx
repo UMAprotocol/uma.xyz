@@ -8,10 +8,11 @@ import MobileMenu from "./MobileMenu";
 
 type Props = {
   isLightTheme: boolean;
+  menuBg: string;
   links: { label: string; href: string }[];
 };
 
-export default function MobileHeader({ isLightTheme, links }: Props) {
+export default function MobileHeader({ isLightTheme, menuBg, links }: Props) {
   const [showMenu, setShowMenu] = useState(false);
 
   const closeMenuBarTransition = `
@@ -43,7 +44,7 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
       preventScrollOnFocus
     >
       <button
-        className="relative h-3 w-6 justify-self-start"
+        className="relative h-3 w-6 justify-self-start p-1"
         aria-label="Open navigation menu"
         onClick={toggleShowMenu}
         style={
@@ -89,7 +90,8 @@ export default function MobileHeader({ isLightTheme, links }: Props) {
           <Icon name="arrow" className="h-5 w-5 -rotate-45 text-[--color]" />
         </NextLink>
       </div>
-      <MobileMenu links={links} isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
+
+      <MobileMenu menuBg={menuBg} links={links} isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
     </FocusOn>
   );
 }
