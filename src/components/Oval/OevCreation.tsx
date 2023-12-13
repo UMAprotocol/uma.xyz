@@ -70,8 +70,8 @@ const Card = ({ title, icon, text, className }: CardProps) => {
       )}
     >
       <div className="flex flex-row items-center justify-start gap-3">
-        <div className="text-md aspect-square h-[40px] rounded-[10px] border border-white/5 p-1 text-center text-white/50 shadow-md xl:h-[56px]">
-          <Image alt={`Decorative icon representing ${title}`} src={icon} />
+        <div className="text-md relative flex aspect-square h-[40px] items-center justify-center overflow-hidden rounded-[10px] border border-white/5 bg-background text-center text-white/50 shadow-md xl:h-[56px]">
+          <Image className="w-[65%]" alt={`Decorative icon representing ${title}`} src={icon} />
         </div>
         <div className="text-gradient-oval text-[32px] xl:text-[40px]">{title}</div>
       </div>
