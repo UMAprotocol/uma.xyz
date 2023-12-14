@@ -16,6 +16,10 @@ export const homePageLinks = [
     href: "/osnap",
   },
   {
+    label: "Stats",
+    href: "https:/stats.uma.xyz/",
+  },
+  {
     label: "Docs",
     href: "https://docs.uma.xyz/",
   },
@@ -89,8 +93,8 @@ export const footerLinks = {
       href: "https://docs.uma.xyz/",
     },
     {
-      label: "Projects",
-      href: "https://projects.uma.xyz/",
+      label: "Stats",
+      href: "https://stats.uma.xyz/",
     },
   ],
 };
