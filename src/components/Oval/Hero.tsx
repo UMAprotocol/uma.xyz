@@ -11,7 +11,8 @@ export const Hero = () => {
       }}
     >
       <Image priority className="w-[80%]" src={heroImage} alt="decorative hero image" />
-      <h1 className="text-gradient-oval px-[20%] text-center text-sm-fluid  md:text-md-fluid lg:text-lg-fluid">
+
+      <h1 className="text-gradient-oval px-[20%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
         Get paid to use oracles
       </h1>
       <div className="flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">
@@ -20,10 +21,10 @@ export const Hero = () => {
         </h3>
         <Link
           className="w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
-          href="https://demo.oval.uma.xyz/"
+          href="https://docs.uma.xyz/"
           target="_blank"
         >
-          Try Oval today
+          Learn more
         </Link>
       </div>
     </section>

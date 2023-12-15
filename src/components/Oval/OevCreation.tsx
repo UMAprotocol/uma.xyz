@@ -45,10 +45,10 @@ export const OevCreation = () => {
       </div>
       <Link
         className="w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
-        href="https://demo.oval.uma.xyz/"
+        href="https://docs.uma.xyz/"
         target="_blank"
       >
-        Try Oval today
+        Learn more
       </Link>
     </section>
   );
