@@ -17,7 +17,7 @@ export const homePageLinks = [
   },
   {
     label: "Stats",
-    href: "https:/stats.uma.xyz/",
+    href: "https://stats.uma.xyz/",
   },
   {
     label: "Docs",
