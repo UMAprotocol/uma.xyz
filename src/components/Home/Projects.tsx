@@ -108,7 +108,7 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
           <div className="relative grid h-full w-full place-items-center gap-4">
             <Icon
               name={icon}
-              className="[&_path] h-[25%] w-[25%] text-grey-900 transition group-hover:-translate-y-3 group-hover:text-red"
+              className="[&_path] h-[20%] w-[20%] text-grey-900 transition group-hover:-translate-y-3 group-hover:text-red"
             />
             <span className="absolute bottom-[20%] uppercase text-red opacity-0 transition group-hover:-translate-y-3 group-hover:opacity-100">
               {name}
