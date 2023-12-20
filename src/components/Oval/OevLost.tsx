@@ -4,6 +4,7 @@ import { useCountUp } from "use-count-up";
 import { oevLost } from "@/constant/env";
 import { Roboto_Mono } from "next/font/google";
 import { useIntersectionObserver } from "usehooks-ts";
+import { Divider } from "./Divider";
 
 // If loading a variable font, you don't need to specify the font weight
 const roboto = Roboto_Mono({
@@ -60,6 +61,7 @@ export const OevLost = () => {
           ${value}
         </div>
       </div>
+      <Divider className="mt-[100px] w-[120px] rotate-90 lg:mt-[150px] lg:w-[200px]" />
     </section>
   );
 };
