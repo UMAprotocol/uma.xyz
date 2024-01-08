@@ -1,7 +1,6 @@
-"use client";
 import { cn } from "@/utils/styleUtils";
 import { ExternalLink } from "./ExternalLink";
-import Spline from "@splinetool/react-spline";
+import { Animation } from "./Animation";
 
 export type EarnOevProps = {
   className?: string;
@@ -16,8 +15,8 @@ export const EarnOev = ({ className }: EarnOevProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row xl:justify-center xl:gap-24">
-        <Spline
-          className="pointer-events-none !h-[440px] min-[472px]:!h-[720px]"
+        <Animation
+          className="!h-[440px] min-[472px]:!h-[720px]"
           scene="https://prod.spline.design/6fMUQ-8iv1LJxomb/scene.splinecode"
         />
 
