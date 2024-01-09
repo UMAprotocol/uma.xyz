@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import { CaptureOev, Hero, OevLost, ReclaimOev, BuildSafely, OevCreation } from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 
-const title = "Oval";
-const description = "TODO: get copy for description";
+const title = "Oval | Built by UMA";
+const description =
+  "Oval is an MEV capture technology that wraps price oracles and generates protocol revenue by auctioning the right to conduct liquidations";
 
-// TODO: assets for OG metadata
 export const metadata: Metadata = {
   title,
   description,
@@ -13,13 +13,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@UMAprotocol",
     title,
-    images: "/assets/osnap-twitter-card.png",
+    images: "/assets/oval-twitter-card.jpg",
   },
   openGraph: {
     title,
     description,
-    images: "/assets/osnap-twitter-card.png",
-    url: "https://uma.xyz",
+    images: "/assets/oval-twitter-card.jpg",
+    url: "https://uma.xyz/oval",
   },
 };
 
