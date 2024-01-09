@@ -44,7 +44,9 @@ export const OevLost = () => {
           perspective: "500px",
         }}
       >
-        <h3 className="text-md uppercase leading-6 text-white opacity-50">total oev lost in 2023</h3>
+        <h3 className="text-md uppercase leading-6 tracking-widest text-white opacity-50">
+          Total OEV lost by just AAVE and Compound
+        </h3>
         <div
           ref={ref}
           className={`bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-md-fluid text-transparent lg:text-lg-fluid ${roboto.className}`}

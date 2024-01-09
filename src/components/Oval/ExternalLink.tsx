@@ -20,7 +20,7 @@ export const ExternalLink = ({ children, className, ...props }: ExternalLink) =>
         name="external-link"
         className="h-[1em] w-[1em] text-white/50  transition-colors  group-hover:text-white "
       />
-      <span className="text-gradient-oval font-medium leading-6 transition-colors  group-hover:text-white">
+      <span className="text-gradient-oval font-medium leading-6 tracking-widest transition-colors  group-hover:text-white">
         {children}
       </span>
     </Link>
