@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import { CaptureOev, Hero, OevLost, EarnOev, BuildSafer, OevCreation } from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 
-const title = "Oval";
-const description = "TODO: get copy for description";
+const title = "Oval | Built by UMA";
+const description =
+  "Oval is an MEV capture technology that wraps price oracles and generates protocol revenue by auctioning the right to conduct liquidations";
 
 export const metadata: Metadata = {
   title,
