@@ -1,7 +1,7 @@
 import { cn } from "@/utils/styleUtils";
 import Image from "next/image";
 import buildSaferImage from "public/assets/oval-build-safer.webp";
-import { ExternalLink } from "./ExternalLink";
+import { IntegrateOvalButton } from "./IntegrateOvalButton";
 
 export type BuildSafelyProps = {
   className?: string;
@@ -33,7 +33,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
             MEV-Share infrastructure.
           </p>
 
-          <ExternalLink href="https://docs.uma.xyz/">learn more in docs</ExternalLink>
+          <IntegrateOvalButton />
         </div>
       </div>
     </section>

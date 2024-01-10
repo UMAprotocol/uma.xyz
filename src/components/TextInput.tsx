@@ -11,6 +11,7 @@ type Props = {
   required?: boolean;
   validate?: (value: string) => boolean;
   isEmail?: boolean;
+  autoFocus?: boolean;
 };
 
 export function useTextInput(props: Props) {
@@ -78,6 +79,7 @@ export function TextInput(props: TextInputProps) {
         {props.label}
       </label>
       <input
+        autoFocus={props.autoFocus}
         type={props.type}
         id={props.id}
         value={props.value}

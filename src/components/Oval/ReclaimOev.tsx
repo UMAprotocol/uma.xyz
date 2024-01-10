@@ -1,7 +1,7 @@
 import { cn } from "@/utils/styleUtils";
 import Image from "next/image";
 import earnOevIMage from "public/assets/oval-earn-oev.webp";
-import { ExternalLink } from "./ExternalLink";
+import { IntegrateOvalButton } from "./IntegrateOvalButton";
 
 export type ReclaimOevProps = {
   className?: string;
@@ -33,7 +33,7 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
           <p className="text-gradient-oval  text-center text-xl opacity-75 xl:text-left">
             Oval wraps your Chainlink Data Feed and forces searchers to pay you to extract the OEV.
           </p>
-          <ExternalLink href="https://docs.uma.xyz/">learn more in docs</ExternalLink>
+          <IntegrateOvalButton />
         </div>
       </div>
     </section>
