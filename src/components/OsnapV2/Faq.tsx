@@ -1,6 +1,5 @@
 "use client";
 
-import { CSSProperties } from "react";
 import { Accordion } from "../Accordion";
 import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
 import NextLink from "next/link";
@@ -106,7 +105,8 @@ export function Faq() {
               "--color-trigger": "var(--grey-900)",
               "--color-content": "var(--grey-600)",
               "--color-icon": "var(--grey-400)",
-            } as CSSProperties
+              "--color-border": "var(--grey-200)",
+            } as React.CSSProperties
           }
           data={faqs}
           type="single"

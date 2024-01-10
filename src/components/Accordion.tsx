@@ -19,7 +19,7 @@ export function Accordion({ data, className, ...props }: AccordionProps) {
         <RadixAccordion.Item
           key={faq.question?.toString()}
           value={index.toString()}
-          className="border-b border-grey-200 py-6 first:pt-0 last:border-none data-[state=closed]:cursor-pointer sm:py-8"
+          className="border-b border-[--color-border] py-6 first:pt-0 last:border-none data-[state=closed]:cursor-pointer sm:py-8"
         >
           <RadixAccordion.Header asChild>
             <RadixAccordion.Trigger
@@ -33,10 +33,10 @@ export function Accordion({ data, className, ...props }: AccordionProps) {
             </RadixAccordion.Trigger>
           </RadixAccordion.Header>
           <RadixAccordion.Content
-            className="overflow-hidden text-[--color-content] data-[state=closed]:animate-accordion-slide-up data-[state=open]:animate-accordion-slide-down sm:text-lg"
+            className="overflow-hidden text-left text-[--color-content] data-[state=closed]:animate-accordion-slide-up data-[state=open]:animate-accordion-slide-down sm:text-lg"
             asChild
           >
-            <p>{faq.answer}</p>
+            {typeof faq.answer === "string" ? <p>{faq.answer}</p> : faq.answer}
           </RadixAccordion.Content>
         </RadixAccordion.Item>
       ))}

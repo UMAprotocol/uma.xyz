@@ -5,6 +5,7 @@ type Props = React.ComponentPropsWithRef<"span"> & {
   thickness?: number;
   color?: string;
 };
+
 export function PlusMinus({ className, ...props }: Props) {
   const size = props.size ?? 24;
   const thickness = props.thickness ?? size / 12;
