@@ -33,7 +33,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
             MEV-Share infrastructure.
           </p>
 
-          <ExternalLink href="https://docs.uma.xyz/">learn more in docs</ExternalLink>
+          <ExternalLink href="https://docs.oval.xyz/">learn more in docs</ExternalLink>
         </div>
       </div>
     </section>
