@@ -4,3 +4,4 @@ export * from "./CaptureOev";
 export * from "./ReclaimOev";
 export * from "./BuildSafely";
 export * from "./OevCreation";
+export * from "./Faq";

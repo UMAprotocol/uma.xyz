@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { CaptureOev, Hero, OevLost, ReclaimOev, BuildSafely, OevCreation } from "@/components/Oval";
+import { CaptureOev, Hero, OevLost, ReclaimOev, BuildSafely, OevCreation, Faq } from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 
 const title = "Oval | Built by UMA";
@@ -32,6 +32,7 @@ export default function Page() {
       <ReclaimOev />
       <BuildSafely />
       <OevCreation />
+      <Faq />
     </Layout>
   );
 }
