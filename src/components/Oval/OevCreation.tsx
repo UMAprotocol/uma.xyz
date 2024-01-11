@@ -35,7 +35,7 @@ const content = [
 export const OevCreation = () => {
   return (
     <section className="relative mx-auto mt-12 flex max-w-[700px] flex-col items-center gap-8 px-[--page-padding] text-center align-top xl:max-w-[1300px] xl:gap-[96px]">
-      <h2 className="text-gradient-oval px-[20%] text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid">
+      <h2 className="text-gradient-oval px-[10%] text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid">
         OEV Creation
       </h2>
       <div className="flex flex-col gap-3 xl:flex-row xl:gap-6">
@@ -45,7 +45,7 @@ export const OevCreation = () => {
       </div>
       <Link
         className="w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
-        href="https://docs.uma.xyz/"
+        href="https://docs.oval.xyz/"
         target="_blank"
       >
         Learn more

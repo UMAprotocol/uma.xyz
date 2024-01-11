@@ -2,11 +2,11 @@ import { cn } from "@/utils/styleUtils";
 import { ExternalLink } from "./ExternalLink";
 import { Animation } from "./Animation";
 
-export type BuildSaferProps = {
+export type BuildSafelyProps = {
   className?: string;
 };
 
-export const BuildSafer = ({ className }: BuildSaferProps) => {
+export const BuildSafely = ({ className }: BuildSafelyProps) => {
   return (
     <section
       className={cn(
@@ -22,16 +22,18 @@ export const BuildSafer = ({ className }: BuildSaferProps) => {
 
         <div className="flex-3 flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
-            Build safer
+            Build safely
           </h2>
-          <p className="text-center text-xl text-[#B3B5B4] xl:text-left">
-            Oval is not an oracle - it wraps existing oracles.
+          <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">Oval is not a new oracle.</p>
+          <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
+            Oval wraps industry standard Chainlink Data Feeds and delivers Chainlink signed prices to your protocol.
           </p>
-          <p className="text-center  text-xl text-[#B3B5B4] xl:text-left">
-            Get prices from the oracle you trust most, add others as fallbacks, or take the latest prices from any
-            source.
+          <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
+            The right to extract OEV from each price update is auctioned offchain using Flashbots&apos; trusted
+            MEV-Share infrastructure.
           </p>
-          <ExternalLink href="https://docs.uma.xyz/">learn more in docs</ExternalLink>
+
+          <ExternalLink href="https://docs.oval.xyz/">learn more in docs</ExternalLink>
         </div>
       </div>
     </section>
