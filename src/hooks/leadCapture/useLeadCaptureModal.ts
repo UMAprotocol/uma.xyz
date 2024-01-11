@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRadioGroup } from "@/components/RadioGroup";
 import { useTextInput } from "@/components/TextInput";
 import { useContactDetailsInput } from "@/components/ContactDetailsInput";
+import { useEffectOnce } from "usehooks-ts";
 
 export const MODALS = {
   "try-osnap": "try-osnap",
@@ -22,7 +23,7 @@ export function useLeadCaptureModal(modalLabel: Modal) {
   function showModal() {
     const newSearchParams = new URLSearchParams(searchParams ?? "");
     newSearchParams.set("modal", modalLabel);
-    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+    router.replace(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
     modalProps.showModal();
   }
 
@@ -30,7 +31,7 @@ export function useLeadCaptureModal(modalLabel: Modal) {
     const newSearchParams = new URLSearchParams(searchParams ?? "");
     newSearchParams.delete("modal");
     modalProps.closeModal();
-    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+    router.replace(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
   }
   return { ...modalProps, showModal, closeModal };
 }
@@ -80,4 +81,16 @@ export function useLeadCaptureForm() {
     fields,
     isFormValid,
   };
+}
+
+export function useInitialLoadModal(modalLabel: Modal) {
+  const props = useLeadCaptureModal(modalLabel);
+  const searchParams = useSearchParams();
+  const hasModalInUrl = searchParams?.get("modal") === modalLabel;
+
+  useEffectOnce(() => {
+    if (hasModalInUrl) props.showModal();
+  });
+
+  return props;
 }

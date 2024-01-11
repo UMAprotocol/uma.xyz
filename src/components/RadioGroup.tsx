@@ -59,14 +59,14 @@ function RadioInput(props: InputProps) {
       htmlFor={id}
       className={`flex cursor-pointer items-center gap-2 rounded-xl p-4 capitalize transition-all ${labelStyle}`}
     >
-      <span className={`grid h-4 w-4 place-items-center rounded-full border ${inputBorderStyle}`}>
+      <span className={`grid h-4 w-4 shrink-0 place-items-center rounded-full border ${inputBorderStyle}`}>
         <input
           type="radio"
           id={id}
           name={props.name}
           checked={props.checked}
           onChange={props.onChange}
-          className={`h-full w-full  appearance-none rounded-full transition-all ${inputStyle}`}
+          className={`h-full w-full appearance-none rounded-full transition-all ${inputStyle}`}
         />
       </span>
       {props.label}

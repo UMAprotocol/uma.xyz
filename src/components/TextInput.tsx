@@ -66,15 +66,15 @@ export function useTextInput(props: Props) {
   );
 }
 
-export type TextInputProps = ReturnType<typeof useTextInput> & InputProps;
+export type TextInputProps = ReturnType<typeof useTextInput> & Omit<InputProps, "type">;
 
-export function TextInput({ valid, label, id, theme, ...props }: TextInputProps) {
+export function TextInput({ valid, label, type, id, theme, ...props }: TextInputProps) {
   const validity = valid ? "valid" : "invalid";
 
   return (
     // order label after input so we can use "peer" selector for label styles based on input
     <div className="flex flex-col-reverse gap-1">
-      <Input validity={validity} theme={theme} {...props} />
+      <Input type={type} validity={validity} theme={theme} {...props} />
       <Label htmlFor={id} theme={theme} validity={validity}>
         {label}
       </Label>
