@@ -107,7 +107,7 @@ export function TryOsnapModal(props: Props) {
             <TextInput theme="osnap" {...nameInputProps} />
             <TextInput theme="osnap" {...organizationInputProps} />
           </div>
-          <RadioGroup {...radioGroupProps} />
+          <RadioGroup theme="osnap" {...radioGroupProps} />
           <div className="my-6">
             <ContactDetailsInput theme="osnap" {...contactDetailsInputProps} />
           </div>

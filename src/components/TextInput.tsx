@@ -68,7 +68,19 @@ export function useTextInput(props: Props) {
 
 export type TextInputProps = ReturnType<typeof useTextInput> & Omit<InputProps, "type">;
 
-export function TextInput({ valid, label, type, id, theme, ...props }: TextInputProps) {
+export function TextInput({
+  valid,
+  label,
+  type,
+  id,
+  theme,
+  setValue,
+  dirty,
+  setDirty,
+  validate,
+  isEmail,
+  ...props
+}: TextInputProps) {
   const validity = valid ? "valid" : "invalid";
 
   return (

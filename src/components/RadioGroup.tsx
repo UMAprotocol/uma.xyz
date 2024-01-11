@@ -32,11 +32,10 @@ const radioGroupVariants = cva("mb-1 font-medium", {
 type RadioGroupProps = ReturnType<typeof useRadioGroup> & VariantProps<typeof radioGroupVariants>;
 
 export function RadioGroup({ theme = "osnap", ...props }: RadioGroupProps) {
-  const cols = theme === "osnap" ? "4" : "2";
   return (
     <fieldset>
       <legend className={cn(radioGroupVariants({ theme }))}>{props.title}</legend>
-      <div className={`grid grid-cols-1 gap-2 sm:grid-cols-${cols}`}>
+      <div className={cn("grid grid-cols-1 gap-2", theme === "osnap" ? "sm:grid-cols-4" : "sm:grid-cols-2")}>
         {props.values.map((value) => (
           <RadioInput
             theme={theme}
