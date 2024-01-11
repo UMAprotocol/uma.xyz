@@ -5,7 +5,7 @@ import { Modal } from "../Modal";
 import { TextInput } from "../TextInput";
 import { RadioGroup } from "../RadioGroup";
 import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCapture/useLeadCaptureModal";
-import { INTEGRATIONS } from "@/app/api/airtable/route";
+import { AirtableRequestBody } from "@/app/api/airtable/route";
 
 export function useIntegrateOvalModal() {
   return useLeadCaptureModal(MODALS["integrate-oval"]);
@@ -29,13 +29,14 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
     if (!isFormValid) return;
 
     setFormState("busy");
+    const body: AirtableRequestBody = { ...fields, integration: "oval" };
 
     const response = await fetch("/api/airtable", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...fields, integration: INTEGRATIONS.oval }),
+      body: JSON.stringify(body),
     });
 
     if (!response.ok) {

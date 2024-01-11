@@ -25,17 +25,18 @@ export const INTEGRATIONS = {
 } as const;
 
 export type IntegrationId = keyof typeof INTEGRATIONS;
+export type AirtableRequestBody = {
+  name: string;
+  organization: string;
+  communicationChannel: CommunicationChannel;
+  contactDetails: string;
+  integration: IntegrationId;
+};
 
 const airtableBase = new Airtable({ apiKey }).base(baseId);
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as {
-    name: string;
-    organization: string;
-    communicationChannel: CommunicationChannel;
-    contactDetails: string;
-    integration: IntegrationId;
-  };
+  const body = (await request.json()) as AirtableRequestBody;
   const fields = {
     [nameFieldId]: body.name,
     [organizationFieldId]: body.organization,
