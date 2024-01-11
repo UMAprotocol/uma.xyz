@@ -7,7 +7,7 @@ import { Modal } from "../Modal";
 import { RadioGroup } from "../RadioGroup";
 import { TextInput } from "../TextInput";
 import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCapture/useLeadCaptureModal";
-import { AirtableRequestBody } from "@/app/api/airtable/route";
+import { AirtableRequestBody } from "@/app/api/airtable/utils";
 
 export function useTryOsnapModal() {
   return useLeadCaptureModal(MODALS["try-osnap"]);

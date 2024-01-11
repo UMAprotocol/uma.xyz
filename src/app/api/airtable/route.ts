@@ -1,6 +1,7 @@
 import { CommunicationChannel } from "@/constant";
 import Airtable from "airtable";
 import { NextResponse } from "next/server";
+import { AirtableRequestBody, INTEGRATIONS } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const apiKey = process.env.AIRTABLE_API_KEY!;
@@ -12,26 +13,6 @@ const nameFieldId = "fldX9QMw47XvzSW86";
 const communicationChannelFieldId = "fldjxMaR5DEtF29GC";
 const contactDetailsFieldId = "fldRByHAhU5Wbg9pF";
 const referralFieldId = "fldTzAA92VXb6OiBO";
-
-export const INTEGRATIONS = {
-  osnap: {
-    integration: "oSnap",
-    referral: "oSnap Landing Page",
-  },
-  oval: {
-    integration: "Oval",
-    referral: "Oval Landing Page",
-  },
-} as const;
-
-export type IntegrationId = keyof typeof INTEGRATIONS;
-export type AirtableRequestBody = {
-  name: string;
-  organization: string;
-  communicationChannel: CommunicationChannel;
-  contactDetails: string;
-  integration: IntegrationId;
-};
 
 const airtableBase = new Airtable({ apiKey }).base(baseId);
 
