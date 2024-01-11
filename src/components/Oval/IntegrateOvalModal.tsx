@@ -78,7 +78,7 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
       }
       {...props}
     >
-      <div id="try-osnap-modal" className="h-fit w-[min(90vw,540px)] overflow-x-auto p-6 sm:p-10">
+      <div id="try-osnap-modal" className="h-fit w-[min(90vw,600px)] overflow-x-auto p-6 sm:p-10">
         <h2 className="text-gradient-oval pb-4 text-center text-5xl font-medium">Integrate Oval</h2>
         <p className="text-gradient-oval mb-6 text-center">
           Oval is undergoing an initial private deployment on Ethereum Mainnet. Are you interested in early access?

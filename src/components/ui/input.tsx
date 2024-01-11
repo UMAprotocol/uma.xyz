@@ -3,39 +3,29 @@ import * as React from "react";
 import { cn } from "@/utils/styleUtils";
 import { VariantProps, cva } from "class-variance-authority";
 
-const commonStyles = "peer h-11 w-full rounded-lg border px-3 py-2 shadow-xs";
+const commonStyles = "peer h-11 w-full rounded-lg border px-3 py-2 shadow-xs outline-none";
 
 const inputVariants = cva(commonStyles, {
   variants: {
     theme: {
-      osnap: "base-styles-for-themeA", // Base styles for osnap
-      oval: "base-styles-for-themeB", // Base styles for oval
+      osnap: "text-black bg-white border-grey-300 text-grey-600", // Base styles for osnap
+      oval: "text-white bg-white/5 border-white/5 focus:border-white rounded-[10px]", // Base styles for oval
     },
     validity: {
-      valid: "valid-styles", // Common valid styles
-      invalid: "invalid-styles", // Common invalid styles
+      valid: "", // Common valid styles
+      invalid: "", // Common invalid styles
     },
   },
   compoundVariants: [
     {
       theme: "osnap",
-      validity: "valid",
-      class: "border-grey-300 bg-white text-grey-900 placeholder:text-grey-500",
-    },
-    {
-      theme: "osnap",
       validity: "invalid",
-      class: "border-error-200 bg-error-50 text-error-700 placeholder:text-error-500",
-    },
-    {
-      theme: "oval",
-      validity: "valid",
-      class: "text-white", // Specific valid styles for themeB
+      class: "border-error-200 bg-error-50 text-error-700 placeholder:text-error-500", // Specific invalid styles for osnap
     },
     {
       theme: "oval",
       validity: "invalid",
-      class: "text-error-600", // Specific invalid styles for themeB
+      class: "text-error-600 border-error-600", // Specific invalid styles for oval
     },
   ],
   defaultVariants: {
