@@ -69,12 +69,20 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
   );
 
   return (
-    <Modal {...props}>
-      <div id="try-osnap-modal" className="h-fit w-[min(80vw,540px)] bg-white p-6">
-        <h1 className="mb-4 text-center text-4xl font-medium text-grey-950">Dedicated DAO support</h1>
-        <p className="mb-6 text-center text-grey-700">
-          Our DevRel team offers dedicated support to every DAO that integrates oSnap. Complete the form below and
-          we&apos;ll reach out ASAP
+    <Modal
+      className="bg-background"
+      style={
+        {
+          "--close-icon-color": "var(--white)",
+        } as React.CSSProperties
+      }
+      {...props}
+    >
+      <div id="try-osnap-modal" className="h-fit w-[min(90vw,540px)] overflow-x-auto p-6 sm:p-10">
+        <h2 className="text-gradient-oval pb-4 text-center text-5xl font-medium">Integrate Oval</h2>
+        <p className="text-gradient-oval mb-6 text-center">
+          Oval is undergoing an initial private deployment on Ethereum Mainnet. Are you interested in early access?
+          Complete the form below.
         </p>
         <form
           action=""
@@ -84,12 +92,12 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
           }}
         >
           <div className="mb-6 grid gap-x-2 gap-y-3 sm:grid-cols-2">
-            <TextInput {...nameInputProps} />
-            <TextInput {...organizationInputProps} />
+            <TextInput theme="oval" {...nameInputProps} />
+            <TextInput theme="oval" {...organizationInputProps} />
           </div>
           <RadioGroup {...radioGroupProps} />
           <div className="my-6">
-            <ContactDetailsInput {...contactDetailsInputProps} />
+            <ContactDetailsInput theme="oval" {...contactDetailsInputProps} />
           </div>
           <button
             disabled={!isFormValid}

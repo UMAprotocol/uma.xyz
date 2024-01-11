@@ -102,12 +102,12 @@ export function TryOsnapModal(props: Props) {
           }}
         >
           <div className="mb-6 grid gap-x-2 gap-y-3 sm:grid-cols-2">
-            <TextInput {...nameInputProps} />
-            <TextInput {...organizationInputProps} />
+            <TextInput theme="osnap" {...nameInputProps} />
+            <TextInput theme="osnap" {...organizationInputProps} />
           </div>
           <RadioGroup {...radioGroupProps} />
           <div className="my-6">
-            <ContactDetailsInput {...contactDetailsInputProps} />
+            <ContactDetailsInput theme="osnap" {...contactDetailsInputProps} />
           </div>
           <button
             disabled={!isFormValid}

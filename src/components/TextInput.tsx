@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useId, useMemo, useState, type ChangeEventHandler, type ReactNode } from "react";
+import { Label } from "./ui/label";
+import { Input, InputProps } from "./ui/input";
 
 type Props = {
   label: ReactNode;
@@ -64,29 +66,18 @@ export function useTextInput(props: Props) {
   );
 }
 
-type TextInputProps = ReturnType<typeof useTextInput>;
+export type TextInputProps = ReturnType<typeof useTextInput> & InputProps;
 
-export function TextInput(props: TextInputProps) {
-  const validLabelStyle = "text-black";
-  const invalidLabelStyle = "text-error-900";
-  const labelStyle = props.valid ? validLabelStyle : invalidLabelStyle;
-  const validStyleInputStyle = "border-grey-300 bg-white text-grey-900 placeholder:text-grey-500";
-  const invalidInputStyle = "border-error-200 bg-error-50 text-error-700 placeholder:text-error-500";
-  const inputStyle = props.valid ? validStyleInputStyle : invalidInputStyle;
+export function TextInput({ valid, label, id, theme, ...props }: TextInputProps) {
+  const validity = valid ? "valid" : "invalid";
+
   return (
-    <div>
-      <label htmlFor={props.id} className={`mb-1 block font-medium ${labelStyle}`}>
-        {props.label}
-      </label>
-      <input
-        autoFocus={props.autoFocus}
-        type={props.type}
-        id={props.id}
-        value={props.value}
-        onChange={props.onChange}
-        placeholder={`E.g. “${props.placeholder}”`}
-        className={`h-11 w-full rounded-lg border px-3 py-2 shadow-xs ${inputStyle}`}
-      />
+    // order label after input so we can use "peer" selector for label styles based on input
+    <div className="flex flex-col-reverse gap-1">
+      <Input validity={validity} theme={theme} {...props} />
+      <Label htmlFor={id} theme={theme} validity={validity}>
+        {label}
+      </Label>
     </div>
   );
 }

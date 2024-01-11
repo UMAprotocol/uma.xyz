@@ -2,6 +2,7 @@
 
 import { useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { Icon } from "./Icon";
+import { cn } from "@/utils/styleUtils";
 
 export function useModal() {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -32,9 +33,9 @@ export function useModal() {
 
 export type ModalProps = ReturnType<typeof useModal>;
 
-type Props = { children: ReactNode } & ModalProps;
+type Props = React.ComponentPropsWithoutRef<"dialog"> & ModalProps;
 
-export function Modal({ children, modalRef, showModal, closeModal, ...dialogProps }: Props) {
+export function Modal({ children, modalRef, className, showModal, closeModal, ...dialogProps }: Props) {
   function onClick(event: MouseEvent) {
     if (!modalRef.current) return;
     if (isClickOnBackdrop(event)) closeModal();
@@ -53,13 +54,18 @@ export function Modal({ children, modalRef, showModal, closeModal, ...dialogProp
   }
 
   return (
-    <dialog ref={modalRef} onClick={onClick} {...dialogProps} className="relative rounded-2xl shadow-xs">
+    <dialog
+      ref={modalRef}
+      onClick={onClick}
+      {...dialogProps}
+      className={cn("relative rounded-2xl shadow-xs", className)}
+    >
       <button
         onClick={closeModal}
         className="absolute right-0 top-0 z-50 p-2 transition hover:opacity-50"
         aria-label="Close modal"
       >
-        <Icon name="x" className="h-6 w-6" />
+        <Icon name="x" className="h-6 w-6 text-[--close-icon-color]" />
       </button>
       {children}
     </dialog>
