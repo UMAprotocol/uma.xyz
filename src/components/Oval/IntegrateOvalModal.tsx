@@ -95,7 +95,7 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
             <TextInput theme="oval" {...nameInputProps} />
             <TextInput theme="oval" {...organizationInputProps} />
           </div>
-          <RadioGroup {...radioGroupProps} />
+          <RadioGroup theme="oval" {...radioGroupProps} />
           <div className="my-6">
             <ContactDetailsInput theme="oval" {...contactDetailsInputProps} />
           </div>
