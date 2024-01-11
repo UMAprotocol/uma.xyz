@@ -12,21 +12,37 @@ const nameFieldId = "fldX9QMw47XvzSW86";
 const communicationChannelFieldId = "fldjxMaR5DEtF29GC";
 const contactDetailsFieldId = "fldRByHAhU5Wbg9pF";
 const referralFieldId = "fldTzAA92VXb6OiBO";
+
+export const INTEGRATIONS = {
+  osnap: {
+    integration: "oSnap",
+    referral: "oSnap Landing Page",
+  },
+  oval: {
+    integration: "Oval",
+    referral: "Oval Landing Page",
+  },
+} as const;
+
+export type IntegrationId = keyof typeof INTEGRATIONS;
+
 const airtableBase = new Airtable({ apiKey }).base(baseId);
+
 export async function POST(request: Request) {
   const body = (await request.json()) as {
     name: string;
     organization: string;
     communicationChannel: CommunicationChannel;
     contactDetails: string;
+    integration: IntegrationId;
   };
   const fields = {
     [nameFieldId]: body.name,
     [organizationFieldId]: body.organization,
     [communicationChannelFieldId]: getAirtableCommunicationChannelName(body.communicationChannel),
     [contactDetailsFieldId]: body.contactDetails,
-    [integrationFieldId]: "oSnap",
-    [referralFieldId]: "oSnap Landing Page",
+    [integrationFieldId]: INTEGRATIONS[body.integration].integration,
+    [referralFieldId]: INTEGRATIONS[body.integration].referral,
   };
 
   try {

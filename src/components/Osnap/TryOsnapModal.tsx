@@ -7,6 +7,7 @@ import { Modal } from "../Modal";
 import { RadioGroup } from "../RadioGroup";
 import { TextInput } from "../TextInput";
 import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCapture/useLeadCaptureModal";
+import { INTEGRATIONS } from "@/app/api/airtable/route";
 
 export function useTryOsnapModal() {
   return useLeadCaptureModal(MODALS["try-osnap"]);
@@ -36,7 +37,7 @@ export function TryOsnapModal(props: Props) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(fields),
+      body: JSON.stringify({ ...fields, integration: INTEGRATIONS.osnap }),
     });
 
     if (!response.ok) {
