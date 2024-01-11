@@ -52,7 +52,7 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
 
   const busyButtonContent = (
     <span className="flex items-center gap-1">
-      Submitting... <LoadingSpinner variant="white" width={12} height={12} />
+      Submitting... <LoadingSpinner variant="black" width={12} height={12} />
     </span>
   );
 
@@ -102,7 +102,7 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
           <button
             disabled={!isFormValid}
             type="submit"
-            className="grid h-11 w-full place-items-center rounded-lg bg-grey-900 text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="grid h-11 w-full place-items-center rounded-lg bg-red text-background disabled:cursor-not-allowed disabled:opacity-50"
           >
             {formState === "idle" && idleSubmitButtonContent}
             {formState === "busy" && busyButtonContent}
