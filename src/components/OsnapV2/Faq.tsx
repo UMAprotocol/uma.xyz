@@ -1,8 +1,7 @@
 "use client";
 
-import * as Accordion from "@radix-ui/react-accordion";
+import { Accordion } from "../Accordion";
 import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
-import { PlusMinus } from "./PlusMinus";
 import NextLink from "next/link";
 
 export function Faq() {
@@ -95,38 +94,24 @@ export function Faq() {
     },
   ];
   return (
-    <section className="bg-white px-4 py-8 sm:px-8 sm:py-12 md:p-16 lg:py-[96px]">
+    <section className="bg-background px-4 py-8 sm:px-8 sm:py-12 md:p-16 lg:py-[96px]">
       <div className="mx-auto max-w-[768px]">
         <h1 className="mb-8 text-center text-3xl font-medium text-grey-500 sm:mb-12 sm:text-4xl md:py-16 md:text-5xl lg:text-6xl xl:text-start">
           Frequently asked questions
         </h1>
-        <Accordion.Root type="single" defaultValue="0">
-          {faqs.map((faq, index) => (
-            <Accordion.Item
-              key={faq.question}
-              value={index.toString()}
-              className="border-b border-grey-200 py-6 first:pt-0 last:border-none data-[state=closed]:cursor-pointer sm:py-8"
-            >
-              <Accordion.Header asChild>
-                <Accordion.Trigger
-                  asChild
-                  className="group mb-2 flex w-full items-start justify-between gap-3 text-start text-lg font-medium text-grey-900 sm:text-2xl"
-                >
-                  <h2>
-                    {faq.question}
-                    <PlusMinus color="var(--grey-400)" />
-                  </h2>
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content
-                className="overflow-hidden text-grey-600 data-[state=closed]:animate-accordion-slide-up data-[state=open]:animate-accordion-slide-down sm:text-lg"
-                asChild
-              >
-                <p>{faq.answer}</p>
-              </Accordion.Content>
-            </Accordion.Item>
-          ))}
-        </Accordion.Root>
+        <Accordion
+          style={
+            {
+              "--color-trigger": "var(--grey-900)",
+              "--color-content": "var(--grey-600)",
+              "--color-icon": "var(--grey-400)",
+              "--color-border": "var(--grey-200)",
+            } as React.CSSProperties
+          }
+          data={faqs}
+          type="single"
+          defaultValue="0"
+        />
       </div>
       <TryOsnapModal {...modalProps} />
     </section>
