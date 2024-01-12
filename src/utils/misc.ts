@@ -19,3 +19,8 @@ export function wait(timeoutMilliseconds: number) {
     setTimeout(res, timeoutMilliseconds);
   });
 }
+
+export function getApiRouteUrl(route: string, host: string | null) {
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  return `${protocol}://${host}${route}`;
+}
