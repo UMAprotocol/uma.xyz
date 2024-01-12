@@ -1,6 +1,5 @@
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
-import { CSSProperties } from "react";
 import { Icon } from "../Icon";
 import { cn } from "@/utils/styleUtils";
 
