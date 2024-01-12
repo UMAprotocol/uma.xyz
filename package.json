@@ -16,6 +16,7 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.9",
     "@codesandbox/sandpack-themes": "^2.0.21",
+    "@cowprotocol/ts-dune-client": "^0.0.2",
     "@next/bundle-analyzer": "^13.4.16",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-tabs": "^1.0.4",
