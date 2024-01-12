@@ -1,3 +1,5 @@
+import { headers } from "next/headers";
+
 export function isExternalLink(href: string) {
   if (href.startsWith("/") || href.startsWith("#")) return false;
   return true;
@@ -18,4 +20,10 @@ export function wait(timeoutMilliseconds: number) {
   return new Promise((res) => {
     setTimeout(res, timeoutMilliseconds);
   });
+}
+
+export function getApiRouteUrl(route: string) {
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  const host = headers().get("host");
+  return `${protocol}://${host}${route}`;
 }
