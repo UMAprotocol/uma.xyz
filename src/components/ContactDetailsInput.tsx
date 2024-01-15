@@ -1,6 +1,6 @@
 import { CommunicationChannel } from "@/constant";
 import { useCallback, useMemo } from "react";
-import { TextInput, useTextInput } from "./TextInput";
+import { TextInput, TextInputProps, useTextInput } from "./TextInput";
 
 export function useContactDetailsInput(channel: CommunicationChannel) {
   const getPlaceholderForChannel = useCallback((channel: CommunicationChannel) => {
@@ -72,7 +72,7 @@ export function useContactDetailsInput(channel: CommunicationChannel) {
   );
 }
 
-type ContactDetailsInputProps = ReturnType<typeof useContactDetailsInput>;
+type ContactDetailsInputProps = ReturnType<typeof useContactDetailsInput> & TextInputProps;
 export function ContactDetailsInput(props: ContactDetailsInputProps) {
   return (
     <div>

@@ -11,7 +11,7 @@ export const ExternalLink = ({ children, className, ...props }: ExternalLink) =>
     <Link
       target="_blank"
       className={cn(
-        "text-md group flex items-center gap-3 whitespace-nowrap rounded-[10px] bg-white/5 px-[1em] py-[0.67em] uppercase shadow-[inset_0_1px_4px_0px_rgba(255,255,255,0.10),0_8px_23px_0px_rgba(0,0,0,0.15)]",
+        "text-md group flex items-center justify-center gap-3 whitespace-nowrap rounded-[10px] bg-white/5 px-[1em] py-[0.67em] uppercase shadow-[inset_0_1px_4px_0px_rgba(255,255,255,0.10),0_8px_23px_0px_rgba(0,0,0,0.15)]",
         className,
       )}
       {...props}

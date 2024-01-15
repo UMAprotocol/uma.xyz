@@ -1,5 +1,14 @@
 import { Metadata } from "next";
-import { CaptureOev, Hero, OevLost, ReclaimOev, BuildSafely, OevCreation, Faq } from "@/components/Oval";
+import {
+  CaptureOev,
+  Hero,
+  OevLost,
+  ReclaimOev,
+  BuildSafely,
+  OevCreation,
+  Faq,
+  InitialLoadIntegrateOvalModal,
+} from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 
 const title = "Oval | Built by UMA";
@@ -26,6 +35,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <Layout showTicker={false} colorScheme="OVAL" className="pb-[96px]">
+      <InitialLoadIntegrateOvalModal />
       <Hero />
       <OevLost />
       <CaptureOev />

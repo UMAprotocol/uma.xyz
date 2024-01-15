@@ -1,5 +1,5 @@
 import { cn } from "@/utils/styleUtils";
-import { ExternalLink } from "./ExternalLink";
+import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
 import { Animation } from "./Animation";
 
 export type BuildSafelyProps = {
@@ -33,7 +33,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
             MEV-Share infrastructure.
           </p>
 
-          <ExternalLink href="https://docs.oval.xyz/">learn more in docs</ExternalLink>
+          <IntegrateOvalButton />
         </div>
       </div>
     </section>

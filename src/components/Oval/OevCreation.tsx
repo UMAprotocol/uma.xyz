@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import gavel from "public/assets/gavel.webp";
 import sandwich from "public/assets/sandwich.webp";
 import arbitrage from "public/assets/arbitrage.webp";
-import Link from "next/link";
+import { ExternalLink } from "./ExternalLink";
 
 const content = [
   {
@@ -43,13 +43,9 @@ export const OevCreation = () => {
           <Card key={item.title} {...item} />
         ))}
       </div>
-      <Link
-        className="w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
-        href="https://docs.oval.xyz/"
-        target="_blank"
-      >
+      <ExternalLink aria-label="link to docs" href="https://docs.oval.xyz/integration/getting-started">
         Learn more
-      </Link>
+      </ExternalLink>
     </section>
   );
 };
