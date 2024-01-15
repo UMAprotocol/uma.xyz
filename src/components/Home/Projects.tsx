@@ -105,12 +105,12 @@ function ProjectRow({ projects, line }: { projects: Project[]; line: "top" | "mi
           <div className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-md text-red opacity-0 transition group-hover:opacity-100 lg:right-4 lg:top-4 lg:bg-red lg:text-white">
             <Icon name="arrow" className="h-5 w-5 -rotate-45" />
           </div>
-          <div className="relative grid w-full place-items-center gap-4">
+          <div className="relative grid h-full w-full place-items-center gap-4">
             <Icon
               name={icon}
-              className="[&_path] w-[25%] text-grey-900 transition group-hover:-translate-y-3 group-hover:text-red"
+              className="[&_path] h-[20%] w-[20%] text-grey-900 transition group-hover:-translate-y-3 group-hover:text-red"
             />
-            <span className="absolute -bottom-[40px] uppercase text-red opacity-0 transition group-hover:-translate-y-3 group-hover:opacity-100">
+            <span className="absolute bottom-[20%] uppercase text-red opacity-0 transition group-hover:-translate-y-3 group-hover:opacity-100">
               {name}
             </span>
           </div>
