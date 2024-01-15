@@ -1,5 +1,5 @@
 import { cn } from "@/utils/styleUtils";
-import { IntegrateOvalButton } from "./IntegrateOvalButton";
+import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
 import { Animation } from "./Animation";
 
 export type BuildSafelyProps = {

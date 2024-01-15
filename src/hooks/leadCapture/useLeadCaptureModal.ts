@@ -36,6 +36,8 @@ export function useLeadCaptureModal(modalLabel: Modal) {
   return { ...modalProps, showModal, closeModal };
 }
 
+export type LeadCaptureFormProps = ReturnType<typeof useLeadCaptureForm>;
+
 export function useLeadCaptureForm() {
   const [formState, setFormState] = useState<"idle" | "busy" | "success" | "error">("idle");
   const radioGroupProps = useRadioGroup("Preferred communication channel", communicationChannels);
@@ -71,6 +73,8 @@ export function useLeadCaptureForm() {
     organizationInputProps.valid &&
     contactDetailsInputProps.valid;
 
+  const disableSubmit = !isFormValid || formState === "busy" || formState === "success";
+
   return {
     formState,
     setFormState,
@@ -80,6 +84,7 @@ export function useLeadCaptureForm() {
     contactDetailsInputProps,
     fields,
     isFormValid,
+    disableSubmit,
   };
 }
 

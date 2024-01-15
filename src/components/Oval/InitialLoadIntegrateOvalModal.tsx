@@ -1,6 +1,6 @@
 "use client";
 
-import { IntegrateOvalModal } from "./IntegrateOvalModal";
+import { IntegrateOvalModal } from "./IntegrateOvalModal/IntegrateOvalModal";
 import { MODALS, useInitialLoadModal } from "@/hooks/leadCapture/useLeadCaptureModal";
 
 export function InitialLoadIntegrateOvalModal() {

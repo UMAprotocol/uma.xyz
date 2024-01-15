@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 import { Icon } from "./Icon";
 import { cn } from "@/utils/styleUtils";
 
