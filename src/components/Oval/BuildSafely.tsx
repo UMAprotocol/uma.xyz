@@ -1,6 +1,7 @@
 import { cn } from "@/utils/styleUtils";
 import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
 import { Animation } from "./Animation";
+import { Ellipse } from "./Ellipsis";
 
 export type BuildSafelyProps = {
   className?: string;
@@ -10,7 +11,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
   return (
     <section
       className={cn(
-        "relative mx-auto my-[128px] max-w-[1200px] flex-col items-center overflow-clip px-[--page-padding]",
+        "relative mx-auto my-[128px] mt-[200px] max-w-[1200px] flex-col items-center overflow-visible px-[--page-padding]",
         className,
       )}
     >
@@ -20,7 +21,8 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
           scene="https://prod.spline.design/cBDg4wVE4edzD-t1/scene.splinecode"
         />
 
-        <div className="flex-3 flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
+        <div className="flex-3 relative flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
+          <Ellipse size="lg" className="left-[-100%] top-0 rotate-[140deg] " />
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
             Build safely
           </h2>

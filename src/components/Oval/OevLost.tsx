@@ -5,6 +5,7 @@ import { oevLost } from "@/constant/env";
 import { Roboto_Mono } from "next/font/google";
 import { useIntersectionObserver } from "usehooks-ts";
 import { Divider } from "./Divider";
+import { Ellipse } from "./Ellipsis";
 
 // If loading a variable font, you don't need to specify the font weight
 const roboto = Roboto_Mono({
@@ -39,6 +40,7 @@ export const OevLost = () => {
 
   return (
     <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">
+      <Ellipse className="right-[-20%]" />
       <div
         style={{
           perspective: "500px",

@@ -4,6 +4,7 @@ import gavel from "public/assets/gavel.webp";
 import sandwich from "public/assets/sandwich.webp";
 import arbitrage from "public/assets/arbitrage.webp";
 import { ExternalLink } from "./ExternalLink";
+import { Ellipse } from "./Ellipsis";
 
 const content = [
   {
@@ -34,15 +35,16 @@ const content = [
 
 export const OevCreation = () => {
   return (
-    <section className="relative mx-auto mt-12 flex max-w-[700px] flex-col items-center gap-8 px-[--page-padding] text-center align-top xl:max-w-[1300px] xl:gap-[96px]">
+    <section className="relative mx-auto mt-[200px] flex max-w-[700px] flex-col items-center gap-8 px-[--page-padding] text-center align-top xl:max-w-[1300px] xl:gap-[96px]">
       <h2 className="text-gradient-oval px-[10%] text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid">
         OEV Creation
       </h2>
-      <div className="flex flex-col gap-3 xl:flex-row xl:gap-6">
+      <div className="relative flex flex-col gap-3 xl:flex-row xl:gap-6">
         {content.map((item) => (
           <Card key={item.title} {...item} />
         ))}
       </div>
+      <Ellipse size="md" className="left-[-50%] top-0" />
       <ExternalLink aria-label="link to docs" href="https://docs.oval.xyz/integration/getting-started">
         Learn more
       </ExternalLink>
