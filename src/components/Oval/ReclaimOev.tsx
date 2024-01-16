@@ -1,6 +1,7 @@
 import { cn } from "@/utils/styleUtils";
 import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
 import { Animation } from "./Animation";
+import { Ellipse } from "./Ellipsis";
 
 export type ReclaimOevProps = {
   className?: string;
@@ -10,7 +11,7 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
   return (
     <section
       className={cn(
-        "relative mx-auto mt-[128px] max-w-[1200px] flex-col items-center overflow-clip px-[--page-padding] ",
+        "relative mx-auto mt-[128px] max-w-[1200px] flex-col items-center overflow-visible px-[--page-padding] ",
         className,
       )}
     >
@@ -20,7 +21,8 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
           scene="https://prod.spline.design/6fMUQ-8iv1LJxomb/scene.splinecode"
         />
 
-        <div className="flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
+        <div className="relative flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
+          <Ellipse size="md" className="right-[-50%] top-[-50%] rotate-45" />
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
             Reclaim OEV
           </h2>

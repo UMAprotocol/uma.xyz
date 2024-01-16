@@ -1,5 +1,6 @@
 import { cn } from "@/utils/styleUtils";
 import { Divider } from "./Divider";
+import { Ellipse } from "./Ellipsis";
 
 const content = [
   "Oracle price updates create a type of MEV called Oracle Extractable Value.",
@@ -10,6 +11,7 @@ const content = [
 export const CaptureOev = () => {
   return (
     <section className="relative mx-auto mt-12 flex max-w-[1200px] flex-col items-center gap-4 px-[--page-padding] text-center align-top">
+      <Ellipse size="lg" className="right-[50%] top-[20%] -rotate-[25deg]" />
       <h2 className="text-gradient-oval px-[10%] text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid">
         Reclaim Oracle Extractable Value with Oval
       </h2>
