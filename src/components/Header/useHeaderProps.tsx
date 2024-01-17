@@ -20,6 +20,7 @@ export const useHeaderProps = () => {
       isLightTheme: isLightThemeFromScroll,
       links: homePageLinks,
       activePath: page,
+      launchAppLink: "https://vote.uma.xyz",
     } as const;
   }
   // the osnap page is all light theme
@@ -30,6 +31,7 @@ export const useHeaderProps = () => {
       isLightTheme: true,
       links: osnapPageLinks,
       activePath: page,
+      launchAppLink: "https://vote.uma.xyz",
     } as const;
   }
   // the oval page is all dark theme

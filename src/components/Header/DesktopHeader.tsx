@@ -1,16 +1,12 @@
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
-import { CSSProperties } from "react";
 import { Icon } from "../Icon";
 import { cn } from "@/utils/styleUtils";
+import { useHeaderProps } from "./useHeaderProps";
 
-type Props = {
-  isLightTheme: boolean;
-  links: { label: string; href: string }[];
-  activePath: string | undefined;
-};
+type Props = Pick<ReturnType<typeof useHeaderProps>, "activePath" | "links" | "launchAppLink" | "isLightTheme">;
 
-export default function DesktopHeader({ isLightTheme, links, activePath }: Props) {
+export default function DesktopHeader({ isLightTheme, links, activePath, launchAppLink }: Props) {
   function isActive(href: string) {
     return href === activePath;
   }
@@ -40,17 +36,19 @@ export default function DesktopHeader({ isLightTheme, links, activePath }: Props
           </NextLink>
         ))}
       </div>
-      <NextLink
-        className={cn(
-          "grid h-[40px] w-[118px] place-items-center gap-0.5 justify-self-end rounded-lg text-lg no-underline transition hover:opacity-75",
-          isLightTheme ? "text-white" : "text-grey-900",
-          isLightTheme ? "bg-grey-900" : "bg-white",
-        )}
-        href="https://vote.uma.xyz"
-        target="_blank"
-      >
-        Launch app
-      </NextLink>
+      {launchAppLink && (
+        <NextLink
+          className={cn(
+            "grid h-[40px] w-[118px] place-items-center gap-0.5 justify-self-end rounded-lg text-lg no-underline transition hover:opacity-75",
+            isLightTheme ? "text-white" : "text-grey-900",
+            isLightTheme ? "bg-grey-900" : "bg-white",
+          )}
+          href={launchAppLink}
+          target="_blank"
+        >
+          Launch app
+        </NextLink>
+      )}
     </div>
   );
 }
