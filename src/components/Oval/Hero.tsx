@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Animation } from "./Animation";
+import heroImage from "public/assets/oval_hero.jpg";
 import { Ellipse } from "./Ellipsis";
 
 export const Hero = () => {
@@ -10,9 +11,9 @@ export const Hero = () => {
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}
     >
-      <Animation className="!h-[400px]" scene="https://prod.spline.design/kqmc4ychq3OeKv5V/scene.splinecode" />
-      <Ellipse size="md" className="bottom-[10%] right-0 rotate-[20deg]" />
-      <h1 className="text-gradient-oval relative px-[20%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
+      <Image priority className="w-[80%]" src={heroImage} alt="decorative hero image" />
+
+      <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
         Get paid to use oracles
       </h1>
       <div className="relative flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">

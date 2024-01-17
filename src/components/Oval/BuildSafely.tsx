@@ -1,6 +1,7 @@
 import { cn } from "@/utils/styleUtils";
+import Image from "next/image";
+import buildSaferImage from "public/assets/oval-build-safer.webp";
 import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
-import { Animation } from "./Animation";
 import { Ellipse } from "./Ellipsis";
 
 export type BuildSafelyProps = {
@@ -16,10 +17,9 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row-reverse xl:justify-center xl:gap-24">
-        <Animation
-          className="!h-[250px] min-[472px]:!h-[400px]"
-          scene="https://prod.spline.design/cBDg4wVE4edzD-t1/scene.splinecode"
-        />
+        <div className="flex-4 max-w-[600px]">
+          <Image src={buildSaferImage} alt="decorative section image" />
+        </div>
 
         <div className="flex-3 relative flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
           <Ellipse size="lg" className="left-[-100%] top-0 rotate-[140deg]" />
