@@ -50,7 +50,7 @@ export const Faq = () => {
   return (
     <section
       className={
-        "relative mx-auto mt-[200px] flex max-w-[700px] flex-col items-center gap-8 px-[--page-padding] text-center align-top xl:max-w-[1300px] xl:gap-[96px]"
+        "relative mx-auto mt-[200px] flex flex-col items-center gap-8 px-[--page-padding] text-center align-top xl:max-w-[1300px] xl:gap-[96px]"
       }
     >
       <h2 className="text-gradient-oval px-[10%] text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid">

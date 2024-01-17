@@ -22,7 +22,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
         />
 
         <div className="flex-3 relative flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
-          <Ellipse size="lg" className="left-[-100%] top-0 rotate-[140deg] " />
+          <Ellipse size="lg" className="left-[-100%] top-0 rotate-[140deg]" />
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
             Build safely
           </h2>
@@ -34,7 +34,6 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
             The right to extract OEV from each price update is auctioned offchain using Flashbots&apos; trusted
             MEV-Share infrastructure.
           </p>
-
           <IntegrateOvalButton />
         </div>
       </div>

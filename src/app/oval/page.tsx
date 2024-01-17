@@ -5,7 +5,6 @@ import {
   OevLost,
   ReclaimOev,
   BuildSafely,
-  OevCreation,
   Faq,
   InitialLoadIntegrateOvalModal,
 } from "@/components/Oval";
@@ -41,7 +40,6 @@ export default function Page() {
       <CaptureOev />
       <ReclaimOev />
       <BuildSafely />
-      <OevCreation />
       <Faq />
     </Layout>
   );

@@ -2,7 +2,7 @@ import { cn } from "@/utils/styleUtils";
 import { VariantProps, cva } from "class-variance-authority";
 
 const ellipseVariants = cva(
-  "absolute z-0 rounded-[50%]  bg-gradient-to-br via-transparent from-10% to-80% blur-xl from-transparent to-white/5 ",
+  "absolute z-0 rounded-[50%] pointer-events-none blur-xl bg-gradient-to-br via-transparent from-10% to-80%  from-transparent to-white/5 [&~*]:relative",
   {
     variants: {
       size: {
