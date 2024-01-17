@@ -11,12 +11,11 @@ export const Hero = () => {
       }}
     >
       <Animation className="!h-[400px]" scene="https://prod.spline.design/kqmc4ychq3OeKv5V/scene.splinecode" />
-
-      <h1 className="text-gradient-oval px-[20%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
+      <Ellipse size="md" className="bottom-[10%] right-0 rotate-[20deg]" />
+      <h1 className="text-gradient-oval relative px-[20%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
         Get paid to use oracles
       </h1>
       <div className="relative flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">
-        <Ellipse size="md" className="bottom-[10%] right-0 rotate-[20deg]" />
         <h3 className="text-gradient-oval px-[10%] text-xl opacity-75 xl:px-0">
           Your protocol creates value when it consumes price updates. Capture this value with Oval.
         </h3>
