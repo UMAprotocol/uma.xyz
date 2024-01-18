@@ -1,6 +1,7 @@
 import { cn } from "@/utils/styleUtils";
+import Image from "next/image";
+import earnOevIMage from "public/assets/oval-earn-oev.webp";
 import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
-import { Animation } from "./Animation";
 import { Ellipse } from "./Ellipsis";
 
 export type ReclaimOevProps = {
@@ -16,10 +17,9 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row xl:justify-center xl:gap-24">
-        <Animation
-          className="!h-[440px] min-[472px]:!h-[720px]"
-          scene="https://prod.spline.design/6fMUQ-8iv1LJxomb/scene.splinecode"
-        />
+        <div className="max-w-[500px] flex-1">
+          <Image src={earnOevIMage} alt="decorative section image" />
+        </div>
 
         <div className="relative flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
           <Ellipse size="md" className="right-[-50%] top-[-50%] rotate-45" />
