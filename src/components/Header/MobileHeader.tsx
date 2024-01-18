@@ -5,15 +5,14 @@ import { CSSProperties, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import { Icon } from "../Icon";
 import MobileMenu from "./MobileMenu";
+import { useHeaderProps } from "./useHeaderProps";
 
-type Props = {
-  isLightTheme: boolean;
-  menuBg: string;
-  links: { label: string; href: string }[];
-  activePath: string | undefined;
-};
+type Props = Pick<
+  ReturnType<typeof useHeaderProps>,
+  "activePath" | "links" | "launchAppLink" | "isLightTheme" | "menuBg"
+>;
 
-export default function MobileHeader({ isLightTheme, menuBg, activePath, links }: Props) {
+export default function MobileHeader({ isLightTheme, menuBg, activePath, links, launchAppLink }: Props) {
   const [showMenu, setShowMenu] = useState(false);
 
   const closeMenuBarTransition = `
@@ -72,28 +71,28 @@ export default function MobileHeader({ isLightTheme, menuBg, activePath, links }
           }}
         />
       </button>
-
       <NextLink href="/" aria-label="Back to page top" className="flex items-baseline gap-2">
         <Icon name="uma-logo" className={`h-[16px] w-[63px] ${isLightTheme ? "text-black" : "text-white"}`} />
         {activePath === "/oval" && <span className="text-gradient-oval align-bottom text-[16px] leading-4">Oval</span>}
       </NextLink>
-      <div className="justify-self-end">
-        <NextLink
-          className="inline-flex items-center justify-center gap-1 text-sm text-[--color] no-underline transition hover:opacity-50"
-          aria-label="Link to voter dapp"
-          href="https://vote.uma.xyz/"
-          target="_blank"
-          style={
-            {
-              "--color": isLightTheme ? "var(--grey-500)" : "var(--white)",
-            } as CSSProperties
-          }
-        >
-          App
-          <Icon name="arrow" className="h-5 w-5 -rotate-45 text-[--color]" />
-        </NextLink>
-      </div>
-
+      {launchAppLink && (
+        <div className="justify-self-end">
+          <NextLink
+            className="inline-flex items-center justify-center gap-1 text-sm text-[--color] no-underline transition hover:opacity-50"
+            aria-label="Link to voter dapp"
+            href="https://vote.uma.xyz/"
+            target="_blank"
+            style={
+              {
+                "--color": isLightTheme ? "var(--grey-500)" : "var(--white)",
+              } as CSSProperties
+            }
+          >
+            App
+            <Icon name="arrow" className="h-5 w-5 -rotate-45 text-[--color]" />
+          </NextLink>
+        </div>
+      )}
       <MobileMenu menuBg={menuBg} links={links} isLightTheme={isLightTheme} show={showMenu} hide={hideMenu} />
     </FocusOn>
   );
