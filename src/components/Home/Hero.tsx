@@ -3,7 +3,6 @@ import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
 import { useEffect, useRef } from "react";
 import { Icon } from "../Icon";
-import Image from "next/image";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
 
@@ -65,7 +64,7 @@ export default function Hero() {
         }}
         ref={ref}
       >
-        <Image fill alt="hero background image lines" src="/assets/hero-bg-lines.svg" />
+        {/* <Image fill alt="hero background image lines" src="/assets/hero-bg-lines.svg" /> */}
         <m.div
           className="absolute bottom-0 left-0 right-0"
           initial={{ opacity: 0, x: "-10%", y: "10%" }}
@@ -73,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 0.3 }}
         >
           <video
-            className="mx-auto w-full object-cover mix-blend-luminosity lg:w-[80%]"
+            className="mx-auto w-full object-cover opacity-20 mix-blend-luminosity lg:w-[80%]"
             autoPlay
             loop
             muted
