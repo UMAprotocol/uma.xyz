@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroImage from "public/assets/oval_hero.jpg";
-import { Ellipse } from "./Ellipsis";
 
 export const Hero = () => {
   return (
@@ -14,7 +13,7 @@ export const Hero = () => {
       <Image priority className="w-[80%]" src={heroImage} alt="decorative hero image" />
 
       <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
-        Get paid to use oracles
+        Get Paid To Use Price Oracles
       </h1>
       <div className="relative flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">
         <h3 className="text-gradient-oval px-[10%] text-xl opacity-75 xl:px-0">
