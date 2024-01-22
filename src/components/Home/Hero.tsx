@@ -64,7 +64,6 @@ export default function Hero() {
         }}
         ref={ref}
       >
-        {/* <Image fill alt="hero background image lines" src="/assets/hero-bg-lines.svg" /> */}
         <m.div
           className="absolute bottom-0 left-0 right-0"
           initial={{ opacity: 0, x: "-10%", y: "10%" }}
