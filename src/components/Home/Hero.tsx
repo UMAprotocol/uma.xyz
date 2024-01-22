@@ -72,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 0.3 }}
         >
           <video
-            className="mx-auto w-full object-cover opacity-20 mix-blend-luminosity lg:w-[80%]"
+            className="mx-auto w-full object-cover opacity-10 mix-blend-luminosity lg:w-[80%]"
             autoPlay
             loop
             muted
