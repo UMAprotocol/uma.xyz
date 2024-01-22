@@ -142,7 +142,7 @@ html {
   /* legacy 'red' color -- renamed to 'primary' */
   --red: hsl(var(--color-primary-500));
   /* special hero video background var */
-  --hero-video-background: #292429;
+  --hero-video-background: #272528;
   /* fonts */
   --header-lg: 400 6rem/112px "Halyard Display", sans-serif;
   --header-md: 400 4rem/72px "Halyard Display", sans-serif;
