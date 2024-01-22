@@ -1,6 +1,4 @@
 import { cn } from "@/utils/styleUtils";
-import Image from "next/image";
-import buildSaferImage from "public/assets/oval-build-safer.webp";
 import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
 import { Ellipse } from "./Ellipsis";
 
@@ -17,10 +15,9 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row-reverse xl:justify-center xl:gap-24">
-        <div className="flex-4 max-w-[600px]">
-          <Image src={buildSaferImage} alt="decorative section image" />
-        </div>
-
+        <video autoPlay loop muted playsInline>
+          <source src="assets/buildSafer-mp4_good.mp4" type="video/mp4" />
+        </video>
         <div className="flex-3 relative flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
           <Ellipse size="lg" className="left-[-100%] top-0 rotate-[140deg]" />
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
