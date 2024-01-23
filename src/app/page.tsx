@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Layout colorScheme="HOME">
+    <Layout page="HOME">
       <Home />
     </Layout>
   );

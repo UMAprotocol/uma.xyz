@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Layout showOvalBanner={false} showTicker={false} colorScheme="OVAL" className="pb-[96px]">
+    <Layout showOvalBanner showTicker={false} page="OVAL" className="pb-[96px]">
       <InitialLoadIntegrateOvalModal />
       <Hero />
       <OevLost />

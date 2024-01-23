@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Layout colorScheme="OSNAP">
+    <Layout showOvalBanner={false} page="OSNAP">
       <OsnapV2 />
     </Layout>
   );
