@@ -71,7 +71,7 @@ export default function Hero() {
           transition={{ duration: 0.3 }}
         >
           <video
-            className="mx-auto w-full object-cover mix-blend-luminosity lg:w-[80%]"
+            className="mx-auto w-full object-cover opacity-10 mix-blend-luminosity lg:w-[80%]"
             autoPlay
             loop
             muted
@@ -82,14 +82,11 @@ export default function Hero() {
               MozBackfaceVisibility: "hidden",
             }}
           >
-            <source src="/assets/hero.mp4" type="video/mp4" />
             <source src="/assets/hero.webm" type="video/webm" />
+            <source src="/assets/hero.mp4" type="video/mp4" />
           </video>
         </m.div>
-        <div
-          className="absolute left-0 top-0 h-full w-full bg-cover bg-repeat"
-          style={{ backgroundImage: "url('/assets/hero-bg-lines.svg')" }}
-        />
+
         <div className="mx-auto grid h-full max-w-[--page-width] grid-rows-[1fr_20%] items-center justify-items-center">
           <m.div className="justify- mb-3 flex flex-col items-center gap-8 lg:mb-0" {...headerAnimation}>
             <m.h1 className="z-10 text-center text-sm-fluid text-white md:text-md-fluid lg:text-lg-fluid">
