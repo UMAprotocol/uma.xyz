@@ -1,17 +1,26 @@
 "use client";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const Hero = () => {
+  const [loaded, setLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const platform = window.navigator.platform;
     const root = document.documentElement;
 
     if (platform === "Win32") {
-      root.style.setProperty("--background-base", "0 0% 12%");
+      root.style.setProperty("--background-base", "0 0% 13.8%", "important");
     } else {
-      root.style.setProperty("--background-base", "0 0% 13.8%");
+      root.style.setProperty("--background-base", "0 0% 13.8%", "important");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (videoRef.current?.readyState === 4) {
+      setLoaded(true);
     }
   }, []);
 
@@ -22,9 +31,25 @@ export const Hero = () => {
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}
     >
-      <video autoPlay loop muted playsInline>
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          display: !loaded ? "none" : undefined,
+        }}
+      >
         <source src="assets/hero-mp4_medium.mp4" type="video/mp4" />
       </video>
+
+      <div
+        style={{
+          display: loaded ? "none" : "block",
+        }}
+        className="aspect-[1.51] w-full flex-1"
+      />
 
       <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
         Get paid to use price oracles
