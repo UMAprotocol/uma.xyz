@@ -28,8 +28,10 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
             Oval wraps industry standard Chainlink Data Feeds and delivers Chainlink signed prices to your protocol.
           </p>
           <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
-            The right to extract OEV from each price update is auctioned offchain using Flashbots&apos; trusted
-            MEV-Share infrastructure.
+            Flashbots&apos; trusted MEV-Share infrastructure is used to safely conduct offchain Order Flow Auctions.
+          </p>
+          <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
+            Profit from OEV with without taking any unnecessary risks.
           </p>
           <IntegrateOvalButton />
         </div>

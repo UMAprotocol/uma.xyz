@@ -13,7 +13,7 @@ export const Hero = () => {
       </video>
 
       <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
-        Get paid to use oracles
+        Get paid to use price oracles
       </h1>
       <div className="relative flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">
         <h3 className="text-gradient-oval px-[10%] text-xl opacity-75 xl:px-0">
