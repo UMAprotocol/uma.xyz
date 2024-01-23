@@ -8,8 +8,8 @@ export const Hero = () => {
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}
     >
-      <div className="aspect-[1.5] h-fit max-h-[300px] w-full max-w-[600px] flex-1">
-        <video className="object-fill" autoPlay loop muted playsInline>
+      <div className="aspect-square h-fit max-h-[400px] w-full max-w-[600px] flex-1 shrink-0 ">
+        <video className="object-cover object-center" autoPlay loop muted playsInline>
           <source src="assets/hero-oval.mp4" type="video/mp4" />
         </video>
       </div>
