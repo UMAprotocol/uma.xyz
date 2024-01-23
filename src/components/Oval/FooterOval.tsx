@@ -7,18 +7,18 @@ import Image from "next/image";
 import NextLink from "next/link";
 import footerLines from "public/assets/footer-lines-grey.png";
 import { useRef } from "react";
-import { Icon } from "./Icon";
-import MailChimpForm from "./MailChimpForm";
-import VoteTicker from "./VoteTicker";
+import VoteTicker from "../VoteTicker";
+import { Icon } from "../Icon";
+import MailChimpForm from "../MailChimpForm";
 
-export default function Footer() {
+export function FooterOval() {
   const id = "contact";
   const ref = useRef<HTMLDivElement>(null);
   useLoadSectionRefAndId(ref, id);
 
   return (
     <footer
-      className="relative grid grid-rows-[auto_1fr_auto] bg-grey-300 px-[--page-padding] pt-16 xl:pt-[--header-blur-height]"
+      className="relative grid grid-rows-[auto_1fr_auto] bg-background px-[--page-padding] pt-16 xl:pt-[--header-blur-height]"
       id={id}
       ref={ref}
     >
@@ -46,7 +46,7 @@ export default function Footer() {
           <NextLink className="md:hidden" href="#" aria-label="Home">
             <Icon name="uma-logo" className="h-4 w-16 text-black" />
           </NextLink>
-          <h3 className="w-fit text-center text-xl text-grey-700 md:mb-8 lg:max-w-[640px] lg:text-left">
+          <h3 className="text-text/75 w-fit text-center text-xl md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA and OO news, straight to your inbox.
           </h3>
           <MailChimpForm />
@@ -57,7 +57,7 @@ export default function Footer() {
         <div className="flex items-center gap-6">
           {socialLinks.map(({ href, icon, label }) => (
             <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>
-              <Icon name={icon} className="h-6 w-6 text-grey-800 transition group-hover:text-red" />
+              <Icon name={icon} className="h-6 w-6 text-white transition group-hover:text-red" />
             </NextLink>
           ))}
         </div>

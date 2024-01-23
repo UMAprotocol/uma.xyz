@@ -7,6 +7,7 @@ import {
   BuildSafely,
   Faq,
   InitialLoadIntegrateOvalModal,
+  FooterOval,
 } from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <Layout showOvalBanner={false} showTicker={false} colorScheme="OVAL" className="pb-[96px]">
+    <Layout showOvalBanner={false} showTicker={false} colorScheme="OVAL">
       <InitialLoadIntegrateOvalModal />
       <Hero />
       <OevLost />
@@ -41,6 +42,7 @@ export default function Page() {
       <ReclaimOev />
       <BuildSafely />
       <Faq />
+      <FooterOval />
     </Layout>
   );
 }

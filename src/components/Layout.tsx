@@ -1,5 +1,4 @@
 import { cn } from "@/utils/styleUtils";
-import Footer from "./Footer";
 import Header from "./Header";
 import VoteTicker from "./VoteTicker";
 import { PortalContainer } from "./Portal";
@@ -17,7 +16,6 @@ export type LayoutProps = {
   children: React.ReactNode;
   colorScheme?: ColorScheme;
   showTicker?: boolean;
-  showFooter?: boolean;
   showOvalBanner?: boolean;
   className?: string;
 };
@@ -25,7 +23,6 @@ export type LayoutProps = {
 export function Layout({
   children,
   showTicker = true,
-  showFooter = true,
   showOvalBanner = true,
   colorScheme = ColorSchemes.HOME,
   className,
@@ -36,7 +33,6 @@ export function Layout({
       {showTicker && <VoteTicker className="z-20" />}
       <Header />
       {children}
-      {showFooter && <Footer />}
       <PortalContainer />
     </main>
   );

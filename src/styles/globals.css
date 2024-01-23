@@ -10,6 +10,7 @@ body:has(main[data-color-scheme="home"]) {
   color: var(--grey-900);
   --background-page: var(--hero-video-background);
   background: var(--background-page);
+  --text-base: 0 0% 0%;
 }
 
 body:has(main[data-color-scheme="oval"]) {
@@ -17,6 +18,7 @@ body:has(main[data-color-scheme="oval"]) {
   --background-base: 0 0% 12%;
   --background-page: hsl(var(--background-base));
   background: var(--background-page);
+  --text-base: 0 0% 100%;
 }
 
 body:has(main[data-color-scheme="osnap"]) {
@@ -24,6 +26,7 @@ body:has(main[data-color-scheme="osnap"]) {
   --background-base: var(--color-white);
   --background-page: hsl(var(--background-base));
   background: var(--background-page);
+  --text-base: 0 0% 0%;
 }
 
 html {
