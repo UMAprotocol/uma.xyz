@@ -51,7 +51,7 @@ export const OevLost = () => {
         </h3>
         <div
           ref={ref}
-          className={`bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-md-fluid text-transparent lg:text-lg-fluid ${roboto.className}`}
+          className={`bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-sm-fluid text-transparent sm:text-md-fluid lg:text-lg-fluid ${roboto.className}`}
         >
           ${value}
         </div>
@@ -60,7 +60,7 @@ export const OevLost = () => {
             transform: "rotate3d(1, 0, 0, 40deg) translateY(1.1em) rotateX(180deg)",
             transformOrigin: "center top",
           }}
-          className={`select-none text-md-fluid text-white opacity-5 lg:text-lg-fluid ${roboto.className}`}
+          className={`select-none text-sm-fluid text-white opacity-5 sm:text-md-fluid lg:text-lg-fluid  ${roboto.className}`}
         >
           ${value}
         </div>
