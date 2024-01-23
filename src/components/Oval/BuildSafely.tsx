@@ -15,8 +15,8 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row-reverse xl:justify-center xl:gap-24">
-        <video autoPlay loop muted playsInline>
-          <source src="assets/buildSafer-mp4_good.mp4" type="video/mp4" />
+        <video autoPlay loop muted playsInline className="flex-1 lg:max-w-[700px]">
+          <source src="assets/buildSafely.mp4" type="video/mp4" />
         </video>
         <div className="flex-3 relative flex max-w-[500px] flex-col items-center gap-8 xl:items-start">
           <Ellipse size="lg" className="left-[-100%] top-0 rotate-[140deg]" />
