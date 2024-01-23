@@ -34,7 +34,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
             Flashbots&apos; trusted MEV-Share infrastructure is used to safely conduct offchain Order Flow Auctions.
           </p>
           <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
-            Profit from OEV with without taking any unnecessary risks.
+            Profit from OEV without taking any unnecessary risks.
           </p>
           <IntegrateOvalButton />
         </div>
