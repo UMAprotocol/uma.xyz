@@ -5,22 +5,36 @@ export const Faq = () => {
   const faqs = [
     {
       question: "Is Oval an oracle?",
-      answer: "No, Oval is an MEV capture technology that acts as a layer between price oracles and DeFi protocols.",
+      answer:
+        "No, Oval is an MEV capture mechanism that acts as a layer between Chainlink and lending protocols. Oval enables protocols to be paid for updates from Chainlink.",
     },
     {
       question: "How is Oval different from a Chainlink Data Feed?",
       answer:
-        "Protocols use Oval in addition to their Chainlink Data Feed. Oval wraps Chainlink Data Feeds and delivers Chainlink signed price updates to protocols. By adding Oval to the oracle stack, Oval is able to shield price updates from MEV-searchers and force searchers to pay the protocol for the right to extract the OEV it creates.",
+        "Oval wraps Chainlink Data Feeds and delivers Chainlink price updates to protocols, wrapped in an OEV auction. By adding Oval to your protocol, Oval requires searchers to pay you for the right to use updated prices. Effectively redirecting OEV to you, instead of to the builders. The underlying Chainlink prices are not changed; Oval simply adds an auction between the update and when its accessible by your protocol.",
     },
     {
       question: "Is there a risk that prices won't show up or will be delayed?",
       answer:
-        "Any price update delivered by a Chainlink Data Feed will get delivered by Oval. Chainlink Data Feeds push price updates at fixed intervals or whenever the price crosses a deviation threshold. On most mainnet feeds that's every one hour, or when the price changes by more than 1%. When Oval receives prices from Chainlink it holds them for the minimum possible period for OEV extraction – 60 seconds. If searchers do not attempt to extract the OEV within that period, the Oval contract will automatically release the price after that period, with no effect on end-user experience.",
+        "Any price update delivered by Chainlink Data Feed will also be delivered by Oval. Oval has no ability to change the prices that come out of Chainlink. Chainlink pushes price updates at fixed intervals or when the price crosses a specific deviation threshold. For most mainnet feeds, this occurs every hour or when the price changes by more than 1%. Oval receives prices from Chainlink and then auctions off the first access to the updated price. In the happy (and normal path for 90% of the time), Oval updates will run in the same block as the source Chainlink update. This means that the vast majority of the time there is no delay at all between when Chainlink updates and when your protocol gets the updated price. In the unhappy path, due to block inclusion delays or spiking gas prices, Oval has a maximum of 3 block (36 seconds) delay added to when Chainlink updates to when your protocol receives a price. This interval is added to give time of the OEV auction to run if there is inclusion delays on mainnet. This setting is configurable. After this 3 block window Oval is automatically disabled and simply acts as a passthrough where your protocol reads directly from Chainlink, adding no additional delay or risk to your integration. ",
     },
     {
       question: "Can the price be manipulated?",
-      answer:
-        "No, Oval simply delivers the price it received from Chainlink. Oval has been successfully audited by OpenZeppelin to ensure that prices can't be manipulated. Oval is subject to the same security bounty as UMA's Optimistic Oracle and the Across Bridge.",
+      answer: (
+        <p>
+          No, Oval simply delivers the price it received from the Chainlink Data Feed. Oval has been audited by
+          OpenZeppelin to ensure that prices can&apos;t be manipulated. Oval is also subject to the same{" "}
+          <Link
+            className="items-center text-red transition hover:opacity-50"
+            target="_blank"
+            aria-label="Link to UMA docs"
+            href="https://app.gitbook.com/o/MZ06Z7ucpJtTO46hUUQr/s/KdaoNjf9AzgWFNHyPo5b/resources/audit-and-bug-bounty-programs"
+          >
+            security bug bounty program
+          </Link>{" "}
+          as UMA&apos;s Optimistic Oracle and the Across Bridge.
+        </p>
+      ),
     },
     {
       question: "What risks does Oval introduce?",
@@ -36,14 +50,28 @@ export const Faq = () => {
           >
             trust assumptions
           </Link>{" "}
-          section in the Oval docs.
+          section in the Oval documentation.
         </p>
       ),
     },
     {
       question: "Where does OEV captured by Oval go?",
-      answer:
-        "OEV captured by Oval is divided between three parties. The majority of the OEV is directed to an address set by the protocol that created the revenue. The remainder is directed evenly to the oracle provider and UMA as a fee for providing the oracle infrastructure and MEV capture infrastructure respectively.",
+      answer: (
+        <p>
+          OEV captured by Oval is divided among three parties. The majority of the OEV goes to an address designated by
+          the protocol that generated the revenue in the first place. The remainder is split between Chainlink, and UMA.
+          This split serves as a fee for providing the oracle infrastructure and MEV capture infrastructure,
+          respectively. You can learn more about revenue sharing in our{" "}
+          <Link
+            className="items-center text-red transition hover:opacity-50"
+            target="_blank"
+            aria-label="Link to UMA docs"
+            href="https://app.gitbook.com/o/MZ06Z7ucpJtTO46hUUQr/s/tXEHwUXJ0YQakWqJOaw2/mechanism-details/revenue-sharing"
+          >
+            documentation.
+          </Link>{" "}
+        </p>
+      ),
     },
   ];
 
@@ -70,6 +98,13 @@ export const Faq = () => {
         type="single"
         defaultValue="0"
       />
+      <Link
+        className="w-full justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
+        href="https://docs.oval.xyz/"
+        target="_blank"
+      >
+        Learn more
+      </Link>
     </section>
   );
 };

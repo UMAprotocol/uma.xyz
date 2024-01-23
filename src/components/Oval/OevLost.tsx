@@ -47,7 +47,7 @@ export const OevLost = () => {
         }}
       >
         <h3 className="text-md uppercase leading-6 tracking-widest text-white opacity-50">
-          Total OEV lost by just AAVE and Compound
+          Total OEV leaked by just AAVE V2/V3 and Compound V2
         </h3>
         <div
           ref={ref}
