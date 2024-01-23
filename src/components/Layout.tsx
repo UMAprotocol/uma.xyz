@@ -5,19 +5,7 @@ import VoteTicker from "./VoteTicker";
 import { PortalContainer } from "./Portal";
 import OvalBanner from "./OvalBanner";
 import { headers } from "next/headers";
-
-export const Pages = {
-  HOME: "HOME",
-  OSNAP: "OSNAP",
-  OVAL: "OVAL",
-} as const;
-
-const Platforms = {
-  MAC: "MAC",
-  WINDOWS: "WINDOWS",
-} as const;
-
-export type Page = keyof typeof Pages;
+import { Page, Pages, Platforms } from "@/constant/pages";
 
 export type LayoutProps = {
   children: React.ReactNode;

@@ -1,12 +1,10 @@
 "use client";
-
-import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { usePathname } from "next/navigation";
 import { CSSProperties } from "react";
 import { Icon } from "./Icon";
-import { Page, Pages } from "./Layout";
 import { cn } from "@/utils/styleUtils";
+import { Page, Pages } from "@/constant/pages";
+import { motion } from "framer-motion";
 
 type OvalBannerProps = {
   page: Page;
@@ -38,8 +36,7 @@ const pageData = {
 } as const;
 
 export default function OvalBanner({ isLightTheme: isLightTheme_ = false, page }: OvalBannerProps) {
-  const pathname = usePathname();
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const isHomePage = page === "HOME";
   const isLightTheme = !isHomePage || isLightTheme_;
 
   const { copy, link } = pageData[page];
