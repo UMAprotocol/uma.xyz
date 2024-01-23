@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { CSSProperties } from "react";
 import { Icon } from "./Icon";
 import { Page, Pages } from "./Layout";
+import { cn } from "@/utils/styleUtils";
 
 type OvalBannerProps = {
   page: Page;
@@ -17,19 +18,21 @@ const pageData = {
     copy: "Introducing Oval: create protocol revenue by capturing MEV",
     link: {
       href: "/oval",
+      external: false,
     },
   },
   [Pages.OVAL]: {
     copy: "Introducing Oval: read the launch blog to learn more about Oval, MEV and OEV",
     link: {
       href: "https://medium.com/uma-project/announcing-oval-earn-protocol-revenue-by-capturing-oracle-mev-877192c51fe2",
-      target: "_blank",
+      external: true,
     },
   },
   [Pages.OSNAP]: {
     copy: "Introducing Oval: create protocol revenue by capturing MEV",
     link: {
       href: "/oval",
+      external: false,
     },
   },
 } as const;
@@ -73,11 +76,12 @@ export default function OvalBanner({ isLightTheme: isLightTheme_ = false, page }
         <div>
           <NextLink
             className="flex items-center gap-1 text-[--color] transition hover:opacity-50"
-            {...link}
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
             aria-label="Link to Oval"
           >
             <span className="hidden text-[--color] sm:inline">Learn More</span>
-            <Icon name="arrow" className="h-5 w-5" />
+            <Icon name="arrow" className={cn("h-5 w-5", { "-rotate-45": link.external })} />
           </NextLink>
         </div>
       </div>
