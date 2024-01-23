@@ -78,10 +78,8 @@ export const Faq = () => {
       question: "Where does OEV captured by Oval go?",
       answer: (
         <p>
-          OEV captured by Oval is divided among three parties. The majority of the OEV goes to an address designated by
-          the protocol that generated the revenue in the first place. The remainder is split between Chainlink, and UMA.
-          This split serves as a fee for providing the oracle infrastructure and MEV capture infrastructure,
-          respectively. You can learn more about revenue sharing in our{" "}
+          50% of the OEV is directed to an address specified by the protocol that originally generated the revenue. The
+          remaining 50% is allocated to UMA and its partners. You can learn more about revenue sharing in our{" "}
           <Link
             className="items-center text-red transition hover:opacity-50"
             target="_blank"
