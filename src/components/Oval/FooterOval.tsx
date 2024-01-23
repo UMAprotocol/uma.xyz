@@ -44,7 +44,7 @@ export function FooterOval() {
         </div>
         <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
           <NextLink className="md:hidden" href="#" aria-label="Home">
-            <Icon name="uma-logo" className="h-4 w-16 text-black" />
+            <Icon name="uma-logo" className="h-4 w-16 text-red" />
           </NextLink>
           <h3 className="text-text/75 w-fit text-center text-xl md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA and OO news, straight to your inbox.
