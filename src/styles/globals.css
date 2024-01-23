@@ -14,10 +14,16 @@ body:has(main[data-color-scheme="home"]) {
 
 body:has(main[data-color-scheme="oval"]) {
   color: var(--white);
-  --background-base-mac: 0 0% 13.8%;
-  --background-base-windows: 0 0% 12%;
   --background-page: hsl(var(--background-base));
-  background: var(--background-page);
+  background: var(--background-page) !important;
+}
+
+body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
+  --background-base: 0 0% 13.8%;
+}
+
+body:has(main[data-color-scheme="oval"][data-platform="windows"]) {
+  --background-base: 0 0% 12%;
 }
 
 body:has(main[data-color-scheme="osnap"]) {
