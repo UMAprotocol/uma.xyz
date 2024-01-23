@@ -15,9 +15,11 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row xl:justify-center xl:gap-24">
-        <video autoPlay loop muted playsInline className="max-w-[500px] flex-1">
-          <source src="assets/captureOev.mp4" type="video/mp4" />
-        </video>
+        <div className="-z-1 relative aspect-[1.2] h-fit max-h-[500px] w-full max-w-[600px] flex-1 shrink-0 ">
+          <video autoPlay loop muted playsInline className="object-contain object-center">
+            <source src="assets/captureOev.mp4" type="video/mp4" />
+          </video>
+        </div>
 
         <div className="relative flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
           <Ellipse size="md" className="right-[-50%] top-[-50%] rotate-45" />
