@@ -43,7 +43,7 @@ export const IntegrateOvalContent = ({
       <h2 className="text-gradient-oval pb-4 text-center text-5xl font-medium">Integrate Oval</h2>
       <p className="text-gradient-oval mb-6 text-center">
         Want to start capturing Oracle Extractable Value? Oval is live on Ethereum mainnet. Complete the form below to
-        connect integrate.
+        connect.
       </p>
       <form
         action=""
