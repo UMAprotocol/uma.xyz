@@ -16,12 +16,12 @@ export type LayoutProps = {
   className?: string;
 };
 
-const platformsColorA = ["windows", "iphone"];
+const platformsColorA = ["windows", "iphone", "ipad"];
 
 const getPlatform = () => {
   const headersList = headers();
   const ua = headersList.get("user-agent");
-  console.log(ua);
+
   const platform = platformsColorA.some((platform) => ua?.toLowerCase()?.includes(platform))
     ? Platforms.WINDOWS
     : Platforms.MAC;
