@@ -4,6 +4,7 @@ import Header from "./Header";
 import VoteTicker from "./VoteTicker";
 import { PortalContainer } from "./Portal";
 import OvalBanner from "./OvalBanner";
+import { headers } from "next/headers";
 
 export const Pages = {
   HOME: "HOME",
@@ -11,7 +12,12 @@ export const Pages = {
   OVAL: "OVAL",
 } as const;
 
-export type Page = keyof typeof Pages;
+const Platforms = {
+  MAC: "MAC",
+  WINDOWS: "WINDOWS",
+} as const;
+
+type Page = keyof typeof Pages;
 
 export type LayoutProps = {
   children: React.ReactNode;
@@ -22,6 +28,13 @@ export type LayoutProps = {
   className?: string;
 };
 
+const getPlatform = () => {
+  const headersList = headers();
+  const ua = headersList.get("user-agent");
+  const platform = ua?.toLowerCase()?.includes("win") ? Platforms.WINDOWS : Platforms.MAC;
+  return platform;
+};
+
 export function Layout({
   children,
   showTicker = true,
@@ -30,8 +43,14 @@ export function Layout({
   page = Pages.HOME,
   className,
 }: LayoutProps) {
+  const platform = getPlatform();
+
   return (
-    <main data-color-scheme={page.toLowerCase()} className={cn("relative h-[100%] overflow-clip", className)}>
+    <main
+      data-platform={platform.toLowerCase()}
+      data-color-scheme={page.toLowerCase()}
+      className={cn("relative h-[100%] overflow-clip", className)}
+    >
       {showOvalBanner && <OvalBanner page={page} />}
       {showTicker && <VoteTicker className="z-20" />}
       <Header />
