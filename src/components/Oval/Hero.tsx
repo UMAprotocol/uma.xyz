@@ -2,19 +2,14 @@ import Link from "next/link";
 
 export const Hero = () => {
   return (
-    <section
-      className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]"
-      style={{
-        minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
-      }}
-    >
+    <section className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]">
       <div className="aspect-square h-fit max-h-[400px] w-full max-w-[600px] flex-1 shrink-0 ">
         <video className="object-cover object-center" autoPlay loop muted playsInline>
           <source src="assets/hero-oval.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
+      <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid lg:text-md-fluid 2xl:text-lg-fluid">
         Get paid to use price oracles
       </h1>
       <div className="relative flex flex-col items-center gap-6 lg:w-[80%] xl:flex-row xl:gap-8">
