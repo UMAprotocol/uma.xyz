@@ -1,6 +1,20 @@
+"use client";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export const Hero = () => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const platform = window.navigator.platform;
+    const root = document.documentElement;
+
+    if (platform === "Win32") {
+      root.style.setProperty("--background-base", "0 0% 12%");
+    } else {
+      root.style.setProperty("--background-base", "0 0% 13.8%");
+    }
+  }, []);
+
   return (
     <section
       className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]"
