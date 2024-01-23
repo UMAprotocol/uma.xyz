@@ -48,7 +48,7 @@ export const Faq = () => {
             className="items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
-            href="https://docs.oval.xyz/resources/audit-and-bug-bounty-programs"
+            href="https://docs.uma.xyz/resources/audit-and-bug-bounty-programs"
           >
             security bug bounty program
           </Link>{" "}
