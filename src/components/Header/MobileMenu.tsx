@@ -6,19 +6,23 @@ import { usePathname } from "next/navigation";
 import { CSSProperties, useEffect, useState } from "react";
 import { Icon } from "../Icon";
 import LottieAnimation from "../LottieAnimation";
+import { cn } from "@/utils/styleUtils";
+import { Portal } from "../Portal";
 
 type Props = {
   show: boolean;
   hide: () => void;
   isLightTheme: boolean;
+  menuBg: string;
   links: { label: string; href: string }[];
 };
 
-export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
+export default function MobileMenu({ show, hide, menuBg, isLightTheme, links }: Props) {
   const [animationData, setAnimationData] = useState<object>();
   const { scrollY } = useScrollContext();
-  const pathname = usePathname();
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const pathName = usePathname();
+
+  const showTicker = pathName?.split("#")[0] === "/" || pathName?.split("#")[0] === "/osnap";
 
   useEffect(() => {
     if (show && !animationData) {
@@ -27,48 +31,54 @@ export default function MobileMenu({ show, hide, isLightTheme, links }: Props) {
   }, [show, animationData]);
 
   return (
-    <nav
-      className="absolute left-0 top-[56px] flex h-[--height] w-full flex-col content-center items-center bg-[--background] opacity-[--opacity] transition"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Mobile Menu"
-      style={
-        {
-          "--height": `calc(100dvh - ${scrollY === 0 && isHomePage ? "124px" : "44px"})`,
-          "--background": isLightTheme ? "var(--white)" : "var(--hero-video-background)",
-          "--opacity": show ? 1 : 0,
-          "--link-color": isLightTheme ? "var(--grey-500)" : "var(--white)",
-          pointerEvents: show ? "auto" : "none",
-          transform: show ? "translateY(0)" : "translateY(-20px)",
-        } as CSSProperties
-      }
-    >
-      <div className="absolute bottom-0 left-0 right-0 opacity-[0.15]">
-        {animationData && <LottieAnimation play={show} animationData={animationData} />}
-      </div>
-      <div className="mb-auto mt-[25%] grid place-items-center gap-4">
-        {links.map(({ href, label }) => (
-          <NextLink
-            className="relative inline-flex items-center text-sm text-[--link-color] no-underline hover:opacity-80"
-            onClick={hide}
-            key={href}
-            href={href}
-            target={isExternalLink(href) ? "_blank" : undefined}
-          >
-            {label}{" "}
-            {isExternalLink(href) ? (
-              <Icon name="arrow" className="ml-1 text-[--link-color] -rotate-45 w-5 h-5" />
-            ) : null}
-          </NextLink>
-        ))}
-      </div>
-      <div className="flex h-fit items-center gap-[22px] pb-[22px]">
-        {socialLinks.map(({ href, icon, label }) => (
-          <NextLink className="group z-10" onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
-            <Icon name={icon} className="text-[--link-color] w-6 h-6" />
-          </NextLink>
-        ))}
-      </div>
-    </nav>
+    <Portal>
+      <nav
+        className={cn(
+          "fixed left-0  flex  w-screen flex-col content-center items-center bg-[--header-menu] transition",
+          show ? "opacity-100" : "opacity-0",
+          showTicker && scrollY <= 68
+            ? "top-vote-ticker-height h-[calc(100%-var(--vote-ticker-height))]"
+            : "top-header-height h-[calc(100%-var(--header-height))]",
+        )}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Menu"
+        style={
+          {
+            background: menuBg,
+            "--link-color": isLightTheme ? "var(--grey-500)" : "var(--white)",
+            pointerEvents: show ? "auto" : "none",
+            transform: show ? "translateY(0)" : "translateY(+20px)",
+          } as CSSProperties
+        }
+      >
+        <div className="absolute bottom-0 left-0 right-0 opacity-[0.15]">
+          {animationData && <LottieAnimation play={show} animationData={animationData} />}
+        </div>
+        <div className="flex h-full flex-col place-items-center items-center justify-center gap-4">
+          {links.map(({ href, label }) => (
+            <NextLink
+              className="relative inline-flex items-center text-sm text-[--link-color] no-underline hover:opacity-80"
+              onClick={hide}
+              key={href}
+              href={href}
+              target={isExternalLink(href) ? "_blank" : undefined}
+            >
+              {label}{" "}
+              {isExternalLink(href) ? (
+                <Icon name="arrow" className="ml-1 h-5 w-5 -rotate-45 text-[--link-color]" />
+              ) : null}
+            </NextLink>
+          ))}
+        </div>
+        <div className="flex h-fit items-center gap-[22px] pb-[22px]">
+          {socialLinks.map(({ href, icon, label }) => (
+            <NextLink className="group z-10" onClick={hide} key={href} href={href} target="_blank" aria-label={label}>
+              <Icon name={icon} className="h-6 w-6 text-[--link-color]" />
+            </NextLink>
+          ))}
+        </div>
+      </nav>
+    </Portal>
   );
 }

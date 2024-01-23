@@ -3,8 +3,34 @@
 @tailwind utilities;
 
 body {
+  padding-bottom: 0;
+}
+
+body:has(main[data-color-scheme="home"]) {
   color: var(--grey-900);
-  background: var(--hero-video-background);
+  --background-page: var(--hero-video-background);
+  background: var(--background-page);
+}
+
+body:has(main[data-color-scheme="oval"]) {
+  color: var(--white);
+  --background-page: hsl(var(--background-base));
+  background: var(--background-page) !important;
+}
+
+body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
+  --background-base: 0 0% 13.8%;
+}
+
+body:has(main[data-color-scheme="oval"][data-platform="windows"]) {
+  --background-base: 0 0% 12%;
+}
+
+body:has(main[data-color-scheme="osnap"]) {
+  color: var(--grey-900);
+  --background-base: var(--color-white);
+  --background-page: hsl(var(--background-base));
+  background: var(--background-page);
 }
 
 html {
@@ -139,6 +165,9 @@ html {
   --success-700: hsl(var(--color-success-700));
   --success-800: hsl(var(--color-success-800));
   --success-900: hsl(var(--color-success-900));
+  /* oval colors */
+  --oval-black: 0 0% 12%;
+
   /* legacy 'red' color -- renamed to 'primary' */
   --red: hsl(var(--color-primary-500));
   /* special hero video background var */
@@ -199,4 +228,10 @@ dialog::backdrop {
   transition:
     background-color 0.3s,
     backdrop-filter 0.3s;
+}
+
+.text-gradient-oval {
+  background: linear-gradient(to right, white, hsla(0, 0%, 72%, 1));
+  color: transparent;
+  background-clip: text;
 }

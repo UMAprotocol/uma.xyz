@@ -34,9 +34,9 @@ export default function Builder() {
                 <Icon
                   name="oo-logo"
                   className="
+                  h-[--sm-fluid-font-size]
+                  w-[calc(var(--sm-fluid-font-size)_*_2)] 
                   text-red
-                  h-[--sm-fluid-font-size] 
-                  w-[calc(var(--sm-fluid-font-size)_*_2)]
                   md:h-[--md-fluid-font-size]
                   md:w-[calc(var(--md-fluid-font-size)_*_2)] 
                   lg:h-[--lg-fluid-font-size] 

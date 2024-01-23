@@ -1,84 +1,44 @@
-import { communicationChannels } from "@/constant";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import fancyOsnapLogo from "public/assets/fancy-osnap-logo.png";
-import { useEffect, useState } from "react";
-import { ContactDetailsInput, useContactDetailsInput } from "../ContactDetailsInput";
+import { ContactDetailsInput } from "../ContactDetailsInput";
 import { Icon } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
-import { Modal, useModal } from "../Modal";
-import { RadioGroup, useRadioGroup } from "../RadioGroup";
-import { TextInput, useTextInput } from "../TextInput";
+import { Modal } from "../Modal";
+import { RadioGroup } from "../RadioGroup";
+import { TextInput } from "../TextInput";
+import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCapture/useLeadCaptureModal";
+import { AirtableRequestBody } from "@/app/api/airtable/utils";
 
 export function useTryOsnapModal() {
-  const modalProps = useModal();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  function showModal() {
-    const newSearchParams = new URLSearchParams(searchParams ?? "");
-    newSearchParams.set("modal", "try-osnap");
-    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
-    modalProps.showModal();
-  }
-
-  function closeModal() {
-    const newSearchParams = new URLSearchParams(searchParams ?? "");
-    newSearchParams.delete("modal");
-    modalProps.closeModal();
-    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
-  }
-  return { ...modalProps, showModal, closeModal };
+  return useLeadCaptureModal(MODALS["try-osnap"]);
 }
 
 type Props = ReturnType<typeof useTryOsnapModal>;
 
 export function TryOsnapModal(props: Props) {
-  const [formState, setFormState] = useState<"idle" | "busy" | "success" | "error">("idle");
-  const radioGroupProps = useRadioGroup("Preferred communication channel", communicationChannels);
-  const nameInputProps = useTextInput({
-    label: "Name",
-    required: true,
-    placeholder: "Jane Doe",
-  });
-  const organizationInputProps = useTextInput({
-    label: "Organization",
-    required: true,
-    placeholder: "Crypto Inc.",
-  });
-  const contactDetailsInputProps = useContactDetailsInput(radioGroupProps.checkedValue);
-
-  useEffect(() => {
-    contactDetailsInputProps.setValue("");
-    contactDetailsInputProps.setDirty(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [radioGroupProps.checkedValue]);
-
-  const fields = {
-    name: nameInputProps.value,
-    organization: organizationInputProps.value,
-    communicationChannel: radioGroupProps.checkedValue,
-    contactDetails: contactDetailsInputProps.value,
-  };
-
-  const isFormValid =
-    Object.values(fields).filter((value) => value === "").length === 0 &&
-    nameInputProps.valid &&
-    organizationInputProps.valid &&
-    contactDetailsInputProps.valid;
+  const {
+    formState,
+    setFormState,
+    radioGroupProps,
+    nameInputProps,
+    organizationInputProps,
+    contactDetailsInputProps,
+    fields,
+    isFormValid,
+  } = useLeadCaptureForm();
 
   async function onSubmit() {
     if (!isFormValid) return;
 
     setFormState("busy");
+    const body: AirtableRequestBody = { ...fields, integration: "oval" };
 
     const response = await fetch("/api/airtable", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(fields),
+      body: JSON.stringify(body),
     });
 
     if (!response.ok) {
@@ -144,12 +104,12 @@ export function TryOsnapModal(props: Props) {
           }}
         >
           <div className="mb-6 grid gap-x-2 gap-y-3 sm:grid-cols-2">
-            <TextInput {...nameInputProps} />
-            <TextInput {...organizationInputProps} />
+            <TextInput theme="osnap" {...nameInputProps} />
+            <TextInput theme="osnap" {...organizationInputProps} />
           </div>
-          <RadioGroup {...radioGroupProps} />
+          <RadioGroup theme="osnap" {...radioGroupProps} />
           <div className="my-6">
-            <ContactDetailsInput {...contactDetailsInputProps} />
+            <ContactDetailsInput theme="osnap" {...contactDetailsInputProps} />
           </div>
           <button
             disabled={!isFormValid}

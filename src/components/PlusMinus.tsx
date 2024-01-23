@@ -1,16 +1,19 @@
-type Props = {
+import { cn } from "@/utils/styleUtils";
+
+type Props = React.ComponentPropsWithRef<"span"> & {
   size?: number;
   thickness?: number;
   color?: string;
 };
-export function PlusMinus(props: Props) {
+
+export function PlusMinus({ className, ...props }: Props) {
   const size = props.size ?? 24;
   const thickness = props.thickness ?? size / 12;
   const color = props.color ?? "currentColor";
 
   return (
     <span
-      className="relative inline-block rounded-full"
+      className={cn("relative inline-block rounded-full", className)}
       style={{
         width: size,
         minWidth: size,

@@ -1,40 +1,35 @@
 "use client";
 
-import { homePageLinks, osnapPageLinks } from "@/constant";
-import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { CSSProperties } from "react";
 import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
+import { useHeaderProps } from "./useHeaderProps";
 
 export default function Header() {
-  const { isLightTheme: isLightThemeFromScroll } = useScrollContext();
-  const pathname = usePathname();
-  // we only change the color when on the home page
-  // the osnap page is all light theme
-  const isHomePage = pathname?.split("#")[0] === "/";
+  const { bg, ...headerProps } = useHeaderProps();
 
-  const isLightTheme = !isHomePage || isLightThemeFromScroll;
-
-  const links = isHomePage ? homePageLinks : osnapPageLinks;
-
+  // Wrap the motion element in regular tag to avoid bug where css vars fail to get set after animation completed
   return (
-    <motion.header
-      initial={{ opacity: 0, y: "-100%" }}
-      animate={{ opacity: 1, y: "0%" }}
-      transition={{ duration: 0.2, delay: 0.7 }}
+    <header
       style={
         {
-          "--background": isLightTheme ? "var(--white)" : "var(--hero-video-background)",
+          "--background-header": bg,
         } as CSSProperties
       }
-      className="sticky top-0 z-20 grid h-[--header-height] items-center bg-[--background] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background)] backdrop-blur-sm"
+      className="sticky top-0 z-20 grid items-center bg-[--background-header] px-[--page-padding] pt-4 shadow-[0px_24px_24px_24px_var(--background-header)] backdrop-blur-sm"
     >
-      <div className="mx-auto w-full max-w-[--page-width] overflow-hidden">
-        <DesktopHeader isLightTheme={isLightTheme} links={links} />
-        <MobileHeader isLightTheme={isLightTheme} links={links} />
-      </div>
-    </motion.header>
+      <motion.div
+        key={headerProps.activePath}
+        initial={{ opacity: 0, y: "-100%" }}
+        animate={{ opacity: 1, y: "0%" }}
+        transition={{ duration: 0.2, delay: 0.7 }}
+      >
+        <div className="mx-auto w-full max-w-[--page-width] overflow-hidden">
+          <DesktopHeader {...headerProps} />
+          <MobileHeader {...headerProps} />
+        </div>
+      </motion.div>
+    </header>
   );
 }

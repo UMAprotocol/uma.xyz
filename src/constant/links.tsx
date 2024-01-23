@@ -16,8 +16,8 @@ export const homePageLinks = [
     href: "/osnap",
   },
   {
-    label: "Stats",
-    href: "https://stats.uma.xyz/",
+    label: "Oval",
+    href: "/oval",
   },
   {
     label: "Docs",
@@ -37,6 +37,25 @@ export const osnapPageLinks = [
   {
     label: "Docs",
     href: "https://docs.uma.xyz/",
+  },
+];
+
+export const ovalPageLinks = [
+  {
+    label: "Oval",
+    href: "/oval",
+  },
+  {
+    label: "oSnap",
+    href: "/osnap",
+  },
+  {
+    label: "OO",
+    href: "https://oracle.uma.xyz/",
+  },
+  {
+    label: "Home",
+    href: "/",
   },
 ];
 
