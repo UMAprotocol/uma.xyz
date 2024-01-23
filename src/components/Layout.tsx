@@ -17,7 +17,7 @@ const Platforms = {
   WINDOWS: "WINDOWS",
 } as const;
 
-type Page = keyof typeof Pages;
+export type Page = keyof typeof Pages;
 
 export type LayoutProps = {
   children: React.ReactNode;
