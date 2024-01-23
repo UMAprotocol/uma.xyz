@@ -1,22 +1,11 @@
 "use client";
+
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export const Hero = () => {
   const [loaded, setLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  // useEffect(() => {
-  //   if (typeof window === "undefined") return;
-  //   const platform = window.navigator.platform;
-  //   const root = document.documentElement;
-
-  //   if (platform === "Win32") {
-  //     root.style.setProperty("--background-base", "0 0% 13.8%", "important");
-  //   } else {
-  //     root.style.setProperty("--background-base", "0 0% 12%", "important");
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (videoRef.current?.readyState === 4) {
