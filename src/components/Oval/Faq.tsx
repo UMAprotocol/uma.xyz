@@ -15,8 +15,28 @@ export const Faq = () => {
     },
     {
       question: "Is there a risk that prices won't show up or will be delayed?",
-      answer:
-        "Any price update delivered by Chainlink Data Feed will also be delivered by Oval. Oval has no ability to change the prices that come out of Chainlink. Chainlink pushes price updates at fixed intervals or when the price crosses a specific deviation threshold. For most mainnet feeds, this occurs every hour or when the price changes by more than 1%. Oval receives prices from Chainlink and then auctions off the first access to the updated price. In the happy (and normal path for 90% of the time), Oval updates will run in the same block as the source Chainlink update. This means that the vast majority of the time there is no delay at all between when Chainlink updates and when your protocol gets the updated price. In the unhappy path, due to block inclusion delays or spiking gas prices, Oval has a maximum of 3 block (36 seconds) delay added to when Chainlink updates to when your protocol receives a price. This interval is added to give time of the OEV auction to run if there is inclusion delays on mainnet. This setting is configurable. After this 3 block window Oval is automatically disabled and simply acts as a passthrough where your protocol reads directly from Chainlink, adding no additional delay or risk to your integration. ",
+      answer: (
+        <div className="flex w-full flex-col gap-4">
+          <p>
+            Any price update delivered by Chainlink Data Feed will also be delivered by Oval. Oval has no ability to
+            change the prices that come out of Chainlink. Chainlink pushes price updates at fixed intervals or when the
+            price crosses a specific deviation threshold. For most mainnet feeds, this occurs every hour or when the
+            price changes by more than 1%.
+          </p>
+
+          <p>
+            Oval receives prices from Chainlink and then auctions off the first access to the updated price. In the
+            happy (and normal path for 90% of the time), Oval updates will run in the same block as the source Chainlink
+            update. This means that the vast majority of the time there is no delay at all between when Chainlink
+            updates and when your protocol gets the updated price. In the unhappy path, due to block inclusion delays or
+            spiking gas prices, Oval has a maximum of 3 block (36 seconds) delay added to when Chainlink updates to when
+            your protocol receives a price. This interval is added to give time of the OEV auction to run if there is
+            inclusion delays on mainnet. This setting is configurable. After this 3 block window Oval is automatically
+            disabled and simply acts as a passthrough where your protocol reads directly from Chainlink, adding no
+            additional delay or risk to your integration.
+          </p>
+        </div>
+      ),
     },
     {
       question: "Can the price be manipulated?",
@@ -28,7 +48,7 @@ export const Faq = () => {
             className="items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
-            href="https://app.gitbook.com/o/MZ06Z7ucpJtTO46hUUQr/s/KdaoNjf9AzgWFNHyPo5b/resources/audit-and-bug-bounty-programs"
+            href="https://docs.uma.xyz/resources/audit-and-bug-bounty-programs"
           >
             security bug bounty program
           </Link>{" "}
@@ -46,7 +66,7 @@ export const Faq = () => {
             className="items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
-            href="https://uma-1.gitbook.io/oevshare/mechanism-design/trust-assumptions"
+            href="https://docs.oval.xyz/mechanism-design/trust-assumptions"
           >
             trust assumptions
           </Link>{" "}
@@ -66,7 +86,7 @@ export const Faq = () => {
             className="items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
-            href="https://app.gitbook.com/o/MZ06Z7ucpJtTO46hUUQr/s/tXEHwUXJ0YQakWqJOaw2/mechanism-details/revenue-sharing"
+            href="https://docs.oval.xyz/mechanism-details/revenue-sharing"
           >
             documentation.
           </Link>{" "}
