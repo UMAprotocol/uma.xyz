@@ -1,15 +1,45 @@
 "use client";
-
-import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { usePathname } from "next/navigation";
 import { CSSProperties } from "react";
 import { Icon } from "./Icon";
+import { cn } from "@/utils/styleUtils";
+import { Page, Pages } from "@/constant/pages";
+import { motion } from "framer-motion";
 
-export default function OvalBanner({ isLightTheme: isLightTheme_ = false }) {
-  const pathname = usePathname();
-  const isHomePage = pathname?.split("#")[0] === "/";
+type OvalBannerProps = {
+  page: Page;
+  isLightTheme?: boolean;
+};
+
+const pageData = {
+  [Pages.HOME]: {
+    copy: "Introducing Oval: create protocol revenue by capturing MEV",
+    link: {
+      href: "/oval",
+      external: false,
+    },
+  },
+  [Pages.OVAL]: {
+    copy: "Introducing Oval: read the launch blog to learn more about Oval, MEV and OEV",
+    link: {
+      href: "https://medium.com/uma-project/announcing-oval-earn-protocol-revenue-by-capturing-oracle-mev-877192c51fe2",
+      external: true,
+    },
+  },
+  [Pages.OSNAP]: {
+    copy: "Introducing Oval: create protocol revenue by capturing MEV",
+    link: {
+      href: "/oval",
+      external: false,
+    },
+  },
+} as const;
+
+export default function OvalBanner({ isLightTheme: isLightTheme_ = false, page }: OvalBannerProps) {
+  const isHomePage = page === "HOME";
   const isLightTheme = !isHomePage || isLightTheme_;
+
+  const { copy, link } = pageData[page];
 
   return (
     <motion.div
@@ -36,20 +66,19 @@ export default function OvalBanner({ isLightTheme: isLightTheme_ = false }) {
             <Icon name="info" className="h-4 w-4 text-red" />
           </div>
           <div className="text-[--color]">
-            <span className="hidden sm:inline">
-              Introducing UMA Oval: An MEV capture tool that allows you to monetize liquidations in your protocol.
-            </span>
+            <span className="hidden sm:inline">{copy}</span>
             <span className="sm:hidden">Introducing UMA Oval</span>
           </div>
         </div>
         <div>
           <NextLink
             className="flex items-center gap-1 text-[--color] transition hover:opacity-50"
-            href="/oval"
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
             aria-label="Link to Oval"
           >
             <span className="hidden text-[--color] sm:inline">Learn More</span>
-            <Icon name="arrow" className="h-5 w-5" />
+            <Icon name="arrow" className={cn("h-5 w-5", { "-rotate-45": link.external })} />
           </NextLink>
         </div>
       </div>

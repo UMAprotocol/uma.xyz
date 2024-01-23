@@ -5,23 +5,11 @@ import VoteTicker from "./VoteTicker";
 import { PortalContainer } from "./Portal";
 import OvalBanner from "./OvalBanner";
 import { headers } from "next/headers";
-
-const ColorSchemes = {
-  HOME: "HOME",
-  OSNAP: "OSNAP",
-  OVAL: "OVAL",
-} as const;
-
-const Platforms = {
-  MAC: "MAC",
-  WINDOWS: "WINDOWS",
-} as const;
-
-type ColorScheme = keyof typeof ColorSchemes;
+import { Page, Pages, Platforms } from "@/constant/pages";
 
 export type LayoutProps = {
   children: React.ReactNode;
-  colorScheme?: ColorScheme;
+  page?: Page;
   showTicker?: boolean;
   showFooter?: boolean;
   showOvalBanner?: boolean;
@@ -40,7 +28,7 @@ export function Layout({
   showTicker = true,
   showFooter = true,
   showOvalBanner = true,
-  colorScheme = ColorSchemes.HOME,
+  page = Pages.HOME,
   className,
 }: LayoutProps) {
   const platform = getPlatform();
@@ -48,10 +36,10 @@ export function Layout({
   return (
     <main
       data-platform={platform.toLowerCase()}
-      data-color-scheme={colorScheme.toLowerCase()}
+      data-color-scheme={page.toLowerCase()}
       className={cn("relative h-[100%] overflow-clip", className)}
     >
-      {showOvalBanner && <OvalBanner />}
+      {showOvalBanner && <OvalBanner page={page} />}
       {showTicker && <VoteTicker className="z-20" />}
       <Header />
       {children}
