@@ -1,6 +1,4 @@
 import { cn } from "@/utils/styleUtils";
-import Image from "next/image";
-import earnOevIMage from "public/assets/oval-earn-oev.webp";
 import { IntegrateOvalButton } from "./IntegrateOvalModal/IntegrateOvalButton";
 import { Ellipse } from "./Ellipsis";
 
@@ -17,9 +15,9 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
       )}
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row xl:justify-center xl:gap-24">
-        <div className="max-w-[500px] flex-1">
-          <Image src={earnOevIMage} alt="decorative section image" />
-        </div>
+        <video autoPlay loop muted playsInline className="max-w-[500px] flex-1">
+          <source src="assets/captureOev.mp4" type="video/mp4" />
+        </video>
 
         <div className="relative flex max-w-[500px] flex-1 flex-col items-center gap-8 xl:items-start">
           <Ellipse size="md" className="right-[-50%] top-[-50%] rotate-45" />

@@ -1,6 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-import heroImage from "public/assets/oval_hero.jpg";
 
 export const Hero = () => {
   return (
@@ -10,7 +8,11 @@ export const Hero = () => {
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}
     >
-      <Image priority className="w-[80%]" src={heroImage} alt="decorative hero image" />
+      <div className="aspect-square h-fit max-h-[400px] w-full max-w-[600px] flex-1 shrink-0 ">
+        <video className="object-cover object-center" autoPlay loop muted playsInline>
+          <source src="assets/hero-oval.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
         Get paid to use price oracles
