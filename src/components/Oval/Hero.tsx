@@ -1,18 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 
 export const Hero = () => {
-  const [loaded, setLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current?.readyState === 4) {
-      setLoaded(true);
-    }
-  }, []);
-
   return (
     <section
       className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]"
@@ -20,25 +8,11 @@ export const Hero = () => {
         minHeight: "calc(100svh - var(--header-height) - var(--vote-ticker-height))",
       }}
     >
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          display: !loaded ? "none" : undefined,
-        }}
-      >
-        <source src="assets/hero-mp4_medium.mp4" type="video/mp4" />
-      </video>
-
-      <div
-        style={{
-          display: loaded ? "none" : "block",
-        }}
-        className="aspect-[1.51] w-full flex-1"
-      />
+      <div className="aspect-[1.51] w-full flex-1">
+        <video className="object-fill" autoPlay loop muted playsInline>
+          <source src="assets/hero-mp4_medium.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       <h1 className="text-gradient-oval relative px-[10%] text-center text-sm-fluid  md:text-md-fluid xl:text-lg-fluid">
         Get paid to use price oracles
