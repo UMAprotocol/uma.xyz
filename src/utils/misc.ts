@@ -13,3 +13,14 @@ export function addOpacityToColor(color: string, opacity: number) {
   const alpha = 100 - opacity * 100;
   return `color-mix(in srgb, transparent ${alpha}%, ${color})`;
 }
+
+export function wait(timeoutMilliseconds: number) {
+  return new Promise((res) => {
+    setTimeout(res, timeoutMilliseconds);
+  });
+}
+
+export function getApiRouteUrl(route: string, host: string | null) {
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  return `${protocol}://${host}${route}`;
+}
