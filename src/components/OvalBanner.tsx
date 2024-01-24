@@ -35,6 +35,8 @@ const pageData = {
   },
 } as const;
 
+const Link = motion(NextLink);
+
 export default function OvalBanner({ isLightTheme: isLightTheme_ = false, page }: OvalBannerProps) {
   const isHomePage = page === "HOME";
   const isLightTheme = !isHomePage || isLightTheme_;
@@ -42,8 +44,11 @@ export default function OvalBanner({ isLightTheme: isLightTheme_ = false, page }
   const { copy, link } = pageData[page];
 
   return (
-    <motion.div
-      className="grid h-[--vote-ticker-height] place-items-center bg-[--background] bg-cover bg-no-repeat pb-1 pt-4 lg:px-[--page-padding]"
+    <Link
+      href={link.href}
+      target={link.external ? "_blank" : undefined}
+      aria-label="Link to Oval"
+      className="group grid h-[--vote-ticker-height] place-items-center bg-[--background] bg-cover bg-no-repeat pb-1 pt-4 lg:px-[--page-padding]"
       initial={{ opacity: 0, y: "-20px" }}
       animate={{ opacity: 1, y: "0%" }}
       transition={{ duration: 0.3, delay: 0.8 }}
@@ -71,17 +76,18 @@ export default function OvalBanner({ isLightTheme: isLightTheme_ = false, page }
           </div>
         </div>
         <div>
-          <NextLink
-            className="flex items-center gap-1 text-[--color] transition hover:opacity-50"
-            href={link.href}
-            target={link.external ? "_blank" : undefined}
-            aria-label="Link to Oval"
-          >
-            <span className="hidden text-[--color] sm:inline">Learn More</span>
-            <Icon name="arrow" className={cn("h-5 w-5", { "-rotate-45": link.external })} />
-          </NextLink>
+          <div className="flex items-center gap-1 text-[--color] transition group-hover:text-red">
+            <span className="text-inherit hidden sm:inline">Learn More</span>
+            <Icon
+              name="arrow"
+              className={cn("h-5 w-5 transition-transform  group-hover:scale-110", {
+                "-rotate-45 group-hover:-translate-y-[2px] group-hover:translate-x-[2px]": link.external,
+                "group-hover:translate-x-1": !link.external,
+              })}
+            />
+          </div>
         </div>
       </div>
-    </motion.div>
+    </Link>
   );
 }
