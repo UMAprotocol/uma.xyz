@@ -8,15 +8,16 @@ import { Countup } from "./Countup";
 const ONE_DAY_SECONDS = 86_400;
 
 export async function getOevLost() {
+  if (process.env.NODE_ENV !== "production") {
+    return 135712272;
+  }
   const host = headers().get("host");
   const URI = getApiRouteUrl("/api/oev-data", host);
-  console.log(URI);
   const response = await fetch(URI, {
     next: {
       revalidate: ONE_DAY_SECONDS,
     },
   });
-  console.log(response);
   const res = (await response.json()) as OevDataResponse;
   return res.oevLost;
 }
