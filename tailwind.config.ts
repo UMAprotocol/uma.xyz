@@ -7,6 +7,8 @@ import {
   smFluidFontSize,
   smFluidLineHeight,
 } from "./src/constant/style/fonts";
+import { truncate } from "./src/styles/plugins/utilities";
+
 module.exports = {
   content: ["./src/**/*.{ts,tsx}", "./public/**/*.{css,svg}"],
   theme: {
@@ -174,5 +176,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [truncate],
 } satisfies Config;
