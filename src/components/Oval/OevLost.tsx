@@ -1,30 +1,13 @@
 import { Divider } from "./Divider";
 import { Ellipse } from "./Ellipsis";
-import { headers } from "next/headers";
-import { getApiRouteUrl } from "@/utils";
-import { OevDataResponse } from "@/app/api/oev-data/utils";
 import { Countup } from "./Countup";
-
-const ONE_DAY_SECONDS = 86_400;
-
-export async function getOevLost() {
-  if (process.env.NODE_ENV !== "production") {
-    return 135712272;
-  }
-  const host = headers().get("host");
-  const URI = getApiRouteUrl("/api/oev-data", host);
-  const response = await fetch(URI, {
-    next: {
-      revalidate: ONE_DAY_SECONDS,
-    },
-  });
-  const res = (await response.json()) as OevDataResponse;
-  return res.oevLost;
-}
+import { getOevLost } from "@/lib/dune";
+import { isDevEnvironment } from "@/utils";
+import { oevLostFallback } from "@/constant";
 
 export const OevLost = async () => {
-  const oevLost = await getOevLost();
-  console.log(oevLost);
+  // avoid doing expensive query in dev
+  const oevLost = isDevEnvironment ? parseInt(oevLostFallback) : (await getOevLost()).max_potential_revenue_usd;
 
   return (
     <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">

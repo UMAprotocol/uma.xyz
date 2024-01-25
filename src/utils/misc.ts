@@ -20,7 +20,4 @@ export function wait(timeoutMilliseconds: number) {
   });
 }
 
-export function getApiRouteUrl(route: string, host: string | null) {
-  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-  return `${protocol}://${host}${route}`;
-}
+export const isDevEnvironment = process.env.NODE_ENV === "production";
