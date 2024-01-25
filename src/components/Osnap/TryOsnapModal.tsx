@@ -31,7 +31,7 @@ export function TryOsnapModal(props: Props) {
     if (!isFormValid) return;
 
     setFormState("busy");
-    const body: AirtableRequestBody = { ...fields, integration: "oval" };
+    const body: AirtableRequestBody = { ...fields, integration: "osnap" };
 
     const response = await fetch("/api/airtable", {
       method: "POST",
