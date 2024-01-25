@@ -4,9 +4,10 @@ import { footerLinksOval, socialLinks } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
-import { useRef } from "react";
+import { PropsWithChildren, useRef } from "react";
 import { Icon } from "../Icon";
 import MailChimpForm from "../MailChimpForm";
+import { IntegrateOvalLink } from "./IntegrateOvalModal/IntegrateOvalButton";
 
 export function FooterOval() {
   const id = "contact";
@@ -25,7 +26,9 @@ export function FooterOval() {
             <Icon name="uma-logo" className="h-4 w-16 text-red" />
           </NextLink>
           <LinksList links={footerLinksOval.internal} />
-          <LinksList links={footerLinksOval.external} />
+          <LinksList links={footerLinksOval.external}>
+            <IntegrateOvalLink />
+          </LinksList>
         </div>
         <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
           <NextLink className="md:hidden" href="#" aria-label="Home">
@@ -51,7 +54,7 @@ export function FooterOval() {
   );
 }
 
-function LinksList({ links }: { links: { label: string; href: string }[] }) {
+function LinksList({ links, children }: PropsWithChildren<{ links: { label: string; href: string }[] }>) {
   return (
     <ul className="mb-4 h-fit w-fit list-none">
       {links.map(({ label, href }) => (
@@ -68,6 +71,7 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
           </NextLink>
         </li>
       ))}
+      {children}
     </ul>
   );
 }
