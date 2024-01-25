@@ -18,9 +18,8 @@ body:has(main[data-color-scheme="oval"]) {
   --text-base: var(--color-white);
   --border-base: 0 0% 20%;
   --foreground-base: 0 0% 18%;
-
   background: var(--background-page);
-  color: hsl(--text-base);
+  color: hsl(var(--text-base));
 }
 
 body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
@@ -29,6 +28,7 @@ body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
 
 body:has(main[data-color-scheme="oval"][data-platform="windows"]) {
   --background-base: 0 0% 12%;
+  --text-base: 0 0% 100%;
 }
 
 body:has(main[data-color-scheme="osnap"]) {
@@ -36,6 +36,7 @@ body:has(main[data-color-scheme="osnap"]) {
   --background-base: var(--color-white);
   --background-page: hsl(var(--background-base));
   background: var(--background-page);
+  --text-base: 0 0% 0%;
 }
 
 html {

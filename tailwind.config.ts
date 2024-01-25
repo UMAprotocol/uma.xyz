@@ -9,6 +9,8 @@ import {
 } from "./src/constant/style/fonts";
 import tailwindcssAnimate from "tailwindcss-animate";
 
+import { truncate } from "./src/styles/plugins/utilities";
+
 module.exports = {
   content: ["./src/**/*.{ts,tsx}", "./public/**/*.{css,svg}"],
   theme: {
@@ -178,5 +180,5 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [tailwindcssAnimate, truncate],
 } satisfies Config;
