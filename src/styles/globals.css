@@ -18,7 +18,6 @@ body:has(main[data-color-scheme="oval"]) {
   --text-base: var(--color-white);
   --border-base: 0 0% 20%;
   --foreground-base: 0 0% 18%;
-
   background: var(--background-page);
   color: hsl(--text-base);
 }

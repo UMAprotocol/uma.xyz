@@ -62,7 +62,7 @@ function LinksList({ links, children }: PropsWithChildren<{ links: { label: stri
           <NextLink
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
-            className="group flex items-center gap-1 transition-all hover:text-red"
+            className="group flex items-center gap-1 text-text transition-all hover:text-red"
           >
             {label}
             {isExternalLink(href) && (

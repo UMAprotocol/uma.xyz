@@ -35,7 +35,7 @@ export function IntegrateOvalLink({ className }: Props) {
     <>
       <button
         onClick={modalProps.showModal}
-        className={cn("group flex items-center gap-1 transition-all hover:text-red", className)}
+        className={cn("group flex items-center gap-1 text-text transition-all hover:text-red", className)}
       >
         Contact us
         <Icon name="arrow" className=" h-4 w-4 -rotate-45 transition-transform group-hover:-translate-x-[2px]" />
