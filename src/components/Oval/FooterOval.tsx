@@ -1,13 +1,12 @@
 "use client";
 
-import { footerLinks, socialLinks } from "@/constant";
+import { footerLinksOval, socialLinks } from "@/constant";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { isExternalLink } from "@/utils";
 import Image from "next/image";
 import NextLink from "next/link";
 import footerLines from "public/assets/footer-lines-grey.png";
 import { useRef } from "react";
-import VoteTicker from "../VoteTicker";
 import { Icon } from "../Icon";
 import MailChimpForm from "../MailChimpForm";
 
@@ -31,23 +30,20 @@ export function FooterOval() {
         sizes="100vw"
         className="pointer-events-none absolute object-cover"
       />
-      <div className="-mb-1 -mt-4 lg:m-0">
-        <VoteTicker isLightTheme />
-      </div>
       <div className="mx-auto flex w-full max-w-[--page-width] flex-col-reverse pt-12 md:grid md:grid-cols-[1fr_1fr]">
         <div className="row-start-2 my-14 grid h-fit grid-rows-2 justify-center justify-items-start md:row-start-auto md:h-auto md:grid-rows-none md:justify-normal xl:grid-cols-3 xl:grid-rows-none">
           <NextLink className="hidden md:mb-4 md:block" href="#" aria-label="Home">
             <Icon name="uma-logo" className="h-4 w-16 text-red" />
           </NextLink>
-          <LinksList links={footerLinks.internal} />
-          <LinksList links={footerLinks.external} />
+          <LinksList links={footerLinksOval.internal} />
+          <LinksList links={footerLinksOval.external} />
         </div>
         <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
           <NextLink className="md:hidden" href="#" aria-label="Home">
             <Icon name="uma-logo" className="h-4 w-16 text-red" />
           </NextLink>
-          <h3 className="text-text/75 w-fit text-center text-xl md:mb-8 lg:max-w-[640px] lg:text-left">
-            Receive the latest UMA and OO news, straight to your inbox.
+          <h3 className="w-fit text-center text-xl text-text/75 md:mb-8 lg:max-w-[640px] lg:text-left">
+            Receive the latest UMA Oval news, straight to your inbox.
           </h3>
           <MailChimpForm />
         </div>

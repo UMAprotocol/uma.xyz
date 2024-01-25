@@ -117,3 +117,30 @@ export const footerLinks = {
     },
   ],
 };
+
+export const footerLinksOval = {
+  internal: [
+    {
+      label: "For Searchers",
+      href: "https://docs.oval.xyz/for-searchers",
+    },
+    {
+      label: "For Integrators",
+      href: "https://docs.oval.xyz/integration",
+    },
+    {
+      label: "Stats",
+      href: "https://stats.uma.xyz/",
+    },
+  ],
+  external: [
+    {
+      label: "Docs",
+      href: "https://docs.oval.xyz/",
+    },
+    {
+      label: "Contact Us",
+      href: "https://uma.xyz/oval?modal=integrate-oval",
+    },
+  ],
+};
