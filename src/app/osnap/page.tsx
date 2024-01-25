@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import { Layout } from "@/components/Layout";
 import { OsnapV2 } from "@/components/pages/OsnapV2";
 import { Metadata } from "next";
@@ -27,6 +28,7 @@ export default function Page() {
   return (
     <Layout showOvalBanner page="OSNAP">
       <OsnapV2 />
+      <Footer />
     </Layout>
   );
 }

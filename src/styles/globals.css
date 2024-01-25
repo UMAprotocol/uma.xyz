@@ -10,12 +10,14 @@ body:has(main[data-color-scheme="home"]) {
   color: var(--grey-900);
   --background-page: var(--hero-video-background);
   background: var(--background-page);
+  --text-base: 0 0% 0%;
 }
 
 body:has(main[data-color-scheme="oval"]) {
   color: var(--white);
   --background-page: hsl(var(--background-base));
-  background: var(--background-page) !important;
+  background: var(--background-page);
+  --text-base: 0 0% 100%;
 }
 
 body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
@@ -24,6 +26,7 @@ body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
 
 body:has(main[data-color-scheme="oval"][data-platform="windows"]) {
   --background-base: 0 0% 12%;
+  --text-base: 0 0% 100%;
 }
 
 body:has(main[data-color-scheme="osnap"]) {
@@ -31,6 +34,7 @@ body:has(main[data-color-scheme="osnap"]) {
   --background-base: var(--color-white);
   --background-page: hsl(var(--background-base));
   background: var(--background-page);
+  --text-base: 0 0% 0%;
 }
 
 html {

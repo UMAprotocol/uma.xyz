@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import { Layout } from "@/components/Layout";
 import { Home } from "@/components/pages/Home";
 import { Metadata } from "next";
@@ -29,6 +30,7 @@ export default function Page() {
   return (
     <Layout page="HOME">
       <Home />
+      <Footer />
     </Layout>
   );
 }
