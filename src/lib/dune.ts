@@ -1,5 +1,5 @@
 import { unstable_cache } from "next/cache";
-import { Dune, OEV_LOST_KEY, OEV_LOST_QUERY_ID, ONE_DAY_SECONDS } from "./constants";
+import { Dune, OEV_LOST_KEY, OEV_LOST_QUERY_ID, ONE_DAY_SECONDS, OSNAP_TVS_QUERY_ID, TVS_KEY } from "./constants";
 
 const dune = async <TData>(queryId: number): Promise<TData> => {
   "use server";
@@ -20,3 +20,8 @@ export const getOevLost = unstable_cache(
     revalidate: ONE_DAY_SECONDS,
   },
 );
+
+export const getOsnapTvs = unstable_cache(() => dune<{ amount_usd: number }>(OSNAP_TVS_QUERY_ID), [TVS_KEY], {
+  tags: [TVS_KEY],
+  revalidate: ONE_DAY_SECONDS,
+});

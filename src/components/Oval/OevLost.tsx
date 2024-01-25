@@ -2,12 +2,11 @@ import { Divider } from "./Divider";
 import { Ellipse } from "./Ellipsis";
 import { Countup } from "./Countup";
 import { getOevLost } from "@/lib/dune";
-import { isDevEnvironment } from "@/utils";
 import { oevLostFallback } from "@/constant";
+import { duneActive } from "@/lib/constants";
 
 export const OevLost = async () => {
-  // avoid doing expensive query in dev
-  const oevLost = isDevEnvironment ? parseInt(oevLostFallback) : (await getOevLost()).max_potential_revenue_usd;
+  const oevLost = duneActive ? (await getOevLost()).max_potential_revenue_usd : parseInt(oevLostFallback);
 
   return (
     <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">
