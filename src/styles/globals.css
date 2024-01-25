@@ -14,10 +14,13 @@ body:has(main[data-color-scheme="home"]) {
 }
 
 body:has(main[data-color-scheme="oval"]) {
-  color: var(--white);
   --background-page: hsl(var(--background-base));
+  --text-base: var(--color-white);
+  --border-base: 0 0% 20%;
+  --foreground-base: 0 0% 18%;
+
   background: var(--background-page);
-  --text-base: 0 0% 100%;
+  color: hsl(--text-base);
 }
 
 body:has(main[data-color-scheme="oval"][data-platform="mac"]) {

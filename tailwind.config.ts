@@ -7,6 +7,8 @@ import {
   smFluidFontSize,
   smFluidLineHeight,
 } from "./src/constant/style/fonts";
+import tailwindcssAnimate from "tailwindcss-animate";
+
 import { truncate } from "./src/styles/plugins/utilities";
 
 module.exports = {
@@ -16,7 +18,10 @@ module.exports = {
       sans: ["Halyard Display", "sans-serif"],
     },
     colors: {
+      text: "hsl(var(--text-base) / <alpha-value>)",
+      border: "hsl(var(--border-base) / <alpha-value>)",
       background: "hsl(var(--background-base) / <alpha-value>)",
+      foreground: "hsl(var(--foreground-base) / <alpha-value>)",
       black: "hsl(var(--color-black) / <alpha-value>)",
       white: "hsl(var(--color-white) / <alpha-value>)",
       transparent: "transparent",
@@ -176,5 +181,5 @@ module.exports = {
       },
     },
   },
-  plugins: [truncate],
+  plugins: [tailwindcssAnimate, truncate],
 } satisfies Config;
