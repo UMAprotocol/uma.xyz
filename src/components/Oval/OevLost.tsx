@@ -6,6 +6,8 @@ import { Roboto_Mono } from "next/font/google";
 import { useIntersectionObserver } from "usehooks-ts";
 import { Divider } from "./Divider";
 import { Ellipse } from "./Ellipsis";
+import { HelpPopover } from "./HelpPopover";
+import Link from "next/link";
 
 // If loading a variable font, you don't need to specify the font weight
 const roboto = Roboto_Mono({
@@ -46,8 +48,23 @@ export const OevLost = () => {
           perspective: "500px",
         }}
       >
-        <h3 className="text-md uppercase leading-6 tracking-widest text-white opacity-50">
-          TOTAL OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3
+        <h3 className="text-md flex items-center justify-center gap-1 uppercase leading-6 tracking-widest text-white/50">
+          TOTAL OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3{" "}
+          <HelpPopover
+            text={
+              <p>
+                For more information about UMA&apos;s theoretical historic OEV methodology, please see the{" "}
+                <Link
+                  className="items-center text-red transition hover:opacity-50"
+                  target="_blank"
+                  href="https://docs.oval.xyz/oev-data"
+                >
+                  OEV data
+                </Link>{" "}
+                section of our documentation.
+              </p>
+            }
+          />
         </h3>
         <div
           ref={ref}
