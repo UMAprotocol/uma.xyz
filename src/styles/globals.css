@@ -19,7 +19,7 @@ body:has(main[data-color-scheme="oval"]) {
   --border-base: 0 0% 20%;
   --foreground-base: 0 0% 18%;
   background: var(--background-page);
-  color: hsl(--text-base);
+  color: hsl(var(--text-base));
 }
 
 body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
