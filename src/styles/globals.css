@@ -10,12 +10,17 @@ body:has(main[data-color-scheme="home"]) {
   color: var(--grey-900);
   --background-page: var(--hero-video-background);
   background: var(--background-page);
+  --text-base: 0 0% 0%;
 }
 
 body:has(main[data-color-scheme="oval"]) {
-  color: var(--white);
   --background-page: hsl(var(--background-base));
-  background: var(--background-page) !important;
+  --text-base: var(--color-white);
+  --border-base: 0 0% 20%;
+  --foreground-base: 0 0% 18%;
+
+  background: var(--background-page);
+  color: hsl(--text-base);
 }
 
 body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
