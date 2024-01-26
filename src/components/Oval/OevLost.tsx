@@ -49,7 +49,7 @@ export const OevLost = () => {
         }}
       >
         <h3 className="text-md flex items-center justify-center gap-1 uppercase leading-6 tracking-widest text-white/50">
-          TOTAL OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3{" "}
+          MAINNET OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3{" "}
           <HelpPopover
             text={
               <p>
