@@ -9,6 +9,8 @@ import { Icon } from "../Icon";
 import MailChimpForm from "../MailChimpForm";
 import { IntegrateOvalLink } from "./IntegrateOvalModal/IntegrateOvalButton";
 
+const ovalMailChimpUrl = process.env.NEXT_PUBLIC_OVAL_MAILCHIMP_URL ?? ""
+
 export function FooterOval() {
   const id = "contact";
   const ref = useRef<HTMLDivElement>(null);
@@ -37,7 +39,7 @@ export function FooterOval() {
           <h3 className="w-fit text-center text-xl text-text/75 md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA Oval news, straight to your inbox.
           </h3>
-          <MailChimpForm />
+          <MailChimpForm mailChimpUrl={ovalMailChimpUrl}/>
         </div>
       </div>
       <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">

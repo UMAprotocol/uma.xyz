@@ -11,6 +11,8 @@ import { Icon } from "./Icon";
 import MailChimpForm from "./MailChimpForm";
 import VoteTicker from "./VoteTicker";
 
+const mailChimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? ""
+
 export default function Footer() {
   const id = "contact";
   const ref = useRef<HTMLDivElement>(null);
@@ -49,7 +51,7 @@ export default function Footer() {
           <h3 className="w-fit text-center text-xl text-grey-700 md:mb-8 lg:max-w-[640px] lg:text-left">
             Receive the latest UMA and OO news, straight to your inbox.
           </h3>
-          <MailChimpForm />
+          <MailChimpForm mailChimpUrl={mailChimpUrl}/>
         </div>
       </div>
       <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">
