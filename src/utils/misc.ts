@@ -20,8 +20,6 @@ export function wait(timeoutMilliseconds: number) {
   });
 }
 
-export const isDevEnvironment = process.env.NODE_ENV === "production";
-
 export function roundToNearestMillion(value: number): string {
   const nearestMillion = Math.round(value / 1000000);
   return nearestMillion.toLocaleString();
