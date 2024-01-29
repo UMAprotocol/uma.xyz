@@ -1,11 +1,11 @@
 import { SyntheticEvent, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
-export default function MailChimpForm() {
+export default function MailChimpForm(props:{mailChimpUrl:string}) {
   const [value, setValue] = useState("");
   return (
     <MailchimpSubscribe
-      url={process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? ""}
+      url={props.mailChimpUrl}
       render={({ subscribe, status, message }) => (
         <>
           <form
