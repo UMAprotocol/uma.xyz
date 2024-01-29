@@ -14,7 +14,7 @@ export function getProvider(chainId: number) {
 
 export function getNodeUrls(): Record<string, string> {
   if (!process.env.NODE_URLS) throw Error("NODE_URLS env variable not set!");
-  return JSON.parse(process.env.NODE_URLS);
+  return JSON.parse(process.env.NODE_URLS) as Record<string, string>;
 }
 
 export async function constructVotingContract() {
