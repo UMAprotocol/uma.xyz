@@ -3,6 +3,9 @@ import { Dune, OEV_LOST_KEY, OEV_LOST_QUERY_ID, ONE_DAY_SECONDS, OSNAP_TVS_QUERY
 
 const dune = async <TData>(queryId: number): Promise<TData> => {
   "use server";
+  if (!Dune) {
+    throw new Error("No API key provided for Dune");
+  }
   const executionRes = await Dune.refresh(queryId);
   if (!executionRes.result) {
     throw new Error("Failed to execute query");
