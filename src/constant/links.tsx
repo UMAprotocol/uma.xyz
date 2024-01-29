@@ -117,3 +117,22 @@ export const footerLinks = {
     },
   ],
 };
+
+export const footerLinksOval = {
+  internal: [
+    {
+      label: "For Searchers",
+      href: "https://docs.oval.xyz/for-searchers",
+    },
+    {
+      label: "For Integrators",
+      href: "https://docs.oval.xyz/integration",
+    },
+  ],
+  external: [
+    {
+      label: "Docs",
+      href: "https://docs.oval.xyz/",
+    },
+  ],
+};
