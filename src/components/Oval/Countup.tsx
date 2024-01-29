@@ -45,9 +45,6 @@ export const Countup = ({ number }: CountupProps) => {
         perspective: "500px",
       }}
     >
-      <h3 className="text-md uppercase leading-6 tracking-widest text-white opacity-50">
-        TOTAL OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3
-      </h3>
       <div
         ref={ref}
         className={`bg-gradient-to-r from-white to-[hsla(0,0%,72%,1)] bg-clip-text text-sm-fluid text-transparent sm:text-md-fluid lg:text-lg-fluid ${roboto.className}`}
