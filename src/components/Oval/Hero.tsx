@@ -4,7 +4,7 @@ export const Hero = () => {
   return (
     <section className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]">
       <div className="aspect-square h-fit max-h-[400px] w-full max-w-[600px] flex-1 shrink-0 ">
-        <video className="object-cover object-center" autoPlay loop muted playsInline>
+        <video className="object-cover object-center" autoPlay loop muted playsInline disableRemotePlayback>
           <source src="assets/hero-oval.mp4" type="video/mp4" />
         </video>
       </div>

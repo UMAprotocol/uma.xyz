@@ -140,7 +140,7 @@ function Step({ header, text, subText, index, isLast }: StepProps) {
         <p className="sm: text-xl">{subText}</p>
       </div>
       <div className="min-h-[400px] border border-grey-400 md:max-w-[754px] lg:col-start-3 lg:row-start-1 lg:max-w-[520px]">
-        <video className="h-full w-full object-cover" autoPlay loop muted playsInline>
+        <video className="h-full w-full object-cover" autoPlay loop muted playsInline disableRemotePlayback>
           <source src={`/assets/step-${stepNumber}.mp4`} type="video/mp4" />
           <source src={`/assets/step-${stepNumber}.webm`} type="video/webm" />
         </video>

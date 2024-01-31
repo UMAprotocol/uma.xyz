@@ -19,6 +19,7 @@ export default function SupportSection() {
           loop
           muted
           playsInline
+          disableRemotePlayback
         >
           <source src="/assets/uma.xyz.mp4" type="video/mp4" />
           <source src="/assets/uma.xyz.webm" type="video/webm" />
