@@ -9,7 +9,7 @@ import { Icon } from "../Icon";
 import { TryOsnapButton } from "./TryOsnapButton";
 
 export function Video() {
-  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/tj_m6XMoPO4?controls=0");
+  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/tj_m6XMoPO4?controls=1");
   const [showThumbnail, setShowThumbnail] = useState(true);
 
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
