@@ -14,7 +14,7 @@ export const OevLost = async () => {
     <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">
       <Ellipse className="right-[-20%]" />
       <h3 className="flex items-center justify-center gap-1 text-sm uppercase leading-6 tracking-widest text-white/50 md:text-base lg:text-lg">
-        TOTAL OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3{" "}
+        MAINNET OEV LEAKED BY AAVE V2 & V3, COMPOUND V2 & V3{" "}
         <HelpPopover
           text={
             <p>
