@@ -16,7 +16,7 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
     >
       <div className="flex flex-col items-center gap-8 xl:flex-row-reverse xl:justify-center xl:gap-24">
         <div className="-z-1 relative mb-[10%] aspect-[2] h-fit max-h-[300px] w-full max-w-[600px] flex-1 shrink-0">
-          <video autoPlay loop muted playsInline className="object-contain object-center">
+          <video autoPlay loop muted playsInline disableRemotePlayback className="object-contain object-center">
             <source src="assets/buildSafely.mp4" type="video/mp4" />
           </video>
         </div>

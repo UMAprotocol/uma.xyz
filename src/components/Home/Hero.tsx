@@ -76,6 +76,7 @@ export default function Hero() {
             loop
             muted
             playsInline
+            disableRemotePlayback
             style={{
               WebkitMaskImage: "-webkit-radial-gradient(white, black)",
               WebkitBackfaceVisibility: "hidden",
