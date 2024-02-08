@@ -3,6 +3,8 @@ import { ScrollProvider } from "@/contexts";
 import "@/styles/fonts.css";
 import "@/styles/globals.css";
 import "@/styles/sandpack-override.css";
+import { Analytics } from '@vercel/analytics/react';
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="overflow-x-clip">
         <ScrollProvider>{children}</ScrollProvider>
+        <Analytics />
       </body>
     </html>
   );
