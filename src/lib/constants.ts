@@ -24,5 +24,4 @@ export const createDuneQueryKey = (queryId: number) => `dune-query-${queryId}`;
 export const OEV_LOST_KEY = createDuneQueryKey(OEV_LOST_QUERY_ID);
 export const TVS_KEY = createDuneQueryKey(OSNAP_TVS_QUERY_ID);
 
-// avoid doing expensive queries in dev/preview
-export const duneActive = process.env.VERCEL_ENV === "production" && Dune !== undefined;
+export const duneActive = !!Dune;
