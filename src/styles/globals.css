@@ -14,21 +14,13 @@ body:has(main[data-color-scheme="home"]) {
 }
 
 body:has(main[data-color-scheme="oval"]) {
+  --background-base: 0 0% 12%;
   --background-page: hsl(var(--background-base));
   --text-base: var(--color-white);
   --border-base: 0 0% 20%;
   --foreground-base: 0 0% 18%;
   background: var(--background-page);
   color: hsl(var(--text-base));
-}
-
-body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
-  --background-base: 0 0% 13.8%;
-}
-
-body:has(main[data-color-scheme="oval"][data-platform="windows"]) {
-  --background-base: 0 0% 12%;
-  --text-base: 0 0% 100%;
 }
 
 body:has(main[data-color-scheme="osnap"]) {
