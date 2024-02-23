@@ -5,5 +5,4 @@ export * from "./ReclaimOev";
 export * from "./BuildSafely";
 export * from "./OevCreation";
 export * from "./Faq";
-export * from "./InitialLoadIntegrateOvalModal";
 export * from "./FooterOval";

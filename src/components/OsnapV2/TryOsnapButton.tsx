@@ -1,25 +1,16 @@
-"use client";
-
 import { cn } from "@/utils/styleUtils";
-import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
+import { TryOsnapModalTrigger } from "../Osnap/TryOsnapModal";
 
 type Props = {
   className?: string;
 };
-export function TryOsnapButton({ className = "" }: Props) {
-  const modalProps = useTryOsnapModal();
 
+export function TryOsnapButton({ className }: Props) {
   return (
-    <>
-      <button
-        onClick={() => {
-          modalProps.showModal();
-        }}
-        className={cn("mx-auto block rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white", className)}
-      >
-        Try oSnap
-      </button>
-      <TryOsnapModal {...modalProps} />
-    </>
+    <TryOsnapModalTrigger
+      className={cn("mx-auto block w-fit rounded-xl bg-grey-900 px-4 py-3 text-lg font-medium text-white", className)}
+    >
+      Try oSnap
+    </TryOsnapModalTrigger>
   );
 }

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import bgImage from "public/assets/bg-image.png";
-import { InitialLoadTryOsnapModal } from "./InitialLoadTryOsnapModal";
 import { TryOsnapButton } from "./TryOsnapButton";
 import { TvsChip } from "@/components/OsnapV2/TvsChip";
 
@@ -18,7 +17,6 @@ export function Hero() {
         Optimistically execute governance transactions onchain where your community can approve them.
       </p>
       <TryOsnapButton />
-      <InitialLoadTryOsnapModal />
     </section>
   );
 }

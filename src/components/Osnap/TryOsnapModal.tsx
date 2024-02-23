@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import fancyOsnapLogo from "public/assets/fancy-osnap-logo.png";
 import { ContactDetailsInput } from "../ContactDetailsInput";
@@ -8,14 +10,31 @@ import { RadioGroup } from "../RadioGroup";
 import { TextInput } from "../TextInput";
 import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCapture/useLeadCaptureModal";
 import { AirtableRequestBody } from "@/app/api/airtable/utils";
+import { PropsWithChildren } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 export function useTryOsnapModal() {
   return useLeadCaptureModal(MODALS["try-osnap"]);
 }
 
-type Props = ReturnType<typeof useTryOsnapModal>;
+export function TryOsnapModalTrigger({ className, children }: PropsWithChildren<{ className?: string }>) {
+  const router = useRouter();
+  const pathname = usePathname();
 
-export function TryOsnapModal(props: Props) {
+  function handleClick() {
+    if (pathname) {
+      router.push(`${pathname}?modal=${MODALS["try-osnap"]}`, { scroll: false });
+    }
+  }
+
+  return (
+    <button onClick={handleClick} className={className}>
+      {children}
+    </button>
+  );
+}
+
+export function TryOsnapModal() {
   const {
     formState,
     setFormState,
@@ -26,6 +45,7 @@ export function TryOsnapModal(props: Props) {
     fields,
     isFormValid,
   } = useLeadCaptureForm();
+  const modalProps = useTryOsnapModal();
 
   async function onSubmit() {
     if (!isFormValid) return;
@@ -73,7 +93,7 @@ export function TryOsnapModal(props: Props) {
   );
 
   return (
-    <Modal {...props}>
+    <Modal {...modalProps}>
       <div
         id="try-osnap-modal"
         className="relative h-16"
