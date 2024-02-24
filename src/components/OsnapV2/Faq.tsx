@@ -1,12 +1,9 @@
 "use client";
 
 import { Accordion } from "../Accordion";
-import { TryOsnapModal, useTryOsnapModal } from "../Osnap/TryOsnapModal";
 import NextLink from "next/link";
 
 export function Faq() {
-  const modalProps = useTryOsnapModal();
-
   const faqs = [
     {
       question: "What is the relationship between oSnap and UMA?",
@@ -83,7 +80,6 @@ export function Faq() {
               pathname: "/osnap",
               query: { modal: "try-osnap" },
             }}
-            onClick={modalProps.showModal}
             aria-label="Link to open DAO support modal."
           >
             integrations team
@@ -113,7 +109,6 @@ export function Faq() {
           defaultValue="0"
         />
       </div>
-      <TryOsnapModal {...modalProps} />
     </section>
   );
 }

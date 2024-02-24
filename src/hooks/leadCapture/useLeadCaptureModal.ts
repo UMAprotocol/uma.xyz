@@ -1,3 +1,5 @@
+"use client";
+
 import { useModal } from "@/components/Modal";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { communicationChannels } from "@/constant";
@@ -5,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useRadioGroup } from "@/components/RadioGroup";
 import { useTextInput } from "@/components/TextInput";
 import { useContactDetailsInput } from "@/components/ContactDetailsInput";
-import { useEffectOnce } from "usehooks-ts";
 
 export const MODALS = {
   "try-osnap": "try-osnap",
@@ -20,19 +21,27 @@ export function useLeadCaptureModal(modalLabel: Modal) {
   const searchParams = useSearchParams();
   const router = useRouter();
 
+  const hasModalInUrl = searchParams?.get("modal") === modalLabel;
+
   function showModal() {
+    modalProps.showModal();
     const newSearchParams = new URLSearchParams(searchParams ?? "");
     newSearchParams.set("modal", modalLabel);
-    router.replace(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
-    modalProps.showModal();
+    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
   }
 
   function closeModal() {
+    modalProps.closeModal();
     const newSearchParams = new URLSearchParams(searchParams ?? "");
     newSearchParams.delete("modal");
-    modalProps.closeModal();
-    router.replace(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
   }
+
+  useEffect(() => {
+    if (hasModalInUrl && !modalProps.modalRef.current?.isOpen) {
+      modalProps.showModal();
+    }
+  }, [hasModalInUrl, modalProps]);
   return { ...modalProps, showModal, closeModal };
 }
 
@@ -86,16 +95,4 @@ export function useLeadCaptureForm() {
     isFormValid,
     disableSubmit,
   };
-}
-
-export function useInitialLoadModal(modalLabel: Modal) {
-  const props = useLeadCaptureModal(modalLabel);
-  const searchParams = useSearchParams();
-  const hasModalInUrl = searchParams?.get("modal") === modalLabel;
-
-  useEffectOnce(() => {
-    if (hasModalInUrl) props.showModal();
-  });
-
-  return props;
 }

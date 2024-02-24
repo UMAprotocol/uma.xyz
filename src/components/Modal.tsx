@@ -5,11 +5,12 @@ import { Icon } from "./Icon";
 import { cn } from "@/utils/styleUtils";
 
 export function useModal() {
-  const modalRef = useRef<HTMLDialogElement>(null);
+  const modalRef = useRef<HTMLDialogElement & { isOpen: boolean }>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   function showModal() {
     if (!modalRef.current) return;
+    modalRef.current.isOpen = true;
     setScrollPosition(window.scrollY);
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
@@ -20,11 +21,15 @@ export function useModal() {
 
   function closeModal() {
     if (!modalRef.current) return;
+    modalRef.current.isOpen = false;
     document.documentElement.style.overflow = "initial";
     document.body.style.overflow = "initial";
     document.documentElement.style.height = "initial";
     document.body.style.height = "initial";
+    const scrollBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "unset";
     window.scrollTo(0, scrollPosition);
+    document.documentElement.style.scrollBehavior = scrollBehavior;
     modalRef.current.close();
   }
 

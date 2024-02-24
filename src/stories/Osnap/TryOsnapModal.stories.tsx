@@ -1,6 +1,6 @@
-import { TryOsnapModal, useTryOsnapModal } from "@/components/Osnap/TryOsnapModal";
+import { TryOsnapModal } from "@/components/Osnap/TryOsnapModal";
+import { TryOsnapButton } from "@/components/OsnapV2/TryOsnapButton";
 import { Meta, StoryObj } from "@storybook/react";
-import { useEffect } from "react";
 
 const meta = {
   component: TryOsnapModal,
@@ -13,34 +13,14 @@ type Story = StoryObj;
 const Template: Story = {
   args: {},
   render: function Wrapper() {
-    const modalProps = useTryOsnapModal();
-
-    useEffect(() => {
-      modalProps.showModal();
-    }, [modalProps]);
-
     return (
       <div
         style={{
           color: "white",
         }}
       >
-        <button
-          style={{
-            background: "red",
-            color: "white",
-            padding: "1rem",
-            fontSize: "1rem",
-            borderRadius: "0.5rem",
-            margin: "1rem",
-          }}
-          onClick={() => {
-            modalProps.showModal();
-          }}
-        >
-          open modal
-        </button>
-        <TryOsnapModal {...modalProps} />
+        <TryOsnapButton className="m-1 rounded-sm bg-red p-1 text-sm text-white" />
+        <TryOsnapModal />
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci vel porro ea, illo molestiae, voluptates
         dolorem provident eius unde similique voluptatem tempore aspernatur obcaecati numquam officiis qui ratione
         perspiciatis fuga recusandae. Ducimus quidem nisi cum magnam veniam dolores voluptas maiores ut distinctio

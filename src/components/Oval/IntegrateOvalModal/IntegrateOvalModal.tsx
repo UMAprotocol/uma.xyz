@@ -1,8 +1,14 @@
+"use client";
+
 import { Modal } from "../../Modal";
 import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCapture/useLeadCaptureModal";
 import { AirtableRequestBody } from "@/app/api/airtable/utils";
 import { IntegrateOvalContent } from "./IntegrateOvalContent";
 import { IntegrateOvalSuccessContent } from "./IntegrateOvalSuccessModal";
+import { PropsWithChildren } from "react";
+
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export function useIntegrateOvalModal() {
   return useLeadCaptureModal(MODALS["integrate-oval"]);
@@ -10,8 +16,24 @@ export function useIntegrateOvalModal() {
 
 type IntegrateOvalModal = ReturnType<typeof useIntegrateOvalModal>;
 
-export function IntegrateOvalModal(props: IntegrateOvalModal) {
+export function IntegrateOvalModalTrigger({ className, children }: PropsWithChildren<{ className?: string }>) {
+  const router = useRouter();
+  const pathname = usePathname();
+  function handleClick() {
+    if (pathname) {
+      router.push(`${pathname}?modal=${MODALS["integrate-oval"]}`, { scroll: false });
+    }
+  }
+  return (
+    <button onClick={handleClick} className={className}>
+      {children}
+    </button>
+  );
+}
+
+export function IntegrateOvalModal() {
   const formProps = useLeadCaptureForm();
+  const modalProps = useIntegrateOvalModal();
 
   async function onSubmit() {
     if (!formProps.isFormValid) return;
@@ -46,7 +68,7 @@ export function IntegrateOvalModal(props: IntegrateOvalModal) {
           "--close-icon-color": "var(--white)",
         } as React.CSSProperties
       }
-      {...props}
+      {...modalProps}
     >
       {formProps.formState === "success" && <IntegrateOvalSuccessContent />}
       {formProps.formState !== "success" && <IntegrateOvalContent onSubmit={onSubmit} {...formProps} />}
