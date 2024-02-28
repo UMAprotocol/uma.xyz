@@ -19,9 +19,12 @@ export const OSNAP_TVS_QUERY_ID = 2944802;
 // ============ QUERY KEYS (FOR REVALIDATION) =========== //
 // ====================================================== //
 
-export const createDuneQueryKey = (queryId: number) => `dune-query-${queryId}`;
-
-export const OEV_LOST_KEY = createDuneQueryKey(OEV_LOST_QUERY_ID);
-export const TVS_KEY = createDuneQueryKey(OSNAP_TVS_QUERY_ID);
-
 export const duneActive = !!Dune;
+
+export type OevLostData = {
+  max_potential_revenue_usd: number;
+};
+
+export type OsnapTvsData = {
+  amount_usd: number;
+};

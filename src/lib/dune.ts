@@ -1,8 +1,9 @@
-import { unstable_cache } from "next/cache";
-import { Dune, OEV_LOST_KEY, OEV_LOST_QUERY_ID, ONE_DAY_SECONDS, OSNAP_TVS_QUERY_ID, TVS_KEY } from "./constants";
+"use server";
+import { cache } from "react";
+import { Dune, OEV_LOST_QUERY_ID, OSNAP_TVS_QUERY_ID, OevLostData, OsnapTvsData } from "./constants";
 
+// if this throws then the latest cache
 const dune = async <TData>(queryId: number): Promise<TData> => {
-  "use server";
   if (!Dune) {
     throw new Error("No API key provided for Dune");
   }
@@ -15,16 +16,12 @@ const dune = async <TData>(queryId: number): Promise<TData> => {
   return data;
 };
 
-export const getOevLost = unstable_cache(
-  () => dune<{ max_potential_revenue_usd: number }>(OEV_LOST_QUERY_ID),
-  [OEV_LOST_KEY],
-  {
-    tags: [OEV_LOST_KEY],
-    revalidate: ONE_DAY_SECONDS,
-  },
-);
+export const getOevLost = cache(async () => {
+  const newData = await dune<OevLostData>(OEV_LOST_QUERY_ID);
+  return newData;
+});
 
-export const getOsnapTvs = unstable_cache(() => dune<{ amount_usd: number }>(OSNAP_TVS_QUERY_ID), [TVS_KEY], {
-  tags: [TVS_KEY],
-  revalidate: ONE_DAY_SECONDS,
+export const getOsnapTvs = cache(async () => {
+  const newData = await dune<OsnapTvsData>(OSNAP_TVS_QUERY_ID);
+  return newData;
 });
