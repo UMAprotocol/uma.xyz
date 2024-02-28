@@ -1,8 +1,6 @@
-"use server";
 import { cache } from "react";
 import { Dune, OEV_LOST_QUERY_ID, OSNAP_TVS_QUERY_ID, OevLostData, OsnapTvsData } from "./constants";
 
-// if this throws then the latest cache
 const dune = async <TData>(queryId: number): Promise<TData> => {
   if (!Dune) {
     throw new Error("No API key provided for Dune");
