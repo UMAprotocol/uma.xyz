@@ -3,9 +3,11 @@ import { Ellipse } from "./Ellipsis";
 import { Countup } from "./Countup";
 import { getOevLost } from "@/lib/dune";
 import { oevLostFallback } from "@/constant";
-import { duneActive } from "@/lib/constants";
+import { ONE_DAY_SECONDS, duneActive } from "@/lib/constants";
 import { HelpPopover } from "./HelpPopover";
 import Link from "next/link";
+
+export const revalidate = ONE_DAY_SECONDS;
 
 export const OevLost = async () => {
   const oevLost = duneActive ? (await getOevLost()).max_potential_revenue_usd : parseInt(oevLostFallback);

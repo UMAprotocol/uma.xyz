@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import { Layout } from "@/components/Layout";
 import { OsnapV2 } from "@/components/pages/OsnapV2";
+import { ONE_DAY_SECONDS } from "@/lib/constants";
 import { Metadata } from "next";
 
 const title = "oSnap | Secured by UMA";
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
     url: "https://uma.xyz",
   },
 };
+
+export const revalidate = ONE_DAY_SECONDS;
 
 export default function Page() {
   return (

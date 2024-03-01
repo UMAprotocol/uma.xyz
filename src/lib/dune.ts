@@ -1,30 +1,40 @@
-import { unstable_cache } from "next/cache";
-import { Dune, OEV_LOST_KEY, OEV_LOST_QUERY_ID, ONE_DAY_SECONDS, OSNAP_TVS_QUERY_ID, TVS_KEY } from "./constants";
+import { cache } from "react";
+import {
+  Dune,
+  OEV_LOST_KEY,
+  OEV_LOST_QUERY_ID,
+  OSNAP_TVS_QUERY_ID,
+  OevLostData,
+  OsnapTvsData,
+  TVS_KEY,
+} from "./constants";
+import { kv } from "@vercel/kv";
 
-const dune = async <TData>(queryId: number): Promise<TData> => {
-  "use server";
-  if (!Dune) {
-    throw new Error("No API key provided for Dune");
+export const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> => {
+  try {
+    if (!Dune) {
+      throw new Error("No API key provided for Dune");
+    }
+    const executionRes = await Dune.refresh(queryId);
+    if (!executionRes.result) {
+      throw new Error("Failed to execute query");
+    }
+    const data = executionRes.result.rows[0] as TData;
+    // update cache
+    await kv.set(queryKey, data);
+    return data;
+  } catch (error) {
+    // TODO: implement log drain for better debugging
+    return (await kv.get(queryKey)) as TData;
   }
-  const executionRes = await Dune.refresh(queryId);
-  if (!executionRes.result) {
-    throw new Error("Failed to execute query");
-  }
-
-  const data = executionRes.result.rows[0] as TData;
-  return data;
 };
 
-export const getOevLost = unstable_cache(
-  () => dune<{ max_potential_revenue_usd: number }>(OEV_LOST_QUERY_ID),
-  [OEV_LOST_KEY],
-  {
-    tags: [OEV_LOST_KEY],
-    revalidate: ONE_DAY_SECONDS,
-  },
-);
+export const getOsnapTvs = cache(async () => {
+  const newData = await dune<OsnapTvsData>(OSNAP_TVS_QUERY_ID, TVS_KEY);
+  return newData;
+});
 
-export const getOsnapTvs = unstable_cache(() => dune<{ amount_usd: number }>(OSNAP_TVS_QUERY_ID), [TVS_KEY], {
-  tags: [TVS_KEY],
-  revalidate: ONE_DAY_SECONDS,
+export const getOevLost = cache(async () => {
+  const newData = await dune<OevLostData>(OEV_LOST_QUERY_ID, OEV_LOST_KEY);
+  return newData;
 });

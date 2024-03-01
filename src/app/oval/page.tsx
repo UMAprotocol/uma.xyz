@@ -3,6 +3,9 @@ import { CaptureOev, Hero, OevLost, ReclaimOev, BuildSafely, Faq, FooterOval } f
 import { Layout } from "@/components/Layout";
 import { IntegrateOvalModal } from "@/components/Oval/IntegrateOvalModal";
 import { Suspense } from "react";
+import { ONE_DAY_SECONDS } from "@/lib/constants";
+
+export const revalidate = ONE_DAY_SECONDS;
 
 const title = "Oval | Built by UMA";
 const description =
