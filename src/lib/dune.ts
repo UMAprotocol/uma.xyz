@@ -10,7 +10,7 @@ import {
 } from "./constants";
 import { kv } from "@vercel/kv";
 
-const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> => {
+export const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> => {
   try {
     if (!Dune) {
       throw new Error("No API key provided for Dune");
@@ -19,7 +19,6 @@ const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> =>
     if (!executionRes.result) {
       throw new Error("Failed to execute query");
     }
-
     const data = executionRes.result.rows[0] as TData;
     // update cache
     await kv.set(queryKey, data);
@@ -30,12 +29,12 @@ const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> =>
   }
 };
 
-export const getOevLost = cache(async () => {
-  const newData = await dune<OevLostData>(OEV_LOST_QUERY_ID, OEV_LOST_KEY);
+export const getOsnapTvs = cache(async () => {
+  const newData = await dune<OsnapTvsData>(OSNAP_TVS_QUERY_ID, TVS_KEY);
   return newData;
 });
 
-export const getOsnapTvs = cache(async () => {
-  const newData = await dune<OsnapTvsData>(OSNAP_TVS_QUERY_ID, TVS_KEY);
+export const getOevLost = cache(async () => {
+  const newData = await dune<OevLostData>(OEV_LOST_QUERY_ID, OEV_LOST_KEY);
   return newData;
 });
