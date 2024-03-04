@@ -3,7 +3,20 @@ import Header from "./Header";
 import VoteTicker from "./VoteTicker";
 import { PortalContainer } from "./Portal";
 import OvalBanner from "./OvalBanner";
-import { Page, Pages } from "@/constant/pages";
+import { Page, Pages, Platforms } from "@/constant/pages";
+import { headers } from "next/headers";
+
+const platformsColorA = ["windows", "iphone", "ipad"];
+
+const getPlatform = () => {
+  const headersList = headers();
+  const ua = headersList.get("user-agent");
+
+  const platform = platformsColorA.some((platform) => ua?.toLowerCase()?.includes(platform))
+    ? Platforms.WINDOWS
+    : Platforms.MAC;
+  return platform;
+};
 
 export type LayoutProps = {
   children: React.ReactNode;
@@ -21,7 +34,11 @@ export function Layout({
   className,
 }: LayoutProps) {
   return (
-    <main data-color-scheme={page.toLowerCase()} className={cn("relative h-[100%] overflow-clip", className)}>
+    <main
+      data-platform={getPlatform().toLowerCase()}
+      data-color-scheme={page.toLowerCase()}
+      className={cn("relative h-[100%] overflow-clip", className)}
+    >
       {showOvalBanner && <OvalBanner page={page} />}
       {showTicker && <VoteTicker className="z-20" />}
       <Header />
