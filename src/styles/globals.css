@@ -31,15 +31,6 @@ body:has(main[data-color-scheme="osnap"]) {
   --text-base: 0 0% 0%;
 }
 
-body:has(main[data-color-scheme="oval"][data-platform="mac"]) {
-  --background-base: 0 0% 13.8%;
-}
-
-body:has(main[data-color-scheme="oval"][data-platform="windows"]) {
-  --background-base: 0 0% 12%;
-  --text-base: 0 0% 100%;
-}
-
 html {
   /* Making sure text size is only controlled by font-size */
   -webkit-text-size-adjust: none;
