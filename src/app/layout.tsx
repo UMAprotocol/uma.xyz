@@ -4,6 +4,8 @@ import "@/styles/fonts.css";
 import "@/styles/globals.css";
 import "@/styles/sandpack-override.css";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { GA_TAG } from "@/constant";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ScrollProvider>{children}</ScrollProvider>
         <Analytics />
       </body>
+      {GA_TAG && <GoogleAnalytics gaId={GA_TAG} />}
     </html>
   );
 }

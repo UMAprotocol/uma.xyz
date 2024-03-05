@@ -18,6 +18,7 @@
     "@codesandbox/sandpack-themes": "^2.0.21",
     "@cowprotocol/ts-dune-client": "^0.0.2",
     "@next/bundle-analyzer": "^13.4.16",
+    "@next/third-parties": "^14.1.2",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
