@@ -7,11 +7,12 @@ import Projects from "../Home/Projects";
 import SupportSection from "../Home/SupportSection";
 import VoteParticipation from "../Home/VoteParticipation";
 import { Osnap } from "../Home/Osnap";
+import { PropsWithChildren } from "react";
 
-export function Home() {
+export function Home({ children }: PropsWithChildren) {
   return (
     <>
-      <Hero />
+      <Hero>{children}</Hero>
       <HowItWorks />
       <VoteParticipation />
       <Builder />

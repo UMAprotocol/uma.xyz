@@ -8,7 +8,7 @@ export const revalidate = ONE_DAY_SECONDS;
 
 type TvsChipProps = GradientBorderProps;
 
-export async function TvsChip({ className, ...props }: TvsChipProps) {
+export async function OsnapTvsChip({ className, ...props }: TvsChipProps) {
   const tvs = duneActive ? roundToNearestMillion(await getOsnapTvs()) : parseInt(totalValueSecured);
 
   return (
