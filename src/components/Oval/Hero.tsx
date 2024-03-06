@@ -1,6 +1,10 @@
+"use client";
+import { useSetPlatform } from "@/hooks/helpers/useSetPlatform";
 import Link from "next/link";
 
 export const Hero = () => {
+  useSetPlatform();
+
   return (
     <section className="relative mx-auto mt-12 flex max-w-[828px] flex-col items-center justify-center gap-4 px-[--page-padding] pb-[94px] text-center align-top xl:pb-[128px]">
       <div className="aspect-square h-fit max-h-[400px] w-full max-w-[600px] flex-1 shrink-0 ">

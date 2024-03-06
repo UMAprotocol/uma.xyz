@@ -21,7 +21,11 @@ export function Layout({
   className,
 }: LayoutProps) {
   return (
-    <main data-color-scheme={page.toLowerCase()} className={cn("relative h-[100%] overflow-clip", className)}>
+    <main
+      id="app-root-main"
+      data-color-scheme={page.toLowerCase()}
+      className={cn("relative h-[100%] overflow-clip", className)}
+    >
       {showOvalBanner && <OvalBanner page={page} />}
       {showTicker && <VoteTicker className="z-20" />}
       <Header />
