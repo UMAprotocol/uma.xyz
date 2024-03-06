@@ -21,6 +21,6 @@ export function wait(timeoutMilliseconds: number) {
 }
 
 export function roundToNearestMillion(value: number): string {
-  const nearestMillion = Math.round(value / 1000000);
+  const nearestMillion = Math.round(value / 1_000_000);
   return nearestMillion.toLocaleString();
 }

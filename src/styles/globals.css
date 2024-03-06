@@ -14,7 +14,7 @@ body:has(main[data-color-scheme="home"]) {
 }
 
 body:has(main[data-color-scheme="oval"]) {
-  --background-base: 0 0% 12%;
+  --background-base: 0 0% 13.8%; /* default background is correct for mac users */
   --background-page: hsl(var(--background-base));
   --text-base: var(--color-white);
   --border-base: 0 0% 20%;

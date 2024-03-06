@@ -10,7 +10,7 @@ import Link from "next/link";
 export const revalidate = ONE_DAY_SECONDS;
 
 export const OevLost = async () => {
-  const oevLost = duneActive ? (await getOevLost()).max_potential_revenue_usd : parseInt(oevLostFallback);
+  const oevLost = duneActive ? await getOevLost() : parseInt(oevLostFallback);
 
   return (
     <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">

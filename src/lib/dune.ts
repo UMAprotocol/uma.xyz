@@ -31,10 +31,10 @@ export const dune = async <TData>(queryId: number, queryKey: string): Promise<TD
 
 export const getOsnapTvs = cache(async () => {
   const newData = await dune<OsnapTvsData>(OSNAP_TVS_QUERY_ID, TVS_KEY);
-  return newData;
+  return newData.amount_usd;
 });
 
 export const getOevLost = cache(async () => {
   const newData = await dune<OevLostData>(OEV_LOST_QUERY_ID, OEV_LOST_KEY);
-  return newData;
+  return newData.max_potential_revenue_usd;
 });
