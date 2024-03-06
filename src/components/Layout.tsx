@@ -3,20 +3,7 @@ import Header from "./Header";
 import VoteTicker from "./VoteTicker";
 import { PortalContainer } from "./Portal";
 import OvalBanner from "./OvalBanner";
-import { Page, Pages, Platforms } from "@/constant/pages";
-import { headers } from "next/headers";
-
-const platformsColorA = ["windows", "iphone", "ipad"];
-
-const getPlatform = () => {
-  const headersList = headers();
-  const ua = headersList.get("user-agent");
-
-  const platform = platformsColorA.some((platform) => ua?.toLowerCase()?.includes(platform))
-    ? Platforms.WINDOWS
-    : Platforms.MAC;
-  return platform;
-};
+import { Page, Pages } from "@/constant/pages";
 
 export type LayoutProps = {
   children: React.ReactNode;
