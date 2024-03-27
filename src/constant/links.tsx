@@ -72,7 +72,7 @@ export const socialLinks = [
   },
   {
     href: "https://twitter.com/UMAprotocol",
-    icon: "twitter",
+    icon: "twitter-x",
     label: "Twitter",
   },
   {
