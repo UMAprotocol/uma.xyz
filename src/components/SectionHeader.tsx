@@ -18,7 +18,7 @@ export function SectionHeader({ title, header, constrainWidth, hasCircleFilter =
         className="border-b border-grey-400 pb-3 text-lg md:pb-4 md:text-4xl [&>strong]:font-normal [&>strong]:text-red"
         initial={{ opacity: 0.1, rotate: "-2deg" }}
         whileInView={{ opacity: 1, rotate: "0deg" }}
-        viewport={{ once: true, amount: "all" }}
+        viewport={{ once: true, amount: 0.8 }}
         transition={{ duration: 0.6 }}
       >
         {title}
@@ -27,7 +27,7 @@ export function SectionHeader({ title, header, constrainWidth, hasCircleFilter =
         className="mb-10 mt-6 w-full text-sm-fluid md:mb-16 md:w-[720px] md:text-md-fluid lg:mb-[96px] lg:mt-12 lg:w-[1020px] lg:text-lg-fluid xl:mb-[128px] xl:mt-12"
         initial={{ opacity: 0.1, rotate: "1deg" }}
         whileInView={{ opacity: 1, rotate: "0deg" }}
-        viewport={{ once: true, amount: "all" }}
+        viewport={{ once: true, amount: 0.8 }}
         transition={{ duration: 0.6 }}
         style={{
           maxWidth: constrainWidth ? "max(70%, 720px)" : "unset",
