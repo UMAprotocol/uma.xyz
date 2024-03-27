@@ -12,6 +12,8 @@ import { useLeadCaptureModal, MODALS, useLeadCaptureForm } from "@/hooks/leadCap
 import { AirtableRequestBody } from "@/app/api/airtable/utils";
 import { PropsWithChildren } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { Checkbox } from "../ui/checkbox";
+import { mailchimpSignup } from "@/utils/mailchimp";
 
 export function useTryOsnapModal() {
   return useLeadCaptureModal(MODALS["try-osnap"]);
@@ -44,6 +46,8 @@ export function TryOsnapModal() {
     contactDetailsInputProps,
     fields,
     isFormValid,
+    signupForNewsletter,
+    setSignupForNewsletter,
   } = useLeadCaptureForm();
   const modalProps = useTryOsnapModal();
 
@@ -53,7 +57,7 @@ export function TryOsnapModal() {
     setFormState("busy");
     const body: AirtableRequestBody = { ...fields, integration: "osnap" };
 
-    const response = await fetch("/api/airtable", {
+    const airtableFetch = fetch("/api/airtable", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +65,15 @@ export function TryOsnapModal() {
       body: JSON.stringify(body),
     });
 
-    if (!response.ok) {
+    const promises: Promise<unknown>[] = [airtableFetch];
+
+    if (fields.communicationChannel === "email" && signupForNewsletter === true) {
+      promises.push(mailchimpSignup(fields.contactDetails));
+    }
+
+    const response = await Promise.allSettled(promises);
+
+    if (!response.every((res) => res.status === "fulfilled")) {
       setFormState("error");
       setTimeout(() => {
         setFormState("idle");
@@ -130,6 +142,21 @@ export function TryOsnapModal() {
           <RadioGroup theme="osnap" {...radioGroupProps} />
           <div className="my-6">
             <ContactDetailsInput theme="osnap" {...contactDetailsInputProps} />
+            {fields.communicationChannel === "email" && (
+              <label
+                className="mt-2 flex w-fit cursor-pointer items-center gap-1 truncate p-1"
+                htmlFor="signup-checkbox"
+              >
+                <Checkbox
+                  id="signup-checkbox"
+                  checked={signupForNewsletter}
+                  onCheckedChange={(e) => {
+                    setSignupForNewsletter(e);
+                  }}
+                />
+                Sign up to our newsletter.
+              </label>
+            )}
           </div>
           <button
             disabled={!isFormValid}

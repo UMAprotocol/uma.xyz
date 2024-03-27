@@ -4,12 +4,14 @@ import { LoadingSpinner } from "../../LoadingSpinner";
 import { TextInput } from "../../TextInput";
 import { RadioGroup } from "../../RadioGroup";
 import { LeadCaptureFormProps } from "@/hooks/leadCapture/useLeadCaptureModal";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type Props = LeadCaptureFormProps & {
   onSubmit: () => Promise<void>;
 };
 
 export const IntegrateOvalContent = ({
+  fields,
   onSubmit,
   nameInputProps,
   organizationInputProps,
@@ -17,6 +19,8 @@ export const IntegrateOvalContent = ({
   contactDetailsInputProps,
   disableSubmit,
   formState,
+  signupForNewsletter,
+  setSignupForNewsletter,
 }: Props) => {
   const idleSubmitButtonContent = "Send";
 
@@ -59,6 +63,21 @@ export const IntegrateOvalContent = ({
         <RadioGroup theme="oval" {...radioGroupProps} />
         <div className="my-6">
           <ContactDetailsInput theme="oval" {...contactDetailsInputProps} />
+          {fields.communicationChannel === "email" && (
+            <label
+              className="mt-2 flex w-fit cursor-pointer items-center gap-1 truncate p-1 text-text"
+              htmlFor="signup-checkbox"
+            >
+              <Checkbox
+                id="signup-checkbox"
+                checked={signupForNewsletter}
+                onCheckedChange={(e) => {
+                  setSignupForNewsletter(e);
+                }}
+              />
+              Sign up to our newsletter.
+            </label>
+          )}
         </div>
         <button
           disabled={disableSubmit}
