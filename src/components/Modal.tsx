@@ -1,37 +1,92 @@
 "use client";
 
-import { useRef, useState, type MouseEvent } from "react";
+import { useRef, useState, type MouseEvent, useEffect, useCallback } from "react";
 import { Icon } from "./Icon";
 import { cn } from "@/utils/styleUtils";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export function useModal() {
+export function useModal(options?: {
+  useQueryParams?: {
+    key: string;
+    value: string;
+  };
+}) {
   const modalRef = useRef<HTMLDialogElement & { isOpen: boolean }>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  function showModal() {
-    if (!modalRef.current) return;
-    modalRef.current.isOpen = true;
+  const queryParamsSet = options?.useQueryParams
+    ? searchParams?.get(options.useQueryParams.key) === options.useQueryParams.value
+    : false;
+
+  const setIfParam = useCallback(() => {
+    if (options?.useQueryParams) {
+      const { key, value } = options.useQueryParams;
+      const newSearchParams = new URLSearchParams(searchParams ?? "");
+      newSearchParams.set(key, value);
+      router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+    }
+  }, [options?.useQueryParams, pathname, router, searchParams]);
+
+  const removeIfParam = useCallback(() => {
+    if (options?.useQueryParams) {
+      const { key } = options.useQueryParams;
+      const newSearchParams = new URLSearchParams(searchParams ?? "");
+      newSearchParams.delete(key);
+      router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
+    }
+  }, [options?.useQueryParams, pathname, router, searchParams]);
+
+  const showModal = useCallback(() => {
+    if (!modalRef.current || modalRef.current.isOpen) return;
     setScrollPosition(window.scrollY);
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.documentElement.style.height = "100svh";
     document.body.style.height = "100svh";
     modalRef.current.showModal();
-  }
+    modalRef.current.isOpen = true;
+    setIfParam();
+  }, [setIfParam]);
 
-  function closeModal() {
-    if (!modalRef.current) return;
-    modalRef.current.isOpen = false;
+  const closeModal = useCallback(() => {
+    if (!modalRef.current || !modalRef.current.isOpen) return;
     document.documentElement.style.overflow = "initial";
     document.body.style.overflow = "initial";
     document.documentElement.style.height = "initial";
     document.body.style.height = "initial";
     const scrollBehavior = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = "unset";
+    modalRef.current.close();
     window.scrollTo(0, scrollPosition);
     document.documentElement.style.scrollBehavior = scrollBehavior;
-    modalRef.current.close();
-  }
+    modalRef.current.isOpen = false;
+    removeIfParam();
+  }, [removeIfParam, scrollPosition]);
+
+  // open modal on page load
+  useEffect(() => {
+    if (queryParamsSet && !modalRef.current?.isOpen) {
+      showModal();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParamsSet]);
+
+  // listen for keyboard-controlled closes from dialog element
+  useEffect(() => {
+    const dialog = modalRef.current;
+    if (dialog) {
+      dialog.addEventListener("close", closeModal);
+    }
+
+    return () => {
+      if (dialog) {
+        dialog.removeEventListener("close", closeModal);
+      }
+    };
+  }, [closeModal]);
 
   return { modalRef, showModal, closeModal };
 }

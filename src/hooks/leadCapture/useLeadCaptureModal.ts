@@ -1,7 +1,6 @@
 "use client";
 
 import { useModal } from "@/components/Modal";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { communicationChannels } from "@/constant";
 import { useEffect, useState } from "react";
 import { useRadioGroup } from "@/components/RadioGroup";
@@ -16,33 +15,14 @@ export const MODALS = {
 type Modal = keyof typeof MODALS;
 
 export function useLeadCaptureModal(modalLabel: Modal) {
-  const modalProps = useModal();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  const modalProps = useModal({
+    useQueryParams: {
+      key: "modal",
+      value: modalLabel,
+    },
+  });
 
-  const hasModalInUrl = searchParams?.get("modal") === modalLabel;
-
-  function showModal() {
-    modalProps.showModal();
-    const newSearchParams = new URLSearchParams(searchParams ?? "");
-    newSearchParams.set("modal", modalLabel);
-    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
-  }
-
-  function closeModal() {
-    modalProps.closeModal();
-    const newSearchParams = new URLSearchParams(searchParams ?? "");
-    newSearchParams.delete("modal");
-    router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
-  }
-
-  useEffect(() => {
-    if (hasModalInUrl && !modalProps.modalRef.current?.isOpen) {
-      modalProps.showModal();
-    }
-  }, [hasModalInUrl, modalProps]);
-  return { ...modalProps, showModal, closeModal };
+  return modalProps;
 }
 
 export type LeadCaptureFormProps = ReturnType<typeof useLeadCaptureForm>;
