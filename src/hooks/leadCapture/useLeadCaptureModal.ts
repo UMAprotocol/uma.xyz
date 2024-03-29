@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useRadioGroup } from "@/components/RadioGroup";
 import { useTextInput } from "@/components/TextInput";
 import { useContactDetailsInput } from "@/components/ContactDetailsInput";
+import { CheckedState } from "@/components/ui/checkbox";
 
 export const MODALS = {
   "try-osnap": "try-osnap",
@@ -48,6 +49,7 @@ export function useLeadCaptureModal(modalLabel: Modal) {
 export type LeadCaptureFormProps = ReturnType<typeof useLeadCaptureForm>;
 
 export function useLeadCaptureForm() {
+  const [signupForNewsletter, setSignupForNewsletter] = useState<CheckedState>(false);
   const [formState, setFormState] = useState<"idle" | "busy" | "success" | "error">("idle");
   const radioGroupProps = useRadioGroup("Preferred communication channel", communicationChannels);
   const nameInputProps = useTextInput({
@@ -94,5 +96,7 @@ export function useLeadCaptureForm() {
     fields,
     isFormValid,
     disableSubmit,
+    signupForNewsletter,
+    setSignupForNewsletter,
   };
 }

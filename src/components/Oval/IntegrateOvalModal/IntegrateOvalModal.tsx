@@ -9,6 +9,7 @@ import { PropsWithChildren } from "react";
 
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { mailchimpSignup } from "@/utils/mailchimp";
 
 export function useIntegrateOvalModal() {
   return useLeadCaptureModal(MODALS["integrate-oval"]);
@@ -41,7 +42,7 @@ export function IntegrateOvalModal() {
     formProps.setFormState("busy");
     const body: AirtableRequestBody = { ...formProps.fields, integration: "oval" };
 
-    const response = await fetch("/api/airtable", {
+    const airtableFetch = fetch("/api/airtable", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +50,15 @@ export function IntegrateOvalModal() {
       body: JSON.stringify(body),
     });
 
-    if (!response.ok) {
+    const promises: Promise<unknown>[] = [airtableFetch];
+
+    if (formProps.fields.communicationChannel === "email" && formProps.signupForNewsletter === true) {
+      promises.push(mailchimpSignup(formProps.fields.contactDetails));
+    }
+
+    const response = await Promise.allSettled(promises);
+
+    if (!response.every((res) => res.status === "fulfilled")) {
       formProps.setFormState("error");
       setTimeout(() => {
         formProps.setFormState("idle");
