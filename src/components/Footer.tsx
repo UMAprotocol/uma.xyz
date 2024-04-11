@@ -76,10 +76,12 @@ function LinksList({ links }: { links: { label: string; href: string }[] }) {
           <NextLink
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
-            className="flex items-center gap-1 transition-all hover:gap-[2px] hover:brightness-200"
+            className="group flex items-center gap-1 transition-all hover:brightness-200"
           >
             {label}
-            {isExternalLink(href) && <Icon name="arrow" className=" h-4 w-4 -rotate-45" />}
+            {isExternalLink(href) && (
+              <Icon name="arrow" className="h-4 w-4 -rotate-45 transition-transform group-hover:-translate-x-[3px]" />
+            )}
           </NextLink>
         </li>
       ))}

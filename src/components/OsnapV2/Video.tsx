@@ -61,8 +61,12 @@ export function Video() {
             href="https://docs.uma.xyz/developers/osnap/osnap-quick-start"
             className="bg-grey-white group mx-auto grid h-16 w-full place-items-center rounded-xl border border-grey-200 px-4 text-lg font-medium text-grey-600"
           >
-            <span className="flex items-center gap-1 transition-all group-hover:gap-[1.5px] group-hover:brightness-150">
-              Read Docs <Icon name="external-link" className="inline h-5 w-5" />
+            <span className="flex items-center gap-1 transition-all  group-hover:brightness-150">
+              Read Docs{" "}
+              <Icon
+                name="external-link"
+                className="inline h-5 w-5 transition-transform group-hover:translate-x-[2px]"
+              />
             </span>
           </Link>
         </div>

@@ -2,6 +2,7 @@
 
 import { Accordion } from "../Accordion";
 import NextLink from "next/link";
+import { TryOsnapModalTrigger } from "../Osnap/TryOsnapModal";
 
 export function Faq() {
   const faqs = [
@@ -19,14 +20,13 @@ export function Faq() {
           open-source monitoring bots. Your community can get involved by running their own bots and monitoring oSnap
           directly through the{" "}
           <NextLink
-            className="items-center text-red transition hover:opacity-50"
+            className="inline items-center text-red transition hover:opacity-50"
             href="https://vote.uma.xyz/"
             target="_blank"
             aria-label="Link to voter dapp"
           >
-            UMA Voter dapp
+            UMA Voter dapp.
           </NextLink>
-          .
         </>
       ),
     },
@@ -37,7 +37,7 @@ export function Faq() {
           Voting offchain in Snapshot is gasless, making it free to use and much easier for your community to
           participate. Offchain proposals get approximately{" "}
           <NextLink
-            className="items-center text-red transition hover:opacity-50"
+            className="inline items-center text-red transition hover:opacity-50"
             href="https://dune.com/risk_labs/onchain-vs-offchain-voting"
             target="_blank"
             aria-label="Link to dune analytics dashboard"
@@ -74,16 +74,9 @@ export function Faq() {
         <>
           oSnap is live on Arbitrum, Ethereum, Optimism and Polygon. If you want oSnap support on other EVM chains,
           speak to our{" "}
-          <NextLink
-            className="items-center text-red transition hover:opacity-50"
-            href={{
-              pathname: "/osnap",
-              query: { modal: "try-osnap" },
-            }}
-            aria-label="Link to open DAO support modal."
-          >
+          <TryOsnapModalTrigger className="inline items-center text-red transition hover:opacity-50">
             integrations team
-          </NextLink>
+          </TryOsnapModalTrigger>
           .
         </>
       ),
