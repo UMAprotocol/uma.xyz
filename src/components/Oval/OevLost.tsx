@@ -22,7 +22,7 @@ export const OevLost = async () => {
             <p>
               For more information about UMA&apos;s theoretical historic OEV methodology, please see the{" "}
               <Link
-                className="items-center text-red transition hover:opacity-50"
+                className="inline items-center text-red transition hover:opacity-50"
                 target="_blank"
                 href="https://docs.oval.xyz/oev-data"
               >

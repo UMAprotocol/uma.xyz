@@ -45,7 +45,7 @@ export const Faq = () => {
           No, Oval simply delivers the price it received from the Chainlink Data Feed. Oval has been audited by
           OpenZeppelin to ensure that prices can&apos;t be manipulated. Oval is also subject to the same{" "}
           <Link
-            className="items-center text-red transition hover:opacity-50"
+            className="inline items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
             href="https://docs.uma.xyz/resources/audit-and-bug-bounty-programs"
@@ -63,7 +63,7 @@ export const Faq = () => {
           Oval has been designed to wrap and relay prices from Chainlink Data Feeds without introducing risks not
           present in the underlying feed. For a full explanation of this please consult the{" "}
           <Link
-            className="items-center text-red transition hover:opacity-50"
+            className="inline items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
             href="https://docs.oval.xyz/mechanism-design/trust-assumptions"
@@ -81,7 +81,7 @@ export const Faq = () => {
           50% of the OEV is directed to an address specified by the protocol that originally generated the revenue. The
           remaining 50% is allocated to UMA and its partners. You can learn more about revenue sharing in our{" "}
           <Link
-            className="items-center text-red transition hover:opacity-50"
+            className="inline items-center text-red transition hover:opacity-50"
             target="_blank"
             aria-label="Link to UMA docs"
             href="https://docs.oval.xyz/mechanism-details/revenue-sharing"
@@ -117,7 +117,7 @@ export const Faq = () => {
         defaultValue="0"
       />
       <Link
-        className=" justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
+        className="inline justify-self-end whitespace-nowrap rounded-lg bg-red px-6 py-4 text-lg text-background no-underline transition hover:opacity-75 xl:w-fit"
         href="https://docs.oval.xyz/"
         target="_blank"
       >
