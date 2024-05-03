@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
 
-export default function MailChimpForm(props:{mailChimpUrl:string}) {
+export default function MailChimpForm(props: { mailChimpUrl: string }) {
   const [value, setValue] = useState("");
   return (
     <MailchimpSubscribe

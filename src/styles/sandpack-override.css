@@ -27,14 +27,13 @@
   border-radius: 8px;
   width: 100%;
   display: inline-flex;
-  content: ' ';
+  content: " ";
   background-size: 20px auto;
   height: 8px;
 }
 .sp-layout.custom-layout {
   border-color: var(--grey-500) !important;
   border-radius: 8px;
-
 }
 .sp-layout.custom-layout .sp-stack {
   height: 347px !important;

@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   };
 
   try {
-    console.table(fields)
+    console.table(fields);
     const record = await airtableBase(tableId).create(fields);
     const recordId = record.getId();
     console.log(`Successfully created record ${recordId} in table ${tableId}`);
