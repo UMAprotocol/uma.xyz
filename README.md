@@ -39,7 +39,7 @@ Storybook is deployed to [Chromatic](https://chromatic.com) via `yarn chromatic`
 - NEXT_PUBLIC_MAILCHIMP_URL="<https://umaproject.us19.list-manage.com/subscribe/post?u={user}&id={id}&f_id={f_id}>"
 - NEXT_PUBLIC_OVAL_MAILCHIMP_URL="<https://umaproject.us19.list-manage.com/subscribe/post?u={user}&id={id}&f_id={f_id}>"
 - NEXT_PUBLIC_DEFAULT_APY=30.5
-- NEXT_PUBLIC_TVS=83M=  // Osnap TVS shown, use formatted string
+- NEXT_PUBLIC_TVS=83M= // Osnap TVS shown, use formatted string
 - NEXT_PUBLIC_OEV_LOST= // backup oev value if dune is not working, use raw number
 - DUNE_API_KEY= // for getting total OEV lost
-- AIRTABLE_API_KEY=  // for capturing osnap, oval leads
+- AIRTABLE_API_KEY= // for capturing osnap, oval leads
