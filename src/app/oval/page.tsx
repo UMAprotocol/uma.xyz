@@ -12,6 +12,13 @@ const description =
   "Oval is an MEV capture technology that wraps price oracles and generates protocol revenue by auctioning the right to conduct liquidations";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://uma.xyz"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
   title,
   description,
   twitter: {
@@ -24,7 +31,7 @@ export const metadata: Metadata = {
     title,
     description,
     images: "/assets/oval-twitter-card.jpg",
-    url: "https://uma.xyz/oval",
+    url: "/oval",
   },
 };
 
