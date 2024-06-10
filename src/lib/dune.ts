@@ -15,6 +15,7 @@ import { kv } from "@vercel/kv";
 
 export const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> => {
   try {
+    console.log("attempting update");
     if (!Dune) {
       throw new Error("No API key provided for Dune");
     }
@@ -22,12 +23,14 @@ export const dune = async <TData>(queryId: number, queryKey: string): Promise<TD
     if (!executionRes.result) {
       throw new Error("Failed to execute query");
     }
+    console.log("dune update successful");
     const data = executionRes.result.rows[0] as TData;
     // update cache
     await kv.set(queryKey, data);
+    console.log("redis update successful, new value: ");
     return data;
   } catch (error) {
-    // TODO: implement log drain for better debugging
+    console.error(error);
     return (await kv.get(queryKey)) as TData;
   }
 };
