@@ -14,7 +14,7 @@ export const ONE_DAY_SECONDS = 86_400;
 
 export const OEV_LOST_QUERY_ID = 3373179;
 export const OSNAP_TVS_QUERY_ID = 2944802;
-export const ORACLE_TVS_QUERY_ID = 3108786;
+export const ORACLE_TVS_QUERY_ID = 3113313;
 
 // ====================================================== //
 // ============ QUERY KEYS (FOR REVALIDATION) =========== //
