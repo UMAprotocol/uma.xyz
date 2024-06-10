@@ -6,6 +6,9 @@ import "@/styles/sandpack-override.css";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { GA_TAG } from "@/constant";
+import { ONE_DAY_SECONDS } from "@/lib/constants";
+
+export const revalidate = ONE_DAY_SECONDS;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
