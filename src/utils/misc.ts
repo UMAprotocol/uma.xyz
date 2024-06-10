@@ -23,8 +23,8 @@ export function wait(timeoutMilliseconds: number) {
 export function roundToNearestMillion(value: number): string {
   const mil = value / 1_000_000;
   if (mil < 1_000) {
-    return Math.round(mil).toLocaleString();
+    return `${Math.round(mil).toLocaleString()}M`;
   }
   const bil = mil / 1_000;
-  return Math.round(bil).toLocaleString();
+  return `${bil.toFixed(2)}B`;
 }

@@ -15,7 +15,6 @@ import { kv } from "@vercel/kv";
 
 export const dune = async <TData>(queryId: number, queryKey: string): Promise<TData> => {
   try {
-    console.log("attempting update");
     if (!Dune) {
       throw new Error("No API key provided for Dune");
     }

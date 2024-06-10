@@ -2,15 +2,14 @@ import { Divider } from "./Divider";
 import { Ellipse } from "./Ellipsis";
 import { Countup } from "./Countup";
 import { getOevLost } from "@/lib/dune";
-import { oevLostFallback } from "@/constant";
-import { ONE_DAY_SECONDS, duneActive } from "@/lib/constants";
+import { ONE_DAY_SECONDS } from "@/lib/constants";
 import { HelpPopover } from "./HelpPopover";
 import Link from "next/link";
 
 export const revalidate = ONE_DAY_SECONDS;
 
 export const OevLost = async () => {
-  const oevLost = duneActive ? await getOevLost() : parseInt(oevLostFallback);
+  const oevLost = await getOevLost();
 
   return (
     <section className="relative mx-auto mb-[150px] flex max-w-[828px] flex-col items-center gap-2 px-[--page-padding] text-center xl:mb-[200px]">
