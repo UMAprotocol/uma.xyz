@@ -1,5 +1,4 @@
-import { totalValueSecured } from "@/constant";
-import { ONE_DAY_SECONDS, duneActive } from "@/lib/constants";
+import { ONE_DAY_SECONDS } from "@/lib/constants";
 import { getOracleTvs } from "@/lib/dune";
 import { roundToNearestMillion } from "@/utils";
 import { cn } from "@/utils/styleUtils";
@@ -11,7 +10,7 @@ type TvsChipProps = {
 };
 
 export async function OracleTvsChip({ className }: TvsChipProps) {
-  const tvs = duneActive ? roundToNearestMillion(await getOracleTvs()) : parseInt(totalValueSecured);
+  const tvs = await getOracleTvs();
 
   return (
     <div
@@ -22,7 +21,7 @@ export async function OracleTvsChip({ className }: TvsChipProps) {
     >
       <div className="rounded-2xl border border-white/5 p-1">
         <div className="flex items-baseline gap-[0.20em] rounded-xl border border-white/5 bg-transparent px-3 py-2 text-xl text-white lg:text-2xl">
-          <span className="font-normal text-primary-500">${tvs}M</span>
+          <span className="font-normal text-primary-500">${roundToNearestMillion(tvs)}</span>
           Total Value Secured
         </div>
       </div>
