@@ -6,34 +6,34 @@ export const Faq = () => {
     {
       question: "Is Oval an oracle?",
       answer:
-        "No, Oval is an MEV capture mechanism that acts as a layer between Chainlink and lending protocols. Oval enables protocols to be paid for updates from Chainlink.",
+        "No, Oval is an MEV capture mechanism that acts as a layer between the underlying oracle and lending protocols. Oval enables protocols to be paid for using updates from their oracle.",
     },
     {
-      question: "How is Oval different from a Chainlink Data Feed?",
+      question: "How is Oval different from a price oracle?",
       answer:
-        "Oval wraps Chainlink Data Feeds and delivers Chainlink price updates to protocols, wrapped in an OEV auction. By adding Oval to your protocol, Oval requires searchers to pay you for the right to use updated prices. Effectively redirecting OEV to you, instead of to the builders. The underlying Chainlink prices are not changed; Oval simply adds an auction between the update and when its accessible by your protocol.",
+        "Oval wraps price oracles and delivers their price updates to protocols, wrapped in an OEV auction. By adding Oval to your protocol, Oval requires searchers to pay you for the right to use updated prices. Effectively redirecting OEV to you, instead of to the builders. The underlying oracle prices are not changed; Oval simply adds an auction between the update and when its accessible by your protocol.",
     },
     {
       question: "Is there a risk that prices won't show up or will be delayed?",
       answer: (
         <div className="flex w-full flex-col gap-4">
           <p>
-            Any price update delivered by Chainlink Data Feed will also be delivered by Oval. Oval has no ability to
-            change the prices that come out of Chainlink. Chainlink pushes price updates at fixed intervals or when the
+            Any price update delivered by the underlying oracle will also be delivered by Oval. Oval has no ability to
+            change the prices that come out of the oracle. Chainlink pushes price updates at fixed intervals or when the
             price crosses a specific deviation threshold. For most mainnet feeds, this occurs every hour or when the
             price changes by more than 1%.
           </p>
 
           <p>
-            Oval receives prices from Chainlink and then auctions off the first access to the updated price. In the
-            happy (and normal path for 90% of the time), Oval updates will run in the same block as the source Chainlink
-            update. This means that the vast majority of the time there is no delay at all between when Chainlink
+            Oval receives prices from the oracle and then auctions off the first access to the updated price. In the
+            happy (and normal path for 90% of the time), Oval updates will run in the same block as the source oracle
+            update. This means that the vast majority of the time there is no delay at all between when the oracle
             updates and when your protocol gets the updated price. In the unhappy path, due to block inclusion delays or
-            spiking gas prices, Oval has a maximum of 3 block (36 seconds) delay added to when Chainlink updates to when
-            your protocol receives a price. This interval is added to give time of the OEV auction to run if there is
-            inclusion delays on mainnet. This setting is configurable. After this 3 block window Oval is automatically
-            disabled and simply acts as a passthrough where your protocol reads directly from Chainlink, adding no
-            additional delay or risk to your integration.
+            spiking gas prices, Oval has a maximum of 3 block (36 seconds) delay added to when the oracle updates to
+            when your protocol receives a price. This interval is added to give time of the OEV auction to run if there
+            is inclusion delays on mainnet. This setting is configurable. After this 3 block window Oval is
+            automatically disabled and simply acts as a passthrough where your protocol reads directly from the oracle,
+            adding no additional delay or risk to your integration.
           </p>
         </div>
       ),
@@ -42,8 +42,8 @@ export const Faq = () => {
       question: "Can the price be manipulated?",
       answer: (
         <p>
-          No, Oval simply delivers the price it received from the Chainlink Data Feed. Oval has been audited by
-          OpenZeppelin to ensure that prices can&apos;t be manipulated. Oval is also subject to the same{" "}
+          No, Oval simply delivers the price it received from the source oracle. Oval has been audited by OpenZeppelin
+          to ensure that prices can&apos;t be manipulated. Oval is also subject to the same{" "}
           <Link
             className="inline items-center text-red transition hover:opacity-50"
             target="_blank"
@@ -60,8 +60,8 @@ export const Faq = () => {
       question: "What risks does Oval introduce?",
       answer: (
         <p>
-          Oval has been designed to wrap and relay prices from Chainlink Data Feeds without introducing risks not
-          present in the underlying feed. For a full explanation of this please consult the{" "}
+          Oval has been designed to wrap and relay prices from source oracles without introducing risks not present in
+          the underlying feed. For a full explanation of this please consult the{" "}
           <Link
             className="inline items-center text-red transition hover:opacity-50"
             target="_blank"

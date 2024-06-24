@@ -5,7 +5,7 @@ import { Ellipse } from "./Ellipsis";
 const content = [
   "Oracle price updates create a type of MEV called Oracle Extractable Value.",
   "MEV searchers, block builders and validators profit by working together to extract OEV.",
-  "Oval wraps your Chainlink Data Feed and allows you to capture up to 90% of the OEV you create.",
+  "Oval wraps your existing oracle and allows you to capture up to 90% of the OEV you create.",
 ];
 
 export const CaptureOev = () => {
