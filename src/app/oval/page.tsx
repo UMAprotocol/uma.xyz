@@ -1,9 +1,12 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { CaptureOev, Hero, OevLost, ReclaimOev, BuildSafely, Faq, FooterOval } from "@/components/Oval";
 import { Layout } from "@/components/Layout";
 import { IntegrateOvalModal } from "@/components/Oval/IntegrateOvalModal";
 import { Suspense } from "react";
 import { ONE_DAY_SECONDS } from "@/lib/constants";
+import chainlinkIcon from "public/assets/chainlink.svg";
+import redStoneIcon from "public/assets/redstone.svg";
 
 export const revalidate = ONE_DAY_SECONDS;
 
@@ -34,6 +37,41 @@ export const metadata: Metadata = {
     url: "/oval",
   },
 };
+const SupportedOraclesSection = () => {
+  const supportedOracles: { image: string; name: string; link: string }[] = [
+    {
+      image: chainlinkIcon as string,
+      name: "Chainlink",
+      link: "https://chain.link/",
+    },
+    {
+      image: redStoneIcon as string,
+      name: "Redstone",
+      link: "https://redstone.finance/",
+    },
+  ];
+  return (
+    <section className="py-6 pb-[94px] xl:pb-[128px]">
+      <div className="container mx-auto flex justify-center items-center space-x-6">
+        <span className="text-gradient-oval text-center text-sm">SUPPORTED ORACLES</span>
+        {supportedOracles.map(({ image, name, link }, index) => (
+          <div key={index} className="mx-3 flex justify-center items-center" data-tip={name}>
+            <a
+              href={link}
+              target="_blank"
+              key={index}
+              rel="noopener noreferrer"
+              className="h-12 w-12 flex justify-center items-center relative"
+              data-tip={name}
+            >
+              <Image key={index} src={image} alt={name} className="h-full w-full object-contain" />
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default function Page() {
   return (
@@ -42,6 +80,7 @@ export default function Page() {
         <IntegrateOvalModal />
       </Suspense>
       <Hero />
+      <SupportedOraclesSection />
       <OevLost />
       <CaptureOev />
       <ReclaimOev />
