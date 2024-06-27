@@ -27,7 +27,7 @@ export const ReclaimOev = ({ className }: ReclaimOevProps) => {
             Capture OEV
           </h2>
           <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
-            Oval wraps Chainlink Data Feeds allowing lending protocols to capture OEV.
+            Oval wraps your existing oracle, allowing lending protocols to capture OEV.
           </p>
           <p className="text-gradient-oval  text-center text-xl opacity-75 xl:text-left">
             Oval uses Flashbots&apos; MEV-Share to auction the right to conduct liquidations.

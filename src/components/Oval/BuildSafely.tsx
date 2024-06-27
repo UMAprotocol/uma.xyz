@@ -26,9 +26,9 @@ export const BuildSafely = ({ className }: BuildSafelyProps) => {
           <h2 className="text-gradient-oval whitespace-nowrap text-center text-sm-fluid md:text-md-fluid lg:text-lg-fluid xl:text-left">
             Build safely
           </h2>
-          <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">Oval is not a new oracle.</p>
+          <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">Oval is not an oracle.</p>
           <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
-            Oval wraps industry standard Chainlink Data Feeds and delivers Chainlink signed prices to your protocol.
+            Oval wraps price feeds and delivers prices to your protocol.
           </p>
           <p className="text-gradient-oval text-center text-xl opacity-75 xl:text-left">
             Flashbots&apos; trusted MEV-Share infrastructure is used to safely conduct offchain Order Flow Auctions.
