@@ -18,10 +18,8 @@ export const Faq = () => {
       answer: (
         <div className="flex w-full flex-col gap-4">
           <p>
-            Any price update delivered by the underlying oracle will also be delivered by Oval. Oval has no ability to
-            change the prices that come out of the oracle. Chainlink pushes price updates at fixed intervals or when the
-            price crosses a specific deviation threshold. For most mainnet feeds, this occurs every hour or when the
-            price changes by more than 1%.
+            Any price update pushed by the source oracle will also be delivered by Oval. Oval has no ability to change
+            the prices pushed by the oracle.
           </p>
 
           <p>
