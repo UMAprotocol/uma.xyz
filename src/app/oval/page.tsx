@@ -7,6 +7,8 @@ import { Suspense } from "react";
 import { ONE_DAY_SECONDS } from "@/lib/constants";
 import chainlinkIcon from "public/assets/chainlink.svg";
 import redStoneIcon from "public/assets/redstone.svg";
+import chronicleIcon from "public/assets/Chronicle.svg";
+import pythIcon from "public/assets/Pyth.svg";
 
 export const revalidate = ONE_DAY_SECONDS;
 
@@ -48,6 +50,16 @@ const SupportedOraclesSection = () => {
       image: redStoneIcon as string,
       name: "Redstone",
       link: "https://redstone.finance/",
+    },
+    {
+      image: chronicleIcon as string,
+      name: "Chronicle",
+      link: "https://chroniclelabs.org/",
+    },
+    {
+      image: pythIcon as string,
+      name: "Pyth",
+      link: "https://pyth.network/",
     },
   ];
   return (
