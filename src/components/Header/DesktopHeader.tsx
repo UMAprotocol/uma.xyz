@@ -3,6 +3,7 @@ import NextLink from "next/link";
 import { Icon } from "../Icon";
 import { cn } from "@/utils/styleUtils";
 import { useHeaderProps } from "./useHeaderProps";
+import { launchAppTrigger } from "@/lib/analytics";
 
 type Props = Pick<ReturnType<typeof useHeaderProps>, "activePath" | "links" | "launchAppLink" | "isLightTheme">;
 
@@ -38,6 +39,7 @@ export default function DesktopHeader({ isLightTheme, links, activePath, launchA
       </div>
       {launchAppLink && (
         <NextLink
+          onClick={launchAppTrigger}
           className={cn(
             "grid h-[40px] w-[118px] place-items-center gap-0.5 justify-self-end rounded-lg text-lg no-underline transition hover:opacity-75",
             isLightTheme ? "text-white" : "text-grey-900",
