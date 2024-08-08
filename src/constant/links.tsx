@@ -23,6 +23,10 @@ export const homePageLinks = [
     label: "Docs",
     href: "https://docs.uma.xyz/",
   },
+  {
+    label: "Blog",
+    href: "https://blog.uma.xyz/",
+  },
 ];
 
 export const osnapPageLinks = [
@@ -38,12 +42,16 @@ export const osnapPageLinks = [
     label: "Docs",
     href: "https://docs.uma.xyz/",
   },
+  {
+    label: "Blog",
+    href: "https://blog.uma.xyz/",
+  },
 ];
 
 export const ovalPageLinks = [
   {
-    label: "Oval",
-    href: "/oval",
+    label: "Home",
+    href: "/",
   },
   {
     label: "oSnap",
@@ -54,8 +62,12 @@ export const ovalPageLinks = [
     href: "https://oracle.uma.xyz/",
   },
   {
-    label: "Home",
-    href: "/",
+    label: "Docs",
+    href: "https://docs.oval.xyz/",
+  },
+  {
+    label: "Blog",
+    href: "https://blog.uma.xyz/",
   },
 ];
 
@@ -115,6 +127,10 @@ export const footerLinks = {
       label: "Stats",
       href: "https://stats.uma.xyz/",
     },
+    {
+      label: "Blog",
+      href: "https://blog.uma.xyz/",
+    },
   ],
 };
 
@@ -133,6 +149,10 @@ export const footerLinksOval = {
     {
       label: "Docs",
       href: "https://docs.oval.xyz/",
+    },
+    {
+      label: "Blog",
+      href: "https://blog.uma.xyz/",
     },
   ],
 };
