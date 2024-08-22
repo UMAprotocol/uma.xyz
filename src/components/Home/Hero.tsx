@@ -27,7 +27,9 @@ export default function Hero({ children }: PropsWithChildren) {
 
   const headerAnimation = {
     initial: {
-      opacity: 0,
+      // can not set this to 0, or google fails to score this page for performance
+      // https://github.com/GoogleChrome/lighthouse/issues/10869
+      opacity: 0.0000000001,
       y: "20%",
     },
     animate: {
