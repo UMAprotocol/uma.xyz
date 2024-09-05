@@ -10,7 +10,7 @@ export type HelpPopoverProps = {
 export const HelpPopover = ({ text, className }: HelpPopoverProps) => {
   return (
     <Popover>
-      <PopoverTrigger className="group p-[2px]">
+      <PopoverTrigger name="popover trigger" className="group p-[2px]">
         <Icon
           name="info"
           className={cn("text-inherit h-[calc(1em-4px)] w-[calc(1em-4px)] group-hover:text-text", className)}
