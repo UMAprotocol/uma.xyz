@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://uma.xyz"),
   alternates: {
     canonical: "/oval",
-    languages: {
-      "en-US": "/en-US",
-    },
   },
   title,
   description,

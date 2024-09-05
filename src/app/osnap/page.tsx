@@ -11,6 +11,10 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  metadataBase: new URL("https://uma.xyz"),
+  alternates: {
+    canonical: "/osnap",
+  },
   twitter: {
     card: "summary_large_image",
     site: "@UMAprotocol",
@@ -21,7 +25,7 @@ export const metadata: Metadata = {
     title,
     description,
     images: "/assets/osnap-twitter-card.png",
-    url: "https://uma.xyz",
+    url: "/osnap",
   },
 };
 

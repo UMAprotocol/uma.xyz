@@ -10,6 +10,10 @@ const description = "UMA is a blockchain oracle which trustlessly records any ve
 export const metadata: Metadata = {
   title,
   description,
+  metadataBase: new URL("https://uma.xyz"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: ["/favicon-32x32.png", "/favicon-16x16.png"],
   },
@@ -23,7 +27,7 @@ export const metadata: Metadata = {
     title,
     description,
     images: "/assets/twitter-card.png",
-    url: "https://uma.xyz",
+    url: "/",
   },
 };
 
