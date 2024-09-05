@@ -46,7 +46,7 @@ export const OevCreation = () => {
       </div>
       <Ellipse size="md" className="left-[-50%] top-0" />
       <ExternalLink aria-label="link to docs" href="https://docs.oval.xyz/integration/getting-started">
-        Learn more
+        View docs
       </ExternalLink>
     </section>
   );

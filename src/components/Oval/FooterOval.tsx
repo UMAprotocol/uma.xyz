@@ -29,7 +29,9 @@ export function FooterOval() {
           </NextLink>
           <LinksList links={footerLinksOval.internal} />
           <LinksList links={footerLinksOval.external}>
-            <IntegrateOvalLink />
+            <li>
+              <IntegrateOvalLink />
+            </li>
           </LinksList>
         </div>
         <div className="flex w-full flex-col items-center gap-6 md:items-start md:gap-0 xl:items-end">
@@ -43,7 +45,7 @@ export function FooterOval() {
         </div>
       </div>
       <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">
-        <p className="text-grey-500">© {new Date().getFullYear()} Risk Labs Foundation</p>
+        <p className="text-text/65">© {new Date().getFullYear()} Risk Labs Foundation</p>
         <div className="flex items-center gap-6">
           {socialLinks.map(({ href, icon, label }) => (
             <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>
@@ -62,6 +64,7 @@ function LinksList({ links, children }: PropsWithChildren<{ links: { label: stri
       {links.map(({ label, href }) => (
         <li className="mb-4 last:mb-0" key={label}>
           <NextLink
+            aria-label={label}
             href={href}
             target={isExternalLink(href) ? "_blank" : undefined}
             className="group flex items-center gap-1 text-text transition-all hover:text-red"

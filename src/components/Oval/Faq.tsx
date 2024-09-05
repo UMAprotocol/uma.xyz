@@ -119,7 +119,7 @@ export const Faq = () => {
         href="https://docs.oval.xyz/"
         target="_blank"
       >
-        Learn more
+        View docs
       </Link>
     </section>
   );

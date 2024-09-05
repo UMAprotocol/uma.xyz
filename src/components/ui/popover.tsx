@@ -7,7 +7,9 @@ import { cn } from "@/utils/styleUtils";
 
 const Popover = PopoverPrimitive.Root;
 
-const PopoverTrigger = PopoverPrimitive.Trigger;
+const PopoverTrigger = (props: PopoverPrimitive.PopoverTriggerProps) => (
+  <PopoverPrimitive.Trigger aria-label="Popover trigger" name="popover trigger" {...props} />
+);
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
