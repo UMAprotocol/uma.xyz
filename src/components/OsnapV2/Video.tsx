@@ -9,13 +9,13 @@ import { Icon } from "../Icon";
 import { TryOsnapButton } from "./TryOsnapButton";
 
 export function Video() {
-  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/tj_m6XMoPO4?controls=1");
+  const [videoSrc, setVideoSrc] = useState<string | undefined>(undefined);
   const [showThumbnail, setShowThumbnail] = useState(true);
 
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
     e.preventDefault();
     setShowThumbnail(false);
-    setVideoSrc(videoSrc + "&autoplay=1");
+    setVideoSrc("https://www.youtube.com/embed/tj_m6XMoPO4?controls=1&autoplay=1");
   };
 
   return (
@@ -42,6 +42,7 @@ export function Video() {
             <iframe
               width="100%"
               height="100%"
+              loading="lazy"
               src={videoSrc}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
