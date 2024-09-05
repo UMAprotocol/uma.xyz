@@ -23,7 +23,7 @@ export default function DesktopHeader({ isLightTheme, links, activePath, launchA
           <NextLink
             className={cn(
               "group flex items-center no-underline transition",
-              isActive(href) ? "text-primary-500" : "text-grey-400",
+              isActive(href) ? "text-primary-500" : activePath === "/" ? "text-grey-300" : "text-text/70",
             )}
             key={href}
             href={href}

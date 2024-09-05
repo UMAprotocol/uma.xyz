@@ -40,8 +40,6 @@ export default function MobileMenu({ show, hide, menuBg, isLightTheme, links }: 
             ? "top-vote-ticker-height h-[calc(100%-var(--vote-ticker-height))]"
             : "top-header-height h-[calc(100%-var(--header-height))]",
         )}
-        role="dialog"
-        aria-modal="true"
         aria-label="Mobile Menu"
         style={
           {

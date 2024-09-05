@@ -110,7 +110,7 @@ export default function Hero({ children }: PropsWithChildren) {
               </m.span>
               <m.span {...makeHeaderRotateAnimation(4)}>machine</m.span>
             </m.h1>
-            <m.h2 className="text-md z-10 mx-auto max-w-[min(562px,80%)] text-center text-grey-500 md:text-lg xl:text-xl">
+            <m.h2 className="text-md z-10 mx-auto max-w-[min(562px,80%)] text-center text-white/70 md:text-lg xl:text-xl">
               UMA&apos; s optimistic oracle (OO) can record any verifiable truth or data onto a blockchain.
             </m.h2>
           </m.div>
