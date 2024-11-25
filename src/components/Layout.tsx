@@ -13,20 +13,13 @@ export type LayoutProps = {
   className?: string;
 };
 
-export function Layout({
-  children,
-  showTicker = true,
-  showOvalBanner = true,
-  page = Pages.HOME,
-  className,
-}: LayoutProps) {
+export function Layout({ children, showTicker = true, page = Pages.HOME, className }: LayoutProps) {
   return (
     <main
       id="app-root-main"
       data-color-scheme={page.toLowerCase()}
       className={cn("relative h-[100%] overflow-clip", className)}
     >
-      {showOvalBanner && <OvalBanner page={page} />}
       {showTicker && <VoteTicker className="z-20" />}
       <Header />
       {children}
