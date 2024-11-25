@@ -88,7 +88,7 @@ const SupportedOraclesSection = () => {
 
 export default function Page() {
   return (
-    <Layout showOvalBanner showTicker={false} page="OVAL">
+    <Layout showTicker={false} page="OVAL">
       <Suspense>
         <IntegrateOvalModal />
       </Suspense>
