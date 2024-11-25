@@ -33,7 +33,7 @@ export const revalidate = ONE_DAY_SECONDS;
 
 export default function Page() {
   return (
-    <Layout showOvalBanner page="OSNAP">
+    <Layout page="OSNAP">
       <OsnapV2 />
       <Footer />
     </Layout>
