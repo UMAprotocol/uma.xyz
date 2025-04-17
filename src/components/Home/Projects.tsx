@@ -51,7 +51,7 @@ export default function Projects() {
     {
       name: "Predict.fun",
       icon: "predict_fun",
-      link: "https://www.predict.fun",
+      link: "https://predict.fun/",
     },
     {
       name: "Snapshot",
