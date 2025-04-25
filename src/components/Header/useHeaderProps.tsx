@@ -11,6 +11,7 @@ export const useHeaderProps = () => {
   const isHomePage = page === "/";
   const isOvalPage = page === "/oval";
   const isOsnapPage = page === "/osnap";
+  const isTermsOfServicePage = page === "/terms-of-service";
 
   // the home page switches theme based on scroll
   if (isHomePage) {
@@ -42,6 +43,17 @@ export const useHeaderProps = () => {
       isLightTheme: false,
       links: ovalPageLinks,
       activePath: page,
+    } as const;
+  }
+  // terms of service page ios light theme
+  if (isTermsOfServicePage) {
+    return {
+      bg: "var(--background-page)",
+      menuBg: "var(--background-page)",
+      isLightTheme: true,
+      links: osnapPageLinks,
+      activePath: page,
+      launchAppLink: "https://vote.uma.xyz",
     } as const;
   }
   // default to homepage props
