@@ -46,6 +46,9 @@ export function FooterOval() {
       </div>
       <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">
         <p className="text-text/65">© {new Date().getFullYear()} Risk Labs Foundation</p>
+        <NextLink className="text-grey-500 hover:text-text transition-colors" href="/terms-of-service">
+          Terms of Service
+        </NextLink>
         <div className="flex items-center gap-6">
           {socialLinks.map(({ href, icon, label }) => (
             <NextLink className="group" key={href} href={href} target="_blank" aria-label={label}>

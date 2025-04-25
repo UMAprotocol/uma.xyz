@@ -56,7 +56,7 @@ export default function Footer() {
       </div>
       <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">
         <p className="text-grey-500">© {new Date().getFullYear()} Risk Labs Foundation</p>
-        <NextLink className="text-grey-500" href="/terms-of-service">
+        <NextLink className="text-grey-500 hover:text-text transition-colors" href="/terms-of-service">
           Terms of Service
         </NextLink>
         <div className="flex items-center gap-6">
