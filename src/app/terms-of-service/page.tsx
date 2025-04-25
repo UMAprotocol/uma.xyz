@@ -161,110 +161,112 @@ export default function Page() {
         <P>
           You agree not to engage in, or attempt to engage in, any of the following categories of prohibited activity in
           relation to your access and use of the Interface:
-          <Ul>
-            <Li>
-              <strong>Intellectual Property Infringement.</strong> Activity that infringes on or violates any copyright,
-              trademark, service mark, patent, right of publicity, right of privacy, or other proprietary or
-              intellectual property rights under applicable law in any jurisdiction in the world.
-            </Li>
-            <Li>
-              <strong>Data Privacy.</strong> Activity that violates any applicable laws, and contractual and fiduciary
-              obligations relating to the collection, storage, use, transfer and any other processing of any personal
-              information or any other sensitive or confidential information.
-            </Li>
-            <Li>
-              <strong>Cyberattack.</strong> Activity that seeks to interfere with or compromise the integrity, security,
-              or proper functioning of any computer, server, network, personal device, or other information technology
-              system, including, but not limited to, the deployment of viruses and denial of service attacks. Activity
-              that uses any robot, spider, crawler, scraper or other automated means or interface not provided by us to
-              access the Products to introduce any malware, virus, Trojan horse, worm, logic bomb, drop-dead device,
-              backdoor, shutdown mechanism or other harmful material into the Interface or the Products.
-            </Li>
-            <Li>
-              <strong>Fraud and Misrepresentation.</strong> Activity that seeks to defraud us or any other person or
-              entity, including, but not limited to, providing any false, inaccurate, or misleading information in order
-              to unlawfully obtain the property of another, or to defraud Risk Labs, other users of the Products or any
-              other person.
-            </Li>
-            <Li>
-              <strong>No Malicious Technical Activity.</strong> You will not, and will not attempt to, interfere with or
-              disrupt the proper functioning of the Interfaces or the UMA protocol, including but not limited to,
-              hacking, phishing, injection of malicious code, or denial-of-service attacks. You agree not to upload or
-              transmit any viruses, malware, or harmful material into the Interfaces or smart contracts.
-            </Li>
-            <Li>
-              <strong>Market Manipulation.</strong> Activity that violates any applicable law, rule, or regulation
-              concerning the integrity of trading markets, including, but not limited to: the manipulative tactics
-              commonly known as &quot;rug pulls&quot;; pumping and dumping; wash trading; front-running; accommodation
-              trading; fictitious transactions; pre-arranged or non-competitive transactions; cornering or attempting
-              cornering of digital assets; violations of bids or offers; spoofing; knowingly making any bid or offer for
-              the purpose of making a market price that does not reflect the true state of the market; entering orders
-              for the purpose of entering in to transactions without a net change in either party&apos;s open positions
-              but a resulting profit to one party and a loss to the other party, commonly known as a &quot;money
-              pass&quot;; any other manipulation or fraudulent act or scheme to defraud, deceive, trick or mislead; or
-              any other trading activity that, in the reasonable judgment of Risk Labs, is abusive, improper or
-              disruptive to the operation of the Interface.
-            </Li>
-            <Li>
-              <strong>No Misuse of Oracle or Governance.</strong> You will not abuse the UMA network system, including
-              the Optimistic Oracle and DVM, or any associated governance systems. For example, you will not
-              deliberately submit false or unverifiable data, spam the system with deceptive requests, bribe or collude
-              in voting in a manner that violates any applicable law, or otherwise seek to manipulate outcomes. While
-              the UMA protocol is designed to be open, behavior that undermines the integrity of the network oracle
-              system (such as market manipulation, or exploiting bugs for unfair gain, or insider collusion) may result
-              in community or legal action against you. The rules of other platforms, prohibit, for example, market
-              manipulation and insider collusion in their prediction markets; similarly, UMA expects users to uphold
-              honesty and fair play in oracle participation.
-            </Li>
-            <Li>
-              <strong>Securities and Derivatives Violations.</strong> Activity that violates any applicable law, rule,
-              or regulation concerning the trading of securities or derivatives, including, but not limited to, the
-              unregistered offering of securities and the offering of leveraged and margined commodity products to
-              retail customers in the United States.
-            </Li>
-            <Li>
-              <strong>Sale of Stolen Property.</strong> Buying, selling, or transferring of stolen items, fraudulently
-              obtained items, items taken without authorization, and/or any other illegally obtained items. Using or
-              accessing the Products to facilitate the transmission or exchange of Digital Assets that are the direct or
-              indirect proceeds of any criminal or fraudulent activity, including terrorism or tax evasion.
-            </Li>
-            <Li>
-              <strong>Data Mining or Scraping.</strong> Activity that involves data mining, robots, scraping, or similar
-              data gathering or extraction methods of content or information from any of our Products.
-            </Li>
-            <Li>
-              <strong>Objectionable Content.</strong> Activity that involves soliciting information from anyone under
-              the age of 18 or that is otherwise harmful, threatening, abusive, harassing, tortious, excessively
-              violent, defamatory, vulgar, obscene, pornographic, libelous, invasive of another&apos;s privacy, hateful,
-              discriminatory, or otherwise objectionable.
-            </Li>
-            <Li>
-              <strong>Disruptive Content.</strong> Activity that could interfere with, disrupt, negatively affect, or
-              inhibit other users from fully enjoying the Products, or that could damage, disable, overburden, or impair
-              the functioning of the Interface or the Products in any manner.
-            </Li>
-            <Li>
-              <strong>Circumvention of Content-Filtering.</strong> Activity that circumvents any content-filtering
-              techniques, security measures or access controls that Risk Labs employs on the Interface, including
-              through the use of a VPN.
-            </Li>
-            <Li>
-              <strong>Any Other Unlawful Conduct.</strong> Activity that violates any applicable law, rule, or
-              regulation of the United States or another relevant jurisdiction, including, but not limited to, the
-              restrictions and regulatory requirements imposed by U.S. law, including any relevant and applicable
-              anti-money laundering and anti-terrorist financing laws and sanctions programs, such as the Bank Secrecy
-              Act and the U.S. Department of Treasury&apos;s Office of Foreign Asset Controls. Activity from a
-              jurisdiction (including an IP address in a jurisdiction) that we have, in our sole discretion, determined
-              is a jurisdiction where the use of the Site, the Interface or the Products is prohibited, including any
-              Restricted Territory, or any activity with a Sanctioned Person.
-            </Li>
-            <Li>
-              <strong>Respect for Others and No Abuse.</strong> If the Interfaces include any community features
-              (forums, proposal discussions, etc.), you agree to engage respectfully. Do not harass, threaten, or abuse
-              other participants. Do not publish spam or irrelevant promotional content. Use of the Interfaces should
-              follow any community guidelines that may be posted.
-            </Li>
-          </Ul>
+        </P>
+        <Ul>
+          <Li>
+            <strong>Intellectual Property Infringement.</strong> Activity that infringes on or violates any copyright,
+            trademark, service mark, patent, right of publicity, right of privacy, or other proprietary or intellectual
+            property rights under applicable law in any jurisdiction in the world.
+          </Li>
+          <Li>
+            <strong>Data Privacy.</strong> Activity that violates any applicable laws, and contractual and fiduciary
+            obligations relating to the collection, storage, use, transfer and any other processing of any personal
+            information or any other sensitive or confidential information.
+          </Li>
+          <Li>
+            <strong>Cyberattack.</strong> Activity that seeks to interfere with or compromise the integrity, security,
+            or proper functioning of any computer, server, network, personal device, or other information technology
+            system, including, but not limited to, the deployment of viruses and denial of service attacks. Activity
+            that uses any robot, spider, crawler, scraper or other automated means or interface not provided by us to
+            access the Products to introduce any malware, virus, Trojan horse, worm, logic bomb, drop-dead device,
+            backdoor, shutdown mechanism or other harmful material into the Interface or the Products.
+          </Li>
+          <Li>
+            <strong>Fraud and Misrepresentation.</strong> Activity that seeks to defraud us or any other person or
+            entity, including, but not limited to, providing any false, inaccurate, or misleading information in order
+            to unlawfully obtain the property of another, or to defraud Risk Labs, other users of the Products or any
+            other person.
+          </Li>
+          <Li>
+            <strong>No Malicious Technical Activity.</strong> You will not, and will not attempt to, interfere with or
+            disrupt the proper functioning of the Interfaces or the UMA protocol, including but not limited to, hacking,
+            phishing, injection of malicious code, or denial-of-service attacks. You agree not to upload or transmit any
+            viruses, malware, or harmful material into the Interfaces or smart contracts.
+          </Li>
+          <Li>
+            <strong>Market Manipulation.</strong> Activity that violates any applicable law, rule, or regulation
+            concerning the integrity of trading markets, including, but not limited to: the manipulative tactics
+            commonly known as &quot;rug pulls&quot;; pumping and dumping; wash trading; front-running; accommodation
+            trading; fictitious transactions; pre-arranged or non-competitive transactions; cornering or attempting
+            cornering of digital assets; violations of bids or offers; spoofing; knowingly making any bid or offer for
+            the purpose of making a market price that does not reflect the true state of the market; entering orders for
+            the purpose of entering in to transactions without a net change in either party&apos;s open positions but a
+            resulting profit to one party and a loss to the other party, commonly known as a &quot;money pass&quot;; any
+            other manipulation or fraudulent act or scheme to defraud, deceive, trick or mislead; or any other trading
+            activity that, in the reasonable judgment of Risk Labs, is abusive, improper or disruptive to the operation
+            of the Interface.
+          </Li>
+          <Li>
+            <strong>No Misuse of Oracle or Governance.</strong> You will not abuse the UMA network system, including the
+            Optimistic Oracle and DVM, or any associated governance systems. For example, you will not deliberately
+            submit false or unverifiable data, spam the system with deceptive requests, bribe or collude in voting in a
+            manner that violates any applicable law, or otherwise seek to manipulate outcomes. While the UMA protocol is
+            designed to be open, behavior that undermines the integrity of the network oracle system (such as market
+            manipulation, or exploiting bugs for unfair gain, or insider collusion) may result in community or legal
+            action against you. The rules of other platforms, prohibit, for example, market manipulation and insider
+            collusion in their prediction markets; similarly, UMA expects users to uphold honesty and fair play in
+            oracle participation.
+          </Li>
+          <Li>
+            <strong>Securities and Derivatives Violations.</strong> Activity that violates any applicable law, rule, or
+            regulation concerning the trading of securities or derivatives, including, but not limited to, the
+            unregistered offering of securities and the offering of leveraged and margined commodity products to retail
+            customers in the United States.
+          </Li>
+          <Li>
+            <strong>Sale of Stolen Property.</strong> Buying, selling, or transferring of stolen items, fraudulently
+            obtained items, items taken without authorization, and/or any other illegally obtained items. Using or
+            accessing the Products to facilitate the transmission or exchange of Digital Assets that are the direct or
+            indirect proceeds of any criminal or fraudulent activity, including terrorism or tax evasion.
+          </Li>
+          <Li>
+            <strong>Data Mining or Scraping.</strong> Activity that involves data mining, robots, scraping, or similar
+            data gathering or extraction methods of content or information from any of our Products.
+          </Li>
+          <Li>
+            <strong>Objectionable Content.</strong> Activity that involves soliciting information from anyone under the
+            age of 18 or that is otherwise harmful, threatening, abusive, harassing, tortious, excessively violent,
+            defamatory, vulgar, obscene, pornographic, libelous, invasive of another&apos;s privacy, hateful,
+            discriminatory, or otherwise objectionable.
+          </Li>
+          <Li>
+            <strong>Disruptive Content.</strong> Activity that could interfere with, disrupt, negatively affect, or
+            inhibit other users from fully enjoying the Products, or that could damage, disable, overburden, or impair
+            the functioning of the Interface or the Products in any manner.
+          </Li>
+          <Li>
+            <strong>Circumvention of Content-Filtering.</strong> Activity that circumvents any content-filtering
+            techniques, security measures or access controls that Risk Labs employs on the Interface, including through
+            the use of a VPN.
+          </Li>
+          <Li>
+            <strong>Any Other Unlawful Conduct.</strong> Activity that violates any applicable law, rule, or regulation
+            of the United States or another relevant jurisdiction, including, but not limited to, the restrictions and
+            regulatory requirements imposed by U.S. law, including any relevant and applicable anti-money laundering and
+            anti-terrorist financing laws and sanctions programs, such as the Bank Secrecy Act and the U.S. Department
+            of Treasury&apos;s Office of Foreign Asset Controls. Activity from a jurisdiction (including an IP address
+            in a jurisdiction) that we have, in our sole discretion, determined is a jurisdiction where the use of the
+            Site, the Interface or the Products is prohibited, including any Restricted Territory, or any activity with
+            a Sanctioned Person.
+          </Li>
+          <Li>
+            <strong>Respect for Others and No Abuse.</strong> If the Interfaces include any community features (forums,
+            proposal discussions, etc.), you agree to engage respectfully. Do not harass, threaten, or abuse other
+            participants. Do not publish spam or irrelevant promotional content. Use of the Interfaces should follow any
+            community guidelines that may be posted.
+          </Li>
+        </Ul>
+        <P>
           As a further condition to accessing or using the Products, you affirm that you will only transfer
           legally-obtained digital assets that belong to you and that any digital assets you use in connection with the
           Products are either owned by you or you are validly authorized to carry out actions using such digital assets.
