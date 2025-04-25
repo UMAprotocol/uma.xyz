@@ -1,3 +1,4 @@
+"use client";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";

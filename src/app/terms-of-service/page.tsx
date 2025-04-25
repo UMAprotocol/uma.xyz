@@ -1,10 +1,11 @@
 import Footer from "@/components/Footer";
 import { Layout } from "@/components/Layout";
 import { H2, H3, P, Ul, Li } from "@/components/TermsElements";
+import { Pages } from "@/constant/pages";
 
 export default function Page() {
   return (
-    <Layout showTicker={false} page="TERMS_OF_SERVICE">
+    <Layout showTicker={false} page={Pages.TERMS_OF_SERVICE}>
       <article className="my-[100px] px-4 flex flex-col items-start gap-4 mx-auto w-full max-w-[800px]">
         <h1 className="text-4xl ">UMA Protocol Terms of Service</h1>
         <span className="opacity-50">Dated: April 24, 2025 </span>

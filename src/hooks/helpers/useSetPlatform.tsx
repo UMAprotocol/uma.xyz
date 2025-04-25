@@ -1,3 +1,4 @@
+"use client";
 import { Platforms } from "@/constant/pages";
 import { useLayoutEffect } from "react";
 
