@@ -1,3 +1,4 @@
+"use client";
 import { socialLinks } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
