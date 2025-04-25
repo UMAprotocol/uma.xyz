@@ -51,7 +51,7 @@ export const useHeaderProps = () => {
       bg: "var(--background-page)",
       menuBg: "var(--background-page)",
       isLightTheme: true,
-      links: osnapPageLinks,
+      links: homePageLinks,
       activePath: page,
       launchAppLink: "https://vote.uma.xyz",
     } as const;
