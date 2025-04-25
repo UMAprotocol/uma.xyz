@@ -8,7 +8,7 @@ type Props = React.ComponentPropsWithoutRef<"svg"> & {
 export function Icon({ name, className, ...props }: Props) {
   return (
     <svg className={cn("h-[1em] w-[1em]", className)} {...props}>
-      <use href={`assets/icons.svg#${name}`} />
+      <use href={`/assets/icons.svg#${name}`} />
     </svg>
   );
 }

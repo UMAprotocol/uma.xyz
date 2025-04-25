@@ -117,7 +117,7 @@ export default function VoteParticipation() {
           <Divider />
         </div>
         <div>
-          <AnimatedLink href="https://vote.uma.xyz">Link to voter app</AnimatedLink>
+          <AnimatedLink href="https://vote.uma.xyz">Launch voter app</AnimatedLink>
         </div>
       </div>
     </section>

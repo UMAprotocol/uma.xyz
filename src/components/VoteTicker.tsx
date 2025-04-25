@@ -108,7 +108,7 @@ export default function VoteTicker({ isLightTheme: isLightTheme_ = false, classN
             className="text-[--color-ticker]] flex items-center gap-1 transition hover:opacity-50"
             href="https://vote.uma.xyz/"
             target="_blank"
-            aria-label="Link to voter dapp"
+            aria-label="Launch voter dapp"
           >
             <span className="hidden text-[--color-ticker] sm:inline">More details</span>
             <Icon name="arrow" className="h-5 w-5 -rotate-45 text-[--color-ticker]" />

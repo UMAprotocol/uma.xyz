@@ -23,7 +23,7 @@ export function Faq() {
             className="inline items-center text-red transition hover:opacity-50"
             href="https://vote.uma.xyz/"
             target="_blank"
-            aria-label="Link to voter dapp"
+            aria-label="Launch voter dapp"
           >
             UMA Voter dapp.
           </NextLink>

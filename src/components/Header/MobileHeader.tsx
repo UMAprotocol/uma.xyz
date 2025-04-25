@@ -79,7 +79,7 @@ export default function MobileHeader({ isLightTheme, menuBg, activePath, links, 
         <div className="justify-self-end">
           <NextLink
             className="inline-flex items-center justify-center gap-1 text-sm text-[--color] no-underline transition hover:opacity-50"
-            aria-label="Link to voter dapp"
+            aria-label="Launch voter dapp"
             href="https://vote.uma.xyz/"
             target="_blank"
             style={

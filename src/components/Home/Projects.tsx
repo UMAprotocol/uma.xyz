@@ -31,9 +31,9 @@ export default function Projects() {
 
   const middleRow = [
     {
-      name: "Outcome",
-      icon: "outcome",
-      link: "https://outcome.finance",
+      name: "Story Protocol",
+      icon: "story",
+      link: "https://www.story.foundation",
     },
     {
       name: "Rated",
@@ -49,9 +49,9 @@ export default function Projects() {
 
   const bottomRow = [
     {
-      name: "Cozy",
-      icon: "cozy",
-      link: "https://www.cozy.finance",
+      name: "Predict.fun",
+      icon: "predict_fun",
+      link: "https://predict.fun/",
     },
     {
       name: "Snapshot",
@@ -70,10 +70,6 @@ export default function Projects() {
       <div className="mx-auto grid max-w-[--page-width] grid-cols-[1fr] grid-rows-[auto,auto] gap-12 lg:grid-cols-[1fr,1fr] lg:grid-rows-[1fr]">
         <div className="row-start-1 lg:col-start-2 lg:max-w-[366px] lg:justify-self-end">
           <h2 className="mb-3 text-4xl md:text-6xl lg:mb-6">Projects built with the OO</h2>
-          <div className="mb-6">
-            <Divider />
-          </div>
-          <AnimatedLink href="https://projects.uma.xyz/">All projects</AnimatedLink>
         </div>
         <div className="row-start-2 grid grid-cols-[1fr] grid-rows-[auto,auto,auto] lg:col-start-1 lg:row-start-1">
           <ProjectRow projects={topRow} line="top" />
