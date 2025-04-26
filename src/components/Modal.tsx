@@ -24,7 +24,7 @@ export function useModal(options?: {
   const setIfParam = useCallback(() => {
     if (options?.useQueryParams) {
       const { key, value } = options.useQueryParams;
-      const newSearchParams = new URLSearchParams(searchParams ?? "");
+      const newSearchParams = new URLSearchParams(searchParams?.toString() ?? "");
       newSearchParams.set(key, value);
       router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
     }
@@ -33,7 +33,7 @@ export function useModal(options?: {
   const removeIfParam = useCallback(() => {
     if (options?.useQueryParams) {
       const { key } = options.useQueryParams;
-      const newSearchParams = new URLSearchParams(searchParams ?? "");
+      const newSearchParams = new URLSearchParams(searchParams?.toString() ?? "");
       newSearchParams.delete(key);
       router.push(`${pathname}/?${newSearchParams.toString()}`, { scroll: false });
     }
