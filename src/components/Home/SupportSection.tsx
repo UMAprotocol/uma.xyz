@@ -39,7 +39,7 @@ export default function SupportSection() {
           <div className="mt-9 grid gap-6 sm:mt-16">
             <NextLink
               className="group flex w-fit items-center gap-5 transition-[gap] hover:gap-4 hover:text-red"
-              href="https://jobs.lever.co/risklabs"
+              href="https://jobs.ashbyhq.com/risklabs"
               target="_blank"
             >
               <div className="grid h-[40px] w-[40px] place-items-center rounded-[10px] border-[1.5px] border-grey-800 transition group-hover:border-red group-hover:bg-red">
