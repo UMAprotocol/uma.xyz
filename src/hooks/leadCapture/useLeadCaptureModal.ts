@@ -10,7 +10,6 @@ import { CheckedState } from "@/components/ui/checkbox";
 
 export const MODALS = {
   "try-osnap": "try-osnap",
-  "integrate-oval": "integrate-oval",
 } as const;
 
 type Modal = keyof typeof MODALS;

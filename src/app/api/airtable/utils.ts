@@ -5,10 +5,6 @@ export const INTEGRATIONS = {
     integration: "oSnap",
     referral: "oSnap Landing Page",
   },
-  oval: {
-    integration: "Oval",
-    referral: "Oval Landing Page",
-  },
 } as const;
 
 export type IntegrationId = keyof typeof INTEGRATIONS;

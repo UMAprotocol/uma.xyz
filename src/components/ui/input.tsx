@@ -9,7 +9,6 @@ const inputVariants = cva(commonStyles, {
   variants: {
     theme: {
       osnap: "text-black bg-white border-grey-300 text-grey-600", // Base styles for osnap
-      oval: "text-white bg-white/5 border-white/5 focus:border-white rounded-[10px]", // Base styles for oval
     },
     validity: {
       valid: "", // Common valid styles
@@ -21,11 +20,6 @@ const inputVariants = cva(commonStyles, {
       theme: "osnap",
       validity: "invalid",
       class: "border-error-200 bg-error-50 text-error-700 placeholder:text-error-500", // Specific invalid styles for osnap
-    },
-    {
-      theme: "oval",
-      validity: "invalid",
-      class: "text-error-600 border-error-600", // Specific invalid styles for oval
     },
   ],
   defaultVariants: {

@@ -16,10 +16,6 @@ export const homePageLinks = [
     href: "/osnap",
   },
   {
-    label: "Oval",
-    href: "/oval",
-  },
-  {
     label: "Docs",
     href: "https://docs.uma.xyz/",
   },
@@ -41,29 +37,6 @@ export const osnapPageLinks = [
   {
     label: "Docs",
     href: "https://docs.uma.xyz/",
-  },
-  {
-    label: "Blog",
-    href: "https://blog.uma.xyz/",
-  },
-];
-
-export const ovalPageLinks = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "oSnap",
-    href: "/osnap",
-  },
-  {
-    label: "OO",
-    href: "https://oracle.uma.xyz/",
-  },
-  {
-    label: "Docs",
-    href: "https://docs.oval.xyz/",
   },
   {
     label: "Blog",
@@ -126,29 +99,6 @@ export const footerLinks = {
     {
       label: "Stats",
       href: "https://stats.uma.xyz/",
-    },
-    {
-      label: "Blog",
-      href: "https://blog.uma.xyz/",
-    },
-  ],
-};
-
-export const footerLinksOval = {
-  internal: [
-    {
-      label: "For Searchers",
-      href: "https://docs.oval.xyz/for-searchers",
-    },
-    {
-      label: "For Integrators",
-      href: "https://docs.oval.xyz/integration",
-    },
-  ],
-  external: [
-    {
-      label: "Docs",
-      href: "https://docs.oval.xyz/",
     },
     {
       label: "Blog",
