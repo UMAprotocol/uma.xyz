@@ -3,6 +3,8 @@ import { Layout } from "@/components/Layout";
 import { H2, H3, P, Ul, Li } from "@/components/TermsElements";
 import { Pages } from "@/constant/pages";
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   return (
     <Layout showTicker={false} page={Pages.TERMS_OF_SERVICE}>

@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = ONE_DAY_SECONDS;
+export const dynamic = "force-dynamic";
 
 export default function Page() {
   return (
