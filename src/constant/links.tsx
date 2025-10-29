@@ -12,10 +12,6 @@ export const homePageLinks = [
     href: "/#builder",
   },
   {
-    label: "oSnap",
-    href: "/osnap",
-  },
-  {
     label: "Docs",
     href: "https://docs.uma.xyz/",
   },

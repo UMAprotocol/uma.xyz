@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import { Layout } from "@/components/Layout";
-import { OracleTvsChip } from "@/components/Home/OracleTvsChip";
 import { Home } from "@/components/pages/Home";
 import { Metadata } from "next";
 
@@ -31,14 +30,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
-
 export default function Page() {
   return (
     <Layout page="HOME">
-      <Home>
-        <OracleTvsChip />
-      </Home>
+      <Home />
       <Footer />
     </Layout>
   );
