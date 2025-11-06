@@ -4,11 +4,13 @@ import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { isExternalLink } from "@/utils";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 import { CSSProperties, useEffect, useState } from "react";
 import { Icon } from "../Icon";
-import LottieAnimation from "../LottieAnimation";
 import { cn } from "@/utils/styleUtils";
 import { Portal } from "../Portal";
+
+const LottieAnimation = dynamic(() => import("../LottieAnimation"), { ssr: false });
 
 type Props = {
   show: boolean;

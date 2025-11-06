@@ -1,11 +1,13 @@
 import { defaultApr, overrideApr } from "@/constant";
 import { useVotingInfo } from "@/hooks";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import AnimatedLink from "../AnimatedLink";
 import { Divider } from "../Divider";
-import LottieAnimation from "../LottieAnimation";
 import { SectionHeader } from "../SectionHeader";
+
+const LottieAnimation = dynamic(() => import("../LottieAnimation"), { ssr: false });
 
 export default function VoteParticipation() {
   const id = "voter";
