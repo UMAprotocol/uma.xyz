@@ -2,7 +2,7 @@
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { LazyMotion, m } from "framer-motion";
 import NextLink from "next/link";
-import { PropsWithChildren, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Icon } from "../Icon";
 
 const loadFeatures = () => import("../../utils/features").then((res) => res.default);
@@ -10,7 +10,7 @@ const loadFeatures = () => import("../../utils/features").then((res) => res.defa
 const heroVideoBackgroundIphone = "#232124";
 const heroVideoBackgroundWindows = "#252125";
 
-export default function Hero({ children }: PropsWithChildren) {
+export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   useLoadSectionRefAndId(ref, "");
 
@@ -93,7 +93,6 @@ export default function Hero({ children }: PropsWithChildren) {
 
         <div className="mx-auto grid h-full max-w-[--page-width] grid-rows-[1fr_20%] items-center justify-items-center">
           <m.div className="justify- mb-3 flex flex-col items-center gap-8 lg:mb-0" {...headerAnimation}>
-            {children}
             <m.h1 className="z-10 text-center text-sm-fluid text-white md:text-md-fluid lg:text-lg-fluid">
               <m.div {...makeHeaderRotateAnimation(-3)}>A decentralized </m.div>
               <m.span {...makeHeaderRotateAnimation(-6)}>truth</m.span>

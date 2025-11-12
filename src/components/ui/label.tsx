@@ -12,7 +12,6 @@ const labelVariants = cva(commonStyles, {
   variants: {
     theme: {
       osnap: "base-styles-for-themeA", // Base styles for osnap
-      oval: "base-styles-for-themeB", // Base styles for oval
     },
     validity: {
       valid: "valid-styles", // Common valid styles
@@ -29,16 +28,6 @@ const labelVariants = cva(commonStyles, {
       theme: "osnap",
       validity: "invalid",
       class: "text-error-900",
-    },
-    {
-      theme: "oval",
-      validity: "valid",
-      class: "text-white", // Specific valid styles for themeB
-    },
-    {
-      theme: "oval",
-      validity: "invalid",
-      class: "text-error-600", // Specific invalid styles for themeB
     },
   ],
   defaultVariants: {

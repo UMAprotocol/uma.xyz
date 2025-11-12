@@ -73,7 +73,6 @@ export default function MobileHeader({ isLightTheme, menuBg, activePath, links, 
       </button>
       <NextLink href="/" aria-label="Back to page top" className="flex items-baseline gap-2">
         <Icon name="uma-logo" className={`h-[16px] w-[63px] ${isLightTheme ? "text-black" : "text-white"}`} />
-        {activePath === "/oval" && <span className="text-gradient-oval align-bottom text-[16px] leading-4">Oval</span>}
       </NextLink>
       {launchAppLink && (
         <div className="justify-self-end">

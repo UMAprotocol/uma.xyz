@@ -1,3 +1,5 @@
+"use client";
+
 import LottiePlayer from "react-lottie-player/dist/LottiePlayerLight";
 
 type Props = {

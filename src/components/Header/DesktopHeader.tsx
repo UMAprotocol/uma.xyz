@@ -16,7 +16,6 @@ export default function DesktopHeader({ isLightTheme, links, activePath, launchA
     <div className="hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid">
       <NextLink href="/" aria-label="Back to top" className="flex cursor-pointer items-baseline gap-2">
         <Icon name="uma-logo" className={`h-[16px] w-[63px] ${isLightTheme ? "text-black" : "text-white"}`} />
-        {activePath === "/oval" && <span className="text-gradient-oval align-bottom text-[16px] leading-4">Oval</span>}
       </NextLink>
       <div className="grid grid-flow-col items-center gap-5">
         {links.map(({ label, href }) => (

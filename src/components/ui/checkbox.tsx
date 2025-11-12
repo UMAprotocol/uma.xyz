@@ -16,7 +16,6 @@ const checkboxVariants = cva(
     variants: {
       theme: {
         osnap: " border-grey-300 text-grey-600", // Base styles for osnap
-        oval: "text-white border-white/5 focus:border-white rounded-[10px]", // Base styles for oval
       },
     },
     defaultVariants: {

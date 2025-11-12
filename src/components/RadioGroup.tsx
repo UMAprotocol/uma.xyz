@@ -21,7 +21,6 @@ const radioGroupVariants = cva("mb-1 font-medium", {
   variants: {
     theme: {
       osnap: "text-grey-900",
-      oval: "text-white", // Base styles for oval
     },
   },
   defaultVariants: {
@@ -59,7 +58,6 @@ const radioInputVariants = cva(commonStyles, {
     theme: {
       osnap:
         "p-4 border bg-white border-grey-200 text-grey-700 has-[:checked]:bg-primary-50 has-[:checked]:border-primary-600 has-[:checked]:text-primary-600", // Base styles for osnap
-      oval: "px-4 py-3 border border-white/50 text-white/50 has-[:checked]:border-[#FB5858] has-[:checked]:shadow-[inset_0px_0px_0px_1px_#FB5858] has-[:checked]:text-white", // Base styles for oval
     },
   },
   defaultVariants: {

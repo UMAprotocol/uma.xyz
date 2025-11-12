@@ -6,7 +6,6 @@ import { Hero } from "../OsnapV2/Hero";
 import { Steps } from "../OsnapV2/Steps";
 import { Partners } from "../OsnapV2/Partners";
 import { TryOsnapModal } from "../Osnap/TryOsnapModal";
-import { Suspense } from "react";
 
 export function OsnapV2() {
   return (
@@ -18,9 +17,7 @@ export function OsnapV2() {
       <Features />
       <Video />
       <Faq />
-      <Suspense>
-        <TryOsnapModal />
-      </Suspense>
+      <TryOsnapModal />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { homePageLinks, osnapPageLinks, ovalPageLinks } from "@/constant";
+import { homePageLinks, osnapPageLinks } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +9,6 @@ export const useHeaderProps = () => {
 
   const page = pathname?.split("#")[0];
   const isHomePage = page === "/";
-  const isOvalPage = page === "/oval";
   const isOsnapPage = page === "/osnap";
   const isTermsOfServicePage = page === "/terms-of-service";
 
@@ -33,16 +32,6 @@ export const useHeaderProps = () => {
       links: osnapPageLinks,
       activePath: page,
       launchAppLink: "https://vote.uma.xyz",
-    } as const;
-  }
-  // the oval page is all dark theme
-  if (isOvalPage) {
-    return {
-      bg: "transparent",
-      menuBg: "var(--background-page)",
-      isLightTheme: false,
-      links: ovalPageLinks,
-      activePath: page,
     } as const;
   }
   // terms of service page ios light theme

@@ -1,3 +1,4 @@
+"use client";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { useLoadSectionRefAndId } from "@/hooks/helpers/useLoadSectionRefAndId";
 import { motion, useScroll, useSpring } from "framer-motion";
