@@ -215,22 +215,6 @@ contract LongShortPair {
 
   const tabs = [
     {
-      title: "Governance",
-      shortTitle: "Govern",
-      content: `The OO can be used to enable more trustless forms of DAO governance. The first product using this is oSnap, which is a trustless method to execute the results of a Snapshot vote on chain.`,
-      usedBy: "oSnap",
-      example: "Does this on-chain transaction match an approved Snapshot vote?",
-      code: governanceCode,
-      icon: (
-        <Icon
-          name="scale"
-          className="h-8 w-8 transition-transform group-data-[state=active]:-translate-y-3 [&_path]:group-data-[state=active]:stroke-red"
-        />
-      ),
-      docHref: "https://docs.uma.xyz/developers/optimistic-oracle",
-      docText: "Build your first smart contract with UMA",
-    },
-    {
       title: "Prediction Markets",
       shortTitle: "Predict",
       content: `The OO can validate natural-language statements and answer questions about real-world events.

@@ -41,24 +41,6 @@ export default function Projects() {
       link: "https://www.rated.network",
     },
     {
-      name: "Shapeshift",
-      icon: "shapeshift",
-      link: "https://shapeshift.com",
-    },
-  ];
-
-  const bottomRow = [
-    {
-      name: "Predict.fun",
-      icon: "predict_fun",
-      link: "https://predict.fun/",
-    },
-    {
-      name: "Snapshot",
-      icon: "snapshot",
-      link: "https://snapshot.org",
-    },
-    {
       name: "Sherlock",
       icon: "sherlock",
       link: "https://www.sherlock.xyz",
@@ -74,7 +56,6 @@ export default function Projects() {
         <div className="row-start-2 grid grid-cols-[1fr] grid-rows-[auto,auto,auto] lg:col-start-1 lg:row-start-1">
           <ProjectRow projects={topRow} line="top" />
           <ProjectRow projects={middleRow} line="middle" />
-          <ProjectRow projects={bottomRow} line="bottom" />
         </div>
       </div>
     </section>
