@@ -1,6 +1,5 @@
 import { ChangeEventHandler, ReactNode, useId, useMemo, useState } from "react";
 import { cn } from "@/utils/styleUtils";
-import { VariantProps, cva } from "class-variance-authority";
 
 export function useRadioGroup<TValue extends string>(title: string, values: TValue[]) {
   const [checkedValue, setCheckedValue] = useState<TValue>(values[0]);
@@ -16,28 +15,15 @@ export function useRadioGroup<TValue extends string>(title: string, values: TVal
   );
 }
 
-// this is only for the legend
-const radioGroupVariants = cva("mb-1 font-medium", {
-  variants: {
-    theme: {
-      osnap: "text-grey-900",
-    },
-  },
-  defaultVariants: {
-    theme: "osnap",
-  },
-});
+type RadioGroupProps = ReturnType<typeof useRadioGroup>;
 
-type RadioGroupProps = ReturnType<typeof useRadioGroup> & VariantProps<typeof radioGroupVariants>;
-
-export function RadioGroup({ theme = "osnap", ...props }: RadioGroupProps) {
+export function RadioGroup({ ...props }: RadioGroupProps) {
   return (
     <fieldset>
-      <legend className={cn(radioGroupVariants({ theme }))}>{props.title}</legend>
-      <div className={cn("grid grid-cols-1 gap-2", theme === "osnap" ? "sm:grid-cols-4" : "sm:grid-cols-2")}>
+      <legend className={cn("mb-1 font-medium text-grey-900")}>{props.title}</legend>
+      <div className={cn("grid grid-cols-1 gap-2 sm:grid-cols-4")}>
         {props.values.map((value) => (
           <RadioInput
-            theme={theme}
             key={value}
             name={props.title}
             checked={props.checkedValue === value}
@@ -51,26 +37,16 @@ export function RadioGroup({ theme = "osnap", ...props }: RadioGroupProps) {
     </fieldset>
   );
 }
-const commonStyles = "flex cursor-pointer items-center gap-2 rounded-xl  capitalize transition-all";
-// for the label around the radio
-const radioInputVariants = cva(commonStyles, {
-  variants: {
-    theme: {
-      osnap:
-        "p-4 border bg-white border-grey-200 text-grey-700 has-[:checked]:bg-primary-50 has-[:checked]:border-primary-600 has-[:checked]:text-primary-600", // Base styles for osnap
-    },
-  },
-  defaultVariants: {
-    theme: "osnap",
-  },
-});
+
+const radioInputStyles =
+  "flex cursor-pointer items-center gap-2 rounded-xl capitalize transition-all p-4 border bg-white border-grey-200 text-grey-700 has-[:checked]:bg-primary-50 has-[:checked]:border-primary-600 has-[:checked]:text-primary-600";
 
 type RadioInputProps = {
   name: string;
   checked: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   label: ReactNode;
-} & VariantProps<typeof radioInputVariants>;
+};
 
 function RadioInput(props: RadioInputProps) {
   const id = useId();
@@ -81,7 +57,7 @@ function RadioInput(props: RadioInputProps) {
   const notCheckedInputStyle = "bg-transparent";
   const inputStyle = props.checked ? checkedInputStyle : notCheckedInputStyle;
   return (
-    <label htmlFor={id} className={cn(radioInputVariants(props))}>
+    <label htmlFor={id} className={cn(radioInputStyles)}>
       <span
         className={`grid h-4 w-4 shrink-0 place-items-center rounded-full border bg-transparent ${inputBorderStyle}`}
       >

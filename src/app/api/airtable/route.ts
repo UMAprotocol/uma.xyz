@@ -1,18 +1,16 @@
 import { CommunicationChannel } from "@/constant";
 import Airtable from "airtable";
 import { NextResponse } from "next/server";
-import { AirtableRequestBody, INTEGRATIONS } from "./utils";
+import { AirtableRequestBody } from "./utils";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const apiKey = process.env.AIRTABLE_API_KEY!;
 const baseId = "appU5MIM7Yl1VrxEm";
 const tableId = "tbl2scUK2gyVCSWtj";
 const organizationFieldId = "fldyCZtTyHT8jWLXa";
-const integrationFieldId = "fldafGL8jvE3toWk8";
 const nameFieldId = "fldX9QMw47XvzSW86";
 const communicationChannelFieldId = "fldjxMaR5DEtF29GC";
 const contactDetailsFieldId = "fldRByHAhU5Wbg9pF";
-const referralFieldId = "fldTzAA92VXb6OiBO";
 
 const airtableBase = new Airtable({ apiKey }).base(baseId);
 
@@ -23,8 +21,6 @@ export async function POST(request: Request) {
     [organizationFieldId]: body.organization,
     [communicationChannelFieldId]: getAirtableCommunicationChannelName(body.communicationChannel),
     [contactDetailsFieldId]: body.contactDetails,
-    [integrationFieldId]: INTEGRATIONS[body.integration].integration,
-    [referralFieldId]: INTEGRATIONS[body.integration].referral,
   };
 
   try {

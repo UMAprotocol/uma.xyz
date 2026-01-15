@@ -25,7 +25,6 @@ const iconIds = [
   "medium",
   "message-heart",
   "oo-logo",
-  "osnap-logo",
   "outcome",
   "polymarket",
   "rated",

@@ -1,29 +1,11 @@
 "use client";
 
-import { useModal } from "@/components/Modal";
 import { communicationChannels } from "@/constant";
 import { useEffect, useState } from "react";
 import { useRadioGroup } from "@/components/RadioGroup";
 import { useTextInput } from "@/components/TextInput";
 import { useContactDetailsInput } from "@/components/ContactDetailsInput";
 import { CheckedState } from "@/components/ui/checkbox";
-
-export const MODALS = {
-  "try-osnap": "try-osnap",
-} as const;
-
-type Modal = keyof typeof MODALS;
-
-export function useLeadCaptureModal(modalLabel: Modal) {
-  const modalProps = useModal({
-    useQueryParams: {
-      key: "modal",
-      value: modalLabel,
-    },
-  });
-
-  return modalProps;
-}
 
 export type LeadCaptureFormProps = ReturnType<typeof useLeadCaptureForm>;
 

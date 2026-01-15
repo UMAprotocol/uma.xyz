@@ -25,7 +25,7 @@ export default function MobileMenu({ show, hide, menuBg, isLightTheme, links }: 
   const { scrollY } = useScrollContext();
   const pathName = usePathname();
 
-  const showTicker = pathName?.split("#")[0] === "/" || pathName?.split("#")[0] === "/osnap";
+  const showTicker = pathName?.split("#")[0] === "/";
 
   useEffect(() => {
     if (show && !animationData) {

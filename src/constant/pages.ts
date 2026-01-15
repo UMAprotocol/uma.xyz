@@ -1,6 +1,5 @@
 export const Pages = {
   HOME: "HOME",
-  OSNAP: "OSNAP",
   TERMS_OF_SERVICE: "TERMS_OF_SERVICE",
 } as const;
 
