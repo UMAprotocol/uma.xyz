@@ -73,7 +73,6 @@ export function TextInput({
   label,
   type,
   id,
-  theme,
   setValue,
   dirty,
   setDirty,
@@ -86,8 +85,8 @@ export function TextInput({
   return (
     // order label after input so we can use "peer" selector for label styles based on input
     <div className="flex flex-col-reverse gap-1">
-      <Input type={type} validity={validity} theme={theme} {...props} />
-      <Label htmlFor={id} theme={theme} validity={validity}>
+      <Input type={type} validity={validity} {...props} />
+      <Label htmlFor={id} validity={validity}>
         {label}
       </Label>
     </div>
