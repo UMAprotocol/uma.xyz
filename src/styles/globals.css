@@ -13,14 +13,6 @@ body:has(main[data-color-scheme="home"]) {
   --text-base: 0 0% 0%;
 }
 
-body:has(main[data-color-scheme="osnap"]) {
-  color: var(--grey-900);
-  --background-base: var(--color-white);
-  --background-page: hsl(var(--background-base));
-  background: var(--background-page);
-  --text-base: 0 0% 0%;
-}
-
 body:has(main[data-color-scheme="terms_of_service"]) {
   color: var(--grey-900);
   --background-base: var(--color-white);

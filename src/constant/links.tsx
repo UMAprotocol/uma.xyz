@@ -21,25 +21,6 @@ export const homePageLinks = [
   },
 ];
 
-export const osnapPageLinks = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Quick Start Guide",
-    href: "https://docs.uma.xyz/developers/osnap/osnap-quick-start",
-  },
-  {
-    label: "Docs",
-    href: "https://docs.uma.xyz/",
-  },
-  {
-    label: "Blog",
-    href: "https://blog.uma.xyz/",
-  },
-];
-
 export const socialLinks = [
   {
     href: "http://discord.uma.xyz",

@@ -1,4 +1,4 @@
-import { homePageLinks, osnapPageLinks } from "@/constant";
+import { homePageLinks } from "@/constant";
 import { useScrollContext } from "@/hooks/contexts/useScrollContext";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +9,6 @@ export const useHeaderProps = () => {
 
   const page = pathname?.split("#")[0];
   const isHomePage = page === "/";
-  const isOsnapPage = page === "/osnap";
   const isTermsOfServicePage = page === "/terms-of-service";
 
   // the home page switches theme based on scroll
@@ -23,18 +22,7 @@ export const useHeaderProps = () => {
       launchAppLink: "https://vote.uma.xyz",
     } as const;
   }
-  // the osnap page is all light theme
-  if (isOsnapPage) {
-    return {
-      bg: "transparent",
-      menuBg: "var(--background-page)",
-      isLightTheme: true,
-      links: osnapPageLinks,
-      activePath: page,
-      launchAppLink: "https://vote.uma.xyz",
-    } as const;
-  }
-  // terms of service page ios light theme
+  // terms of service page is light theme
   if (isTermsOfServicePage) {
     return {
       bg: "var(--background-page)",

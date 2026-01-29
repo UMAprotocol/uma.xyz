@@ -5,11 +5,8 @@ import {
   OEV_LOST_QUERY_ID,
   ORACLE_TVS_KEY,
   ORACLE_TVS_QUERY_ID,
-  OSNAP_TVS_KEY,
-  OSNAP_TVS_QUERY_ID,
   OevLostData,
   OracleTvsData,
-  OsnapTvsData,
 } from "./constants";
 import { kv } from "@vercel/kv";
 
@@ -33,11 +30,6 @@ export const dune = async <TData>(queryId: number, queryKey: string): Promise<TD
     return (await kv.get(queryKey)) as TData;
   }
 };
-
-export const getOsnapTvs = cache(async () => {
-  const newData = await dune<OsnapTvsData>(OSNAP_TVS_QUERY_ID, OSNAP_TVS_KEY);
-  return newData.amount_usd;
-});
 
 export const getOevLost = cache(async () => {
   const newData = await dune<OevLostData>(OEV_LOST_QUERY_ID, OEV_LOST_KEY);
