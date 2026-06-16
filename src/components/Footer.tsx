@@ -8,7 +8,6 @@ import NextLink from "next/link";
 import footerLines from "public/assets/footer-lines-grey.png";
 import { useRef } from "react";
 import { Icon } from "./Icon";
-import MailChimpForm from "./MailChimpForm";
 import VoteTicker from "./VoteTicker";
 
 export const mailChimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? "";
@@ -48,10 +47,6 @@ export default function Footer() {
           <NextLink className="md:hidden" href="#" aria-label="Home">
             <Icon name="uma-logo" className="h-4 w-16 text-black" />
           </NextLink>
-          <h3 className="w-fit text-center text-xl text-grey-700 md:mb-8 lg:max-w-[640px] lg:text-left">
-            Receive the latest UMA and OO news, straight to your inbox.
-          </h3>
-          <MailChimpForm mailChimpUrl={mailChimpUrl} />
         </div>
       </div>
       <div className="mx-auto mb-16 flex w-full max-w-[--page-width] flex-col-reverse items-center justify-between gap-6 lg:flex-row lg:gap-0">
