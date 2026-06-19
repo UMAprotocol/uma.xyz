@@ -10,8 +10,6 @@ import { useRef } from "react";
 import { Icon } from "./Icon";
 import VoteTicker from "./VoteTicker";
 
-export const mailChimpUrl = process.env.NEXT_PUBLIC_MAILCHIMP_URL ?? "";
-
 export default function Footer() {
   const id = "contact";
   const ref = useRef<HTMLDivElement>(null);

@@ -89,9 +89,6 @@ importers:
       framer-motion:
         specifier: ^10.16.15
         version: 10.16.15(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      jsonp:
-        specifier: ^0.2.1
-        version: 0.2.1
       next:
         specifier: ^14.1.0
         version: 14.1.0(@babel/core@7.22.10)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -113,9 +110,6 @@ importers:
       react-lottie-player:
         specifier: ^1.5.4
         version: 1.5.4(react@18.2.0)
-      react-mailchimp-subscribe:
-        specifier: ^2.1.3
-        version: 2.1.3(react@18.2.0)
       storybook:
         specifier: ^7.3.1
         version: 7.3.2
@@ -153,9 +147,6 @@ importers:
       '@total-typescript/ts-reset':
         specifier: ^0.5.1
         version: 0.5.1
-      '@types/jsonp':
-        specifier: ^0.2.3
-        version: 0.2.3
       '@types/node':
         specifier: 20.5.0
         version: 20.5.0
@@ -165,9 +156,6 @@ importers:
       '@types/react-dom':
         specifier: 18.2.7
         version: 18.2.7
-      '@types/react-mailchimp-subscribe':
-        specifier: ^2.1.1
-        version: 2.1.1
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.4.0
         version: 6.4.0(@typescript-eslint/parser@6.18.1(eslint@8.47.0)(typescript@5.1.6))(eslint@8.47.0)(typescript@5.1.6)
@@ -2622,9 +2610,6 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
-  '@types/jsonp@0.2.3':
-    resolution: {integrity: sha512-+bbowFC2n6TkpbQ369/tqL8pRPF4JRfRNf7Z6cpnAlLlEdy6YxG4HYZE7Qkeg2otcDbwNPIuSMux+P3pE4viFA==}
-
   '@types/lodash@4.14.197':
     resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
 
@@ -2687,9 +2672,6 @@ packages:
 
   '@types/react-dom@18.2.7':
     resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
-
-  '@types/react-mailchimp-subscribe@2.1.1':
-    resolution: {integrity: sha512-ic6ruLaDdlgwj94CeML/FGHiMacXB92bZbmJimNKVzrc147/hORPCy3nZ4MHGKBiZNVqi4NBmX1pN6i3Kbg1JA==}
 
   '@types/react@18.2.20':
     resolution: {integrity: sha512-WKNtmsLWJM/3D5mG4U84cysVY31ivmyw85dE84fOCk5Hx78wezB/XEjVPWl2JTZ5FkEeaTJf+VgUAUn3PE7Isw==}
@@ -5001,9 +4983,6 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  jsonp@0.2.1:
-    resolution: {integrity: sha512-pfog5gdDxPdV4eP7Kg87M8/bHgshlZ5pybl+yKxAnCZ5O7lCIn7Ixydj03wOlnDQesky2BPyA91SQ+5Y/mNwzw==}
-
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
@@ -6042,11 +6021,6 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
 
-  react-mailchimp-subscribe@2.1.3:
-    resolution: {integrity: sha512-ZRuPZMnX/9pHQLnAQavsgB5xIF+gNqjNCCq1vvTs23cn+93W2oOp17qjg3LpDBEt1HJi6IHXMwpKXn0taY8FHw==}
-    peerDependencies:
-      react: '>=15'
-
   react-refresh@0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
@@ -6777,9 +6751,6 @@ packages:
   to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
-
-  to-querystring@1.2.0:
-    resolution: {integrity: sha512-V4qvlRNOltdNxvWGuDS71sNMH6FtFNx3GP967WT8gb6xzi4thJTUfogIln9hvz1ZmWcm9hY35LklMexo0YVHdg==}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
@@ -10708,8 +10679,6 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/jsonp@0.2.3': {}
-
   '@types/lodash@4.14.197': {}
 
   '@types/mdx@2.0.6': {}
@@ -10754,10 +10723,6 @@ snapshots:
   '@types/range-parser@1.2.7': {}
 
   '@types/react-dom@18.2.7':
-    dependencies:
-      '@types/react': 18.2.20
-
-  '@types/react-mailchimp-subscribe@2.1.1':
     dependencies:
       '@types/react': 18.2.20
 
@@ -13593,12 +13558,6 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  jsonp@0.2.1:
-    dependencies:
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
-
   jsx-ast-utils@3.3.5:
     dependencies:
       array-includes: 3.1.6
@@ -14644,15 +14603,6 @@ snapshots:
       react: 18.2.0
       rfdc: 1.3.0
 
-  react-mailchimp-subscribe@2.1.3(react@18.2.0):
-    dependencies:
-      jsonp: 0.2.1
-      prop-types: 15.8.1
-      react: 18.2.0
-      to-querystring: 1.2.0
-    transitivePeerDependencies:
-      - supports-color
-
   react-refresh@0.11.0: {}
 
   react-remove-scroll-bar@2.3.4(@types/react@18.2.20)(react@18.2.0):
@@ -15500,8 +15450,6 @@ snapshots:
   tmpl@1.0.5: {}
 
   to-fast-properties@2.0.0: {}
-
-  to-querystring@1.2.0: {}
 
   to-regex-range@5.0.1:
     dependencies:
