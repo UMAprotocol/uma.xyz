@@ -28,11 +28,6 @@ export const socialLinks = [
     label: "Discord",
   },
   {
-    href: "https://medium.com/uma-project",
-    icon: "medium",
-    label: "Medium",
-  },
-  {
     href: "https://twitter.com/UMAprotocol",
     icon: "twitter-x",
     label: "Twitter",
