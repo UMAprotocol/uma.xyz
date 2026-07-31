@@ -1,0 +1,8 @@
+# UMA vulnerability disclosure.
+# We invite security researchers to report bugs by email — rewards
+# available through our bug bounty program (see Policy link below).
+Contact: mailto:bugs@umaproject.org
+Policy: https://docs.uma.xyz/resources/audit-and-bug-bounty-programs
+Preferred-Languages: en
+Canonical: https://uma.xyz/.well-known/security.txt
+Expires: 2027-07-01T00:00:00.000Z
