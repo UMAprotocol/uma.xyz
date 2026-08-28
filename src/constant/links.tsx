@@ -61,8 +61,8 @@ export const footerLinks = {
   ],
   external: [
     {
-      label: "Optimistic Oracle (OO)",
-      href: "https://oracle.uma.xyz/",
+      label: "Explorer",
+      href: "https://explorer.uma.xyz/",
     },
     {
       label: "Docs",
