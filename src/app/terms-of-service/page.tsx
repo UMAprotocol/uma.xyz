@@ -10,7 +10,7 @@ export default function Page() {
     <Layout showTicker={false} page={Pages.TERMS_OF_SERVICE}>
       <article className="my-[100px] px-4 flex flex-col items-start gap-4 mx-auto w-full max-w-[800px]">
         <h1 className="text-4xl ">UMA Protocol Terms of Service</h1>
-        <span className="opacity-50">Dated: April 24, 2025 </span>
+        <span className="opacity-50">Dated: October 21, 2026 </span>
 
         <H2>1. Acceptance of Terms</H2>
         <P>
