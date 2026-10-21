@@ -10,19 +10,19 @@ export default function Page() {
     <Layout showTicker={false} page={Pages.TERMS_OF_SERVICE}>
       <article className="my-[100px] px-4 flex flex-col items-start gap-4 mx-auto w-full max-w-[800px]">
         <h1 className="text-4xl ">UMA Protocol Terms of Service</h1>
-        <span className="opacity-50">Dated: April 24, 2025 </span>
+        <span className="opacity-50">Dated: October 21, 2026 </span>
 
         <H2>1. Acceptance of Terms</H2>
         <P>
           These Terms of Service (the &quot;Agreement&quot; or the &apos;Terms&apos;) explain the terms and conditions
           by which you may access and use the Products provided by Risk Labs (referred to herein as &quot;Risk
           Labs&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot; or the &apos;Company&apos;). The products shall
-          include, but shall not necessarily be limited to, http://uma.xyz, http://vote.uma.xyz, and
-          http://oracle.uma.xyz (collectively, the &apos;Interfaces&apos; or the &apos;App&apos;) and all products and
-          features available via the Interfaces, including all other software Risk Labs or a third party has developed
-          on the Interfaces (collectively, the &apos;Products&apos;). You must read this Agreement carefully as it
-          governs your use of the Products. By accessing or using any of the Products, you signify that you have read,
-          understand, and agree to be bound by this Agreement in its entirety. If you do not agree, you are not
+          include, but shall not necessarily be limited to, http://uma.xyz, http://vote.uma.xyz, http://oracle.uma.xyz,
+          and http://explorer.uma.xyz (collectively, the &apos;Interfaces&apos; or the &apos;App&apos;) and all products
+          and features available via the Interfaces, including all other software Risk Labs or a third party has
+          developed on the Interfaces (collectively, the &apos;Products&apos;). You must read this Agreement carefully
+          as it governs your use of the Products. By accessing or using any of the Products, you signify that you have
+          read, understand, and agree to be bound by this Agreement in its entirety. If you do not agree, you are not
           authorized to access or use any of our Products and should not use our Products. To access or use any of our
           Products, you must be able to form a legally binding contract with us. Accordingly, you represent that you are
           at least the age of majority in your jurisdiction (e.g., 18 years old in the United States) and have the full
@@ -856,6 +856,7 @@ export default function Page() {
           to accomplish the objectives of the provision to the greatest extent possible under any applicable law and the
           validity or enforceability of any other provision of this Agreement shall not be affected.
         </P>
+
         <H2>13. Contact Information</H2>
         <P>
           If you have any questions, concerns, or feedback about these Terms or the UMA Interfaces, please contact Risk
