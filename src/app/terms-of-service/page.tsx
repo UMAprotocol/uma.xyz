@@ -856,6 +856,7 @@ export default function Page() {
           to accomplish the objectives of the provision to the greatest extent possible under any applicable law and the
           validity or enforceability of any other provision of this Agreement shall not be affected.
         </P>
+
         <H2>13. Contact Information</H2>
         <P>
           If you have any questions, concerns, or feedback about these Terms or the UMA Interfaces, please contact Risk
